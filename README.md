@@ -1,1 +1,3 @@
-# deep
+# DEEP  
+
+DEEP: Database of Early English Playbooks allows scholars and students to investigate the publishing, printing, and marketing of English Renaissance drama in ways not possible using any other print or electronic resource. An easy-to-use and highly customizable search engine of every playbook produced in England, Scotland, and Ireland from the beginning of printing through 1660, DEEP provides a wealth of information about the original playbooks, their title-pages, paratextual matter, advertising features, bibliographic details, and theatrical backgrounds.
