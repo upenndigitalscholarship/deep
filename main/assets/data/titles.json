@@ -1,0 +1,3727 @@
+{
+  "results": [
+    {
+      "id":0,
+      "text":"The Jovial Crew, or The Devil Turned Ranter"
+    },
+    {
+      "id":1,
+      "text":"Ignoramus"
+    },
+    {
+      "id":2,
+      "text":"A Masque at Bretbie"
+    },
+    {
+      "id":3,
+      "text":"Godly Queen Esther"
+    },
+    {
+      "id":4,
+      "text":"All's Lost by Lust"
+    },
+    {
+      "id":5,
+      "text":"The Wise Woman of Hogsdon"
+    },
+    {
+      "id":6,
+      "text":"The Countess of Pembroke's Ivychurch"
+    },
+    {
+      "id":7,
+      "text":"The Duchess of Suffolk"
+    },
+    {
+      "id":8,
+      "text":"The Picture"
+    },
+    {
+      "id":9,
+      "text":"Orestes"
+    },
+    {
+      "id":10,
+      "text":"1 Newmarket Fair, or A Parliament Outcry of State Commodities, Set to Sale"
+    },
+    {
+      "id":11,
+      "text":"Jupiter and Io"
+    },
+    {
+      "id":12,
+      "text":"Four Plays, or Moral Representations, in One"
+    },
+    {
+      "id":13,
+      "text":"Every Woman in Her Humor"
+    },
+    {
+      "id":14,
+      "text":"2 The Iron Age"
+    },
+    {
+      "id":15,
+      "text":"The Puritan, or The Widow of Watling Street"
+    },
+    {
+      "id":16,
+      "text":"A New Bull-Baiting, or A Match Played at the Town Bull of Ely by Twelve Mongrels"
+    },
+    {
+      "id":17,
+      "text":"Sicily and Naples, or The Fatal Union"
+    },
+    {
+      "id":18,
+      "text":"A Chaste Maid in Cheapside"
+    },
+    {
+      "id":19,
+      "text":"The Wonder of A Kingdom"
+    },
+    {
+      "id":20,
+      "text":"1 & 2 Promos and Cassandra"
+    },
+    {
+      "id":21,
+      "text":"Lovers Made Men (The Masque at Lord Hay's)"
+    },
+    {
+      "id":22,
+      "text":"Albertus Wallenstein"
+    },
+    {
+      "id":23,
+      "text":"2 The Troublesome Reign of King John"
+    },
+    {
+      "id":24,
+      "text":"The Prisoners"
+    },
+    {
+      "id":25,
+      "text":"Abraham's Sacrifice"
+    },
+    {
+      "id":26,
+      "text":"The Rebellion"
+    },
+    {
+      "id":27,
+      "text":"1 & 2 Gentleness and Nobility"
+    },
+    {
+      "id":28,
+      "text":"The Temptation of Our Lord and Savior Christ by Satan"
+    },
+    {
+      "id":29,
+      "text":"Erotopaignion, or The Cyprian Academy"
+    },
+    {
+      "id":30,
+      "text":"The School of Compliment (Love Tricks)"
+    },
+    {
+      "id":31,
+      "text":"Aristippus, or The Jovial Philosopher"
+    },
+    {
+      "id":32,
+      "text":"Cupid's Whirligig"
+    },
+    {
+      "id":33,
+      "text":"Simpleton the Smith"
+    },
+    {
+      "id":34,
+      "text":"Alphonsus, King of Aragon"
+    },
+    {
+      "id":35,
+      "text":"The Entertainment at Cowdray"
+    },
+    {
+      "id":36,
+      "text":"Certain Learned and Elegant Works"
+    },
+    {
+      "id":37,
+      "text":"Mortimer His Fall"
+    },
+    {
+      "id":38,
+      "text":"The Entertainment at Highgate (The Penates)"
+    },
+    {
+      "id":39,
+      "text":"The Contention between Liberality and Prodigality"
+    },
+    {
+      "id":40,
+      "text":"Summer's Last Will and Testament"
+    },
+    {
+      "id":41,
+      "text":"1 & 2 The Troublesome Reign of King John"
+    },
+    {
+      "id":42,
+      "text":"George a Green, the Pinner of Wakefield"
+    },
+    {
+      "id":43,
+      "text":"1 & 2 Tamburlaine the Great"
+    },
+    {
+      "id":44,
+      "text":"The Lord's Masque"
+    },
+    {
+      "id":45,
+      "text":"Tethys' Festival, or The Queen's Wake"
+    },
+    {
+      "id":46,
+      "text":"The Kentish Fair, or The Parliament Sold to Their Best Worth"
+    },
+    {
+      "id":47,
+      "text":"2 A Satire of the Three Estates"
+    },
+    {
+      "id":48,
+      "text":"The Revenge of Bussy D'Ambois"
+    },
+    {
+      "id":49,
+      "text":"The Trial of Treasure"
+    },
+    {
+      "id":50,
+      "text":"The Wars of Cyrus"
+    },
+    {
+      "id":51,
+      "text":"Plays, Masques, Epigrams, Elegies, and Epithalamiums"
+    },
+    {
+      "id":52,
+      "text":"1 & 2 Edward the Fourth"
+    },
+    {
+      "id":53,
+      "text":"A Warning for Fair Women"
+    },
+    {
+      "id":54,
+      "text":"The Spanish Curate"
+    },
+    {
+      "id":55,
+      "text":"The Famous History of Sir Thomas Wyatt"
+    },
+    {
+      "id":56,
+      "text":"Arcades"
+    },
+    {
+      "id":57,
+      "text":"The Custom of the Country"
+    },
+    {
+      "id":58,
+      "text":"The Muses' Looking Glass"
+    },
+    {
+      "id":59,
+      "text":"Vertumnus sive Annus Recurrens"
+    },
+    {
+      "id":60,
+      "text":"2 Crafty Cromwell, or Oliver in His Glory as King"
+    },
+    {
+      "id":61,
+      "text":"The Damoiselle, or The New Ordinary"
+    },
+    {
+      "id":62,
+      "text":"Adrasta, or The Woman's Spleen and Love's Conquest"
+    },
+    {
+      "id":63,
+      "text":"Chrysanaleia: The Golden Fishing, or Honor of Fishmongers"
+    },
+    {
+      "id":64,
+      "text":"The Obstinate Lady"
+    },
+    {
+      "id":65,
+      "text":"1 The Troublesome Reign of King John"
+    },
+    {
+      "id":66,
+      "text":"Henry the Eighth (All Is True)"
+    },
+    {
+      "id":67,
+      "text":"The Wandering Lovers (The Lovers' Progress) (Cleander)"
+    },
+    {
+      "id":68,
+      "text":"2 The Nuptials of Peleus and Thetis (The Great Royal Ball)"
+    },
+    {
+      "id":69,
+      "text":"Hans Beer-Pot (See Me and See Me Not)"
+    },
+    {
+      "id":70,
+      "text":"The Entertainment of the Lords of the Council by Sheriff Ducie (Flora's Servants)"
+    },
+    {
+      "id":71,
+      "text":"The Shepherds' Holiday"
+    },
+    {
+      "id":72,
+      "text":"The Entertainment of the Queen and Prince at Althorp (The Satyr)"
+    },
+    {
+      "id":73,
+      "text":"Wine, Beer, and Ale Together by the Ears (Wine, Beer, Ale, and Tobacco Contending for Superiority)"
+    },
+    {
+      "id":74,
+      "text":"Six New Plays"
+    },
+    {
+      "id":75,
+      "text":"Horatius"
+    },
+    {
+      "id":76,
+      "text":"The Entertainment at Bisham"
+    },
+    {
+      "id":77,
+      "text":"The Entertainment for the General Training (Pallas)"
+    },
+    {
+      "id":78,
+      "text":"Roxana"
+    },
+    {
+      "id":79,
+      "text":"The Triumphs of Truth; The Entertainment on Michaelmas Day 1613"
+    },
+    {
+      "id":80,
+      "text":"Apollo and Daphne"
+    },
+    {
+      "id":81,
+      "text":"The Scornful Lady"
+    },
+    {
+      "id":82,
+      "text":"A King and No King"
+    },
+    {
+      "id":83,
+      "text":"The Woman's Prize, or The Tamer Tamed"
+    },
+    {
+      "id":84,
+      "text":"A Looking Glass for London and England"
+    },
+    {
+      "id":85,
+      "text":"The London Prodigal"
+    },
+    {
+      "id":86,
+      "text":"Mercury Vindicated from the Alchemists at Court"
+    },
+    {
+      "id":87,
+      "text":"If It Be Not Good, the Devil Is in It (If This Be Not a Good Play, the Devil Is in It)"
+    },
+    {
+      "id":88,
+      "text":"A Discourse of Life and Death; Antonius"
+    },
+    {
+      "id":89,
+      "text":"Phillis and Amyntas (Ivychurch) (Amyntas' Pastoral)"
+    },
+    {
+      "id":90,
+      "text":"The Cruelty of the Spaniards in Peru"
+    },
+    {
+      "id":91,
+      "text":"The Masque of the Inner Temple and Gray's Inn"
+    },
+    {
+      "id":92,
+      "text":"The Works. Second [and Third] Volume."
+    },
+    {
+      "id":93,
+      "text":"Old Fortunatus"
+    },
+    {
+      "id":94,
+      "text":"The Death of Robert, Earl of Huntingdon (2 Robin Hood)"
+    },
+    {
+      "id":95,
+      "text":"The First Part of Churchyard's Chips"
+    },
+    {
+      "id":96,
+      "text":"The Serpent of Division"
+    },
+    {
+      "id":97,
+      "text":"Captain Thomas Stukeley"
+    },
+    {
+      "id":98,
+      "text":"The Cunning Lovers"
+    },
+    {
+      "id":99,
+      "text":"The Twins"
+    },
+    {
+      "id":100,
+      "text":"The Blind Beggar of Alexandria (Irus)"
+    },
+    {
+      "id":101,
+      "text":"Aminta"
+    },
+    {
+      "id":102,
+      "text":"Love and War"
+    },
+    {
+      "id":103,
+      "text":"A New Way to Pay Old Debts"
+    },
+    {
+      "id":104,
+      "text":"Deorum Dona"
+    },
+    {
+      "id":105,
+      "text":"Honoria and Mammon; The Contention of Ajax and Ulysses"
+    },
+    {
+      "id":106,
+      "text":"The Lovesick Court, or The Ambitious Politic"
+    },
+    {
+      "id":107,
+      "text":"Parasitaster, or The Fawn"
+    },
+    {
+      "id":108,
+      "text":"The Virtuous Octavia"
+    },
+    {
+      "id":109,
+      "text":"The Prisoners and Claracilla"
+    },
+    {
+      "id":110,
+      "text":"Naufragium Joculare"
+    },
+    {
+      "id":111,
+      "text":"Love's Sacrifice"
+    },
+    {
+      "id":112,
+      "text":"Singing Simpkin (A Soldier, and a Miser, and Sym the Clown)"
+    },
+    {
+      "id":113,
+      "text":"The Devil's Charter, or Pope Alexander the Sixth"
+    },
+    {
+      "id":114,
+      "text":"1 The Committee-Man Curried"
+    },
+    {
+      "id":115,
+      "text":"Catiline His Conspiracy"
+    },
+    {
+      "id":116,
+      "text":"Michaelmas Term"
+    },
+    {
+      "id":117,
+      "text":"The Scottish Politic Presbyter Slain by an English Independent, or The Independents' Victory over the Presbyterian Party"
+    },
+    {
+      "id":118,
+      "text":"A Trick to Catch the Old One"
+    },
+    {
+      "id":119,
+      "text":"1 Henry the Sixth"
+    },
+    {
+      "id":120,
+      "text":"The Presentation for the Prince (Time and the Almanac-Makers)"
+    },
+    {
+      "id":121,
+      "text":"Apollo Shroving"
+    },
+    {
+      "id":122,
+      "text":"Two Tragedies"
+    },
+    {
+      "id":123,
+      "text":"The Dutch Courtesan (Cockle de Moye)"
+    },
+    {
+      "id":124,
+      "text":"Othello, the Moor of Venice"
+    },
+    {
+      "id":125,
+      "text":"Two New Plays"
+    },
+    {
+      "id":126,
+      "text":"Julius Caesar"
+    },
+    {
+      "id":127,
+      "text":"The Country Captain, and The Variety"
+    },
+    {
+      "id":128,
+      "text":"Women Will Have Their Will, or Give Christmas His Due"
+    },
+    {
+      "id":129,
+      "text":"Fraus Honesta (Callidamus et Callanthia)"
+    },
+    {
+      "id":130,
+      "text":"Sappho and Phao"
+    },
+    {
+      "id":131,
+      "text":"Jack Straw"
+    },
+    {
+      "id":132,
+      "text":"The Lover's Melancholy"
+    },
+    {
+      "id":133,
+      "text":"The Works. Second Volume."
+    },
+    {
+      "id":134,
+      "text":"All Such Treatises"
+    },
+    {
+      "id":135,
+      "text":"Imperiale"
+    },
+    {
+      "id":136,
+      "text":"The Conflict of Conscience"
+    },
+    {
+      "id":137,
+      "text":"The Old Wives Tale"
+    },
+    {
+      "id":138,
+      "text":"Venus and Adonis"
+    },
+    {
+      "id":139,
+      "text":"The Maid in the Mill"
+    },
+    {
+      "id":140,
+      "text":"1 & 2 A Satire of the Three Estates"
+    },
+    {
+      "id":141,
+      "text":"Lady Alimony, or The Alimony Lady"
+    },
+    {
+      "id":142,
+      "text":"The Misfortunes of Arthur (Certain Devices and Shows Presented to Her Majesty)"
+    },
+    {
+      "id":143,
+      "text":"The New Academy, or The New Exchange"
+    },
+    {
+      "id":144,
+      "text":"The Royal Slave"
+    },
+    {
+      "id":145,
+      "text":"The Silver Age"
+    },
+    {
+      "id":146,
+      "text":"Agamemnon"
+    },
+    {
+      "id":147,
+      "text":"The Merry Devil of Edmonton"
+    },
+    {
+      "id":148,
+      "text":"The Honest Lawyer"
+    },
+    {
+      "id":149,
+      "text":"The False One"
+    },
+    {
+      "id":150,
+      "text":"1 The Iron Age"
+    },
+    {
+      "id":151,
+      "text":"The Strange Discovery"
+    },
+    {
+      "id":152,
+      "text":"The Imposture (The Impostor)"
+    },
+    {
+      "id":153,
+      "text":"The Gentleman Usher (Vincentio and Margaret)"
+    },
+    {
+      "id":154,
+      "text":"The Duke of Milan"
+    },
+    {
+      "id":155,
+      "text":"The Fancies Theater (The Mirror of Fancies)"
+    },
+    {
+      "id":156,
+      "text":"The First Day's Entertainment at Rutland House"
+    },
+    {
+      "id":157,
+      "text":"2 The Committee-Man Curried"
+    },
+    {
+      "id":158,
+      "text":"Oedipus"
+    },
+    {
+      "id":159,
+      "text":"The Northern Lass"
+    },
+    {
+      "id":160,
+      "text":"Londini Emporia, or London's Mercatura"
+    },
+    {
+      "id":161,
+      "text":"London's Triumphs for Richard Chiverton"
+    },
+    {
+      "id":162,
+      "text":"For the Honor of Wales"
+    },
+    {
+      "id":163,
+      "text":"The Entertainment at Cawsome"
+    },
+    {
+      "id":164,
+      "text":"Jack Juggler"
+    },
+    {
+      "id":165,
+      "text":"1 A Satire of the Three Estates"
+    },
+    {
+      "id":166,
+      "text":"Romeo and Juliet"
+    },
+    {
+      "id":167,
+      "text":"Poems with the Muses' Looking Glass; Amyntas; Jealous Lovers; Aristippus"
+    },
+    {
+      "id":168,
+      "text":"The Golden Age, or The Lives of Jupiter and Saturn"
+    },
+    {
+      "id":169,
+      "text":"Albion's Triumph"
+    },
+    {
+      "id":170,
+      "text":"Philotas"
+    },
+    {
+      "id":171,
+      "text":"The Triumphs of Truth"
+    },
+    {
+      "id":172,
+      "text":"London's Tempe, or The Field of Happiness"
+    },
+    {
+      "id":173,
+      "text":"Claudius Tiberius Nero"
+    },
+    {
+      "id":174,
+      "text":"The Arraignment of Paris"
+    },
+    {
+      "id":175,
+      "text":"Medea"
+    },
+    {
+      "id":176,
+      "text":"1 Nature"
+    },
+    {
+      "id":177,
+      "text":"1 The Cid (The Valiant Cid)"
+    },
+    {
+      "id":178,
+      "text":"Pedantius"
+    },
+    {
+      "id":179,
+      "text":"1 Jeronimo, with the Wars of Portugal"
+    },
+    {
+      "id":180,
+      "text":"The Masque of Augurs"
+    },
+    {
+      "id":181,
+      "text":"The Entertainment in Suffolk and Norfolk"
+    },
+    {
+      "id":182,
+      "text":"Monsieur D'Olive"
+    },
+    {
+      "id":183,
+      "text":"Prince Henry's Barriers (The Lady of the Lake)"
+    },
+    {
+      "id":184,
+      "text":"The Pedlar's Prophecy"
+    },
+    {
+      "id":185,
+      "text":"The Noble Stranger"
+    },
+    {
+      "id":186,
+      "text":"Comedies and Tragedies"
+    },
+    {
+      "id":187,
+      "text":"The Case Is Altered"
+    },
+    {
+      "id":188,
+      "text":"The Noble Gentleman"
+    },
+    {
+      "id":189,
+      "text":"2 Tamburlaine the Great"
+    },
+    {
+      "id":190,
+      "text":"The Isle of Gulls"
+    },
+    {
+      "id":191,
+      "text":"Northward Ho"
+    },
+    {
+      "id":192,
+      "text":"The Last Remains of Sir John Suckling"
+    },
+    {
+      "id":193,
+      "text":"The Virgin Martyr"
+    },
+    {
+      "id":194,
+      "text":"Alaham"
+    },
+    {
+      "id":195,
+      "text":"Campaspe (Alexander, Campaspe, and Diogenes)"
+    },
+    {
+      "id":196,
+      "text":"The Fair Maid of the Inn"
+    },
+    {
+      "id":197,
+      "text":"Canterbury His Change of Diet"
+    },
+    {
+      "id":198,
+      "text":"Locrine"
+    },
+    {
+      "id":199,
+      "text":"The Gentleman of Venice"
+    },
+    {
+      "id":200,
+      "text":"The Rape of Lucrece"
+    },
+    {
+      "id":201,
+      "text":"The Masque at Lord Hay's Marriage"
+    },
+    {
+      "id":202,
+      "text":"The Revenger's Tragedy"
+    },
+    {
+      "id":203,
+      "text":"Coriolanus"
+    },
+    {
+      "id":204,
+      "text":"The Jew of Malta"
+    },
+    {
+      "id":205,
+      "text":"The Reign of King Edward the Third"
+    },
+    {
+      "id":206,
+      "text":"The Magnetic Lady, or Humors Reconciled"
+    },
+    {
+      "id":207,
+      "text":"The Phoenix"
+    },
+    {
+      "id":208,
+      "text":"The Beauty and Good Properties of Women (Calisto and Melebea) (Celestina)"
+    },
+    {
+      "id":209,
+      "text":"1 The Honest Whore (1 The Converted Courtesan)"
+    },
+    {
+      "id":210,
+      "text":"1 The Passionate Lovers"
+    },
+    {
+      "id":211,
+      "text":"The Weakest Goeth to the Wall"
+    },
+    {
+      "id":212,
+      "text":"Love's Pilgrimage"
+    },
+    {
+      "id":213,
+      "text":"A Merry Jest of Robin Hood and of His Life"
+    },
+    {
+      "id":214,
+      "text":"A Shoemaker a Gentleman"
+    },
+    {
+      "id":215,
+      "text":"Thersites"
+    },
+    {
+      "id":216,
+      "text":"A Chain of Golden Poems"
+    },
+    {
+      "id":217,
+      "text":"Law Tricks"
+    },
+    {
+      "id":218,
+      "text":"The Platonic Lovers"
+    },
+    {
+      "id":219,
+      "text":"The Knight of the Burning Pestle"
+    },
+    {
+      "id":220,
+      "text":"Thebais"
+    },
+    {
+      "id":221,
+      "text":"Menaechmi"
+    },
+    {
+      "id":222,
+      "text":"The Traitor"
+    },
+    {
+      "id":223,
+      "text":"The Valiant Scot"
+    },
+    {
+      "id":224,
+      "text":"Cancer"
+    },
+    {
+      "id":225,
+      "text":"The Taming of the Shrew"
+    },
+    {
+      "id":226,
+      "text":"Pater, Filius, et Uxor, or The Prodigal Son"
+    },
+    {
+      "id":227,
+      "text":"John Swabber"
+    },
+    {
+      "id":228,
+      "text":"The Shepherd's Paradise"
+    },
+    {
+      "id":229,
+      "text":"1 Gentleness and Nobility"
+    },
+    {
+      "id":230,
+      "text":"The Ball"
+    },
+    {
+      "id":231,
+      "text":"Your Five Gallants (The Five Witty Gallants)"
+    },
+    {
+      "id":232,
+      "text":"A Play of Love"
+    },
+    {
+      "id":233,
+      "text":"Antony and Cleopatra"
+    },
+    {
+      "id":234,
+      "text":"Comus (The Masque at Ludlow Castle)"
+    },
+    {
+      "id":235,
+      "text":"London's Triumph, Presented by Industry and Honor (London's Triumph for John Ireton)"
+    },
+    {
+      "id":236,
+      "text":"Love's Triumph Through Callipolis"
+    },
+    {
+      "id":237,
+      "text":"Panniculus Hippolyto Assutus"
+    },
+    {
+      "id":238,
+      "text":"Robin Hood (Robin Hood and the Friar) (Robin Hood and the Potter)"
+    },
+    {
+      "id":239,
+      "text":"Poetaster, or The Arraignment"
+    },
+    {
+      "id":240,
+      "text":"The Hectors, or The False Challenge"
+    },
+    {
+      "id":241,
+      "text":"Salmacida Spolia"
+    },
+    {
+      "id":242,
+      "text":"Nero"
+    },
+    {
+      "id":243,
+      "text":"The Levellers Levelled, or The Independents' Conspiracy to Root Out Monarchy"
+    },
+    {
+      "id":244,
+      "text":"Amyntas, or The Impossible Dowry"
+    },
+    {
+      "id":245,
+      "text":"The Entertainment on Michaelmas Day 1613 (The Running Stream Entertainment) (The New River Entertainment)"
+    },
+    {
+      "id":246,
+      "text":"The Masque of the Middle Temple and Lincoln's Inn"
+    },
+    {
+      "id":247,
+      "text":"1 Saint Patrick for Ireland"
+    },
+    {
+      "id":248,
+      "text":"Poems, with a Masque"
+    },
+    {
+      "id":249,
+      "text":"Londini Speculum, or London's Mirror"
+    },
+    {
+      "id":250,
+      "text":"The Amorous War"
+    },
+    {
+      "id":251,
+      "text":"Senile Odium"
+    },
+    {
+      "id":252,
+      "text":"The Swaggering Damsel"
+    },
+    {
+      "id":253,
+      "text":"A Mad Couple Well Matched"
+    },
+    {
+      "id":254,
+      "text":"Meleager"
+    },
+    {
+      "id":255,
+      "text":"The Knave in Grain, New Vamped"
+    },
+    {
+      "id":256,
+      "text":"Rhodon and Iris"
+    },
+    {
+      "id":257,
+      "text":"The Knight of Malta"
+    },
+    {
+      "id":258,
+      "text":"The Vision of Delight"
+    },
+    {
+      "id":259,
+      "text":"Rule a Wife and Have a Wife"
+    },
+    {
+      "id":260,
+      "text":"The Floating Island (Passions Calmed) (Prudentius)"
+    },
+    {
+      "id":261,
+      "text":"The Island Princess"
+    },
+    {
+      "id":262,
+      "text":"Ram Alley, or Merry Tricks"
+    },
+    {
+      "id":263,
+      "text":"The Triumphs of Honor and Virtue"
+    },
+    {
+      "id":264,
+      "text":"Darius"
+    },
+    {
+      "id":265,
+      "text":"The Duchess of Malfi"
+    },
+    {
+      "id":266,
+      "text":"Love's Mistress, or The Queen's Masque (Cupid and Psyche, or Cupid's Mistress)"
+    },
+    {
+      "id":267,
+      "text":"The Masque of Owls"
+    },
+    {
+      "id":268,
+      "text":"Philotus"
+    },
+    {
+      "id":269,
+      "text":"The Conspiracy (Pallantus and Eudora)"
+    },
+    {
+      "id":270,
+      "text":"Antonius (Antony)"
+    },
+    {
+      "id":271,
+      "text":"The Coxcomb"
+    },
+    {
+      "id":272,
+      "text":"The Bashful Lover"
+    },
+    {
+      "id":273,
+      "text":"The Phoenix in Her Flames"
+    },
+    {
+      "id":274,
+      "text":"The Famous Victories of Henry the Fifth"
+    },
+    {
+      "id":275,
+      "text":"Like Will to Like"
+    },
+    {
+      "id":276,
+      "text":"The Golden Age Restored"
+    },
+    {
+      "id":277,
+      "text":"Pan's Anniversary, or The Shepherds' Holiday"
+    },
+    {
+      "id":278,
+      "text":"The Pilgrim"
+    },
+    {
+      "id":279,
+      "text":"Trappolin Creduto Principe, or Trappolin Supposed a Prince"
+    },
+    {
+      "id":280,
+      "text":"Appius and Virginia"
+    },
+    {
+      "id":281,
+      "text":"Wily Beguiled"
+    },
+    {
+      "id":282,
+      "text":"The Sophister (Fallacy, or The Troubles of Great Hermenia)"
+    },
+    {
+      "id":283,
+      "text":"Bartholomew Fair"
+    },
+    {
+      "id":284,
+      "text":"The Night Walker, or The Little Thief"
+    },
+    {
+      "id":285,
+      "text":"The Three Ladies of London"
+    },
+    {
+      "id":286,
+      "text":"The Masque of Flowers"
+    },
+    {
+      "id":287,
+      "text":"Herod and Antipater"
+    },
+    {
+      "id":288,
+      "text":"The Example"
+    },
+    {
+      "id":289,
+      "text":"The Characters of Two Royal Masques"
+    },
+    {
+      "id":290,
+      "text":"The Entertainment at Sir William Cokayne's in Easter Week (The Cock)"
+    },
+    {
+      "id":291,
+      "text":"The Hog Hath Lost His Pearl"
+    },
+    {
+      "id":292,
+      "text":"Antonio and Mellida"
+    },
+    {
+      "id":293,
+      "text":"The Four Prentices of London"
+    },
+    {
+      "id":294,
+      "text":"Mother Bombie"
+    },
+    {
+      "id":295,
+      "text":"Midas"
+    },
+    {
+      "id":296,
+      "text":"The Triumphs of Honor and Industry"
+    },
+    {
+      "id":297,
+      "text":"The Humorous Lieutenant (Generous Enemies, Demetrius and Enanthe) (The Noble Enemy)"
+    },
+    {
+      "id":298,
+      "text":"Andria"
+    },
+    {
+      "id":299,
+      "text":"Britannia Triumphans"
+    },
+    {
+      "id":300,
+      "text":"1 Selimus"
+    },
+    {
+      "id":301,
+      "text":"A Challenge for Beauty"
+    },
+    {
+      "id":302,
+      "text":"Ten Tragedies"
+    },
+    {
+      "id":303,
+      "text":"Actaeon and Diana; with A Pastoral Story of the Nymph Oenone"
+    },
+    {
+      "id":304,
+      "text":"The Entertainment at Sudeley"
+    },
+    {
+      "id":305,
+      "text":"The Winter's Tale"
+    },
+    {
+      "id":306,
+      "text":"Fortune by Land and Sea"
+    },
+    {
+      "id":307,
+      "text":"The Masque at the Earl of Somerset's Marriage (The Masque of Squires)"
+    },
+    {
+      "id":308,
+      "text":"The Sun in Aries"
+    },
+    {
+      "id":309,
+      "text":"The Cobbler's Prophecy"
+    },
+    {
+      "id":310,
+      "text":"Love's Victory"
+    },
+    {
+      "id":311,
+      "text":"A Bartholomew Fairing"
+    },
+    {
+      "id":312,
+      "text":"The Wedding"
+    },
+    {
+      "id":313,
+      "text":"Richard the Second"
+    },
+    {
+      "id":314,
+      "text":"1 The Blind Beggar of Bednal Green (1 Tom Strowd)"
+    },
+    {
+      "id":315,
+      "text":"The Sad Shepherd, or A Tale of Robin Hood"
+    },
+    {
+      "id":316,
+      "text":"Amends for Ladies"
+    },
+    {
+      "id":317,
+      "text":"The Captain"
+    },
+    {
+      "id":318,
+      "text":"Caesar and Pompey, or Caesar's Revenge"
+    },
+    {
+      "id":319,
+      "text":"Octavia"
+    },
+    {
+      "id":320,
+      "text":"Love's Riddle"
+    },
+    {
+      "id":321,
+      "text":"New Custom (New Guise)"
+    },
+    {
+      "id":322,
+      "text":"The Tragedy of Charles Duke of Byron"
+    },
+    {
+      "id":323,
+      "text":"Blurt, Master Constable, or The Spaniard's Night Walk"
+    },
+    {
+      "id":324,
+      "text":"The Old Law, or A New Way to Please You"
+    },
+    {
+      "id":325,
+      "text":"The King's Entertainment at Welbeck (Love's Welcome at Welbeck)"
+    },
+    {
+      "id":326,
+      "text":"Match Me in London"
+    },
+    {
+      "id":327,
+      "text":"The Maid's Revenge"
+    },
+    {
+      "id":328,
+      "text":"Three Excellent Tragedies"
+    },
+    {
+      "id":329,
+      "text":"The Gamester"
+    },
+    {
+      "id":330,
+      "text":"The Longer Thou Livest the More Fool Thou Art"
+    },
+    {
+      "id":331,
+      "text":"The Pleasantest Works"
+    },
+    {
+      "id":332,
+      "text":"The Queen's Exchange (The Royal Exchange)"
+    },
+    {
+      "id":333,
+      "text":"Hercules Furens"
+    },
+    {
+      "id":334,
+      "text":"Chester's Triumph"
+    },
+    {
+      "id":335,
+      "text":"The Alexandraean Tragedy"
+    },
+    {
+      "id":336,
+      "text":"Mistress Parliament Presented in Her Bed"
+    },
+    {
+      "id":337,
+      "text":"The Triumphs of the Prince d'Amour"
+    },
+    {
+      "id":338,
+      "text":"The Dumb Knight"
+    },
+    {
+      "id":339,
+      "text":"The Virgin Widow"
+    },
+    {
+      "id":340,
+      "text":"[not used]"
+    },
+    {
+      "id":341,
+      "text":"Tes Irenes Trophaea, or The Triumphs of Peace"
+    },
+    {
+      "id":342,
+      "text":"Il Pastor Fido, or The Faithful Shepherd"
+    },
+    {
+      "id":343,
+      "text":"Cornelia (Pompey the Great His Fair Cornelia's Tragedy)"
+    },
+    {
+      "id":344,
+      "text":"The Downfall of Robert, Earl of Huntingdon (1 Robin Hood)"
+    },
+    {
+      "id":345,
+      "text":"The Staple of News"
+    },
+    {
+      "id":346,
+      "text":"What You Will"
+    },
+    {
+      "id":347,
+      "text":"The Brothers (The Politic Father)"
+    },
+    {
+      "id":348,
+      "text":"The Gossips' Brawl, or The Women Wear the Breeches"
+    },
+    {
+      "id":349,
+      "text":"Romancio-Mastrix, or A Romance on Romances"
+    },
+    {
+      "id":350,
+      "text":"An Interlude of Minds"
+    },
+    {
+      "id":351,
+      "text":"Love Crowns the End"
+    },
+    {
+      "id":352,
+      "text":"The Miseries of Enforced Marriage"
+    },
+    {
+      "id":353,
+      "text":"Civitatis Amor"
+    },
+    {
+      "id":354,
+      "text":"Pleasant Dialogues and Dramas"
+    },
+    {
+      "id":355,
+      "text":"The Just Italian"
+    },
+    {
+      "id":356,
+      "text":"Christ's Passion"
+    },
+    {
+      "id":357,
+      "text":"The Four Cardinal Virtues"
+    },
+    {
+      "id":358,
+      "text":"The Cruel Debtor"
+    },
+    {
+      "id":359,
+      "text":"London's Ius Honorarium"
+    },
+    {
+      "id":360,
+      "text":"The Ordinary, or The City Cozener"
+    },
+    {
+      "id":361,
+      "text":"Mistress Parliament, Her Invitation of Mistress London"
+    },
+    {
+      "id":362,
+      "text":"Two Wise Men and All the Rest Fools"
+    },
+    {
+      "id":363,
+      "text":"Richard the Third"
+    },
+    {
+      "id":364,
+      "text":"Delia and Rosamond Augmented; Cleopatra"
+    },
+    {
+      "id":365,
+      "text":"Johan the Evangelist"
+    },
+    {
+      "id":366,
+      "text":"Cambises"
+    },
+    {
+      "id":367,
+      "text":"The Courageous Turk, or Amurath the First"
+    },
+    {
+      "id":368,
+      "text":"The Triumph of Beauty"
+    },
+    {
+      "id":369,
+      "text":"The Summoning of Everyman"
+    },
+    {
+      "id":370,
+      "text":"The Irish Masque"
+    },
+    {
+      "id":371,
+      "text":"Britannia's Honor"
+    },
+    {
+      "id":372,
+      "text":"1 Fulgens and Lucrece"
+    },
+    {
+      "id":373,
+      "text":"Comedies, Tragicomedies, With other Poems"
+    },
+    {
+      "id":374,
+      "text":"Westward Ho"
+    },
+    {
+      "id":375,
+      "text":"The Parliament of Bees"
+    },
+    {
+      "id":376,
+      "text":"The Enchanted Lovers"
+    },
+    {
+      "id":377,
+      "text":"Chabot, Admiral of France"
+    },
+    {
+      "id":378,
+      "text":"Henry the Fifth"
+    },
+    {
+      "id":379,
+      "text":"Edward the Second"
+    },
+    {
+      "id":380,
+      "text":"Andromana, or The Merchant's Wife"
+    },
+    {
+      "id":381,
+      "text":"Gripsius and Hegio, or The Passionate Lovers"
+    },
+    {
+      "id":382,
+      "text":"The Maid of Honor"
+    },
+    {
+      "id":383,
+      "text":"Somebody, Avarice, and Minister (Somebody and Others, or The Spoiling of Lady Verity)"
+    },
+    {
+      "id":384,
+      "text":"The Entertainment of the Two Kings of Great Britain and Denmark (The Entertainment at Theobalds, 1606) (The Hours)"
+    },
+    {
+      "id":385,
+      "text":"Bonduca"
+    },
+    {
+      "id":386,
+      "text":"The Entertainment at Theobalds, 1607 (The Genius)"
+    },
+    {
+      "id":387,
+      "text":"The Entertainment at Richmond"
+    },
+    {
+      "id":388,
+      "text":"Antonio's Revenge (2 Antonio and Mellida)"
+    },
+    {
+      "id":389,
+      "text":"Macbeth"
+    },
+    {
+      "id":390,
+      "text":"The Fair Maid of Bristow"
+    },
+    {
+      "id":391,
+      "text":"The Merry Wives of Windsor"
+    },
+    {
+      "id":392,
+      "text":"The Extravagant Shepherd"
+    },
+    {
+      "id":393,
+      "text":"The Duke's Mistress"
+    },
+    {
+      "id":394,
+      "text":"The Goblins"
+    },
+    {
+      "id":395,
+      "text":"Magnificence"
+    },
+    {
+      "id":396,
+      "text":"The Country Captain (Captain Underwit)"
+    },
+    {
+      "id":397,
+      "text":"2 Newmarket Fair, or Mistress Parliament's New Figaries"
+    },
+    {
+      "id":398,
+      "text":"Poems with the Muses' Looking Glass; and Amyntas"
+    },
+    {
+      "id":399,
+      "text":"The Royal Master"
+    },
+    {
+      "id":400,
+      "text":"The Double Marriage"
+    },
+    {
+      "id":401,
+      "text":"Ferrex and Porrex (Gorboduc)"
+    },
+    {
+      "id":402,
+      "text":"Hercules Oetaeus"
+    },
+    {
+      "id":403,
+      "text":"The Marriage of Wit and Science"
+    },
+    {
+      "id":404,
+      "text":"The Malcontent"
+    },
+    {
+      "id":405,
+      "text":"The Sun's Darling"
+    },
+    {
+      "id":406,
+      "text":"The Eunuch"
+    },
+    {
+      "id":407,
+      "text":"The Country Girl"
+    },
+    {
+      "id":408,
+      "text":"King Darius"
+    },
+    {
+      "id":409,
+      "text":"The Late Lancashire Witches"
+    },
+    {
+      "id":410,
+      "text":"The Combat of Love and Friendship"
+    },
+    {
+      "id":411,
+      "text":"Histriomastix, or The Player Whipped"
+    },
+    {
+      "id":412,
+      "text":"Free-Will"
+    },
+    {
+      "id":413,
+      "text":"The Variety"
+    },
+    {
+      "id":414,
+      "text":"The Queen of Aragon (Cleodora)"
+    },
+    {
+      "id":415,
+      "text":"News Out of the West, or The Character of a Mountebank"
+    },
+    {
+      "id":416,
+      "text":"Don Zara Del Fogo"
+    },
+    {
+      "id":417,
+      "text":"2 Promos and Cassandra"
+    },
+    {
+      "id":418,
+      "text":"The Seven Champions of Christendom"
+    },
+    {
+      "id":419,
+      "text":"The Opportunity"
+    },
+    {
+      "id":420,
+      "text":"2 Fulgens and Lucrece"
+    },
+    {
+      "id":421,
+      "text":"The Comedy of Errors"
+    },
+    {
+      "id":422,
+      "text":"The Heir"
+    },
+    {
+      "id":423,
+      "text":"The Unnatural Combat"
+    },
+    {
+      "id":424,
+      "text":"The Emperor of the East"
+    },
+    {
+      "id":425,
+      "text":"The Entertainment at Wanstead (The Lady of May)"
+    },
+    {
+      "id":426,
+      "text":"The Masque for Lord Montacute (The Montague Masque)"
+    },
+    {
+      "id":427,
+      "text":"Hymen's Triumph"
+    },
+    {
+      "id":428,
+      "text":"Dido, Queen of Carthage"
+    },
+    {
+      "id":429,
+      "text":"Women Beware Women"
+    },
+    {
+      "id":430,
+      "text":"2 Arviragus and Philicia"
+    },
+    {
+      "id":431,
+      "text":"Pleasure Reconciled to Virtue"
+    },
+    {
+      "id":432,
+      "text":"The Conspiracy and Tragedy of Charles Duke of Byron"
+    },
+    {
+      "id":433,
+      "text":"The Hector of Germany, or The Palsgrave, Prime Elector"
+    },
+    {
+      "id":434,
+      "text":"Work for Cutlers (Sword, Rapier, and Dagger)"
+    },
+    {
+      "id":435,
+      "text":"Troia Nova Triumphans"
+    },
+    {
+      "id":436,
+      "text":"The Four P's"
+    },
+    {
+      "id":437,
+      "text":"The Triumphs of Love and Antiquity"
+    },
+    {
+      "id":438,
+      "text":"The Conspiracy of Charles Duke of Byron"
+    },
+    {
+      "id":439,
+      "text":"The Court Beggar"
+    },
+    {
+      "id":440,
+      "text":"Nero (Piso's Conspiracy)"
+    },
+    {
+      "id":441,
+      "text":"2 Gentleness and Nobility"
+    },
+    {
+      "id":442,
+      "text":"Women Pleased"
+    },
+    {
+      "id":443,
+      "text":"The Widow's Tears"
+    },
+    {
+      "id":444,
+      "text":"London's Triumph for Robert Tichborne"
+    },
+    {
+      "id":445,
+      "text":"Johan Johan the Husband, Tib His Wife, and Sir Johan the Priest"
+    },
+    {
+      "id":446,
+      "text":"The Triumphs of Health and Prosperity"
+    },
+    {
+      "id":447,
+      "text":"Love's Dominion"
+    },
+    {
+      "id":448,
+      "text":"Mercurius Britannicus (Judicialis Censura, vel Curialis Cura)"
+    },
+    {
+      "id":449,
+      "text":"The Masque of Beauty"
+    },
+    {
+      "id":450,
+      "text":"Eastward Ho"
+    },
+    {
+      "id":451,
+      "text":"The Tempest"
+    },
+    {
+      "id":452,
+      "text":"Timon of Athens"
+    },
+    {
+      "id":453,
+      "text":"The Queen's Entertainment at Bristow"
+    },
+    {
+      "id":454,
+      "text":"Changes, or Love in a Maze"
+    },
+    {
+      "id":455,
+      "text":"Thierry and Theodoret"
+    },
+    {
+      "id":456,
+      "text":"The City Wit, or The Woman Wears the Breeches"
+    },
+    {
+      "id":457,
+      "text":"Hycke Scorner"
+    },
+    {
+      "id":458,
+      "text":"Himatia-Poleos"
+    },
+    {
+      "id":459,
+      "text":"Sejanus His Fall"
+    },
+    {
+      "id":460,
+      "text":"Monuments of Honor"
+    },
+    {
+      "id":461,
+      "text":"Troas"
+    },
+    {
+      "id":462,
+      "text":"The London Chanticleers"
+    },
+    {
+      "id":463,
+      "text":"1 & 2 Fulgens and Lucrece"
+    },
+    {
+      "id":464,
+      "text":"The Whore of Babylon"
+    },
+    {
+      "id":465,
+      "text":"The False Favorite Disgraced, or The Reward of Loyalty"
+    },
+    {
+      "id":466,
+      "text":"Gammer Gurton's Needle"
+    },
+    {
+      "id":467,
+      "text":"Holland's Leaguer"
+    },
+    {
+      "id":468,
+      "text":"The Politician"
+    },
+    {
+      "id":469,
+      "text":"Osmond the Great Turk, or The Noble Servant"
+    },
+    {
+      "id":470,
+      "text":"Thibaldus sive Vindictae Ingenium (Pharamus sive Libido Vindex)"
+    },
+    {
+      "id":471,
+      "text":"Microcosmus"
+    },
+    {
+      "id":472,
+      "text":"Measure for Measure"
+    },
+    {
+      "id":473,
+      "text":"Impatient Poverty"
+    },
+    {
+      "id":474,
+      "text":"The English Moor, or The Mock Marriage"
+    },
+    {
+      "id":475,
+      "text":"Cupid and Death"
+    },
+    {
+      "id":476,
+      "text":"The Two First Comedies"
+    },
+    {
+      "id":477,
+      "text":"Troilus and Cressida"
+    },
+    {
+      "id":478,
+      "text":"Landgartha"
+    },
+    {
+      "id":479,
+      "text":"The Honorable Entertainment of the King of Denmark"
+    },
+    {
+      "id":480,
+      "text":"Tancred and Gismund (Gismond of Salerne)"
+    },
+    {
+      "id":481,
+      "text":"Endymion, the Man in the Moon"
+    },
+    {
+      "id":482,
+      "text":"The Wonder of Women, or Sophonisba"
+    },
+    {
+      "id":483,
+      "text":"Cymbeline, King of Britain"
+    },
+    {
+      "id":484,
+      "text":"The Young Admiral"
+    },
+    {
+      "id":485,
+      "text":"The Witch of Edmonton"
+    },
+    {
+      "id":486,
+      "text":"King Lear"
+    },
+    {
+      "id":487,
+      "text":"The Great Duke of Florence"
+    },
+    {
+      "id":488,
+      "text":"Love's Welcome at Bolsover"
+    },
+    {
+      "id":489,
+      "text":"Comedies, Tragicomedies, and Tragedies"
+    },
+    {
+      "id":490,
+      "text":"The New Inn, or The Light Heart"
+    },
+    {
+      "id":491,
+      "text":"Three New Plays"
+    },
+    {
+      "id":492,
+      "text":"The Triumphs of Integrity"
+    },
+    {
+      "id":493,
+      "text":"Caesar and Pompey (The Wars of Caesar and Pompey)"
+    },
+    {
+      "id":494,
+      "text":"The Wisdom of Doctor Dodypoll"
+    },
+    {
+      "id":495,
+      "text":"The Contention for Honor and Riches (Honoria and Mammon)"
+    },
+    {
+      "id":496,
+      "text":"Love in Its Ecstasy, or The Large Prerogative"
+    },
+    {
+      "id":497,
+      "text":"Alphonsus, Emperor of Germany"
+    },
+    {
+      "id":498,
+      "text":"The Pageant for John Allot"
+    },
+    {
+      "id":499,
+      "text":"The Vow Breaker, or The Fair Maid of Clifton"
+    },
+    {
+      "id":500,
+      "text":"Albion Knight"
+    },
+    {
+      "id":501,
+      "text":"The Constant Maid (Love Will Find Out the Way)"
+    },
+    {
+      "id":502,
+      "text":"The Taming of a Shrew"
+    },
+    {
+      "id":503,
+      "text":"The Nature of the Four Elements (Natura Naturata)"
+    },
+    {
+      "id":504,
+      "text":"Titus Andronicus"
+    },
+    {
+      "id":505,
+      "text":"Mistress Parliament, Her Gossiping"
+    },
+    {
+      "id":506,
+      "text":"A Very Woman, or The Prince of Tarent"
+    },
+    {
+      "id":507,
+      "text":"The Two Merry Milkmaids, or The Best Words Wear the Garland"
+    },
+    {
+      "id":508,
+      "text":"The Entertainment at Rycote"
+    },
+    {
+      "id":509,
+      "text":"A Fair Quarrel"
+    },
+    {
+      "id":510,
+      "text":"1 & 2 The Passionate Lovers"
+    },
+    {
+      "id":511,
+      "text":"The Gypsies Metamorphosed"
+    },
+    {
+      "id":512,
+      "text":"A Fine Companion"
+    },
+    {
+      "id":513,
+      "text":"1 The Fair Maid of the West, or A Girl Worth Gold"
+    },
+    {
+      "id":514,
+      "text":"Love's Labor's Lost"
+    },
+    {
+      "id":515,
+      "text":"Tottenham Court"
+    },
+    {
+      "id":516,
+      "text":"Humor Out of Breath"
+    },
+    {
+      "id":517,
+      "text":"The Pardoner and the Friar, the Curate, and Neighbor Pratte"
+    },
+    {
+      "id":518,
+      "text":"Stoicus Vapulans"
+    },
+    {
+      "id":519,
+      "text":"The Scots Figaries, or A Knot of Knaves"
+    },
+    {
+      "id":520,
+      "text":"Cynthia's Revenge, or Maenander's Ecstasy"
+    },
+    {
+      "id":521,
+      "text":"A Yorkshire Tragedy"
+    },
+    {
+      "id":522,
+      "text":"The Presentment of Bushell's Rock"
+    },
+    {
+      "id":523,
+      "text":"2 The Passionate Lovers"
+    },
+    {
+      "id":524,
+      "text":"The Queen, or The Excellency of Her Sex"
+    },
+    {
+      "id":525,
+      "text":"The Siege, or Love's Convert"
+    },
+    {
+      "id":526,
+      "text":"All Fools"
+    },
+    {
+      "id":527,
+      "text":"The English Traveller"
+    },
+    {
+      "id":528,
+      "text":"The Bloody Brother (Rollo, Duke of Normandy)"
+    },
+    {
+      "id":529,
+      "text":"Two Plays"
+    },
+    {
+      "id":530,
+      "text":"The Fatal Contract (The Eunuch)"
+    },
+    {
+      "id":531,
+      "text":"The Loyal Subject"
+    },
+    {
+      "id":532,
+      "text":"1 & 2 Nature"
+    },
+    {
+      "id":533,
+      "text":"The Massacre at Paris"
+    },
+    {
+      "id":534,
+      "text":"Mustapha"
+    },
+    {
+      "id":535,
+      "text":"Il Pastor Fido (The Faithful Shepherd)"
+    },
+    {
+      "id":536,
+      "text":"Revenge for Honor (The Parricide)"
+    },
+    {
+      "id":537,
+      "text":"London's Triumph for Thomas Allen"
+    },
+    {
+      "id":538,
+      "text":"Nobody and Somebody"
+    },
+    {
+      "id":539,
+      "text":"The Antiquary"
+    },
+    {
+      "id":540,
+      "text":"Cola's Fury, or Lirenda's Misery"
+    },
+    {
+      "id":541,
+      "text":"A Christian Turned Turk (The Two Famous Pirates)"
+    },
+    {
+      "id":542,
+      "text":"The Entertainment at Bunhill on the Shooting Day (The Archer)"
+    },
+    {
+      "id":543,
+      "text":"The Rival Friends"
+    },
+    {
+      "id":544,
+      "text":"The Noble Spanish Soldier (The Noble Soldier, or A Contract Broken Justly Revenged)"
+    },
+    {
+      "id":545,
+      "text":"The Walks of Islington and Hogsdon (Tricks of Youth)"
+    },
+    {
+      "id":546,
+      "text":"The Rogue"
+    },
+    {
+      "id":547,
+      "text":"A Woman Is a Weathercock"
+    },
+    {
+      "id":548,
+      "text":"Plutophthalmia Plutogamia (Hey for Honesty, Down with Knavery)"
+    },
+    {
+      "id":549,
+      "text":"The Cruel Brother"
+    },
+    {
+      "id":550,
+      "text":"The Widow"
+    },
+    {
+      "id":551,
+      "text":"2 The Fair Maid of the West, or A Girl Worth Gold"
+    },
+    {
+      "id":552,
+      "text":"The World's Idol, Plutus"
+    },
+    {
+      "id":553,
+      "text":"Covent Garden"
+    },
+    {
+      "id":554,
+      "text":"The Bastard"
+    },
+    {
+      "id":555,
+      "text":"The Wounds of Civil War, or Marius and Scilla"
+    },
+    {
+      "id":556,
+      "text":"Loyola"
+    },
+    {
+      "id":557,
+      "text":"A Woman Killed with Kindness"
+    },
+    {
+      "id":558,
+      "text":"Antigone, the Theban Princess"
+    },
+    {
+      "id":559,
+      "text":"Cupid's Revenge"
+    },
+    {
+      "id":560,
+      "text":"Hannibal and Scipio"
+    },
+    {
+      "id":561,
+      "text":"1 The Siege of Rhodes"
+    },
+    {
+      "id":562,
+      "text":"The Nice Valor, or The Passionate Madman"
+    },
+    {
+      "id":563,
+      "text":"Soliman and Perseda (Zulziman)"
+    },
+    {
+      "id":564,
+      "text":"A Knack to Know a Knave"
+    },
+    {
+      "id":565,
+      "text":"The Interlude of Youth"
+    },
+    {
+      "id":566,
+      "text":"London's Love to Prince Henry"
+    },
+    {
+      "id":567,
+      "text":"The Wits"
+    },
+    {
+      "id":568,
+      "text":"The Hollander"
+    },
+    {
+      "id":569,
+      "text":"The Fool Would Be a Favorite, or The Discreet Lover"
+    },
+    {
+      "id":570,
+      "text":"Thyestes"
+    },
+    {
+      "id":571,
+      "text":"The Trial of Chivalry (This Gallant Cavaliero Dick Bowyer)"
+    },
+    {
+      "id":572,
+      "text":"The Humorous Courtier (The Duke)"
+    },
+    {
+      "id":573,
+      "text":"The Entertainment at Edinburgh"
+    },
+    {
+      "id":574,
+      "text":"Jacob and Esau"
+    },
+    {
+      "id":575,
+      "text":"Pathomachia, or The Battle of Affections (Love's Loadstone)"
+    },
+    {
+      "id":576,
+      "text":"King John and Matilda"
+    },
+    {
+      "id":577,
+      "text":"The Raging Turk, or Bajazet the Second"
+    },
+    {
+      "id":578,
+      "text":"The Masque of Queens"
+    },
+    {
+      "id":579,
+      "text":"Coelum Britannicum"
+    },
+    {
+      "id":580,
+      "text":"Rural Sports, or The Birth of of the Nymph Oenone"
+    },
+    {
+      "id":581,
+      "text":"Certain Small Works"
+    },
+    {
+      "id":582,
+      "text":"Valentinian"
+    },
+    {
+      "id":583,
+      "text":"The Rebellion of Naples, or The Tragedy of Massenello"
+    },
+    {
+      "id":584,
+      "text":"The Masque at Lord Haddington's Marriage (The Hue and Cry after Cupid)"
+    },
+    {
+      "id":585,
+      "text":"Comedies, Histories, and Tragedies"
+    },
+    {
+      "id":586,
+      "text":"All's Well That Ends Well"
+    },
+    {
+      "id":587,
+      "text":"Descensus Astraeae"
+    },
+    {
+      "id":588,
+      "text":"Labyrinthus"
+    },
+    {
+      "id":589,
+      "text":"The Prophetess"
+    },
+    {
+      "id":590,
+      "text":"Polyeuctes, or The Martyr"
+    },
+    {
+      "id":591,
+      "text":"Look About You"
+    },
+    {
+      "id":592,
+      "text":"The Jealous Lovers"
+    },
+    {
+      "id":593,
+      "text":"Enough Is as Good as a Feast"
+    },
+    {
+      "id":594,
+      "text":"The Fortunate Isles and Their Union"
+    },
+    {
+      "id":595,
+      "text":"The Triumph of Peace"
+    },
+    {
+      "id":596,
+      "text":"The Unfortunate Mother"
+    },
+    {
+      "id":597,
+      "text":"The Renegado, or The Gentleman of Venice"
+    },
+    {
+      "id":598,
+      "text":"The Temple of Love"
+    },
+    {
+      "id":599,
+      "text":"Clyomon and Clamydes"
+    },
+    {
+      "id":600,
+      "text":"The Guardian (Cutter of Coleman Street)"
+    },
+    {
+      "id":601,
+      "text":"The Broken Heart"
+    },
+    {
+      "id":602,
+      "text":"The Sparagus Garden (Tom Hoydon o' Tanton Deane)"
+    },
+    {
+      "id":603,
+      "text":"A Mad World, My Masters"
+    },
+    {
+      "id":604,
+      "text":"Hoffman, or A Revenge for a Father"
+    },
+    {
+      "id":605,
+      "text":"The Old Couple"
+    },
+    {
+      "id":606,
+      "text":"3 Henry the Sixth (The True Tragedy of Richard Duke of York and the Good King Henry the Sixth)"
+    },
+    {
+      "id":607,
+      "text":"Messalina, the Roman Empress"
+    },
+    {
+      "id":608,
+      "text":"Ulysses Redux"
+    },
+    {
+      "id":609,
+      "text":"More Dissemblers Besides Women"
+    },
+    {
+      "id":610,
+      "text":"Love's Metamorphosis"
+    },
+    {
+      "id":611,
+      "text":"Certain Small Poems"
+    },
+    {
+      "id":612,
+      "text":"The Distracted State"
+    },
+    {
+      "id":613,
+      "text":"Cornelianum Dolium"
+    },
+    {
+      "id":614,
+      "text":"The Andrian Woman (Andria)"
+    },
+    {
+      "id":615,
+      "text":"A Game at Chess"
+    },
+    {
+      "id":616,
+      "text":"The Queen of Corinth"
+    },
+    {
+      "id":617,
+      "text":"Hippolytus"
+    },
+    {
+      "id":618,
+      "text":"The Queen's Entertainment at Woodstock"
+    },
+    {
+      "id":619,
+      "text":"The Magnificent Entertainment Given to King James (The Entertainment through London)"
+    },
+    {
+      "id":620,
+      "text":"Cleopatra"
+    },
+    {
+      "id":621,
+      "text":"Poems"
+    },
+    {
+      "id":622,
+      "text":"The Merchant of Venice (The Jew of Venice)"
+    },
+    {
+      "id":623,
+      "text":"The Noble Ingratitude"
+    },
+    {
+      "id":624,
+      "text":"The Whole Works"
+    },
+    {
+      "id":625,
+      "text":"The Life and Repentance of Mary Magdalene"
+    },
+    {
+      "id":626,
+      "text":"The Lost Lady"
+    },
+    {
+      "id":627,
+      "text":"The Travels of the Three English Brothers"
+    },
+    {
+      "id":628,
+      "text":"The Laws of Candy"
+    },
+    {
+      "id":629,
+      "text":"Interlude of Detraction, Light Judgment, Verity, and Justice"
+    },
+    {
+      "id":630,
+      "text":"The History of Philosophy"
+    },
+    {
+      "id":631,
+      "text":"Wit in a Constable"
+    },
+    {
+      "id":632,
+      "text":"Wit and Fancy in a Maze, or The Incomparable Champion of Love and Beauty"
+    },
+    {
+      "id":633,
+      "text":"Six Court Comedies"
+    },
+    {
+      "id":634,
+      "text":"The Spanish Bawd (Calisto and Meliboea)"
+    },
+    {
+      "id":635,
+      "text":"2 The Honest Whore (2 The Converted Courtesan)"
+    },
+    {
+      "id":636,
+      "text":"Love's Cure, or The Martial Maid"
+    },
+    {
+      "id":637,
+      "text":"Mistress Parliament Brought to Bed"
+    },
+    {
+      "id":638,
+      "text":"The Battle of Alcazar"
+    },
+    {
+      "id":639,
+      "text":"Metropolis Coronata"
+    },
+    {
+      "id":640,
+      "text":"Amphrisa, or The Forsaken Shepherdess (Polopaea and Alope)"
+    },
+    {
+      "id":641,
+      "text":"1 Henry the Fourth"
+    },
+    {
+      "id":642,
+      "text":"Hamlet, Prince of Denmark"
+    },
+    {
+      "id":643,
+      "text":"Common Conditions"
+    },
+    {
+      "id":644,
+      "text":"The Queen's Arcadia (Arcadia Reformed)"
+    },
+    {
+      "id":645,
+      "text":"The Pageant before Woolstone Dixie"
+    },
+    {
+      "id":646,
+      "text":"The Family of Love"
+    },
+    {
+      "id":647,
+      "text":"The Princely Pleasures at Kenilworth"
+    },
+    {
+      "id":648,
+      "text":"Friar Bacon and Friar Bongay"
+    },
+    {
+      "id":649,
+      "text":"The Entertainment at the Conduit Head (The Water Nymph)"
+    },
+    {
+      "id":650,
+      "text":"2 Henry the Sixth (The First Part of the Contention of the Two Famous Houses of York and Lancaster)"
+    },
+    {
+      "id":651,
+      "text":"The Masque of Blackness (The Twelfth Night's Revels)"
+    },
+    {
+      "id":652,
+      "text":"The Turk (Muleasses the Turk)"
+    },
+    {
+      "id":653,
+      "text":"The Shoemaker's Holiday, or The Gentle Craft"
+    },
+    {
+      "id":654,
+      "text":"Antigone"
+    },
+    {
+      "id":655,
+      "text":"The Entertainment of the Lords of the Council by Sheriff Allen (Flora's Welcome)"
+    },
+    {
+      "id":656,
+      "text":"The Alchemist"
+    },
+    {
+      "id":657,
+      "text":"The Wandering Lover"
+    },
+    {
+      "id":658,
+      "text":"The Interlude of Vice (Orestes)"
+    },
+    {
+      "id":659,
+      "text":"The Entertainment at Norwich"
+    },
+    {
+      "id":660,
+      "text":"The Loyal Lovers"
+    },
+    {
+      "id":661,
+      "text":"Love and Honor (The Courage of Love) (The Nonpareilles, or The Matchless Maids)"
+    },
+    {
+      "id":662,
+      "text":"The Two Gentlemen of Verona"
+    },
+    {
+      "id":663,
+      "text":"The Contention of Ajax and Ulysses for the Armor of Achilles"
+    },
+    {
+      "id":664,
+      "text":"The Roaring Girl, or Moll Cutpurse"
+    },
+    {
+      "id":665,
+      "text":"The Maid's Metamorphosis"
+    },
+    {
+      "id":666,
+      "text":"The Posies"
+    },
+    {
+      "id":667,
+      "text":"Tempe Restored"
+    },
+    {
+      "id":668,
+      "text":"Mirza"
+    },
+    {
+      "id":669,
+      "text":"Every Man in His Humor"
+    },
+    {
+      "id":670,
+      "text":"Doctor Faustus"
+    },
+    {
+      "id":671,
+      "text":"The Costly Whore"
+    },
+    {
+      "id":672,
+      "text":"The Cardinal"
+    },
+    {
+      "id":673,
+      "text":"Tragedies and Comedies"
+    },
+    {
+      "id":674,
+      "text":"Pericles, Prince of Tyre"
+    },
+    {
+      "id":675,
+      "text":"Love Restored"
+    },
+    {
+      "id":676,
+      "text":"The Triumphs of Fame and Honor"
+    },
+    {
+      "id":677,
+      "text":"Marcus Tullius Cicero"
+    },
+    {
+      "id":678,
+      "text":"1 & 2 The Nuptials of Peleus and Thetis (The Great Royal Ball)"
+    },
+    {
+      "id":679,
+      "text":"Technogamia, or The Marriages of the Arts"
+    },
+    {
+      "id":680,
+      "text":"Wit at Several Weapons"
+    },
+    {
+      "id":681,
+      "text":"Fragmenta Aurea"
+    },
+    {
+      "id":682,
+      "text":"The Unfortunate Lovers"
+    },
+    {
+      "id":683,
+      "text":"1 Arviragus and Philicia"
+    },
+    {
+      "id":684,
+      "text":"Argalus and Parthenia"
+    },
+    {
+      "id":685,
+      "text":"Poems &c."
+    },
+    {
+      "id":686,
+      "text":"The Prince of Prigs' Revels"
+    },
+    {
+      "id":687,
+      "text":"A Match at Midnight"
+    },
+    {
+      "id":688,
+      "text":"The Entertainment at Elvetham"
+    },
+    {
+      "id":689,
+      "text":"Speeches Delivered to Her Majesty This Last Progress (The Entertainments at Bisham, Sudeley, and Rycote)"
+    },
+    {
+      "id":690,
+      "text":"Filli di Sciro, or Phillis of Scyros"
+    },
+    {
+      "id":691,
+      "text":"Greene's Tu Quoque, or The City Gallant"
+    },
+    {
+      "id":692,
+      "text":"The Challenge at Tilt"
+    },
+    {
+      "id":693,
+      "text":"The Unhappy Fair Irene"
+    },
+    {
+      "id":694,
+      "text":"Electra"
+    },
+    {
+      "id":695,
+      "text":"The Valiant Welshman (Caradoc the Great)"
+    },
+    {
+      "id":696,
+      "text":"Melanthe"
+    },
+    {
+      "id":697,
+      "text":"The City Match"
+    },
+    {
+      "id":698,
+      "text":"The Arcadia"
+    },
+    {
+      "id":699,
+      "text":"Beggars' Bush"
+    },
+    {
+      "id":700,
+      "text":"The Coronation"
+    },
+    {
+      "id":701,
+      "text":"A Relation of the Late Royal Entertainment"
+    },
+    {
+      "id":702,
+      "text":"Meleager, Hippolytus (additions)"
+    },
+    {
+      "id":703,
+      "text":"King John"
+    },
+    {
+      "id":704,
+      "text":"King James his Royal and Magnificent Entertainment through his Honorable\r\nCity of London"
+    },
+    {
+      "id":705,
+      "text":"The Antipodes"
+    },
+    {
+      "id":706,
+      "text":"The Little French Lawyer"
+    },
+    {
+      "id":707,
+      "text":"The Sophy"
+    },
+    {
+      "id":708,
+      "text":"The Guardian"
+    },
+    {
+      "id":709,
+      "text":"Q. Horatius Flaccus His Art of Poetry"
+    },
+    {
+      "id":710,
+      "text":"The Devil and the Parliament, or The Parliament and the Devil"
+    },
+    {
+      "id":711,
+      "text":"Cleopatra, Queen of Egypt"
+    },
+    {
+      "id":712,
+      "text":"The Amorous Fantasm"
+    },
+    {
+      "id":713,
+      "text":"Time Vindicated to Himself and to His Honors"
+    },
+    {
+      "id":714,
+      "text":"Londini Artium et Scientiarum Scaturigo, or London's Fountain of Arts and Sciences"
+    },
+    {
+      "id":715,
+      "text":"The Lady of Pleasure"
+    },
+    {
+      "id":716,
+      "text":"Lusty Juventus"
+    },
+    {
+      "id":717,
+      "text":"The City Madam"
+    },
+    {
+      "id":718,
+      "text":"1 Tamburlaine the Great"
+    },
+    {
+      "id":719,
+      "text":"2 The Cid"
+    },
+    {
+      "id":720,
+      "text":"A New Trick to Cheat the Devil"
+    },
+    {
+      "id":721,
+      "text":"Wit without Money"
+    },
+    {
+      "id":722,
+      "text":"1 The Nuptials of Peleus and Thetis (The Great Royal Ball)"
+    },
+    {
+      "id":723,
+      "text":"The Lady Errant"
+    },
+    {
+      "id":724,
+      "text":"Albumazar"
+    },
+    {
+      "id":725,
+      "text":"Luminalia, or The Festival of Light"
+    },
+    {
+      "id":726,
+      "text":"1 Edward the Fourth"
+    },
+    {
+      "id":727,
+      "text":"1 Crafty Cromwell, or Oliver Ordering Our New State"
+    },
+    {
+      "id":728,
+      "text":"The Play of the Weather"
+    },
+    {
+      "id":729,
+      "text":"Jack Drum's Entertainment (Katherine and Pasquil)"
+    },
+    {
+      "id":730,
+      "text":"Patient Grissel"
+    },
+    {
+      "id":731,
+      "text":"Ding-Dong, or Sir Pitiful on His Death-bed"
+    },
+    {
+      "id":732,
+      "text":"The Chances"
+    },
+    {
+      "id":733,
+      "text":"The Scottish History of James the Fourth"
+    },
+    {
+      "id":734,
+      "text":"Aristippus; The Conceited Pedlar"
+    },
+    {
+      "id":735,
+      "text":"The True Tragedy of Richard the Third"
+    },
+    {
+      "id":736,
+      "text":"Claracilla (Claricilla)"
+    },
+    {
+      "id":737,
+      "text":"Gallathea"
+    },
+    {
+      "id":738,
+      "text":"The Whole Contention Between the Two Famous Houses, Lancaster and York"
+    },
+    {
+      "id":739,
+      "text":"Campbell, or The Ironmongers' Fair Field"
+    },
+    {
+      "id":740,
+      "text":"The Tide Tarrieth No Man"
+    },
+    {
+      "id":741,
+      "text":"Sicelides"
+    },
+    {
+      "id":742,
+      "text":"Sophompaneas, or Joseph"
+    },
+    {
+      "id":743,
+      "text":"The Entertainment at Sir Francis Jones's Welcome (Comus the Great Sir of Feasts)"
+    },
+    {
+      "id":744,
+      "text":"Lodovick Sforza"
+    },
+    {
+      "id":745,
+      "text":"Ariadne Deserted by Theseus"
+    },
+    {
+      "id":746,
+      "text":"Charles the First"
+    },
+    {
+      "id":747,
+      "text":"Actaeon and Diana"
+    },
+    {
+      "id":748,
+      "text":"The Grateful Servant (The Faithful Servant)"
+    },
+    {
+      "id":749,
+      "text":"Swetnam the Woman-Hater Arraigned by Women"
+    },
+    {
+      "id":750,
+      "text":"All for Money"
+    },
+    {
+      "id":751,
+      "text":"The Changeling"
+    },
+    {
+      "id":752,
+      "text":"The Honest Man's Fortune"
+    },
+    {
+      "id":753,
+      "text":"The World and the Child (Mundus et Infans)"
+    },
+    {
+      "id":754,
+      "text":"The Disobedient Child"
+    },
+    {
+      "id":755,
+      "text":"The Spring's Glory"
+    },
+    {
+      "id":756,
+      "text":"The Doubtful Heir (Rosania, or Love's Victory)"
+    },
+    {
+      "id":757,
+      "text":"No Wit, No Help Like a Woman's"
+    },
+    {
+      "id":758,
+      "text":"Every Man Out of His Humor"
+    },
+    {
+      "id":759,
+      "text":"The Roman Actor"
+    },
+    {
+      "id":760,
+      "text":"The Countess of Pembroke's Arcadia"
+    },
+    {
+      "id":761,
+      "text":"A New Wonder, A Woman Never Vexed"
+    },
+    {
+      "id":762,
+      "text":"The Spanish Gypsy"
+    },
+    {
+      "id":763,
+      "text":"The Faithful Shepherdess"
+    },
+    {
+      "id":764,
+      "text":"'Tis Pity She's a Whore"
+    },
+    {
+      "id":765,
+      "text":"The Fatal Dowry"
+    },
+    {
+      "id":766,
+      "text":"As You Like It"
+    },
+    {
+      "id":767,
+      "text":"Philotas; A Panegyric Congratulatory; A Defense of Rhyme"
+    },
+    {
+      "id":768,
+      "text":"Neptune's Triumph for the Return of Albion"
+    },
+    {
+      "id":769,
+      "text":"2 Edward the Fourth"
+    },
+    {
+      "id":770,
+      "text":"The Disease of the House, or The State Mountebank Administering Physic to a Sick Parliament"
+    },
+    {
+      "id":771,
+      "text":"2 The Return from Parnassus, or The Scourge of Simony (The Progress to Parnassus)"
+    },
+    {
+      "id":772,
+      "text":"The Martyred Soldier"
+    },
+    {
+      "id":773,
+      "text":"A Midsummer Night's Dream"
+    },
+    {
+      "id":774,
+      "text":"The Bondman (The Noble Bondman)"
+    },
+    {
+      "id":775,
+      "text":"1 Sir John Oldcastle"
+    },
+    {
+      "id":776,
+      "text":"Porta Pietatis, or The Port or Harbor of Piety"
+    },
+    {
+      "id":777,
+      "text":"An Humorous Day's Mirth (The Comedy of Humors)"
+    },
+    {
+      "id":778,
+      "text":"The Entertainment at Sir Francis Jones's at Easter (The Seasons)"
+    },
+    {
+      "id":779,
+      "text":"The Poor Man's Comfort"
+    },
+    {
+      "id":780,
+      "text":"Bellum Grammaticale"
+    },
+    {
+      "id":781,
+      "text":"Philaster, or Love Lies a-Bleeding"
+    },
+    {
+      "id":782,
+      "text":"Two Lamentable Tragedies"
+    },
+    {
+      "id":783,
+      "text":"The Bloody Banquet"
+    },
+    {
+      "id":784,
+      "text":"A Larum for London, or The Siege of Antwerp"
+    },
+    {
+      "id":785,
+      "text":"Londini Sinus Salutis, or London's Harbor of Health and Happiness"
+    },
+    {
+      "id":786,
+      "text":"1 Sir Francis Drake"
+    },
+    {
+      "id":787,
+      "text":"2 If You Know Not Me You Know Nobody (The Second Part of Queen Elizabeth's Troubles)"
+    },
+    {
+      "id":788,
+      "text":"Siderothriambos, or Steel and Iron Triumphing"
+    },
+    {
+      "id":789,
+      "text":"The Coronation Triumph (The Entertainment through London)"
+    },
+    {
+      "id":790,
+      "text":"The Conceited Pedlar (The University Pedlar)"
+    },
+    {
+      "id":791,
+      "text":"Recreations with the Muses"
+    },
+    {
+      "id":792,
+      "text":"Christmas His Masque (Christmas His Show)"
+    },
+    {
+      "id":793,
+      "text":"Croesus"
+    },
+    {
+      "id":794,
+      "text":"Bussy D'Ambois"
+    },
+    {
+      "id":795,
+      "text":"Twelfth Night, or What You Will"
+    },
+    {
+      "id":796,
+      "text":"The Novella"
+    },
+    {
+      "id":797,
+      "text":"Fancy's Festivals"
+    },
+    {
+      "id":798,
+      "text":"A Hundred Sundry Flowers"
+    },
+    {
+      "id":799,
+      "text":"A Wife for a Month"
+    },
+    {
+      "id":800,
+      "text":"A Jovial Crew, or The Merry Beggars"
+    },
+    {
+      "id":801,
+      "text":"Small Poems of Diverse Sorts"
+    },
+    {
+      "id":802,
+      "text":"The Wit of a Woman"
+    },
+    {
+      "id":803,
+      "text":"The Order and Solemnity of the Creation of the High and Mighty Prince Henry"
+    },
+    {
+      "id":804,
+      "text":"The Elder Brother"
+    },
+    {
+      "id":805,
+      "text":"The World Tossed at Tennis"
+    },
+    {
+      "id":806,
+      "text":"Old Christmas, or Good Order"
+    },
+    {
+      "id":807,
+      "text":"Corona Minervae"
+    },
+    {
+      "id":808,
+      "text":"Masquerade du Ciel"
+    },
+    {
+      "id":809,
+      "text":"The Woman Hater (The Hungry Courtier)"
+    },
+    {
+      "id":810,
+      "text":"Mucedorus (and Amadine)"
+    },
+    {
+      "id":811,
+      "text":"The Devil Is an Ass"
+    },
+    {
+      "id":812,
+      "text":"Sir Giles Goosecap"
+    },
+    {
+      "id":813,
+      "text":"May Day"
+    },
+    {
+      "id":814,
+      "text":"Five New Plays"
+    },
+    {
+      "id":815,
+      "text":"Lingua, or The Combat of the Tongue and the Five Senses for Superiority"
+    },
+    {
+      "id":816,
+      "text":"Fedele and Fortunia (Two Italian Gentlemen)"
+    },
+    {
+      "id":817,
+      "text":"The Bride"
+    },
+    {
+      "id":818,
+      "text":"Fair Em, the Miller's Daughter"
+    },
+    {
+      "id":819,
+      "text":"The Two Noble Kinsmen"
+    },
+    {
+      "id":820,
+      "text":"Mercurius Britannicus, or The English Intelligencer (The Censure of Judges, or The Court Cure)"
+    },
+    {
+      "id":821,
+      "text":"The Inner-Temple Masque, or The Masque of Heroes"
+    },
+    {
+      "id":822,
+      "text":"La Fida Pastora"
+    },
+    {
+      "id":823,
+      "text":"Perkin Warbeck"
+    },
+    {
+      "id":824,
+      "text":"The Fair Maid of the Exchange"
+    },
+    {
+      "id":825,
+      "text":"The Poetical Essays"
+    },
+    {
+      "id":826,
+      "text":"Oberon, the Faery Prince"
+    },
+    {
+      "id":827,
+      "text":"The Spring's Glory, with Other Poems, Epigrams, Elegies, and Epithalamiums"
+    },
+    {
+      "id":828,
+      "text":"The Three Laws of Nature, Moses, and Christ, Corrupted by the Sodomites, Pharisees, and Papists"
+    },
+    {
+      "id":829,
+      "text":"Nice Wanton"
+    },
+    {
+      "id":830,
+      "text":"The Triumphs of Reunited Britannia"
+    },
+    {
+      "id":831,
+      "text":"Aglaura"
+    },
+    {
+      "id":832,
+      "text":"Brennoralt, or The Discontented Colonel"
+    },
+    {
+      "id":833,
+      "text":"2 Nature"
+    },
+    {
+      "id":834,
+      "text":"A Knack to Know an Honest Man"
+    },
+    {
+      "id":835,
+      "text":"The Ghost, or The Woman Wears the Breeches"
+    },
+    {
+      "id":836,
+      "text":"Patient and Meek Grissel"
+    },
+    {
+      "id":837,
+      "text":"The Devil's Law Case (When Women Go to Law the Devil Is Full of Business)"
+    },
+    {
+      "id":838,
+      "text":"Mariam, the Fair Queen of Jewry"
+    },
+    {
+      "id":839,
+      "text":"The Fleer"
+    },
+    {
+      "id":840,
+      "text":"A Maidenhead Well Lost"
+    },
+    {
+      "id":841,
+      "text":"The Insatiate Countess"
+    },
+    {
+      "id":842,
+      "text":"Loyola; Stoicus Vapulans; Cancer; Paria"
+    },
+    {
+      "id":843,
+      "text":"The Glass of Government"
+    },
+    {
+      "id":844,
+      "text":"Temperance and Humility (Disobedience, Temperance, and Humility)"
+    },
+    {
+      "id":845,
+      "text":"The Lady's Trial"
+    },
+    {
+      "id":846,
+      "text":"The White Devil (Vittoria Corombona)"
+    },
+    {
+      "id":847,
+      "text":"Astraea, or Love's True Mirror"
+    },
+    {
+      "id":848,
+      "text":"Honorable Entertainments"
+    },
+    {
+      "id":849,
+      "text":"The Works"
+    },
+    {
+      "id":850,
+      "text":"The Sad One"
+    },
+    {
+      "id":851,
+      "text":"Delia; Rosamond; Cleopatra"
+    },
+    {
+      "id":852,
+      "text":"The Spanish Tragedy (Hieronimo is Mad Again)"
+    },
+    {
+      "id":853,
+      "text":"Orgula, or The Fatal Error"
+    },
+    {
+      "id":854,
+      "text":"The Entertainment at Sir Francis Jones's at Christmas (The Triumph of Temperance)"
+    },
+    {
+      "id":855,
+      "text":"Lust's Dominion, or The Lascivious Queen"
+    },
+    {
+      "id":856,
+      "text":"Jocasta"
+    },
+    {
+      "id":857,
+      "text":"Much Ado About Nothing"
+    },
+    {
+      "id":858,
+      "text":"Julia Agrippina, Empress of Rome"
+    },
+    {
+      "id":859,
+      "text":"The Fancies Chaste and Noble"
+    },
+    {
+      "id":860,
+      "text":"Damon and Pithias"
+    },
+    {
+      "id":861,
+      "text":"News from the New World Discovered in the Moon"
+    },
+    {
+      "id":862,
+      "text":"The Atheist's Tragedy, or The Honest Man's Revenge"
+    },
+    {
+      "id":863,
+      "text":"How a Man May Choose a Good Wife from a Bad"
+    },
+    {
+      "id":864,
+      "text":"Love's Cruelty"
+    },
+    {
+      "id":865,
+      "text":"The Careless Shepherdess"
+    },
+    {
+      "id":866,
+      "text":"The Royal King and the Loyal Subject"
+    },
+    {
+      "id":867,
+      "text":"Englishmen for My Money, or A Woman Will Have Her Will"
+    },
+    {
+      "id":868,
+      "text":"Monsieur Thomas (Father's Own Son)"
+    },
+    {
+      "id":869,
+      "text":"Satiromastix, or The Untrussing of the Humorous Poet"
+    },
+    {
+      "id":870,
+      "text":"Chryso-Thriambos"
+    },
+    {
+      "id":871,
+      "text":"The Brazen Age"
+    },
+    {
+      "id":872,
+      "text":"When You See Me You Know Me (Henry the Eighth)"
+    },
+    {
+      "id":873,
+      "text":"The Vision of the Twelve Goddesses (The Masque at Hampton Court)"
+    },
+    {
+      "id":874,
+      "text":"1 If You Know Not Me You Know Nobody, or The Troubles of Queen Elizabeth"
+    },
+    {
+      "id":875,
+      "text":"Fuimus Troes (The True Trojans)"
+    },
+    {
+      "id":876,
+      "text":"Arden of Faversham"
+    },
+    {
+      "id":877,
+      "text":"The Deserving Favorite"
+    },
+    {
+      "id":878,
+      "text":"A Tale of a Tub"
+    },
+    {
+      "id":879,
+      "text":"The Most Virtuous and Godly Susanna"
+    },
+    {
+      "id":880,
+      "text":"The Lovesick King"
+    },
+    {
+      "id":881,
+      "text":"Ralph Roister Doister"
+    },
+    {
+      "id":882,
+      "text":"Edward the First"
+    },
+    {
+      "id":883,
+      "text":"Paria"
+    },
+    {
+      "id":884,
+      "text":"The Wild Goose Chase"
+    },
+    {
+      "id":885,
+      "text":"The Chief Promises of God unto Man (God's Promises)"
+    },
+    {
+      "id":886,
+      "text":"The Witty Fair One"
+    },
+    {
+      "id":887,
+      "text":"Thomas Lord Cromwell"
+    },
+    {
+      "id":888,
+      "text":"The Clouds"
+    },
+    {
+      "id":889,
+      "text":"Albovine, King of the Lombards"
+    },
+    {
+      "id":890,
+      "text":"The Bird in a Cage (The Beauties)"
+    },
+    {
+      "id":891,
+      "text":"Supposes"
+    },
+    {
+      "id":892,
+      "text":"Love Freed from Ignorance and Folly"
+    },
+    {
+      "id":893,
+      "text":"The Woman in the Moon"
+    },
+    {
+      "id":894,
+      "text":"The Entertainment of the French Ambassadors (The Fortress of Perfect Beauty)"
+    },
+    {
+      "id":895,
+      "text":"Wealth and Health"
+    },
+    {
+      "id":896,
+      "text":"The True Chronicle of King Leir"
+    },
+    {
+      "id":897,
+      "text":"Volpone, or The Fox"
+    },
+    {
+      "id":898,
+      "text":"The Sea Voyage"
+    },
+    {
+      "id":899,
+      "text":"The Love of David and Fair Bathsheba"
+    },
+    {
+      "id":900,
+      "text":"Cromwell's Conspiracy"
+    },
+    {
+      "id":901,
+      "text":"1 & 2 Arviragus and Philicia"
+    },
+    {
+      "id":902,
+      "text":"Londini Status Pacatus, or London's Peaceable Estate"
+    },
+    {
+      "id":903,
+      "text":"The Rare Triumphs of Love and Fortune"
+    },
+    {
+      "id":904,
+      "text":"The Three Lords and Three Ladies of London"
+    },
+    {
+      "id":905,
+      "text":"Chloridia: Rites to Chloris and Her Nymphs"
+    },
+    {
+      "id":906,
+      "text":"The Just General"
+    },
+    {
+      "id":907,
+      "text":"The Two Maids of More-Clacke"
+    },
+    {
+      "id":908,
+      "text":"Hyde Park"
+    },
+    {
+      "id":909,
+      "text":"The Monarchic Tragedies"
+    },
+    {
+      "id":910,
+      "text":"Cynthia's Revels, or The Fountain of Self-Love"
+    },
+    {
+      "id":911,
+      "text":"The Mad Lover"
+    },
+    {
+      "id":912,
+      "text":"The Weeding of the Covent Garden, or The Middlesex Justice of Peace (The Covent Garden Weeded)"
+    },
+    {
+      "id":913,
+      "text":"The Ladies' Privilege (The Lady's Privilege)"
+    },
+    {
+      "id":914,
+      "text":"The Entertainment at Sir William Cokayne's upon Simon and Jude's Day (The Year's Funeral)"
+    },
+    {
+      "id":915,
+      "text":"Arches of Triumph (The Entertainment through London)"
+    },
+    {
+      "id":916,
+      "text":"2 Henry the Fourth"
+    },
+    {
+      "id":917,
+      "text":"Tyrannical Government Anatomized, or A Discourse Concerning Evil Counsellors"
+    },
+    {
+      "id":918,
+      "text":"1 Promos and Cassandra"
+    },
+    {
+      "id":919,
+      "text":"The Sisters"
+    },
+    {
+      "id":920,
+      "text":"The Queen and Concubine"
+    },
+    {
+      "id":921,
+      "text":"Hymenaei"
+    },
+    {
+      "id":922,
+      "text":"Band, Cuff, and Ruff, or Exchange Ware at the Second Hand"
+    },
+    {
+      "id":923,
+      "text":"Orlando Furioso"
+    },
+    {
+      "id":924,
+      "text":"The Court Secret"
+    },
+    {
+      "id":925,
+      "text":"The Marriage of Oceanus and Britannia"
+    },
+    {
+      "id":926,
+      "text":"1 The Two Angry Women of Abingdon"
+    },
+    {
+      "id":927,
+      "text":"Epicene, or The Silent Woman"
+    },
+    {
+      "id":928,
+      "text":"Dramatic Poems"
+    },
+    {
+      "id":929,
+      "text":"The Maid's Tragedy"
+    }
+  ],
+  "pagination": {
+    "more": true
+  }
+}

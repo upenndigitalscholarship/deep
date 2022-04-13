@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -25,6 +26,8 @@
 
   <!-- Template Main CSS File -->
   <link href="assets/css/style.css" rel="stylesheet">
+  
+  <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 
   <!-- =======================================================
   * Template Name: Butterfly - v4.7.0
@@ -71,7 +74,7 @@
     <div class="row">
       <div class="col-lg-12 col-md-12">
         <div class="icon-box">
-          <div class="icon"><i class="bi bi-search" style="color: #ff689b;"></i></div>
+          <div class="icon"><i class="bi bi-search" style="color: #000cb3;"></i></div>
           <form method="get">
             <input style="margin-left:10px; width:100%" type="text" name="search" placeholder="Search for a playbook...">
         </form>
@@ -87,62 +90,72 @@
       <div class="container">
 
         <div class="section-title">
-          <h2>Browse</h2>
+          <h2>Explore</h2>
           
         </div>
 
         <div class="row">
           <div class="col-lg-4 col-md-6">
             <div class="icon-box">
-              <div class="icon"><i class="bi bi-cash-stack" style="color: #ff689b;"></i></div>
+              <div class="icon"><i class="bi bi-book-fill" style="color: #ff689b;"></i></div>
               <h4 class="title"><a href="">By Title</a></h4>
-              <p class="description">Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident</p>
+              <select id="titles" data-placeholder="Select title..." class="form-control select-access-multiple-enable">
+               
+            </select>
             </div>
           </div>
+
           <div class="col-lg-4 col-md-6">
             <div class="icon-box">
-              <div class="icon"><i class="bi bi-calendar4-week" style="color: #e9bf06;"></i></div>
+              <div class="icon"><i class="bi bi-person-lines-fill" style="color: #e9bf06;"></i></div>
               <h4 class="title"><a href="">By Author</a></h4>
-              <p class="description">Minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat tarad limino ata</p>
-            </div>
+              <select id="authors" data-placeholder="Select author..."  class="form-control select-access-multiple-enable">
+              </div>
           </div>
 
           <div class="col-lg-4 col-md-6" data-wow-delay="0.1s">
             <div class="icon-box">
               <div class="icon"><i class="bi bi-chat-text" style="color: #3fcdc7;"></i></div>
               <h4 class="title"><a href="">By Company</a></h4>
-              <p class="description">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur</p>
+              <select id="companies" data-placeholder="Select something"  class="form-control select-access-multiple-enable">
             </div>
           </div>
+
           <div class="col-lg-4 col-md-6" data-wow-delay="0.1s">
             <div class="icon-box">
-              <div class="icon"><i class="bi bi-credit-card-2-front" style="color:#41cf2e;"></i></div>
+              <div class="icon"><i class="bi bi-border-width" style="color:#41cf2e;"></i></div>
               <h4 class="title"><a href="">By Theater</a></h4>
-              <p class="description">Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
+              <select id="theaters" data-placeholder="Select theater..."  class="form-control select-access-multiple-enable">
+            </div>
+          </div>
+
+          <!-- This is here so that the whole page displays, not sure why it does not work without it.  TODO fix this -->
+          <div class="col-lg-4 col-md-6" data-wow-delay="0.1s">
+            <div class="icon-box">
+              <div class="icon"><i class="bi bi-border-width" style="color:#41cf2e;"></i></div>
+              <h4 class="title"><a href="">By Theater1</a></h4>
+              <select id="theaters" data-placeholder="Select theater..."  class="form-control select-access-multiple-enable">
             </div>
           </div>
 
           <div class="col-lg-4 col-md-6" data-wow-delay="0.2s">
             <div class="icon-box">
               <div class="icon"><i class="bi bi-globe" style="color: #d6ff22;"></i></div>
-              <h4 class="title"><a href="">By Stationier</a></h4>
-              <p class="description">At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque</p>
-            </div>
+              <h4 class="title">By Stationier</h4>
+              </div>
           </div>
           <div class="col-lg-4 col-md-6" data-wow-delay="0.2s">
             <div class="icon-box">
               <div class="icon"><i class="bi bi-clock" style="color: #4680ff;"></i></div>
               <h4 class="title"><a href="">By Date</a></h4>
-              <p class="description">Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi</p>
-            </div>
+              </div>
           </div>
         </div>
 
       </div>
     </section><!-- End Services Section -->
 
-
-
+    
     
     <section id="about" class="team section-bg">
       <div class="container">
@@ -167,7 +180,10 @@
             <h2>History</h2>
             <p></p>
           </div>
-          <div class="col-lg-6 pt-4 pt-lg-0 order-2 order-lg-1 d-flex flex-column justify-content-center">
+          <div class="col-lg-6 order-1 order-lg-1 hero-img ">
+            <img src="http://shakespeareandbeyond.folger.edu/wp-content/uploads/sites/5/2019/01/017321.jpg" class="img-fluid" alt="">
+          </div>
+          <div class="col-lg-6 pt-4 pt-lg-0 order-2 order-lg-2 d-flex flex-column justify-content-center">
             
             <p>In 1999, while graduate students in English Literature at Columbia University, we created the original, quite different version of DEEP, which “lived” only on our own computers, because we wanted to answer some questions we had about the marketing of authorship and theatricality on the title pages of early modern English playbooks. Since then, we have updated the database continuously, adding new information as our research moved into new areas and new questions arose.
 
@@ -179,9 +195,7 @@
             -Alan B. Farmer and Zachary Lesser</p>
             
           </div>
-          <div class="col-lg-6 order-1 order-lg-2 hero-img ">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/b/bb/The_Globe_1_%285135787489%29.jpg" class="img-fluid" alt="">
-          </div>
+         
         </div>
       </div>
       <div class="container">
@@ -270,7 +284,37 @@
 
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
-
+ 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+ <script>
+  
+  $('#titles').select2({
+  ajax: {
+    url: "{% static 'data/titles.json' %}",
+    dataType: 'json'
+    // Additional AJAX parameters go here; see the end of this chapter for the full code of this example
+  }
+});
+  
+$('#authors').select2({
+  ajax: {
+    url: "{% static 'data/authors.json' %}",
+    dataType: 'json'
+    // Additional AJAX parameters go here; see the end of this chapter for the full code of this example
+  }
+});
+$('#theaters').select2({
+  ajax: {
+    url: "{% static 'data/theaters.json' %}",
+    dataType: 'json'
+    // Additional AJAX parameters go here; see the end of this chapter for the full code of this example
+  }
+});
+  </script>
+  <!-- select2 JS File -->
+ 
+  
 </body>
 
 </html>

@@ -10,17 +10,23 @@ class Title(models.Model):
     title = models.CharField("Title",max_length=200)
     greg = models.CharField("Greg (Brief)(e.g., 197 for Hamlet)", max_length=200)
     genre = models.CharField("Genre (Annals)", max_length=200)
-    date_first_publication = models.CharField("Date of First Publication", max_length=200)
+    date_first_publication = models.PositiveIntegerField(blank=True, null=True)
+    date_first_publication_display = models.CharField("Date of First Publication", max_length=200)
+    # TODO Where is this on the site? I don't see in DB
     date_first_performance = models.CharField("Date of First Performance", max_length=200)
+    
     company_first_performance = models.ForeignKey('Company', on_delete=models.CASCADE, related_name="company_first_performance")
     total_editions = models.IntegerField("Total Editions", blank=True, null=True)
+    
+    # TODO Need this data 
     british_drama = models.IntegerField("British Drama", blank=True, null=True)
+    # TODO Is this data in DB?
     genre_wiggins = models.CharField("Genre (Wiggins)", max_length=200, blank=True, null=True)
     date_first_performance_wiggins = models.CharField("Date of First Performance (Wiggins)", max_length=200)
     company_first_performance_wiggins = models.ForeignKey('Company', on_delete=models.CASCADE, related_name="company_first_performance_wiggins")
     stationers_register = models.ForeignKey('Stationer', on_delete=models.CASCADE, related_name="stationers_registers")
 
-    editions = models.ManyToManyField('Edition', blank=True, null=True)
+    editions = models.ManyToManyField('Edition', blank=True)
 
     def __str__(self):
         return self.title
@@ -33,7 +39,7 @@ class Edition(models.Model):
     play_edition = models.CharField("Play Edition", max_length=200)
     play_type = models.CharField("Play Type", max_length=200)
     blackletter = models.CharField(max_length=255)
-    variants = models.ManyToManyField('Variant', blank=True, null=True)
+    variants = models.ManyToManyField('Variant', blank=True)
 
     def __str__(self):
         return self.edition
@@ -47,8 +53,8 @@ class Variant(models.Model):
     leaves = models.IntegerField("Leaves")
     record_type = models.CharField("Record Type", max_length=200)
     company_attribution = models.CharField("Company Attribution", max_length=200)
-    company = models.ForeignKey('Company', on_delete=models.CASCADE, related_name="company")
-    
+    company = models.ForeignKey('Company', on_delete=models.CASCADE, related_name="variant_company")
+
     old_title = models.CharField(max_length=200)
     title_page = models.ForeignKey('TitlePage', on_delete=models.CASCADE)
     date_first_publication = models.CharField("Date of First Publication", max_length=200)
@@ -64,6 +70,7 @@ class Company(models.Model):
     company = models.CharField(max_length=200)
     def __str__(self):
         return self.company
+
 
 class Theater(models.Model):
     theater = models.CharField(max_length=200)
