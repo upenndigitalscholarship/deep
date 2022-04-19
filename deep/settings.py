@@ -29,6 +29,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'jazzmin',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -112,3 +113,13 @@ STATICFILES_DIRS = [
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+JAZZMIN_SETTINGS = {
+    "order_with_respect_to": ["main", "main.Item","main.Edition", "main.Title"],
+    "hide_models": ['sessions.Session', 'contenttypes.ContentType', 'auth.Permission', 'auth.Group','admin.LogEntry'],
+    "site_logo": "/img/logo.png",
+}
+JAZZMIN_UI_TWEAKS = {
+    "theme": "flatly",
+    #"dark_mode_theme": "darkly",
+}
