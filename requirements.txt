@@ -1,3 +1,4 @@
 asgiref==3.5.0
 Django==4.0.4
+django-jazzmin==2.5.0
 sqlparse==0.4.2
