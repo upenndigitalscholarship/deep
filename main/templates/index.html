@@ -49,9 +49,8 @@
 
       <nav id="navbar" class="navbar">
         <ul>
-          <li><a class="nav-link scrollto" href="#search">Search</a></li>
-          <li><a class="nav-link scrollto" href="#browse">Browse</a></li>
-          <li><a class="nav-link scrollto" href="#about">About</a></li>
+          <li><a class="nav-link scrollto" href="/">Search</a></li>
+          <li><a class="nav-link scrollto" href="about.html">About</a></li>
 
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
@@ -66,201 +65,83 @@
 <section id="search" class="services section-bg">
   <div style="margin-top:80px;" class="container">
 
-    <div class="section-title">
-      <h2>Search</h2>
-      
-    </div>
+    
 
     <div class="row">
       <div class="col-lg-12 col-md-12">
         <div class="icon-box">
           <div class="icon"><i class="bi bi-search" style="color: #000cb3;"></i></div>
-          <form method="get">
-            <input style="margin-left:10px; width:100%" type="text" name="search" placeholder="Search for a playbook...">
-        </form>
+          
+            <input onkeyup="search(this.value)" style="margin-left:10px; width:100%" type="text" name="search" placeholder="Search for a playbook...">
+        
         </div>
       </div>
       
-      <div id="results"></div>
+      
   </div>
+  <div class="row">
+    <div class="col-lg-4 col-md-6">
+      <div class="icon-box">
+        <div class="icon"><i class="bi bi-book-fill" style="color: #ff689b;"></i></div>
+        <h4 class="title"><a href="">By Title</a></h4>
+        <select id="titles" data-placeholder="Select title..." class="form-control select-access-multiple-enable">
+      </select>
+      </div>
+    </div>
+
+    <div class="col-lg-4 col-md-6">
+      <div class="icon-box">
+        <div class="icon"><i class="bi bi-person-lines-fill" style="color: #e9bf06;"></i></div>
+        <h4 class="title"><a href="">By Author</a></h4>
+        <select id="authors" data-placeholder="Select author..."  class="form-control select-access-multiple-enable">
+        </div>
+    </div>
+
+    <div class="col-lg-4 col-md-6" data-wow-delay="0.1s">
+      <div class="icon-box">
+        <div class="icon"><i class="bi bi-chat-text" style="color: #3fcdc7;"></i></div>
+        <h4 class="title"><a href="">By Company</a></h4>
+        <select id="companies" data-placeholder="Select something"  class="form-control select-access-multiple-enable">
+      </div>
+    </div>
+
+    <div class="col-lg-4 col-md-6" data-wow-delay="0.1s">
+      <div class="icon-box">
+        <div class="icon"><i class="bi bi-border-width" style="color:#41cf2e;"></i></div>
+        <h4 class="title"><a href="">By Theater</a></h4>
+        <select id="theaters" data-placeholder="Select theater..."  class="form-control select-access-multiple-enable">
+      </div>
+    </div>
+
+    <!-- This is here so that the whole page displays, not sure why it does not work without it.  TODO fix this -->
+    <div class="col-lg-4 col-md-6" data-wow-delay="0.1s">
+      <div class="icon-box">
+        <div class="icon"><i class="bi bi-border-width" style="color:#41cf2e;"></i></div>
+        <h4 class="title"><a href="">By Theater1</a></h4>
+        <select id="theaters" data-placeholder="Select theater..."  class="form-control select-access-multiple-enable">
+      </div>
+    </div>
+
+    
+  </div>
+
+  <div class="row">
+    <div class="col-lg-12 col-md-12">
+      <div id="results"  class="icon-box">
+        <div class="icon"><i class="bi bi-binoculars-fill" style="color: #000cb3;"></i></div>
+        
+        
+      
+      </div>
+    </div>
+    
+</div>
 </section><!-- End Search Section -->
 
-    <!-- ======= Browse Section ======= -->
-    <section id="browse" class="services section-bg">
-      <div class="container">
-
-        <div class="section-title">
-          <h2>Explore</h2>
-          
-        </div>
-
-        <div class="row">
-          <div class="col-lg-4 col-md-6">
-            <div class="icon-box">
-              <div class="icon"><i class="bi bi-book-fill" style="color: #ff689b;"></i></div>
-              <h4 class="title"><a href="">By Title</a></h4>
-              <select id="titles" data-placeholder="Select title..." class="form-control select-access-multiple-enable">
-               
-            </select>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6">
-            <div class="icon-box">
-              <div class="icon"><i class="bi bi-person-lines-fill" style="color: #e9bf06;"></i></div>
-              <h4 class="title"><a href="">By Author</a></h4>
-              <select id="authors" data-placeholder="Select author..."  class="form-control select-access-multiple-enable">
-              </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6" data-wow-delay="0.1s">
-            <div class="icon-box">
-              <div class="icon"><i class="bi bi-chat-text" style="color: #3fcdc7;"></i></div>
-              <h4 class="title"><a href="">By Company</a></h4>
-              <select id="companies" data-placeholder="Select something"  class="form-control select-access-multiple-enable">
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6" data-wow-delay="0.1s">
-            <div class="icon-box">
-              <div class="icon"><i class="bi bi-border-width" style="color:#41cf2e;"></i></div>
-              <h4 class="title"><a href="">By Theater</a></h4>
-              <select id="theaters" data-placeholder="Select theater..."  class="form-control select-access-multiple-enable">
-            </div>
-          </div>
-
-          <!-- This is here so that the whole page displays, not sure why it does not work without it.  TODO fix this -->
-          <div class="col-lg-4 col-md-6" data-wow-delay="0.1s">
-            <div class="icon-box">
-              <div class="icon"><i class="bi bi-border-width" style="color:#41cf2e;"></i></div>
-              <h4 class="title"><a href="">By Theater1</a></h4>
-              <select id="theaters" data-placeholder="Select theater..."  class="form-control select-access-multiple-enable">
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6" data-wow-delay="0.2s">
-            <div class="icon-box">
-              <div class="icon"><i class="bi bi-globe" style="color: #d6ff22;"></i></div>
-              <h4 class="title">By Stationier</h4>
-              </div>
-          </div>
-          <div class="col-lg-4 col-md-6" data-wow-delay="0.2s">
-            <div class="icon-box">
-              <div class="icon"><i class="bi bi-clock" style="color: #4680ff;"></i></div>
-              <h4 class="title"><a href="">By Date</a></h4>
-              </div>
-          </div>
-        </div>
-
-      </div>
-    </section><!-- End Services Section -->
-
-    
-    
-    <section id="about" class="team section-bg">
-      <div class="container">
-        <div class="row">
-          <div class="section-title">
-            <p></p>
-            <h2>About</h2>
-            <p></p>
-          </div>
-          <div class="col-lg-6 pt-4 pt-lg-0 order-2 order-lg-1 d-flex flex-column justify-content-center">
-            
-            <p>Database of Early English Playbooks (DEEP) allows scholars and students to investigate the publishing, printing, and marketing of English Renaissance drama in ways not possible using any other print or electronic resource. An easy-to-use and highly customizable search engine of every playbook produced in England, Scotland, and Ireland from the beginning of printing through 1660, DEEP provides a wealth of information about the original playbooks, their title-pages, paratextual matter, advertising features, bibliographic details, and theatrical backgrounds.</p>
   
-          </div>
-          <div class="col-lg-6 order-1 order-lg-2 hero-img ">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/b/bb/The_Globe_1_%285135787489%29.jpg" class="img-fluid" alt="">
-          </div>
-        </div>
-        <div class="row">
-          <div class="section-title">
-            <p></p>
-            <h2>History</h2>
-            <p></p>
-          </div>
-          <div class="col-lg-6 order-1 order-lg-1 hero-img ">
-            <img src="http://shakespeareandbeyond.folger.edu/wp-content/uploads/sites/5/2019/01/017321.jpg" class="img-fluid" alt="">
-          </div>
-          <div class="col-lg-6 pt-4 pt-lg-0 order-2 order-lg-2 d-flex flex-column justify-content-center">
-            
-            <p>In 1999, while graduate students in English Literature at Columbia University, we created the original, quite different version of DEEP, which “lived” only on our own computers, because we wanted to answer some questions we had about the marketing of authorship and theatricality on the title pages of early modern English playbooks. Since then, we have updated the database continuously, adding new information as our research moved into new areas and new questions arose.
-
-            Beginning in 2005, we have worked with web designers and programmers to convert this database into a web resource so that all scholars and students can have access to it. Along the way, DEEP has been generously funded by the Campus Research Board at the University of Illinois, Urbana-Champaign, the School of Arts and Sciences at the University of Pennsylvania, and Penn's Schoenberg Center For Electronic Text and Image (SCETI).
-            
-            Much of the site development and the original coding was done by David Cross at the University of Illinois, where Traci Vaughan developed the visual design for the site, and Sara Long was the graphic designer. Three computer programmers at the University of Pennsylvania--Brian Kirk, Pan Thomakos, and Michajlo Matijkiw--transformed the database to its current form, greatly enhancing and improving its functionality. David McKnight, Director of SCETI, coordinated the project and helped with funding.
-            
-            DEEP went “live” in November, 2007. Please contact us with any suggestions for the site or corrections to the data. We are eager to get your feedback so that we can continue to improve the site.
-            -Alan B. Farmer and Zachary Lesser</p>
-            
-          </div>
-         
-        </div>
-      </div>
-      <div class="container">
-    </section>
-
-   
-    <!-- ======= Team Section ======= -->
-    <section id="about" class="team section-bg">
-      
-
-        <div style="margin-top: 5px;" class="section-title">
-          <p></p>
-          <h2>Team</h2>
-          <p></p>
-        </div>
-
-        <div class="row">
-
-          <div class="col-lg-3 col-md-6 d-flex align-items-stretch"></div>
-
-          <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
-            <div class="member">
-              <div class="member-img">
-                <img src="https://opic.osu.edu/farmer.109?aspect=p&width=300" class="img-fluid" alt="">
-                <div class="social">
-                  <a href=""><i class="bi bi-twitter"></i></a>
-                  <a href=""><i class="bi bi-facebook"></i></a>
-                  <a href=""><i class="bi bi-instagram"></i></a>
-                  <a href=""><i class="bi bi-linkedin"></i></a>
-                </div>
-              </div>
-              <div class="member-info">
-                <h4>Alan B. Farmer </h4>
-                <span>Associate Professor</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
-            <div class="member">
-              <div class="member-img">
-                <img src="https://www.english.upenn.edu/sites/default/files/people/photo/Lesser%20photo.jpg" class="img-fluid" alt="">
-                <div class="social">
-                  <a href=""><i class="bi bi-twitter"></i></a>
-                  <a href=""><i class="bi bi-facebook"></i></a>
-                  <a href=""><i class="bi bi-instagram"></i></a>
-                  <a href=""><i class="bi bi-linkedin"></i></a>
-                </div>
-              </div>
-              <div class="member-info">
-                <h4>Zachary Lesser</h4>
-                <span>Edward W. Kane Professor of English
-                </span>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-3 col-md-6 d-flex align-items-stretch"></div>
-
-
-        </div>
-
-      </div>
-    </section><!-- End Team Section -->
-
+    
+    
+    
     
     
 
@@ -273,25 +154,19 @@
   </footer><!-- End Footer -->
 
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
-
-  <!-- Vendor JS Files -->
-  <script src="assets/vendor/purecounter/purecounter.js"></script>
-  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
   <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
-  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
   <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
-  <script src="assets/vendor/php-email-form/validate.js"></script>
 
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
- 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+  <script src="https://unpkg.com/lunr/lunr.js"></script>
  <script>
   
   $('#titles').select2({
   ajax: {
-    url: "{% static 'data/titles.json' %}",
+    url: "{% url 'title_autocomplete' %}",
     dataType: 'json'
     // Additional AJAX parameters go here; see the end of this chapter for the full code of this example
   }
@@ -313,7 +188,45 @@ $('#theaters').select2({
 });
   </script>
   <!-- select2 JS File -->
- 
+ <script>
+function htmlToElement(html) {
+      var template = document.createElement("template");
+      html = html.trim(); // Never return a text node of whitespace as the result
+      template.innerHTML = html;
+      return template.content.firstChild;
+    }
+
+let index;
+$.getJSON("../assets/lunr/search.json", function(json) {
+  index = lunr.Index.load(json);;
+});
+
+function search(query) {
+  if (event.keyCode === 13) { 
+    interview_results = index.search(query)
+    console.log(interview_results);
+    for (i in interview_results) {
+      if (interview_results[i].score > 0) {
+        document
+            .querySelector("#results")
+            .appendChild(
+              htmlToElement(
+                `<div id="${interview_results[i].ref}" style="border: 1px inset rgba(95,81,164,0.26);
+                border-radius: 20px; padding:50px;">
+                <h4 onclick="window.location.href='../interview/${interview_results[i].ref}.html'">${interview_results[i].ref}</h4>
+                <ul></ul>
+                </div>`
+              )
+            );
+
+      }
+      
+    }
+
+  }
+}
+
+ </script>
   
 </body>
 

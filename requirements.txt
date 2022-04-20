@@ -1,6 +1,7 @@
 asgiref==3.5.0
 Django==4.0.4
 django-jazzmin==2.5.0
+django-autocomplete-light==3.9.4
 sqlparse==0.4.2
 lunr==0.6.2
 tqdm==4.64.0
