@@ -13,10 +13,10 @@ def about(request):
 class TitleAutocomplete(autocomplete.Select2QuerySetView):
     def get_queryset(self):
         
-        qs = Title.objects.all()
+        qs = Item.objects.all()
 
         if self.q:
-            qs = qs.filter(title__istartswith=self.q)
+            qs = qs.filter(edition__title__title__istartswith=self.q)
 
         return qs
 

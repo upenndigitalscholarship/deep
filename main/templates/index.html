@@ -161,7 +161,7 @@
     // Additional AJAX parameters go here; see the end of this chapter for the full code of this example
   }
 });
-$('#titles').on('select2:selecting', function(e) {
+$('#titles').on('select2:select', function(e) {
     search();
   });
   
@@ -218,9 +218,9 @@ function search() {
     if (search_bar_value) {
       query += search_bar_value
     }
-    let titles = document.querySelector('#titles').value;
-    if (titles.length > 0) { 
-      query += ' title_id:' + titles;
+    let titles =  document.querySelector('#titles').value;
+    if (!titles.length == 0) { 
+      query += ' id:' + titles;
     }
 
     // Lunr query and populate results
