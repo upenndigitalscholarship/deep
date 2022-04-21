@@ -22,4 +22,7 @@ urlpatterns = [
     path('', views.index, name='index'),
     path('about.html', views.about, name='about'),
     path('title_autocomplete/', views.TitleAutocomplete.as_view(), name='title_autocomplete'),
+    path('person_autocomplete/', views.PersonAutocomplete.as_view(), name='person_autocomplete'),
+    path('theater_autocomplete/', views.TheaterAutocomplete.as_view(), name='theater_autocomplete'),
+
 ]

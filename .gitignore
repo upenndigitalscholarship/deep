@@ -1,4 +1,6 @@
 /deep/secrets.py
+site/
+
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

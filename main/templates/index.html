@@ -72,7 +72,7 @@
         <div class="icon-box">
           <div class="icon"><i class="bi bi-search" style="color: #000cb3;"></i></div>
           
-            <input onkeyup="search(this.value)" style="margin-left:10px; width:100%" type="text" name="search" placeholder="Search for a playbook...">
+            <input id="search_bar" onkeyup="search_bar()" style="margin-left:10px; width:100%" type="text" name="search" placeholder="Search for a playbook...">
         
         </div>
       </div>
@@ -92,35 +92,23 @@
     <div class="col-lg-4 col-md-6">
       <div class="icon-box">
         <div class="icon"><i class="bi bi-person-lines-fill" style="color: #e9bf06;"></i></div>
-        <h4 class="title"><a href="">By Author</a></h4>
-        <select id="authors" data-placeholder="Select author..."  class="form-control select-access-multiple-enable">
+        <h4 class="title"><a href="">By Person</a></h4>
+        <select multiple="multiple" id="persons" data-placeholder="Select person..."  class="form-control select-access-multiple-enable">
+        </select>
         </div>
     </div>
 
-    <div class="col-lg-4 col-md-6" data-wow-delay="0.1s">
-      <div class="icon-box">
-        <div class="icon"><i class="bi bi-chat-text" style="color: #3fcdc7;"></i></div>
-        <h4 class="title"><a href="">By Company</a></h4>
-        <select id="companies" data-placeholder="Select something"  class="form-control select-access-multiple-enable">
-      </div>
-    </div>
 
     <div class="col-lg-4 col-md-6" data-wow-delay="0.1s">
       <div class="icon-box">
         <div class="icon"><i class="bi bi-border-width" style="color:#41cf2e;"></i></div>
         <h4 class="title"><a href="">By Theater</a></h4>
         <select id="theaters" data-placeholder="Select theater..."  class="form-control select-access-multiple-enable">
-      </div>
+        </select>
+        </div>
     </div>
 
-    <!-- This is here so that the whole page displays, not sure why it does not work without it.  TODO fix this -->
-    <div class="col-lg-4 col-md-6" data-wow-delay="0.1s">
-      <div class="icon-box">
-        <div class="icon"><i class="bi bi-border-width" style="color:#41cf2e;"></i></div>
-        <h4 class="title"><a href="">By Theater1</a></h4>
-        <select id="theaters" data-placeholder="Select theater..."  class="form-control select-access-multiple-enable">
-      </div>
-    </div>
+    
 
     
   </div>
@@ -164,6 +152,8 @@
   <script src="https://unpkg.com/lunr/lunr.js"></script>
  <script>
   
+// you should get the data from JSON and use it to build option tag to let the normal filter works. 
+
   $('#titles').select2({
   ajax: {
     url: "{% url 'title_autocomplete' %}",
@@ -171,17 +161,20 @@
     // Additional AJAX parameters go here; see the end of this chapter for the full code of this example
   }
 });
+$('#titles').on('select2:selecting', function(e) {
+    search();
+  });
   
-$('#authors').select2({
+$('#persons').select2({
   ajax: {
-    url: "{% static 'data/authors.json' %}",
+    url: "{% url 'person_autocomplete' %}",
     dataType: 'json'
     // Additional AJAX parameters go here; see the end of this chapter for the full code of this example
   }
 });
 $('#theaters').select2({
   ajax: {
-    url: "{% static 'data/theaters.json' %}",
+    url: "{% url 'theater_autocomplete' %}",
     dataType: 'json'
     // Additional AJAX parameters go here; see the end of this chapter for the full code of this example
   }
@@ -189,6 +182,17 @@ $('#theaters').select2({
   </script>
   <!-- select2 JS File -->
  <script>
+
+let ItemData;    
+fetch("../assets/data/item_data.json").then(
+        function(u){ return u.json();}
+      ).then(
+        function(json){
+          ItemData = json;
+        }
+      )
+
+
 function htmlToElement(html) {
       var template = document.createElement("template");
       html = html.trim(); // Never return a text node of whitespace as the result
@@ -201,20 +205,44 @@ $.getJSON("../assets/lunr/search.json", function(json) {
   index = lunr.Index.load(json);;
 });
 
-function search(query) {
-  if (event.keyCode === 13) { 
-    interview_results = index.search(query)
-    console.log(interview_results);
-    for (i in interview_results) {
-      if (interview_results[i].score > 0) {
+function search() {
+    // clear existing results 
+    existingResults = document.getElementById("results");
+    while (existingResults.firstChild) {
+      existingResults.removeChild(existingResults.firstChild);
+    }
+    
+    // select values in search and filters 
+    let query = '';
+    let search_bar_value = document.querySelector('#search_bar').value;
+    if (search_bar_value) {
+      query += search_bar_value
+    }
+    let titles = document.querySelector('#titles').value;
+    if (titles.length > 0) { 
+      query += ' title_id:' + titles;
+    }
+
+    // Lunr query and populate results
+    console.log('[query]', query)
+    search_results = index.search(query)
+    for (i in search_results) {
+      if (search_results[i].score > 0) {
+        //
+        let ref_id = search_results[i].ref;
+        let data = ItemData[ref_id];
+        console.log(data)
         document
             .querySelector("#results")
             .appendChild(
               htmlToElement(
-                `<div id="${interview_results[i].ref}" style="border: 1px inset rgba(95,81,164,0.26);
-                border-radius: 20px; padding:50px;">
-                <h4 onclick="window.location.href='../interview/${interview_results[i].ref}.html'">${interview_results[i].ref}</h4>
-                <ul></ul>
+                `<div id="${search_results[i].ref}" style="border: 1px inset rgba(95,81,164,0.26); border-radius: 20px; padding:50px;">
+                <div class="row">
+                  <h4>${data['author']} ${data['title']}</h4>
+                <ul>
+                  <li>${data['year']}</li>
+                </ul>
+                </div>
                 </div>`
               )
             );
@@ -222,7 +250,13 @@ function search(query) {
       }
       
     }
+   
+}; 
 
+function search_bar() {
+  // trigger search on enter from search bar
+  if (event.keyCode === 13) { 
+    search();
   }
 }
 
