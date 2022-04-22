@@ -4,13 +4,16 @@ from main.models import *
 from tqdm import tqdm
 import srsly 
 
-authors_json = srsly.read_json('main/assets/data/authors.json')
+authors_json_file = srsly.read_json('main/assets/data/authors.json')
+authors_json = {}
+for author in authors_json_file['results']:
+    authors_json[author['id']] = author['text']
 
 def get_authors(item:dict):
     authors = []
     if item.get('authors', None): 
         for i in item['authors']:
-            name = authors_json[str(i)]
+            name = authors_json[i]
             if name:
                 person, created = Person.objects.get_or_create(name=name)
                 authors.append(person)
@@ -48,8 +51,8 @@ class Command(BaseCommand):
                 total_editions = item['total_editions'],
                 stationers_register = item['stationers_register'],
             )
-            if created:
-                self.stdout.write(self.style.SUCCESS(f'Added new Title: {title.title}'))
+            #if created:
+            #    self.stdout.write(self.style.SUCCESS(f'Added new Title: {title.title}'))
     
             # Create Edition objects
             if title:
@@ -61,8 +64,8 @@ class Command(BaseCommand):
                     play_type = item['play_type'],
                     blackletter = item['blackletter'],
                 )
-                if created:
-                    self.stdout.write(self.style.SUCCESS(f'Added new Edition: {edition.title}'))
+                #if created:
+                #    self.stdout.write(self.style.SUCCESS(f'Added new Edition: {edition.title}'))
                 
                 if edition:
                     authors = get_authors(item)

@@ -4,4 +4,5 @@ django-jazzmin==2.5.0
 django-autocomplete-light==3.9.4
 sqlparse==0.4.2
 lunr==0.6.2
+srsly==2.4.3 
 tqdm==4.64.0
