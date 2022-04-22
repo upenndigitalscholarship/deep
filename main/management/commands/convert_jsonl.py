@@ -1,7 +1,7 @@
 from django.core.management.base import BaseCommand, CommandError
 from django.core import serializers
 from main.models import *
-
+from tqdm import tqdm
 import srsly 
 
 authors_json = srsly.read_json('main/assets/data/authors.json')
@@ -35,7 +35,7 @@ class Command(BaseCommand):
         self.stdout.write(self.style.SUCCESS(f'Loaded jsonl file'))
 
         # Create Title objects
-        for item in data: 
+        for item in tqdm(data): 
             # Title fields
             title, created = Title.objects.get_or_create(
                 deep_id=item['id'],
@@ -84,6 +84,8 @@ class Command(BaseCommand):
                         composition_date = item['composition_date_display'],
                         company_attribution = item['company_attribution'],
                     )
+                    item.company, _ = Company.objects.get_or_create(name=item.company_attribution)
+                    item.save()
                     # Title page 
                     # Paratext 
                     # Stationers Register

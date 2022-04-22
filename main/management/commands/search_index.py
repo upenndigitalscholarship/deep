@@ -14,7 +14,7 @@ def item_to_dict(item:Item):
     edition = Edition.objects.get(id=item['edition_id'])
     edition_authors = list(edition.authors.all().values_list('id', flat=True))
     edition = edition.__dict__
-    edition['authors'] = edition_authors
+    edition['author_id'] = edition_authors
     del edition['id']
     if '_state' in edition.keys():
         del edition['_state']    
@@ -30,6 +30,40 @@ def item_to_dict(item:Item):
     joined['lunr_id'] = item['id']
     return joined
 
+# {'id': 1,
+#  'edition_id': 1,
+#  'record_type': 'Single-Play Playbook',
+#  'collection': None,
+#  'year': '[1515?]',
+#  'deep_id_display': '1.000',
+#  'greg_full': '3a',
+#  'stc': '14039',
+#  'format': 'Quarto',
+#  'leaves': '18',
+#  'company_attribution': '',
+#  'company_id': None,
+#  'composition_date': '1513 [c.1513-1516]',
+#  'date_first_publication': '[1515?]',
+#  'title_id': 1,
+#  'greg_middle': '3a',
+#  'book_edition': '1',
+#  'play_edition': '1',
+#  'play_type': 'Interlude',
+#  'blackletter': 'Yes',
+#  'person_id': [1],
+#  'deep_id': '1',
+#  'title': 'Hycke Scorner',
+#  'greg': '3',
+#  'genre': 'Moral Interlude',
+#  'date_first_publication_display': '[1515?]',
+#  'date_first_performance': None,
+#  'company_first_performance': None,
+#  'total_editions': '3 quartos',
+#  'stationers_register': None,
+#  'british_drama': None,
+#  'genre_wiggins': None,
+#  'lunr_id': 1}
+
 
 class Command(BaseCommand):
     help = 'Generates a Lunr index for the site'
@@ -43,7 +77,7 @@ class Command(BaseCommand):
         srsly.write_json(Path('main/assets/data/item_data.json'), item_data)
         self.stdout.write(self.style.SUCCESS('Created item data'))
 
-        idx = lunr(ref="lunr_id", fields=['id','title_id','record_type', 'collection', 'year', 'deep_id_display', 'greg_full', 'stc', 'format', 'leaves', 'company_attribution', 'company_id', 'composition_date', 'date_first_publication', 'book_edition', 'play_edition', 'play_type', 'blackletter', 'deep_id', 'title', 'greg', 'genre', 'date_first_publication_display', 'date_first_performance', 'company_first_performance', 'total_editions', 'stationers_register', 'british_drama', 'genre_wiggins'], documents=items)
+        idx = lunr(ref="lunr_id", fields=['id','title_id','record_type', 'author_id','collection', 'year', 'deep_id_display', 'greg_full', 'stc', 'format', 'leaves', 'company_attribution', 'company_id', 'composition_date', 'date_first_publication', 'book_edition', 'play_edition', 'play_type', 'blackletter', 'deep_id', 'title', 'greg', 'genre', 'date_first_publication_display', 'date_first_performance', 'company_first_performance', 'total_editions', 'stationers_register', 'british_drama', 'genre_wiggins'], documents=items)
         serialized_idx = idx.serialize()
         index_path = Path.cwd() / 'main' / 'assets' / 'lunr' 
         if not index_path.exists():

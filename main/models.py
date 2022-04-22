@@ -77,13 +77,13 @@ class Person(models.Model):
         return self.name
 
 class Company(models.Model):
-    company = models.CharField(max_length=200, null=True)
+    name = models.CharField(max_length=200, null=True)
 
     class Meta:
         verbose_name_plural = "companies"
 
     def __str__(self):
-        return self.company
+        return self.name
 
 
 class Theater(models.Model):

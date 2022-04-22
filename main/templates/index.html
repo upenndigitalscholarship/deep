@@ -92,18 +92,18 @@
     <div class="col-lg-4 col-md-6">
       <div class="icon-box">
         <div class="icon"><i class="bi bi-person-lines-fill" style="color: #e9bf06;"></i></div>
-        <h4 class="title"><a href="">By Person</a></h4>
-        <select multiple="multiple" id="persons" data-placeholder="Select person..."  class="form-control select-access-multiple-enable">
+        <h4 class="title"><a href="">By Author</a></h4>
+        <select id="author" data-placeholder="Select author..."  class="form-control select-access-multiple-enable">
         </select>
         </div>
     </div>
 
 
     <div class="col-lg-4 col-md-6" data-wow-delay="0.1s">
-      <div class="icon-box">
+      <div style="pointer-events: none; opacity: 0.4;" class="icon-box">
         <div class="icon"><i class="bi bi-border-width" style="color:#41cf2e;"></i></div>
         <h4 class="title"><a href="">By Theater</a></h4>
-        <select id="theaters" data-placeholder="Select theater..."  class="form-control select-access-multiple-enable">
+        <select id="theater" data-placeholder="Select theater..."  class="form-control select-access-multiple-enable">
         </select>
         </div>
     </div>
@@ -165,14 +165,18 @@ $('#titles').on('select2:select', function(e) {
     search();
   });
   
-$('#persons').select2({
+$('#author').select2({
   ajax: {
     url: "{% url 'person_autocomplete' %}",
     dataType: 'json'
     // Additional AJAX parameters go here; see the end of this chapter for the full code of this example
   }
 });
-$('#theaters').select2({
+$('#author').on('select2:select', function(e) {
+    search();
+  });
+
+$('#theater').select2({
   ajax: {
     url: "{% url 'theater_autocomplete' %}",
     dataType: 'json'
@@ -216,11 +220,19 @@ function search() {
     let query = '';
     let search_bar_value = document.querySelector('#search_bar').value;
     if (search_bar_value) {
-      query += search_bar_value
+      query += search_bar_value + '~1' //fuzzy search,  1 edit distance
     }
     let titles =  document.querySelector('#titles').value;
     if (!titles.length == 0) { 
-      query += ' id:' + titles;
+      query += ' +id:' + titles;
+    }
+    let author=  document.querySelector('#author').value;
+    if (!author.length == 0) { 
+      query += ' +author_id:' + author;
+    }
+    let theater=  document.querySelector('#theater').value;
+    if (!theater.length == 0) { 
+      query += ' person_id:' + theater;
     }
 
     // Lunr query and populate results
