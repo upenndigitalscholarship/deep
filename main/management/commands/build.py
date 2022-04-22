@@ -1,7 +1,8 @@
 import time 
+import srsly 
 from django.core.management.base import BaseCommand, CommandError
 from django.template.loader import render_to_string
-from main.models import Title
+from main.models import Item, Person
 from distutils.dir_util import copy_tree
 from pathlib import Path
 
@@ -18,15 +19,43 @@ class Command(BaseCommand):
         if not out_path.exists():
             out_path.mkdir(parents=True, exist_ok=True)
 
-        #copy all static files
-        static_dir = Path('main/assets')
+        
 
+        
+        static_dir = Path('main/assets')
+        # create json data files 
+        #       {
+        #   "results": [
+        #     {
+        #       "id":0,
+        #       "text":"The Jovial Crew, or The Devil Turned Ranter"
+        #     },...]
+        # }
+        items = {} 
+        items['results'] = []
+        for item in Item.objects.all():
+            items['results'].append({
+                'id': item.id,
+                'text': item.__str__()
+            })
+        srsly.write_json(static_dir / 'data/items.json', items)
+
+        authors = {} 
+        authors['results'] = []
+        for author in Person.objects.all():
+            authors['results'].append({
+                'id': author.id,
+                'text': author.__str__()
+            })
+        srsly.write_json(static_dir / 'data/authors.json', authors)
+
+        #copy all static files
         site_static = (out_path / 'assets')
         if not site_static.exists():
             site_static.mkdir(parents=True, exist_ok=True)
         copy_tree(static_dir, str(site_static))
         
-        index = render_to_string('index.html')
+        index = render_to_string('index.html',{"build":True})
         (out_path / 'index.html').write_text(index)     
 
         about = render_to_string('about.html')
