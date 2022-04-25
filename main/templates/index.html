@@ -11,8 +11,7 @@
       <div class="col-lg-12 col-md-12">
         <div class="icon-box">
           <div class="icon"><i class="bi bi-search" style="color: #330e40;"></i></div>
-          
-            <input id="search_bar" onkeyup="search_bar()" style="margin-left:10px; width:100%" type="text" name="search" placeholder="Search for a playbook...">
+            <input id="search_bar" style="margin-left:10px; width:100%" type="text" name="search" placeholder="Search for a playbook...">
         
         </div>
       </div>
@@ -51,13 +50,48 @@
     
   </div>
 
-  <div class="row">
+  <div  class="row">
     <div class="col-lg-12 col-md-12">
-      <div id="results"  class="icon-box">
-        
-        
-      
-      </div>
+      <style>
+        label {
+          color:white;
+          
+        }
+        select {
+          color:white;
+          
+        }
+        a {
+          color:white;
+          
+        }
+        .dataTables_wrapper .dataTables_paginate .paginate_button.disabled, .dataTables_wrapper .dataTables_paginate .paginate_button.disabled:hover, .dataTables_wrapper .dataTables_paginate .paginate_button.disabled:active {
+  cursor: default;
+  color: white !important;
+  border: 1px solid transparent;
+  background: transparent;
+  box-shadow: none;
+}
+.dataTables_wrapper .dataTables_length, .dataTables_wrapper .dataTables_filter, .dataTables_wrapper .dataTables_info, .dataTables_wrapper .dataTables_processing, .dataTables_wrapper .dataTables_paginate {
+  color: white;
+}
+.dataTables_wrapper .dataTables_paginate .paginate_button {
+  color: white !important;
+}
+
+
+
+      </style>
+      <table id="search_results" class="table" style="background-color: white; border-radius: 15px;">
+        <thead>
+            <tr>
+                
+            </tr>
+        </thead>
+        <tbody>
+           
+        </tbody>
+    </table>
     </div>
     
 </div>
@@ -119,12 +153,30 @@ $('#theater').select2({
   <!-- select2 JS File -->
  <script>
 
-let ItemData;    
+let itemData;    
 fetch("../assets/data/item_data.json").then(
         function(u){ return u.json();}
       ).then(
         function(json){
-          ItemData = json;
+          itemData = json;
+          let table_data = [];
+          for (i in itemData) {
+            table_data.push([itemData[i].year, itemData[i].title, itemData[i].greg_full]);
+          }
+          let table = $('#search_results').DataTable({
+            sDom: '<"top"i>rt<"bottom"lp><"clear">',
+            data: table_data,
+            columns: [
+              { title: "Year" },
+              { title: "Title" },
+              { title: "greg" },
+          
+            ]
+          } );
+          // listen for search_bar
+          $('#search_bar').keyup(function() {
+             table.search($(this).val()).draw();
+          });
         }
       )
 
@@ -174,7 +226,7 @@ function search() {
       if (search_results[i].score > 0) {
         //
         let ref_id = search_results[i].ref;
-        let data = ItemData[ref_id];
+        let data = itemData[ref_id];
         console.log(data)
         document
             .querySelector("#results")
@@ -210,7 +262,7 @@ function search_bar() {
 }
 
 function showModal(id) {
-  let data = ItemData[id];
+  let data = itemData[id];
   console.log(data);
   //document.querySelector('#deepModal').on('show.bs.modal', function (event) {
   // })
