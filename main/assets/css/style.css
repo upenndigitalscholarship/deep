@@ -9,7 +9,10 @@
 # General
 --------------------------------------------------------------*/
 body {
-  font-family: "Open Sans", sans-serif;
+  font-family: trade-gothic-next,sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  /* font-family: "Open Sans", sans-serif; */
   color: #444444;
 }
 
@@ -25,6 +28,8 @@ a:hover {
 
 h1, h2, h3, h4, h5, h6 {
   font-family: "Dosis", sans-serif;
+  
+
 }
 
 /*--------------------------------------------------------------
@@ -37,7 +42,7 @@ h1, h2, h3, h4, h5, h6 {
   right: 15px;
   bottom: 15px;
   z-index: 996;
-  background: #49b5e7;
+  background: purple;
   width: 40px;
   height: 40px;
   border-radius: 4px;
@@ -67,7 +72,12 @@ h1, h2, h3, h4, h5, h6 {
   padding: 20px 0;
   box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.05);
 }
+
 #header .logo {
+  font-family: birch-std,serif;
+  font-weight: 400;
+  font-style: normal;
+
   font-size: 28px;
   margin: 0;
   padding: 0;
@@ -75,7 +85,7 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: 700;
   letter-spacing: 1px;
   text-transform: uppercase;
-  font-family: "Lato", sans-serif;
+
 }
 #header .logo a {
   color: #0f394c;
@@ -341,7 +351,8 @@ section {
 }
 
 .section-bg {
-  background-color: #f4fbfe;
+  /* background-color: #f4fbfe; */
+  background-color: #330e40;
 }
 
 .section-title {
