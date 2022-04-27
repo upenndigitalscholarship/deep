@@ -193,12 +193,18 @@ fetch("../assets/data/item_data.json").then(
                          {
                              return '<p onclick="expand(' +row[3]+')">' + data + '</p>'
                          } },
-              { title: "Title" },
-              { title: "greg" },
+              { title: "Title", 'render': function (data, type, row, meta)
+                         {
+                             return '<p onclick="expand(' +row[3]+')">' + data + '</p>'
+                         }  },
+              { title: "greg", 'render': function (data, type, row, meta)
+                         {
+                             return '<p onclick="expand(' +row[3]+')">' + data + '</p>'
+                         }  },
               { 'data': 'link',
                          'render': function (data, type, row, meta)
                          {
-                             return '<a class="btn btn-light" role="button" href="' + "//" + row.link + '">expand</a>'
+                             return '<a class="btn btn-light" role="button" onclick="expand(' +row[3]+')">expand</a>'
                          }
                      }
           
