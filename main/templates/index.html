@@ -1,13 +1,32 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
+<!-- Modal HTML -->
+<div id="myModal" class="modal fade">
+  <div class="modal-dialog">
+      <div class="modal-content">
+          <div class="modal-header">
+              <h5 class="modal-title">Confirmation</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+          </div>
+          <div class="modal-body">
+              <p>Do you want to save changes to this document before closing?</p>
+              <p class="text-secondary"><small>If you don't save, your changes will be lost.</small></p>
+          </div>
+          <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+              <button type="button" class="btn btn-primary">Save changes</button>
+          </div>
+      </div>
+  </div>
+</div>
+<!-- END Modal HTML -->
+
 
 
 <!-- ======= Search Section ======= -->
 <section id="search" class="services section-bg">
   <div style="margin-top:80px;" class="container" >
-
-    
 
     <div class="row">
       <div class="col-lg-12 col-md-12">
@@ -155,6 +174,7 @@ $('#theater').select2({
   <!-- select2 JS File -->
  <script>
 
+
 let itemData;    
 fetch("../assets/data/item_data.json").then(
         function(u){ return u.json();}
@@ -163,25 +183,40 @@ fetch("../assets/data/item_data.json").then(
           itemData = json;
           let table_data = [];
           for (i in itemData) {
-            table_data.push([itemData[i].year, itemData[i].title, itemData[i].greg_full]);
+            table_data.push([itemData[i].year, itemData[i].title, itemData[i].greg_full, itemData[i].id]);
           }
           let table = $('#search_results').DataTable({
             sDom: '<"top"i>rt<"bottom"lp><"clear">',
+            "fnInfoCallback": function( oSettings, iStart, iEnd, iMax, iTotal, sPre ) { return 'Total:'+ iTotal; },
             data: table_data,
             columns: [
-              { title: "Year" },
+              { title: "Year", 'render': function (data, type, row, meta)
+                         {
+                             return '<p onclick="expand(' +row[3]+')">' + data + '</p>'
+                         } },
               { title: "Title" },
               { title: "greg" },
+              { 'data': 'link',
+                         'render': function (data, type, row, meta)
+                         {
+                             return '<a class="btn btn-light" role="button" href="' + "//" + row.link + '">expand</a>'
+                         }
+                     }
           
-            ]
+            ],
           } );
           // listen for search_bar
           $('#search_bar').keyup(function() {
              table.search($(this).val()).draw();
           });
+          
         }
       )
 
+function expand(id) {
+  console.log(itemData[id]);
+  $('#myModal').modal('show');
+}
 
 function htmlToElement(html) {
       var template = document.createElement("template");
@@ -263,13 +298,6 @@ function search_bar() {
   }
 }
 
-function showModal(id) {
-  let data = itemData[id];
-  console.log(data);
-  //document.querySelector('#deepModal').on('show.bs.modal', function (event) {
-  // })
-
-}
 
  </script>
   {% endblock %}
