@@ -2,6 +2,7 @@ import time
 import srsly 
 from django.core.management.base import BaseCommand, CommandError
 from django.template.loader import render_to_string
+from django.core.management import call_command
 from main.models import Item, Person
 from distutils.dir_util import copy_tree
 from pathlib import Path
@@ -13,8 +14,11 @@ class Command(BaseCommand):
     #    parser.add_argument('poll_ids', nargs='+', type=int)
 
     def handle(self, *args, **options):
+        start = time.time()
+        # build Lunr search index files
+        call_command('search_index')
 
-        start_time = time.time()
+        
         out_path = Path('site')
         if not out_path.exists():
             out_path.mkdir(parents=True, exist_ok=True)
@@ -61,4 +65,7 @@ class Command(BaseCommand):
         about = render_to_string('about.html')
         (out_path / 'about.html').write_text(about)     
 
-        self.stdout.write(self.style.SUCCESS('Build Complete'))
+        browse = render_to_string('browse.html')
+        (out_path / 'browse.html').write_text(browse)    
+        end = time.time()
+        self.stdout.write(self.style.SUCCESS(f'Build Complete in {end-start:.2f} seconds'))

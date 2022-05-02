@@ -6,8 +6,12 @@ from dal import autocomplete
 def index(request):
     return render(request, 'index.html')
 
+def browse(request):
+    return render(request, 'browse.html')
+
 def about(request):
     return render(request, 'about.html')
+
 
 
 class TitleAutocomplete(autocomplete.Select2QuerySetView):
