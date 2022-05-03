@@ -2,116 +2,51 @@
 {% load static %}
 {% block content %}
 
-<!-- Modal -->
-<div  class="modal modal-xl fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="titleModal"></h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        ...
-      </div>
-      <div class="modal-footer">
-        
-      </div>
-    </div>
-  </div>
-</div>
-
-
-
-
 <!-- ======= Search Section ======= -->
 <section id="search" class="services section-bg">
-  <div style="margin-top:80px;" class="container" >
+  <div style="margin-top:80px; min-height: 600px;" class="container" >
+    <div id="users">
 
     <div class="row">
       <div class="col-lg-12 col-md-12">
         <div class="icon-box">
           <div class="icon"><i class="bi bi-search" style="color: #330e40;" no-repeat center center fixed;"></i></div>
-            <input id="search_bar" style="margin-left:10px; width:100%" type="text" name="search" placeholder="Search for a playbook...">
+         
+  
+          <input id="search_bar" style="margin-left:10px; width:100%" type="text" name="search" placeholder="Search for a playbook...">
         
         </div>
       </div>
       
       
   </div>
-  <div class="row">
-    <div class="col-lg-4 col-md-6">
-      <div class="icon-box">
-        <h4 class="title"><a href="">By Title</a></h4>
-        <select id="titles" data-placeholder="Select title..." class="form-control select-access-multiple-enable">
-      </select>
-      </div>
-    </div>
-
-    <div class="col-lg-4 col-md-6">
-      <div class="icon-box">
-        
-        <h4 class="title"><a href="">By Author</a></h4>
-        <select id="author" data-placeholder="Select author..."  class="form-control select-access-multiple-enable">
-        </select>
-        </div>
-    </div>
-
-
-    <div class="col-lg-4 col-md-6" data-wow-delay="0.1s">
-      <div style="pointer-events: none;" class="icon-box">
-        <h4 class="title"><a href="">By Theater</a></h4>
-        <select id="theater" data-placeholder="Select theater..."  class="form-control select-access-multiple-enable">
-        </select>
-        </div>
-    </div>
-
-    
-
-    
-  </div>
+  
 
   <div  class="row">
     <div class="col-lg-12 col-md-12">
-      <style>
-        label {
-          color:white;
+    
+  <table class="table bg-light text-dark rounded-0">
+    <!-- IMPORTANT, class="list" have to be at tbody -->
+    <tbody class="list">
+      <thead>
+        <tr>
           
-        }
-        select {
-          color:white;
-          
-        }
-        a {
-          color:white;
-          
-        }
-        .dataTables_wrapper .dataTables_paginate .paginate_button.disabled, .dataTables_wrapper .dataTables_paginate .paginate_button.disabled:hover, .dataTables_wrapper .dataTables_paginate .paginate_button.disabled:active {
-  cursor: default;
-  color: white !important;
-  border: 1px solid transparent;
-  background: transparent;
-  box-shadow: none;
-}
-.dataTables_wrapper .dataTables_length, .dataTables_wrapper .dataTables_filter, .dataTables_wrapper .dataTables_info, .dataTables_wrapper .dataTables_processing, .dataTables_wrapper .dataTables_paginate {
-  color: white;
-}
-.dataTables_wrapper .dataTables_paginate .paginate_button {
-  color: white !important;
-}
+          <th class="sort col-2" data-sort="year" scope="col">Year</th>
+          <th class="sort col-2" data-sort="author" scope="col">Author</th>
+          <th class="sort col-8" data-sort="title" scope="col">Title</th>
+        </tr>
+      </thead>
+      
+
+    </tbody>
+
+  </table>
+  
+
+</div>
 
 
-
-      </style>
-      <table id="search_results" class="table" style="background-color: white; border-radius: 15px;">
-        <thead>
-            <tr>
-                
-            </tr>
-        </thead>
-        <tbody>
-           
-        </tbody>
-    </table>
+      
     </div>
     
 </div>
@@ -124,104 +59,217 @@
 
   
   {% block extra_js %}  
- <script>
-// you should get the data from JSON and use it to build option tag to let the normal filter works. 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/list.js/2.3.1/list.min.js"></script>    
 
-  $('#titles').select2({
-  ajax: {
-    {% if build %}
-    url: "../assets/data/items.json",
-    {% else %}
-    url: "{% url 'title_autocomplete' %}",
-    {% endif %}
-
-    dataType: 'json'
-    // Additional AJAX parameters go here; see the end of this chapter for the full code of this example
-  }
-});
-$('#titles').on('select2:select', function(e) {
-    search();
-  });
-  
-$('#author').select2({
-  ajax: {
-    {% if build %}
-    url: "../assets/data/authors.json",
-    {% else %}
-    url: "{% url 'person_autocomplete' %}",
-    {% endif %}
-    dataType: 'json'
-    // Additional AJAX parameters go here; see the end of this chapter for the full code of this example
-  }
-});
-$('#author').on('select2:select', function(e) {
-    search();
-  });
-
-$('#theater').select2({
-  ajax: {
-    {% if build %}
-    url: "../assets/data/theater.json",
-    {% else %}
-    url: "{% url 'theater_autocomplete' %}",
-    {% endif %}
-    dataType: 'json'
-    // Additional AJAX parameters go here; see the end of this chapter for the full code of this example
-  }
-});
-  </script>
-  <!-- select2 JS File -->
  <script>
 
-
-let itemData;    
+// fetch data for all records
+let item_data;
 fetch("../assets/data/item_data.json").then(
         function(u){ return u.json();}
       ).then(
         function(json){
-          itemData = json;
-          let table_data = [];
-          for (i in itemData) {
-            table_data.push([itemData[i].year, itemData[i].title, itemData[i].greg_full, itemData[i].id]);
-          }
-          let table = $('#search_results').DataTable({
-            sDom: '<"top"i>rt<"bottom"lp><"clear">',
-            "fnInfoCallback": function( oSettings, iStart, iEnd, iMax, iTotal, sPre ) { return 'Total:'+ iTotal; },
-            data: table_data,
-            columns: [
-              { title: "Year", 'render': function (data, type, row, meta)
-                         {
-                             return '<p onclick="expand(' +row[3]+')">' + data + '</p>'
-                         } },
-              { title: "Title", 'render': function (data, type, row, meta)
-                         {
-                             return '<p onclick="expand(' +row[3]+')">' + data + '</p>'
-                         }  },
-              { title: "greg", 'render': function (data, type, row, meta)
-                         {
-                             return '<p onclick="expand(' +row[3]+')">' + data + '</p>'
-                         }  },
-              { 'data': 'link',
-                         'render': function (data, type, row, meta)
-                         {
-                             return '<a class="btn btn-light" role="button" onclick="expand(' +row[3]+')">expand</a>'
-                         }
-                     }
-          
-            ],
-          } );
-          // listen for search_bar
-          $('#search_bar').keyup(function() {
-             table.search($(this).val()).draw();
-          });
-          
-        }
-      )
+          item_data = json;
+        });
+        
+let index;
+fetch("../assets/lunr/search.json").then(
+        function(u){ return u.json();}
+      ).then(
+        function(json){
+          index = lunr.Index.load(json);
+        });
+        
+//listen for search_bar
+let options = {
+      valueNames: ['title', 'year', 'greg_full' ],
+      
+      // Since there are no elements in the list, this will be used as template.
+      item: function(values) { 
+        return `<tr onclick="expand(this, ${values.id});"><td class="year"></td><td class="author"></td><td class="title"></td></tr>`
+      }
+    };
+let table = new List('users', options, []);
 
-function expand(id) {
-  console.log(itemData[id]);
-  $('#titleModal').text(itemData[id].title);
-  $('#myModal').modal('show');
+document.querySelector('#search_bar').addEventListener('keyup', function() {
+  table.clear();
+  let query = document.querySelector('#search_bar').value;
+  query += '~1' //fuzzy search,  1 edit distance
+    
+  search_results = index.search(query)
+  results = []
+  for (i in search_results) {
+    results.push(item_data[search_results[i].ref]);
+  }
+  console.log(results)
+  
+  table.add(results);
+  table.update();
+});
+          
+        
+       
+function expand(e, id) {
+  let data = item_data[id];
+  e.outerHTML = `
+  <tr onclick="collapse(this, ${data.id});"><td class="year">${data.year}</td><td class="author">${data.author}</td><td class="title">${data.title}</td>
+  
+  <tr>
+    <td colspan="5">
+      <div class="card" style="width: 100%;">
+        
+        <div class="card-body">
+          <div class="row">
+            <div class="col-3">
+              <p>DEEP #: ${data.deep_id}</p>
+              <p>Greg #: ${data.greg_full}</p>
+              <p>STC/Wing #: ${data.stc}</p>
+            </div>
+            
+    
+            <div class="col-9">
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            </div>
+
+          </div>  
+        </div>
+
+        <div class="card-footer">
+         
+        </div>
+      </div>
+    </td>
+  </tr>
+
+   
+  
+
+    <tr>
+     
+      <td>
+        // year
+      </td>
+      <td>
+        <h3>Reference Information</h3>
+                <div>
+                    <div><span >DEEP #:</span>
+                        <u><a href='1200'>1200</a></u>
+                    </div>
+
+                    <div><span>Greg #:</span> L11a</div>
+                    <div><span>STC/Wing #:</span> 249 </div>
+                </div>
+                <div>
+                    <div><span>Record Type:</span> Single-Play Playbook</div>
+                    <div><span>Play Type:</span> Latin University</div>
+                    <div><span>Genre (Annals):</span> Latin Tragedy</div>
+                </div>
+                <div>
+                    <span>Book Edition:</span> 1</div>
+                    <div><span>Play Edition:</span> 1</div>
+                    <div><span>Format:</span> Duodecimo</div>
+                    <div><span>Leaves:</span> 45</div>
+                </div>
+                <div><span class="label">Total Editions:</span> 1 duodecimo, 1 octavo</div>
+                
+                <div id="titlepage">
+                <h3>Title-Page Features</h3>
+                <div class="hanging"><span class="label">Title:</span> ROXANA TRAGÆDIA,</div>
+                <div class="hanging"><span class="label">Author:</span> <i>Nunc primum in lucem edita</i>, summáque cum
+                    diligentia <i>ad castigatissimum exemplar comparata</i>. Cui accesserunt etiam Argumenta.</div>
+                <div class="hanging"><span class="label">Performance:</span> <I>OLIM</I> C<small>ANTABRIGIÆ</small>,
+                    Acta in C<small>OL</small>. T<small>RIN</small>.</div>
+                <div class="hanging"><span class="label">Imprint:</span> <i>LONDINI</i>, Excudebat <i>R. Badgerus</i>,
+                    impensis A<small>NDREÆ</small> C<small>ROOK</small>, <i>ad Signum nigri Vrsi in Cœmiterio</i>
+                    P<small>AULINO</small>. 1632.</div>
+            </div>
+            <div class="stationer">
+                <h3>Stationer Information</h3>
+                <div><span class="label">Colophon:</span> <i>Excusum Londini, typis</i> R. B. sumptibus <i>Andreæ
+                        Crooke,</i> & <i>venum dantur ad signum nigri Vrsi, in Cœmiterio</i> Paulino, MDCXXXII.
+                    [<i>var</i>.: "<i>dantur,</i>"] [E6r]</div>
+                <div><span class="label">Printer:</span> Badger, Richard (1)</div>
+                <div><span class="label">Publisher:</span> Crooke, Andrew (1)</div>
+                <div><span class="label">Imprint Location:</span> A.3 (Paul's Churchyard - Northeast)</div>
+                <div><span class="label">License:</span> "Imprimatur; primo die Martii Annon Salutis Nostræ Millesimo
+                    Sexentesimo [<i>sic</i>] Trigesimo secundo. Per me Henricum Herbert" [E5r]</div>
+                <div class="hanging"><span class="label">Entries in Stationers' Register:</span> May 9, 1632: Entered to
+                    Andrew Crooke (1): "a Tragedy in Latyn called Roxana &c".</div>
+            </div>
+
+      </td>
+      
+      <td>
+        <div class="colright">
+                    <div><span class="label">Date of First Publication:</span> 1632</div>
+                    <div><span class="label">Date of First Production:</span> 1592 [1590-c.1595]</div>
+                    <div><span class="label">Company of First Production:</span> n/a</div>
+                    <div style="overflow:auto;"><span class="label">Company Attribution:</span> n/a</div>
+                </div>
+      </td>
+    </tr>
+    <tr>
+    <td colspan="4">
+        <div class="detail" id="detail1" style="display:none;">
+            <div class="refinfo">
+
+                <div class="colleft">
+                   
+                </div>
+                <div class="colright">
+                    <div><span class="label">Date of First Publication:</span> 1632</div>
+                    <div><span class="label">Date of First Production:</span> 1592 [1590-c.1595]</div>
+                    <div><span class="label">Company of First Production:</span> n/a</div>
+                    <div style="overflow:auto;"><span class="label">Company Attribution:</span> n/a</div>
+                </div>
+
+                <div class="break">&nbsp;</div>
+
+                <div><span class="label">Total Editions:</span> 1 duodecimo, 1 octavo</div>
+
+
+
+
+
+            </div>
+
+
+            <div class="titlepage">
+                <h3>Title-Page Features</h3>
+                <div class="hanging"><span class="label">Title:</span> ROXANA TRAGÆDIA,</div>
+                <div class="hanging"><span class="label">Author:</span> <i>Nunc primum in lucem edita</i>, summáque cum
+                    diligentia <i>ad castigatissimum exemplar comparata</i>. Cui accesserunt etiam Argumenta.</div>
+                <div class="hanging"><span class="label">Performance:</span> <I>OLIM</I> C<small>ANTABRIGIÆ</small>,
+                    Acta in C<small>OL</small>. T<small>RIN</small>.</div>
+                <div class="hanging"><span class="label">Imprint:</span> <i>LONDINI</i>, Excudebat <i>R. Badgerus</i>,
+                    impensis A<small>NDREÆ</small> C<small>ROOK</small>, <i>ad Signum nigri Vrsi in Cœmiterio</i>
+                    P<small>AULINO</small>. 1632.</div>
+            </div>
+
+            <div class="paratext">
+                <h3>Paratextual Material</h3>
+                <div class="hanging"><span class="label">Character List:</span> "Drammatis Personæ" [A3r]</div>
+            </div>
+
+            <div class="stationer">
+                <h3>Stationer Information</h3>
+                <div><span class="label">Colophon:</span> <i>Excusum Londini, typis</i> R. B. sumptibus <i>Andreæ
+                        Crooke,</i> & <i>venum dantur ad signum nigri Vrsi, in Cœmiterio</i> Paulino, MDCXXXII.
+                    [<i>var</i>.: "<i>dantur,</i>"] [E6r]</div>
+                <div><span class="label">Printer:</span> Badger, Richard (1)</div>
+                <div><span class="label">Publisher:</span> Crooke, Andrew (1)</div>
+                <div><span class="label">Imprint Location:</span> A.3 (Paul's Churchyard - Northeast)</div>
+                <div><span class="label">License:</span> "Imprimatur; primo die Martii Annon Salutis Nostræ Millesimo
+                    Sexentesimo [<i>sic</i>] Trigesimo secundo. Per me Henricum Herbert" [E5r]</div>
+                <div class="hanging"><span class="label">Entries in Stationers' Register:</span> May 9, 1632: Entered to
+                    Andrew Crooke (1): "a Tragedy in Latyn called Roxana &c".</div>
+            </div>
+
+        </div>
+    </td>
+</tr>
+  `;
+  
 }
 
 function htmlToElement(html) {
@@ -231,10 +279,7 @@ function htmlToElement(html) {
       return template.content.firstChild;
     }
 
-let index;
-$.getJSON("../assets/lunr/search.json", function(json) {
-  index = lunr.Index.load(json);;
-});
+
 
 function search() {
     // clear existing results 

@@ -1,0 +1,299 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<!-- Modal -->
+<div  class="modal modal-xl fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="titleModal"></h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+<!-- ======= Search Section ======= -->
+<section id="search" class="services section-bg">
+  <div style="margin-top:80px;" class="container" >
+
+   
+  <div class="row">
+    <div class="col-lg-4 col-md-6">
+      <div class="icon-box">
+        <h4 class="title"><a href="">By Title</a></h4>
+        <select id="titles" data-placeholder="Select title..." class="form-control select-access-multiple-enable">
+      </select>
+      </div>
+    </div>
+
+    <div class="col-lg-4 col-md-6">
+      <div class="icon-box">
+        
+        <h4 class="title"><a href="">By Author</a></h4>
+        <select id="author" data-placeholder="Select author..."  class="form-control select-access-multiple-enable">
+        </select>
+        </div>
+    </div>
+
+
+    <div class="col-lg-4 col-md-6" data-wow-delay="0.1s">
+      <div style="pointer-events: none;" class="icon-box">
+        <h4 class="title"><a href="">By Theater</a></h4>
+        <select id="theater" data-placeholder="Select theater..."  class="form-control select-access-multiple-enable">
+        </select>
+        </div>
+    </div>
+
+    
+
+    
+  </div>
+
+  <div  class="row">
+    <div class="col-lg-12 col-md-12">
+      <style>
+        label {
+          color:white;
+          
+        }
+        select {
+          color:white;
+          
+        }
+        a {
+          color:white;
+          
+        }
+        .dataTables_wrapper .dataTables_paginate .paginate_button.disabled, .dataTables_wrapper .dataTables_paginate .paginate_button.disabled:hover, .dataTables_wrapper .dataTables_paginate .paginate_button.disabled:active {
+  cursor: default;
+  color: white !important;
+  border: 1px solid transparent;
+  background: transparent;
+  box-shadow: none;
+}
+.dataTables_wrapper .dataTables_length, .dataTables_wrapper .dataTables_filter, .dataTables_wrapper .dataTables_info, .dataTables_wrapper .dataTables_processing, .dataTables_wrapper .dataTables_paginate {
+  color: white;
+}
+.dataTables_wrapper .dataTables_paginate .paginate_button {
+  color: white !important;
+}
+
+
+
+      </style>
+      <table id="search_results" class="table" style="background-color: white; border-radius: 15px;">
+        <thead>
+            <tr>
+                
+            </tr>
+        </thead>
+        <tbody>
+           
+        </tbody>
+    </table>
+    </div>
+    
+</div>
+</section><!-- End Search Section -->
+
+  
+  
+{% endblock %}    
+    
+
+  
+  {% block extra_js %}  
+ <script>
+// you should get the data from JSON and use it to build option tag to let the normal filter works. 
+
+  $('#titles').select2({
+  ajax: {
+    {% if build %}
+    url: "../assets/data/items.json",
+    {% else %}
+    url: "{% url 'title_autocomplete' %}",
+    {% endif %}
+
+    dataType: 'json'
+    // Additional AJAX parameters go here; see the end of this chapter for the full code of this example
+  }
+});
+$('#titles').on('select2:select', function(e) {
+    search();
+  });
+  
+$('#author').select2({
+  ajax: {
+    {% if build %}
+    url: "../assets/data/authors.json",
+    {% else %}
+    url: "{% url 'person_autocomplete' %}",
+    {% endif %}
+    dataType: 'json'
+    // Additional AJAX parameters go here; see the end of this chapter for the full code of this example
+  }
+});
+$('#author').on('select2:select', function(e) {
+    search();
+  });
+
+$('#theater').select2({
+  ajax: {
+    {% if build %}
+    url: "../assets/data/theater.json",
+    {% else %}
+    url: "{% url 'theater_autocomplete' %}",
+    {% endif %}
+    dataType: 'json'
+    // Additional AJAX parameters go here; see the end of this chapter for the full code of this example
+  }
+});
+  </script>
+  <!-- select2 JS File -->
+ <script>
+
+
+let itemData;    
+fetch("../assets/data/item_data.json").then(
+        function(u){ return u.json();}
+      ).then(
+        function(json){
+          itemData = json;
+          let table_data = [];
+          for (i in itemData) {
+            table_data.push([itemData[i].year, itemData[i].title, itemData[i].greg_full, itemData[i].id]);
+          }
+          let table = $('#search_results').DataTable({
+            sDom: '<"top"i>rt<"bottom"lp><"clear">',
+            "fnInfoCallback": function( oSettings, iStart, iEnd, iMax, iTotal, sPre ) { return 'Total:'+ iTotal; },
+            data: table_data,
+            columns: [
+              { title: "Year", 'render': function (data, type, row, meta)
+                         {
+                             return '<p onclick="expand(' +row[3]+')">' + data + '</p>'
+                         } },
+              { title: "Title", 'render': function (data, type, row, meta)
+                         {
+                             return '<p onclick="expand(' +row[3]+')">' + data + '</p>'
+                         }  },
+              { title: "greg", 'render': function (data, type, row, meta)
+                         {
+                             return '<p onclick="expand(' +row[3]+')">' + data + '</p>'
+                         }  },
+              { 'data': 'link',
+                         'render': function (data, type, row, meta)
+                         {
+                             return '<a class="btn btn-light" role="button" onclick="expand(' +row[3]+')">expand</a>'
+                         }
+                     }
+          
+            ],
+          } );
+          // listen for search_bar
+          $('#search_bar').keyup(function() {
+             table.search($(this).val()).draw();
+          });
+          
+        }
+      )
+
+function expand(id) {
+  console.log(itemData[id]);
+  $('#titleModal').text(itemData[id].title);
+  $('#myModal').modal('show');
+}
+
+function htmlToElement(html) {
+      var template = document.createElement("template");
+      html = html.trim(); // Never return a text node of whitespace as the result
+      template.innerHTML = html;
+      return template.content.firstChild;
+    }
+
+let index;
+$.getJSON("../assets/lunr/search.json", function(json) {
+  index = lunr.Index.load(json);;
+});
+
+function search() {
+    // clear existing results 
+    existingResults = document.getElementById("results");
+    while (existingResults.firstChild) {
+      existingResults.removeChild(existingResults.firstChild);
+    }
+    
+    // select values in search and filters 
+    let query = '';
+    let search_bar_value = document.querySelector('#search_bar').value;
+    if (search_bar_value) {
+      query += search_bar_value + '~1' //fuzzy search,  1 edit distance
+    }
+    let titles =  document.querySelector('#titles').value;
+    if (!titles.length == 0) { 
+      query += ' +id:' + titles;
+    }
+    let author=  document.querySelector('#author').value;
+    if (!author.length == 0) { 
+      query += ' +author_id:' + author;
+    }
+    let theater=  document.querySelector('#theater').value;
+    if (!theater.length == 0) { 
+      query += ' person_id:' + theater;
+    }
+
+    // Lunr query and populate results
+    console.log('[query]', query)
+    search_results = index.search(query)
+    for (i in search_results) {
+      if (search_results[i].score > 0) {
+        //
+        let ref_id = search_results[i].ref;
+        let data = itemData[ref_id];
+        console.log(data)
+        document
+            .querySelector("#results")
+            .appendChild(
+              htmlToElement(
+                `<div onclick="showModal(${search_results[i].ref});" id="${search_results[i].ref}" style="border: 1px inset rgba(95,81,164,0.26); border-radius: 20px; padding:50px;">
+                <div class="row">
+                  <div class="col-lg-8 col-md-4">
+                  <h4>${data['title']}</h4>
+                  </div>
+                  <div class="col-lg-2">
+                  <h6>${data['year']}</h6>
+                  </div>
+                  <div class="col-lg-2">
+                  <h6>${data['greg_full']}</h6>
+                  </div>
+                </div>
+                </div>`
+              )
+            );
+
+      }
+      
+    }
+   
+}; 
+
+function search_bar() {
+  // trigger search on enter from search bar
+  if (event.keyCode === 13) { 
+    search();
+  }
+}
+
+
+ </script>
+  {% endblock %}
