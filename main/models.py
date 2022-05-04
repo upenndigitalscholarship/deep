@@ -64,7 +64,7 @@ class Item(models.Model): #Previously known as "DEEP"
     date_first_publication = models.CharField("Date of First Publication", max_length=200)
 
     def __str__(self):
-        return f"{self.edition.title.title} - {self.edition.greg_middle}"
+        return f"{self.edition} - {self.edition.greg_middle}"
 
 
 class Person(models.Model):

@@ -25,6 +25,21 @@
   <div  class="row">
     <div class="col-lg-12 col-md-12">
     
+      <!-- View Selector  -->
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="titleRadio" value="title">
+        <label class="form-check-label text-light" for="titleRadio">Title</label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="editionRadio" value="edition">
+        <label class="form-check-label text-light" for="editionRadio">Edition</label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="recordRadio" value="record">
+        <label class="form-check-label text-light" for="recordRadio">Record</label>
+      </div>
+
+      <button class="btn btn-light float-end" onclick="expandAll(this);">Expand all</button>
   <table class="table bg-light text-dark rounded-0">
     <!-- IMPORTANT, class="list" have to be at tbody -->
     <tbody class="list">
@@ -33,7 +48,8 @@
           
           <th class="sort col-2" data-sort="year" scope="col">Year</th>
           <th class="sort col-2" data-sort="author" scope="col">Author</th>
-          <th class="sort col-8" data-sort="title" scope="col">Title</th>
+          <th class="sort col-7" data-sort="title" scope="col">Title</th>
+          <th class="col-1"></th>
         </tr>
       </thead>
       
@@ -59,6 +75,7 @@
 
   
   {% block extra_js %}  
+  
   <script src="https://cdnjs.cloudflare.com/ajax/libs/list.js/2.3.1/list.min.js"></script>    
 
  <script>
@@ -86,25 +103,82 @@ let options = {
       
       // Since there are no elements in the list, this will be used as template.
       item: function(values) { 
-        return `<tr onclick="expand(this, ${values.id});"><td class="year"></td><td class="author"></td><td class="title"></td></tr>`
+        return `<tr id="${values.id}" onclick="expand(this, ${values.id});"><td class="year"></td><td class="author"></td><td class="title"></td><td>Expand</td></tr>`
       }
     };
 let table = new List('users', options, []);
 
-document.querySelector('#search_bar').addEventListener('keyup', function() {
+// temporary until groupBy is added to JS
+let groupBy = function(xs, key) {
+  return xs.reduce(function(rv, x) {
+    (rv[x[key]] = rv[x[key]] || []).push(x);
+    return rv;
+  }, {});
+};
+
+function search() {
   table.clear();
   let query = document.querySelector('#search_bar').value;
   query += '~1' //fuzzy search,  1 edit distance
     
   search_results = index.search(query)
   results = []
-  for (i in search_results) {
-    results.push(item_data[search_results[i].ref]);
+  // insert logic for title-edition-record filtering 
+  let filter = radioHelper();
+  if (filter == 'title') {
+    search_results.forEach(function(result) {
+      results.push(item_data[result.ref])
+    });
+    let groups = groupBy(results, 'greg');
+    
+    results = []
+    for (i in groups) {
+      if (groups[i].length == 1) {
+        results.push(groups[i][0])
+      } else {
+        // sort the group by deep_id, return only lowest deep id
+        let d = groups[i].sort((a,b) => a.deep_id - b.deep_id);
+        results.push(d[0])
+      }
+    }
+  } else if (filter == 'edition') {
+    // load data for each result 
+    search_results.forEach(function(result) {
+      results.push(item_data[result.ref])
+    });
+    let groups = groupBy(results, 'greg_middle');
+    
+    results = []
+    for (i in groups) {
+      if (groups[i].length == 1) {
+        results.push(groups[i][0])
+      } else {
+        // sort the group by deep_id, return only lowest deep id
+        let d = groups[i].sort((a,b) => a.deep_id - b.deep_id);
+        results.push(d[0])
+      }
+      
+      
+    };
+    //   if (group.length == 1) {
+    //     console.log('one', group)
+    //   } else {
+    //     console.log('many',group)
+    //   }
+    // });
+  } else if (filter == 'record') {
+    search_results.forEach(function(result) {
+      results.push(item_data[result.ref])
+    });
   }
-  console.log(results)
+  
   
   table.add(results);
   table.update();
+};
+
+document.querySelector('#search_bar').addEventListener('keyup', function() {
+  search();
 });
           
         
@@ -112,9 +186,9 @@ document.querySelector('#search_bar').addEventListener('keyup', function() {
 function expand(e, id) {
   let data = item_data[id];
   e.outerHTML = `
-  <tr onclick="collapse(this, ${data.id});"><td class="year">${data.year}</td><td class="author">${data.author}</td><td class="title">${data.title}</td>
+  <tr id="${data.id}" onclick="collapse(this, ${data.id});"><td class="year">${data.year}</td><td class="author">${data.author}</td><td class="title">${data.title}</td><td>Collapse</td>
   
-  <tr>
+  <tr id="${data.id}">
     <td colspan="5">
       <div class="card" style="width: 100%;">
         
@@ -139,216 +213,46 @@ function expand(e, id) {
         </div>
       </div>
     </td>
-  </tr>
-
-   
-  
-
-    <tr>
-     
-      <td>
-        // year
-      </td>
-      <td>
-        <h3>Reference Information</h3>
-                <div>
-                    <div><span >DEEP #:</span>
-                        <u><a href='1200'>1200</a></u>
-                    </div>
-
-                    <div><span>Greg #:</span> L11a</div>
-                    <div><span>STC/Wing #:</span> 249 </div>
-                </div>
-                <div>
-                    <div><span>Record Type:</span> Single-Play Playbook</div>
-                    <div><span>Play Type:</span> Latin University</div>
-                    <div><span>Genre (Annals):</span> Latin Tragedy</div>
-                </div>
-                <div>
-                    <span>Book Edition:</span> 1</div>
-                    <div><span>Play Edition:</span> 1</div>
-                    <div><span>Format:</span> Duodecimo</div>
-                    <div><span>Leaves:</span> 45</div>
-                </div>
-                <div><span class="label">Total Editions:</span> 1 duodecimo, 1 octavo</div>
-                
-                <div id="titlepage">
-                <h3>Title-Page Features</h3>
-                <div class="hanging"><span class="label">Title:</span> ROXANA TRAGÆDIA,</div>
-                <div class="hanging"><span class="label">Author:</span> <i>Nunc primum in lucem edita</i>, summáque cum
-                    diligentia <i>ad castigatissimum exemplar comparata</i>. Cui accesserunt etiam Argumenta.</div>
-                <div class="hanging"><span class="label">Performance:</span> <I>OLIM</I> C<small>ANTABRIGIÆ</small>,
-                    Acta in C<small>OL</small>. T<small>RIN</small>.</div>
-                <div class="hanging"><span class="label">Imprint:</span> <i>LONDINI</i>, Excudebat <i>R. Badgerus</i>,
-                    impensis A<small>NDREÆ</small> C<small>ROOK</small>, <i>ad Signum nigri Vrsi in Cœmiterio</i>
-                    P<small>AULINO</small>. 1632.</div>
-            </div>
-            <div class="stationer">
-                <h3>Stationer Information</h3>
-                <div><span class="label">Colophon:</span> <i>Excusum Londini, typis</i> R. B. sumptibus <i>Andreæ
-                        Crooke,</i> & <i>venum dantur ad signum nigri Vrsi, in Cœmiterio</i> Paulino, MDCXXXII.
-                    [<i>var</i>.: "<i>dantur,</i>"] [E6r]</div>
-                <div><span class="label">Printer:</span> Badger, Richard (1)</div>
-                <div><span class="label">Publisher:</span> Crooke, Andrew (1)</div>
-                <div><span class="label">Imprint Location:</span> A.3 (Paul's Churchyard - Northeast)</div>
-                <div><span class="label">License:</span> "Imprimatur; primo die Martii Annon Salutis Nostræ Millesimo
-                    Sexentesimo [<i>sic</i>] Trigesimo secundo. Per me Henricum Herbert" [E5r]</div>
-                <div class="hanging"><span class="label">Entries in Stationers' Register:</span> May 9, 1632: Entered to
-                    Andrew Crooke (1): "a Tragedy in Latyn called Roxana &c".</div>
-            </div>
-
-      </td>
-      
-      <td>
-        <div class="colright">
-                    <div><span class="label">Date of First Publication:</span> 1632</div>
-                    <div><span class="label">Date of First Production:</span> 1592 [1590-c.1595]</div>
-                    <div><span class="label">Company of First Production:</span> n/a</div>
-                    <div style="overflow:auto;"><span class="label">Company Attribution:</span> n/a</div>
-                </div>
-      </td>
-    </tr>
-    <tr>
-    <td colspan="4">
-        <div class="detail" id="detail1" style="display:none;">
-            <div class="refinfo">
-
-                <div class="colleft">
-                   
-                </div>
-                <div class="colright">
-                    <div><span class="label">Date of First Publication:</span> 1632</div>
-                    <div><span class="label">Date of First Production:</span> 1592 [1590-c.1595]</div>
-                    <div><span class="label">Company of First Production:</span> n/a</div>
-                    <div style="overflow:auto;"><span class="label">Company Attribution:</span> n/a</div>
-                </div>
-
-                <div class="break">&nbsp;</div>
-
-                <div><span class="label">Total Editions:</span> 1 duodecimo, 1 octavo</div>
-
-
-
-
-
-            </div>
-
-
-            <div class="titlepage">
-                <h3>Title-Page Features</h3>
-                <div class="hanging"><span class="label">Title:</span> ROXANA TRAGÆDIA,</div>
-                <div class="hanging"><span class="label">Author:</span> <i>Nunc primum in lucem edita</i>, summáque cum
-                    diligentia <i>ad castigatissimum exemplar comparata</i>. Cui accesserunt etiam Argumenta.</div>
-                <div class="hanging"><span class="label">Performance:</span> <I>OLIM</I> C<small>ANTABRIGIÆ</small>,
-                    Acta in C<small>OL</small>. T<small>RIN</small>.</div>
-                <div class="hanging"><span class="label">Imprint:</span> <i>LONDINI</i>, Excudebat <i>R. Badgerus</i>,
-                    impensis A<small>NDREÆ</small> C<small>ROOK</small>, <i>ad Signum nigri Vrsi in Cœmiterio</i>
-                    P<small>AULINO</small>. 1632.</div>
-            </div>
-
-            <div class="paratext">
-                <h3>Paratextual Material</h3>
-                <div class="hanging"><span class="label">Character List:</span> "Drammatis Personæ" [A3r]</div>
-            </div>
-
-            <div class="stationer">
-                <h3>Stationer Information</h3>
-                <div><span class="label">Colophon:</span> <i>Excusum Londini, typis</i> R. B. sumptibus <i>Andreæ
-                        Crooke,</i> & <i>venum dantur ad signum nigri Vrsi, in Cœmiterio</i> Paulino, MDCXXXII.
-                    [<i>var</i>.: "<i>dantur,</i>"] [E6r]</div>
-                <div><span class="label">Printer:</span> Badger, Richard (1)</div>
-                <div><span class="label">Publisher:</span> Crooke, Andrew (1)</div>
-                <div><span class="label">Imprint Location:</span> A.3 (Paul's Churchyard - Northeast)</div>
-                <div><span class="label">License:</span> "Imprimatur; primo die Martii Annon Salutis Nostræ Millesimo
-                    Sexentesimo [<i>sic</i>] Trigesimo secundo. Per me Henricum Herbert" [E5r]</div>
-                <div class="hanging"><span class="label">Entries in Stationers' Register:</span> May 9, 1632: Entered to
-                    Andrew Crooke (1): "a Tragedy in Latyn called Roxana &c".</div>
-            </div>
-
-        </div>
-    </td>
-</tr>
-  `;
+    
+  </tr>`;
   
 }
 
-function htmlToElement(html) {
-      var template = document.createElement("template");
-      html = html.trim(); // Never return a text node of whitespace as the result
-      template.innerHTML = html;
-      return template.content.firstChild;
-    }
+function collapse(e, id) {
+  let data = item_data[id];
+  e.outerHTML = `
+  <tr id="${data.id}" onclick="expand(this, ${data.id});"><td class="year">${data.year}</td><td class="author">${data.author}</td><td class="title">${data.title}</td><td>Expand</td>`
+  document.getElementById(id).remove();
+}
 
+function expandAll(e) { 
+  // TODO collapse after expandALL not working
+  let items = document.querySelectorAll('tr');
+  items.forEach(function(item) {
+    expand(item, item.id);
+  });
+  e.value = 'Collapse All';
+}
 
-
-function search() {
-    // clear existing results 
-    existingResults = document.getElementById("results");
-    while (existingResults.firstChild) {
-      existingResults.removeChild(existingResults.firstChild);
-    }
-    
-    // select values in search and filters 
-    let query = '';
-    let search_bar_value = document.querySelector('#search_bar').value;
-    if (search_bar_value) {
-      query += search_bar_value + '~1' //fuzzy search,  1 edit distance
-    }
-    let titles =  document.querySelector('#titles').value;
-    if (!titles.length == 0) { 
-      query += ' +id:' + titles;
-    }
-    let author=  document.querySelector('#author').value;
-    if (!author.length == 0) { 
-      query += ' +author_id:' + author;
-    }
-    let theater=  document.querySelector('#theater').value;
-    if (!theater.length == 0) { 
-      query += ' person_id:' + theater;
-    }
-
-    // Lunr query and populate results
-    console.log('[query]', query)
-    search_results = index.search(query)
-    for (i in search_results) {
-      if (search_results[i].score > 0) {
-        //
-        let ref_id = search_results[i].ref;
-        let data = itemData[ref_id];
-        console.log(data)
-        document
-            .querySelector("#results")
-            .appendChild(
-              htmlToElement(
-                `<div onclick="showModal(${search_results[i].ref});" id="${search_results[i].ref}" style="border: 1px inset rgba(95,81,164,0.26); border-radius: 20px; padding:50px;">
-                <div class="row">
-                  <div class="col-lg-8 col-md-4">
-                  <h4>${data['title']}</h4>
-                  </div>
-                  <div class="col-lg-2">
-                  <h6>${data['year']}</h6>
-                  </div>
-                  <div class="col-lg-2">
-                  <h6>${data['greg_full']}</h6>
-                  </div>
-                </div>
-                </div>`
-              )
-            );
-
-      }
-      
-    }
-   
-}; 
-
-function search_bar() {
-  // trigger search on enter from search bar
-  if (event.keyCode === 13) { 
-    search();
+function radioHelper(){
+  if (document.getElementById('titleRadio').checked){
+    return 'title';
+  }
+  else if (document.getElementById('editionRadio').checked){
+    return 'edition';
+  }
+  else if (document.getElementById('recordRadio').checked){
+    return 'record';
   }
 }
 
+// listen for radio filter changes
+
+document.querySelectorAll('input[type=radio]').forEach(item => {
+  item.addEventListener('change', event => {
+    search();
+  })
+})
 
  </script>
   {% endblock %}
