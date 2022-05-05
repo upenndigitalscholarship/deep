@@ -31,7 +31,7 @@
         <label class="form-check-label text-light" for="titleRadio">Title</label>
       </div>
       <div class="form-check form-check-inline">
-        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="editionRadio" value="edition">
+        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="editionRadio" value="edition" checked>
         <label class="form-check-label text-light" for="editionRadio">Edition</label>
       </div>
       <div class="form-check form-check-inline">
@@ -39,7 +39,7 @@
         <label class="form-check-label text-light" for="recordRadio">Record</label>
       </div>
 
-      <button class="btn btn-light float-end" onclick="expandAll(this);">Expand all</button>
+      <button id="expandAllButton" class="btn btn-light float-end" onclick="expandAll(this);">Expand all</button>
   <table class="table bg-light text-dark rounded-0">
     <!-- IMPORTANT, class="list" have to be at tbody -->
     <tbody class="list">
@@ -185,10 +185,11 @@ document.querySelector('#search_bar').addEventListener('keyup', function() {
        
 function expand(e, id) {
   let data = item_data[id];
+  if (data) {
   e.outerHTML = `
   <tr id="${data.id}" onclick="collapse(this, ${data.id});"><td class="year">${data.year}</td><td class="author">${data.author}</td><td class="title">${data.title}</td><td>Collapse</td>
   
-  <tr id="${data.id}">
+  <tr id="${data.id}-exp">
     <td colspan="5">
       <div class="card" style="width: 100%;">
         
@@ -215,24 +216,42 @@ function expand(e, id) {
     </td>
     
   </tr>`;
-  
+  }
 }
 
 function collapse(e, id) {
-  let data = item_data[id];
-  e.outerHTML = `
-  <tr id="${data.id}" onclick="expand(this, ${data.id});"><td class="year">${data.year}</td><td class="author">${data.author}</td><td class="title">${data.title}</td><td>Expand</td>`
-  document.getElementById(id).remove();
-}
+  
+    let data = item_data[id];
+    if (data) {
+      e.outerHTML = `
+      <tr id="${data.id}" onclick="expand(this, ${data.id});"><td class="year">${data.year}</td><td class="author">${data.author}</td><td class="title">${data.title}</td><td>Expand</td>`
+      let expandCard = document.getElementById(id+'-exp');
+      if (expandCard) {
+        expandCard.remove();
+      }
+    }
+  }
 
 function expandAll(e) { 
-  // TODO collapse after expandALL not working
   let items = document.querySelectorAll('tr');
   items.forEach(function(item) {
     expand(item, item.id);
   });
-  e.value = 'Collapse All';
+  e.textContent = 'Collapse All';
+  e.setAttribute( "onClick", "collapseAll(this)" );
 }
+
+function collapseAll(e){
+  let items = document.querySelectorAll('tr');
+  items.forEach(function(item) {
+    if (!item.id.includes("-exp")) {
+      collapse(item, item.id);
+    }
+  });
+  e.textContent = 'Expand All';
+  e.setAttribute( "onClick", "expandAll(this)" );
+
+};
 
 function radioHelper(){
   if (document.getElementById('titleRadio').checked){
