@@ -123,7 +123,7 @@ function search() {
     
   search_results = index.search(query)
   results = []
-  // insert logic for title-edition-record filtering 
+  // logic for title-edition-record filtering 
   let filter = radioHelper();
   if (filter == 'title') {
     search_results.forEach(function(result) {
@@ -155,17 +155,13 @@ function search() {
       } else {
         // sort the group by deep_id, return only lowest deep id
         let d = groups[i].sort((a,b) => a.deep_id - b.deep_id);
+        // TODO add variant data to d 
         results.push(d[0])
       }
       
       
     };
-    //   if (group.length == 1) {
-    //     console.log('one', group)
-    //   } else {
-    //     console.log('many',group)
-    //   }
-    // });
+    
   } else if (filter == 'record') {
     search_results.forEach(function(result) {
       results.push(item_data[result.ref])
@@ -195,22 +191,79 @@ function expand(e, id) {
         
         <div class="card-body">
           <div class="row">
-            <div class="col-3">
-              <p>DEEP #: ${data.deep_id}</p>
-              <p>Greg #: ${data.greg_full}</p>
-              <p>STC/Wing #: ${data.stc}</p>
+            <div class="col-5">
+              <strong>Reference Information</strong>
+              <p>DEEP #: ${data.deep_id}<br>
+              Greg #: ${data.greg_full}<br>
+              STC/WING: ${data.stc}<br>
+              Book Edition: ${data.book_edition}<br>
+              Play Edition: ${data.play_edition}<br>
+              Format: ${data.format}<br>
+              Leaves: ${data.leaves}<br>
+              Total Editions: ${data.total_editions}<br>
+              
             </div>
             
     
-            <div class="col-9">
-              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            <div class="col-7">
+              <p>Record Type: ${data.record_type}<br>
+              Play Type: ${data.play_type}<br>
+              Genre (Annals): ${data.genre}<br>
+              Date of First Publication: ${data.date_first_publication}<br>
+              Date of First Performance: ${data.date_first_performance}<br>
+              Company of First Performance: ${data.company_first_performance}<br>
+              Company Attribution: ${data.company_attribution}</p>
             </div>
 
           </div>  
-        </div>
+         </div>
+      </div>
 
-        <div class="card-footer">
-         
+      <div class="card" style="width: 100%; margin-top:2px;">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-12">
+              <strong>Title-Page Features</strong>
+              <p>
+                Title: TODO<br>
+                Author: TODO<br>
+                Performance: TODO<br>
+                Imprint: TODO<br>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card" style="width: 100%; margin-top:2px;">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-12">
+              <strong>Paratextual Material</strong>
+              <p>
+                Dedication: TODO<br>
+                Commendatory Verses: TODO<br>
+                To the Reader: TODO<br>
+                Errata: TODO<br>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card" style="width: 100%; margin-top:2px;">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-12">
+              <strong>Stationer Information</strong>
+              <p>
+                Printer: TODO<br>
+                Publisher: TODO<br>
+                Imprint Location: TODO<br>
+                Entries in Stationers' Register: TODO<br>
+              </p>
+            </div>
+          </div>
         </div>
       </div>
     </td>

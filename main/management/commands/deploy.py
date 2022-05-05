@@ -12,7 +12,6 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         start = time.time()
         # build Lunr search index files
-        call_command('search_index')
         call_command('build')
 
         n = NetlifyPy(access_token=NETLIFY_KEY)
