@@ -62,7 +62,27 @@ class Item(models.Model): #Previously known as "DEEP"
     #old_title = models.CharField(max_length=200) What is this?
     #title_page = models.ForeignKey('TitlePage', on_delete=models.CASCADE)
     date_first_publication = models.CharField("Date of First Publication", max_length=200)
-
+    title_page_title = models.CharField("Title Page: Title", max_length=200, blank=True, null=True)
+    title_page_author = models.CharField("Title Page: Author", max_length=200, blank=True, null=True)
+    title_page_performance = models.CharField("Title Page: Performance", max_length=200, blank=True, null=True)
+    title_page_latin_motto = models.CharField("Title Page: Latin Motto", max_length=200, blank=True, null=True)
+    title_page_imprint = models.CharField("Title Page: Imprint", max_length=200, blank=True, null=True)
+    title_page_illustration = models.CharField("Title Page: Illustration", max_length=200, blank=True, null=True)
+    title_page_explicit = models.CharField("Title Page: Explicit", max_length=200, blank=True, null=True)
+    title_page_colophon = models.CharField("Title Page: Colophon", max_length=200, blank=True, null=True)
+    paratext_errata = models.CharField("Paratext: Errata", max_length=200, blank=True, null=True)
+    paratext_commendatory_verses = models.CharField("Paratext: Commendatory Verses", max_length=200, blank=True, null=True)
+    paratext_to_the_reader = models.CharField("Paratext: To the Reader", max_length=200, blank=True, null=True)
+    paratext_dedication = models.CharField("Paratext: Dedication", max_length=200, blank=True, null=True)
+    paratext_argument = models.CharField("Paratext: Argument", max_length=200, blank=True, null=True)
+    paratext_actor_list = models.CharField("Paratext: Actor List", max_length=200, blank=True, null=True)
+    paratext_charachter_list = models.CharField("Paratext: Character List", max_length=200, blank=True, null=True)
+    paratext_other_paratexts = models.CharField("Paratext: Other Paratexts", max_length=200, blank=True, null=True)
+    stationer_printer = models.CharField("Stationer: Printer", max_length=200, blank=True, null=True)
+    stationer_publisher = models.CharField("Stationer: Publisher", max_length=200, blank=True, null=True)
+    stationer_bookseller = models.CharField("Stationer: Bookseller", max_length=200, blank=True, null=True)
+    stationer_entries_in_register = models.CharField("Stationer: Entries in Register", max_length=200, blank=True, null=True)
+    stationer_additional_notes = models.CharField("Stationer: Additional Notes", max_length=200, blank=True, null=True)
     def __str__(self):
         return f"{self.edition} - {self.edition.greg_middle}"
 

@@ -99,7 +99,7 @@ fetch("../assets/lunr/search.json").then(
         
 //listen for search_bar
 let options = {
-      valueNames: ['title', 'year', 'greg_full' ],
+      valueNames: ['title', 'author', 'year', 'greg_full' ],
       
       // Since there are no elements in the list, this will be used as template.
       item: function(values) { 
@@ -225,10 +225,13 @@ function expand(e, id) {
             <div class="col-12">
               <strong>Title-Page Features</strong>
               <p>
-                Title: TODO<br>
-                Author: TODO<br>
-                Performance: TODO<br>
-                Imprint: TODO<br>
+                Title: ${data.title_page_title}<br>
+                Author: ${data.title_page_author}<br>
+                Performance: ${data.title_page_performance}<br>
+                Imprint: ${data.title_page_imprint}<br>
+                Colophon: ${data.title_page_colophon}<br>
+                Illustration: ${data.title_page_illustration}<br>
+                Latin Motto: ${data.title_page_latin_motto}<br>
               </p>
             </div>
           </div>
@@ -241,10 +244,14 @@ function expand(e, id) {
             <div class="col-12">
               <strong>Paratextual Material</strong>
               <p>
-                Dedication: TODO<br>
-                Commendatory Verses: TODO<br>
-                To the Reader: TODO<br>
-                Errata: TODO<br>
+                <em>Dedication:</em> ${data.paratext_dedication}<br>
+                <em>Commendatory Verses:</em> ${data.paratext_cemmendatory_verses}<br>
+                <em>To the Reader:</em> ${data.paratext_to_the_reader}<br>
+                <em>Errata:</em> ${data.paratext_errata}<br>
+                <em>Argument:</em> ${data.paratext_argument}<br>
+                <em>Charachter List:</em> ${data.paratext_charachter_list}<br>
+                <em>Actor List:</em> ${data.paratext_actor_list}<br>
+                <em>Other:</em> ${data.paratext_other_paratexts}<br>
               </p>
             </div>
           </div>
@@ -257,10 +264,11 @@ function expand(e, id) {
             <div class="col-12">
               <strong>Stationer Information</strong>
               <p>
-                Printer: TODO<br>
-                Publisher: TODO<br>
-                Imprint Location: TODO<br>
-                Entries in Stationers' Register: TODO<br>
+                Printer: ${data.stationer_printer}<br>
+                Publisher: ${data.stationer_publisher}<br>
+                Bookseller: ${data.stationer_bookseller}<br>
+                Entries in Stationers' Register: ${data.stationer_entries_in_register}<br>
+                Notes: ${data.stationer_additional_notes}<br>
               </p>
             </div>
           </div>

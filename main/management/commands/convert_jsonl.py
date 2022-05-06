@@ -49,7 +49,6 @@ class Command(BaseCommand):
                 date_first_publication_display = item['date_first_publication_display'],
                 company_first_performance = item['company_first_performance'],
                 total_editions = item['total_editions'],
-                stationers_register = item['stationers_register'],
             )
             #if created:
             #    self.stdout.write(self.style.SUCCESS(f'Added new Title: {title.title}'))
@@ -86,9 +85,28 @@ class Command(BaseCommand):
                         leaves = item['leaves'],
                         composition_date = item['composition_date_display'],
                         company_attribution = item['company_attribution'],
+                        title_page_title = item["title_page_title"],
+                        title_page_author = item["title_page_author"],
+                        title_page_performance = item["title_page_performance"],
+                        title_page_latin_motto = item["title-page_latin_motto"],
+                        title_page_imprint = item["title_page_imprint"],
+                        title_page_illustration = item["title_page_illustration"],
+                        title_page_explicit = item["title_page_explicit"],
+                        title_page_colophon = item["title_page_colophon"],
+                        paratext_errata = item["paratext_errata"],
+                        paratext_commendatory_verses = item["paratext_commendatory_verses"],
+                        paratext_to_the_reader = item["paratext_to_the_reader"],
+                        paratext_dedication = item["paratext_dedication"], 
+                        paratext_argument = item["paratext_argument"],
+                        paratext_actor_list = item["paratext_actor_list"],
+                        paratext_charachter_list = item["paratext_charachter_list"],
+                        paratext_other_paratexts = item["paratext_other_paratexts"],
+                        stationer_printer = item["stationer_printer"],
+                        stationer_publisher = item["stationer_publisher"],
+                        stationer_bookseller = item["stationer_bookseller"],
+                        stationer_entries_in_register = item["stationer_entries_in_register"],
+                        stationer_additional_notes = item["stationer_additional_notes"],
+
                     )
                     item.company, _ = Company.objects.get_or_create(name=item.company_attribution)
                     item.save()
-                    # Title page 
-                    # Paratext 
-                    # Stationers Register
