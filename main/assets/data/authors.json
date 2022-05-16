@@ -18,7 +18,7 @@
     },
     {
       "id":5,
-      "text":" Terence"
+      "text":"Terence"
     },
     {
       "id":6,
@@ -50,7 +50,7 @@
     },
     {
       "id":13,
-      "text":" Textor, Ravisius"
+      "text":"Textor, Ravisius"
     },
     {
       "id":14,
@@ -66,7 +66,7 @@
     },
     {
       "id":17,
-      "text":" Sackville, Thomas"
+      "text":"Sackville, Thomas"
     },
     {
       "id":18,
@@ -86,7 +86,7 @@
     },
     {
       "id":22,
-      "text":" Seneca"
+      "text":"Seneca"
     },
     {
       "id":23,
@@ -130,7 +130,7 @@
     },
     {
       "id":33,
-      "text":" Niclaes, Hendrik"
+      "text":"Niclaes, Hendrik"
     },
     {
       "id":34,
@@ -142,7 +142,7 @@
     },
     {
       "id":36,
-      "text":" Roberts, John"
+      "text":"Roberts, John"
     },
     {
       "id":37,
@@ -166,11 +166,11 @@
     },
     {
       "id":42,
-      "text":" Garter, Bernard"
+      "text":"Garter, Bernard"
     },
     {
       "id":43,
-      "text":" Goldingham, Henry"
+      "text":"Goldingham, Henry"
     },
     {
       "id":44,
@@ -198,7 +198,7 @@
     },
     {
       "id":50,
-      "text":" Pasqualigo, Luigi"
+      "text":"Pasqualigo, Luigi"
     },
     {
       "id":51,
@@ -206,7 +206,7 @@
     },
     {
       "id":52,
-      "text":" Lee, Henry (?)"
+      "text":"Lee, Henry (?)"
     },
     {
       "id":53,
@@ -234,7 +234,7 @@
     },
     {
       "id":59,
-      "text":" Tasso, Torquato"
+      "text":"Tasso, Torquato"
     },
     {
       "id":60,
@@ -246,19 +246,19 @@
     },
     {
       "id":62,
-      "text":" Hatton, Christopher"
+      "text":"Hatton, Christopher"
     },
     {
       "id":63,
-      "text":" Noel, Henry"
+      "text":"Noel, Henry"
     },
     {
       "id":64,
-      "text":" Al., G."
+      "text":"Al., G."
     },
     {
       "id":65,
-      "text":" Stafford, Roderick"
+      "text":"Stafford, Roderick"
     },
     {
       "id":66,
@@ -266,7 +266,7 @@
     },
     {
       "id":67,
-      "text":" Garnier, Robert"
+      "text":"Garnier, Robert"
     },
     {
       "id":68,
@@ -278,7 +278,7 @@
     },
     {
       "id":70,
-      "text":" Peele, George"
+      "text":"Peele, George"
     },
     {
       "id":71,
@@ -290,11 +290,11 @@
     },
     {
       "id":73,
-      "text":" Greene, Robert"
+      "text":"Greene, Robert"
     },
     {
       "id":74,
-      "text":" Shakespeare, William (?)"
+      "text":"Shakespeare, William (?)"
     },
     {
       "id":75,
@@ -334,15 +334,15 @@
     },
     {
       "id":84,
-      "text":" Drayton, Michael"
+      "text":"Drayton, Michael"
     },
     {
       "id":85,
-      "text":" Munday, Anthony"
+      "text":"Munday, Anthony"
     },
     {
       "id":86,
-      "text":" Hathaway, Richard"
+      "text":"Hathaway, Richard"
     },
     {
       "id":87,
@@ -354,7 +354,7 @@
     },
     {
       "id":89,
-      "text":" Chettle, Henry"
+      "text":"Chettle, Henry"
     },
     {
       "id":90,
@@ -366,7 +366,7 @@
     },
     {
       "id":92,
-      "text":" Guarini, Giovanni Battista"
+      "text":"Guarini, Giovanni Battista"
     },
     {
       "id":93,
@@ -378,7 +378,7 @@
     },
     {
       "id":95,
-      "text":" Haughton, William"
+      "text":"Haughton, William"
     },
     {
       "id":96,
@@ -422,7 +422,7 @@
     },
     {
       "id":106,
-      "text":" Fletcher, John"
+      "text":"Fletcher, John"
     },
     {
       "id":107,
@@ -434,11 +434,11 @@
     },
     {
       "id":109,
-      "text":" Wilkins, George"
+      "text":"Wilkins, George"
     },
     {
       "id":110,
-      "text":" Rowley, William"
+      "text":"Rowley, William"
     },
     {
       "id":111,
@@ -458,7 +458,7 @@
     },
     {
       "id":115,
-      "text":" Machin, Lewis"
+      "text":"Machin, Lewis"
     },
     {
       "id":116,
@@ -478,7 +478,7 @@
     },
     {
       "id":120,
-      "text":" Davies, Richard"
+      "text":"Davies, Richard"
     },
     {
       "id":121,
@@ -522,11 +522,11 @@
     },
     {
       "id":131,
-      "text":" Barkstead, William"
+      "text":"Barkstead, William"
     },
     {
       "id":132,
-      "text":" Marston, John"
+      "text":"Marston, John"
     },
     {
       "id":133,
@@ -538,7 +538,7 @@
     },
     {
       "id":135,
-      "text":" Smith, William (?)"
+      "text":"Smith, William (?)"
     },
     {
       "id":136,
@@ -570,7 +570,7 @@
     },
     {
       "id":143,
-      "text":" Massinger, Philip"
+      "text":"Massinger, Philip"
     },
     {
       "id":144,
@@ -634,7 +634,7 @@
     },
     {
       "id":159,
-      "text":" Rojas, Fernando de"
+      "text":"Rojas, Fernando de"
     },
     {
       "id":160,
@@ -718,7 +718,7 @@
     },
     {
       "id":180,
-      "text":" Corneille, Pierre"
+      "text":"Corneille, Pierre"
     },
     {
       "id":181,
@@ -766,15 +766,15 @@
     },
     {
       "id":192,
-      "text":" Chapman, George (?)"
+      "text":"Chapman, George (?)"
     },
     {
       "id":193,
-      "text":" Field, Nathan (?)"
+      "text":"Field, Nathan (?)"
     },
     {
       "id":194,
-      "text":" Jonson, Ben (?)"
+      "text":"Jonson, Ben (?)"
     },
     {
       "id":195,
@@ -810,7 +810,7 @@
     },
     {
       "id":203,
-      "text":" Grotius, Hugo"
+      "text":"Grotius, Hugo"
     },
     {
       "id":204,
@@ -830,7 +830,7 @@
     },
     {
       "id":208,
-      "text":" Desfontaines, Nicolas-Marc"
+      "text":"Desfontaines, Nicolas-Marc"
     },
     {
       "id":209,
@@ -854,7 +854,7 @@
     },
     {
       "id":214,
-      "text":" Buchanan, George"
+      "text":"Buchanan, George"
     },
     {
       "id":215,
@@ -886,7 +886,7 @@
     },
     {
       "id":222,
-      "text":" Shirley, James"
+      "text":"Shirley, James"
     },
     {
       "id":223,
@@ -1046,7 +1046,7 @@
     },
     {
       "id":262,
-      "text":" Fanshawe, Richard"
+      "text":"Fanshawe, Richard"
     },
     {
       "id":263,
@@ -1082,7 +1082,7 @@
     },
     {
       "id":271,
-      "text":" Middleton, Thomas"
+      "text":"Middleton, Thomas"
     },
     {
       "id":272,
@@ -1090,7 +1090,7 @@
     },
     {
       "id":273,
-      "text":" Nashe, Thomas"
+      "text":"Nashe, Thomas"
     },
     {
       "id":274,
@@ -1118,7 +1118,7 @@
     },
     {
       "id":280,
-      "text":" Beaumont, Francis (?)"
+      "text":"Beaumont, Francis (?)"
     },
     {
       "id":281,
@@ -1134,7 +1134,7 @@
     },
     {
       "id":284,
-      "text":" Fletcher, John (?)"
+      "text":"Fletcher, John (?)"
     },
     {
       "id":285,
@@ -1142,15 +1142,15 @@
     },
     {
       "id":286,
-      "text":" Ford, John"
+      "text":"Ford, John"
     },
     {
       "id":287,
-      "text":" Webster, John (?)"
+      "text":"Webster, John (?)"
     },
     {
       "id":288,
-      "text":" Field, Nathan"
+      "text":"Field, Nathan"
     },
     {
       "id":289,
@@ -1166,7 +1166,7 @@
     },
     {
       "id":292,
-      "text":" Sandys, George"
+      "text":"Sandys, George"
     },
     {
       "id":293,
@@ -1174,7 +1174,7 @@
     },
     {
       "id":294,
-      "text":" Norton, Thomas"
+      "text":"Norton, Thomas"
     }
   ]
 }
