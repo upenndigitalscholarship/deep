@@ -23,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['159.223.189.230']
 
 
 # Application definition
@@ -107,6 +107,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
 STATIC_URL = 'assets/'
+STATIC_ROOT = '/var/www/assets'
 
 STATICFILES_DIRS = [
     BASE_DIR / "main/assets",
