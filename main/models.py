@@ -7,11 +7,12 @@ from django.db import models
 
 class Title(models.Model):
     deep_id = models.CharField(max_length=20, blank=True, null=True)
+    authors_display = models.CharField("Authors Display", max_length=200, blank=True, null=True)
     title = models.CharField("Title",max_length=200)
     greg = models.CharField("Greg (Brief)(e.g., 197 for Hamlet)", max_length=200)
     genre = models.CharField("Genre (Annals)", max_length=200, blank=True, null=True)
     date_first_publication = models.CharField("Date of First Publication", max_length=200)
-    date_first_publication_display = models.CharField("Date of First Publication", max_length=200, blank=True, null=True)
+    date_first_publication_display = models.CharField("Date of First Publication Display", max_length=200, blank=True, null=True)
     # TODO Where is this on the site? I don't see in DB
     date_first_performance = models.CharField("Date of First Performance", max_length=200, blank=True, null=True)
     

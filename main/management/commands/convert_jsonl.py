@@ -42,6 +42,7 @@ class Command(BaseCommand):
             # Title fields
             title, created = Title.objects.get_or_create(
                 deep_id=item['id'],
+                authors_display = item['authors_display'],
                 title = item['title'],
                 greg = item['greg_brief'],
                 genre = item['genre'],
