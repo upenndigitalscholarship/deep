@@ -227,7 +227,7 @@ function search() {
     });
   }
   
-  
+  results = filterRecordType(results)
   table.add(results);
   table.update();
 };
@@ -236,7 +236,42 @@ document.querySelector('#search_bar').addEventListener('keyup', function() {
   search();
 });
           
-        
+// Section for record type filtering
+const singlePlayElem = document.getElementById('singlePlay') 
+singlePlayElem.addEventListener('change', (event) => {
+  search();
+});
+
+const CollectionsElem = document.getElementById('Collections')
+CollectionsElem.addEventListener('change', (event) => {
+  search();
+});
+
+const PlaysinCollectionsElem = document.getElementById('PlaysinCollections')
+PlaysinCollectionsElem.addEventListener('change', (event) => {
+  search();
+});
+
+
+
+const filterRecordType = results => {
+  // get current filter values
+  let singlePlay = document.getElementById('singlePlay').checked 
+  let Collections = document.getElementById('Collections').checked 
+  let PlaysinCollections = document.getElementById('PlaysinCollections').checked
+  
+  if (!singlePlay) {
+    results = results.filter(item => item.record_type != 'Single-Play Playbook')
+  }
+  if (!Collections) {
+    results = results.filter(item => item.record_type != 'Collection')
+  }
+
+  if (!PlaysinCollections) {
+    results = results.filter(item => item.record_type != 'Play in Collection')
+  }
+  return results
+}
        
 function expand(e, id) {
   let data = item_data[id];
