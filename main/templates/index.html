@@ -37,7 +37,7 @@
             </div>
             
             <div class="input-group-md">
-              <select class="input-group form-select form-select-sm">
+              <select id="searchSelect" class="input-group form-select form-select-sm">
               
                 <option value="">Please select...</option>
                 <option value="title">Title</option>
@@ -68,7 +68,7 @@
                 <option value="greg_number">Greg Number</option>
                 <option value="stc_or_wing">STC / Wing Number</option>
               </select>
-              <input type="text" class="form-control" aria-label="advancedSearchField" aria-describedby="advancedSearchField">
+              <input id="advancedSearchField" type="text" class="form-control" aria-label="advancedSearchField" aria-describedby="advancedSearchField">
             </div>
             
             
@@ -179,7 +179,17 @@ function search() {
   table.clear();
   let query = document.querySelector('#search_bar').value;
   query += '~1' //fuzzy search,  1 edit distance
+  
+  // handle advanced search
+  // first, is advanced search on?
+  if (document.getElementById('collapseExample').classList.contains('show')) {
+    let searchSelectvalue = document.getElementById('searchSelect').value
+    if (searchSelectvalue && searchSelectvalue === 'title') {
+      query += 'title:' + advancedSearchField.value ;
+    }
     
+  }
+  console.log('query=', query);
   search_results = index.search(query)
   results = []
   // logic for title-edition-record filtering 
@@ -237,37 +247,37 @@ document.querySelector('#search_bar').addEventListener('keyup', function() {
 });
           
 // Section for record type filtering
-const singlePlayElem = document.getElementById('singlePlay') 
-singlePlayElem.addEventListener('change', (event) => {
+const singlePlay = document.getElementById('singlePlay') 
+singlePlay.addEventListener('change', (event) => {
   search();
 });
 
-const CollectionsElem = document.getElementById('Collections')
-CollectionsElem.addEventListener('change', (event) => {
+const Collections = document.getElementById('Collections')
+Collections.addEventListener('change', (event) => {
   search();
 });
 
-const PlaysinCollectionsElem = document.getElementById('PlaysinCollections')
-PlaysinCollectionsElem.addEventListener('change', (event) => {
+const PlaysinCollections = document.getElementById('PlaysinCollections')
+PlaysinCollections.addEventListener('change', (event) => {
   search();
 });
 
-
+const advancedSearchField = document.getElementById('advancedSearchField')
+advancedSearchField.addEventListener('keyup', (event) => {
+  console.log(advancedSearchField.value);
+  search();
+});
 
 const filterRecordType = results => {
-  // get current filter values
-  let singlePlay = document.getElementById('singlePlay').checked 
-  let Collections = document.getElementById('Collections').checked 
-  let PlaysinCollections = document.getElementById('PlaysinCollections').checked
   
-  if (!singlePlay) {
+  if (!singlePlay.checked) {
     results = results.filter(item => item.record_type != 'Single-Play Playbook')
   }
-  if (!Collections) {
+  if (!Collections.checked) {
     results = results.filter(item => item.record_type != 'Collection')
   }
 
-  if (!PlaysinCollections) {
+  if (!PlaysinCollections.checked) {
     results = results.filter(item => item.record_type != 'Play in Collection')
   }
   return results
