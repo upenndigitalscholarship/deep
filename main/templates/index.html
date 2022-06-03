@@ -46,7 +46,7 @@
                   'year', 
                   'deep_id_display', 
                   'greg_full', 
-                  'stc', 
+                  #'stc', 
                   'format', 
                   'leaves', 
                   'company_attribution', 
@@ -58,8 +58,8 @@
                   'play_type', 
                   'blackletter', 
                   'deep_id', 
-                  'title', 
-                  'greg', 
+                  #'title', 
+                  #'greg', 
                   'genre', 
                   'date_first_publication_display', 
                   'date_first_performance', 
@@ -70,30 +70,30 @@
                   'genre_wiggins']) -->
                 <option value="">Please select...</option>
                 <option value="title">Title</option>
-                <option value="transcript_modern_spelling">All Title-Page Text (Modern Spelling)</option>
-                <option value="titlepage">All Title-Page Text (Old-Spelling)</option>
-                <option value="author">Author (Modern Attribution)</option>
-                <option value="authorpb">Author (Title-Page Attribution)</option>
-                <option value="authorstatus">Authorial Status (Title-Page Attribution)&nbsp;&nbsp;</option>
-                <option value="auspice">Company (First Production)</option>
-                <option value="company">Company (Title-Page Attribution)</option>
-                <option value="theater">Theater (Title-Page Attribution)</option>
-                <option value="playtype">Play Type</option>
-                <option value="genreharbage">Genre (Annals)</option>
-                <option value="genreplaybook">Genre (Title-Page Attribution)</option>
-                <option value="paratextual">Paratextual Material</option>
-                <option value="illustration">Illustration</option>
-                <option value="blackletter">Black Letter</option>
-                <option value="latinontitle">Latin on Title Page</option>
-                <option value="stationer">Stationer</option>
-                <option value="printer">&nbsp;&nbsp;&nbsp;&nbsp;Printer</option>
-                <option value="publisher">&nbsp;&nbsp;&nbsp;&nbsp;Publisher</option>
-                <option value="bookseller">&nbsp;&nbsp;&nbsp;&nbsp;Bookseller</option>
-                <option value="imprintlocation">Imprint Location</option>
-                <option value="dateofcomp">Date of First Production</option>
-                <option value="dateoffirsted">Date of First Edition</option>
-                <option value="format">Format</option>
-                <option value="ed_number">Edition number</option>
+                <option value="transcript_modern_spelling" disabled>All Title-Page Text (Modern Spelling)</option>
+                <option value="titlepage" disabled>All Title-Page Text (Old-Spelling)</option>
+                <option value="author" disabled>Author (Modern Attribution)</option>
+                <option value="authorpb" disabled>Author (Title-Page Attribution)</option>
+                <option value="authorstatus"disabled>Authorial Status (Title-Page Attribution)&nbsp;&nbsp;</option>
+                <option value="auspice" disabled>Company (First Production)</option>
+                <option value="company" disabled>Company (Title-Page Attribution)</option>
+                <option value="theater" disabled>Theater (Title-Page Attribution)</option>
+                <option value="playtype" disabled>Play Type</option>
+                <option value="genreharbage" disabled>Genre (Annals)</option>
+                <option value="genreplaybook" disabled>Genre (Title-Page Attribution)</option>
+                <option value="paratextual" disabled>Paratextual Material</option>
+                <option value="illustration" disabled>Illustration</option>
+                <option value="blackletter" disabled>Black Letter</option>
+                <option value="latinontitle" disabled>Latin on Title Page</option>
+                <option value="stationer" disabled>Stationer</option>
+                <option value="printer" disabled>&nbsp;&nbsp;&nbsp;&nbsp;Printer</option>
+                <option value="publisher" disabled>&nbsp;&nbsp;&nbsp;&nbsp;Publisher</option>
+                <option value="bookseller" disabled>&nbsp;&nbsp;&nbsp;&nbsp;Bookseller</option>
+                <option value="imprintlocation" disabled>Imprint Location</option>
+                <option value="dateofcomp" disabled>Date of First Production</option>
+                <option value="dateoffirsted" disabled>Date of First Edition</option>
+                <option value="format" disabled>Format</option>
+                <option value="ed_number" disabled>Edition number</option>
                 <option value="greg_number">Greg Number</option>
                 <option value="stc_or_wing">STC / Wing Number</option>
               </select>
@@ -275,7 +275,10 @@ function search() {
   if (searchSelectvalue && searchSelectvalue === 'greg_number') {
       results = results.filter(item => item.greg_full.includes(advancedSearchField.value))
   }
-
+  if (searchSelectvalue && searchSelectvalue === 'stc_or_wing') {
+      results = results.filter(item => item.stc.includes(advancedSearchField.value))
+  }
+  
   table.add(results);
   table.update();
 };
