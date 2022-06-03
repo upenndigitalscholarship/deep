@@ -38,7 +38,36 @@
             
             <div class="input-group-md">
               <select id="searchSelect" class="input-group form-select form-select-sm">
-              
+                <!-- fields=['id',
+                  'title_id',
+                  'record_type', 
+                  'author_id',
+                  'collection', 
+                  'year', 
+                  'deep_id_display', 
+                  'greg_full', 
+                  'stc', 
+                  'format', 
+                  'leaves', 
+                  'company_attribution', 
+                  'company_id', 
+                  'composition_date', 
+                  'date_first_publication', 
+                  'book_edition', 
+                  'play_edition', 
+                  'play_type', 
+                  'blackletter', 
+                  'deep_id', 
+                  'title', 
+                  'greg', 
+                  'genre', 
+                  'date_first_publication_display', 
+                  'date_first_performance', 
+                  'company_first_performance', 
+                  'total_editions', 
+                  'stationers_register', 
+                  'british_drama', 
+                  'genre_wiggins']) -->
                 <option value="">Please select...</option>
                 <option value="title">Title</option>
                 <option value="transcript_modern_spelling">All Title-Page Text (Modern Spelling)</option>
@@ -178,12 +207,16 @@ let groupBy = function(xs, key) {
 function search() {
   table.clear();
   let query = document.querySelector('#search_bar').value;
-  query += '~1' //fuzzy search,  1 edit distance
+  if (query){
+    query += '~1' //fuzzy search,  1 edit distance
+  }
+  
   
   // handle advanced search
   // first, is advanced search on?
+  let searchSelectvalue = document.getElementById('searchSelect').value
   if (document.getElementById('collapseExample').classList.contains('show')) {
-    let searchSelectvalue = document.getElementById('searchSelect').value
+    
     if (searchSelectvalue && searchSelectvalue === 'title') {
       query += 'title:' + advancedSearchField.value ;
     }
@@ -238,6 +271,11 @@ function search() {
   }
   
   results = filterRecordType(results)
+
+  if (searchSelectvalue && searchSelectvalue === 'greg_number') {
+      results = results.filter(item => item.greg_full.includes(advancedSearchField.value))
+  }
+
   table.add(results);
   table.update();
 };
