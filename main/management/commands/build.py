@@ -44,12 +44,11 @@ class Command(BaseCommand):
             })
         srsly.write_json(static_dir / 'data/items.json', items)
 
-        authors = {} 
-        authors['results'] = []
+        authors = [] 
         for author in Person.objects.all():
-            authors['results'].append({
-                'id': author.id,
-                'text': author.__str__()
+            authors.append({
+                'value': author.id,
+                'label': author.__str__().strip()
             })
         srsly.write_json(static_dir / 'data/authors.json', authors)
 
