@@ -1,0 +1,122 @@
+[
+  {
+    "value":"12",
+    "label":"Admiral's (Nottingham's) Men"
+  },
+  {
+    "value":"34",
+    "label":"Beeston's Boys"
+  },
+  {
+    "value":"13",
+    "label":"Children of Paul's (first)"
+  },
+  {
+    "value":"18",
+    "label":"Children of Paul's (second)"
+  },
+  {
+    "value":"14",
+    "label":"Children of the Chapel (first)"
+  },
+  {
+    "value":"19",
+    "label":"Children of the Chapel (second)"
+  },
+  {
+    "value":"26",
+    "label":"Children of the King's Revels"
+  },
+  {
+    "value":"22",
+    "label":"Children of the Queen's Revels"
+  },
+  {
+    "value":"38",
+    "label":"Davenant's Opera Company"
+  },
+  {
+    "value":"10",
+    "label":"Derby's (Strange's) Men"
+  },
+  {
+    "value":"24",
+    "label":"King's Men"
+  },
+  {
+    "value":"32",
+    "label":"King's Revels Company"
+  },
+  {
+    "value":"29",
+    "label":"Lady Elizabeth's Men"
+  },
+  {
+    "value":"36",
+    "label":"Leicester's Men"
+  },
+  {
+    "value":"16",
+    "label":"Lord Chamberlain's (Hunsdon's) Men"
+  },
+  {
+    "value":"35",
+    "label":"Ogilby's Men"
+  },
+  {
+    "value":"20",
+    "label":"Oxford's Men"
+  },
+  {
+    "value":"15",
+    "label":"Pembroke's Men"
+  },
+  {
+    "value":"28",
+    "label":"Prince Charles's Men (first)"
+  },
+  {
+    "value":"31",
+    "label":"Prince Charles's Men (second)"
+  },
+  {
+    "value":"23",
+    "label":"Prince Henry's Men"
+  },
+  {
+    "value":"33",
+    "label":"Prince Palatine's Men"
+  },
+  {
+    "value":"25",
+    "label":"Queen Anne's Men"
+  },
+  {
+    "value":"11",
+    "label":"Queen Elizabeth's Men"
+  },
+  {
+    "value":"30",
+    "label":"Queen Henrietta Maria's Men"
+  },
+  {
+    "value":"27",
+    "label":"Red Bull (Revels) Company (first)"
+  },
+  {
+    "value":"37",
+    "label":"Red Bull Company (second)"
+  },
+  {
+    "value":"17",
+    "label":"Sussex's Men"
+  },
+  {
+    "value":"9",
+    "label":"Unknown"
+  },
+  {
+    "value":"21",
+    "label":"Worcester's Men"
+  }
+]

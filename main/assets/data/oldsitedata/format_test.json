@@ -1,0 +1,26 @@
+[
+  {
+    "value":"broadsheet",
+    "label":"Broadsheet"
+  },
+  {
+    "value":"folio",
+    "label":"Folio"
+  },
+  {
+    "value":"quarto",
+    "label":"Quarto"
+  },
+  {
+    "value":"octavo",
+    "label":"Octavo"
+  },
+  {
+    "value":"duodecimo",
+    "label":"Duodecimo"
+  },
+  {
+    "value":"sixteenmo",
+    "label":"Sixteenmo"
+  }
+]
