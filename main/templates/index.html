@@ -97,7 +97,7 @@
                 <option value="stc_or_wing">STC / Wing Number</option>
               </select>
               <input id="advancedSearchField" type="text" class="form-control" aria-label="advancedSearchField" aria-describedby="advancedSearchField">
-              <select id="choicesSelect" style="z-index: auto;" class="form-control"></select>
+              <select id="choicesSelect" style="display: hide;" class="form-control"></select>
             </div>
             
             
@@ -205,15 +205,13 @@ let groupBy = function(xs, key) {
 };
 
 
-const searchSelect = document.getElementById("searchSelect");
-const choicesSelect = document.getElementById("choicesSelect");
-let choices = new Choices(choicesSelect,{
-        addItems: false,
-        allowHTML: true,
-        
-        placeholder: 'Select an option',
-      })
 
+const choicesSelect = document.getElementById("choicesSelect");
+choicesSelect.addEventListener("change", (event) => {
+  search();
+});
+
+const searchSelect = document.getElementById("searchSelect");
 searchSelect.addEventListener('change', (event) => {
   if (searchSelect.value === 'title') { 
     advancedSearchField.style.display = "block";
@@ -323,7 +321,9 @@ function search() {
   if (searchSelectvalue && searchSelectvalue === 'stc_or_wing') {
       results = results.filter(item => item.stc.includes(advancedSearchField.value))
   }
-  
+  if (searchSelectvalue && searchSelectvalue === 'author') {
+      results = results.filter(item => item.author_id.includes(choices.getValue(true)))
+  }
   table.add(results);
   table.update();
 };
