@@ -78,7 +78,7 @@
                 <option value="company" disabled>Company (Title-Page Attribution)</option>
                 <option value="theater" disabled>Theater (Title-Page Attribution)</option>
                 <option value="playtype" disabled>Play Type</option>
-                <option value="genreharbage" disabled>Genre (Annals)</option>
+                <option value="genre">Genre (Annals)</option>
                 <option value="genreplaybook" disabled>Genre (Title-Page Attribution)</option>
                 <option value="paratextual" disabled>Paratextual Material</option>
                 <option value="illustration" disabled>Illustration</option>
@@ -253,6 +253,27 @@ searchSelect.addEventListener('change', (event) => {
       }
       });
     }
+    if (searchSelect.value === 'genre') { 
+      // hide advancedSearchField
+      advancedSearchField.style.display = "none";
+      choicesSelect.style.display = "block";
+      
+      choices = new Choices(choicesSelect,{
+        addItems: false,
+        allowHTML: true,
+        placeholder: 'Select an option',
+      })
+      // change element to choices field
+      choices.setChoices(async () => {
+        try {
+          const items = await fetch('/assets/data/genre.json');
+          return items.json();
+          
+      } catch (err) {
+        console.error(err);
+      }
+      });
+    }
   else {
   // restore element to text field
   //const choices = new Choices(advancedSearchField).disable()
@@ -337,6 +358,9 @@ function search() {
   }
   if (searchSelectvalue && searchSelectvalue === 'author') {
       results = results.filter(item => item.author_id.includes(choices.getValue(true)))
+  }
+  if (searchSelectvalue && searchSelectvalue === 'genre') {
+      results = results.filter(item => item.genre.includes(choices.getValue().label))
   }
   table.add(results);
   table.update();
