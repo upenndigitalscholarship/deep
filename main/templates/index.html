@@ -18,13 +18,13 @@
   
           <input id="search_bar" style="margin-left:10px; width:100%" type="text" name="search" placeholder="Search for a playbook...">
           <p>
-            <a class="btn btn-light float-end" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+            <a class="btn btn-light float-end" onclick="toggleAdvancedSearch();">
               advanced search
             </a>
             
           </p>
           
-          <div class="collapse" style="margin-left:12px" id="collapseExample">
+          <div class="collapse" style="margin-left:12px" id="advancedSearch">
             
             <div class="form-check form-check-inline">
               <input class="form-check-input" type="checkbox" id="singlePlay" value="singlePlay" checked>
@@ -72,7 +72,7 @@
                   'british_drama', 
                   'genre_wiggins']) -->
                 <option value="">Please select...</option>
-                <option value="title">Title</option>
+                <option value="title" selected>Title</option>
                 <option value="author">Author</option>
                 <option value="auspice" disabled>Company (First Production)</option>
                 <option value="company" disabled>Company (Title-Page Attribution)</option>
@@ -206,10 +206,24 @@ let groupBy = function(xs, key) {
 
 
 
+
 const choicesSelect = document.getElementById("choicesSelect");
 choicesSelect.addEventListener("change", (event) => {
   search();
 });
+
+
+const advancedSearch = document.getElementById('advancedSearch');
+
+const toggleAdvancedSearch = () => {
+  if (advancedSearch.classList.contains("show")) {
+    advancedSearch.classList.remove("show");
+    // TODO clear advanced search fields and run search
+  } else {
+    choicesSelect.style.display = "none";
+    advancedSearch.classList.add('show')
+  }
+}
 
 const searchSelect = document.getElementById("searchSelect");
 searchSelect.addEventListener('change', (event) => {
@@ -257,7 +271,7 @@ function search() {
   // handle advanced search
   // first, is advanced search on?
   let searchSelectvalue = document.getElementById('searchSelect').value
-  if (document.getElementById('collapseExample').classList.contains('show')) {
+  if (advancedSearch.classList.contains('show')) {
     
     if (searchSelectvalue && searchSelectvalue === 'title') {
       query += 'title:' + advancedSearchField.value ;
