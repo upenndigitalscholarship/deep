@@ -351,14 +351,8 @@ section {
 }
 
 .section-bg {
-  /* background-color: #f4fbfe; */
- 
-  background-color: #671d82;
-  background-image: url('../img/holly.svg');
-
-  
-  
-
+  /* background-color: #f4fbfe; */ 
+  background-image: url('../img/holly.svg'), linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(62,29,130,1) 0%, rgba(103,29,130,1) 100%);
 }
 
 .section-title {
