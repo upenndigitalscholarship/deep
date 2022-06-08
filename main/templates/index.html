@@ -245,6 +245,8 @@ searchSelect.addEventListener('change', (event) => {
       // change element to choices field
       choices.setChoices(async () => {
         try {
+          //TODO why fetch json? just use item_data directly
+          // get distinct author values from item_data
           const items = await fetch('/assets/data/authors.json');
           return items.json();
           
