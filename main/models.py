@@ -111,25 +111,3 @@ class Theater(models.Model):
     name = models.CharField(max_length=200)
     def __str__(self):
         return self.name
-
-# Entries in Stationers’ Registers
-class Stationer(models.Model): 
-    register = models.CharField(max_length=200)
-    colophon = models.CharField(max_length=200)
-    printer = models.CharField(max_length=200)
-    publisher = models.CharField(max_length=200)
-    bookseller = models.CharField(max_length=200)
-    imprint_locaiton = models.CharField(max_length=200)
-
-    def __str__(self):
-        return self.register
-
-class TitlePage(models.Model):
-    title_page = models.CharField(max_length=200)
-    def __str__(self):
-        return self.title_page
-
-class ParaText(models.Model):
-    para_text = models.CharField(max_length=200)
-    def __str__(self):
-        return self.para_text

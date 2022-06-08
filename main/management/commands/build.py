@@ -52,6 +52,18 @@ class Command(BaseCommand):
             })
         srsly.write_json(static_dir / 'data/authors.json', authors)
 
+        db_companies = [] 
+        for item in Item.objects.all():
+            if item and item.company.name and item.company.name not in db_companies:
+                db_companies.append(item.company.name)
+        companies = []
+        for i, company in enumerate(db_companies):
+            companies.append({
+                'value': i,
+                'label': company.strip()
+            })
+        srsly.write_json(static_dir / 'data/companies.json', companies)
+
         #copy all static files
         site_static = (out_path / 'assets')
         if not site_static.exists():
