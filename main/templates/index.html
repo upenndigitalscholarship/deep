@@ -77,7 +77,7 @@
                 <option value="auspice" disabled>Company (First Production)</option>
                 <option value="company" disabled>Company (Title-Page Attribution)</option>
                 <option value="theater" disabled>Theater (Title-Page Attribution)</option>
-                <option value="playtype" disabled>Play Type</option>
+                <option value="playtype">Play Type</option>
                 <option value="genre">Genre (Annals)</option>
                 <option value="genreplaybook" disabled>Genre (Title-Page Attribution)</option>
                 <option value="paratextual" disabled>Paratextual Material</option>
@@ -225,6 +225,7 @@ const toggleAdvancedSearch = () => {
   }
 }
 
+
 const searchSelect = document.getElementById("searchSelect");
 searchSelect.addEventListener('change', (event) => {
   if (searchSelect.value === 'title') { 
@@ -275,6 +276,28 @@ searchSelect.addEventListener('change', (event) => {
         console.error(err);
       }
       });
+    }
+    if (searchSelect.value === 'playtype') {
+      advancedSearchField.style.display = "none";
+      choicesSelect.style.display = "block";
+      choices = new Choices(choicesSelect,{
+        addItems: false,
+        allowHTML: true,
+        placeholder: 'Select an option',
+      })
+      // change element to choices field
+      choices.setChoices(async () => {
+        try {
+          const items = await fetch('/assets/data/playtypes.json');
+          return items.json();
+          
+      } catch (err) {
+        console.error(err);
+      }
+      });
+
+      
+      
     }
   else {
   // restore element to text field

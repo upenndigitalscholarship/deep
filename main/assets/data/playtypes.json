@@ -1,0 +1,334 @@
+[
+  {
+    "value":0,
+    "label":"Closet"
+  },
+  {
+    "value":1,
+    "label":"Boys Professional"
+  },
+  {
+    "value":2,
+    "label":"Adult Professional; Boys Professional"
+  },
+  {
+    "value":3,
+    "label":"Collection of Nondramatic Texts and an Occasional Play"
+  },
+  {
+    "value":4,
+    "label":"Collection of Private Dramas"
+  },
+  {
+    "value":5,
+    "label":"Closet/Unacted (?); Professional (?); Nonprofessional (?)"
+  },
+  {
+    "value":6,
+    "label":"Collection of Nondramatic Texts and Nonprofessional Plays"
+  },
+  {
+    "value":7,
+    "label":"Closet Translation"
+  },
+  {
+    "value":8,
+    "label":"Boys Nonprofessional/School"
+  },
+  {
+    "value":9,
+    "label":"Private; Translation"
+  },
+  {
+    "value":10,
+    "label":"Collection of Adult Professional Plays"
+  },
+  {
+    "value":11,
+    "label":"Boys Professional; Translation"
+  },
+  {
+    "value":12,
+    "label":"Private"
+  },
+  {
+    "value":13,
+    "label":"Unacted (?); Professional (?)"
+  },
+  {
+    "value":14,
+    "label":"Collection of Adult Professional Plays and an Unacted Play"
+  },
+  {
+    "value":15,
+    "label":"Unknown (prob. Nonprofessional)"
+  },
+  {
+    "value":16,
+    "label":"Collection of Professional and Nonprofessional Plays"
+  },
+  {
+    "value":17,
+    "label":"Collection of Nonprofessional (?) Plays"
+  },
+  {
+    "value":18,
+    "label":"Boys Nonprofessional/School (?)"
+  },
+  {
+    "value":19,
+    "label":"School; Translation"
+  },
+  {
+    "value":20,
+    "label":"Collection of Plays with Unknown Auspices"
+  },
+  {
+    "value":21,
+    "label":"Collection of a Nondramatic Text and an Interlude"
+  },
+  {
+    "value":22,
+    "label":"Collection of Latin University Plays"
+  },
+  {
+    "value":23,
+    "label":"Closet/Unacted (?)"
+  },
+  {
+    "value":24,
+    "label":"Collection of Nondramatic Texts and Professional Plays"
+  },
+  {
+    "value":25,
+    "label":"Interlude"
+  },
+  {
+    "value":26,
+    "label":"Collection of Nondramatic Texts and Adult Professional Plays"
+  },
+  {
+    "value":27,
+    "label":"Latin Closet"
+  },
+  {
+    "value":28,
+    "label":"Private (?)"
+  },
+  {
+    "value":29,
+    "label":"Collection of Nondramatic Texts and a Closet Drama"
+  },
+  {
+    "value":30,
+    "label":"Latin (Unknown Nonprofessional)"
+  },
+  {
+    "value":31,
+    "label":"Collection of a Nondramatic Text and an Inns of Court Play"
+  },
+  {
+    "value":32,
+    "label":"Collection of Occasional Plays"
+  },
+  {
+    "value":33,
+    "label":"Occasional"
+  },
+  {
+    "value":34,
+    "label":"Nonprofessional (?)"
+  },
+  {
+    "value":35,
+    "label":"Collection of Closet Dramas"
+  },
+  {
+    "value":36,
+    "label":"Collection of Nondramatic Texts and an Unacted Play"
+  },
+  {
+    "value":37,
+    "label":"Inns of Court"
+  },
+  {
+    "value":38,
+    "label":"Collection of Interludes"
+  },
+  {
+    "value":39,
+    "label":"Collection of Plays and Nondramatic Texts"
+  },
+  {
+    "value":40,
+    "label":"Collection of Closet Translations"
+  },
+  {
+    "value":41,
+    "label":"Collection of Adult Professional and Nonprofessional Plays"
+  },
+  {
+    "value":42,
+    "label":"Adult Professional"
+  },
+  {
+    "value":43,
+    "label":"Occasional; Adult Professional"
+  },
+  {
+    "value":44,
+    "label":"Collection of Nondramatic Texts and a Professional Play"
+  },
+  {
+    "value":45,
+    "label":"Professional (?); Nonprofessional (?); Unacted (?)"
+  },
+  {
+    "value":46,
+    "label":"University"
+  },
+  {
+    "value":47,
+    "label":"University; Unacted"
+  },
+  {
+    "value":48,
+    "label":"Unknown"
+  },
+  {
+    "value":49,
+    "label":"Collection of Nondramatic Texts and a Translated Play"
+  },
+  {
+    "value":50,
+    "label":"Inns of Court (?)"
+  },
+  {
+    "value":51,
+    "label":"Collection of Boys Professional Plays"
+  },
+  {
+    "value":52,
+    "label":"Inns of Court; Translation"
+  },
+  {
+    "value":53,
+    "label":"Closet (?)"
+  },
+  {
+    "value":54,
+    "label":"Collection of Translated Plays for Schools"
+  },
+  {
+    "value":55,
+    "label":"Collection of a Nondramatic Text and a Closet Drama"
+  },
+  {
+    "value":56,
+    "label":"Boys Professional; Adult Professional"
+  },
+  {
+    "value":57,
+    "label":"Collection of Nondramatic Texts and Occasional Plays"
+  },
+  {
+    "value":58,
+    "label":"Collection of Nondramatic Texts and Boys Professional Plays"
+  },
+  {
+    "value":59,
+    "label":"Adult Professional (?); Unacted (?)"
+  },
+  {
+    "value":60,
+    "label":"University (Nonprofessional); Adult Professional"
+  },
+  {
+    "value":61,
+    "label":"Unacted; Professional (?)"
+  },
+  {
+    "value":62,
+    "label":"Collection of Nondramatic Texts and an Inns of Court Play"
+  },
+  {
+    "value":63,
+    "label":"Collection of Professional Plays"
+  },
+  {
+    "value":64,
+    "label":"Collection of Plays"
+  },
+  {
+    "value":65,
+    "label":"Closet/Unacted"
+  },
+  {
+    "value":66,
+    "label":"Boys Nonprofessional/School; Unacted"
+  },
+  {
+    "value":67,
+    "label":"Adult Professional (?)"
+  },
+  {
+    "value":68,
+    "label":"University (?); Translation"
+  },
+  {
+    "value":69,
+    "label":"Unknown; Professional (?); Nonprofessional (?)"
+  },
+  {
+    "value":70,
+    "label":"Collection of a Nondramatic Text and a Translated Play"
+  },
+  {
+    "value":71,
+    "label":"Collection of Nondramatic Texts and a School Play"
+  },
+  {
+    "value":72,
+    "label":"Collection of a Nondramatic Text and an Occasional Play"
+  },
+  {
+    "value":73,
+    "label":"Adult Professional (?); Boys Professional (?)"
+  },
+  {
+    "value":74,
+    "label":"Collection of Nondramatic Texts and a Nonprofessional  Play"
+  },
+  {
+    "value":75,
+    "label":"Inns of Court; Occasional"
+  },
+  {
+    "value":76,
+    "label":"Closet (?) Translation"
+  },
+  {
+    "value":77,
+    "label":"University (?)"
+  },
+  {
+    "value":78,
+    "label":"Collection of Nondramatic Texts and Closet Dramas"
+  },
+  {
+    "value":79,
+    "label":"Latin University"
+  },
+  {
+    "value":80,
+    "label":"Private (Nonprofessional); Adult Professional"
+  },
+  {
+    "value":81,
+    "label":"Collection of Nonprofessional Plays"
+  },
+  {
+    "value":82,
+    "label":"Collection of University Plays"
+  }
+]
