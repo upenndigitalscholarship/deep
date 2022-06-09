@@ -6,7 +6,7 @@
 {% block content %}
 
 <!-- ======= Search Section ======= -->
-<section id="search" class="services section-bg">
+<section id="search" class="services section-bg" onload="search();">
   <div style="margin-top:80px; min-height: 600px;" class="container" >
     <div id="users">
 
@@ -217,8 +217,7 @@ const advancedSearch = document.getElementById('advancedSearch');
 
 const toggleAdvancedSearch = () => {
   if (advancedSearch.classList.contains("show")) {
-    advancedSearch.classList.remove("show");
-    
+    location.reload(); 
 
   } else {
     choicesSelect.style.display = "none";
@@ -320,7 +319,10 @@ function search() {
   if (advancedSearch.classList.contains('show')) {
     
     if (searchSelectvalue && searchSelectvalue === 'title') {
-      query += 'title:' + advancedSearchField.value ;
+      if (advancedSearchField.value.length > 0){
+        query += 'title:' + advancedSearchField.value ;
+      } 
+      
     }
     
     
