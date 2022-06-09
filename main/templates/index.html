@@ -225,6 +225,12 @@ const toggleAdvancedSearch = () => {
   }
 }
 
+// set global choices, then update on changes to searchSelect
+choices = new Choices(choicesSelect,{
+        addItems: false,
+        allowHTML: true,
+        placeholder: 'Select an option',
+      })
 
 const searchSelect = document.getElementById("searchSelect");
 searchSelect.addEventListener('change', (event) => {
@@ -235,14 +241,11 @@ searchSelect.addEventListener('change', (event) => {
   }
   if (searchSelect.value === 'author') { 
       // hide advancedSearchField
+      
       advancedSearchField.style.display = "none";
       choicesSelect.style.display = "block";
-      
-      choices = new Choices(choicesSelect,{
-        addItems: false,
-        allowHTML: true,
-        placeholder: 'Select an option',
-      })
+      choices.init()
+      choices.clearChoices()
       // change element to choices field
       choices.setChoices(async () => {
         try {
@@ -261,11 +264,7 @@ searchSelect.addEventListener('change', (event) => {
       advancedSearchField.style.display = "none";
       choicesSelect.style.display = "block";
       
-      choices = new Choices(choicesSelect,{
-        addItems: false,
-        allowHTML: true,
-        placeholder: 'Select an option',
-      })
+      choices.clearChoices()
       // change element to choices field
       choices.setChoices(async () => {
         try {
@@ -280,11 +279,7 @@ searchSelect.addEventListener('change', (event) => {
     if (searchSelect.value === 'playtype') {
       advancedSearchField.style.display = "none";
       choicesSelect.style.display = "block";
-      choices = new Choices(choicesSelect,{
-        addItems: false,
-        allowHTML: true,
-        placeholder: 'Select an option',
-      })
+      choices.clearChoices()
       // change element to choices field
       choices.setChoices(async () => {
         try {
