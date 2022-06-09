@@ -372,9 +372,19 @@ function search() {
       results.push(item_data[result.ref])
     });
   }
-  
-  results = filterRecordType(results)
-
+  // filter by record type
+  if (advancedSearch.classList.contains('show')) {
+    if (!singlePlay.checked) {
+      results = results.filter(item => item.record_type != 'Single-Play Playbook')
+    }
+    if (!Collections.checked) {
+      results = results.filter(item => item.record_type != 'Collection')
+    }
+    if (!PlaysinCollections.checked) {
+      results = results.filter(item => item.record_type != 'Play in Collection')
+    }
+  }
+  // advanced search filters 
   if (searchSelectvalue && searchSelectvalue === 'greg_number') {
       results = results.filter(item => item.greg_full.includes(advancedSearchField.value))
   }
@@ -417,20 +427,6 @@ advancedSearchField.addEventListener('keyup', (event) => {
   search();
 });
 
-const filterRecordType = results => {
-  
-  if (!singlePlay.checked) {
-    results = results.filter(item => item.record_type != 'Single-Play Playbook')
-  }
-  if (!Collections.checked) {
-    results = results.filter(item => item.record_type != 'Collection')
-  }
-
-  if (!PlaysinCollections.checked) {
-    results = results.filter(item => item.record_type != 'Play in Collection')
-  }
-  return results
-}
        
 function expand(e, id) {
   let data = item_data[id];
