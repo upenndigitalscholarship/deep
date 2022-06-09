@@ -38,22 +38,31 @@ class Title(models.Model):
 class Edition(models.Model):
     title = models.ForeignKey(Title, on_delete=models.CASCADE)
     authors = models.ManyToManyField('Person')
-    greg_middle = models.CharField("Greg (middle)(e.g., 197b for the second edition of Hamlet)", max_length=200)
+    greg_middle = models.CharField("Greg (middle)(e.g., 197b for the second edition of Hamlet)", max_length=200, blank=True, null=True)
     book_edition = models.CharField("Book Edition", max_length=200, blank=True, null=True)
     play_edition = models.CharField("Play Edition", max_length=200, blank=True, null=True)
     play_type = models.CharField("Play Type", max_length=200, blank=True, null=True)
-    blackletter = models.CharField(max_length=255)
+    blackletter = models.CharField(max_length=255,blank=True, null=True)
 
     def __str__(self):
         return f"{self.title.title} - {self.greg_middle} - {self.book_edition}"
 
 class Item(models.Model): #Previously known as "DEEP"
     edition = models.ForeignKey(Edition, on_delete=models.CASCADE, related_name="variant_edition")
-    record_type = models.CharField("Record Type", max_length=200)
+    SINGLEPLAY = 'SP'
+    COLLECTION = 'CO'
+    PLAYINCOLLECTION = 'PIC'
+    
+    RECORD_TYPE_CHOICES = [
+        (SINGLEPLAY, 'Single-Play Playbook'),
+        (COLLECTION, 'Collection'),
+        (PLAYINCOLLECTION, 'Play in Collection'),
+    ]
+    record_type = models.CharField("Record Type", max_length=200, choices=RECORD_TYPE_CHOICES, blank=True, null=True)
     collection = models.CharField("Collection", max_length=200, blank=True, null=True)
     year = models.CharField("Year (of publication)", blank=True, null=True, max_length=200)
     deep_id_display = models.CharField("DEEP #", max_length=200, blank=True, null=True)
-    greg_full = models.CharField("Greg #(i.e., Greg full, e.g., 197b(*) and 197b(†) for the two issues of the second edition of Hamlet)", max_length=200)
+    greg_full = models.CharField("Greg #(i.e., Greg full, e.g., 197b(*) and 197b(†) for the two issues of the second edition of Hamlet)", max_length=200, blank=True, null=True)
     stc = models.CharField("STC/Wing #", max_length=200, blank=True, null=True)
     format = models.CharField("Format", max_length=200, blank=True, null=True)
     leaves = models.CharField("Leaves", max_length=200, blank=True, null=True)
@@ -62,7 +71,7 @@ class Item(models.Model): #Previously known as "DEEP"
     composition_date = models.CharField("Composition Date", max_length=200, blank=True, null=True)
     #old_title = models.CharField(max_length=200) What is this?
     #title_page = models.ForeignKey('TitlePage', on_delete=models.CASCADE)
-    date_first_publication = models.CharField("Date of First Publication", max_length=200)
+    date_first_publication = models.CharField("Date of First Publication", max_length=200, blank=True, null=True)
     title_page_title = models.CharField("Title Page: Title", max_length=200, blank=True, null=True)
     title_page_author = models.CharField("Title Page: Author", max_length=200, blank=True, null=True)
     title_page_performance = models.CharField("Title Page: Performance", max_length=200, blank=True, null=True)

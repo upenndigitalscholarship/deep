@@ -218,10 +218,14 @@ const advancedSearch = document.getElementById('advancedSearch');
 const toggleAdvancedSearch = () => {
   if (advancedSearch.classList.contains("show")) {
     advancedSearch.classList.remove("show");
-    // TODO clear advanced search fields and run search
+    
+
   } else {
     choicesSelect.style.display = "none";
     advancedSearch.classList.add('show')
+    advancedSearchField.style.display = "block";
+    choices.destroy()
+    choicesSelect.style.display = "none";
   }
 }
 
@@ -263,7 +267,7 @@ searchSelect.addEventListener('change', (event) => {
       // hide advancedSearchField
       advancedSearchField.style.display = "none";
       choicesSelect.style.display = "block";
-      
+      choices.init()
       choices.clearChoices()
       // change element to choices field
       choices.setChoices(async () => {
@@ -279,6 +283,7 @@ searchSelect.addEventListener('change', (event) => {
     if (searchSelect.value === 'playtype') {
       advancedSearchField.style.display = "none";
       choicesSelect.style.display = "block";
+      choices.init()
       choices.clearChoices()
       // change element to choices field
       choices.setChoices(async () => {
