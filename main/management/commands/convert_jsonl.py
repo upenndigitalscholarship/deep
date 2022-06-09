@@ -13,11 +13,13 @@ def get_authors(item:dict):
     authors = []
     if item.get('authors', None): 
         for i in item['authors']:
-            name = authors_json[i]
-            if name:
-                person, created = Person.objects.get_or_create(name=name)
-                authors.append(person)
-
+            try:
+                name = authors_json[i]
+                if name:
+                    person, created = Person.objects.get_or_create(name=name)
+                    authors.append(person)
+            except KeyError: #TODO revist this, find issue in the data
+                pass
     else: 
         names = item.get('authors_display', None)
         if names:
