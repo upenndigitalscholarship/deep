@@ -6,8 +6,8 @@ import srsly
 
 authors_json_file = srsly.read_json('main/assets/data/authors.json')
 authors_json = {}
-for author in authors_json_file['results']:
-    authors_json[author['id']] = author['text']
+for author in authors_json_file:
+    authors_json[author['value']] = author['label']
 
 def get_authors(item:dict):
     authors = []
