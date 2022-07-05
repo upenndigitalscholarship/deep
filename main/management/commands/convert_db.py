@@ -118,6 +118,24 @@ def get_authors(id:int):
     authors = sorted(authors, key = lambda x: x[0])
     return [a[1] for a in authors ]
 
+def get_authors_from_display(deep:Deep):
+    """ex 'Beaumont, Francis; Fletcher, John' """
+    author_list = []
+    authors = deep.display_authors
+    if authors:
+        if ";" in authors:
+            authors = authors.split(';')
+        else:
+            authors = [authors]
+        for author in authors:
+            author = author.strip()
+            
+            a, created = Author.objects.get_or_create(name=author)
+            if created:
+                print(f'created record for {author}')
+            author_list.append(a.author_id)
+            
+    return author_list 
 
 def get_record_type(id:int):
     types = ['','Single-Play Playbook', 'Collection', 'Play in Collection']
@@ -163,7 +181,7 @@ class Command(BaseCommand):
         #new_deep['genre_wiggins'] = 
 
         # Edition fields
-        new_deep['authors'] = get_authors(deep.deep_id)
+        new_deep['authors'] = get_authors_from_display(deep)
         new_deep['authors_display'] = deep.display_authors
         new_deep['greg_middle'] = deep.greg_middle
         new_deep['book_edition'] = deep.book_edition_number
