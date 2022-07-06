@@ -78,6 +78,7 @@ class Command(BaseCommand):
                     item, created = Item.objects.get_or_create(
                         edition = edition,
                         year = item['year_display'],
+                        year_int = str(item['year']),
                         date_first_publication = item['date_first_publication'],
                         record_type=item['record_type'],
                         collection = item['collection_full'],

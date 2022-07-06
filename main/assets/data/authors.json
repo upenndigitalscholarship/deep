@@ -930,5 +930,93 @@
   {
     "value":233,
     "label":"Norton, Thomas"
+  },
+  {
+    "value":234,
+    "label":"Webster, John (?)"
+  },
+  {
+    "value":235,
+    "label":"Fanshawe, Richard"
+  },
+  {
+    "value":236,
+    "label":"Niclaes, Hendrik"
+  },
+  {
+    "value":237,
+    "label":"Fletcher, John (?)"
+  },
+  {
+    "value":238,
+    "label":"Lee, Henry (?)"
+  },
+  {
+    "value":239,
+    "label":"Tasso, Torquato"
+  },
+  {
+    "value":240,
+    "label":"Noel, Henry"
+  },
+  {
+    "value":241,
+    "label":"Al., G."
+  },
+  {
+    "value":242,
+    "label":"Nashe, Thomas"
+  },
+  {
+    "value":243,
+    "label":"Shakespeare, William (?)"
+  },
+  {
+    "value":244,
+    "label":"Drayton, Michael"
+  },
+  {
+    "value":245,
+    "label":"Guarini, Giovanni Battista"
+  },
+  {
+    "value":246,
+    "label":"Wilkins, George"
+  },
+  {
+    "value":247,
+    "label":"Rowley, William"
+  },
+  {
+    "value":248,
+    "label":"Barkstead, William"
+  },
+  {
+    "value":249,
+    "label":"Davies, Richard"
+  },
+  {
+    "value":250,
+    "label":"Corneille, Pierre"
+  },
+  {
+    "value":251,
+    "label":"Chapman, George (?)"
+  },
+  {
+    "value":252,
+    "label":"Beaumont, Francis (?)"
+  },
+  {
+    "value":253,
+    "label":"Field, Nathan (?)"
+  },
+  {
+    "value":254,
+    "label":"Desfontaines, Nicolas-Marc"
+  },
+  {
+    "value":255,
+    "label":"Buchanan, George"
   }
 ]
