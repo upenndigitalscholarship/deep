@@ -254,6 +254,10 @@ class Command(BaseCommand):
         new_deeps.append(new_deep)
     srsly.write_jsonl('deeps.jsonl',new_deeps)
 
+    authors = []
+    for author in Author.objects.all():
+        authors.append({ "value":author.author_id,"label":author.name})
+    srsly.write_json('authors.json',authors)
 
     def handle(self, *args, **options):
         self.stdout.write(self.style.SUCCESS('Database Converted'))

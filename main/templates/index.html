@@ -187,17 +187,30 @@ fetch("../assets/lunr/search.json").then(
         
 //listen for search_bar
 let options = {
-      valueNames: ['title', 'authors_display', 'year_int', 'greg_full' ],
+      valueNames: ['title', 'authors_display', 'year', { attr: 'data-timestamp', name: 'timestamp' }, 'greg_full' ],
       
       // Since there are no elements in the list, this will be used as template.
       item: function(values) { 
-        return `<tr id="${values.id}" onclick="expand(this, ${values.id});"><td class="year"></td><td class="authors_display"></td><td class="title"></td><td>Expand</td></tr>`
+        return `<tr id="${values.id}" onclick="expand(this, ${values.id});"><td class="year timestamp" data-timestamp="${values.year_int}">${values.year_int}</td><td class="authors_display"></td><td class="title"></td><td>Expand</td></tr>`
       }
     };
 let table = new List('users', options, []);
 
+table.sort('year', 
+  { sortFunction: sortFunction: function (a, b) {
+            if ((a.currencyTd === 'PLN') != (b.currencyTd === 'PLN')) {
+                return a.currencyTd === 'PLN' ? 1 : -1;
+            }
+            return a.currencyTd > b.currencyTd ? 1 :
+                   a.currencyTd < b.currencyTd ? -1 : 0;
+        }
+   })
 // temporary until groupBy is added to JS
 let groupBy = function(xs, key) {
+  // remove records without greg values
+  // 'greg_brief', 'greg_full'
+  // datarecords.filter(({gender}) => gender === 'BOYS')
+  
   return xs.reduce(function(rv, x) {
     (rv[x[key]] = rv[x[key]] || []).push(x);
     return rv;
@@ -395,6 +408,7 @@ function search() {
       results = results.filter(item => item.stc.includes(advancedSearchField.value))
   }
   if (searchSelectvalue && searchSelectvalue === 'author') {
+      // TODO fix logic so that only exact match
       results = results.filter(item => item.author_id.includes(choices.getValue(true)))
   }
   if (searchSelectvalue && searchSelectvalue === 'genre') {
