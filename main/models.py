@@ -99,6 +99,7 @@ class Item(models.Model): #Previously known as "DEEP"
 
 
 class Person(models.Model):
+    author_id = models.IntegerField()
     name = models.CharField(max_length=200)
 
     class Meta:

@@ -12,7 +12,7 @@ def item_to_dict(item:Item):
     if '_state' in item.keys():
         del item['_state']    
     edition = Edition.objects.get(id=item['edition_id'])
-    edition_authors = list(edition.authors.all().values_list('id', flat=True))
+    edition_authors = list(edition.authors.all().values_list('author_id', flat=True))
     authors_display = ''.join(list(edition.authors.all().values_list('name', flat=True)))
     edition = edition.__dict__
     edition['author_id'] = edition_authors

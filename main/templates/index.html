@@ -196,15 +196,7 @@ let options = {
     };
 let table = new List('users', options, []);
 
-table.sort('year', 
-  { sortFunction: sortFunction: function (a, b) {
-            if ((a.currencyTd === 'PLN') != (b.currencyTd === 'PLN')) {
-                return a.currencyTd === 'PLN' ? 1 : -1;
-            }
-            return a.currencyTd > b.currencyTd ? 1 :
-                   a.currencyTd < b.currencyTd ? -1 : 0;
-        }
-   })
+
 // temporary until groupBy is added to JS
 let groupBy = function(xs, key) {
   // remove records without greg values

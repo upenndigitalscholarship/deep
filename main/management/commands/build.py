@@ -47,7 +47,7 @@ class Command(BaseCommand):
         authors = [] 
         for author in Person.objects.all():
             authors.append({
-                'value': author.id,
+                'value': author.author_id,
                 'label': author.__str__().strip()
             })
         srsly.write_json(static_dir / 'data/authors.json', authors)

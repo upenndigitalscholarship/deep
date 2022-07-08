@@ -4,29 +4,26 @@ from main.models import *
 from tqdm import tqdm
 import srsly 
 
-authors_json_file = srsly.read_json('main/assets/data/authors.json')
-authors_json = {}
-for author in authors_json_file:
-    authors_json[author['value']] = author['label']
+# authors json is a file created when the database is converted to jsonl. It includes a distinct list of the author objects 
+# and their ids
+authors_json = srsly.read_json('main/assets/data/authors.json')
+"""
+{
+    "value":185,
+    "label":"Holland, Samuel"
+  },
+"""
 
 def get_authors(item:dict):
+
     authors = []
     if item.get('authors', None): 
         for i in item['authors']:
-            try:
-                name = authors_json[i]
-                if name:
-                    person, created = Person.objects.get_or_create(name=name)
-                    authors.append(person)
-            except KeyError: #TODO revist this, find issue in the data
-                pass
-    else: 
-        names = item.get('authors_display', None)
-        if names:
-            names = names.split(';')
-            for name in names:
-                person, created = Person.objects.get_or_create(name=name)
+            author = next((x for x in authors_json if x["value"] == i), None)
+            if author:
+                person, created = Person.objects.get_or_create(name=author['label'], author_id=author['value'])
                 authors.append(person)
+
     return authors
 
 class Command(BaseCommand):
