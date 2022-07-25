@@ -3,7 +3,7 @@ import srsly
 from django.core.management.base import BaseCommand, CommandError
 from django.template.loader import render_to_string
 from django.core.management import call_command
-from main.models import Item, Person
+from main.models import Item, Person, PlayType
 from distutils.dir_util import copy_tree
 from pathlib import Path
 
@@ -46,10 +46,11 @@ class Command(BaseCommand):
 
         authors = [] 
         for author in Person.objects.all():
-            authors.append({
-                'value': author.id,
-                'label': author.__str__().strip()
-            })
+            if not '(?)' in author.__str__().strip():
+                authors.append({
+                    'value': author.id,
+                    'label': author.__str__().strip()
+                })
         srsly.write_json(static_dir / 'data/authors.json', authors)
 
         db_companies = [] 
@@ -64,6 +65,15 @@ class Command(BaseCommand):
             })
         srsly.write_json(static_dir / 'data/companies.json', companies)
 
+        ## Play Types
+        playtypes = []
+        playquery = PlayType.objects.all().distinct()
+        
+        for i, pt in enumerate(playquery):
+            if not '(?)' in pt.name:
+                playtypes.append({"value":i, "label":pt.name})
+        srsly.write_json(static_dir / 'data/playtypes.json', playtypes)
+        
         #copy all static files
         site_static = (out_path / 'assets')
         if not site_static.exists():

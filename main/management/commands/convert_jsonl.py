@@ -29,6 +29,22 @@ def get_authors(item:dict):
                 authors.append(person)
     return authors
 
+
+def get_playtype(item:dict):
+    play_type = item.get('play_type', None)
+    results = []
+    if play_type:
+        if ';' in play_type:
+            for split in play_type.split(';'):
+                playtype, created = PlayType.objects.get_or_create(name=split.strip())
+                results.append(playtype)
+        else: 
+            playtype, created = PlayType.objects.get_or_create(name=play_type.strip()) 
+            results.append(playtype)
+    return results
+    
+
+
 class Command(BaseCommand):
     help = 'Load jsonl file to Django models'
 
@@ -63,7 +79,6 @@ class Command(BaseCommand):
                     greg_middle = item['greg_middle'],
                     book_edition = item['book_edition'], 
                     play_edition = item['play_edition'],
-                    play_type = item['play_type'],
                     blackletter = item['blackletter'],
                 )
                 #if created:
@@ -72,6 +87,8 @@ class Command(BaseCommand):
                 if edition:
                     authors = get_authors(item)
                     edition.authors.add(*authors)
+                    playtype = get_playtype(item)
+                    edition.play_type.add(*playtype)
                     edition.save()
                 
                     # Create Item object

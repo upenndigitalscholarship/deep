@@ -304,6 +304,7 @@ searchSelect.addEventListener('change', (event) => {
   //const choices = new Choices(advancedSearchField).disable()
  
   };
+  search();
 }) 
  
 
@@ -399,6 +400,9 @@ function search() {
   }
   if (searchSelectvalue && searchSelectvalue === 'genre') {
       results = results.filter(item => item.genre.includes(choices.getValue().label))
+  }
+  if (searchSelectvalue && searchSelectvalue === "playtype") {
+      results = results.filter(item => item.play_type.includes(choices.getValue().label))
   }
   table.add(results);
   table.update();
