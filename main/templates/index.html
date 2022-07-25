@@ -133,7 +133,7 @@
     <tbody class="list">
       <thead>
         <tr>
-          
+          <th class="sort col-2" data-sort="deep_id" scope="col">ID</th>
           <th class="sort col-2" data-sort="year" scope="col">Year</th>
           <th class="sort col-2" data-sort="author" scope="col">Author</th>
           <th class="sort col-7" data-sort="title" scope="col">Title</th>
@@ -187,11 +187,11 @@ fetch("../assets/lunr/search.json").then(
         
 //listen for search_bar
 let options = {
-      valueNames: ['title', 'authors_display', 'year', 'greg_full' ],
+      valueNames: ['deep_id','title', 'authors_display', 'year', 'greg_full' ],
       
       // Since there are no elements in the list, this will be used as template.
       item: function(values) { 
-        return `<tr id="${values.id}" onclick="expand(this, ${values.id});"><td class="year"></td><td class="authors_display"></td><td class="title"></td><td>Expand</td></tr>`
+        return `<tr id="${values.id}" onclick="expand(this, ${values.id});"><td class="deep_id"></td><td class="year"></td><td class="authors_display"></td><td class="title"></td><td>Expand</td></tr>`
       }
     };
 let table = new List('users', options, []);
