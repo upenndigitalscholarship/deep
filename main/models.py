@@ -65,6 +65,7 @@ class Item(models.Model): #Previously known as "DEEP"
     record_type = models.CharField("Record Type", max_length=200, choices=RECORD_TYPE_CHOICES, blank=True, null=True)
     collection = models.CharField("Collection", max_length=200, blank=True, null=True)
     year = models.CharField("Year (of publication)", blank=True, null=True, max_length=200)
+    year_int = models.IntegerField("Year INT", blank=True, null=True)
     deep_id_display = models.CharField("DEEP #", max_length=200, blank=True, null=True)
     greg_full = models.CharField("Greg #(i.e., Greg full, e.g., 197b(*) and 197b(†) for the two issues of the second edition of Hamlet)", max_length=200, blank=True, null=True)
     stc = models.CharField("STC/Wing #", max_length=200, blank=True, null=True)

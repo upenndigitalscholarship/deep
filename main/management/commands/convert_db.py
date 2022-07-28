@@ -213,7 +213,6 @@ class Command(BaseCommand):
         new_deep['title_page_illustration'] = deep.illustrationontporfrontis
         new_deep['title_page_explicit'] = deep.transcript_explicit
         new_deep['title_page_colophon'] = deep.transcript_colophon
-        
 
         new_deep['paratext_errata'] = deep.errata
         new_deep['paratext_commendatory_verses'] = deep.transcript_commendatory_verses

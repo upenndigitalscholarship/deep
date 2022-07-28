@@ -26,17 +26,21 @@
           
           <div class="collapse" style="margin-left:12px" id="advancedSearch">
             
-            <div class="form-check form-check-inline">
-              <input class="form-check-input" type="checkbox" id="singlePlay" value="singlePlay" checked>
-              <label class="form-check-label" for="singlePlay">Single-Play Playbooks</label>
-            </div>
-            <div class="form-check form-check-inline">
-              <input class="form-check-input" type="checkbox" id="Collections" value="Collections" checked>
-              <label class="form-check-label" for="Collections">Collections</label>
-            </div>
-            <div class="form-check form-check-inline">
-              <input class="form-check-input" type="checkbox" id="PlaysinCollections" value="PlaysinCollections" checked>
-              <label class="form-check-label" for="PlaysinCollections">Plays in Collection</label>
+            <div class="input-group mb-3"> 
+              <span >Record Type:&nbsp;&nbsp;</span> 
+        
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" id="singlePlay" value="singlePlay" checked>
+                <label class="form-check-label" for="singlePlay">Single-Play Playbooks</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" id="Collections" value="Collections" checked>
+                <label class="form-check-label" for="Collections">Collections</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" id="PlaysinCollections" value="PlaysinCollections" checked>
+                <label class="form-check-label" for="PlaysinCollections">Plays in Collection</label>
+              </div>
             </div>
             
             <div class="input-group-md">
@@ -73,8 +77,9 @@
                   'genre_wiggins']) -->
                 <option value="">Please select...</option>
                 <option value="title" selected>Title</option>
-                <option value="title-page-modern">All Title-Page Text (modern spelling)</option>
                 <option value="author">Author</option>
+                <option value="title-page-modern">All Title-Page Text (modern spelling)</option>
+                <option value="title-page-old">All Title-Page Text (old spelling)</option>
                 <option value="auspice" disabled>Company (First Production)</option>
                 <option value="company" disabled>Company (Title-Page Attribution)</option>
                 <option value="theater" disabled>Theater (Title-Page Attribution)</option>
@@ -101,6 +106,10 @@
               <select id="choicesSelect" style="display: hide;" class="form-control"></select>
             </div>
             
+            <div class="input-group mb-3">
+              <span >Year:&nbsp;&nbsp;</span> 
+              <input class="form-range" type="range">
+            </div>
             
             
           </div>
@@ -166,7 +175,8 @@
   {% block extra_js %}  
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/list.js/2.3.1/list.min.js"></script>    
-  <script src="assets/js/choices.min.js"></script>    
+  <script src="assets/js/choices.min.js"></script>   
+  
  <script>
 
 // fetch data for all records
@@ -232,6 +242,8 @@ const toggleAdvancedSearch = () => {
 // set global choices, then update on changes to searchSelect
 choices = new Choices(choicesSelect,{
         addItems: false,
+        shouldSort: false,
+        shouldSortItems: false,
         allowHTML: true,
         position: 'bottom',
         placeholder: 'Select an option',
@@ -249,6 +261,12 @@ searchSelect.addEventListener('change', (event) => {
     choices.destroy()
     choicesSelect.style.display = "none";
   }
+  if (searchSelect.value === 'title-page-old') { 
+    advancedSearchField.style.display = "block";
+    choices.destroy()
+    choicesSelect.style.display = "none";
+  }
+  
   if (searchSelect.value === 'author') { 
       // hide advancedSearchField
       
@@ -336,6 +354,16 @@ function search() {
     if (searchSelectvalue && searchSelectvalue === 'title-page-modern') {
       if (advancedSearchField.value.length > 0){
         query += 'title_page_modern_spelling:' + advancedSearchField.value ;
+      } 
+      
+    }
+    if (searchSelectvalue && searchSelectvalue === 'title-page-old') {
+      if (advancedSearchField.value.length > 0){
+        query += 'title_page_title:' + advancedSearchField.value ;
+        query += ' title_page_author:' + advancedSearchField.value ;
+        query += ' title_page_performance:' + advancedSearchField.value ;
+        query += ' title_page_latin_motto:' + advancedSearchField.value ;
+        query += ' title_page_imprint:' + advancedSearchField.value ;
       } 
       
     }

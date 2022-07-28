@@ -4,29 +4,15 @@ from main.models import *
 from tqdm import tqdm
 import srsly 
 
-authors_json_file = srsly.read_json('main/assets/data/authors.json')
-authors_json = {}
-for author in authors_json_file:
-    authors_json[author['value']] = author['label']
 
 def get_authors(item:dict):
     authors = []
-    if item.get('authors', None): 
-        for i in item['authors']:
-            try:
-                name = authors_json[i]
-                if name:
-                    person, created = Person.objects.get_or_create(name=name)
-                    authors.append(person)
-            except KeyError: #TODO revist this, find issue in the data
-                pass
-    else: 
-        names = item.get('authors_display', None)
-        if names:
-            names = names.split(';')
-            for name in names:
-                person, created = Person.objects.get_or_create(name=name)
-                authors.append(person)
+    names = item.get('authors_display', None)
+    if names:
+        names = names.split(';')
+        for name in names:
+            person, created = Person.objects.get_or_create(name=name.strip())
+            authors.append(person)
     return authors
 
 
@@ -96,6 +82,7 @@ class Command(BaseCommand):
                     item, created = Item.objects.get_or_create(
                         edition = edition,
                         year = item['year_display'],
+                        year_int = item['year'],
                         date_first_publication = item['date_first_publication'],
                         record_type=item['record_type'],
                         collection = item['collection_full'],
