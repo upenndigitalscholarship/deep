@@ -81,7 +81,7 @@ class Command(BaseCommand):
         srsly.write_json(Path('main/assets/data/item_data.json'), item_data)
         self.stdout.write(self.style.SUCCESS('Created item data'))
 
-        idx = lunr(ref="lunr_id", fields=['id','title_id','record_type', 'author_id','collection', 'year', 'deep_id_display', 'greg_full', 'stc', 'format', 'leaves', 'company_attribution', 'company_id', 'composition_date', 'date_first_publication', 'book_edition', 'play_edition', 'play_type', 'blackletter', 'deep_id', 'title', 'greg', 'genre', 'date_first_publication_display', 'date_first_performance', 'company_first_performance', 'total_editions', 'stationers_register', 'british_drama', 'genre_wiggins'], documents=items)
+        idx = lunr(ref="lunr_id", fields=['id','title_id','record_type', 'author_id','collection', 'year', 'deep_id_display', 'greg_full', 'stc', 'format', 'leaves', 'company_attribution', 'company_id', 'composition_date', 'date_first_publication', 'book_edition', 'play_edition', 'play_type', 'blackletter', 'deep_id', 'title', 'title_alternative_keywords', 'greg', 'genre', 'date_first_publication_display', 'date_first_performance', 'company_first_performance', 'total_editions', 'stationers_register', 'british_drama', 'genre_wiggins', 'title_page_modern_spelling'], documents=items)
         serialized_idx = idx.serialize()
         index_path = Path.cwd() / 'main' / 'assets' / 'lunr' 
         if not index_path.exists():

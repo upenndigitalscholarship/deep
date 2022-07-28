@@ -73,6 +73,7 @@
                   'genre_wiggins']) -->
                 <option value="">Please select...</option>
                 <option value="title" selected>Title</option>
+                <option value="title-page-modern">All Title-Page Text (modern spelling)</option>
                 <option value="author">Author</option>
                 <option value="auspice" disabled>Company (First Production)</option>
                 <option value="company" disabled>Company (Title-Page Attribution)</option>
@@ -243,6 +244,11 @@ searchSelect.addEventListener('change', (event) => {
     choices.destroy()
     choicesSelect.style.display = "none";
   }
+  if (searchSelect.value === 'title-page-modern') { 
+    advancedSearchField.style.display = "block";
+    choices.destroy()
+    choicesSelect.style.display = "none";
+  }
   if (searchSelect.value === 'author') { 
       // hide advancedSearchField
       
@@ -323,11 +329,17 @@ function search() {
     if (searchSelectvalue && searchSelectvalue === 'title') {
       if (advancedSearchField.value.length > 0){
         query += 'title:' + advancedSearchField.value ;
+        query += ' title_alternative_keywords:' + advancedSearchField.value ;
       } 
       
     }
-    
-    
+    if (searchSelectvalue && searchSelectvalue === 'title-page-modern') {
+      if (advancedSearchField.value.length > 0){
+        query += 'title_page_modern_spelling:' + advancedSearchField.value ;
+      } 
+      
+    }
+    // title_page_modern_spelling
   }
   
   search_results = index.search(query)
@@ -434,12 +446,12 @@ advancedSearchField.addEventListener('keyup', (event) => {
   search();
 });
 
-       
+      
 function expand(e, id) {
   let data = item_data[id];
   if (data) {
   e.outerHTML = `
-  <tr id="${data.id}" onclick="collapse(this, ${data.id});"><td class="year">${data.year}</td><td class="authors_display">${data.authors_display}</td><td class="title">${data.title}</td><td>Collapse</td>
+  <tr id="${data.id}" onclick="collapse(this, ${data.id});"><td class="deep_id">${data.deep_id}</td><td class="year">${data.year}</td><td class="authors_display">${data.authors_display}</td><td class="title">${data.title}</td><td>Collapse</td>
   
   <tr id="${data.id}-exp">
     <td colspan="5">
@@ -541,7 +553,7 @@ function collapse(e, id) {
     let data = item_data[id];
     if (data) {
       e.outerHTML = `
-      <tr id="${data.id}" onclick="expand(this, ${data.id});"><td class="year">${data.year}</td><td class="authors_display">${data.authors_display}</td><td class="title">${data.title}</td><td>Expand</td>`
+      <tr id="${data.id}" onclick="expand(this, ${data.id});"><td class="deep_id">${data.deep_id}</td><td class="year">${data.year}</td><td class="authors_display">${data.authors_display}</td><td class="title">${data.title}</td><td>Expand</td>`
       let expandCard = document.getElementById(id+'-exp');
       if (expandCard) {
         expandCard.remove();
