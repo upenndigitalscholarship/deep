@@ -78,9 +78,13 @@
                 <option value="">Please select...</option>
                 <option value="title" selected>Title</option>
                 <option value="author">Author</option>
+                <option value="title-page-author">Author (Title-Page Attribution)</option>
+                <option value="title-page-author">Authorial Status (Title-Page Attribution)</option>
                 <option value="title-page-modern">All Title-Page Text (modern spelling)</option>
                 <option value="title-page-old">All Title-Page Text (old spelling)</option>
-                <option value="auspice" disabled>Company (First Production)</option>
+                <option value="company-first-performance">Company (First Production)</option>
+                <option value="dateofcomp" disabled>Date of First Production</option>
+
                 <option value="company" disabled>Company (Title-Page Attribution)</option>
                 <option value="theater" disabled>Theater (Title-Page Attribution)</option>
                 <option value="playtype">Play Type</option>
@@ -95,7 +99,6 @@
                 <option value="publisher" disabled>&nbsp;&nbsp;&nbsp;&nbsp;Publisher</option>
                 <option value="bookseller" disabled>&nbsp;&nbsp;&nbsp;&nbsp;Bookseller</option>
                 <option value="imprintlocation" disabled>Imprint Location</option>
-                <option value="dateofcomp" disabled>Date of First Production</option>
                 <option value="dateoffirsted" disabled>Date of First Edition</option>
                 <option value="format" disabled>Format</option>
                 <option value="ed_number" disabled>Edition number</option>
@@ -266,6 +269,11 @@ searchSelect.addEventListener('change', (event) => {
     choices.destroy()
     choicesSelect.style.display = "none";
   }
+  if (searchSelect.value === 'title-page-author') { 
+    advancedSearchField.style.display = "block";
+    choices.destroy()
+    choicesSelect.style.display = "none";
+  }
   
   if (searchSelect.value === 'author') { 
       // hide advancedSearchField
@@ -321,6 +329,23 @@ searchSelect.addEventListener('change', (event) => {
       });
 
       
+    }
+    if (searchSelect.value === 'company-first-performance') {
+      advancedSearchField.style.display = "none";
+      choicesSelect.style.display = "block";
+      choices.init()
+      choices.clearChoices()
+      // change element to choices field
+      choices.setChoices(async () => {
+        try {
+          const items = await fetch('/assets/data/first-companies.json');
+          return items.json();
+          
+      } catch (err) {
+        console.error(err);
+      }
+      });
+
       
     }
   else {
@@ -367,7 +392,14 @@ function search() {
       } 
       
     }
+    if (searchSelectvalue && searchSelectvalue === 'title-page-author') {
+      if (advancedSearchField.value.length > 0){
+        query += ' title_page_author:' + advancedSearchField.value ;
+      } 
+      
+    }
     // title_page_modern_spelling
+
   }
   
   search_results = index.search(query)
@@ -443,6 +475,10 @@ function search() {
   }
   if (searchSelectvalue && searchSelectvalue === "playtype") {
       results = results.filter(item => item.play_type.includes(choices.getValue().label))
+  }
+  if (searchSelectvalue && searchSelectvalue === "company-first-performance") {
+      // includes filter to remove items where first company is null
+      results = results.filter(x => x.company_first_performance).filter(item => item.company_first_performance.includes(choices.getValue().label))
   }
   table.add(results);
   table.update();
