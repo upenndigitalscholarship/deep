@@ -133,7 +133,7 @@
     <tbody class="list">
       <thead>
         <tr>
-          
+          <th class="sort col-2" data-sort="deep_id" scope="col">ID</th>
           <th class="sort col-2" data-sort="year" scope="col">Year</th>
           <th class="sort col-2" data-sort="author" scope="col">Author</th>
           <th class="sort col-7" data-sort="title" scope="col">Title</th>
@@ -187,11 +187,11 @@ fetch("../assets/lunr/search.json").then(
         
 //listen for search_bar
 let options = {
-      valueNames: ['title', 'authors_display', 'year', { attr: 'data-timestamp', name: 'timestamp' }, 'greg_full' ],
+      valueNames: ['deep_id','title', 'authors_display', 'year', { attr: 'data-timestamp', name: 'timestamp' }, 'greg_full' ],
       
       // Since there are no elements in the list, this will be used as template.
       item: function(values) { 
-        return `<tr id="${values.id}" onclick="expand(this, ${values.id});"><td class="year timestamp" data-timestamp="${values.year_int}">${values.year_int}</td><td class="authors_display"></td><td class="title"></td><td>Expand</td></tr>`
+        return `<tr id="${values.id}" onclick="expand(this, ${values.id});"><td class="deep_id"></td><td class="year timestamp" data-timestamp="${values.year_int}">${values.year_int}</td><td class="authors_display"></td><td class="title"></td><td>Expand</td></tr>`
       }
     };
 let table = new List('users', options, []);
@@ -441,7 +441,7 @@ function expand(e, id) {
   let data = item_data[id];
   if (data) {
   e.outerHTML = `
-  <tr id="${data.id}" onclick="collapse(this, ${data.id});"><td class="year">${data.year}</td><td class="authors_display">${data.authors_display}</td><td class="title">${data.title}</td><td>Collapse</td>
+  <tr id="${data.id}" onclick="collapse(this, ${data.id});"><td class="deep_id"></td><td class="year">${data.year}</td><td class="authors_display">${data.authors_display}</td><td class="title">${data.title}</td><td>Collapse</td>
   
   <tr id="${data.id}-exp">
     <td colspan="5">
@@ -451,26 +451,30 @@ function expand(e, id) {
           <div class="row">
             <div class="col-5">
               <strong>Reference Information</strong>
-              <p>DEEP #: ${data.deep_id}<br>
-              Greg #: ${data.greg_full}<br>
-              STC/WING: ${data.stc}<br>
-              Book Edition: ${data.book_edition}<br>
-              Play Edition: ${data.play_edition}<br>
-              Format: ${data.format}<br>
-              Leaves: ${data.leaves}<br>
-              Total Editions: ${data.total_editions}<br>
-              
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-5">
+              <p><span class="expand">DEEP #:</span> ${data.deep_id}<br>
+              <span class="expand">Greg #:</span> ${data.greg_full}<br>
+              <span class="expand">STC/WING:</span> ${data.stc}<br>
+              <span class="expand">Book Edition:</span> ${data.book_edition}<br>
+              <span class="expand">Play Edition:</span> ${data.play_edition}<br>
+              <span class="expand">Format:</span> ${data.format}<br>
+              <span class="expand">Leaves:</span> ${data.leaves}<br>
+              <span class="expand">Total Editions:</span> ${data.total_editions}<br>
+              </p>
             </div>
             
     
             <div class="col-7">
-              <p>Record Type: ${data.record_type}<br>
-              Play Type: ${data.play_type}<br>
-              Genre (Annals): ${data.genre}<br>
-              Date of First Publication: ${data.date_first_publication}<br>
-              Date of First Performance: ${data.date_first_performance}<br>
-              Company of First Performance: ${data.company_first_performance}<br>
-              Company Attribution: ${data.company_attribution}</p>
+              <p><span class="expand">Record Type:</span> ${data.record_type}<br>
+              <span class="expand">Play Type:</span> ${data.play_type}<br>
+              <span class="expand">Genre (Annals):</span> ${data.genre}<br>
+              <span class="expand">Date of First Publication:</span> ${data.date_first_publication}<br>
+              <span class="expand">Date of First Performance:</span> ${data.date_first_performance}<br>
+              <span class="expand">Company of First Performance:</span> ${data.company_first_performance}<br>
+              <span class="expand">Company Attribution:</span> ${data.company_attribution}</p>
             </div>
 
           </div>  
@@ -483,13 +487,13 @@ function expand(e, id) {
             <div class="col-12">
               <strong>Title-Page Features</strong>
               <p>
-                Title: ${data.title_page_title}<br>
-                Author: ${data.title_page_author}<br>
-                Performance: ${data.title_page_performance}<br>
-                Imprint: ${data.title_page_imprint}<br>
-                Colophon: ${data.title_page_colophon}<br>
-                Illustration: ${data.title_page_illustration}<br>
-                Latin Motto: ${data.title_page_latin_motto}<br>
+                <span class="expand">Title:</span> ${data.title_page_title}<br>
+                <span class="expand">Author:</span> ${data.title_page_author}<br>
+                <span class="expand">Performance:</span> ${data.title_page_performance}<br>
+                <span class="expand">Imprint:</span> ${data.title_page_imprint}<br>
+                <span class="expand">Colophon:</span> ${data.title_page_colophon}<br>
+                <span class="expand">Illustration:</span> ${data.title_page_illustration}<br>
+                <span class="expand">Latin Motto:</span> ${data.title_page_latin_motto}<br>
               </p>
             </div>
           </div>
@@ -502,14 +506,14 @@ function expand(e, id) {
             <div class="col-12">
               <strong>Paratextual Material</strong>
               <p>
-                <em>Dedication:</em> ${data.paratext_dedication}<br>
-                <em>Commendatory Verses:</em> ${data.paratext_cemmendatory_verses}<br>
-                <em>To the Reader:</em> ${data.paratext_to_the_reader}<br>
-                <em>Errata:</em> ${data.paratext_errata}<br>
-                <em>Argument:</em> ${data.paratext_argument}<br>
-                <em>Charachter List:</em> ${data.paratext_charachter_list}<br>
-                <em>Actor List:</em> ${data.paratext_actor_list}<br>
-                <em>Other:</em> ${data.paratext_other_paratexts}<br>
+                <span class="expand">Dedication:</span> ${data.paratext_dedication}<br>
+                <span class="expand">Commendatory Verses:</span> ${data.paratext_cemmendatory_verses}<br>
+                <span class="expand">To the Reader:</span> ${data.paratext_to_the_reader}<br>
+                <span class="expand">Errata:</span> ${data.paratext_errata}<br>
+                <span class="expand">Argument:</span> ${data.paratext_argument}<br>
+                <span class="expand">Charachter List:</span> ${data.paratext_charachter_list}<br>
+                <span class="expand">Actor List:</span> ${data.paratext_actor_list}<br>
+                <span class="expand">Other:</span> ${data.paratext_other_paratexts}<br>
               </p>
             </div>
           </div>
@@ -522,11 +526,11 @@ function expand(e, id) {
             <div class="col-12">
               <strong>Stationer Information</strong>
               <p>
-                Printer: ${data.stationer_printer}<br>
-                Publisher: ${data.stationer_publisher}<br>
-                Bookseller: ${data.stationer_bookseller}<br>
-                Entries in Stationers' Register: <br>${data.stationer_entries_in_register}<br>
-                Notes: ${data.stationer_additional_notes}<br>
+                <span class="expand">Printer:</span> ${data.stationer_printer}<br>
+                <span class="expand">Publisher:</span> ${data.stationer_publisher}<br>
+                <span class="expand">Bookseller:</span> ${data.stationer_bookseller}<br>
+                <span class="expand">Entries in Stationers' Register:</span> <br>${data.stationer_entries_in_register}<br>
+                <span class="expand">Notes:</span> ${data.stationer_additional_notes}<br>
               </p>
             </div>
           </div>
@@ -543,7 +547,7 @@ function collapse(e, id) {
     let data = item_data[id];
     if (data) {
       e.outerHTML = `
-      <tr id="${data.id}" onclick="expand(this, ${data.id});"><td class="year">${data.year}</td><td class="authors_display">${data.authors_display}</td><td class="title">${data.title}</td><td>Expand</td>`
+      <tr id="${data.id}" onclick="expand(this, ${data.id});"><td class="deep_id"></td><td class="year">${data.year}</td><td class="authors_display">${data.authors_display}</td><td class="title">${data.title}</td><td>Expand</td>`
       let expandCard = document.getElementById(id+'-exp');
       if (expandCard) {
         expandCard.remove();
