@@ -99,6 +99,8 @@ class Item(models.Model): #Previously known as "DEEP"
     stationer_bookseller = models.CharField("Stationer: Bookseller", max_length=200, blank=True, null=True)
     stationer_entries_in_register = models.CharField("Stationer: Entries in Register", max_length=200, blank=True, null=True)
     stationer_additional_notes = models.CharField("Stationer: Additional Notes", max_length=200, blank=True, null=True)
+    theater_type = models.CharField("Theater Type", max_length=200, blank=True, null=True)
+    theater = models.CharField("Theater", max_length=200, blank=True, null=True)
     def __str__(self):
         return f"{self.edition.title} - {self.edition.greg_middle}"
 

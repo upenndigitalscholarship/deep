@@ -86,7 +86,7 @@
                 <option value="company">Company (Title-Page Attribution)</option>
                 <option value="dateofcomp" disabled>Date of First Production</option>
 
-                <option value="theater" disabled>Theater (Title-Page Attribution)</option>
+                <option value="theater">Theater (Title-Page Attribution)</option>
                 <option value="playtype">Play Type</option>
                 <option value="genre">Genre (Annals)</option>
                 <option value="genreplaybook" disabled>Genre (Title-Page Attribution)</option>
@@ -215,6 +215,7 @@ let groupBy = function(xs, key) {
   return xs.reduce(function(rv, x) {
     (rv[x[key]] = rv[x[key]] || []).push(x);
     return rv;
+
   }, {});
 };
 
@@ -274,7 +275,11 @@ searchSelect.addEventListener('change', (event) => {
     choices.destroy()
     choicesSelect.style.display = "none";
   }
-  
+  if (searchSelect.value === 'theater') { 
+    advancedSearchField.style.display = "block";
+    choices.destroy()
+    choicesSelect.style.display = "none";
+  }
   if (searchSelect.value === 'author') { 
       // hide advancedSearchField
       
@@ -417,7 +422,12 @@ function search() {
       
     }
     // title_page_modern_spelling
-
+    if (searchSelectvalue && searchSelectvalue === 'theater') {
+      if (advancedSearchField.value.length > 0){
+        query += ' theater:' + advancedSearchField.value ;
+      } 
+      
+    }
   }
   
   search_results = index.search(query)

@@ -29,6 +29,19 @@ def get_playtype(item:dict):
             results.append(playtype)
     return results
     
+def handle_greg(greg:str):
+    if greg == "":
+        return "C"
+    else:
+        return greg
+
+def django_is_worst(record_type:str):
+    if record_type == 'Collection':
+        return Item.COLLECTION
+    if record_type == 'Play in Collection':
+        return Item.PLAYINCOLLECTION
+    if record_type == 'Single-Play Playbook':
+        return Item.SINGLEPLAY
 
 
 class Command(BaseCommand):
@@ -49,7 +62,7 @@ class Command(BaseCommand):
                 authors_display = item['authors_display'],
                 title = item['title'],
                 title_alternative_keywords = item['title_alternative_keywords'],
-                greg = item['greg_brief'],
+                greg = handle_greg(item['greg_brief']),
                 genre = item['genre'],
                 date_first_publication = item['date_first_publication'],
                 date_first_publication_display = item['date_first_publication_display'],
@@ -63,7 +76,7 @@ class Command(BaseCommand):
             if title:
                 edition, created = Edition.objects.get_or_create(
                     title = title,
-                    greg_middle = item['greg_middle'],
+                    greg_middle = handle_greg(item['greg_middle']),
                     book_edition = item['book_edition'], 
                     play_edition = item['play_edition'],
                     blackletter = item['blackletter'],
@@ -84,10 +97,10 @@ class Command(BaseCommand):
                         year = item['year_display'],
                         year_int = item['year'],
                         date_first_publication = item['date_first_publication'],
-                        record_type=item['record_type'],
+                        record_type=django_is_worst(item['record_type']),
                         collection = item['collection_full'],
                         deep_id_display = item['deep_id_display'],
-                        greg_full = item['greg_full'],
+                        greg_full = handle_greg(item['greg_full']),
                         stc = item['stc'],
                         format = item['format'],
                         leaves = item['leaves'],
@@ -115,6 +128,8 @@ class Command(BaseCommand):
                         stationer_bookseller = item["stationer_bookseller"],
                         stationer_entries_in_register = item["stationer_entries_in_register"],
                         stationer_additional_notes = item["stationer_additional_notes"],
+                        theater_type = item["theater_type"],
+                        theater = item["theater"],
 
                     )
                     item.company, _ = Company.objects.get_or_create(name=item.company_attribution)
