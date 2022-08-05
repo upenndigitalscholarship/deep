@@ -83,9 +83,9 @@
                 <option value="title-page-modern">All Title-Page Text (modern spelling)</option>
                 <option value="title-page-old">All Title-Page Text (old spelling)</option>
                 <option value="company-first-performance">Company (First Production)</option>
+                <option value="company">Company (Title-Page Attribution)</option>
                 <option value="dateofcomp" disabled>Date of First Production</option>
 
-                <option value="company" disabled>Company (Title-Page Attribution)</option>
                 <option value="theater" disabled>Theater (Title-Page Attribution)</option>
                 <option value="playtype">Play Type</option>
                 <option value="genre">Genre (Annals)</option>
@@ -348,6 +348,24 @@ searchSelect.addEventListener('change', (event) => {
 
       
     }
+    if (searchSelect.value === 'company') {
+      advancedSearchField.style.display = "none";
+      choicesSelect.style.display = "block";
+      choices.init()
+      choices.clearChoices()
+      // change element to choices field
+      choices.setChoices(async () => {
+        try {
+          const items = await fetch('/assets/data/companies.json');
+          return items.json();
+          
+      } catch (err) {
+        console.error(err);
+      }
+      });
+
+      
+    }
   else {
   // restore element to text field
   //const choices = new Choices(advancedSearchField).disable()
@@ -479,6 +497,9 @@ function search() {
   if (searchSelectvalue && searchSelectvalue === "company-first-performance") {
       // includes filter to remove items where first company is null
       results = results.filter(x => x.company_first_performance).filter(item => item.company_first_performance.includes(choices.getValue().label))
+  }
+  if (searchSelectvalue && searchSelectvalue === "company") {
+      results = results.filter(item => item.company_id == choices.getValue().value)
   }
   table.add(results);
   table.update();
