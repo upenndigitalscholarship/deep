@@ -74,11 +74,13 @@
                 <option value="">Please select...</option>
                 <option value="title" selected>Title</option>
                 <option value="author">Author</option>
-                <option value="auspice" disabled>Company (First Production)</option>
-                <option value="company" disabled>Company (Title-Page Attribution)</option>
+                <option value="title-page-author">Author (Title-Page Attribution)</option>
+                <option value="title-page-author">Authorial Status (Title-Page Attribution)</option>
                 <option value="theater" disabled>Theater (Title-Page Attribution)</option>
                 <option value="playtype">Play Type</option>
                 <option value="genre">Genre (Annals)</option>
+                <option value="company-first-performance">Company (First Production)</option>
+                <option value="dateofcomp" disabled>Date of First Production</option>
                 <option value="genreplaybook" disabled>Genre (Title-Page Attribution)</option>
                 <option value="paratextual" disabled>Paratextual Material</option>
                 <option value="illustration" disabled>Illustration</option>
@@ -304,6 +306,29 @@ searchSelect.addEventListener('change', (event) => {
       
       
     }
+    if (searchSelect.value === 'company-first-performance') {
+      advancedSearchField.style.display = "none";
+      choicesSelect.style.display = "block";
+      choices.init()
+      choices.clearChoices()
+      // change element to choices field
+      choices.setChoices(async () => {
+        try {
+          const items = await fetch('/assets/data/first-companies.json');
+          return items.json();
+
+      } catch (err) {
+        console.error(err);
+      }
+      });
+
+
+    }
+    if (searchSelect.value === 'title-page-author') { 
+    advancedSearchField.style.display = "block";
+    choices.destroy()
+    choicesSelect.style.display = "none";
+  }
   else {
   // restore element to text field
   //const choices = new Choices(advancedSearchField).disable()
@@ -405,6 +430,15 @@ function search() {
   }
   if (searchSelectvalue && searchSelectvalue === 'genre') {
       results = results.filter(item => item.genre.includes(choices.getValue().label))
+  }
+  if (searchSelectvalue && searchSelectvalue === 'title-page-author') {
+      if (advancedSearchField.value.length > 0){
+        query += ' title_page_author:' + advancedSearchField.value ;
+      } 
+  }
+  if (searchSelectvalue && searchSelectvalue === "company-first-performance") {
+      // includes filter to remove items where first company is null
+      results = results.filter(x => x.company_first_performance).filter(item => item.company_first_performance.includes(choices.getValue().label))
   }
   table.add(results);
   table.update();

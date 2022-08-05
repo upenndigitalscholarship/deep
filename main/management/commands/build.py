@@ -3,7 +3,7 @@ import srsly
 from django.core.management.base import BaseCommand, CommandError
 from django.template.loader import render_to_string
 from django.core.management import call_command
-from main.models import Item, Person
+from main.models import Item, Person, PlayType, Title
 from distutils.dir_util import copy_tree
 from pathlib import Path
 
@@ -64,6 +64,18 @@ class Command(BaseCommand):
             })
         srsly.write_json(static_dir / 'data/companies.json', companies)
 
+        ## Company First Performance
+        # very few records have a company of first performance, to limit the list to just companies that 
+        # appear a company of first performance in the data, this field needs its own set of valid choices
+        first_companies = [company[0] for company in Title.objects.values_list('company_first_performance').distinct() if company[0] is not None]
+        first_companies_json = []
+        for i, company in enumerate(first_companies):
+            first_companies_json.append({
+                'value': i,
+                'label': company.strip()
+            })
+        srsly.write_json(static_dir / 'data/first-companies.json', first_companies_json)
+        
         #copy all static files
         site_static = (out_path / 'assets')
         if not site_static.exists():
