@@ -90,7 +90,9 @@
                 <option value="playtype">Play Type</option>
                 <option value="dedication">Dedication</option>
                 <option value="genre">Genre (Annals)</option>
+                <option value="toreader">To the Reader</option>
                 <option value="genreplaybook" disabled>Genre (Title-Page Attribution)</option>
+                <option value="argument">Argument</option>
                 <option value="paratextual" disabled>Paratextual Material</option>
                 <option value="illustration" disabled>Illustration</option>
                 <option value="blackletter" disabled>Black Letter</option>
@@ -281,6 +283,17 @@ searchSelect.addEventListener('change', (event) => {
     choices.destroy()
     choicesSelect.style.display = "none";
   }
+  if (searchSelect.value === 'argument') { 
+    advancedSearchField.style.display = "block";
+    choices.destroy()
+    choicesSelect.style.display = "none";
+  }
+  if (searchSelect.value === 'toreader') { 
+    advancedSearchField.style.display = "block";
+    choices.destroy()
+    choicesSelect.style.display = "none";
+  }
+  
   if (searchSelect.value === 'dedication') { 
     advancedSearchField.style.display = "block";
     choices.destroy()
@@ -431,6 +444,18 @@ function search() {
     if (searchSelectvalue && searchSelectvalue === 'theater') {
       if (advancedSearchField.value.length > 0){
         query += ' theater:' + advancedSearchField.value ;
+      } 
+      
+    }
+    if (searchSelectvalue && searchSelectvalue === 'toreader') {
+      if (advancedSearchField.value.length > 0){
+        query += ' paratext_to_the_reader:' + advancedSearchField.value ;
+      } 
+      
+    }
+    if (searchSelectvalue && searchSelectvalue === 'argument') {
+      if (advancedSearchField.value.length > 0){
+        query += ' paratext_argument:' + advancedSearchField.value ;
       } 
       
     }
