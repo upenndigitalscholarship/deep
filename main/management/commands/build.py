@@ -82,9 +82,18 @@ class Command(BaseCommand):
         
         ## Theaters 
         theaters = set([item.theater for item in Item.objects.all()])
+        #TODO in progress, also theater type
 
-        # Play Type 
-        
+        ## Formats
+        formats = set([i.format for i in Item.objects.all() if i.format])
+        formats_json = []
+        for i, form in enumerate(formats):
+            formats_json.append({
+                'value': i,
+                'label': form.strip()
+            })
+        srsly.write_json(static_dir / 'data/formats.json', formats_json)
+
         #copy all static files
         site_static = (out_path / 'assets')
         if not site_static.exists():

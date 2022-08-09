@@ -109,9 +109,9 @@
                 <option value="printer" >&nbsp;&nbsp;&nbsp;&nbsp;Printer</option>
                 <option value="publisher" >&nbsp;&nbsp;&nbsp;&nbsp;Publisher</option>
                 <option value="bookseller" >&nbsp;&nbsp;&nbsp;&nbsp;Bookseller</option>
-                <option value="imprintlocation" disabled>Imprint Location</option>
+                <option value="imprintlocation">Imprint Location</option>
                 <option value="dateoffirsted" disabled>Date of First Edition</option>
-                <option value="format" disabled>Format</option>
+                <option value="format">Format</option>
                 <option value="ed_number" disabled>Edition number</option>
                 <option value="greg_number">Greg Number</option>
                 <option value="stc_or_wing">STC / Wing Number</option>
@@ -308,6 +308,11 @@ searchSelect.addEventListener('change', (event) => {
     choices.destroy()
     choicesSelect.style.display = "none";
   }
+  if (searchSelect.value === 'imprintlocation') { 
+    advancedSearchField.style.display = "block";
+    choices.destroy()
+    choicesSelect.style.display = "none";
+  }
   if (searchSelect.value === 'illustration') { 
     advancedSearchField.style.display = "block";
     choices.destroy()
@@ -380,6 +385,27 @@ searchSelect.addEventListener('change', (event) => {
       }
       });
     }
+    if (searchSelect.value === 'format') { 
+      // hide advancedSearchField
+      
+      advancedSearchField.style.display = "none";
+      choicesSelect.style.display = "block";
+      choices.init()
+      choices.clearChoices()
+      // change element to choices field
+      choices.setChoices(async () => {
+        try {
+          //TODO why fetch json? just use item_data directly
+          // get distinct author values from item_data
+          const items = await fetch('/assets/data/formats.json');
+          return items.json();
+          
+      } catch (err) {
+        console.error(err);
+      }
+      });
+    }
+  
     if (searchSelect.value === 'genre') { 
       // hide advancedSearchField
       advancedSearchField.style.display = "none";
@@ -511,6 +537,12 @@ function search() {
     if (searchSelectvalue && searchSelectvalue === 'title-page-modern') {
       if (advancedSearchField.value.length > 0){
         query += 'title_page_modern_spelling:' + advancedSearchField.value + '~1';
+      } 
+      
+    }
+    if (searchSelectvalue && searchSelectvalue === 'imprintlocation') {
+      if (advancedSearchField.value.length > 0){
+        query += 'title_page_imprint:' + advancedSearchField.value + '~1';
       } 
       
     }
@@ -671,6 +703,9 @@ function search() {
   }
   if (searchSelectvalue && searchSelectvalue === 'genre') {
       results = results.filter(item => item.genre.includes(choices.getValue().label))
+  }
+  if (searchSelectvalue && searchSelectvalue === 'format') {
+      results = results.filter(item => item.format.includes(choices.getValue().label))
   }
   if (searchSelectvalue && searchSelectvalue === "playtype") {
       results = results.filter(item => item.play_type.includes(choices.getValue().label))
