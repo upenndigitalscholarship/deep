@@ -80,7 +80,7 @@
                 <option value="title" selected>Title</option>
                 <option value="author">Author</option>
                 <option value="title-page-author">Author (Title-Page Attribution)</option>
-                <option value="title-page-author">Authorial Status (Title-Page Attribution)</option>
+                <option value="authorial-status" disabled>Authorial Status (Title-Page Attribution)</option>
                 <option value="title-page-modern">All Title-Page Text (modern spelling)</option>
                 <option value="title-page-old">All Title-Page Text (old spelling)</option>
                 <option value="company-first-performance">Company (First Production)</option>
@@ -415,6 +415,12 @@ searchSelect.addEventListener('change', (event) => {
     choices.destroy()
     choicesSelect.style.display = "none";
   }
+  if (searchSelect.value === 'authororial-status') { 
+    advancedSearchField.style.display = "block";
+    choices.destroy()
+    choicesSelect.style.display = "none";
+  }
+  
   if (searchSelect.value === 'author') { 
       // hide advancedSearchField
       
@@ -824,6 +830,9 @@ function search() {
   if (searchSelectvalue && searchSelectvalue === 'bookseller') {
       results = results.filter(item => item.stationer_bookseller.includes(advancedSearchField.value))
   }
+  if (searchSelectvalue && searchSelectvalue === 'authorial-status') {
+      results = results.filter(item => item.stationer_bookseller.includes(advancedSearchField.value))
+  }
   
   if (searchSelectvalue && searchSelectvalue === 'theater') {
       results = results.filter(item => item.theater_type.includes(choices.getValue().label) || item.theater.includes(choices.getValue().label))
@@ -856,7 +865,7 @@ PlaysinCollections.addEventListener('change', (event) => {
 
 const advancedSearchField = document.getElementById('advancedSearchField')
 advancedSearchField.addEventListener('keyup', (event) => {
-  console.log(advancedSearchField.value);
+  // console.log(advancedSearchField.value);
   search();
 });
 
