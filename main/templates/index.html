@@ -2,6 +2,7 @@
 {% load static %}
 {% block extra_css %}
 <link href="assets/css/choices.min.css" rel="stylesheet">
+<!-- all the JS goes here when ready <script src="assets/js/scripts.js" defer></script> -->
 {% endblock %}
 {% block content %}
 
@@ -85,9 +86,9 @@
                 <option value="company-first-performance">Company (First Production)</option>
                 <option value="company">Company (Title-Page Attribution)</option>
                 <option value="dateofcomp" disabled>Date of First Production</option>
-
                 <option value="theater">Theater (Title-Page Attribution)</option>
                 <option value="playtype">Play Type</option>
+                <option value="dedication">Dedication</option>
                 <option value="genre">Genre (Annals)</option>
                 <option value="genreplaybook" disabled>Genre (Title-Page Attribution)</option>
                 <option value="paratextual" disabled>Paratextual Material</option>
@@ -280,6 +281,11 @@ searchSelect.addEventListener('change', (event) => {
     choices.destroy()
     choicesSelect.style.display = "none";
   }
+  if (searchSelect.value === 'dedication') { 
+    advancedSearchField.style.display = "block";
+    choices.destroy()
+    choicesSelect.style.display = "none";
+  }
   if (searchSelect.value === 'author') { 
       // hide advancedSearchField
       
@@ -395,29 +401,29 @@ function search() {
     if (searchSelectvalue && searchSelectvalue === 'title') {
       if (advancedSearchField.value.length > 0){
         query += 'title:' + advancedSearchField.value ;
-        query += ' title_alternative_keywords:' + advancedSearchField.value ;
+        query += ' title_alternative_keywords:' + advancedSearchField.value + '~1' ;
       } 
       
     }
     if (searchSelectvalue && searchSelectvalue === 'title-page-modern') {
       if (advancedSearchField.value.length > 0){
-        query += 'title_page_modern_spelling:' + advancedSearchField.value ;
+        query += 'title_page_modern_spelling:' + advancedSearchField.value + '~1';
       } 
       
     }
     if (searchSelectvalue && searchSelectvalue === 'title-page-old') {
       if (advancedSearchField.value.length > 0){
-        query += 'title_page_title:' + advancedSearchField.value ;
-        query += ' title_page_author:' + advancedSearchField.value ;
-        query += ' title_page_performance:' + advancedSearchField.value ;
-        query += ' title_page_latin_motto:' + advancedSearchField.value ;
-        query += ' title_page_imprint:' + advancedSearchField.value ;
+        query += 'title_page_title:' + advancedSearchField.value + '~1' ;
+        query += ' title_page_author:' + advancedSearchField.value + '~1';
+        query += ' title_page_performance:' + advancedSearchField.value + '~1';
+        query += ' title_page_latin_motto:' + advancedSearchField.value + '~1';
+        query += ' title_page_imprint:' + advancedSearchField.value + '~1';
       } 
       
     }
     if (searchSelectvalue && searchSelectvalue === 'title-page-author') {
       if (advancedSearchField.value.length > 0){
-        query += ' title_page_author:' + advancedSearchField.value ;
+        query += ' title_page_author:' + advancedSearchField.value + '~1';
       } 
       
     }
@@ -425,6 +431,12 @@ function search() {
     if (searchSelectvalue && searchSelectvalue === 'theater') {
       if (advancedSearchField.value.length > 0){
         query += ' theater:' + advancedSearchField.value ;
+      } 
+      
+    }
+    if (searchSelectvalue && searchSelectvalue === 'dedication') {
+      if (advancedSearchField.value.length > 0){
+        query += ' paratext_dedication:' + advancedSearchField.value + '~1';
       } 
       
     }
@@ -510,6 +522,9 @@ function search() {
   }
   if (searchSelectvalue && searchSelectvalue === "company") {
       results = results.filter(item => item.company_id == choices.getValue().value)
+  }
+  if (searchSelectvalue && searchSelectvalue === 'dedication') {
+      results = results.filter(item => item.paratext_dedication.includes(advancedSearchField.value))
   }
   table.add(results);
   table.update();

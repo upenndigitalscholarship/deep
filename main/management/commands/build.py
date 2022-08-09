@@ -35,15 +35,8 @@ class Command(BaseCommand):
         #       "text":"The Jovial Crew, or The Devil Turned Ranter"
         #     },...]
         # }
-        items = {} 
-        items['results'] = []
-        for item in Item.objects.all():
-            items['results'].append({
-                'id': item.id,
-                'text': item.__str__()
-            })
-        srsly.write_json(static_dir / 'data/items.json', items)
 
+        #Authors 
         authors = [] 
         for author in Person.objects.all():
             if not '(?)' in author.__str__().strip():
@@ -87,6 +80,10 @@ class Command(BaseCommand):
                 playtypes.append({"value":i, "label":pt.name})
         srsly.write_json(static_dir / 'data/playtypes.json', playtypes)
         
+        ## Theaters 
+        theaters = set([item.theater for item in Item.objects.all()])
+
+        # Play Type 
         
         #copy all static files
         site_static = (out_path / 'assets')
