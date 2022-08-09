@@ -87,7 +87,6 @@
                 <option value="company">Company (Title-Page Attribution)</option>
                 <option value="dateofcomp" disabled>Date of First Production</option>
                 <option value="theater">Theater (Title-Page Attribution)</option>
-                <option value="theater-type" disabled>Theater Type</option>
                 
 
                 <option value="playtype">Play Type</option>
@@ -668,12 +667,7 @@ function search() {
     }
 
     // title_page_modern_spelling
-    if (searchSelectvalue && searchSelectvalue === 'theater') {
-      if (advancedSearchField.value.length > 0){
-        query += ' theater:' + advancedSearchField.value ;
-      } 
-      
-    }
+    
     if (searchSelectvalue && searchSelectvalue === 'toreader') {
       if (advancedSearchField.value.length > 0){
         query += ' paratext_to_the_reader:' + advancedSearchField.value ;
@@ -831,6 +825,11 @@ function search() {
       results = results.filter(item => item.stationer_bookseller.includes(advancedSearchField.value))
   }
   
+  if (searchSelectvalue && searchSelectvalue === 'theater') {
+      results = results.filter(item => item.theater_type.includes(choices.getValue().label) || item.theater.includes(choices.getValue().label))
+      
+  }
+  
   table.add(results);
   table.update();
 };
@@ -898,6 +897,8 @@ function expand(e, id) {
               <span class="expand">Genre (Annals):</span> ${data.genre}<br>
               <span class="expand">Date of First Publication:</span> ${data.date_first_publication}<br>
               <span class="expand">Date of First Performance:</span> ${data.date_first_performance}<br>
+              <span class="expand">Theater:</span> ${data.theater}<br>
+              <span class="expand">Theater type:</span> ${data.theater_type}<br>
               <span class="expand">Company of First Performance:</span> ${data.company_first_performance}<br>
               <span class="expand">Company Attribution:</span> ${data.company_attribution}</p>
             </div>

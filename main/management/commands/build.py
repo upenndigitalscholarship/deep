@@ -82,12 +82,23 @@ class Command(BaseCommand):
         
         ## Theaters 
         theater_json = []
-        theaters = set([item.theater for item in Item.objects.all()])
+        theater_types = list(set([item.theater_type for item in Item.objects.all()]))
+        theaters = list(set([item.theater for item in Item.objects.all()]))
+        theaters = theater_types + theaters
+        tts = []
+        for t in theaters:
+            if ";" in t:
+                for tt in t.split(";"):
+                    tts.append(tt)
+            else:
+                tts.append(t)
+        theaters = set(tts)
         #TODO in progress, also theater type
         for i, t in enumerate(theaters):
-            theater_json.append({"value":i, "label":t})
+            if t != "":
+                theater_json.append({"value":i, "label":t})
         srsly.write_json(static_dir / 'data/theater.json', theater_json)
-        
+
         ## Formats
         formats = set([i.format for i in Item.objects.all() if i.format])
         formats_json = []
