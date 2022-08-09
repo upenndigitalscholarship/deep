@@ -101,18 +101,20 @@
                 <option value="errata">Errata</option>
                 <option value="charachter-list">Character List</option>
                 <option value="other-paratexts">Other Paratexts</option>
-                <option value="paratextual" disabled>Paratextual Material</option>
+                <option value="paratextual" >All Paratextual Material</option>
                 <option value="illustration">Illustration</option>
-                <option value="blackletter" disabled>Black Letter</option>
+                <option value="blackletter">Black Letter</option>
                 <option value="latinontitle">Latin on Title Page</option>
                 <option value="stationer">Stationer</option>
                 <option value="printer" >&nbsp;&nbsp;&nbsp;&nbsp;Printer</option>
                 <option value="publisher" >&nbsp;&nbsp;&nbsp;&nbsp;Publisher</option>
                 <option value="bookseller" >&nbsp;&nbsp;&nbsp;&nbsp;Bookseller</option>
+                <option value="commendatory-verses" >Commendatory Verses</option>
                 <option value="imprintlocation">Imprint Location</option>
                 <option value="dateoffirsted" disabled>Date of First Edition</option>
                 <option value="format">Format</option>
-                <option value="ed_number" disabled>Edition number</option>
+                <option value="book_edition">Book edition number</option>
+                <option value="play_edition">Play edition number</option>
                 <option value="greg_number">Greg Number</option>
                 <option value="stc_or_wing">STC / Wing Number</option>
               </select>
@@ -266,6 +268,37 @@ choices = new Choices(choicesSelect,{
 
 const searchSelect = document.getElementById("searchSelect");
 searchSelect.addEventListener('change', (event) => {
+  // this section has two main types, could be shorted with functions
+  // one function to create search field, clear choices 
+  // one function to set choices, clear search field
+  // so TODO when cleaning up
+  const is_search_field = val => {
+    if (searchSelect.value === val) { 
+      advancedSearchField.style.display = "block";
+      choices.destroy()
+      choicesSelect.style.display = "none";
+    }  
+  }
+  const is_choice_field = val => {
+    if (searchSelect.value === val) { 
+      // hide advancedSearchField
+      
+      advancedSearchField.style.display = "none";
+      choicesSelect.style.display = "block";
+      choices.init()
+      choices.clearChoices()
+      // change element to choices field
+      choices.setChoices(async () => {
+        try {
+          const items = await fetch(`/assets/data/${val}.json`);
+          return items.json();
+          
+      } catch (err) {
+        console.error(err);
+      }
+      });
+    }
+  }
   if (searchSelect.value === 'title') { 
     advancedSearchField.style.display = "block";
     choices.destroy()
@@ -281,7 +314,11 @@ searchSelect.addEventListener('change', (event) => {
     choices.destroy()
     choicesSelect.style.display = "none";
   }
-
+  if (searchSelect.value === 'paratextual') { 
+    advancedSearchField.style.display = "block";
+    choices.destroy()
+    choicesSelect.style.display = "none";
+  }
   if (searchSelect.value === 'title-page-old') { 
     advancedSearchField.style.display = "block";
     choices.destroy()
@@ -344,6 +381,11 @@ searchSelect.addEventListener('change', (event) => {
     choices.destroy()
     choicesSelect.style.display = "none";
   }
+  if (searchSelect.value === 'commendatory-verses') { 
+    advancedSearchField.style.display = "block";
+    choices.destroy()
+    choicesSelect.style.display = "none";
+  }
   if (searchSelect.value === 'explicit') { 
     advancedSearchField.style.display = "block";
     choices.destroy()
@@ -359,7 +401,16 @@ searchSelect.addEventListener('change', (event) => {
     choices.destroy()
     choicesSelect.style.display = "none";
   }
-  
+  if (searchSelect.value === 'book_edition') { 
+    advancedSearchField.style.display = "block";
+    choices.destroy()
+    choicesSelect.style.display = "none";
+  }
+  if (searchSelect.value === 'play_edition') { 
+    advancedSearchField.style.display = "block";
+    choices.destroy()
+    choicesSelect.style.display = "none";
+  }
   if (searchSelect.value === 'actor-list') { 
     advancedSearchField.style.display = "block";
     choices.destroy()
@@ -405,7 +456,25 @@ searchSelect.addEventListener('change', (event) => {
       }
       });
     }
-  
+
+    if (searchSelect.value === 'blackletter') { 
+      // hide advancedSearchField
+      
+      advancedSearchField.style.display = "none";
+      choicesSelect.style.display = "block";
+      choices.init()
+      choices.clearChoices()
+      // change element to choices field
+      choices.setChoices(async () => {
+        try {
+          const items = await fetch('/assets/data/blackletter.json');
+          return items.json();
+          
+      } catch (err) {
+        console.error(err);
+      }
+      });
+    }
     if (searchSelect.value === 'genre') { 
       // hide advancedSearchField
       advancedSearchField.style.display = "none";
@@ -431,7 +500,7 @@ searchSelect.addEventListener('change', (event) => {
       // change element to choices field
       choices.setChoices(async () => {
         try {
-          const items = await fetch('/assets/data/playtypes.json');
+          const items = await fetch('/assets/data/playtype.json');
           return items.json();
           
       } catch (err) {
@@ -449,7 +518,7 @@ searchSelect.addEventListener('change', (event) => {
       // change element to choices field
       choices.setChoices(async () => {
         try {
-          const items = await fetch('/assets/data/theaters.json');
+          const items = await fetch('/assets/data/theater.json');
           return items.json();
           
       } catch (err) {
@@ -533,7 +602,30 @@ function search() {
       } 
       
     }
+
+    //“Dedication” AND “Commendatory Verses” AND “To the Reader” AND “Argument” AND “Character List” AND “Actor List” AND “Explicit” AND “Errata” AND “Other Paratexts”
+    if (searchSelectvalue && searchSelectvalue === 'paratextual') {
+      if (advancedSearchField.value.length > 0){
+        query += ' paratext_dedication:' + advancedSearchField.value + '~1';
+        query += ' paratext_commendatory_verses:' + advancedSearchField.value + '~1' ;
+        query += ' paratext_to_the_reader:' + advancedSearchField.value + '~1' ;
+        query += ' paratext_argument:' + advancedSearchField.value + '~1' ;
+        query += ' paratext_actor_list:' + advancedSearchField.value + '~1' ;
+        query += ' paratext_charachter_list:' + advancedSearchField.value + '~1' ;
+        query += ' title_page_explicit:' + advancedSearchField.value + '~1' ;
+        query += ' paratext_errata:' + advancedSearchField.value + '~1' ;
+        query += ' paratext_other_paratexts:' + advancedSearchField.value + '~1' ;
     
+      } 
+      
+    }
+    if (searchSelectvalue && searchSelectvalue === 'commendatory-verses') {
+      if (advancedSearchField.value.length > 0){
+        query += 'paratext_commendatory_verses:' + advancedSearchField.value + '~1';
+      } 
+      
+    }
+
     if (searchSelectvalue && searchSelectvalue === 'title-page-modern') {
       if (advancedSearchField.value.length > 0){
         query += 'title_page_modern_spelling:' + advancedSearchField.value + '~1';
@@ -695,11 +787,20 @@ function search() {
   if (searchSelectvalue && searchSelectvalue === 'greg_number') {
       results = results.filter(item => item.greg_full.includes(advancedSearchField.value))
   }
+  if (searchSelectvalue && searchSelectvalue === 'book_edition') {
+      results = results.filter(item => item.book_edition.includes(advancedSearchField.value))
+  }
+  if (searchSelectvalue && searchSelectvalue === 'play_edition') {
+      results = results.filter(item => item.play_edition.includes(advancedSearchField.value))
+  }
   if (searchSelectvalue && searchSelectvalue === 'stc_or_wing') {
       results = results.filter(item => item.stc.includes(advancedSearchField.value))
   }
   if (searchSelectvalue && searchSelectvalue === 'author') {
       results = results.filter(item => item.author_id.includes(choices.getValue(true)))
+  }
+  if (searchSelectvalue && searchSelectvalue === 'blackletter') {
+      results = results.filter(item => item.blackletter.includes(choices.getValue().label))
   }
   if (searchSelectvalue && searchSelectvalue === 'genre') {
       results = results.filter(item => item.genre.includes(choices.getValue().label))

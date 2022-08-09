@@ -3,7 +3,7 @@ import srsly
 from django.core.management.base import BaseCommand, CommandError
 from django.template.loader import render_to_string
 from django.core.management import call_command
-from main.models import Item, Person, PlayType, Title
+from main.models import Item, Person, PlayType, Title, Edition
 from distutils.dir_util import copy_tree
 from pathlib import Path
 
@@ -78,12 +78,16 @@ class Command(BaseCommand):
         for i, pt in enumerate(playquery):
             if not '(?)' in pt.name:
                 playtypes.append({"value":i, "label":pt.name})
-        srsly.write_json(static_dir / 'data/playtypes.json', playtypes)
+        srsly.write_json(static_dir / 'data/playtype.json', playtypes)
         
         ## Theaters 
+        theater_json = []
         theaters = set([item.theater for item in Item.objects.all()])
         #TODO in progress, also theater type
-
+        for i, t in enumerate(theaters):
+            theater_json.append({"value":i, "label":t})
+        srsly.write_json(static_dir / 'data/theater.json', theater_json)
+        
         ## Formats
         formats = set([i.format for i in Item.objects.all() if i.format])
         formats_json = []
@@ -93,6 +97,17 @@ class Command(BaseCommand):
                 'label': form.strip()
             })
         srsly.write_json(static_dir / 'data/formats.json', formats_json)
+
+        #Blackletter 
+        
+        blackletters = set([i.blackletter for i in Edition.objects.all() if i.blackletter])
+        bl_json = []
+        for i, bl in enumerate(blackletters):
+            bl_json.append({
+                'value': i,
+                'label': bl.strip()
+            })
+        srsly.write_json(static_dir / 'data/blackletter.json', bl_json)
 
         #copy all static files
         site_static = (out_path / 'assets')
