@@ -87,20 +87,28 @@
                 <option value="company">Company (Title-Page Attribution)</option>
                 <option value="dateofcomp" disabled>Date of First Production</option>
                 <option value="theater">Theater (Title-Page Attribution)</option>
+                <option value="theater-type" disabled>Theater Type</option>
+                
+
                 <option value="playtype">Play Type</option>
                 <option value="dedication">Dedication</option>
                 <option value="genre">Genre (Annals)</option>
                 <option value="toreader">To the Reader</option>
                 <option value="genreplaybook" disabled>Genre (Title-Page Attribution)</option>
                 <option value="argument">Argument</option>
+                <option value="actor-list">Actor List</option>
+                <option value="explicit">Explicit</option>
+                <option value="errata">Errata</option>
+                <option value="charachter-list">Character List</option>
+                <option value="other-paratexts">Other Paratexts</option>
                 <option value="paratextual" disabled>Paratextual Material</option>
-                <option value="illustration" disabled>Illustration</option>
+                <option value="illustration">Illustration</option>
                 <option value="blackletter" disabled>Black Letter</option>
-                <option value="latinontitle" disabled>Latin on Title Page</option>
-                <option value="stationer" disabled>Stationer</option>
-                <option value="printer" disabled>&nbsp;&nbsp;&nbsp;&nbsp;Printer</option>
-                <option value="publisher" disabled>&nbsp;&nbsp;&nbsp;&nbsp;Publisher</option>
-                <option value="bookseller" disabled>&nbsp;&nbsp;&nbsp;&nbsp;Bookseller</option>
+                <option value="latinontitle">Latin on Title Page</option>
+                <option value="stationer">Stationer</option>
+                <option value="printer" >&nbsp;&nbsp;&nbsp;&nbsp;Printer</option>
+                <option value="publisher" >&nbsp;&nbsp;&nbsp;&nbsp;Publisher</option>
+                <option value="bookseller" >&nbsp;&nbsp;&nbsp;&nbsp;Bookseller</option>
                 <option value="imprintlocation" disabled>Imprint Location</option>
                 <option value="dateoffirsted" disabled>Date of First Edition</option>
                 <option value="format" disabled>Format</option>
@@ -268,6 +276,12 @@ searchSelect.addEventListener('change', (event) => {
     choices.destroy()
     choicesSelect.style.display = "none";
   }
+  if (searchSelect.value === 'errata') { 
+    advancedSearchField.style.display = "block";
+    choices.destroy()
+    choicesSelect.style.display = "none";
+  }
+
   if (searchSelect.value === 'title-page-old') { 
     advancedSearchField.style.display = "block";
     choices.destroy()
@@ -278,12 +292,13 @@ searchSelect.addEventListener('change', (event) => {
     choices.destroy()
     choicesSelect.style.display = "none";
   }
-  if (searchSelect.value === 'theater') { 
+  
+  if (searchSelect.value === 'argument') { 
     advancedSearchField.style.display = "block";
     choices.destroy()
     choicesSelect.style.display = "none";
   }
-  if (searchSelect.value === 'argument') { 
+  if (searchSelect.value === 'latinontitle') { 
     advancedSearchField.style.display = "block";
     choices.destroy()
     choicesSelect.style.display = "none";
@@ -293,8 +308,54 @@ searchSelect.addEventListener('change', (event) => {
     choices.destroy()
     choicesSelect.style.display = "none";
   }
+  if (searchSelect.value === 'illustration') { 
+    advancedSearchField.style.display = "block";
+    choices.destroy()
+    choicesSelect.style.display = "none";
+  }
   
+  if (searchSelect.value === 'stationer') { 
+    advancedSearchField.style.display = "block";
+    choices.destroy()
+    choicesSelect.style.display = "none";
+  }
+  if (searchSelect.value === 'printer') { 
+    advancedSearchField.style.display = "block";
+    choices.destroy()
+    choicesSelect.style.display = "none";
+  }
+  if (searchSelect.value === 'publisher') { 
+    advancedSearchField.style.display = "block";
+    choices.destroy()
+    choicesSelect.style.display = "none";
+  }
+  if (searchSelect.value === 'bookseller') { 
+    advancedSearchField.style.display = "block";
+    choices.destroy()
+    choicesSelect.style.display = "none";
+  }
+  if (searchSelect.value === 'charachter-list') { 
+    advancedSearchField.style.display = "block";
+    choices.destroy()
+    choicesSelect.style.display = "none";
+  }
+  if (searchSelect.value === 'explicit') { 
+    advancedSearchField.style.display = "block";
+    choices.destroy()
+    choicesSelect.style.display = "none";
+  }
   if (searchSelect.value === 'dedication') { 
+    advancedSearchField.style.display = "block";
+    choices.destroy()
+    choicesSelect.style.display = "none";
+  }
+  if (searchSelect.value === 'other-paratexts') { 
+    advancedSearchField.style.display = "block";
+    choices.destroy()
+    choicesSelect.style.display = "none";
+  }
+  
+  if (searchSelect.value === 'actor-list') { 
     advancedSearchField.style.display = "block";
     choices.destroy()
     choicesSelect.style.display = "none";
@@ -345,6 +406,24 @@ searchSelect.addEventListener('change', (event) => {
       choices.setChoices(async () => {
         try {
           const items = await fetch('/assets/data/playtypes.json');
+          return items.json();
+          
+      } catch (err) {
+        console.error(err);
+      }
+      });
+
+      
+    }
+    if (searchSelect.value === 'theater') {
+      advancedSearchField.style.display = "none";
+      choicesSelect.style.display = "block";
+      choices.init()
+      choices.clearChoices()
+      // change element to choices field
+      choices.setChoices(async () => {
+        try {
+          const items = await fetch('/assets/data/theaters.json');
           return items.json();
           
       } catch (err) {
@@ -413,11 +492,22 @@ function search() {
     
     if (searchSelectvalue && searchSelectvalue === 'title') {
       if (advancedSearchField.value.length > 0){
-        query += 'title:' + advancedSearchField.value ;
+        query += ' title:' + advancedSearchField.value + '~1';
         query += ' title_alternative_keywords:' + advancedSearchField.value + '~1' ;
       } 
       
     }
+    
+    //“Printers” AND “Publishers” AND “Booksellers”
+    if (searchSelectvalue && searchSelectvalue === 'stationer') {
+      if (advancedSearchField.value.length > 0){
+        query += ' stationer_printer:' + advancedSearchField.value + '~1';
+        query += ' stationer_publisher:' + advancedSearchField.value + '~1' ;
+        query += ' stationer_bookseller:' + advancedSearchField.value + '~1' ;
+      } 
+      
+    }
+    
     if (searchSelectvalue && searchSelectvalue === 'title-page-modern') {
       if (advancedSearchField.value.length > 0){
         query += 'title_page_modern_spelling:' + advancedSearchField.value + '~1';
@@ -440,6 +530,19 @@ function search() {
       } 
       
     }
+    if (searchSelectvalue && searchSelectvalue === 'actor-list') {
+      if (advancedSearchField.value.length > 0){
+        query += ' paratext_actor_list:' + advancedSearchField.value + '~1';
+      } 
+      
+    }
+    if (searchSelectvalue && searchSelectvalue === 'explicit') {
+      if (advancedSearchField.value.length > 0){
+        query += ' title_page_explicit:' + advancedSearchField.value + '~1';
+      } 
+      
+    }
+
     // title_page_modern_spelling
     if (searchSelectvalue && searchSelectvalue === 'theater') {
       if (advancedSearchField.value.length > 0){
@@ -465,6 +568,37 @@ function search() {
       } 
       
     }
+    if (searchSelectvalue && searchSelectvalue === 'charachter-list') {
+      if (advancedSearchField.value.length > 0){
+        query += ' paratext_charachter_list:' + advancedSearchField.value + '~1';
+      } 
+      
+    }
+    if (searchSelectvalue && searchSelectvalue === 'errata') {
+      if (advancedSearchField.value.length > 0){
+        query += ' paratext_errata:' + advancedSearchField.value + '~1';
+      } 
+      
+    }
+    if (searchSelectvalue && searchSelectvalue === 'other-paratexts') {
+      if (advancedSearchField.value.length > 0){
+        query += ' paratext_other_paratexts:' + advancedSearchField.value + '~1';
+      } 
+      
+    }
+    if (searchSelectvalue && searchSelectvalue === 'illustration') {
+      if (advancedSearchField.value.length > 0){
+        query += ' title_page_illustration:' + advancedSearchField.value + '~1';
+      } 
+      
+    }
+    if (searchSelectvalue && searchSelectvalue === 'latinontitle') {
+      if (advancedSearchField.value.length > 0){
+        query += ' title_page_latin_motto:' + advancedSearchField.value + '~1';
+      } 
+      
+    }
+    
   }
   
   search_results = index.search(query)
@@ -551,6 +685,16 @@ function search() {
   if (searchSelectvalue && searchSelectvalue === 'dedication') {
       results = results.filter(item => item.paratext_dedication.includes(advancedSearchField.value))
   }
+  if (searchSelectvalue && searchSelectvalue === 'printer') {
+      results = results.filter(item => item.stationer_printer.includes(advancedSearchField.value))
+  }
+  if (searchSelectvalue && searchSelectvalue === 'publisher') {
+      results = results.filter(item => item.stationer_publisher.includes(advancedSearchField.value))
+  }
+  if (searchSelectvalue && searchSelectvalue === 'bookseller') {
+      results = results.filter(item => item.stationer_bookseller.includes(advancedSearchField.value))
+  }
+  
   table.add(results);
   table.update();
 };
