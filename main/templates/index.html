@@ -2,7 +2,9 @@
 {% load static %}
 {% block extra_css %}
 <link href="assets/css/choices.min.css" rel="stylesheet">
+<link href="assets/css/nouislider.css" rel="stylesheet">
 <!-- all the JS goes here when ready <script src="assets/js/scripts.js" defer></script> -->
+
 {% endblock %}
 {% block content %}
 
@@ -120,11 +122,8 @@
               <input id="advancedSearchField" type="text" class="form-control" aria-label="advancedSearchField" aria-describedby="advancedSearchField">
               <select id="choicesSelect" style="display: hide;" class="form-control"></select>
             </div>
+            <div id="slider"></div>
             
-            <div class="input-group mb-3">
-              <span >Year:&nbsp;&nbsp;</span> 
-              <input class="form-range" type="range">
-            </div>
             
             
           </div>
@@ -191,7 +190,20 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/list.js/2.3.1/list.min.js"></script>    
   <script src="assets/js/choices.min.js"></script>   
-  
+  <script src="assets/js/nouislider.js"></script>
+  <script>
+var slider = document.getElementById('slider');
+
+noUiSlider.create(slider, {
+    start: [20, 80],
+    connect: true,
+    range: {
+        'min': 0,
+        'max': 100
+    }
+});
+
+  </script>
  <script>
 
 // fetch data for all records
@@ -241,12 +253,14 @@ choicesSelect.addEventListener("change", (event) => {
 
 
 const advancedSearch = document.getElementById('advancedSearch');
+const search_bar = document.querySelector('#search_bar')
 
 const toggleAdvancedSearch = () => {
   if (advancedSearch.classList.contains("show")) {
     location.reload(); 
 
   } else {
+    search_bar.style.display = "none";
     choicesSelect.style.display = "none";
     advancedSearch.classList.add('show')
     advancedSearchField.style.display = "block";
