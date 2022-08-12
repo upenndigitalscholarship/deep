@@ -118,6 +118,8 @@
                 <option value="play_edition">Play edition number</option>
                 <option value="greg_number">Greg Number</option>
                 <option value="stc_or_wing">STC / Wing Number</option>
+                <option value="first-production">Date of First Production</option>
+                
               </select>
               <input id="advancedSearchField" type="text" class="form-control" aria-label="advancedSearchField" aria-describedby="advancedSearchField">
               <select id="choicesSelect" style="display: hide;" class="form-control"></select>
@@ -144,7 +146,7 @@
               background: #0e0076;
             }</style>
             <div id="spacer" style="height:10px;"></div>
-            <div id="slider"></div>
+            <div id="slider" style="display:none;margin-top:35px; margin-bottom:20px"></div>
             
             
             
@@ -244,8 +246,6 @@ noUiSlider.create(slider, {
     }
 
 });
-slider.noUiSlider.set([0, 86400]);
-// The display values can be used to control the slider
 slider.noUiSlider.set([min_year,max_year]);
 
   </script>
@@ -479,7 +479,13 @@ searchSelect.addEventListener('change', (event) => {
     choices.destroy()
     choicesSelect.style.display = "none";
   }
-  
+  if (searchSelect.value === 'first-production') { 
+    // hide choices and text input, display date slider
+    advancedSearchField.style.display = "none";
+    slider.style.display = "block";
+    choices.destroy()
+    choicesSelect.style.display = "none";
+  }
   if (searchSelect.value === 'author') { 
       // hide advancedSearchField
       
@@ -782,6 +788,7 @@ function search() {
       
     }
     
+    
   }
   
   search_results = index.search(query)
@@ -897,6 +904,16 @@ function search() {
       results = results.filter(item => item.theater_type.includes(choices.getValue().label) || item.theater.includes(choices.getValue().label))
       
   }
+  if (searchSelectvalue && searchSelectvalue === 'first-production') {
+      let current_range = slider.noUiSlider.get()
+      let start_range = current_range[0]
+      let end_range = current_range[1]
+      results = results.filter(item =>  item.composition_date >= start_range && item.composition_date <= end_range)
+      console.log(start_range, end_range)
+      //date_first_publication
+      //date_first_publication_display
+      //composition_date
+    }
   
   table.add(results);
   table.update();
@@ -924,6 +941,12 @@ PlaysinCollections.addEventListener('change', (event) => {
 
 const advancedSearchField = document.getElementById('advancedSearchField')
 advancedSearchField.addEventListener('keyup', (event) => {
+  // console.log(advancedSearchField.value);
+  search();
+});
+
+// run search when date range slider is changed
+slider.noUiSlider.on('change', (event) => {
   // console.log(advancedSearchField.value);
   search();
 });
