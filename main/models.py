@@ -53,9 +53,9 @@ class Edition(models.Model):
 
 class Item(models.Model): #Previously known as "DEEP"
     edition = models.ForeignKey(Edition, on_delete=models.CASCADE, related_name="variant_edition")
-    SINGLEPLAY = 'SP'
-    COLLECTION = 'CO'
-    PLAYINCOLLECTION = 'PIC'
+    SINGLEPLAY = 'Single-Play Playbook'
+    COLLECTION = 'Collection'
+    PLAYINCOLLECTION = 'Play in Collection'
     
     RECORD_TYPE_CHOICES = [
         (SINGLEPLAY, 'Single-Play Playbook'),
@@ -102,7 +102,17 @@ class Item(models.Model): #Previously known as "DEEP"
     theater_type = models.CharField("Theater Type", max_length=200, blank=True, null=True)
     theater = models.CharField("Theater", max_length=200, blank=True, null=True)
     variant_description = models.TextField("Variant Description", blank=True, null=True)
-    
+    collection_full = models.TextField("Collection Full", blank=True, null=True)
+    collection_middle = models.TextField("Collection Middle", blank=True, null=True)
+    collection_brief = models.TextField("Collection Brief", blank=True, null=True)
+    variant_edition_id = models.TextField("Collection Brief", blank=True, null=True)
+    variant_newish_primary_deep_id = models.TextField("Variant Newish", blank=True, null=True) 
+    author_status = models.TextField("Author Status", blank=True, null=True)
+    srstationer = models.TextField("SrStationer", blank=True, null=True)
+    publisher = models.TextField("Publisher", blank=True, null=True)
+    printer = models.TextField("Printer", blank=True, null=True)
+            
+                    
     def __str__(self):
         return f"{self.edition.title} - {self.edition.greg_middle}"
 

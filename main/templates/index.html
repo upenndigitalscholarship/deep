@@ -1046,7 +1046,7 @@ function expand(e, id) {
               <span class="expand">Play Edition:</span> ${data.play_edition}<br>
               <span class="expand">Format:</span> ${data.format}<br>
               <span class="expand">Leaves:</span> ${data.leaves}<br>
-              <span class="expand">Total Editions:</span> ${data.total_editions}<br>
+              ${typeof data.total_editions === 'undefined' ? '' : '<span class="expand">Total Editions:</span>' + data.total_editions}<br>
               </p>
             </div>
             
@@ -1080,6 +1080,7 @@ function expand(e, id) {
                 <span class="expand">Colophon:</span> ${data.title_page_colophon}<br>
                 <span class="expand">Illustration:</span> ${data.title_page_illustration}<br>
                 <span class="expand">Latin Motto:</span> ${data.title_page_latin_motto}<br>
+                ${data.variant_description === '' ? '' : '<span class="expand">Variants:</span>' + data.variant_description}<br>
               </p>
             </div>
           </div>

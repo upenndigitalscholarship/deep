@@ -267,6 +267,7 @@ class Command(BaseCommand):
         new_deep['composition_date_display'] = deep.composition_date_display
 
         new_deep['theater_type'] = get_theater_type(deep.theater_type_id)
+        new_deep['theater'] = get_theater(deep)
         #TitlePage fields
         new_deep['title_page_title'] = deep.transcript_title
         new_deep['title_page_author'] = deep.transcript_author

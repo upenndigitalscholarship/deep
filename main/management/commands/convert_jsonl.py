@@ -131,6 +131,15 @@ class Command(BaseCommand):
                         theater_type = item["theater_type"],
                         theater = item["theater"],
                         variant_description = item["variant_description"],
+                        collection_full= item['collection_full'],
+                        collection_middle = item['collection_middle'],
+                        collection_brief = item['collection_brief'],
+                        variant_edition_id= item['variant_edition_id'],
+                        variant_newish_primary_deep_id = item['variant_newish_primary_deep_id'],
+                        author_status= item['author_status'],
+                        srstationer = item['srstationer'],
+                        publisher = item['publisher'],
+                        printer = item['printer']
 
                     )
                     item.company, _ = Company.objects.get_or_create(name=item.company_attribution)
