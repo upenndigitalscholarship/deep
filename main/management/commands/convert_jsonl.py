@@ -130,6 +130,7 @@ class Command(BaseCommand):
                         stationer_additional_notes = item["stationer_additional_notes"],
                         theater_type = item["theater_type"],
                         theater = item["theater"],
+                        variant_description = item["variant_description"],
 
                     )
                     item.company, _ = Company.objects.get_or_create(name=item.company_attribution)

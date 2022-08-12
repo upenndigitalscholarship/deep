@@ -122,6 +122,28 @@
               <input id="advancedSearchField" type="text" class="form-control" aria-label="advancedSearchField" aria-describedby="advancedSearchField">
               <select id="choicesSelect" style="display: hide;" class="form-control"></select>
             </div>
+            <!-- <style>
+              #slider {
+    height: 10px;
+}
+
+#slider .noUi-connect {
+    background: #c0392b;
+}
+
+#slider .noUi-handle {
+    height: 18px;
+    width: 18px;
+    top: -5px;
+    right: -9px; /* half the width */
+    border-radius: 9px;
+}
+
+            </style> -->
+            <style>.noUi-connect {
+              background: #0e0076;
+            }</style>
+            <div id="spacer" style="height:10px;"></div>
             <div id="slider"></div>
             
             
@@ -188,20 +210,43 @@
   
   {% block extra_js %}  
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/list.js/2.3.1/list.min.js"></script>    
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/list.js/2.3.1/list.min.js"></script>  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/wnumb/1.2.0/wNumb.min.js"></script>  
   <script src="assets/js/choices.min.js"></script>   
   <script src="assets/js/nouislider.js"></script>
   <script>
-var slider = document.getElementById('slider');
+let slider = document.getElementById('slider');
+const min_year = {{ min_year|safe }}
+const max_year = {{ max_year|safe }}
+
+var format = {
+    //to takes a number, returns a formatted string
+    to: function(value) {
+      return value.toFixed(0)
+    },
+    // from takes a formatted string, returns a number.
+    from: function (value) {
+      return parseInt(value);
+    }
+};
 
 noUiSlider.create(slider, {
-    start: [20, 80],
+    start: [1522,1651],
+    range: { min: min_year, max: max_year },
     connect: true,
-    range: {
-        'min': 0,
-        'max': 100
+    behaviour: 'drag',
+    format: format,
+    tooltips: true,
+    pips: {
+        mode: 'steps',
+        density: 2,
+       
     }
+
 });
+slider.noUiSlider.set([0, 86400]);
+// The display values can be used to control the slider
+slider.noUiSlider.set([min_year,max_year]);
 
   </script>
  <script>

@@ -1,10 +1,14 @@
 from django.shortcuts import render
+from django.db.models import Max, Min
 from main.models import Item, Title, Person, Theater
 from dal import autocomplete
 
 # Create your views here.
 def index(request):
-    return render(request, 'index.html')
+    context = {}
+    context['min_year'] = Item.objects.aggregate(Min('year_int'))['year_int__min']
+    context['max_year'] = Item.objects.aggregate(Max('year_int'))['year_int__max']
+    return render(request, 'index.html', context)
 
 def browse(request):
     return render(request, 'browse.html')

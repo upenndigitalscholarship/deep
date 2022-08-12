@@ -153,6 +153,17 @@ def get_theater_type(id):
     lookup = {0:'', 1:"Indoor",2:"Outdoor",3:"Both Indoor and Outdoor",4:"None"}
     return lookup[id]
 
+def get_theater(deep):
+    theater = ""
+    tds = TheaterDeep.objects.filter(deep_id=deep.deep_id)
+    if tds:
+       for td in tds:
+        try:
+            theater += Theater.objects.get(theater_id=td.theater_id).name + ';'
+        except Exception as e:
+            print(e)
+    return theater 
+
 class Command(BaseCommand):
     help = 'Load existing DB convert to json'
 
@@ -177,6 +188,11 @@ class Command(BaseCommand):
         new_deep['total_editions'] = deep.total_editions
         new_deep['stationers_register'] = stationers_register(deep.deep_id)
         new_deep['variant_description'] = deep.variant_description
+        new_deep['collection_brief'] = deep.collection_brief
+        new_deep['collection_middle'] = deep.collection_middle
+        new_deep['collection_full'] = deep.collection_full
+        new_deep['collection_word'] = deep.collection_word
+       
         #new_deep['british_drama'] = ''
         #new_deep['genre_wiggins'] = 
 
@@ -213,6 +229,7 @@ class Command(BaseCommand):
         new_deep['title_page_illustration'] = deep.illustrationontporfrontis
         new_deep['title_page_explicit'] = deep.transcript_explicit
         new_deep['title_page_colophon'] = deep.transcript_colophon
+        
 
         new_deep['paratext_errata'] = deep.errata
         new_deep['paratext_commendatory_verses'] = deep.transcript_commendatory_verses
@@ -253,6 +270,10 @@ class Command(BaseCommand):
         new_deeps.append(new_deep)
     srsly.write_jsonl('deeps.jsonl',new_deeps)
 
+    authors = []
+    for author in Author.objects.all():
+        authors.append({ "value":author.author_id,"label":author.name})
+    srsly.write_json('authors.json',authors)
 
     def handle(self, *args, **options):
         self.stdout.write(self.style.SUCCESS('Database Converted'))
