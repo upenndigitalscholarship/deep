@@ -164,6 +164,53 @@ def get_theater(deep):
             print(e)
     return theater 
 
+def get_variant_edition_id(deep):
+
+    try:
+        variant = Variant.objects.get(deep_id=deep.deep_id)
+        return variant.edition_id
+    except Exception as e:
+        return None
+
+def get_newish_primary_deep_id(deep):
+    try:
+        variant = VariantNewish.objects.get(variant_deep_id=deep.deep_id)
+        return variant.primary_deep_id
+    except Exception as e:
+        return None
+    
+def get_author_status(deep):
+    try:
+        sd = StatusDeep.objects.get(deep_id=deep.deep_id)
+        status = Status.objects.get(status_id=sd.status_id).name
+        return status
+    except Exception as e:
+        return None
+
+def get_srstationer(deep):
+    try:
+        srs = SrstationerDeep.objects.get(deep_id=deep.deep_id)
+        stationer = Srstationer.objects.get(srstationer_id=srs.srstationer_id).name
+        return stationer
+    except Exception as e:
+        return None    
+
+def get_publisher(deep):
+    try:
+        pubDeep = PublisherDeep.objects.get(deep_id=deep.deep_id)
+        publisher = Publisher.objects.get(publisher_id=pubDeep.publisher_id).name
+        return publisher
+    except Exception as e:
+        return None    
+
+def get_printer(deep):
+    try:
+        printDeep = PrinterDeep.objects.get(deep_id=deep.deep_id)
+        printer = Printer.objects.get(printer_id=printDeep.printer_id).name
+        return printer
+    except Exception as e:
+        return None    
+
 class Command(BaseCommand):
     help = 'Load existing DB convert to json'
 
@@ -267,6 +314,15 @@ class Command(BaseCommand):
         new_deep['collection_middle'] = deep.collection_middle
         new_deep['collection_brief'] = deep.collection_brief
         
+        new_deep['variant_edition_id'] = get_variant_edition_id(deep)
+        new_deep['variant_newish_primary_deep_id'] = get_newish_primary_deep_id(deep)
+        new_deep['author_status'] = get_author_status(deep)
+
+        new_deep['srstationer'] = get_srstationer(deep)
+        new_deep['publisher'] = get_publisher(deep)
+
+        new_deep['printer'] = get_printer(deep)
+
         new_deeps.append(new_deep)
     srsly.write_jsonl('deeps.jsonl',new_deeps)
 

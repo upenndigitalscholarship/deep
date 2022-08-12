@@ -334,6 +334,7 @@ searchSelect.addEventListener('change', (event) => {
   // so TODO when cleaning up
   const is_search_field = val => {
     if (searchSelect.value === val) { 
+      slider.style.display = "none";
       advancedSearchField.style.display = "block";
       choices.destroy()
       choicesSelect.style.display = "none";
@@ -342,7 +343,7 @@ searchSelect.addEventListener('change', (event) => {
   const is_choice_field = val => {
     if (searchSelect.value === val) { 
       // hide advancedSearchField
-      
+      slider.style.display = "none";
       advancedSearchField.style.display = "none";
       choicesSelect.style.display = "block";
       choices.init()
@@ -359,125 +360,156 @@ searchSelect.addEventListener('change', (event) => {
       });
     }
   }
+  const is_slider_field = val => {
+    advancedSearchField.style.display = "none";
+    slider.style.display = "block";
+    choices.destroy()
+    choicesSelect.style.display = "none";
+  }
+
   if (searchSelect.value === 'title') { 
     advancedSearchField.style.display = "block";
+    slider.style.display = "none";
     choices.destroy()
     choicesSelect.style.display = "none";
   }
   if (searchSelect.value === 'title-page-modern') { 
     advancedSearchField.style.display = "block";
+    slider.style.display = "none";
     choices.destroy()
     choicesSelect.style.display = "none";
   }
   if (searchSelect.value === 'errata') { 
     advancedSearchField.style.display = "block";
+    slider.style.display = "none";
     choices.destroy()
     choicesSelect.style.display = "none";
   }
   if (searchSelect.value === 'paratextual') { 
     advancedSearchField.style.display = "block";
+    slider.style.display = "none";
     choices.destroy()
     choicesSelect.style.display = "none";
   }
   if (searchSelect.value === 'title-page-old') { 
     advancedSearchField.style.display = "block";
+    slider.style.display = "none";
     choices.destroy()
     choicesSelect.style.display = "none";
   }
   if (searchSelect.value === 'title-page-author') { 
     advancedSearchField.style.display = "block";
+    slider.style.display = "none";
     choices.destroy()
     choicesSelect.style.display = "none";
   }
   
   if (searchSelect.value === 'argument') { 
     advancedSearchField.style.display = "block";
+    slider.style.display = "none";
     choices.destroy()
     choicesSelect.style.display = "none";
   }
   if (searchSelect.value === 'latinontitle') { 
     advancedSearchField.style.display = "block";
+    slider.style.display = "none";
     choices.destroy()
     choicesSelect.style.display = "none";
   }
   if (searchSelect.value === 'toreader') { 
     advancedSearchField.style.display = "block";
+    slider.style.display = "none";
     choices.destroy()
     choicesSelect.style.display = "none";
   }
   if (searchSelect.value === 'imprintlocation') { 
     advancedSearchField.style.display = "block";
+    slider.style.display = "none";
     choices.destroy()
     choicesSelect.style.display = "none";
   }
   if (searchSelect.value === 'illustration') { 
     advancedSearchField.style.display = "block";
+    slider.style.display = "none";
     choices.destroy()
     choicesSelect.style.display = "none";
   }
   
   if (searchSelect.value === 'stationer') { 
     advancedSearchField.style.display = "block";
+    slider.style.display = "none";
     choices.destroy()
     choicesSelect.style.display = "none";
   }
   if (searchSelect.value === 'printer') { 
     advancedSearchField.style.display = "block";
+    slider.style.display = "none";
     choices.destroy()
     choicesSelect.style.display = "none";
   }
   if (searchSelect.value === 'publisher') { 
     advancedSearchField.style.display = "block";
+    slider.style.display = "none";
     choices.destroy()
     choicesSelect.style.display = "none";
   }
   if (searchSelect.value === 'bookseller') { 
     advancedSearchField.style.display = "block";
+    slider.style.display = "none";
     choices.destroy()
     choicesSelect.style.display = "none";
   }
   if (searchSelect.value === 'charachter-list') { 
     advancedSearchField.style.display = "block";
+    slider.style.display = "none";
     choices.destroy()
     choicesSelect.style.display = "none";
   }
   if (searchSelect.value === 'commendatory-verses') { 
     advancedSearchField.style.display = "block";
+    slider.style.display = "none";
     choices.destroy()
     choicesSelect.style.display = "none";
   }
   if (searchSelect.value === 'explicit') { 
     advancedSearchField.style.display = "block";
+    slider.style.display = "none";
     choices.destroy()
     choicesSelect.style.display = "none";
   }
   if (searchSelect.value === 'dedication') { 
     advancedSearchField.style.display = "block";
+    slider.style.display = "none";
     choices.destroy()
     choicesSelect.style.display = "none";
   }
   if (searchSelect.value === 'other-paratexts') { 
     advancedSearchField.style.display = "block";
+    slider.style.display = "none";
     choices.destroy()
     choicesSelect.style.display = "none";
   }
   if (searchSelect.value === 'book_edition') { 
     advancedSearchField.style.display = "block";
+    slider.style.display = "none";
     choices.destroy()
     choicesSelect.style.display = "none";
   }
   if (searchSelect.value === 'play_edition') { 
     advancedSearchField.style.display = "block";
+    slider.style.display = "none";
     choices.destroy()
     choicesSelect.style.display = "none";
   }
   if (searchSelect.value === 'actor-list') { 
     advancedSearchField.style.display = "block";
+    slider.style.display = "none";
     choices.destroy()
     choicesSelect.style.display = "none";
   }
   if (searchSelect.value === 'authororial-status') { 
     advancedSearchField.style.display = "block";
+    slider.style.display = "none";
     choices.destroy()
     choicesSelect.style.display = "none";
   }
@@ -507,6 +539,7 @@ searchSelect.addEventListener('change', (event) => {
       // hide advancedSearchField
       
       advancedSearchField.style.display = "none";
+      slider.style.display = "none";
       choicesSelect.style.display = "block";
       choices.init()
       choices.clearChoices()
@@ -527,6 +560,7 @@ searchSelect.addEventListener('change', (event) => {
       // hide advancedSearchField
       
       advancedSearchField.style.display = "none";
+      slider.style.display = "none";
       choicesSelect.style.display = "block";
       choices.init()
       choices.clearChoices()
@@ -547,6 +581,7 @@ searchSelect.addEventListener('change', (event) => {
     if (searchSelect.value === 'blackletter') { 
       // hide advancedSearchField
       
+      slider.style.display = "none";
       advancedSearchField.style.display = "none";
       choicesSelect.style.display = "block";
       choices.init()
@@ -565,6 +600,7 @@ searchSelect.addEventListener('change', (event) => {
     if (searchSelect.value === 'genre') { 
       // hide advancedSearchField
       advancedSearchField.style.display = "none";
+      slider.style.display = "none";
       choicesSelect.style.display = "block";
       choices.init()
       choices.clearChoices()
@@ -582,6 +618,7 @@ searchSelect.addEventListener('change', (event) => {
     if (searchSelect.value === 'playtype') {
       advancedSearchField.style.display = "none";
       choicesSelect.style.display = "block";
+      slider.style.display = "none";
       choices.init()
       choices.clearChoices()
       // change element to choices field
@@ -600,6 +637,7 @@ searchSelect.addEventListener('change', (event) => {
     if (searchSelect.value === 'theater') {
       advancedSearchField.style.display = "none";
       choicesSelect.style.display = "block";
+      slider.style.display = "none";
       choices.init()
       choices.clearChoices()
       // change element to choices field
@@ -618,6 +656,7 @@ searchSelect.addEventListener('change', (event) => {
     if (searchSelect.value === 'company-first-performance') {
       advancedSearchField.style.display = "none";
       choicesSelect.style.display = "block";
+      slider.style.display = "none";
       choices.init()
       choices.clearChoices()
       // change element to choices field
@@ -636,6 +675,7 @@ searchSelect.addEventListener('change', (event) => {
     if (searchSelect.value === 'company') {
       advancedSearchField.style.display = "none";
       choicesSelect.style.display = "block";
+      slider.style.display = "none";
       choices.init()
       choices.clearChoices()
       // change element to choices field
