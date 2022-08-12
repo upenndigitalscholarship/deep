@@ -1,6 +1,8 @@
 import time 
 import srsly 
 from django.core.management.base import BaseCommand, CommandError
+from django.db.models import Max, Min
+
 from django.template.loader import render_to_string
 from django.core.management import call_command
 from main.models import Item, Person, PlayType, Title, Edition
@@ -126,7 +128,11 @@ class Command(BaseCommand):
             site_static.mkdir(parents=True, exist_ok=True)
         copy_tree(static_dir, str(site_static))
         
-        index = render_to_string('index.html',{"build":True})
+        context = {}
+        context['min_year'] = Item.objects.aggregate(Min('year_int'))['year_int__min']
+        context['max_year'] = Item.objects.aggregate(Max('year_int'))['year_int__max']
+        context['build'] = True
+        index = render_to_string('index.html',context)
         (out_path / 'index.html').write_text(index)     
 
         about = render_to_string('about.html')
