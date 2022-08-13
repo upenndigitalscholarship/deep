@@ -21,6 +21,8 @@ def validate_item(item:dict):
     record_type = driver.find_element(By.XPATH, '/html/body/div/div[2]/table/tbody/tr[2]/td/div/div[1]/div[2]/div[1]').text.replace('RECORD TYPE: ','')
     assert item['record_type'] == record_type, 'error: '+ item['record_type'] + ':' + record_type
     #driver.close()
+    variants = driver.find_element(By.XPATH,'//div/span[contains(text(), "Variants:")]')
+    print(variants)
     return item, False
             #number = record.find_element(By.CLASS_NAME, "numcol").text
 
@@ -29,7 +31,7 @@ class Command(BaseCommand):
     
     def handle(self, *args, **options):
         item_data = srsly.read_json(Path.cwd() / 'main/assets/data/item_data.json')
-        item = item_data['23']
+        item = item_data['1170']
         updated_item, changed = validate_item(item)
         #for id, item in item_data.items():
             
