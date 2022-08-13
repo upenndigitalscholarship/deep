@@ -26,6 +26,10 @@ has a DEEP id (int) and DEEP id display (str). The display value is altered by t
 write tests to establish that the new site's data is identical to the existing project. This is especially true for the variant and collection data.  Rather that build from the database, it became necessary to work from the backup html files. 
 
 However, some data that is present in the db, is used by the application, but is not displayed to the user.  These fields are included, so that the end result provides and accurate image of all the data in the previous dataset. 
+**"theater_type":"None",
+**"theater":"",
+** "variant_description":"",
+** "author_status":null,
 
 HTML > Django > item_data.json > site
 

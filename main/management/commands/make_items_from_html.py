@@ -101,28 +101,53 @@ class Command(BaseCommand):
                 item["total_editions"]= soup.find('span', text = 'Total Editions:').parent.get_text().replace('Total Editions:','').strip()
             except Exception as e:
                 log += "[*]"+"total_editions" + html_doc.stem
+            
+            #TODO add field for anchor elements and href data from site for these fields
             try:
                 item["in_collection"] = soup.find('span', text = 'In Collection:').parent.get_text().replace('In Collection:','').strip()
+                link = soup.find('span', text = 'In Collection:').parent.find('a')
+                text = link.get_text() 
+                href = link['href'].replace("javascript:showRecord('",'').replace("')", '')
+                item["in_collection_link"] = dict(text=text, href=href)
             except Exception as e:
                 log += "[*]"+"in_collection" + html_doc.stem
             
             try:
                 item["collection_contains"] = soup.find('span', text = 'Collection contains:').parent.get_text().replace('Collection contains:','').strip()
+                item["collection_contains_links"] = []
+                links = soup.find('span', text = 'Collection contains:').parent.find_all('a')
+                for link in links:
+                    text = link.get_text() 
+                    href = link['href'].replace("javascript:showRecord('",'').replace("')", '')
+                    item["collection_contains_links"].append(dict(text=text, href=href))
             except Exception as e:
                 log += "[*]"+"collection_contains" + html_doc.stem
 
             try:
                 item["variants"] = soup.find('span', text = 'Variants:').parent.get_text().replace('Variants:','').strip()
+                link  = soup.find('span', text = 'Variants:').parent.find('a')
+                text = link.get_text()
+                href = link['href'].replace("javascript:showRecord('",'').replace("')", '')
+                item["variant_link"] = dict(text=text, href=href)
+
             except Exception as e:
                 log += "[*]"+"variants" + html_doc.stem
             
             try:
                 item["independent_playbook"] = soup.find('span', text = 'Also appears as a bibliographically independent playbook in').parent.get_text().replace('Also appears as a bibliographically independent playbook in','').strip()
+                link  = soup.find('span', text = 'Also appears as a bibliographically independent playbook in').parent.find('a')
+                text = link.get_text()
+                href = link['href'].replace("javascript:showRecord('",'').replace("')", '')
+                item["independent_playbook_link"] = dict(text=text, href=href)
             except Exception as e:
                 log += "[*]"+"independent_playbook" + html_doc.stem
             
             try:
                 item["also_in_collection"] = soup.find('span', text = 'Also appears in collection:').parent.get_text().replace('Also appears in collection:','').strip()
+                link  = soup.find('span', text = 'Also appears in collection:').parent.find('a')
+                text = link.get_text()
+                href = link['href'].replace("javascript:showRecord('",'').replace("')", '')
+                item["also_in_collection_link"] = dict(text=text, href=href)
             except Exception as e:
                 log += "[*]"+"also_in_collection" + html_doc.stem
             
