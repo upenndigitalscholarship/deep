@@ -37,10 +37,6 @@ class Command(BaseCommand):
             except Exception as e:
                 log += "[*]"+"deep_id" + html_doc.stem
             try:
-                item["deep_id_display"] = soup.find('span', text = 'DEEP #:').parent.get_text().replace('DEEP #:','').strip()
-            except Exception as e:
-                log += "[*]"+"deep_id_display" + html_doc.stem
-            try:
                 item["greg_full"] = soup.find('span', text = 'Greg #:').parent.get_text().replace('Greg #:','').strip()
             except Exception as e:
                 log += "[*]"+"greg_full" + html_doc.stem

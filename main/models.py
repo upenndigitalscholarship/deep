@@ -83,9 +83,9 @@ class Item(models.Model): #Previously known as "DEEP"
     title_page_latin_motto = models.CharField("Title Page: Latin Motto", max_length=200, blank=True, null=True)
     title_page_imprint = models.CharField("Title Page: Imprint", max_length=200, blank=True, null=True)
     title_page_illustration = models.CharField("Title Page: Illustration", max_length=200, blank=True, null=True)
-    title_page_explicit = models.CharField("Title Page: Explicit", max_length=200, blank=True, null=True)
-    title_page_colophon = models.CharField("Title Page: Colophon", max_length=200, blank=True, null=True)
+    stationer_colophon = models.CharField("Title Page: Colophon", max_length=200, blank=True, null=True)
     title_page_modern_spelling = models.CharField("Title Page: Modern Spelling", max_length=200, blank=True, null=True)
+    paratext_explicit = models.CharField("Paratext: Explicit", max_length=200, blank=True, null=True)
     paratext_errata = models.CharField("Paratext: Errata", max_length=200, blank=True, null=True)
     paratext_commendatory_verses = models.CharField("Paratext: Commendatory Verses", max_length=200, blank=True, null=True)
     paratext_to_the_reader = models.CharField("Paratext: To the Reader", max_length=200, blank=True, null=True)
@@ -94,6 +94,7 @@ class Item(models.Model): #Previously known as "DEEP"
     paratext_actor_list = models.CharField("Paratext: Actor List", max_length=200, blank=True, null=True)
     paratext_charachter_list = models.CharField("Paratext: Character List", max_length=200, blank=True, null=True)
     paratext_other_paratexts = models.CharField("Paratext: Other Paratexts", max_length=200, blank=True, null=True)
+    stationer_colophon = models.CharField("Stationer: Colophon", max_length=200, blank=True, null=True)
     stationer_printer = models.CharField("Stationer: Printer", max_length=200, blank=True, null=True)
     stationer_publisher = models.CharField("Stationer: Publisher", max_length=200, blank=True, null=True)
     stationer_bookseller = models.CharField("Stationer: Bookseller", max_length=200, blank=True, null=True)
@@ -101,7 +102,24 @@ class Item(models.Model): #Previously known as "DEEP"
     stationer_additional_notes = models.CharField("Stationer: Additional Notes", max_length=200, blank=True, null=True)
     theater_type = models.CharField("Theater Type", max_length=200, blank=True, null=True)
     theater = models.CharField("Theater", max_length=200, blank=True, null=True)
-    variant_description = models.TextField("Variant Description", blank=True, null=True)
+    
+    variants = models.TextField("Variants", blank=True, null=True)
+    variant_link_text = models.TextField("Variant Link Text", blank=True, null=True)
+    variant_link_href = models.TextField("Variant Link href", blank=True, null=True)
+
+    in_collection = models.TextField("In Collection", blank=True, null=True)
+    in_collection_link_text = models.TextField("In Collection Link text", blank=True, null=True)
+    in_collection_link_href = models.TextField("In collection link href", blank=True, null=True)
+    #TODO add collection_contains
+
+    independent_playbook = models.TextField("Independent Playbook", blank=True, null=True)
+    independent_playbook_link_text = models.TextField("Independent Playbook link text", blank=True, null=True)
+    independent_playbook_link_href = models.TextField("Independent Playbook link href", blank=True, null=True)
+    
+    also_in_collection = models.TextField("Also In Collection", blank=True, null=True)
+    also_in_collection_link_text = models.TextField("Also In Collection link text", blank=True, null=True)
+    also_in_collection_link_href = models.TextField("Also In Collection link href", blank=True, null=True)
+
     collection_full = models.TextField("Collection Full", blank=True, null=True)
     collection_middle = models.TextField("Collection Middle", blank=True, null=True)
     collection_brief = models.TextField("Collection Brief", blank=True, null=True)
