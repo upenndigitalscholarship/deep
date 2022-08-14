@@ -8,10 +8,20 @@ from django.core.management.base import BaseCommand
 # Generate search index for use by lunr.js https://lunr.readthedocs.io/en/latest/lunrjs-interop.html
 
 def item_to_dict(item:Item):
-    item = item.__dict__ 
-    if '_state' in item.keys():
-        del item['_state']    
-    edition = Edition.objects.get(id=item['edition_id'])
+    item_dict = item.__dict__ 
+    
+    item_dict['variant_link'] = []
+    for link in item.variant_links.all():
+        item_dict['variant_link'].append(dict(text=link.text,href=link.href))
+    
+    item_dict["collection_contains_links"] = []
+    for link in item.collection_contains_links.all():
+        item_dict['collection_contains_links'].append(dict(text=link.text,href=link.href))
+
+    if '_state' in item_dict.keys():
+        del item_dict['_state']    
+    
+    edition = Edition.objects.get(id=item_dict['edition_id'])
     edition_authors = list(edition.authors.all().values_list('id', flat=True))
     authors_display = ''.join(list(edition.authors.all().values_list('name', flat=True)))
     play_type = ''.join(list(edition.play_type.all().values_list('name', flat=True)))
@@ -30,8 +40,8 @@ def item_to_dict(item:Item):
         del title['_state']    
     
 
-    joined =  item | edition | title
-    joined['lunr_id'] = item['id']
+    joined =  item_dict | edition | title
+    joined['lunr_id'] = item_dict['id']
     return joined
 
 # {'id': 1,
@@ -81,7 +91,7 @@ class Command(BaseCommand):
         srsly.write_json(Path('main/assets/data/item_data.json'), item_data)
         self.stdout.write(self.style.SUCCESS('Created item data'))
 
-        idx = lunr(ref="lunr_id", fields=['id','title_id','record_type', 'author_id','collection', 'year', 'deep_id_display', 'greg_full', 'stc', 'format', 'leaves', 'company_attribution', 'company_id', 'composition_date', 'date_first_publication', 'book_edition', 'play_edition', 'play_type', 'blackletter', 'deep_id', 'title', 'title_alternative_keywords', 'greg', 'genre', 'date_first_publication_display', 'date_first_performance', 'company_first_performance', 'total_editions', 'stationers_register', 'british_drama', 'genre_wiggins', 'title_page_modern_spelling','title_page_title','title_page_author','title_page_performance','title_page_latin_motto','title_page_imprint','paratext_dedication','paratext_to_the_reader','paratext_commendatory_verses','paratext_argument','paratext_charachter_list','paratext_actor_list','paratext_errata','paratext_other_paratexts','title_page_explicit','title_page_illustration','title_page_latin_motto','stationer_printer','stationer_publisher','stationer_bookseller','title_page_imprint'], documents=items)
+        idx = lunr(ref="lunr_id", fields=['id','title_id','record_type', 'author_id','collection', 'year', 'deep_id_display', 'greg_full', 'stc', 'format', 'leaves', 'company_attribution', 'company_id', 'composition_date', 'date_first_publication', 'book_edition', 'play_edition', 'play_type', 'blackletter', 'deep_id', 'title', 'title_alternative_keywords', 'greg', 'genre', 'date_first_publication_display', 'date_first_performance', 'company_first_performance', 'total_editions', 'stationers_register', 'british_drama', 'genre_wiggins', 'title_page_modern_spelling','title_page_title','title_page_author','title_page_performance','title_page_latin_motto','title_page_imprint','paratext_dedication','paratext_to_the_reader','paratext_commendatory_verses','paratext_argument','paratext_charachter_list','paratext_actor_list','paratext_errata','paratext_other_paratexts','paratext_explicit','title_page_illustration','title_page_latin_motto','stationer_printer','stationer_publisher','stationer_bookseller','title_page_imprint'], documents=items)
         serialized_idx = idx.serialize()
         index_path = Path.cwd() / 'main' / 'assets' / 'lunr' 
         if not index_path.exists():

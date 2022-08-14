@@ -132,7 +132,7 @@ class Item(models.Model): #Previously known as "DEEP"
     collection_full = models.CharField("Collection Full",max_length=200, blank=True, null=True)
     collection_middle = models.CharField("Collection Middle",max_length=200, blank=True, null=True)
     collection_brief = models.CharField("Collection Brief", max_length=200,blank=True, null=True)
-    variant_edition_id = models.CharField("Collection Brief", max_length=200,blank=True, null=True)
+    variant_edition_id = models.CharField("Variant Edition ID", max_length=200,blank=True, null=True)
     variant_newish_primary_deep_id = models.CharField("Variant Newish", max_length=200,blank=True, null=True) 
     author_status = models.CharField("Author Status", max_length=200,blank=True, null=True)
     srstationer = models.CharField("SrStationer", max_length=200,blank=True, null=True)
