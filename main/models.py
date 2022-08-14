@@ -51,7 +51,7 @@ class Edition(models.Model):
     def __str__(self):
         return f"{self.title.title} - {self.greg_middle} - {self.book_edition}"
 
-class CollectionLink(models.Model):
+class Link(models.Model):
     text = models.CharField("Collection Item Text", max_length=200, blank=True, null=True)
     href = models.CharField("Collection Item HREF", max_length=200, blank=True, null=True)
     
@@ -112,15 +112,14 @@ class Item(models.Model): #Previously known as "DEEP"
     theater = models.CharField("Theater", max_length=200, blank=True, null=True)
     
     variants = models.CharField("Variants", max_length=200, blank=True, null=True)
-    variant_link_text = models.CharField("Variant Link Text", max_length=200, blank=True, null=True)
-    variant_link_href = models.CharField("Variant Link href", max_length=200, blank=True, null=True)
-
+    variant_links = models.ManyToManyField("Link", blank=True, related_name='variant_link')
+    
     in_collection = models.CharField("In Collection", max_length=200, blank=True, null=True)
     in_collection_link_text = models.CharField("In Collection Link text", max_length=200, blank=True, null=True)
     in_collection_link_href = models.CharField("In collection link href", max_length=200, blank=True, null=True)
 
     collection_contains = models.CharField("Collection Contains", max_length=200, blank=True, null=True)
-    collection_contains_links = models.ManyToManyField("CollectionLink",null=True,blank=True)
+    collection_contains_links = models.ManyToManyField("Link",blank=True,)
 
     independent_playbook = models.CharField("Independent Playbook", max_length=200, blank=True, null=True)
     independent_playbook_link_text = models.CharField("Independent Playbook link text", max_length=200, blank=True, null=True)

@@ -141,14 +141,17 @@ class Command(BaseCommand):
                 item["collection_contains_links"] = []
             try:
                 item["variants"] = soup.find('span', text = 'Variants:').parent.get_text().replace('Variants:','').strip()
-                link  = soup.find('span', text = 'Variants:').parent.find('a')
-                item["variant_link_text"] = link.get_text()
-                item["variant_link_href"] = link['href'].replace("javascript:showRecord('",'').replace("')", '')
+                links = soup.find('span', text = 'Variants:').parent.find_all('a')
+                item["variant_links"] = []
+                for link in links:
+                    text = link.get_text() 
+                    href = link['href'].replace("javascript:showRecord('",'').replace("')", '')
+                    item["variant_links"].append(dict(text=text, href=href))
+
             except Exception as e:
                 log += "[*]"+"variants" + html_doc.stem
                 item["variants"]  = ""
-                item["variant_link_text"] = ""
-                item["variant_link_href"] = ""
+                item["variant_links"] = []
             try:
                 item["independent_playbook"] = soup.find('span', text = 'Also appears as a bibliographically independent playbook in').parent.get_text().replace('Also appears as a bibliographically independent playbook in','').strip()
                 link  = soup.find('span', text = 'Also appears as a bibliographically independent playbook in').parent.find('a')

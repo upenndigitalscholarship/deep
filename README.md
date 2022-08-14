@@ -98,3 +98,54 @@ in_collection: http://deep.sas.upenn.edu/viewrecord.php?deep_id=5074.03
 independent_playbook: http://deep.sas.upenn.edu/viewrecord.php?deep_id=5147.01
 also in collection: http://deep.sas.upenn.edu/viewrecord.php?deep_id=1002
 
++-------------------------------+
+| Tables_in_deep                |
++-------------------------------+
+| auspice                       |
+| auspice_deep                  |
+| auth_group                    |
+| auth_group_permissions        |
+| auth_permission               |
+| auth_user                     |
+| auth_user_groups              |
+| auth_user_user_permissions    |
+| author                        |
+| author_attribution            |
+| author_attribution_deep       |
+| author_deep                   |
+| bookseller                    |
+| bookseller_deep               |
+| company                       |
+| company_deep                  |
+| dc_pdc                        |
+| deep                          |
+| django_admin_log              |
+| django_content_type           |
+| django_migrations             |
+| django_session                |
+| export                        |
+| genreharbage                  |
+| genreharbage_deep             |
+| genreplaybookattribution      |
+| genreplaybookattribution_deep |
+| imprintlocation               |
+| imprintlocation_deep          |
+| playtype                      |
+| playtype_deep                 |
+| printer                       |
+| printer_deep                  |
+| pt                            |
+| publisher                     |
+| publisher_deep                |
+| record_type                   |
+| srstationer                   |
+| srstationer_deep              |
+| status                        |
+| status_deep                   |
+| theater                       |
+| theater_deep                  |
+| theater_type                  |
+| variant                       |
+| variant_newish                |
++-------------------------------+
+46 rows in set (0.00 sec)

@@ -20,9 +20,19 @@ def get_collection_links(item:dict):
     collection_links = item.get('collection_contains_links', None)
     if collection_links:
         for collection in collection_links:
-            link, created = CollectionLink.objects.get_or_create(text=collection["text"], href=collection["href"])
+            link, created = Link.objects.get_or_create(text=collection["text"], href=collection["href"])
             links.append(link)
     return links
+
+def get_variant_links(item:dict):
+    links = []
+    variant_links = item.get('variant_links', None)
+    if variant_links:
+        for variant in variant_links:
+            link, created = Link.objects.get_or_create(text=variant["text"], href=variant["href"])
+            links.append(link)
+    return links
+
 
 def get_playtype(item:dict):
     play_type = item.get('play_type', None)
@@ -165,8 +175,7 @@ class Command(BaseCommand):
                         theater_type = db_item_data["theater_type"],
                         theater = db_item_data["theater"],
                         variants = item["variants"],
-                        variant_link_text = item["variant_link_text"],
-                        variant_link_href = item["variant_link_href"],
+                        
                         in_collection = item["in_collection"],
                         in_collection_link_text = item["in_collection_link_text"],
                         in_collection_link_href = item["in_collection_link_href"],
@@ -188,7 +197,9 @@ class Command(BaseCommand):
                         printer = db_item_data['printer']
                     )
                 
-                    
+                    variant_links = get_variant_links(item)
+                    django_item.variant_links.add(*variant_links)
+
                     collection_links = get_collection_links(item)
                     django_item.collection_contains_links.add(*collection_links)
 
