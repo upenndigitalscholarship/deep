@@ -5,8 +5,8 @@ from django.apps import apps
 from main.models import Item, Edition, Title, Person
 
 class ItemAdmin(admin.ModelAdmin):
-    search_fields = ['edition__title__title']
-    list_filter = ['edition__title__title','edition__title__genre']
+    search_fields = ['edition__title__title','deep_id']
+    list_filter = ['edition__title__title','edition__title__genre','deep_id']
 admin.site.register(Item, ItemAdmin)
 
 class EditionAdmin(admin.ModelAdmin):

@@ -104,32 +104,32 @@ class Item(models.Model): #Previously known as "DEEP"
     theater_type = models.CharField("Theater Type", max_length=200, blank=True, null=True)
     theater = models.CharField("Theater", max_length=200, blank=True, null=True)
     
-    variants = models.TextField("Variants", blank=True, null=True)
-    variant_link_text = models.TextField("Variant Link Text", blank=True, null=True)
-    variant_link_href = models.TextField("Variant Link href", blank=True, null=True)
+    variants = models.CharField("Variants", max_length=200, blank=True, null=True)
+    variant_link_text = models.CharField("Variant Link Text", max_length=200, blank=True, null=True)
+    variant_link_href = models.CharField("Variant Link href", max_length=200, blank=True, null=True)
 
-    in_collection = models.TextField("In Collection", blank=True, null=True)
-    in_collection_link_text = models.TextField("In Collection Link text", blank=True, null=True)
-    in_collection_link_href = models.TextField("In collection link href", blank=True, null=True)
+    in_collection = models.CharField("In Collection", max_length=200, blank=True, null=True)
+    in_collection_link_text = models.CharField("In Collection Link text", max_length=200, blank=True, null=True)
+    in_collection_link_href = models.CharField("In collection link href", max_length=200, blank=True, null=True)
     #TODO add collection_contains
 
-    independent_playbook = models.TextField("Independent Playbook", blank=True, null=True)
-    independent_playbook_link_text = models.TextField("Independent Playbook link text", blank=True, null=True)
-    independent_playbook_link_href = models.TextField("Independent Playbook link href", blank=True, null=True)
+    independent_playbook = models.CharField("Independent Playbook", max_length=200, blank=True, null=True)
+    independent_playbook_link_text = models.CharField("Independent Playbook link text", max_length=200, blank=True, null=True)
+    independent_playbook_link_href = models.CharField("Independent Playbook link href", max_length=200, blank=True, null=True)
     
-    also_in_collection = models.TextField("Also In Collection", blank=True, null=True)
-    also_in_collection_link_text = models.TextField("Also In Collection link text", blank=True, null=True)
-    also_in_collection_link_href = models.TextField("Also In Collection link href", blank=True, null=True)
+    also_in_collection = models.CharField("Also In Collection", max_length=200, blank=True, null=True)
+    also_in_collection_link_text = models.CharField("Also In Collection link text", max_length=200, blank=True, null=True)
+    also_in_collection_link_href = models.CharField("Also In Collection link href", max_length=200, blank=True, null=True)
 
-    collection_full = models.TextField("Collection Full", blank=True, null=True)
-    collection_middle = models.TextField("Collection Middle", blank=True, null=True)
-    collection_brief = models.TextField("Collection Brief", blank=True, null=True)
-    variant_edition_id = models.TextField("Collection Brief", blank=True, null=True)
-    variant_newish_primary_deep_id = models.TextField("Variant Newish", blank=True, null=True) 
-    author_status = models.TextField("Author Status", blank=True, null=True)
-    srstationer = models.TextField("SrStationer", blank=True, null=True)
-    publisher = models.TextField("Publisher", blank=True, null=True)
-    printer = models.TextField("Printer", blank=True, null=True)
+    collection_full = models.CharField("Collection Full",max_length=200, blank=True, null=True)
+    collection_middle = models.CharField("Collection Middle",max_length=200, blank=True, null=True)
+    collection_brief = models.CharField("Collection Brief", max_length=200,blank=True, null=True)
+    variant_edition_id = models.CharField("Collection Brief", max_length=200,blank=True, null=True)
+    variant_newish_primary_deep_id = models.CharField("Variant Newish", max_length=200,blank=True, null=True) 
+    author_status = models.CharField("Author Status", max_length=200,blank=True, null=True)
+    srstationer = models.CharField("SrStationer", max_length=200,blank=True, null=True)
+    publisher = models.CharField("Publisher", max_length=200,blank=True, null=True)
+    printer = models.CharField("Printer", max_length=200,blank=True, null=True)
             
                     
     def __str__(self):

@@ -27,7 +27,7 @@ class Command(BaseCommand):
                 log += "[*]"+"author" + html_doc.stem
             # still need to parse display to get author ids, there's also author_display?
             try:
-                item["title"] = soup.find("td", {"class": "authorname"}).getText()
+                item["title"] = soup.find("td", {"class": "playname"}).getText()
             except Exception as e:
                 log += "[*]"+"title" + html_doc.stem
         
