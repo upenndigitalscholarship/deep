@@ -37,14 +37,14 @@ Current data migration workflow:
 - generate Django models (inspectdb > models.py)
 - convert_db > deeps.jsonl
 **extract data from previous website**
-- backup_existing_site > HTML files in backup folder
-- make_items_from_html > reads HTML creates item-level jsonl file (web_item_data.jsonl)
+- backup_existing_site > crawls old site and saves HTML files in backup folder
+- make_items_from_html > reads HTML files and creates item-level jsonl file (web_item_data.jsonl)
 - convert_web_jsonl > reads both db data and web data, imports combined data into Django project
 
 Current site generation workflow:
-- search_index, generates lunr index
-- build, runs search_index and builds site data assets and directory with site files locally
-- deploy, runs previous commands and deploys the site to Netlify
+- search_index, reads current Django db, generates lunr index
+- build, runs search_index and builds site data assets and local site directory
+- deploy, runs all previous commands and deploys the site to Netlify
 
 
 

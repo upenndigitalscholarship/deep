@@ -15,6 +15,14 @@ def get_authors(item:dict):
             authors.append(person)
     return authors
 
+def get_collection_links(item:dict):
+    links = []
+    collection_links = item.get('collection_contains_links', None)
+    if collection_links:
+        for collection in collection_links:
+            link, created = CollectionLink.objects.get_or_create(text=collection["text"], href=collection["href"])
+            links.append(link)
+    return links
 
 def get_playtype(item:dict):
     play_type = item.get('play_type', None)
@@ -162,6 +170,7 @@ class Command(BaseCommand):
                         in_collection = item["in_collection"],
                         in_collection_link_text = item["in_collection_link_text"],
                         in_collection_link_href = item["in_collection_link_href"],
+                        collection_contains = item["collection_contains"],
                         independent_playbook = item["independent_playbook"],
                         independent_playbook_link_text = item["independent_playbook_link_text"],
                         independent_playbook_link_href = item["independent_playbook_link_href"],
@@ -178,7 +187,10 @@ class Command(BaseCommand):
                         publisher = db_item_data['publisher'],
                         printer = db_item_data['printer']
                     )
+                
                     
+                    collection_links = get_collection_links(item)
+                    django_item.collection_contains_links.add(*collection_links)
 
     
                     django_item.company, _ = Company.objects.get_or_create(name=django_item.company_attribution)
