@@ -116,18 +116,17 @@ class Command(BaseCommand):
                 log += "[*]"+"total_editions" + html_doc.stem
                 item["total_editions"] = ""
             
-            #TODO add field for anchor elements and href data from site for these fields
             try:
                 item["in_collection"] = soup.find('span', text = 'In Collection:').parent.get_text().replace('In Collection:','').strip()
                 link = soup.find('span', text = 'In Collection:').parent.find('a')
-                text = link.get_text() 
-                href = link['href'].replace("javascript:showRecord('",'').replace("')", '')
-                item["in_collection_link"] = dict(text=text, href=href)
+                item["in_collection_link_text"] = link.get_text() 
+                item["in_collection_link_href"] = link['href'].replace("javascript:showRecord('",'').replace("')", '')
             except Exception as e:
                 log += "[*]"+"in_collection" + html_doc.stem
                 item["in_collection"] = ""
-                item["in_collection_link"] =""
-            
+                item["in_collection_link_text"] = ""
+                item["in_collection_link_href"] = ""
+            #TODO handle list of links in Django
             try:
                 item["collection_contains"] = soup.find('span', text = 'Collection contains:').parent.get_text().replace('Collection contains:','').strip()
                 item["collection_contains_links"] = []
@@ -143,35 +142,34 @@ class Command(BaseCommand):
             try:
                 item["variants"] = soup.find('span', text = 'Variants:').parent.get_text().replace('Variants:','').strip()
                 link  = soup.find('span', text = 'Variants:').parent.find('a')
-                text = link.get_text()
-                href = link['href'].replace("javascript:showRecord('",'').replace("')", '')
-                item["variant_link"] = dict(text=text, href=href)
-
+                item["variant_link_text"] = link.get_text()
+                item["variant_link_href"] = link['href'].replace("javascript:showRecord('",'').replace("')", '')
             except Exception as e:
                 log += "[*]"+"variants" + html_doc.stem
                 item["variants"]  = ""
-                item["variant_link"] = ""
+                item["variant_link_text"] = ""
+                item["variant_link_href"] = ""
             try:
                 item["independent_playbook"] = soup.find('span', text = 'Also appears as a bibliographically independent playbook in').parent.get_text().replace('Also appears as a bibliographically independent playbook in','').strip()
                 link  = soup.find('span', text = 'Also appears as a bibliographically independent playbook in').parent.find('a')
-                text = link.get_text()
-                href = link['href'].replace("javascript:showRecord('",'').replace("')", '')
-                item["independent_playbook_link"] = dict(text=text, href=href)
+                item["independent_playbook_link_text"] = link.get_text()
+                item["independent_playbook_link_href"] = link['href'].replace("javascript:showRecord('",'').replace("')", '')
             except Exception as e:
                 log += "[*]"+"independent_playbook" + html_doc.stem
                 item["independent_playbook"] = ""
-                item["independent_playbook_link"] = ""
+                item["independent_playbook_link_text"] = ""
+                item["independent_playbook_link_href"] = ""
             
             try:
                 item["also_in_collection"] = soup.find('span', text = 'Also appears in collection:').parent.get_text().replace('Also appears in collection:','').strip()
                 link  = soup.find('span', text = 'Also appears in collection:').parent.find('a')
-                text = link.get_text()
-                href = link['href'].replace("javascript:showRecord('",'').replace("')", '')
-                item["also_in_collection_link"] = dict(text=text, href=href)
+                item["also_in_collection_link_text"] = link.get_text()
+                item["also_in_collection_link_href"] = link['href'].replace("javascript:showRecord('",'').replace("')", '')
             except Exception as e:
                 log += "[*]"+"also_in_collection" + html_doc.stem
                 item["also_in_collection"] =""
-                item["also_in_collection_link"] = ""
+                item["also_in_collection_link_text"] = ""
+                item["also_in_collection_link_href"] = ""
             
             #Title-Page Features
             try:

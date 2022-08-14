@@ -31,8 +31,20 @@ However, some data that is present in the db, is used by the application, but is
 ** "variant_description":"",
 ** "author_status":null,
 
-HTML > Django > item_data.json > site
+Current data migration workflow:
+**extract data from previous database**
+- create db from sql file
+- generate Django models (inspectdb > models.py)
+- convert_db > deeps.jsonl
+**extract data from previous website**
+- backup_existing_site > HTML files in backup folder
+- make_items_from_html > reads HTML creates item-level jsonl file (web_item_data.jsonl)
+- convert_web_jsonl > reads both db data and web data, imports combined data into Django project
 
+Current site generation workflow:
+- search_index, generates lunr index
+- build, runs search_index and builds site data assets and directory with site files locally
+- deploy, runs previous commands and deploys the site to Netlify
 
 
 
@@ -78,3 +90,11 @@ server {
 
 }
 ```
+
+
+has variants: http://deep.sas.upenn.edu/viewrecord.php?deep_id=343
+in_collection: http://deep.sas.upenn.edu/viewrecord.php?deep_id=5074.03
+#TODO collection_contains: http://deep.sas.upenn.edu/viewrecord.php?deep_id=5181
+independent_playbook: http://deep.sas.upenn.edu/viewrecord.php?deep_id=5147.01
+also in collection: http://deep.sas.upenn.edu/viewrecord.php?deep_id=1002
+
