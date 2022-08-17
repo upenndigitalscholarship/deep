@@ -94,7 +94,7 @@ server {
 
 has variants: http://deep.sas.upenn.edu/viewrecord.php?deep_id=343
 in_collection: http://deep.sas.upenn.edu/viewrecord.php?deep_id=5074.03
-#TODO collection_contains: http://deep.sas.upenn.edu/viewrecord.php?deep_id=5181
+collection_contains: http://deep.sas.upenn.edu/viewrecord.php?deep_id=5181
 independent_playbook: http://deep.sas.upenn.edu/viewrecord.php?deep_id=5147.01
 also in collection: http://deep.sas.upenn.edu/viewrecord.php?deep_id=1002
 
