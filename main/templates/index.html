@@ -1100,7 +1100,7 @@ function expand(e, id) {
             <div class="col-12">
               <strong>Paratextual Material</strong>
               <p>
-                ${!data.paratext_dedication && !data.paratext_cemmendatory_verses && !data.paratext_to_the_reader ? 'None' : ""}
+                ${!data.paratext_dedication && !data.paratext_cemmendatory_verses && !data.paratext_to_the_reader && !data.paratext_errata && !data.paratext_argument && !data.paratext_charachter_list && !data.paratext_actor_list && !data.paratext_other_paratexts ? 'None' : ""}
                 ${!data.paratext_dedication ? '' : '<span class="expand">Dedication: </span> ' + data.paratext_dedication + '<br>'}
                 ${!data.paratext_cemmendatory_verses ? '' : '<span class="expand">Commendatory Verses: </span> ' + data.paratext_cemmendatory_verses + '<br>'}
                 ${!data.paratext_to_the_reader ? '' : '<span class="expand">To the Reader: </span> ' + data.paratext_to_the_reader + '<br>'}
@@ -1121,10 +1121,11 @@ function expand(e, id) {
             <div class="col-12">
               <strong>Stationer Information</strong>
               <p>
+                ${!data.stationer_printer && !data.stationer_publisher && !data.stationer_bookseller && data.stationer_entries_in_register === "None" && !data.stationer_additional_notes ? 'None' : '' }
                 ${!data.stationer_printer ? '' : '<span class="expand">Printer: </span> ' + data.stationer_printer + '<br>'}
                 ${!data.stationer_publisher ? '' : '<span class="expand">Publisher: </span> ' + data.stationer_publisher + '<br>'}
                 ${!data.stationer_bookseller ? '' : '<span class="expand">Bookseller: </span> ' + data.stationer_bookseller + '<br>'}
-                ${!data.stationer_entries_in_register ? "" : "<span class='expand'>Entries in Stationers' Register: </span> " + data.stationer_entries_in_register + '<br>'}
+                ${data.stationer_entries_in_register === "None" ? "" : "<span class='expand'>Entries in Stationers' Register: </span> " + data.stationer_entries_in_register + '<br>'}
                 ${!data.stationer_additional_notes ? '' : '<span class="expand">Notes: </span> ' + data.stationer_additional_notes + '<br>'}
               </p>
             </div>
