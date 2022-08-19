@@ -10,6 +10,11 @@ def index(request):
     context['max_year'] = Item.objects.aggregate(Max('year_int'))['year_int__max']
     return render(request, 'index.html', context)
 
+def item_page(request, deep_id):
+    context = {}
+    context['data'] = Item.objects.get(deep_id=deep_id)
+    return render(request, 'item_page.html', context)
+
 def browse(request):
     return render(request, 'browse.html')
 

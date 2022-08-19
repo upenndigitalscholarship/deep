@@ -2,7 +2,6 @@ import time
 import srsly 
 from django.core.management.base import BaseCommand, CommandError
 from django.db.models import Max, Min
-
 from django.template.loader import render_to_string
 from django.core.management import call_command
 from main.models import Item, Person, PlayType, Title, Edition
@@ -134,6 +133,11 @@ class Command(BaseCommand):
         context['build'] = True
         index = render_to_string('index.html',context)
         (out_path / 'index.html').write_text(index)     
+
+        # Item pages
+        for item in Item.objects.all():
+            page = render_to_string('item_page.html', {"data":item})
+            (out_path / f'{item.deep_id}.html').write_text(page)     
 
         about = render_to_string('about.html')
         (out_path / 'about.html').write_text(about)     

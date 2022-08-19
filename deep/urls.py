@@ -20,6 +20,7 @@ admin.site.site_header = 'DEEP'
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.index, name='index'),
+    path('<deep_id>.html', views.item_page, name='item_page'),
     path('browse.html', views.browse, name='browse'),
     path('about.html', views.about, name='about'),
     path('title_autocomplete/', views.TitleAutocomplete.as_view(), name='title_autocomplete'),

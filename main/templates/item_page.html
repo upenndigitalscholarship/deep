@@ -1,0 +1,111 @@
+{% extends 'base.html' %}
+{% block content %}
+  
+    <td colspan="5">
+      <div class="card" style="width: 100%;">
+         {{ data }}
+        <div class="card-body">
+          <div class="row">
+            <div class="col-5">
+              <strong>Reference Information</strong>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-5">
+              <p>
+                ${!data.deep_id ? '' : '<span class="expand">DEEP #: </span><span id="deep_id">' + data.deep_id + '</span><br>'}
+                ${!data.greg_full ? '' : '<span class="expand">Greg #: </span><span id="greg_full">' + data.greg_full + '</span><br>'}
+                ${!data.stc ? '' : '<span class="expand">STC/WING: </span><span id="stc">' + data.stc + '</span><br>'}
+                ${!data.book_edition ? '' : '<span class="expand">Book Edition: </span><span id="book_edition">' + data.book_edition + '</span><br>'}
+                ${!data.play_edition ? '' : '<span class="expand">Play Edition: </span><span id="play_edition">' + data.play_edition + '</span><br>'}
+                ${!data.format ? '' : '<span class="expand">Format: </span><span id="format">' + data.format + '</span><br>'}
+                ${!data.leaves ? '' : '<span class="expand">Leaves: </span><span id="leaves">' + data.leaves + '</span><br>'}
+                ${typeof data.total_editions === 'undefined' ? '' : '<br><span class="expand">Total Editions:</span><span id="total_editions">' + data.total_editions + '</span><br>'}
+                ${data.variants === '' ? '' : '<br><span class="expand">Variants:</span><span id="variants">' + data.variants + '<br>'}
+                ${data.in_collection === '' ? '' : '<br><span class="expand">In Collection:</span><span id="in_collection">' + data.in_collection + '</span><br>'}
+                ${data.collection_contains === '' ? '' : '<br><span class="expand">Collection Contains:</span><span id="collection_contains">' + data.collection_contains + '</span><br>'}
+                ${data.independent_playbook === '' ? '' : '<br><span class="expand">Also appears as a bibliographically independent playbook in </span><span id="independent_playbook">' + data.independent_playbook + '</span><br>'}
+                ${data.also_in_collection === '' ? '' : '<br><span class="expand">Also appears in collection: </span><span id="also_in_collection">' + data.also_in_collection + '</span><br>'}
+              </p>
+            </div>
+            
+    
+            <div class="col-7">
+              <p>
+                ${!data.record_type ? '' : '<span class="expand">Record Type: </span><span id="record_type">' + data.record_type + '</span><br>'}
+                ${!data.play_type ? '' : '<span class="expand">Play Type: </span><span id="play_type">' + data.play_type + '</span><br>'}
+                ${!data.genre ? '' : '<span class="expand">Genre (Annals): </span><span id="genre">' + data.genre + '</span><br>'}
+                ${!data.date_first_publication ? '' : '<br><span class="expand">Date of First Publication: </span><span id="date_first_publication">' + data.date_first_publication + '</span><br>'}
+                ${!data.date_first_performance ? '' : '<span class="expand">Date of First Performance: </span><span id="date_first_performance">' + data.date_first_performance + '</span><br>'}
+                ${!data.theater ? '' : '<span class="expand">Theater: </span><span id="theater">' + data.theater + '</span><br>'}
+                ${data.theater_type === "None" ? '' : '<span class="expand">Theater type: </span><span id="theater_type">' + data.theater_type + '</span><br>'}
+                ${!data.company_first_performance ? '' : '<span class="expand">Company of First Performance: </span><span id="company_first_performance">' + data.company_first_performance + '</span><br>'}
+                ${!data.company_attribution ? '' : '<span class="expand">Company Attribution: </span><span id="company_attribution">' + data.company_attribution + '</span><br>'}
+              </p>
+            </div>
+
+          </div>  
+         </div>
+      </div>
+
+      <div class="card" style="width: 100%; margin-top:2px;">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-12">
+              <strong>Title-Page Features</strong>
+              <p>
+                ${!data.title_page_title ? '' : '<span class="expand">Title: </span><span id="title_page_title">' + data.title_page_title + '</span><br>'}
+                ${!data.title_page_author ? '' : '<span class="expand">Author: </span><span id="title_page_author">' + data.title_page_author + '</span><br>'}
+                ${!data.title_page_performance ? '' : '<span class="expand">Performance: </span><span id="title_page_performance">' + data.title_page_performance + '</span><br>'}
+                ${!data.title_page_imprint ? '' : '<span class="expand">Imprint: </span><span id="title_page_imprint">' + data.title_page_imprint + '</span><br>'}
+                ${!data.title_page_colophon ? '' : '<span class="expand">Colophon: </span><span id="title_page_colophon">' + data.title_page_colophon + '</span><br>'}
+                ${!data.title_page_illustration ? '' : '<span class="expand">Illustration: </span><span id="title_page_illustration">' + data.title_page_illustration + '</span><br>'}
+                ${!data.title_page_latin_motto ? '' : '<span class="expand">Latin Motto: </span><span id="title_page_latin_motto">' + data.title_page_latin_motto + '</span><br>'}
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card" style="width: 100%; margin-top:2px;">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-12">
+              <strong>Paratextual Material</strong>
+              <p>
+                ${!data.paratext_dedication && !data.paratext_cemmendatory_verses && !data.paratext_to_the_reader && !data.paratext_errata && !data.paratext_argument && !data.paratext_charachter_list && !data.paratext_actor_list && !data.paratext_other_paratexts ? 'None' : ""}
+                ${!data.paratext_dedication ? '' : '<span class="expand">Dedication: </span><span id="paratext_dedication">' + data.paratext_dedication + '</span><br>'}
+                ${!data.paratext_cemmendatory_verses ? '' : '<span class="expand">Commendatory Verses: </span><span id="paratext_cemmendatory_verses">' + data.paratext_cemmendatory_verses + '</span><br>'}
+                ${!data.paratext_to_the_reader ? '' : '<span class="expand">To the Reader: </span><span id="paratext_to_the_reader">' + data.paratext_to_the_reader + '</span><br>'}
+                ${!data.paratext_errata ? '' : '<span class="expand">Errata: </span><span id="paratext_errata">' + data.paratext_errata + '</span><br>'}
+                ${!data.paratext_argument ? '' : '<span class="expand">Argument: </span><span id="paratext_argument">' + data.paratext_argument + '</span><br>'}
+                ${!data.paratext_charachter_list ? '' : '<span class="expand">Charachter List: </span><span id="paratext_charachter_list">' + data.paratext_charachter_list + '</span><br>'}
+                ${!data.paratext_actor_list ? '' : '<span class="expand">Actor List: </span><span id="paratext_actor_list">' + data.paratext_actor_list + '</span><br>'}
+                ${!data.paratext_other_paratexts ? '' : '<span class="expand">Other: </span><span id="paratext_other_paratexts">' + data.paratext_other_paratexts + '</span><br>'}
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card" style="width: 100%; margin-top:2px;">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-12">
+              <strong>Stationer Information</strong>
+              <p>
+                ${!data.stationer_printer && !data.stationer_publisher && !data.stationer_bookseller && data.stationer_entries_in_register === "None" && !data.stationer_additional_notes ? 'None' : '' }
+                ${!data.stationer_printer ? '' : '<span class="expand">Printer: </span><span id="stationer_printer">' + data.stationer_printer + '</span><br>'}
+                ${!data.stationer_publisher ? '' : '<span class="expand">Publisher: </span><span id="stationer_publisher">' + data.stationer_publisher + '</span><br>'}
+                ${!data.stationer_bookseller ? '' : '<span class="expand">Bookseller: </span><span id="stationer_bookseller">' + data.stationer_bookseller + '</span><br>'}
+                ${data.stationer_entries_in_register === "None" ? "" : "<span class='expand'>Entries in Stationers' Register: </span><span id='stationer_entries_in_register'>" + data.stationer_entries_in_register + '</span><br>'}
+                ${!data.stationer_additional_notes ? '' : '<span class="expand">Notes: </span><span id="stationer_additional_notes">' + data.stationer_additional_notes + '</span><br>'}
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </td>
+    
+  </tr>
+{% endblock %}

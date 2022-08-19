@@ -251,6 +251,7 @@ noUiSlider.create(slider, {
 slider.noUiSlider.set([min_year,max_year]);
 
   </script>
+  
  <script>
 
 // fetch data for all records
@@ -281,6 +282,7 @@ let options = {
     };
 let table = new List('users', options, []);
 
+
 // temporary until groupBy is added to JS
 let groupBy = function(xs, key) {
   return xs.reduce(function(rv, x) {
@@ -302,12 +304,13 @@ choicesSelect.addEventListener("change", (event) => {
 const advancedSearch = document.getElementById('advancedSearch');
 const search_bar = document.querySelector('#search_bar')
 
+
 const toggleAdvancedSearch = () => {
   if (advancedSearch.classList.contains("show")) {
     location.reload(); 
 
   } else {
-    search_bar.style.display = "none";
+    // search_bar.style.display = "none";
     choicesSelect.style.display = "none";
     advancedSearch.classList.add('show')
     advancedSearchField.style.display = "block";
@@ -961,6 +964,7 @@ function search() {
       results = results.filter(item => item.theater_type.includes(choices.getValue().label) || item.theater.includes(choices.getValue().label))
       
   }
+  
   if (searchSelectvalue && searchSelectvalue === 'first-production') {
       let current_range = slider.noUiSlider.get()
       let start_range = current_range[0]
@@ -1192,5 +1196,15 @@ document.querySelectorAll('input[type=radio]').forEach(item => {
   })
 })
 
+ </script>
+ <script>
+  const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    const deep_id = urlParams.get('deep_id') // returns null if not in url
+    if (deep_id) {
+      // NOTE requires user to allow pop-up
+      window.open(`${deep_id}.html`);
+    }
+   
  </script>
   {% endblock %}
