@@ -8,11 +8,11 @@ def item_to_dict(item:Item):
     
     item_dict['variant_link'] = []
     for link in item.variant_links.all():
-        item_dict['variant_link'].append(dict(text=link.text,href=link.href))
+        item_dict['variant_link'].append(dict(text=link.edition.title.title,href=link.deep_id))
     
     item_dict["collection_contains_links"] = []
-    for link in item.collection_contains_links.all():
-        item_dict['collection_contains_links'].append(dict(text=link.text,href=link.href))
+    for link in item.collection_contains.all():
+        item_dict['collection_contains_links'].append(dict(text=link.edition.title.title,href=link.deep_id))
 
     if '_state' in item_dict.keys():
         del item_dict['_state']    

@@ -72,7 +72,16 @@ def lookup(item_data, deep_id_display):
     else:
         return result
         #return dict(printer="",publisher="",srstationer="",author_status="",authors_display="",title_alternative_keywords="",greg_brief="",greg_full="",date_first_publication="",greg_middle="",year_display="",year=0,collection_full="",composition_date_display="",transcript_modern_spelling="",theater_type="",theater="",collection_middle="",collection_brief="",variant_edition_id="",variant_newish_primary_deep_id="")
-        
+
+def remove_variant_link_text(item:dict):
+    variants = item.get("variants", None)
+    variant_links = item.get("variant_links", None)
+    if variants and variant_links:
+        index = variants.find('See also Greg')
+        variants = variants[:index+13]
+        return variants
+    else:
+        return item["variants"]      
 
 class Command(BaseCommand):
     help = 'Load jsonl file to Django models'
@@ -176,7 +185,6 @@ class Command(BaseCommand):
                         stationer_additional_notes = item["stationer_additional_notes"],
                         theater_type = db_item_data["theater_type"],
                         theater = db_item_data["theater"],
-                        variants = item["variants"],
                         collection_full= db_item_data['collection_full'],
                         collection_middle = db_item_data['collection_middle'],
                         collection_brief = db_item_data['collection_brief'],
@@ -199,17 +207,15 @@ class Command(BaseCommand):
                 continue
             else:
                 django_item = Item.objects.get(deep_id=item["deep_id"])
-            
+                django_item.variants = remove_variant_link_text(item)
                 variant_links = get_variant_links(item)
                 django_item.variant_links.add(*variant_links)
 
                 collection_links = get_collection_links(item)
-                django_item.collection_contains_links.add(*collection_links)
+                django_item.collection_contains.add(*collection_links)
                 if item["in_collection"]:
-                    django_item.in_collection = item["in_collection"]
-                    django_item.in_collection_link = Item.objects.get(deep_id=item["in_collection_link_href"])
-                if item["collection_contains"]:
-                    django_item.collection_contains = item["collection_contains"]
+                    django_item.in_collection = Item.objects.get(deep_id=item["in_collection_link_href"])
+                
                 if item["independent_playbook"]:
                     django_item.independent_playbook = item["independent_playbook"]
                     try:
@@ -220,3 +226,5 @@ class Command(BaseCommand):
                     django_item.also_in_collection = item["also_in_collection"]
                     django_item.also_in_collection_link = Item.objects.get(deep_id=item["also_in_collection_link_href"])
                 django_item.save()
+       
+

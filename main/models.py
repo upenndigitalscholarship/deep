@@ -114,11 +114,9 @@ class Item(models.Model): #Previously known as "DEEP"
     variants = models.CharField("Variants", max_length=200, blank=True, null=True)
     variant_links = models.ManyToManyField("self", blank=True)
     
-    in_collection = models.CharField("In Collection", max_length=200, blank=True, null=True)
-    in_collection_link = models.ForeignKey("self", on_delete=models.CASCADE, blank=True, null=True, related_name='in_collection_link_fk')
+    in_collection = models.ForeignKey("self", on_delete=models.CASCADE, blank=True, null=True, related_name='in_collection_link_fk')
     
-    collection_contains = models.CharField("Collection Contains", max_length=200, blank=True, null=True)
-    collection_contains_links = models.ManyToManyField("self",blank=True,)
+    collection_contains = models.ManyToManyField("self",blank=True,)
 
     independent_playbook = models.CharField("Independent Playbook", max_length=200, blank=True, null=True)
     independent_playbook_link = models.ForeignKey("self", on_delete=models.CASCADE, blank=True, null=True, related_name='independent_playbook_link_fk')
