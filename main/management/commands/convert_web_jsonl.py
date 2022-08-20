@@ -20,7 +20,7 @@ def get_collection_links(item:dict):
     collection_links = item.get('collection_contains_links', None)
     if collection_links:
         for collection in collection_links:
-            link, created = Link.objects.get_or_create(text=collection["text"], href=collection["href"])
+            link = Item.objects.get(deep_id=collection["href"])
             links.append(link)
     return links
 
@@ -29,8 +29,11 @@ def get_variant_links(item:dict):
     variant_links = item.get('variant_links', None)
     if variant_links:
         for variant in variant_links:
-            link, created = Link.objects.get_or_create(text=variant["text"], href=variant["href"])
-            links.append(link)
+            try:
+                link = Item.objects.get(deep_id=variant["href"])
+                links.append(link)
+            except Item.DoesNotExist:
+                print('[*] Item does not exist: ',variant)
     return links
 
 
@@ -73,7 +76,7 @@ def lookup(item_data, deep_id_display):
 
 class Command(BaseCommand):
     help = 'Load jsonl file to Django models'
-
+    
 
 
     def handle(self, *args, **options):
@@ -90,7 +93,6 @@ class Command(BaseCommand):
         web_data = srsly.read_jsonl('web_item_data.jsonl')
         
         self.stdout.write(self.style.SUCCESS(f'Loaded jsonl files'))
-
         # Create Title objects
         for item in tqdm(web_data):
             #There are three empty records to ignore
@@ -175,17 +177,6 @@ class Command(BaseCommand):
                         theater_type = db_item_data["theater_type"],
                         theater = db_item_data["theater"],
                         variants = item["variants"],
-                        
-                        in_collection = item["in_collection"],
-                        in_collection_link_text = item["in_collection_link_text"],
-                        in_collection_link_href = item["in_collection_link_href"],
-                        collection_contains = item["collection_contains"],
-                        independent_playbook = item["independent_playbook"],
-                        independent_playbook_link_text = item["independent_playbook_link_text"],
-                        independent_playbook_link_href = item["independent_playbook_link_href"],
-                        also_in_collection = item["also_in_collection"],
-                        also_in_collection_link_text = item["also_in_collection_link_text"],
-                        also_in_collection_link_href = item["also_in_collection_link_href"],
                         collection_full= db_item_data['collection_full'],
                         collection_middle = db_item_data['collection_middle'],
                         collection_brief = db_item_data['collection_brief'],
@@ -197,12 +188,35 @@ class Command(BaseCommand):
                         printer = db_item_data['printer']
                     )
                 
-                    variant_links = get_variant_links(item)
-                    django_item.variant_links.add(*variant_links)
-
-                    collection_links = get_collection_links(item)
-                    django_item.collection_contains_links.add(*collection_links)
-
-    
                     django_item.company, _ = Company.objects.get_or_create(name=django_item.company_attribution)
                     django_item.save()
+
+        
+        self.stdout.write(self.style.SUCCESS('adding variants and collection links'))
+        web_data = srsly.read_jsonl('web_item_data.jsonl')
+        for item in tqdm(web_data):
+            if item["deep_id"] in ["1014","47","48"]:
+                continue
+            else:
+                django_item = Item.objects.get(deep_id=item["deep_id"])
+            
+                variant_links = get_variant_links(item)
+                django_item.variant_links.add(*variant_links)
+
+                collection_links = get_collection_links(item)
+                django_item.collection_contains_links.add(*collection_links)
+                if item["in_collection"]:
+                    django_item.in_collection = item["in_collection"]
+                    django_item.in_collection_link = Item.objects.get(deep_id=item["in_collection_link_href"])
+                if item["collection_contains"]:
+                    django_item.collection_contains = item["collection_contains"]
+                if item["independent_playbook"]:
+                    django_item.independent_playbook = item["independent_playbook"]
+                    try:
+                        django_item.independent_playbook_link = Item.objects.get(deep_id=item["independent_playbook_link_href"])
+                    except Item.DoesNotExist:
+                        print('broken link, ask how to handle', item["independent_playbook_link_href"])
+                if item["also_in_collection"]:
+                    django_item.also_in_collection = item["also_in_collection"]
+                    django_item.also_in_collection_link = Item.objects.get(deep_id=item["also_in_collection_link_href"])
+                django_item.save()

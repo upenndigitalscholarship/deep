@@ -149,3 +149,15 @@ also in collection: http://deep.sas.upenn.edu/viewrecord.php?deep_id=1002
 | variant_newish                |
 +-------------------------------+
 46 rows in set (0.00 sec)
+
+
+## Notes
+Broken links in old site
+"Also appears as a bibliographically independent playbook in 1654" http://deep.sas.upenn.edu/viewrecord.php?deep_id=5158.02
+
+Also appears as a bibliographically independent playbook in 1654 http://deep.sas.upenn.edu/viewrecord.php?deep_id=5158.01
+
+Also appears as a bibliographically independent playbook in 1613 http://deep.sas.upenn.edu/viewrecord.php?deep_id=5072.02
+
+Also appears as a bibliographically independent playbook in 1591
+http://deep.sas.upenn.edu/viewrecord.php?deep_id=5021.02
