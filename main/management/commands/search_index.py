@@ -27,8 +27,10 @@ def item_to_dict(item:Item):
                 item_dict['collection_contains'] += f'<a href="{link.deep_id}.html">{link.edition.title.title}</a>; '
     if item.independent_playbook_link:
         item_dict["independent_playbook_link_id"] = item.independent_playbook_link.deep_id
-    #also_in_collection
-
+    
+    if item.also_in_collection:
+        item_dict["also_in_collection_link"] = f'<a href="{item.also_in_collection_link.deep_id}.html">{item.also_in_collection}</a>'
+    
     if '_state' in item_dict.keys():
         del item_dict['_state']    
     

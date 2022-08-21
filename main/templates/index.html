@@ -1056,7 +1056,7 @@ function expand(e, id) {
                 ${data.in_collection === '' ? '' : '<br><span class="expand">In Collection:</span><span id="in_collection"> ' + data.in_collection + '</span><br>'}
                 ${data.collection_contains === '' ? '' : '<br><span class="expand">Collection Contains:</span><span id="collection_contains"> ' + data.collection_contains + '</span><br>'}
                 ${!data.independent_playbook ? '' : '<br><span class="expand">Also appears as a bibliographically independent playbook in </span><span id="independent_playbook"><a href="' + data.independent_playbook_link_id + '.html">' + data.independent_playbook + '</a></span><br>'}
-                ${data.also_in_collection === '' ? '' : '<br><span class="expand">Also appears in collection: </span><span id="also_in_collection">' + data.also_in_collection + '</span><br>'}
+                ${!data.also_in_collection ? '' : '<br><span class="expand">Also appears in collection: </span><span id="also_in_collection">' + data.also_in_collection_link + '</span><br>'}
               </p>
             </div>
             
