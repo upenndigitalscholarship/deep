@@ -17,6 +17,14 @@ def item_to_dict(item:Item):
         item_dict["in_collection"] = f'<a href="{item.in_collection.deep_id}.html">{item.in_collection.edition.title.title}</a>'
     else: 
         item_dict["in_collection"] = ""
+    
+    item_dict['collection_contains'] = ''
+    if item.collection_contains and item.record_type == "Collection": #m2m
+        for i, link in enumerate(item.collection_contains.all()):
+            if i == len(item.collection_contains.all())-1:
+                item_dict['collection_contains'] += f'<a href="{link.deep_id}.html">{link.edition.title.title}</a> '
+            else:
+                item_dict['collection_contains'] += f'<a href="{link.deep_id}.html">{link.edition.title.title}</a>; '
 
     if '_state' in item_dict.keys():
         del item_dict['_state']    

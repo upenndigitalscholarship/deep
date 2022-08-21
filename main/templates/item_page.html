@@ -9,7 +9,7 @@
     <div class="card" style="width: 100%; ">
         <div class="card-body">
             <div class="row">
-                <div class="col-5"><h4>{{data.title}}</h4></div> <div class="col-1">{{ data.year}}</div> <div class="col-5">{{data.authors_display}}</div>
+                <div class="col-5"><h4>{{data.title}}</h4></div><div class="col-5"><h4>{{data.authors_display}}</h4></div><div class="col-1"><h4>{{ data.year}}</h4></div>
             </div>
             </div></div>
     <div class="card" style="width: 100%; ">
@@ -55,7 +55,7 @@
                 <br><span class="expand">In Collection:</span><span id="in_collection"> {{ data.in_collection|safe }}</span><br>
                 {% endif %}
                 {% if data.collection_contains %}
-                <br><span class="expand">Collection Contains:</span><span id="collection_contains">{{ data.collection_contains }}</span><br>
+                <br><span class="expand">Collection Contains:</span><span id="collection_contains"> {{ data.collection_contains|safe }}</span><br>
                 {% endif %}
                 {% if data.independent_playbook %}
                 <br><span class="expand">Also appears as a bibliographically independent playbook in </span><span id="independent_playbook">{{ data.independent_playbook }}</span><br>
