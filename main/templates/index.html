@@ -1046,14 +1046,14 @@ function expand(e, id) {
               <p>
                 ${!data.deep_id ? '' : '<span class="expand">DEEP #: </span><span id="deep_id">' + data.deep_id + '</span><br>'}
                 ${!data.greg_full ? '' : '<span class="expand">Greg #: </span><span id="greg_full">' + data.greg_full + '</span><br>'}
-                ${!data.stc ? '' : '<span class="expand">STC/WING: </span><span id="stc">' + data.stc + '</span><br>'}
-                ${!data.book_edition ? '' : '<span class="expand">Book Edition: </span><span id="book_edition">' + data.book_edition + '</span><br>'}
-                ${!data.play_edition ? '' : '<span class="expand">Play Edition: </span><span id="play_edition">' + data.play_edition + '</span><br>'}
-                ${!data.format ? '' : '<span class="expand">Format: </span><span id="format">' + data.format + '</span><br>'}
-                ${!data.leaves ? '' : '<span class="expand">Leaves: </span><span id="leaves">' + data.leaves + '</span><br>'}
-                ${typeof data.total_editions === 'undefined' ? '' : '<br><span class="expand">Total Editions:</span><span id="total_editions">' + data.total_editions + '</span><br>'}
-                ${data.variants === '' ? '' : '<br><span class="expand">Variants:</span><span id="variants">' + data.variants + ' ' + data.variant_link + '<br>'}
-                ${data.in_collection === '' ? '' : '<br><span class="expand">In Collection:</span><span id="in_collection">' + data.in_collection + '</span><br>'}
+                ${!data.stc ? '' : '<span class="expand">STC/WING: </span><span id="stc"> ' + data.stc + '</span><br>'}
+                ${!data.book_edition ? '' : '<span class="expand">Book Edition: </span><span id="book_edition"> ' + data.book_edition + '</span><br>'}
+                ${!data.play_edition ? '' : '<span class="expand">Play Edition: </span><span id="play_edition"> ' + data.play_edition + '</span><br>'}
+                ${!data.format ? '' : '<span class="expand">Format: </span><span id="format"> ' + data.format + '</span><br>'}
+                ${!data.leaves ? '' : '<span class="expand">Leaves: </span><span id="leaves"> ' + data.leaves + '</span><br>'}
+                ${typeof data.total_editions === 'undefined' ? '' : '<br><span class="expand">Total Editions:</span><span id="total_editions"> ' + data.total_editions + '</span><br>'}
+                ${data.variants === '' ? '' : '<br><span class="expand">Variants:</span><span id="variants"> ' + data.variants + ' ' + data.variant_link + '<br>'}
+                ${data.in_collection === '' ? '' : '<br><span class="expand">In Collection:</span><span id="in_collection"> ' + data.in_collection + '</span><br>'}
                 ${data.collection_contains === '' ? '' : '<br><span class="expand">Collection Contains:</span><span id="collection_contains">' + data.collection_contains + '</span><br>'}
                 ${data.independent_playbook === '' ? '' : '<br><span class="expand">Also appears as a bibliographically independent playbook in </span><span id="independent_playbook">' + data.independent_playbook + '</span><br>'}
                 ${data.also_in_collection === '' ? '' : '<br><span class="expand">Also appears in collection: </span><span id="also_in_collection">' + data.also_in_collection + '</span><br>'}

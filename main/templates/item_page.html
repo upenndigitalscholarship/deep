@@ -52,7 +52,7 @@
                 <br><span class="expand">Variants:</span><span id="variants">{{ data.variants }} {{ data.variant_link|safe }}<br>
                 {% endif %}
                 {% if data.in_collection %}    
-                <br><span class="expand">In Collection:</span><span id="in_collection">{{ data.in_collection }}</span><br>
+                <br><span class="expand">In Collection:</span><span id="in_collection"> {{ data.in_collection|safe }}</span><br>
                 {% endif %}
                 {% if data.collection_contains %}
                 <br><span class="expand">Collection Contains:</span><span id="collection_contains">{{ data.collection_contains }}</span><br>

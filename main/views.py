@@ -2,43 +2,7 @@ from django.shortcuts import render
 from django.db.models import Max, Min
 from main.models import Item, Title, Person, Theater, Edition
 from dal import autocomplete
-
-def item_to_dict(item:Item):
-    item_dict = item.__dict__ 
-    
-    item_dict['variant_link'] = ''
-    for link in item.variant_links.all():
-        item_dict['variant_link'] += f'<a href="{link.deep_id}.html">{link.greg_full}</a> '
-    
-    item_dict["collection_contains_links"] = []
-    for link in item.collection_contains.all():
-        item_dict['collection_contains_links'].append(dict(text=link.edition.title.title,href=link.deep_id))
-
-    if '_state' in item_dict.keys():
-        del item_dict['_state']    
-    
-    edition = Edition.objects.get(id=item_dict['edition_id'])
-    edition_authors = list(edition.authors.all().values_list('id', flat=True))
-    authors_display = ''.join(list(edition.authors.all().values_list('name', flat=True)))
-    play_type = ''.join(list(edition.play_type.all().values_list('name', flat=True)))
-    edition = edition.__dict__
-    edition['author_id'] = edition_authors
-    edition['author'] = authors_display
-    edition['play_type'] = play_type
-    del edition['id']
-    if '_state' in edition.keys():
-        del edition['_state']    
-
-    title = Title.objects.get(id=edition['title_id'])
-    title = title.__dict__
-    title['title_id'] = edition['title_id']
-    if '_state' in title.keys():
-        del title['_state']    
-    
-
-    joined =  item_dict | edition | title
-    joined['lunr_id'] = item_dict['id']
-    return joined
+from main.management.commands.search_index import item_to_dict
 
 
 # Create your views here.
