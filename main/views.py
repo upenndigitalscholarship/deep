@@ -6,9 +6,9 @@ from dal import autocomplete
 def item_to_dict(item:Item):
     item_dict = item.__dict__ 
     
-    item_dict['variant_link'] = []
+    item_dict['variant_link'] = ''
     for link in item.variant_links.all():
-        item_dict['variant_link'].append(dict(text=link.edition.title.title,href=link.deep_id))
+        item_dict['variant_link'] += f'<a href="{link.deep_id}.html">{link.greg_full}</a> '
     
     item_dict["collection_contains_links"] = []
     for link in item.collection_contains.all():
