@@ -7,6 +7,7 @@ from django.core.management import call_command
 from main.models import Item, Person, PlayType, Title, Edition
 from distutils.dir_util import copy_tree
 from pathlib import Path
+from main.management.commands.search_index import item_to_dict
 
 class Command(BaseCommand):
     help = 'Builds a static version of the site'
@@ -136,7 +137,7 @@ class Command(BaseCommand):
 
         # Item pages
         for item in Item.objects.all():
-            page = render_to_string('item_page.html', {"data":item})
+            page = render_to_string('item_page.html', {"data":item_to_dict(item)})
             (out_path / f'{item.deep_id}.html').write_text(page)     
 
         about = render_to_string('about.html')
