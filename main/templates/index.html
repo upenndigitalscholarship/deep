@@ -48,41 +48,13 @@
             
             <div class="input-group-md">
               <select id="searchSelect" class="input-group form-select form-select-sm">
-                <!-- fields=['id',
-                  'title_id',
-                  'record_type', 
-                  'author_id',
-                  'collection', 
-                  'year', 
-                  'deep_id_display', 
-                  'greg_full', 
-                  #'stc', 
-                  'format', 
-                  'leaves', 
-                  'company_attribution', 
-                  'company_id', 
-                  'composition_date', 
-                  'date_first_publication', 
-                  'book_edition', 
-                  'play_edition', 
-                  'play_type', 
-                  'blackletter', 
-                  'deep_id', 
-                  #'title', 
-                  #'greg', 
-                  'genre', 
-                  'date_first_publication_display', 
-                  'date_first_performance', 
-                  'company_first_performance', 
-                  'total_editions', 
-                  'stationers_register', 
-                  'british_drama', 
-                  'genre_wiggins']) -->
+                
                 <option value="">Please select...</option>
+                <option value="deep-id">DEEP ID</option>
                 <option value="title" selected>Title</option>
                 <option value="author">Author</option>
                 <option value="title-page-author">Author (Title-Page Attribution)</option>
-                <option value="authorial-status" disabled>Authorial Status (Title-Page Attribution)</option>
+                <option value="authorial-status">Authorial Status (Title-Page Attribution)</option>
                 <option value="title-page-modern">All Title-Page Text (modern spelling)</option>
                 <option value="title-page-old">All Title-Page Text (old spelling)</option>
                 <option value="company-first-performance">Company (First Production)</option>
@@ -270,7 +242,7 @@ fetch("../assets/lunr/search.json").then(
         function(json){
           index = lunr.Index.load(json);
         });
-        
+     
 //listen for search_bar
 let options = {
       valueNames: ['deep_id','title', 'authors_display', 'year', 'greg_full' ],
@@ -369,7 +341,13 @@ searchSelect.addEventListener('change', (event) => {
     choices.destroy()
     choicesSelect.style.display = "none";
   }
-
+  
+  if (searchSelect.value === 'deep-id') { 
+    advancedSearchField.style.display = "block";
+    slider.style.display = "none";
+    choices.destroy()
+    choicesSelect.style.display = "none";
+  }
   if (searchSelect.value === 'title') { 
     advancedSearchField.style.display = "block";
     slider.style.display = "none";
@@ -552,6 +530,27 @@ searchSelect.addEventListener('change', (event) => {
           //TODO why fetch json? just use item_data directly
           // get distinct author values from item_data
           const items = await fetch('/assets/data/authors.json');
+          return items.json();
+          
+      } catch (err) {
+        console.error(err);
+      }
+      });
+    }
+    if (searchSelect.value === 'authorial-status') { 
+      // hide advancedSearchField
+      
+      advancedSearchField.style.display = "none";
+      slider.style.display = "none";
+      choicesSelect.style.display = "block";
+      choices.init()
+      choices.clearChoices()
+      // change element to choices field
+      choices.setChoices(async () => {
+        try {
+          //TODO why fetch json? just use item_data directly
+          // get distinct author values from item_data
+          const items = await fetch('/assets/data/author_status.json');
           return items.json();
           
       } catch (err) {
@@ -910,6 +909,10 @@ function search() {
     }
   }
   // advanced search filters 
+  
+  if (searchSelectvalue && searchSelectvalue === 'deep-id') {
+      results = results.filter(item => item.deep_id.includes(advancedSearchField.value))
+  }
   if (searchSelectvalue && searchSelectvalue === 'greg_number') {
       results = results.filter(item => item.greg_full.includes(advancedSearchField.value))
   }
@@ -924,6 +927,9 @@ function search() {
   }
   if (searchSelectvalue && searchSelectvalue === 'author') {
       results = results.filter(item => item.author_id.includes(choices.getValue(true)))
+  }
+  if (searchSelectvalue && searchSelectvalue === 'authorial-status') {
+      results = results.filter(x => x.author_status).filter(item => item.author_status.includes(choices.getValue().label))
   }
   if (searchSelectvalue && searchSelectvalue === 'blackletter') {
       results = results.filter(item => item.blackletter.includes(choices.getValue().label))

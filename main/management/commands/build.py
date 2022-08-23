@@ -61,6 +61,19 @@ class Command(BaseCommand):
             })
         srsly.write_json(static_dir / 'data/companies.json', companies)
 
+        # Author status 
+        db_author_status = [] 
+        for item in Item.objects.all():
+            if item and item.author_status and item.author_status not in db_author_status:
+                db_author_status.append(item.author_status)
+        author_statuses = []
+        for i, auth_stat in enumerate(db_author_status):
+            author_statuses.append({
+                'value': i,
+                'label': auth_stat.strip()
+            })
+        srsly.write_json(static_dir / 'data/author_status.json', author_statuses)
+
         ## Company First Performance
         # very few records have a company of first performance, to limit the list to just companies that 
         # appear a company of first performance in the data, this field needs its own set of valid choices
