@@ -7,6 +7,7 @@ from django.core.management import call_command
 from main.models import Item, Person, PlayType, Title, Edition
 from distutils.dir_util import copy_tree
 from pathlib import Path
+from tqdm import tqdm
 from main.management.commands.search_index import item_to_dict
 
 class Command(BaseCommand):
@@ -95,6 +96,14 @@ class Command(BaseCommand):
                 playtypes.append({"value":i, "label":pt.name})
         srsly.write_json(static_dir / 'data/playtype.json', playtypes)
         
+        ## Genre 
+        genres = []
+        genre_query = set([t.genre for t in Title.objects.all()])
+        
+        for i, g in enumerate(genre_query):
+            genres.append({"value":i, "label":g})
+        srsly.write_json(static_dir / 'data/genre.json', genres)
+
         ## Theaters 
         theater_json = []
         theater_types = list(set([item.theater_type for item in Item.objects.all()]))
@@ -149,7 +158,8 @@ class Command(BaseCommand):
         (out_path / 'index.html').write_text(index)     
 
         # Item pages
-        for item in Item.objects.all():
+        self.stdout.write(self.style.SUCCESS('Creating item pages'))
+        for item in tqdm(Item.objects.all()):
             page = render_to_string('item_page.html', {"data":item_to_dict(item)})
             (out_path / f'{item.deep_id}.html').write_text(page)     
 
