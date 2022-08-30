@@ -20,7 +20,7 @@ def get_collection_links(item:dict):
     collection_links = item.get('collection_contains_links', None)
     if collection_links:
         for collection in collection_links:
-            link = Item.objects.get(deep_id=collection["href"])
+            link = Link.objects.get(deep_id=collection["href"])
             links.append(link)
     return links
 
@@ -30,7 +30,7 @@ def get_variant_links(item:dict):
     if variant_links:
         for variant in variant_links:
             try:
-                link = Item.objects.get(deep_id=variant["href"])
+                link = Link.objects.get(deep_id=variant["href"])
                 links.append(link)
             except Item.DoesNotExist:
                 print('[*] Item does not exist: ',variant)
@@ -214,17 +214,17 @@ class Command(BaseCommand):
                 collection_links = get_collection_links(item)
                 django_item.collection_contains.add(*collection_links)
                 if item["in_collection"]:
-                    django_item.in_collection = Item.objects.get(deep_id=item["in_collection_link_href"])
+                    django_item.in_collection = Link.objects.get(deep_id=item["in_collection_link_href"])
                 
                 if item["independent_playbook"]:
                     django_item.independent_playbook = item["independent_playbook"]
                     try:
-                        django_item.independent_playbook_link = Item.objects.get(deep_id=item["independent_playbook_link_href"])
-                    except Item.DoesNotExist:
+                        django_item.independent_playbook_link = Link.objects.get(deep_id=item["independent_playbook_link_href"])
+                    except Link.DoesNotExist:
                         print('broken link, ask how to handle', item["independent_playbook_link_href"])
                 if item["also_in_collection"]:
                     django_item.also_in_collection = item["also_in_collection"]
-                    django_item.also_in_collection_link = Item.objects.get(deep_id=item["also_in_collection_link_href"])
+                    django_item.also_in_collection_link = Link.objects.get(deep_id=item["also_in_collection_link_href"])
                 django_item.save()
        
 

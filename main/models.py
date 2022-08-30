@@ -52,11 +52,12 @@ class Edition(models.Model):
         return f"{self.title.title} - {self.greg_middle} - {self.book_edition}"
 
 class Link(models.Model):
-    text = models.CharField("Collection Item Text", max_length=200, blank=True, null=True)
-    href = models.CharField("Collection Item HREF", max_length=200, blank=True, null=True)
-    
+    deep_id = models.CharField("DEEP #", max_length=200, blank=True, null=True)
+    title = models.CharField("Title",max_length=200, blank=True, null=True)
+    greg_full = models.CharField("Greg Ful",max_length=200, blank=True, null=True)
+
     def __str__(self):
-        return f"{self.text} - {self.href}"
+        return f"{self.deep_id} - {self.title}"
 
 class Item(models.Model): #Previously known as "DEEP"
     edition = models.ForeignKey(Edition, on_delete=models.CASCADE, related_name="variant_edition")
@@ -112,17 +113,17 @@ class Item(models.Model): #Previously known as "DEEP"
     theater = models.CharField("Theater", max_length=200, blank=True, null=True)
     
     variants = models.CharField("Variants", max_length=200, blank=True, null=True)
-    variant_links = models.ManyToManyField("self", blank=True)
+    variant_links = models.ManyToManyField(Link, blank=True)
     
-    in_collection = models.ForeignKey("self", on_delete=models.CASCADE, blank=True, null=True, related_name='in_collection_link_fk')
+    in_collection = models.ForeignKey(Link, on_delete=models.CASCADE, blank=True, null=True, related_name='in_collection_link_fk')
     
-    collection_contains = models.ManyToManyField("self",blank=True,)
+    collection_contains = models.ManyToManyField(Link,blank=True, related_name="collection_contains")
 
     independent_playbook = models.CharField("Independent Playbook", max_length=200, blank=True, null=True)
-    independent_playbook_link = models.ForeignKey("self", on_delete=models.CASCADE, blank=True, null=True, related_name='independent_playbook_link_fk')
+    independent_playbook_link = models.ForeignKey(Link, on_delete=models.CASCADE, blank=True, null=True, related_name='independent_playbook_link_fk')
     
     also_in_collection = models.CharField("Also In Collection", max_length=200, blank=True, null=True)
-    also_in_collection_link = models.ForeignKey("self", on_delete=models.CASCADE, blank=True, null=True, related_name='also_in_collection_link_fk')
+    also_in_collection_link = models.ForeignKey(Link, on_delete=models.CASCADE, blank=True, null=True, related_name='also_in_collection_link_fk')
     
     collection_full = models.CharField("Collection Full",max_length=200, blank=True, null=True)
     collection_middle = models.CharField("Collection Middle",max_length=200, blank=True, null=True)
@@ -137,6 +138,14 @@ class Item(models.Model): #Previously known as "DEEP"
                     
     def __str__(self):
         return f"{self.edition.title} - {self.greg_full}"
+
+    def save(self, *args, **kwargs):
+        link, created = Link.objects.update_or_create(
+            deep_id= self.deep_id,
+            title = self.edition.title.title,
+            greg_full = self.greg_full
+        )
+        super().save(*args, **kwargs)
 
 
 class Person(models.Model):
