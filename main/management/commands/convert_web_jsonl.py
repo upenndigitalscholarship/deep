@@ -155,7 +155,7 @@ class Command(BaseCommand):
                         record_type=django_is_worst(item['record_type']),
                         collection = db_item_data['collection_full'],
                         deep_id = item['deep_id'],
-                        greg_full = db_item_data['greg_full'],
+                        greg_full = item['greg_full'], #The app transforms these, need to use web data
                         stc = item['stc'],
                         format = item['format'],
                         leaves = item['leaves'],
