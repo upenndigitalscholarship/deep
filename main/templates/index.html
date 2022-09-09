@@ -1167,23 +1167,23 @@ function collapse(e, id) {
   }
 
 function expandAll(e) { 
+  e.textContent = 'Collapse All';
+  e.setAttribute( "onClick", "collapseAll(this)" );
   let items = document.querySelectorAll('tr');
   items.forEach(function(item) {
     expand(item, item.id);
   });
-  e.textContent = 'Collapse All';
-  e.setAttribute( "onClick", "collapseAll(this)" );
 }
 
 function collapseAll(e){
+  e.textContent = 'Expand All';
+  e.setAttribute( "onClick", "expandAll(this)" );
   let items = document.querySelectorAll('tr');
   items.forEach(function(item) {
     if (!item.id.includes("-exp")) {
       collapse(item, item.id);
     }
   });
-  e.textContent = 'Expand All';
-  e.setAttribute( "onClick", "expandAll(this)" );
 
 };
 
