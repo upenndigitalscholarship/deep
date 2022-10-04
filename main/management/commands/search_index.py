@@ -104,11 +104,4 @@ class Command(BaseCommand):
         srsly.write_json(Path('main/assets/data/item_data.json'), item_data)
         self.stdout.write(self.style.SUCCESS('Created item data'))
 
-        idx = lunr(ref="lunr_id", fields=['id','title_id','record_type', 'author_id','collection', 'year', 'deep_id_display', 'greg_full', 'stc', 'format', 'leaves', 'company_attribution', 'company_id', 'composition_date', 'date_first_publication', 'book_edition', 'play_edition', 'play_type', 'blackletter', 'deep_id', 'title', 'title_alternative_keywords', 'greg', 'genre', 'date_first_publication_display', 'date_first_performance', 'company_first_performance', 'total_editions', 'stationers_register', 'british_drama', 'genre_wiggins', 'title_page_modern_spelling','title_page_title','title_page_author','title_page_performance','title_page_latin_motto','title_page_imprint','paratext_dedication','paratext_to_the_reader','paratext_commendatory_verses','paratext_argument','paratext_charachter_list','paratext_actor_list','paratext_errata','paratext_other_paratexts','paratext_explicit','title_page_illustration','title_page_latin_motto','stationer_printer','stationer_publisher','stationer_bookseller','title_page_imprint'], documents=items)
-        serialized_idx = idx.serialize()
-        index_path = Path.cwd() / 'main' / 'assets' / 'lunr' 
-        if not index_path.exists():
-            index_path.mkdir(parents=True, exist_ok=True)
-        srsly.write_json(index_path / 'search.json', serialized_idx)
-
         self.stdout.write(self.style.SUCCESS('Search index created'))

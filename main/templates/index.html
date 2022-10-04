@@ -19,19 +19,9 @@
           <div class="icon"><i class="bi bi-search" style="color: #330e40;" no-repeat center center fixed;"></i></div>
           
   
-          <input id="search_bar" style="margin-left:10px; width:100%" type="text" name="search" placeholder="Search for a playbook...">
-          <button id="loadingIndex" class="btn btn-link" type="button" disabled>
-            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-            Loading...
-          </button>
-          <p>
-            <a class="btn btn-light float-end" onclick="toggleAdvancedSearch();">
-              advanced search
-            </a>
-            
-          </p>
           
-          <div class="collapse" style="margin-left:12px" id="advancedSearch">
+          
+          <div class="collapse show" style="margin-left:12px" id="advancedSearch">
             
             <div class="input-group mb-3"> 
               <span >Record Type:&nbsp;&nbsp;</span> 
@@ -48,9 +38,40 @@
                 <input class="form-check-input" type="checkbox" id="PlaysinCollections" value="PlaysinCollections" checked>
                 <label class="form-check-label" for="PlaysinCollections">Plays in Collection</label>
               </div>
+              <span >Add filter:&nbsp;&nbsp;</span>
+              <div class="btn-group mb-2" role="group" aria-label="Basic radio toggle button group">
+                <!-- Add new filter box 
+                The top box has option to add AND OR
+                Each child has a disabled button with the operator selected, and a remove button
+                 -->
+                
+                <input type="radio" onclick="addFilterBlock('and')" class="btn-check" name="addAND" id="addAND" autocomplete="off" >
+                <label class="btn btn-sm btn-outline-primary btn-outline-dark" for="addAND">and</label>
+              
+                <input type="radio" onclick="addFilterBlock('or')" class="btn-check" name="addOR" id="addOR" autocomplete="off">
+                <label class="btn btn-sm btn-outline-primary btn-outline-dark" for="addOR">or</label>
+   
+                
+              </div>
             </div>
             
-            <div class="input-group-md">
+            
+            <!-- filterBlock -->
+            <div id="filterBlocks">
+            <div id="filterBlock" class="input-group-md">
+              <div id="andORButtons" class="btn-group" style="visibility:collapse;" role="group" aria-label="Basic radio toggle button group">
+                <!-- Add new filter box 
+                The top box has option to add AND OR
+                Each child has a disabled button with the operator selected, and a remove button
+                 -->
+                <input type="radio" class="btn-check" name="addAND" id="addAND" autocomplete="off" disabled >
+                <label class="btn btn-sm  " for="addAND">and</label>
+              
+                <input type="radio" class="btn-check btn-outline-dark" name="removeBlock" id="removeBlock" autocomplete="off">
+                <label class="btn btn-sm  " for="removeBlock"><i id="removeFilterBlock" class="bi bi-dash-circle" ></i></label>
+                
+                
+              </div>
               <select id="searchSelect" class="input-group form-select form-select-sm">
                 
                 <option value="">Please select...</option>
@@ -101,33 +122,18 @@
               </select>
               <input id="advancedSearchField" type="text" class="form-control" aria-label="advancedSearchField" aria-describedby="advancedSearchField">
               <select id="choicesSelect" style="display: hide;" class="form-control"></select>
+              
+                
+          
+            
+              <style>.noUi-connect {
+                background: #0e0076;
+              }</style>
+              <div id="spacer" style="height:10px;"></div>
+              <div id="slider" style="display:none;margin-top:35px; margin-bottom:20px"></div>
             </div>
-            <!-- <style>
-              #slider {
-    height: 10px;
-}
-
-#slider .noUi-connect {
-    background: #c0392b;
-}
-
-#slider .noUi-handle {
-    height: 18px;
-    width: 18px;
-    top: -5px;
-    right: -9px; /* half the width */
-    border-radius: 9px;
-}
-
-            </style> -->
-            <style>.noUi-connect {
-              background: #0e0076;
-            }</style>
-            <div id="spacer" style="height:10px;"></div>
-            <div id="slider" style="display:none;margin-top:35px; margin-bottom:20px"></div>
-            
-            
-            
+            <!-- filterBlock -->
+          </div>
           </div>
         </div>
       </div>
@@ -195,6 +201,9 @@
   <script src="assets/js/choices.min.js"></script>   
   <script src="assets/js/nouislider.js"></script>
   <script>
+
+
+
 let slider = document.getElementById('slider');
 const min_year = {{ min_year|safe }}
 const max_year = {{ max_year|safe }}
@@ -238,16 +247,7 @@ fetch("../assets/data/item_data.json").then(
         function(json){
           item_data = json;
         });
-        
-let index;
-fetch("../assets/lunr/search.json").then(
-        function(u){ return u.json();}
-      ).then(
-        function(json){
-          index = lunr.Index.load(json);
-          document.getElementById('loadingIndex').remove()
-        });
-     
+             
 //listen for search_bar
 let options = {
       valueNames: ['deep_id','title', 'authors_display', 'year', 'greg_full' ],
@@ -279,22 +279,11 @@ choicesSelect.addEventListener("change", (event) => {
 
 
 const advancedSearch = document.getElementById('advancedSearch');
-const search_bar = document.querySelector('#search_bar')
-
-
-const toggleAdvancedSearch = () => {
-  if (advancedSearch.classList.contains("show")) {
-    location.reload(); 
-
-  } else {
-    // search_bar.style.display = "none";
-    choicesSelect.style.display = "none";
-    advancedSearch.classList.add('show')
-    advancedSearchField.style.display = "block";
-    choices.destroy()
-    choicesSelect.style.display = "none";
-  }
-}
+choicesSelect.style.display = "none";
+advancedSearch.classList.add('show')
+advancedSearchField.style.display = "block";
+choices.destroy()
+choicesSelect.style.display = "none";
 
 // set global choices, then update on changes to searchSelect
 choices = new Choices(choicesSelect,{
@@ -305,6 +294,45 @@ choices = new Choices(choicesSelect,{
         position: 'bottom',
         placeholder: 'Select an option',
       })
+
+function removeFilterBlock(id) {
+  let myParent = document.getElementById(id);
+
+  if (id === 'filterBlock') {
+    
+  }
+  else {
+    myParent.remove()
+  }
+  
+}
+function addFilterBlock(type) {
+  // clone the main filter block
+  const filterBlockTemplate = document.getElementById('filterBlock').cloneNode(true)
+  //  Add a new child to the filter blocks div
+  document.getElementById('filterBlocks').append(filterBlockTemplate);
+  
+  // Add a unique id to the new block and update as AND OR filter
+  let newBlock = document.getElementById('filterBlocks').lastElementChild
+  newBlock.id = 'filterBlock-'+document.getElementById('filterBlocks').childElementCount
+  let typeName = newBlock.children[0].children[1];
+  if (type === 'and') {
+    newBlock.dataset.type = "AND"
+    typeName.innerHTML = 'and'
+  }
+  if (type === 'or') {
+    newBlock.dataset.type = "OR"
+    typeName.innerHTML = 'or'
+  }
+  typeName.style.visibility = 'visible';
+
+  let removeButton = newBlock.children[0].children[3];
+  removeButton.style.visibility = 'visible';
+  removeButton.addEventListener('click', function handleClick(event) {
+    removeFilterBlock('filterBlock-'+document.getElementById('filterBlocks').childElementCount);
+});
+}
+
 
 const searchSelect = document.getElementById("searchSelect");
 searchSelect.addEventListener('change', (event) => {
@@ -709,11 +737,7 @@ searchSelect.addEventListener('change', (event) => {
 
 function search() {
   table.clear();
-  let query = document.querySelector('#search_bar').value;
-  if (query){
-    query += '~1' //fuzzy search,  1 edit distance
-  }
-
+  
   // handle advanced search
   // first, is advanced search on?
   let searchSelectvalue = document.getElementById('searchSelect').value
@@ -855,15 +879,12 @@ function search() {
     
   }
   
-  search_results = index.search(query)
   results = []
   // logic for title-edition-record filtering 
   let filter = radioHelper();
   if (filter == 'title') {
-    search_results.forEach(function(result) {
-      results.push(item_data[result.ref])
-    });
-    let groups = groupBy(results, 'greg');
+  
+    let groups = groupBy(item_data, 'greg');
     
     results = []
     for (i in groups) {
@@ -877,10 +898,7 @@ function search() {
     }
   } else if (filter == 'edition') {
     // load data for each result 
-    search_results.forEach(function(result) {
-      results.push(item_data[result.ref])
-    });
-    let groups = groupBy(results, 'greg_middle');
+    let groups = groupBy(item_data, 'greg_middle');
     
     results = []
     for (i in groups) {
@@ -897,9 +915,7 @@ function search() {
     };
     
   } else if (filter == 'record') {
-    search_results.forEach(function(result) {
-      results.push(item_data[result.ref])
-    });
+    results = item_data;
   }
   // filter by record type
   if (advancedSearch.classList.contains('show')) {

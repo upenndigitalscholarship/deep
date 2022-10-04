@@ -23,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['deep.pennds.org']
+ALLOWED_HOSTS = ['deep.pennds.org','localhost']
 
 
 # Application definition
