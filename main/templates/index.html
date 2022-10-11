@@ -269,21 +269,12 @@ let groupBy = function(xs, key) {
   }, {});
 };
 
-
-
-
+// initial searchBlock
 const choicesSelect = document.getElementById("choicesSelect");
 choicesSelect.addEventListener("change", (event) => {
   search();
 });
 
-
-const advancedSearch = document.getElementById('advancedSearch');
-choicesSelect.style.display = "none";
-advancedSearch.classList.add('show')
-advancedSearchField.style.display = "block";
-choices.destroy()
-choicesSelect.style.display = "none";
 
 // set global choices, then update on changes to searchSelect
 choices = new Choices(choicesSelect,{
@@ -294,6 +285,217 @@ choices = new Choices(choicesSelect,{
         position: 'bottom',
         placeholder: 'Select an option',
       })
+choices.destroy()
+choicesSelect.style.display = "none";
+
+const update_searchSelect = searchSelect => {
+    let filter = searchSelect.value 
+    let searchField = searchSelect.parentElement.children[2]
+    let choicesSelect = searchSelect.parentElement.children[3]
+    this_choices = new Choices(choicesSelect,{
+        addItems: false,
+        shouldSort: false,
+        shouldSortItems: false,
+        allowHTML: true,
+        position: 'bottom',
+        placeholder: 'Select an option',
+      })
+    this_choices.destroy()
+    choicesSelect.style.display = "none";
+    let slider = searchSelect.parentElement.children[6]
+    searchSelect.dataset.name = filter
+    // is search field
+    let search_fields = ['deep-id','title','title-page-modern','errata','paratextual','title-page-old','title-page-author',
+  'argument','latinontitle','toreader','imprintlocation','illustration','stationer','printer','publisher','bookseller',
+  'charachter-list','commendatory-verses','explicit','dedication','other-paratexts','book_edition',
+  'play_edition','actor-list','authororial-status','first-production','first-edition','year-published']
+    if (search_fields.indexOf(filter) > -1) {
+      console.log('yay Im a searchfield', filter);
+      searchField.style.display = "block";
+      slider.style.display = "none";
+      this_choices.destroy()
+      choicesSelect.style.display = "none";
+    }
+    if (filter === 'author') { 
+      // hide advancedSearchField
+      
+      searchField.style.display = "none";
+      slider.style.display = "none";
+      choicesSelect.style.display = "block";
+      this_choices.init()
+      this_choices.clearChoices()
+      // change element to choices field
+      this_choices.setChoices(async () => {
+        try {
+          //TODO why fetch json? just use item_data directly
+          // get distinct author values from item_data
+          const items = await fetch('/assets/data/authors.json');
+          return items.json();
+          
+      } catch (err) {
+        console.error(err);
+      }
+      });
+    }
+    if (searchSelect.value === 'authorial-status') { 
+      // hide advancedSearchField
+      
+      searchField.style.display = "none";
+      slider.style.display = "none";
+      choicesSelect.style.display = "block";
+      this_choices.init()
+      this_choices.clearChoices()
+      // change element to choices field
+      this_choices.setChoices(async () => {
+        try {
+          //TODO why fetch json? just use item_data directly
+          // get distinct author values from item_data
+          const items = await fetch('/assets/data/author_status.json');
+          return items.json();
+          
+      } catch (err) {
+        console.error(err);
+      }
+      });
+    }
+    if (searchSelect.value === 'format') { 
+      // hide advancedSearchField
+      
+      searchField.style.display = "none";
+      slider.style.display = "none";
+      choicesSelect.style.display = "block";
+      this_choices.init()
+      this_choices.clearChoices()
+      // change element to choices field
+      this_choices.setChoices(async () => {
+        try {
+          //TODO why fetch json? just use item_data directly
+          // get distinct author values from item_data
+          const items = await fetch('/assets/data/formats.json');
+          return items.json();
+          
+      } catch (err) {
+        console.error(err);
+      }
+      });
+    }
+
+    if (searchSelect.value === 'blackletter') { 
+      // hide advancedSearchField
+      
+      searchField.style.display = "none";
+      slider.style.display = "none";
+      choicesSelect.style.display = "block";
+      this_choices.init()
+      this_choices.clearChoices()
+      // change element to choices field
+      this_choices.setChoices(async () => {
+        try {
+          const items = await fetch('/assets/data/blackletter.json');
+          return items.json();
+          
+      } catch (err) {
+        console.error(err);
+      }
+      });
+    }
+    if (searchSelect.value === 'genre') { 
+      // hide advancedSearchField
+      searchField.style.display = "none";
+      slider.style.display = "none";
+      choicesSelect.style.display = "block";
+      this_choices.init()
+      this_choices.clearChoices()
+      // change element to choices field
+      this_choices.setChoices(async () => {
+        try {
+          const items = await fetch('/assets/data/genre.json');
+          return items.json();
+          
+      } catch (err) {
+        console.error(err);
+      }
+      });
+    }
+    if (searchSelect.value === 'playtype') {
+      searchField.style.display = "none";
+      slider.style.display = "none";
+      choicesSelect.style.display = "block";
+      this_choices.init()
+      this_choices.clearChoices()
+      // change element to choices field
+      this_choices.setChoices(async () => {
+        try {
+          const items = await fetch('/assets/data/playtype.json');
+          return items.json();
+          
+      } catch (err) {
+        console.error(err);
+      }
+      });
+
+      
+    }
+    if (searchSelect.value === 'theater') {
+      searchField.style.display = "none";
+      slider.style.display = "none";
+      choicesSelect.style.display = "block";
+      this_choices.init()
+      this_choices.clearChoices()
+      // change element to choices field
+      this_choices.setChoices(async () => {
+        try {
+          const items = await fetch('/assets/data/theater.json');
+          return items.json();
+          
+      } catch (err) {
+        console.error(err);
+      }
+      });
+
+      
+    }
+    if (searchSelect.value === 'company-first-performance') {
+      searchField.style.display = "none";
+      slider.style.display = "none";
+      choicesSelect.style.display = "block";
+      this_choices.init()
+      this_choices.clearChoices()
+      // change element to choices field
+      this_choices.setChoices(async () => {
+        try {
+          const items = await fetch('/assets/data/first-companies.json');
+          return items.json();
+          
+      } catch (err) {
+        console.error(err);
+      }
+      });
+
+      
+    }
+    if (searchSelect.value === 'company') {
+      searchField.style.display = "none";
+      slider.style.display = "none";
+      choicesSelect.style.display = "block";
+      this_choices.init()
+      this_choices.clearChoices()
+      // change element to choices field
+      this_choices.setChoices(async () => {
+        try {
+          const items = await fetch('/assets/data/companies.json');
+          return items.json();
+          
+      } catch (err) {
+        console.error(err);
+      }
+      });
+
+      
+    }
+  }
+
+
 
 function removeFilterBlock(id) {
   let myParent = document.getElementById(id);
@@ -312,9 +514,15 @@ function addFilterBlock(type) {
   //  Add a new child to the filter blocks div
   document.getElementById('filterBlocks').append(filterBlockTemplate);
   
+
   // Add a unique id to the new block and update as AND OR filter
   let newBlock = document.getElementById('filterBlocks').lastElementChild
   newBlock.id = 'filterBlock-'+document.getElementById('filterBlocks').childElementCount
+  // listen for changes to searchSelect
+  let searchSelect = newBlock.children[1]
+  searchSelect.addEventListener('change', (event) => {
+    update_searchSelect(searchSelect);
+  })
   let typeName = newBlock.children[0].children[1];
   if (type === 'and') {
     newBlock.dataset.type = "AND"
@@ -325,7 +533,8 @@ function addFilterBlock(type) {
     typeName.innerHTML = 'or'
   }
   typeName.style.visibility = 'visible';
-
+  
+  
   let removeButton = newBlock.children[0].children[3];
   removeButton.style.visibility = 'visible';
   removeButton.addEventListener('click', function handleClick(event) {
@@ -333,7 +542,15 @@ function addFilterBlock(type) {
 });
 }
 
+function readFilterBlocks() { 
+  filterBlocks = document.getElementById('filterBlocks')
+  for (i in filterBlocks.children) {
+    let child = filterBlocks.children[i]
+    let type = child.dataset.type
+  }
+}
 
+/// old -- remove eventually
 const searchSelect = document.getElementById("searchSelect");
 searchSelect.addEventListener('change', (event) => {
   // this section has two main types, could be shorted with functions
@@ -374,7 +591,12 @@ searchSelect.addEventListener('change', (event) => {
     choices.destroy()
     choicesSelect.style.display = "none";
   }
-  
+  'deep-id','title','title-page-modern','errata','paratextual','title-page-old','title-page-author',
+  'argument','latinontitle','toreader','imprintlocation','illustration','stationer','printer','publisher','bookseller',
+  'charachter-list','commendatory-verses','explicit','dedication','other-paratexts','book_edition',
+  'play_edition','actor-list','authororial-status','first-production','first-edition','year-published'
+
+
   if (searchSelect.value === 'deep-id') { 
     advancedSearchField.style.display = "block";
     slider.style.display = "none";
