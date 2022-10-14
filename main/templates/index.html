@@ -398,17 +398,24 @@ const buildQuery = () => {
   let date_fields = ['first-production','first-edition','year-published']
   for (let i = 0; i < blocks.children.length; i++) {
     let block = blocks.children[i]
-    query.push(block)
+    
     // get AND OR operator 
     let blockType = block.dataset.type
     let searchField = block.children[1].value
-    // get query field and value 
+    
+    // is a search field 
     if (search_fields.indexOf(searchField) > -1) {
       let searchSelectvalue = block.children[2].value
       let searchValue = searchSelectvalue
+      query.push({"searchField":searchField, "searchValue":searchValue, "blockType":blockType})
     }
     if (date_fields.indexOf(searchField) > -1) {
       // date values
+      let searchSelectvalue = block.children[2].value
+      let searchValue = searchSelectvalue
+      let start = block.children[6].children[1].value
+      let end = block.children[6].children[3].value
+      query.push({"searchField":searchField, "searchValue":start+'-'+end, "blockType":blockType})
     }
     else {
       let choicesSelect = block.children[3]
@@ -436,7 +443,8 @@ function removeFilterBlock(id) {
 function addFilterBlock(type) {
   // clone the main filter block
   //const filterBlockTemplate = document.getElementById('filterBlock').cloneNode(true)
-  
+  const min_year = {{ min_year|safe }}
+  const max_year = {{ max_year|safe }}
   const filterBlockTemplate = `
               <div id="andORButtons" class="btn-group" style="visibility:collapse;" role="group" aria-label="Basic radio toggle button group">
                 <!-- Add new filter box 
@@ -509,9 +517,9 @@ function addFilterBlock(type) {
               <div id="spacer" style="height:10px;"></div>
               <div id="date-input" class="input-group d-none">
                 <span class="input-group-text">Begin:</span>
-                <input type="text" aria-label="start-date" class="form-control">
+                <input type="number" aria-label="start-date" value="${min_year}" pattern="\d{4}"  maxlength="4" class="form-control">
                 <span class="input-group-text">End:</span>
-                <input type="text" aria-label="end-date" class="form-control">
+                <input type="number " aria-label="end-date" value="${max_year}" pattern="\d{4}"  maxlength="4" class="form-control">
               </div>`
   
   
