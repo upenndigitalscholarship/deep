@@ -50,7 +50,8 @@
               
                 <input type="radio" onclick="addFilterBlock('or')" class="btn-check" name="addOR" id="addOR" autocomplete="off">
                 <label class="btn btn-sm btn-outline-primary btn-outline-dark" for="addOR">or</label>
-   
+                
+                
                 
               </div>
             </div>
@@ -168,6 +169,12 @@ let groupBy = function(xs, key) {
 const update_searchSelect = searchSelect => {
     let filter = searchSelect.value 
     let searchField = searchSelect.parentElement.children[2]
+    console.log('this years', searchSelect)
+    //let this_years = searchSelect.;
+    //TODO better way to select siblings?
+    let this_years = searchSelect.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling
+    this_years.classList.add('d-none')
+
     let choicesSelect = searchSelect.parentElement.children[3]
     this_choices = new Choices(choicesSelect,{
         addItems: false,
@@ -179,25 +186,30 @@ const update_searchSelect = searchSelect => {
       })
     this_choices.destroy()
     choicesSelect.style.display = "none";
-    let slider = searchSelect.parentElement.children[6]
+    
+    
+    
     searchSelect.dataset.name = filter
     // search fields
     let search_fields = ['deep-id','title','title-page-modern','errata','paratextual','title-page-old','title-page-author',
   'argument','latinontitle','toreader','imprintlocation','illustration','stationer','printer','publisher','bookseller',
   'charachter-list','commendatory-verses','explicit','dedication','other-paratexts','book_edition',
-  'play_edition','actor-list','authororial-status','first-production','first-edition','year-published']
+  'play_edition','actor-list','authororial-status','first-production']
     if (search_fields.indexOf(filter) > -1) {
       console.log('yay Im a searchfield', filter);
       searchField.style.display = "block";
-      slider.style.display = "none";
+      this_years.classList.add('d-none')
       this_choices.destroy()
       choicesSelect.style.display = "none";
     }
     // date fields
     let date_fields = ['first-production','first-edition','year-published']
     if (date_fields.indexOf(filter) > -1) {
+      console.log("I'm a date field:",filter)
+      console.log(this_years)
       searchField.style.display = "none";
-      this_slider.style.display = "block";
+      this_years.classList.remove("d-none");
+      
       this_choices.destroy()
       choicesSelect.style.display = "none";
     }
@@ -207,7 +219,7 @@ const update_searchSelect = searchSelect => {
       
       
       searchField.style.display = "none";
-      slider.style.display = "none";
+      this_years.style.display = "none";
       choicesSelect.style.display = "block";
       this_choices.init()
       this_choices.clearChoices()
@@ -225,7 +237,7 @@ const update_searchSelect = searchSelect => {
     if (filter === 'authorial-status') { 
 
       searchField.style.display = "none";
-      slider.style.display = "none";
+      this_years.classList.add("d-none");
       choicesSelect.style.display = "block";
       this_choices.init()
       this_choices.clearChoices()
@@ -246,7 +258,7 @@ const update_searchSelect = searchSelect => {
       // hide advancedSearchField
       
       searchField.style.display = "none";
-      slider.style.display = "none";
+      this_years.classList.add("d-none");
       choicesSelect.style.display = "block";
       this_choices.init()
       this_choices.clearChoices()
@@ -268,7 +280,7 @@ const update_searchSelect = searchSelect => {
       // hide advancedSearchField
       
       searchField.style.display = "none";
-      slider.style.display = "none";
+      this_years.classList.add("d-none");
       choicesSelect.style.display = "block";
       this_choices.init()
       this_choices.clearChoices()
@@ -286,7 +298,7 @@ const update_searchSelect = searchSelect => {
     if (filter === 'genre') { 
       // hide advancedSearchField
       searchField.style.display = "none";
-      slider.style.display = "none";
+      this_years.classList.add("d-none");
       choicesSelect.style.display = "block";
       this_choices.init()
       this_choices.clearChoices()
@@ -303,7 +315,7 @@ const update_searchSelect = searchSelect => {
     }
     if (filter === 'playtype') {
       searchField.style.display = "none";
-      slider.style.display = "none";
+      this_years.classList.add("d-none");
       choicesSelect.style.display = "block";
       this_choices.init()
       this_choices.clearChoices()
@@ -322,7 +334,7 @@ const update_searchSelect = searchSelect => {
     }
     if (filter === 'theater') {
       searchField.style.display = "none";
-      slider.style.display = "none";
+      this_years.classList.add("d-none");
       choicesSelect.style.display = "block";
       this_choices.init()
       this_choices.clearChoices()
@@ -339,7 +351,7 @@ const update_searchSelect = searchSelect => {
     }
     if (filter === 'company-first-performance') {
       searchField.style.display = "none";
-      slider.style.display = "none";
+      this_years.classList.add("d-none");
       choicesSelect.style.display = "block";
       this_choices.init()
       this_choices.clearChoices()
@@ -358,7 +370,7 @@ const update_searchSelect = searchSelect => {
     }
     if (filter === 'company') {
       searchField.style.display = "none";
-      slider.style.display = "none";
+      this_years.classList.add("d-none");
       choicesSelect.style.display = "block";
       this_choices.init()
       this_choices.clearChoices()
@@ -464,7 +476,12 @@ function addFilterBlock(type) {
                 background: #0e0076;
               }</style>
               <div id="spacer" style="height:10px;"></div>
-              <div id="slider" style="display:none;margin-top:35px; margin-bottom:20px"></div>`
+              <div id="date-input" class="input-group d-none">
+                <span class="input-group-text">Begin:</span>
+                <input type="text" aria-label="start-date" class="form-control">
+                <span class="input-group-text">End:</span>
+                <input type="text" aria-label="end-date" class="form-control">
+              </div>`
   
   
   const newBlock = document.createElement("div");
