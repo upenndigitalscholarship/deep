@@ -418,8 +418,9 @@ const buildQuery = () => {
       query.push({"searchField":searchField, "searchValue":start+'-'+end, "blockType":blockType})
     }
     else {
-      let choicesSelect = block.children[3]
-      let searchValue = 'TODO'
+      let choicesSelect = block.children[3].valueOf()
+      let searchValue = block.children[3].valueOf().innerText
+      query.push({"searchField":searchField, "searchValue":searchValue, "blockType":blockType})
     }
     
   }  
