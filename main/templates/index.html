@@ -205,11 +205,8 @@ const update_searchSelect = searchSelect => {
     // date fields
     let date_fields = ['first-production','first-edition','year-published']
     if (date_fields.indexOf(filter) > -1) {
-      console.log("I'm a date field:",filter)
-      console.log(this_years)
       searchField.style.display = "none";
       this_years.classList.remove("d-none");
-      
       this_choices.destroy()
       choicesSelect.style.display = "none";
     }
@@ -217,9 +214,8 @@ const update_searchSelect = searchSelect => {
     // choice fields
     if (filter === 'author') { 
       
-      
       searchField.style.display = "none";
-      this_years.style.display = "none";
+      this_years.classList.add('d-none')
       choicesSelect.style.display = "block";
       this_choices.init()
       this_choices.clearChoices()
@@ -389,7 +385,42 @@ const update_searchSelect = searchSelect => {
     }
   }
 
+const buildQuery = () => {
+  // for each block
+  let query = []
+  let blocks = document.getElementById('filterBlocks')
 
+  // TODO make global? 
+  let search_fields = ['deep-id','title','title-page-modern','errata','paratextual','title-page-old','title-page-author',
+  'argument','latinontitle','toreader','imprintlocation','illustration','stationer','printer','publisher','bookseller',
+  'charachter-list','commendatory-verses','explicit','dedication','other-paratexts','book_edition',
+  'play_edition','actor-list','authororial-status','first-production']
+  let date_fields = ['first-production','first-edition','year-published']
+  for (let i = 0; i < blocks.children.length; i++) {
+    let block = blocks.children[i]
+    query.push(block)
+    // get AND OR operator 
+    let blockType = block.dataset.type
+    let searchField = block.children[1].value
+    // get query field and value 
+    if (search_fields.indexOf(searchField) > -1) {
+      let searchSelectvalue = block.children[2].value
+      let searchValue = searchSelectvalue
+    }
+    if (date_fields.indexOf(searchField) > -1) {
+      // date values
+    }
+    else {
+      let choicesSelect = block.children[3]
+      let searchValue = 'TODO'
+    }
+    
+  }  
+  return query
+  
+  // get query field and value 
+  // return an array of queries
+}
 
 function removeFilterBlock(id) {
   let myParent = document.getElementById(id);
