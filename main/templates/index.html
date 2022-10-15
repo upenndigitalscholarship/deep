@@ -162,14 +162,25 @@ let groupBy = function(xs, key) {
   }, {});
 };
 
+// In the search interface, there are three types of input field. Some are text entry search field. These allow filtering 
+// based on string matching.  Date fields allow the entry of a four-digit start and end year number. Choice fields
+// allow search and selection from a dropdown of valid choices.
+let search_fields = ['deep-id','title','title-page-modern','errata','paratextual','title-page-old','title-page-author',
+  'argument','latinontitle','toreader','imprintlocation','illustration','stationer','printer','publisher','bookseller',
+  'charachter-list','commendatory-verses','explicit','dedication','other-paratexts','book_edition',
+  'play_edition','actor-list','authororial-status','greg_number','stc_or_wing']
 
+let date_fields = ['first-production','first-edition','year-published','dateofcomp','dateoffirsted']
 
+let choice_fields = ['author','authorial-status','company-first-performance','company','theater','playtype','genre','genreplaybook','blackletter','format']
 
+              
+              
 
 const update_searchSelect = searchSelect => {
     let filter = searchSelect.value 
     let searchField = searchSelect.parentElement.children[2]
-    console.log('this years', searchSelect)
+    
     //let this_years = searchSelect.;
     //TODO better way to select siblings?
     let this_years = searchSelect.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling
@@ -191,19 +202,15 @@ const update_searchSelect = searchSelect => {
     
     searchSelect.dataset.name = filter
     // search fields
-    let search_fields = ['deep-id','title','title-page-modern','errata','paratextual','title-page-old','title-page-author',
-  'argument','latinontitle','toreader','imprintlocation','illustration','stationer','printer','publisher','bookseller',
-  'charachter-list','commendatory-verses','explicit','dedication','other-paratexts','book_edition',
-  'play_edition','actor-list','authororial-status','first-production']
+    
     if (search_fields.indexOf(filter) > -1) {
-      console.log('yay Im a searchfield', filter);
+      
       searchField.style.display = "block";
       this_years.classList.add('d-none')
       this_choices.destroy()
       choicesSelect.style.display = "none";
     }
     // date fields
-    let date_fields = ['first-production','first-edition','year-published']
     if (date_fields.indexOf(filter) > -1) {
       searchField.style.display = "none";
       this_years.classList.remove("d-none");
@@ -390,37 +397,38 @@ const buildQuery = () => {
   let query = []
   let blocks = document.getElementById('filterBlocks')
 
-  // TODO make global? 
-  let search_fields = ['deep-id','title','title-page-modern','errata','paratextual','title-page-old','title-page-author',
-  'argument','latinontitle','toreader','imprintlocation','illustration','stationer','printer','publisher','bookseller',
-  'charachter-list','commendatory-verses','explicit','dedication','other-paratexts','book_edition',
-  'play_edition','actor-list','authororial-status','first-production']
-  let date_fields = ['first-production','first-edition','year-published']
+  
   for (let i = 0; i < blocks.children.length; i++) {
+    
     let block = blocks.children[i]
     
     // get AND OR operator 
     let blockType = block.dataset.type
+  
     let searchField = block.children[1].value
     
     // is a search field 
     if (search_fields.indexOf(searchField) > -1) {
-      let searchSelectvalue = block.children[2].value
-      let searchValue = searchSelectvalue
-      query.push({"searchField":searchField, "searchValue":searchValue, "blockType":blockType})
+      let searchValue = block.children[2].value
+      if (searchValue) {
+        query.push({"searchField":searchField, "searchValue":searchValue, "blockType":blockType})
+      }
     }
     if (date_fields.indexOf(searchField) > -1) {
-      // date values
-      let searchSelectvalue = block.children[2].value
-      let searchValue = searchSelectvalue
+      // date field
+      let searchValue = block.children[2].value
       let start = block.children[6].children[1].value
       let end = block.children[6].children[3].value
-      query.push({"searchField":searchField, "searchValue":start+'-'+end, "blockType":blockType})
+      if (start || end) {
+        query.push({"searchField":searchField, "searchValue":start+'-'+end, "blockType":blockType})
+      }
     }
-    else {
-      let choicesSelect = block.children[3].valueOf()
+    if (choice_fields.indexOf(searchField) > -1) {
+      // choice field
       let searchValue = block.children[3].valueOf().innerText
-      query.push({"searchField":searchField, "searchValue":searchValue, "blockType":blockType})
+      if (searchValue){
+        query.push({"searchField":searchField, "searchValue":searchValue, "blockType":blockType})
+      }
     }
     
   }  
