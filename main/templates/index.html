@@ -592,8 +592,50 @@ const init_firstBlock = () => {
 }
 init_firstBlock();
  
+const processQuery = query => {
+  console.log(query, query.searchField, query.searchValue, query.blockType, 'howdy!')
+  return {'result':[], 'type':query.blockType}
+}
 
-function search() {
+const search = () => {
+  table.clear();
+  results = []
+
+  let queries = buildQuery()
+  for (i in queries){
+    let { result, type } = processQuery(queries[i])
+    if (type === 'AND') {
+      // intersection of results and query result, elements common to both results and query result
+    }
+    if (type === 'OR') {
+      // union of results and query result, all elements in either results or query result
+    }
+
+  }
+  
+  // filter by record type
+  const singlePlay = document.getElementById('singlePlay') 
+  if (!singlePlay.checked) {
+    results = results.filter(item => item.record_type != 'Single-Play Playbook')
+  }
+  const Collections = document.getElementById('Collections')
+  if (!Collections.checked) {
+    results = results.filter(item => item.record_type != 'Collection')
+  }
+  const PlaysinCollections = document.getElementById('PlaysinCollections')
+  if (!PlaysinCollections.checked) {
+    results = results.filter(item => item.record_type != 'Play in Collection')
+  }
+  
+  // logic for title-edition-record filtering 
+  // TODO add this 
+
+  table.add(results);
+  table.update();
+}
+
+
+function oldSearch() {
   table.clear();
   
   // handle advanced search
@@ -739,10 +781,15 @@ function search() {
   
   results = []
   // logic for title-edition-record filtering 
+  search_results = index.search(query)
+  results = []
+  // logic for title-edition-record filtering 
   let filter = radioHelper();
   if (filter == 'title') {
-  
-    let groups = groupBy(item_data, 'greg');
+    search_results.forEach(function(result) {
+      results.push(item_data[result.ref])
+    });
+    let groups = groupBy(results, 'greg');
     
     results = []
     for (i in groups) {
@@ -756,7 +803,10 @@ function search() {
     }
   } else if (filter == 'edition') {
     // load data for each result 
-    let groups = groupBy(item_data, 'greg_middle');
+    search_results.forEach(function(result) {
+      results.push(item_data[result.ref])
+    });
+    let groups = groupBy(results, 'greg_middle');
     
     results = []
     for (i in groups) {
@@ -773,8 +823,12 @@ function search() {
     };
     
   } else if (filter == 'record') {
-    results = item_data;
+    search_results.forEach(function(result) {
+      results.push(item_data[result.ref])
+    });
   }
+
+
   // filter by record type
   if (advancedSearch.classList.contains('show')) {
     if (!singlePlay.checked) {
