@@ -2,7 +2,6 @@
 {% load static %}
 {% block extra_css %}
 <link href="assets/css/choices.min.css" rel="stylesheet">
-<link href="assets/css/nouislider.css" rel="stylesheet">
 <!-- all the JS goes here when ready <script src="assets/js/scripts.js" defer></script> -->
 
 {% endblock %}
@@ -600,11 +599,13 @@ const processQuery = (query, results) => {
   //build the condition 
   for (i in queries){
     // https://stackoverflow.com/questions/67068405/dynamically-create-a-condition-in-javascript
+    // Yes, eval(), I know, but get over it https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/eval#never_use_eval!
+    let part = `(${value[queries[i].searchField]} === ${queries[i].searchValue}) &&`
   }
-
+  let filters = eval(parts)
   // 
   for (const [key, value] of Object.entries(item_data)) {
-    if (value[query.searchField] === query.searchValue) {
+    if (filters) {
       result.push(item_data[key])
     }
   console.log(`${key}: ${value[query.searchField]}`);
@@ -986,11 +987,6 @@ advancedSearchField.addEventListener('keyup', (event) => {
   search();
 });
 
-// run search when date range slider is changed
-slider.noUiSlider.on('change', (event) => {
-  // console.log(advancedSearchField.value);
-  search();
-});
 
       
 function expand(e, id) {
