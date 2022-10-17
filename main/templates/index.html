@@ -2,6 +2,7 @@
 {% load static %}
 {% block extra_css %}
 <link href="assets/css/choices.min.css" rel="stylesheet">
+<link href="assets/css/nouislider.css" rel="stylesheet">
 <!-- all the JS goes here when ready <script src="assets/js/scripts.js" defer></script> -->
 
 {% endblock %}
@@ -131,15 +132,18 @@
   
  <script>
 
-// fetch data for all records
+// fetch data for all records, item_data is an object that serves as a lookup ex. item_data[330]
 let item_data;
+let item_array;
 fetch("../assets/data/item_data.json").then(
         function(u){ return u.json();}
       ).then(
         function(json){
           item_data = json;
+          // we also need an array of items for filtering
+          item_array = Object.values(item_data);
         });
-             
+
 //listen for search_bar
 let options = {
       valueNames: ['deep_id','title', 'authors_display', 'year', 'greg_full' ],
@@ -592,26 +596,38 @@ const init_firstBlock = () => {
 }
 init_firstBlock();
  
-const processQuery = (query, results) => {
-  // filter item_data, return  matching items
-  // for each item, apply condition 
-  let result = []
-  //build the condition 
+const processQueries = queries => {
+  //build the condition
+  const filters = [] //chain of filter callbacks 
+  // https://stackoverflow.com/questions/67068405/dynamically-create-a-condition-in-javascript
   for (i in queries){
-    // https://stackoverflow.com/questions/67068405/dynamically-create-a-condition-in-javascript
-    // Yes, eval(), I know, but get over it https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/eval#never_use_eval!
-    let part = `(${value[queries[i].searchField]} === ${queries[i].searchValue}) &&`
-  }
-  let filters = eval(parts)
-  // 
-  for (const [key, value] of Object.entries(item_data)) {
-    if (filters) {
-      result.push(item_data[key])
+    let query = queries[i]
+    if (query.searchField == 'title') {
+      let title = item => (item.title.includes(query.searchValue) || item.title_alternative_keywords.includes(query.searchValue))
+      filters.push(title)
     }
-  console.log(`${key}: ${value[query.searchField]}`);
+    
+    
   }
-  //console.log(query, query.searchField, query.searchValue, query.blockType, 'howdy!')
-  return {'result':result, 'type':query.blockType}
+  return filters
+//   const result = conditions.reduce((accumulated, condition, index) => {
+//     // Here calculate this based on your logicFunction, query, etc.
+//     const conditionResult = ...;
+
+//     // First element has no operator
+//     if(index === 0) return boolean;
+
+//     // Calculate the result based off of the accumulated
+//     // (based on the pervasively calculated value in the chain)
+//     if(condition.operator === 'AND') return accumulated && conditionResult;
+//     if(condition.operator === 'OR') return accumulated || conditionResult;
+
+//     // This line should never be reached, so if it is, there was a critical error
+//     throw new Error('Invalid state, non-first element has no operator');
+// }, false /* or whatever your default value should be */);
+
+//   //console.log(query, query.searchField, query.searchValue, query.blockType, 'howdy!')
+//   return {'result':result, 'type':query.blockType}
 }
 
 
@@ -622,26 +638,38 @@ const search = () => {
     case 2: Title("Hamlet") && Theater("Globe") || Theater("Swan")
   */
   table.clear();
-  results = []
   types = []
   let queries = getQueries()
-  let results = processQueries(queries)
+  let filters = processQueries(queries)
   // check if a type appears more than once
   // if not, then just chain filters and reduce
   // if yes, chain reduce, then join 
+  
 
-  for (i in queries){
-    let { result, type } = processQuery(queries[i], results)
-    if (type === 'AND') {
-      // intersection (a ∩ b) of results and query result, elements common to both results and query result
-      results = results.filter(function(e) { return result.indexOf(e) > -1; });
-    }
-    if (type === 'OR') {
-      // union (a ∪ b) of results and query result, all elements in either results or query result
-      results = [...new Set([...results, ...result])]
-    }
+  // // 0 + 1 + 2 + 3 + 4
+  // const initialValue = 0;
+  // const sumWithInitial = item_data.reduce(
+  //   (previousValue, currentValue) => previousValue + currentValue,
+  //   initialValue
+  // );
 
-  }
+  const results = filters.reduce(
+      (d, f) => d.filter(f) , 
+      item_array
+  )
+  
+  // for (i in queries){
+  //   let { filter, type } = processQuery(queries[i], results)
+  //   if (type === 'AND') {
+  //     // intersection (a ∩ b) of results and query result, elements common to both results and query result
+  //     results = results.filter(function(e) { return result.indexOf(e) > -1; });
+  //   }
+  //   if (type === 'OR') {
+  //     // union (a ∪ b) of results and query result, all elements in either results or query result
+  //     results = [...new Set([...results, ...result])]
+  //   }
+
+  //}
   
   // filter by record type
   const singlePlay = document.getElementById('singlePlay') 
@@ -987,6 +1015,11 @@ advancedSearchField.addEventListener('keyup', (event) => {
   search();
 });
 
+// run search when date range slider is changed
+slider.noUiSlider.on('change', (event) => {
+  // console.log(advancedSearchField.value);
+  search();
+});
 
       
 function expand(e, id) {
