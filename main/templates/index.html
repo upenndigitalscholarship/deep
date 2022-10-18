@@ -597,37 +597,250 @@ const init_firstBlock = () => {
 init_firstBlock();
  
 const processQueries = queries => {
-  //build the condition
-  const filters = [] //chain of filter callbacks 
+  
+  const filters = [] 
   // https://stackoverflow.com/questions/67068405/dynamically-create-a-condition-in-javascript
   for (i in queries){
     let query = queries[i]
     if (query.searchField == 'title') {
-      let title = item => (item.title.includes(query.searchValue) || item.title_alternative_keywords.includes(query.searchValue))
-      filters.push(title)
+      let title = item => (
+          item.title.toLowerCase().includes(query.searchValue.toLowerCase()) || 
+          item.title_alternative_keywords.toLowerCase().includes(query.searchValue.toLowerCase())
+          )
+      filters.push({'filter':title,'type':query.blockType})
     }
-    
-    
+    if (query.searchField == 'stationer') { 
+      let stationer = item => (
+          item.stationer_printer.toLowerCase().includes(query.searchValue.toLowerCase()) || 
+          item.stationer_publisher.toLowerCase().includes(query.searchValue.toLowerCase()) || 
+          item.stationer_bookseller.toLowerCase().includes(query.searchValue.toLowerCase())
+          )
+      filters.push({'filter':stationer,'type':query.blockType})
+    }
+    if (query.searchField == 'paratextual') {
+      let paratextual = item => (
+          item.paratext_dedication.toLowerCase().includes(query.searchValue.toLowerCase()) || 
+          item.paratext_commendatory_verses.toLowerCase().includes(query.searchValue.toLowerCase()) || 
+          item.paratext_to_the_reader.toLowerCase().includes(query.searchValue.toLowerCase()) || 
+          item.paratext_argument.toLowerCase().includes(query.searchValue.toLowerCase()) || 
+          item.paratext_actor_list.toLowerCase().includes(query.searchValue.toLowerCase()) || 
+          item.paratext_charachter_list.toLowerCase().includes(query.searchValue.toLowerCase()) || 
+          item.title_page_explicit.toLowerCase().includes(query.searchValue.toLowerCase()) || 
+          item.paratext_errata.toLowerCase().includes(query.searchValue.toLowerCase()) || 
+          item.paratext_other_paratexts.toLowerCase().includes(query.searchValue.toLowerCase())
+          )
+      filters.push({'filter':paratextual,'type':query.blockType})
+      
+    }
+    if (query.searchField == 'commendatory-verses') {
+      let commendatoryVerses = item => (
+          item.paratext_commendatory_verses.toLowerCase().includes(query.searchValue.toLowerCase())
+          )
+      filters.push({'filter':commendatoryVerses,'type':query.blockType})
+    }
+    if (query.searchField == 'title-page-modern') {
+      let titlePageModern = item => (
+          item.title_page_modern_spelling.toLowerCase().includes(query.searchValue.toLowerCase())
+          )
+      filters.push({'filter':titlePageModern,'type':query.blockType})
+    }
+    if (query.searchField == 'imprintlocation') {
+      let imprintLocation = item => (
+          item.title_page_imprint.toLowerCase().includes(query.searchValue.toLowerCase())
+          )
+      filters.push({'filter':imprintLocation,'type':query.blockType})
+    }
+    if (query.searchField == 'title-page-old') {
+      let titlePageOld = item => (
+          item.title_page_title.toLowerCase().includes(query.searchValue.toLowerCase()) ||
+          item.title_page_author.toLowerCase().includes(query.searchValue.toLowerCase()) ||
+          item.title_page_performance.toLowerCase().includes(query.searchValue.toLowerCase()) ||
+          item.title_page_latin_motto.toLowerCase().includes(query.searchValue.toLowerCase()) ||
+          item.title_page_imprint.toLowerCase().includes(query.searchValue.toLowerCase())
+          )
+      filters.push({'filter':titlePageOld,'type':query.blockType})
+    }
+    if (query.searchField == 'title-page-author') {
+      let titlePageAuthor = item => (
+        item.title_page_author.toLowerCase().includes(query.searchValue.toLowerCase())
+      )
+      filters.push({'filter':titlePageAuthor,'type':query.blockType})
+    }
+    if (query.searchField == 'actor-list') {
+      let actorList = item => (
+        item.paratext_actor_list.toLowerCase().includes(query.searchValue.toLowerCase())
+      )
+      filters.push({'filter':actorList,'type':query.blockType})
+    }
+    if (query.searchField == 'explicit') {
+      let explicit = item => (
+        item.title_page_explicit.toLowerCase().includes(query.searchValue.toLowerCase())
+      )
+      filters.push({'filter':explicit,'type':query.blockType})
+    }
+    if (query.searchField == 'toreader') {
+      let toreader = item => (
+        item.paratext_to_the_reader.toLowerCase().includes(query.searchValue.toLowerCase())
+      )
+      filters.push({'filter':toreader,'type':query.blockType})
+    }
+    if (query.searchField == 'argument') {
+      let argument = item => (
+        item.paratext_argument.toLowerCase().includes(query.searchValue.toLowerCase())
+      )
+      filters.push({'filter':argument,'type':query.blockType})
+    }
+    if (query.searchField == 'dedication') {
+      let dedication = item => (
+        item.paratext_dedication.toLowerCase().includes(query.searchValue.toLowerCase())
+      )
+      filters.push({'filter':dedication,'type':query.blockType})
+    }
+    if (query.searchField == 'charachter-list') {
+      let charachterList = item => (
+        item.paratext_charachter_list.toLowerCase().includes(query.searchValue.toLowerCase())
+      )
+      filters.push({'filter':charachterList,'type':query.blockType})
+    }
+    if (query.searchField == 'errata') {
+      let errata = item => (
+        item.paratext_errata.toLowerCase().includes(query.searchValue.toLowerCase())
+      )
+      filters.push({'filter':errata,'type':query.blockType})
+    }
+    if (query.searchField == 'other-paratexts') {
+      let otherParatexts = item => (
+        item.paratext_other_paratexts.toLowerCase().includes(query.searchValue.toLowerCase())
+      )
+      filters.push({'filter':otherParatexts,'type':query.blockType})
+    }
+    if (query.searchField == 'illustration') {
+      let illustration = item => (
+        item.title_page_illustration.toLowerCase().includes(query.searchValue.toLowerCase())
+      )
+      filters.push({'filter':illustration,'type':query.blockType})
+    }
+    if (query.searchField == 'latinontitle') {
+      let latinontitle = item => (
+        item.title_page_latin_motto.toLowerCase().includes(query.searchValue.toLowerCase())
+      )
+      filters.push({'filter':latinontitle,'type':query.blockType})
+    }
+    if (query.searchField == 'deep-id') {
+      let deepID = item => (
+        item.deep_id.toLowerCase().includes(query.searchValue.toLowerCase())
+        )
+      filters.push({'filter':deepID,'type':query.blockType})
+    }
+    if (query.searchField == 'greg_number') {
+      let gregNumber = item => (
+        item.greg_full.toLowerCase().includes(query.searchValue.toLowerCase())
+        )
+      filters.push({'filter':gregNumber,'type':query.blockType})
+    }
+    if (query.searchField == 'book_edition') {
+      let bookEdition = item => (
+        item.book_edition.toLowerCase().includes(query.searchValue.toLowerCase())
+        )
+      filters.push({'filter':bookEdition,'type':query.blockType})
+    }
+    if (query.searchField == 'play_edition') {
+      let playEdition = item => (
+        item.play_edition.toLowerCase().includes(query.searchValue.toLowerCase())
+        )
+      filters.push({'filter':playEdition,'type':query.blockType})
+    }
+    if (query.searchField == 'stc_or_wing') {
+      let stcWing = item => (
+        item.stc.toLowerCase().includes(query.searchValue.toLowerCase())
+        )
+      filters.push({'filter':stcWing,'type':query.blockType})
+    }
+    if (query.searchField == 'author') {
+      let author = item => (
+        item.author.toLowerCase().includes(query.searchValue.toLowerCase())
+        )
+      filters.push({'filter':author,'type':query.blockType})
+    }
+    if (query.searchField == 'authorial-status') {
+      let authorialStatus = item => (
+        item.author_status.toLowerCase().includes(query.searchValue.toLowerCase())
+        )
+      filters.push({'filter':authorialStatus,'type':query.blockType})
+    }
+    if (query.searchField == 'blackletter') {
+      let blackletter = item => (
+        item.blackletter.toLowerCase().includes(query.searchValue.toLowerCase())
+        )
+      filters.push({'filter':blackletter,'type':query.blockType})
+    }
+    if (query.searchField == 'genre') {
+      let genre = item => (
+        item.genre.toLowerCase().includes(query.searchValue.toLowerCase())
+        )
+      filters.push({'filter':genre,'type':query.blockType})
+    }
+    if (query.searchField == 'format') {
+      let format = item => (
+        item.genre.toLowerCase().includes(query.searchValue.toLowerCase())
+        )
+      filters.push({'filter':format,'type':query.blockType})
+    }
+    if (query.searchField == 'playtype') {
+      let playtype = item => (
+        item.play_type.toLowerCase().includes(query.searchValue.toLowerCase())
+        )
+      filters.push({'filter':playtype,'type':query.blockType})
+    }
+    if (query.searchField == 'company-first-performance') {
+      let companyFirstPerformance = item => (
+        item.company_first_performance.toLowerCase().includes(query.searchValue.toLowerCase())
+        )
+      filters.push({'filter':companyFirstPerformance,'type':query.blockType})
+    }
+    if (query.searchField == 'dedication') {
+      let dedication = item => (
+        item.paratext_dedication.toLowerCase().includes(query.searchValue.toLowerCase())
+        )
+      filters.push({'filter':dedication,'type':query.blockType})
+    }
+    if (query.searchField == 'printer') {
+      let printer = item => (
+        item.stationer_printer.toLowerCase().includes(query.searchValue.toLowerCase())
+        )
+      filters.push({'filter':printer,'type':query.blockType})
+    }
+    if (query.searchField == 'publisher') {
+      let publisher = item => (
+        item.stationer_publisher.toLowerCase().includes(query.searchValue.toLowerCase())
+        )
+      filters.push({'filter':publisher,'type':query.blockType})
+    }
+    if (query.searchField == 'bookseller') {
+      let bookseller = item => (
+        item.stationer_bookseller.toLowerCase().includes(query.searchValue.toLowerCase())
+        )
+      filters.push({'filter':bookseller,'type':query.blockType})
+    }
+    if (query.searchField == 'authorial-status') {
+      let authorialStatus = item => (
+        item.author_status.toLowerCase().includes(query.searchValue.toLowerCase())
+        )
+      filters.push({'filter':authorialStatus,'type':query.blockType})
+    }
+    if (query.searchField == 'theater') {
+      let theater = item => (
+        item.theater.toLowerCase().includes(query.searchValue.toLowerCase()) ||
+        item.theater_type.toLowerCase().includes(query.searchValue.toLowerCase())
+        )
+      filters.push({'filter':theater,'type':query.blockType})
+    }
+    // if (query.searchField == "company") {
+    //     item => item.company_id == choices.getValue().value)
+    // }
+    // TODO add date filters
   }
   return filters
-//   const result = conditions.reduce((accumulated, condition, index) => {
-//     // Here calculate this based on your logicFunction, query, etc.
-//     const conditionResult = ...;
-
-//     // First element has no operator
-//     if(index === 0) return boolean;
-
-//     // Calculate the result based off of the accumulated
-//     // (based on the pervasively calculated value in the chain)
-//     if(condition.operator === 'AND') return accumulated && conditionResult;
-//     if(condition.operator === 'OR') return accumulated || conditionResult;
-
-//     // This line should never be reached, so if it is, there was a critical error
-//     throw new Error('Invalid state, non-first element has no operator');
-// }, false /* or whatever your default value should be */);
-
-//   //console.log(query, query.searchField, query.searchValue, query.blockType, 'howdy!')
-//   return {'result':result, 'type':query.blockType}
 }
 
 
@@ -654,7 +867,14 @@ const search = () => {
   // );
 
   const results = filters.reduce(
-      (d, f) => d.filter(f) , 
+      (d, f) => {
+        if (f.type == "AND") { 
+          return d.filter(f.filter) 
+        } 
+        if (f.type == "OR") { 
+          return [...new Set([...d, ...item_array.filter(f.filter)])] 
+        } 
+      }, 
       item_array
   )
   
