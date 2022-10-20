@@ -93,7 +93,7 @@
     <tbody class="list">
       <thead>
         <tr>
-          <th class="sort col-2" data-sort="deep_id" scope="col">ID</th>
+          <th class="sort col-2" data-sort="deep_id" scope="col">DEEP ID</th>
           <th class="sort col-2" data-sort="year" scope="col">Year</th>
           <th class="sort col-2" data-sort="author" scope="col">Author</th>
           <th class="sort col-7" data-sort="title" scope="col">Title</th>
@@ -183,12 +183,13 @@ let choice_fields = ['author','authorial-status','company-first-performance','co
               
 
 const update_searchSelect = searchSelect => {
+  console.log(searchSelect)
     let filter = searchSelect.value 
     let searchField = searchSelect.parentElement.children[2]
     
     //let this_years = searchSelect.;
     //TODO better way to select siblings?
-    let this_years = searchSelect.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling
+    let this_years = searchSelect.parentElement.children[6]
     this_years.classList.add('d-none')
 
     let choicesSelect = searchSelect.parentElement.children[3]
@@ -200,8 +201,7 @@ const update_searchSelect = searchSelect => {
         position: 'bottom',
         placeholder: 'Select an option',
       })
-    this_choices.destroy()
-    choicesSelect.style.display = "none";
+    
     
     
     
@@ -430,7 +430,7 @@ const getQueries = () => {
     }
     if (choice_fields.indexOf(searchField) > -1) {
       // choice field
-      let searchValue = block.children[3].valueOf().innerText
+      let searchValue = block.children[3].outerText.split('\n')[0] //TODO better way to access selected value
       if (searchValue){
         query.push({"searchField":searchField, "searchValue":searchValue, "blockType":blockType})
       }
@@ -552,11 +552,33 @@ function addFilterBlock(type) {
   // <div id="filterBlock" class="input-group-md">
   newBlock.classList.add("input-group-md");
   // listen for changes to searchSelect
+  
   let searchSelect = newBlock.children[1]
   update_searchSelect(searchSelect);
   searchSelect.addEventListener('change', (event) => {
     update_searchSelect(searchSelect);
   })
+
+  let thisSearchField = newBlock.children[2]
+  thisSearchField.addEventListener('keyup', (event) => {
+    search();
+  });
+
+  let thisChoicesSelect = newBlock.children[3]
+  thisChoicesSelect.addEventListener('change', (event) => {
+    search();
+  });
+
+  let beginDateSelect = newBlock.children[6].children[1]
+  beginDateSelect.addEventListener('keyup', (event) => {
+    search();
+  });
+
+  let endDateSelect = newBlock.children[6].children[3]
+  endDateSelect.addEventListener('keyup', (event) => {
+    search();
+  });
+  
   let typeName = newBlock.children[0].children[1];
   if (type === 'and') {
     newBlock.dataset.type = "AND"
@@ -757,6 +779,7 @@ const processQueries = queries => {
       filters.push({'filter':stcWing,'type':query.blockType})
     }
     if (query.searchField == 'author') {
+      
       let author = item => (
         item.author.toLowerCase().includes(query.searchValue.toLowerCase())
         )
@@ -835,6 +858,7 @@ const processQueries = queries => {
         )
       filters.push({'filter':theater,'type':query.blockType})
     }
+  
     // if (query.searchField == "company") {
     //     item => item.company_id == choices.getValue().value)
     // }
@@ -853,6 +877,7 @@ const search = () => {
   table.clear();
   types = []
   let queries = getQueries()
+  console.log('queries',queries)
   let filters = processQueries(queries)
   // check if a type appears more than once
   // if not, then just chain filters and reduce
@@ -877,7 +902,7 @@ const search = () => {
       }, 
       item_array
   )
-  
+  console.log('results',results)
   // for (i in queries){
   //   let { filter, type } = processQuery(queries[i], results)
   //   if (type === 'AND') {
@@ -1231,7 +1256,7 @@ PlaysinCollections.addEventListener('change', (event) => {
 
 const advancedSearchField = document.getElementById('advancedSearchField')
 advancedSearchField.addEventListener('keyup', (event) => {
-  // console.log(advancedSearchField.value);
+  console.log(advancedSearchField.value);
   search();
 });
 
