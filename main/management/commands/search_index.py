@@ -12,9 +12,9 @@ def item_to_dict(item:Item):
     
     item_dict['variant_link'] = ''
     for link in item.variant_links.all():
-        item_dict['variant_link'] += f'<a href="{link.deep_id}.html">{link.greg_full}</a> '
+        item_dict['variant_link'] += f'<a target="_blank" href="{link.deep_id}.html">{link.greg_full}</a> '
     if item.in_collection:
-        item_dict["in_collection"] = f'<a href="{item.in_collection.deep_id}.html">{item.in_collection.title}</a>'
+        item_dict["in_collection"] = f'<a target="_blank" href="{item.in_collection.deep_id}.html">{item.in_collection.title}</a>'
     else: 
         item_dict["in_collection"] = ""
     
@@ -22,14 +22,14 @@ def item_to_dict(item:Item):
     if item.collection_contains and item.record_type == "Collection": #m2m
         for i, link in enumerate(item.collection_contains.all()):
             if i == len(item.collection_contains.all())-1:
-                item_dict['collection_contains'] += f'<a href="{link.deep_id}.html">{link.title}</a> '
+                item_dict['collection_contains'] += f'<a target="_blank" href="{link.deep_id}.html">{link.title}</a> '
             else:
-                item_dict['collection_contains'] += f'<a href="{link.deep_id}.html">{link.title}</a>; '
+                item_dict['collection_contains'] += f'<a target="_blank" href="{link.deep_id}.html">{link.title}</a>; '
     if item.independent_playbook_link:
         item_dict["independent_playbook_link_id"] = item.independent_playbook_link.deep_id
     
     if item.also_in_collection:
-        item_dict["also_in_collection_link"] = f'<a href="{item.also_in_collection_link.deep_id}.html">{item.also_in_collection}</a>'
+        item_dict["also_in_collection_link"] = f'<a target="_blank" href="{item.also_in_collection_link.deep_id}.html">{item.also_in_collection}</a>'
     
     if '_state' in item_dict.keys():
         del item_dict['_state']    
