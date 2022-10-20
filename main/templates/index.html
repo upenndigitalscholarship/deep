@@ -447,13 +447,8 @@ const getQueries = () => {
 
 function removeFilterBlock(id) {
   let myParent = document.getElementById(id);
-
-  if (id === 'filterBlock') {
-    
-  }
-  else {
-    myParent.remove()
-  }
+  myParent.remove();
+  search();
   
 }
 function addFilterBlock(type) {
@@ -533,9 +528,9 @@ function addFilterBlock(type) {
               <div id="spacer" style="height:10px;"></div>
               <div id="date-input" class="input-group d-none">
                 <span class="input-group-text">Begin:</span>
-                <input type="number" aria-label="start-date" value="${min_year}" pattern="\d{4}"  maxlength="4" class="form-control">
+                <input type="number" aria-label="start-date" value="${min_year}" pattern="\d{4}"  maxlength="4" class="form-control"></input>
                 <span class="input-group-text">End:</span>
-                <input type="number " aria-label="end-date" value="${max_year}" pattern="\d{4}"  maxlength="4" class="form-control">
+                <input type="number" aria-label="end-date" value="${max_year}" pattern="\d{4}"  maxlength="4" class="form-control"></input>
               </div>`
   
   
@@ -861,11 +856,27 @@ const processQueries = queries => {
         )
       filters.push({'filter':theater,'type':query.blockType})
     }
-  
-    // if (query.searchField == "company") {
-    //     item => item.company_id == choices.getValue().value)
-    // }
-    // TODO add date filters
+    if (query.searchField == 'year-published') {
+      let [ start, end ] = query.searchValue.split('-')
+      let yearPublished = item => (
+        item.year_int > start && item.year_int < end 
+        )
+      filters.push({'filter':yearPublished,'type':query.blockType})
+    }
+    if (query.searchField == 'first-production') {
+      let [ start, end ] = query.searchValue.split('-')
+      let yearPublished = item => (
+        item.composition_date > start && item.composition_date < end 
+        )
+      filters.push({'filter':yearPublished,'type':query.blockType})
+    }
+    if (query.searchField == 'first-edition') {
+      let [ start, end ] = query.searchValue.split('-')
+      let yearPublished = item => (
+        item.date_first_publication > start && item.date_first_publication < end 
+        )
+      filters.push({'filter':yearPublished,'type':query.blockType})
+    }    
   }
   return filters
 }
