@@ -86,7 +86,10 @@
         <input class="form-check-input" type="radio" name="inlineRadioOptions" id="recordRadio" value="record">
         <label class="form-check-label text-light" for="recordRadio">Record</label>
       </div>
-
+      <div class="form-check form-check-inline">
+        <h6 class="text-light">Results: <span id="resultCount">0</span></h4>
+      </div>
+      
       <button id="expandAllButton" class="btn btn-light float-end" onclick="expandAll(this);">Expand all</button>
   <table class="table bg-light text-dark rounded-0">
     <!-- IMPORTANT, class="list" have to be at tbody -->
@@ -578,7 +581,7 @@ function addFilterBlock(type) {
   endDateSelect.addEventListener('keyup', (event) => {
     search();
   });
-  
+
   let typeName = newBlock.children[0].children[1];
   if (type === 'and') {
     newBlock.dataset.type = "AND"
@@ -932,7 +935,8 @@ const search = () => {
   
   // logic for title-edition-record filtering 
   // TODO add this 
-
+  resultCount = document.getElementById("resultCount")
+  resultCount.innerText = results.length
   table.add(results);
   table.update();
 }
