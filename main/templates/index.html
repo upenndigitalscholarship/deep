@@ -2,7 +2,6 @@
 {% load static %}
 {% block extra_css %}
 <link href="assets/css/choices.min.css" rel="stylesheet">
-<link href="assets/css/nouislider.css" rel="stylesheet">
 <!-- all the JS goes here when ready <script src="assets/js/scripts.js" defer></script> -->
 
 {% endblock %}
@@ -130,7 +129,6 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/list.js/2.3.1/list.min.js"></script>  
   <script src="https://cdnjs.cloudflare.com/ajax/libs/wnumb/1.2.0/wNumb.min.js"></script>  
   <script src="assets/js/choices.min.js"></script>   
-  <script src="assets/js/nouislider.js"></script>
   
   
  <script>
@@ -186,7 +184,7 @@ let choice_fields = ['author','authorial-status','company-first-performance','co
               
 
 const update_searchSelect = searchSelect => {
-  console.log(searchSelect)
+  
     let filter = searchSelect.value 
     let searchField = searchSelect.parentElement.children[2]
     
@@ -876,6 +874,22 @@ const processQueries = queries => {
         item.date_first_publication > start && item.date_first_publication < end 
         )
       filters.push({'filter':yearPublished,'type':query.blockType})
+    }
+
+    let singlePlay = document.getElementById('singlePlay') 
+    if (!singlePlay.checked) {
+      let singlePlayFilter = item => item.record_type != 'Single-Play Playbook'
+      filters.push({'filter':singlePlayFilter,'type':'AND'})
+    }
+    let Collections = document.getElementById('Collections')
+    if (!Collections.checked) {
+      let collectionsFilter = item => item.record_type != 'Collection'
+      filters.push({'filter':collectionsFilter,'type':'AND'})
+    }
+    let PlaysinCollections = document.getElementById('PlaysinCollections')
+    if (!PlaysinCollections.checked) {
+      let playsinCollections = item => item.record_type != 'Play in Collection'
+      filters.push({'filter':playsinCollections,'type':'AND'})
     }    
   }
   return filters
@@ -891,7 +905,6 @@ const search = () => {
   table.clear();
   types = []
   let queries = getQueries()
-  console.log('queries',queries)
   let filters = processQueries(queries)
   // check if a type appears more than once
   // if not, then just chain filters and reduce
@@ -929,26 +942,41 @@ const search = () => {
   //   }
 
   //}
-  
-  // filter by record type
-  const singlePlay = document.getElementById('singlePlay') 
-  if (!singlePlay.checked) {
-    results = results.filter(item => item.record_type != 'Single-Play Playbook')
-  }
-  const Collections = document.getElementById('Collections')
-  if (!Collections.checked) {
-    results = results.filter(item => item.record_type != 'Collection')
-  }
-  const PlaysinCollections = document.getElementById('PlaysinCollections')
-  if (!PlaysinCollections.checked) {
-    results = results.filter(item => item.record_type != 'Play in Collection')
-  }
-  
+    
   // logic for title-edition-record filtering 
-  // TODO add this 
+  let filter = radioHelper();
+  let grouped_results = []
+  if (filter == 'title') {
+    let groups = groupBy(results, 'greg');
+    
+    for (i in groups) {
+      if (groups[i].length == 1) {
+        grouped_results.push(groups[i][0])
+      } else {
+        // sort the group by deep_id, return only lowest deep id
+        let d = groups[i].sort((a,b) => a.deep_id - b.deep_id);
+        grouped_results.push(d[0])
+      }
+    }
+  } else if (filter == 'edition') {
+    let groups = groupBy(results, 'greg_middle');
+    for (i in groups) {
+      if (groups[i].length == 1) {
+        grouped_results.push(groups[i][0])
+      } else {
+        // sort the group by deep_id, return only lowest deep id
+        let d = groups[i].sort((a,b) => a.deep_id - b.deep_id);
+        grouped_results.push(d[0])
+      }
+      
+      
+    };
+  } else if (filter == 'record') {
+    grouped_results = results
+  }
   resultCount = document.getElementById("resultCount")
-  resultCount.innerText = results.length
-  table.add(results);
+  resultCount.innerText = grouped_results.length
+  table.add(grouped_results);
   table.update();
 }
 
@@ -1249,13 +1277,12 @@ function oldSearch() {
   table.update();
 };
 
-document.querySelector('#search_bar').addEventListener('keyup', function() {
-  search();
-});
+
           
 // Section for record type filtering
 const singlePlay = document.getElementById('singlePlay') 
 singlePlay.addEventListener('change', (event) => {
+  console.log('click!')
   search();
 });
 
@@ -1271,15 +1298,9 @@ PlaysinCollections.addEventListener('change', (event) => {
 
 const advancedSearchField = document.getElementById('advancedSearchField')
 advancedSearchField.addEventListener('keyup', (event) => {
-  console.log(advancedSearchField.value);
   search();
 });
 
-// run search when date range slider is changed
-slider.noUiSlider.on('change', (event) => {
-  // console.log(advancedSearchField.value);
-  search();
-});
 
       
 function expand(e, id) {
