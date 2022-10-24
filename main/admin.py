@@ -1,8 +1,9 @@
-from django.contrib import admin
-
 # Register your models here.
 from django.apps import apps
-from main.models import Item, Edition, Title, Person
+from django.contrib import admin
+
+from main.models import Edition, Item, Person, Title
+
 
 class ItemAdmin(admin.ModelAdmin):
     search_fields = ['edition__title__title','deep_id']

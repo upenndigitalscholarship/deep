@@ -1,11 +1,11 @@
-import srsly
 import json
 from typing import List
-from selenium import webdriver
-from selenium.webdriver.common.keys import Keys
-from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import Select
 
+import srsly
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.support.ui import Select
 
 driver = webdriver.Firefox()
 driver.get("https://deep2.netlify.app/")

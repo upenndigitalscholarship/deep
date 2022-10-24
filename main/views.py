@@ -1,8 +1,9 @@
-from django.shortcuts import render
-from django.db.models import Max, Min
-from main.models import Item, Title, Person, Theater, Edition
 from dal import autocomplete
+from django.db.models import Max, Min
+from django.shortcuts import render
+
 from main.management.commands.search_index import item_to_dict
+from main.models import Edition, Item, Person, Theater, Title
 
 
 # Create your views here.

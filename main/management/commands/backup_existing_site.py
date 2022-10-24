@@ -1,8 +1,9 @@
-import srsly
-from tqdm import tqdm 
 from pathlib import Path
-from django.core.management.base import BaseCommand
+
 import requests
+import srsly
+from django.core.management.base import BaseCommand
+from tqdm import tqdm
 
 pages_dir = Path.cwd() / 'backup'
 if not pages_dir.exists():

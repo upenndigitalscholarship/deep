@@ -1,14 +1,17 @@
-import time 
-import srsly 
+import time
+from distutils.dir_util import copy_tree
+from pathlib import Path
+
+import srsly
+from django.core.management import call_command
 from django.core.management.base import BaseCommand, CommandError
 from django.db.models import Max, Min
 from django.template.loader import render_to_string
-from django.core.management import call_command
-from main.models import Item, Person, PlayType, Title, Edition
-from distutils.dir_util import copy_tree
-from pathlib import Path
 from tqdm import tqdm
+
 from main.management.commands.search_index import item_to_dict
+from main.models import Edition, Item, Person, PlayType, Title
+
 
 class Command(BaseCommand):
     help = 'Builds a static version of the site'

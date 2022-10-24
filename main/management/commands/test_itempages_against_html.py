@@ -1,9 +1,10 @@
+from pathlib import Path
+
+import requests
 import srsly
 from bs4 import BeautifulSoup
-from tqdm import tqdm 
-from pathlib import Path
 from django.core.management.base import BaseCommand
-import requests
+from tqdm import tqdm
 
 backup_dir = Path.cwd() / 'backup'
 site_dir = Path.cwd() / 'site'

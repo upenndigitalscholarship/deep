@@ -1,8 +1,9 @@
-from django.core.management.base import BaseCommand, CommandError
+import srsly
 from django.core import serializers
-from main.models import *
+from django.core.management.base import BaseCommand, CommandError
 from tqdm import tqdm
-import srsly 
+
+from main.models import *
 
 
 def get_authors(item:dict):

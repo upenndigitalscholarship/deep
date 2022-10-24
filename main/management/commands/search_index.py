@@ -1,9 +1,11 @@
-import srsly
 from pathlib import Path
+
+import srsly
+from django.core.management.base import BaseCommand
 from lunr import lunr
 from tqdm import tqdm
-from main.models import * 
-from django.core.management.base import BaseCommand
+
+from main.models import *
 
 # Generate search index for use by lunr.js https://lunr.readthedocs.io/en/latest/lunrjs-interop.html
 

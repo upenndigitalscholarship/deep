@@ -1,8 +1,10 @@
 import srsly
-from django.core.management.base import BaseCommand, CommandError
 from django.core import serializers
-from main.models import *
+from django.core.management.base import BaseCommand, CommandError
 from tqdm import tqdm
+
+from main.models import *
+
 deep_fields = [
     'deep_id',
     'nid',

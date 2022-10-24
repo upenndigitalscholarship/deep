@@ -1,5 +1,6 @@
-import srsly 
 from pathlib import Path
+
+import srsly
 
 old_data = srsly.read_json('oldsite_byauthorModern_results.json')
 new_data = srsly.read_json('newsite_byauthor_results.json')

@@ -1,8 +1,12 @@
-import time 
-from django.core.management.base import BaseCommand
+import time
+
 from django.core.management import call_command
+from django.core.management.base import BaseCommand
 from netlify_py import NetlifyPy
+
 from deep.secrets import NETLIFY_KEY, NETLIFY_SITE_ID
+
+
 class Command(BaseCommand):
     help = 'Push site to Netlify'
 
