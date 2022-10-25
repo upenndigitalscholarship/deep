@@ -37,22 +37,7 @@
                 <input class="form-check-input" type="checkbox" id="PlaysinCollections" value="PlaysinCollections" checked>
                 <label class="form-check-label" for="PlaysinCollections">Plays in Collection</label>
               </div>
-              <span >Add filter:&nbsp;&nbsp;</span>
-              <div class="btn-group mb-2" role="group" aria-label="Basic radio toggle button group">
-                <!-- Add new filter box 
-                The top box has option to add AND OR
-                Each child has a disabled button with the operator selected, and a remove button
-                 -->
-                
-                <input type="radio" onclick="addFilterBlock('and')" class="btn-check" name="addAND" id="addAND" autocomplete="off" >
-                <label class="btn btn-sm btn-outline-primary btn-outline-dark" for="addAND">and</label>
               
-                <input type="radio" onclick="addFilterBlock('or')" class="btn-check" name="addOR" id="addOR" autocomplete="off">
-                <label class="btn btn-sm btn-outline-primary btn-outline-dark" for="addOR">or</label>
-                
-                
-                
-              </div>
             </div>
             
             
@@ -61,6 +46,19 @@
             
             <!-- filterBlock -->
           </div>
+          <span >Add filter:&nbsp;&nbsp;</span>
+              <div class="btn-group mb-2" role="group" aria-label="Basic radio toggle button group">
+                <!-- Add new filter box 
+                The top box has option to add AND OR
+                Each child has a disabled button with the operator selected, and a remove button
+                 -->
+                <button class="btn btn-outline-dark btn-sm" onclick="addANDBlock()">and</button>
+                <button class="btn btn-outline-dark btn-sm" onclick="addORBlock()">or</button>
+                
+                
+                
+                
+              </div>
           </div>
         </div>
       </div>
@@ -449,12 +447,357 @@ function removeFilterBlock(id) {
   search();
   
 }
-function addFilterBlock(type) {
+
+    
+
+function addANDBlock() {
+  const min_year = {{ min_year|safe }}
+  const max_year = {{ max_year|safe }}
+  let template = `
+    <div id="andORButtons" class="btn-group" style="visibility:collapse;" role="group" aria-label="Basic radio toggle button group">
+        <!-- Add new filter box 
+          The top box has option to add AND OR
+          Each child has a disabled button with the operator selected, and a remove button
+        -->
+                  
+        <input type="radio" class="btn-check" name="addAND" id="addAND" autocomplete="off" disabled >
+          <label class="btn btn-sm  " for="addAND">and</label>              
+            <input type="radio" class="btn-check btn-outline-dark" name="removeBlock" id="removeBlock" autocomplete="off">
+            <label class="btn btn-sm  " for="removeBlock"><i id="removeFilterBlock" class="bi bi-dash-circle" ></i></label>
+    </div>
+          
+      <select id="searchSelect" class="input-group form-select form-select-sm">
+        
+        <option value="">Please select...</option>
+        <option value="deep-id">DEEP ID</option>
+        <option value="title" selected>Title</option>
+        <option value="author">Author</option>
+        <option value="title-page-author">Author (Title-Page Attribution)</option>
+        <option value="authorial-status">Authorial Status (Title-Page Attribution)</option>
+        <option value="title-page-modern">All Title-Page Text (modern spelling)</option>
+        <option value="title-page-old">All Title-Page Text (old spelling)</option>
+        <option value="company-first-performance">Company (First Production)</option>
+        <option value="company">Company (Title-Page Attribution)</option>
+        <option value="dateofcomp" disabled>Date of First Production</option>
+        <option value="theater">Theater (Title-Page Attribution)</option>
+        <option value="playtype">Play Type</option>
+        <option value="dedication">Dedication</option>
+        <option value="genre">Genre (Annals)</option>
+        <option value="toreader">To the Reader</option>
+        <option value="genreplaybook" disabled>Genre (Title-Page Attribution)</option>
+        <option value="argument">Argument</option>
+        <option value="actor-list">Actor List</option>
+        <option value="explicit">Explicit</option>
+        <option value="errata">Errata</option>
+        <option value="charachter-list">Character List</option>
+        <option value="other-paratexts">Other Paratexts</option>
+        <option value="paratextual" >All Paratextual Material</option>
+        <option value="illustration">Illustration</option>
+        <option value="blackletter">Black Letter</option>
+        <option value="latinontitle">Latin on Title Page</option>
+        <option value="stationer">Stationer</option>
+        <option value="printer" >&nbsp;&nbsp;&nbsp;&nbsp;Printer</option>
+        <option value="publisher" >&nbsp;&nbsp;&nbsp;&nbsp;Publisher</option>
+        <option value="bookseller" >&nbsp;&nbsp;&nbsp;&nbsp;Bookseller</option>
+        <option value="commendatory-verses" >Commendatory Verses</option>
+        <option value="imprintlocation">Imprint Location</option>
+        <option value="dateoffirsted" disabled>Date of First Edition</option>
+        <option value="format">Format</option>
+        <option value="book_edition">Book edition number</option>
+        <option value="play_edition">Play edition number</option>
+        <option value="greg_number">Greg Number</option>
+        <option value="stc_or_wing">STC / Wing Number</option>
+        <option value="first-production">Date of First Production</option>
+        <option value="first-edition">Date of First Edition</option>
+        <option value="year-published">Year Published</option>
+
+      </select>
+      <input id="advancedSearchField" type="text" class="form-control" aria-label="advancedSearchField" aria-describedby="advancedSearchField">
+      <select id="choicesSelect" style="display: hide;" class="form-control"></select>
+        
+      <style>.noUi-connect {
+        background: #0e0076;
+      }</style>
+      <div id="spacer" style="height:10px;"></div>
+      <div id="date-input" class="input-group d-none">
+        <span class="input-group-text">Begin:</span>
+        <input type="number" aria-label="start-date" value="${min_year}" pattern="\d{4}"  maxlength="4" class="form-control"></input>
+        <span class="input-group-text">End:</span>
+        <input type="number" aria-label="end-date" value="${max_year}" pattern="\d{4}"  maxlength="4" class="form-control"></input>
+      </div>`
+  
+  
+  let newBlock = document.createElement("div");
+  newBlock.innerHTML = template
+  
+  //  Don't add 'and' or buttons to first block
+  if (document.getElementById('filterBlocks').childElementCount === 0) {
+    newBlock.children[0].style.display = "none";
+  }
+  
+  document.getElementById('filterBlocks').append(newBlock);
+  
+
+  // Add a unique id to the new block and update as AND OR filter
+  //let newBlock = document.getElementById('filterBlocks').lastElementChild
+  newBlock.id = 'filterBlock-'+document.getElementById('filterBlocks').childElementCount
+  // <div id="filterBlock" class="input-group-md">
+  newBlock.classList.add("input-group-md");
+  // listen for changes to searchSelect
+  
+  let searchSelect = newBlock.children[1]
+  update_searchSelect(searchSelect);
+  searchSelect.addEventListener('change', (event) => {
+    update_searchSelect(searchSelect);
+  })
+
+  let thisSearchField = newBlock.children[2]
+  thisSearchField.addEventListener('keyup', (event) => {
+    search();
+  });
+
+  let thisChoicesSelect = newBlock.children[3]
+  thisChoicesSelect.addEventListener('change', (event) => {
+    search();
+  });
+
+  let beginDateSelect = newBlock.children[6].children[1]
+  beginDateSelect.addEventListener('keyup', (event) => {
+    search();
+  });
+
+  let endDateSelect = newBlock.children[6].children[3]
+  endDateSelect.addEventListener('keyup', (event) => {
+    search();
+  });
+
+  let typeName = newBlock.children[0].children[1];
+  
+  newBlock.dataset.type = "AND"
+  typeName.innerHTML = 'and'
+  
+  typeName.style.visibility = 'visible';
+  
+  
+  let removeButton = newBlock.children[0].children[3];
+  removeButton.style.visibility = 'visible';
+  removeButton.addEventListener('click', function handleClick(event) {
+    removeFilterBlock('filterBlock-'+document.getElementById('filterBlocks').childElementCount);
+});
+}
+
+function addORBlock() {
+  const min_year = {{ min_year|safe }}
+  const max_year = {{ max_year|safe }}
+  let template = `
+    <div id="andORButtons" class="btn-group" style="visibility:collapse;" role="group" aria-label="Basic radio toggle button group">
+        <!-- Add new filter box 
+          The top box has option to add AND OR
+          Each child has a disabled button with the operator selected, and a remove button
+        -->
+                  
+        <input type="radio" class="btn-check" name="addAND" id="addAND" autocomplete="off" disabled >
+          <label class="btn btn-sm  " for="addAND"></label>              
+            <input type="radio" class="btn-check btn-outline-dark" name="removeBlock" id="removeBlock" autocomplete="off">
+            <label class="btn btn-sm  " for="removeBlock"><i id="removeFilterBlock" class="bi bi-dash-circle" ></i></label>
+    </div>
+          
+      <select id="searchSelect" class="input-group form-select form-select-sm">
+        
+        <option value="">Please select...</option>
+        <option value="deep-id">DEEP ID</option>
+        <option value="title" selected>Title</option>
+        <option value="author">Author</option>
+        <option value="title-page-author">Author (Title-Page Attribution)</option>
+        <option value="authorial-status">Authorial Status (Title-Page Attribution)</option>
+        <option value="title-page-modern">All Title-Page Text (modern spelling)</option>
+        <option value="title-page-old">All Title-Page Text (old spelling)</option>
+        <option value="company-first-performance">Company (First Production)</option>
+        <option value="company">Company (Title-Page Attribution)</option>
+        <option value="dateofcomp" disabled>Date of First Production</option>
+        <option value="theater">Theater (Title-Page Attribution)</option>
+        <option value="playtype">Play Type</option>
+        <option value="dedication">Dedication</option>
+        <option value="genre">Genre (Annals)</option>
+        <option value="toreader">To the Reader</option>
+        <option value="genreplaybook" disabled>Genre (Title-Page Attribution)</option>
+        <option value="argument">Argument</option>
+        <option value="actor-list">Actor List</option>
+        <option value="explicit">Explicit</option>
+        <option value="errata">Errata</option>
+        <option value="charachter-list">Character List</option>
+        <option value="other-paratexts">Other Paratexts</option>
+        <option value="paratextual" >All Paratextual Material</option>
+        <option value="illustration">Illustration</option>
+        <option value="blackletter">Black Letter</option>
+        <option value="latinontitle">Latin on Title Page</option>
+        <option value="stationer">Stationer</option>
+        <option value="printer" >&nbsp;&nbsp;&nbsp;&nbsp;Printer</option>
+        <option value="publisher" >&nbsp;&nbsp;&nbsp;&nbsp;Publisher</option>
+        <option value="bookseller" >&nbsp;&nbsp;&nbsp;&nbsp;Bookseller</option>
+        <option value="commendatory-verses" >Commendatory Verses</option>
+        <option value="imprintlocation">Imprint Location</option>
+        <option value="dateoffirsted" disabled>Date of First Edition</option>
+        <option value="format">Format</option>
+        <option value="book_edition">Book edition number</option>
+        <option value="play_edition">Play edition number</option>
+        <option value="greg_number">Greg Number</option>
+        <option value="stc_or_wing">STC / Wing Number</option>
+        <option value="first-production">Date of First Production</option>
+        <option value="first-edition">Date of First Edition</option>
+        <option value="year-published">Year Published</option>
+
+      </select>
+      <input id="advancedSearchField" type="text" class="form-control" aria-label="advancedSearchField" aria-describedby="advancedSearchField">
+      <select id="choicesSelect" style="display: hide;" class="form-control"></select>
+        
+      <style>.noUi-connect {
+        background: #0e0076;
+      }</style>
+      <div id="spacer" style="height:10px;"></div>
+      <div id="date-input" class="input-group d-none">
+        <span class="input-group-text">Begin:</span>
+        <input type="number" aria-label="start-date" value="${min_year}" pattern="\d{4}"  maxlength="4" class="form-control"></input>
+        <span class="input-group-text">End:</span>
+        <input type="number" aria-label="end-date" value="${max_year}" pattern="\d{4}"  maxlength="4" class="form-control"></input>
+      </div>
+      <label class="btn btn-sm  " for="addAND">or</label>              
+      <select id="searchSelect" class="input-group form-select form-select-sm">
+        
+        <option value="">Please select...</option>
+        <option value="deep-id">DEEP ID</option>
+        <option value="title" selected>Title</option>
+        <option value="author">Author</option>
+        <option value="title-page-author">Author (Title-Page Attribution)</option>
+        <option value="authorial-status">Authorial Status (Title-Page Attribution)</option>
+        <option value="title-page-modern">All Title-Page Text (modern spelling)</option>
+        <option value="title-page-old">All Title-Page Text (old spelling)</option>
+        <option value="company-first-performance">Company (First Production)</option>
+        <option value="company">Company (Title-Page Attribution)</option>
+        <option value="dateofcomp" disabled>Date of First Production</option>
+        <option value="theater">Theater (Title-Page Attribution)</option>
+        <option value="playtype">Play Type</option>
+        <option value="dedication">Dedication</option>
+        <option value="genre">Genre (Annals)</option>
+        <option value="toreader">To the Reader</option>
+        <option value="genreplaybook" disabled>Genre (Title-Page Attribution)</option>
+        <option value="argument">Argument</option>
+        <option value="actor-list">Actor List</option>
+        <option value="explicit">Explicit</option>
+        <option value="errata">Errata</option>
+        <option value="charachter-list">Character List</option>
+        <option value="other-paratexts">Other Paratexts</option>
+        <option value="paratextual" >All Paratextual Material</option>
+        <option value="illustration">Illustration</option>
+        <option value="blackletter">Black Letter</option>
+        <option value="latinontitle">Latin on Title Page</option>
+        <option value="stationer">Stationer</option>
+        <option value="printer" >&nbsp;&nbsp;&nbsp;&nbsp;Printer</option>
+        <option value="publisher" >&nbsp;&nbsp;&nbsp;&nbsp;Publisher</option>
+        <option value="bookseller" >&nbsp;&nbsp;&nbsp;&nbsp;Bookseller</option>
+        <option value="commendatory-verses" >Commendatory Verses</option>
+        <option value="imprintlocation">Imprint Location</option>
+        <option value="dateoffirsted" disabled>Date of First Edition</option>
+        <option value="format">Format</option>
+        <option value="book_edition">Book edition number</option>
+        <option value="play_edition">Play edition number</option>
+        <option value="greg_number">Greg Number</option>
+        <option value="stc_or_wing">STC / Wing Number</option>
+        <option value="first-production">Date of First Production</option>
+        <option value="first-edition">Date of First Edition</option>
+        <option value="year-published">Year Published</option>
+
+      </select>
+      <input id="advancedSearchField" type="text" class="form-control" aria-label="advancedSearchField" aria-describedby="advancedSearchField">
+      <select id="choicesSelect" style="display: hide;" class="form-control"></select>
+        
+      <style>.noUi-connect {
+        background: #0e0076;
+      }</style>
+      <div id="spacer" style="height:10px;"></div>
+      <div id="date-input" class="input-group d-none">
+        <span class="input-group-text">Begin:</span>
+        <input type="number" aria-label="start-date" value="${min_year}" pattern="\d{4}"  maxlength="4" class="form-control"></input>
+        <span class="input-group-text">End:</span>
+        <input type="number" aria-label="end-date" value="${max_year}" pattern="\d{4}"  maxlength="4" class="form-control"></input>
+      </div>`
+  
+  
+  let newBlock = document.createElement("div");
+  newBlock.innerHTML = template
+  
+  //  Don't add 'and' or buttons to first block
+  if (document.getElementById('filterBlocks').childElementCount === 0) {
+    newBlock.children[0].style.display = "none";
+  }
+  
+  document.getElementById('filterBlocks').append(newBlock);
+  
+
+  // Add a unique id to the new block and update as AND OR filter
+  //let newBlock = document.getElementById('filterBlocks').lastElementChild
+  newBlock.id = 'filterBlock-'+document.getElementById('filterBlocks').childElementCount
+  // <div id="filterBlock" class="input-group-md">
+  newBlock.classList.add("input-group-md");
+  newBlock.classList.add('border')
+  newBlock.classList.add('border-dark');
+  newBlock.classList.add('rounded');
+  newBlock.classList.add('border-2');
+  
+  // listen for changes to searchSelect
+  
+  let searchSelect = newBlock.children[1]
+  update_searchSelect(searchSelect);
+  searchSelect.addEventListener('change', (event) => {
+    update_searchSelect(searchSelect);
+  })
+
+  let thisSearchField = newBlock.children[2]
+  thisSearchField.addEventListener('keyup', (event) => {
+    search();
+  });
+
+  let thisChoicesSelect = newBlock.children[3]
+  thisChoicesSelect.addEventListener('change', (event) => {
+    search();
+  });
+
+  let beginDateSelect = newBlock.children[6].children[1]
+  beginDateSelect.addEventListener('keyup', (event) => {
+    search();
+  });
+
+  let endDateSelect = newBlock.children[6].children[3]
+  endDateSelect.addEventListener('keyup', (event) => {
+    search();
+  });
+
+  let typeName = newBlock.children[0].children[1];
+  
+  newBlock.dataset.type = "OR"
+  typeName.innerHTML = 'and'
+  
+  typeName.style.visibility = 'visible';
+  
+  
+  let removeButton = newBlock.children[0].children[3];
+  removeButton.style.visibility = 'visible';
+  removeButton.addEventListener('click', function handleClick(event) {
+    removeFilterBlock('filterBlock-'+document.getElementById('filterBlocks').childElementCount);
+});
+}
+
+
+function addFilterBlock_old(type) {
   // clone the main filter block
   //const filterBlockTemplate = document.getElementById('filterBlock').cloneNode(true)
   const min_year = {{ min_year|safe }}
   const max_year = {{ max_year|safe }}
-  const filterBlockTemplate = `
+  const ORfilterBlockTemplate = `
+              
+  `
+
+  const ANDfilterBlockTemplate = `
               <div id="andORButtons" class="btn-group" style="visibility:collapse;" role="group" aria-label="Basic radio toggle button group">
                 <!-- Add new filter box 
                 The top box has option to add AND OR
@@ -533,7 +876,13 @@ function addFilterBlock(type) {
   
   
   const newBlock = document.createElement("div");
-  newBlock.innerHTML = filterBlockTemplate
+  if (type == 'and') {
+    newBlock.innerHTML = ANDfilterBlockTemplate
+  }
+  if (type =='or') {
+    newBlock.innerHTML = ORfilterBlockTemplate
+  }
+  
   //  Don't add 'and' or buttons to first block
   if (document.getElementById('filterBlocks').childElementCount === 0) {
     newBlock.children[0].style.display = "none";
@@ -604,7 +953,7 @@ function readFilterBlocks() {
 
 // initialize searchBlock on page load
 const init_firstBlock = () => {
-  addFilterBlock('and')
+  addANDBlock()
   const searchSelect = document.getElementById("searchSelect");
   update_searchSelect(searchSelect);
   searchSelect.addEventListener('change', (event) => {
