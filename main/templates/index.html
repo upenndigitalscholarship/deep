@@ -184,14 +184,14 @@ let choice_fields = ['author','authorial-status','company-first-performance','co
 const update_searchSelect = searchSelect => {
   
     let filter = searchSelect.value 
-    let searchField = searchSelect.parentElement.children[2]
+    let searchField = searchSelect.parentElement.children[1]
     
     //let this_years = searchSelect.;
     //TODO better way to select siblings?
-    let this_years = searchSelect.parentElement.children[6]
+    let this_years = searchSelect.parentElement.children[5]
     this_years.classList.add('d-none')
 
-    let choicesSelect = searchSelect.parentElement.children[3]
+    let choicesSelect = searchSelect.parentElement.children[2]
     this_choices = new Choices(choicesSelect,{
         addItems: false,
         shouldSort: false,
@@ -408,38 +408,39 @@ const getQueries = () => {
     
     // get AND OR operator 
     let blockType = block.dataset.type
-  
-    let searchField = block.children[1].value
-    
-    // is a search field 
-    if (search_fields.indexOf(searchField) > -1) {
-      let searchValue = block.children[2].value
-      if (searchValue) {
-        query.push({"searchField":searchField, "searchValue":searchValue, "blockType":blockType})
+    if (blockType == 'AND') {
+      let searchField = block.children[1].children[0].value 
+      
+      // is a search field 
+      if (search_fields.indexOf(searchField) > -1) {
+        let searchValue = block.children[1].children[1].value
+        if (searchValue) {
+          query.push({"searchField":searchField, "searchValue":searchValue, "blockType":blockType})
+        }
       }
-    }
-    if (date_fields.indexOf(searchField) > -1) {
-      // date field
-      let searchValue = block.children[2].value
-      let start = block.children[6].children[1].value
-      let end = block.children[6].children[3].value
-      if (start || end) {
+      if (date_fields.indexOf(searchField) > -1) {
+        // date field
+        let start = block.children[1].children[5].children[1].value
+        let end = block.children[1].children[5].children[3].value
         query.push({"searchField":searchField, "searchValue":start+'-'+end, "blockType":blockType})
       }
-    }
-    if (choice_fields.indexOf(searchField) > -1) {
-      // choice field
-      let searchValue = block.children[3].outerText.split('\n')[0] //TODO better way to access selected value
-      if (searchValue){
-        query.push({"searchField":searchField, "searchValue":searchValue, "blockType":blockType})
+      if (choice_fields.indexOf(searchField) > -1) {
+        // choice field
+        let searchValue = block.children[1].children[2].outerText.split('\n')[0] //TODO better way to access selected value
+        if (searchValue){
+          query.push({"searchField":searchField, "searchValue":searchValue, "blockType":blockType})
+        }
       }
+      
     }
+    if (blockType == 'OR') {
+      console.log('is or block')
+    }  
+    console.log('is query', query)
+    return query
     
-  }  
-  return query
-
   // return an array of filter functions
-}
+}}
 
 function removeFilterBlock(id) {
   let myParent = document.getElementById(id);
@@ -465,7 +466,7 @@ function addANDBlock() {
             <input type="radio" class="btn-check btn-outline-dark" name="removeBlock" id="removeBlock" autocomplete="off">
             <label class="btn btn-sm  " for="removeBlock"><i id="removeFilterBlock" class="bi bi-dash-circle" ></i></label>
     </div>
-          
+    <div>
       <select id="searchSelect" class="input-group form-select form-select-sm">
         
         <option value="">Please select...</option>
@@ -524,7 +525,7 @@ function addANDBlock() {
         <input type="number" aria-label="start-date" value="${min_year}" pattern="\d{4}"  maxlength="4" class="form-control"></input>
         <span class="input-group-text">End:</span>
         <input type="number" aria-label="end-date" value="${max_year}" pattern="\d{4}"  maxlength="4" class="form-control"></input>
-      </div>`
+      </div></div>`
   
   
   let newBlock = document.createElement("div");
@@ -545,28 +546,28 @@ function addANDBlock() {
   newBlock.classList.add("input-group-md");
   // listen for changes to searchSelect
   
-  let searchSelect = newBlock.children[1]
+  let searchSelect = newBlock.children[1].children[0]
   update_searchSelect(searchSelect);
   searchSelect.addEventListener('change', (event) => {
     update_searchSelect(searchSelect);
   })
 
-  let thisSearchField = newBlock.children[2]
+  let thisSearchField = newBlock.children[1].children[1]
   thisSearchField.addEventListener('keyup', (event) => {
     search();
   });
 
-  let thisChoicesSelect = newBlock.children[3]
+  let thisChoicesSelect = newBlock.children[1].children[2]
   thisChoicesSelect.addEventListener('change', (event) => {
     search();
   });
 
-  let beginDateSelect = newBlock.children[6].children[1]
+  let beginDateSelect = newBlock.children[1].children[5].children[1]
   beginDateSelect.addEventListener('keyup', (event) => {
     search();
   });
 
-  let endDateSelect = newBlock.children[6].children[3]
+  let endDateSelect = newBlock.children[1].children[5].children[3]
   endDateSelect.addEventListener('keyup', (event) => {
     search();
   });
@@ -590,18 +591,18 @@ function addORBlock() {
   const min_year = {{ min_year|safe }}
   const max_year = {{ max_year|safe }}
   let template = `
-    <div id="andORButtons" class="btn-group" style="visibility:collapse;" role="group" aria-label="Basic radio toggle button group">
+    <div id="andORButtons" class="btn-group" role="group" aria-label="Basic radio toggle button group">
         <!-- Add new filter box 
           The top box has option to add AND OR
           Each child has a disabled button with the operator selected, and a remove button
         -->
                   
         <input type="radio" class="btn-check" name="addAND" id="addAND" autocomplete="off" disabled >
-          <label class="btn btn-sm  " for="addAND"></label>              
+          <label class="btn btn-sm  " for="addAND">and</label>              
             <input type="radio" class="btn-check btn-outline-dark" name="removeBlock" id="removeBlock" autocomplete="off">
             <label class="btn btn-sm  " for="removeBlock"><i id="removeFilterBlock" class="bi bi-dash-circle" ></i></label>
     </div>
-          
+          <div class="border border-dark rounded border-2">
       <select id="searchSelect" class="input-group form-select form-select-sm">
         
         <option value="">Please select...</option>
@@ -720,7 +721,7 @@ function addORBlock() {
         <input type="number" aria-label="start-date" value="${min_year}" pattern="\d{4}"  maxlength="4" class="form-control"></input>
         <span class="input-group-text">End:</span>
         <input type="number" aria-label="end-date" value="${max_year}" pattern="\d{4}"  maxlength="4" class="form-control"></input>
-      </div>`
+      </div></div>`
   
   
   let newBlock = document.createElement("div");
@@ -738,11 +739,7 @@ function addORBlock() {
   //let newBlock = document.getElementById('filterBlocks').lastElementChild
   newBlock.id = 'filterBlock-'+document.getElementById('filterBlocks').childElementCount
   // <div id="filterBlock" class="input-group-md">
-  newBlock.classList.add("input-group-md");
-  newBlock.classList.add('border')
-  newBlock.classList.add('border-dark');
-  newBlock.classList.add('rounded');
-  newBlock.classList.add('border-2');
+  
   
   // listen for changes to searchSelect
   
@@ -771,20 +768,12 @@ function addORBlock() {
   endDateSelect.addEventListener('keyup', (event) => {
     search();
   });
-
-  let typeName = newBlock.children[0].children[1];
   
-  newBlock.dataset.type = "OR"
-  typeName.innerHTML = 'and'
-  
-  typeName.style.visibility = 'visible';
-  
-  
-  let removeButton = newBlock.children[0].children[3];
+  let removeButton = newBlock.children[0].children[3]
   removeButton.style.visibility = 'visible';
   removeButton.addEventListener('click', function handleClick(event) {
     removeFilterBlock('filterBlock-'+document.getElementById('filterBlocks').childElementCount);
-});
+  });
 }
 
 

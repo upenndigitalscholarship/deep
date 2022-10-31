@@ -161,3 +161,17 @@ Also appears as a bibliographically independent playbook in 1613 http://deep.sas
 
 Also appears as a bibliographically independent playbook in 1591
 http://deep.sas.upenn.edu/viewrecord.php?deep_id=5021.02
+
+## Search Blocks 
+1.
+    addORBlock()
+    addANDBlock()
+    appends newBlock to filterBlocks
+2.  when field is changed calls update_searchSelect
+3.  all events trigger search();
+
+### Search
+Gather the current queries from the filterBlocks
+- getQueries
+Turn the queries into an array of filter functions 
+- processQueries(queries)
