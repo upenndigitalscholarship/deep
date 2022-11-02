@@ -602,7 +602,7 @@ function addORBlock() {
             <input type="radio" class="btn-check btn-outline-dark" name="removeBlock" id="removeBlock" autocomplete="off">
             <label class="btn btn-sm" for="removeBlock"><i id="removeFilterBlock" class="bi bi-dash-circle" ></i></label>
     </div>
-          <div class="border border-dark rounded border-2">
+    <div class="border border-dark rounded border-2">
       <select id="searchSelect" class="input-group form-select form-select-sm">
         
         <option value="">Please select...</option>
@@ -662,7 +662,8 @@ function addORBlock() {
         <span class="input-group-text">End:</span>
         <input type="number" aria-label="end-date" value="${max_year}" pattern="\d{4}"  maxlength="4" class="form-control"></input>
       </div>
-      <label class="btn btn-sm  " for="addAND">or</label>              
+      <label class="btn btn-sm  " for="addAND">or</label> 
+                 
       <select id="searchSelect" class="input-group form-select form-select-sm">
         
         <option value="">Please select...</option>
@@ -744,6 +745,7 @@ function addORBlock() {
   
   // First input
   let searchSelect1 = newBlock.children[1].children[0]
+  update_searchSelect(searchSelect1);
   searchSelect1.addEventListener('change', (event) => {
     update_searchSelect(searchSelect1);
   })
@@ -769,6 +771,7 @@ function addORBlock() {
   
   // Second input
   let searchSelect2 = newBlock.children[1].children[7]
+  update_searchSelect(searchSelect2);
   searchSelect2.addEventListener('change', (event) => {
     update_searchSelect(searchSelect2);
   })
