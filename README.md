@@ -168,6 +168,7 @@ http://deep.sas.upenn.edu/viewrecord.php?deep_id=5021.02
     addANDBlock()
     appends newBlock to filterBlocks
 2.  when field is changed calls update_searchSelect
+    - this changes which the user input type is visible. 1. text input, 2. choice dropdown 3. dates
 3.  all events trigger search();
 
 ### Search
