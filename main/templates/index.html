@@ -489,31 +489,32 @@ const getQueries = () => {
     if (blockType == 'OR') {
       // first block
       let searchField1 = block.children[1].children[0].value
-      let searchValue1
+      
       if (search_fields.indexOf(searchField1) > -1) {
-        let searchValue1 = block.children[1].children[1].value
+        searchValue1 = block.children[1].children[1].value
       }
       if (date_fields.indexOf(searchField1) > -1) {
         let start = block.children[1].children[5].children[1].value
         let end = block.children[1].children[5].children[3].value
-        let searchValue1 = start+'-'+end
+        searchValue1 = start+'-'+end
       }
       if (choice_fields.indexOf(searchField1) > -1) {
-        let searchValue1 = block.children[1].children[2].outerText.split('\n')[0] //TODO better way to access selected value
+        searchValue1 = block.children[1].children[2].outerText.split('\n')[0] //TODO better way to access selected value
+        
       } 
       // second block
       let searchField2 = block.children[1].children[7].value
-      let searchValue2
+      
       if (search_fields.indexOf(searchField2) > -1) {
-        let searchValue2 = block.children[1].children[8].value
+        searchValue2 = block.children[1].children[8].value
       }
       if (date_fields.indexOf(searchField2) > -1) {
         let start = block.children[1].children[12].children[1].value
         let end = block.children[1].children[12].children[3].value
-        let searchValue2 = start+'-'+end
+        searchValue2 = start+'-'+end
       }
       if (choice_fields.indexOf(searchField1) > -1) {
-        let searchValue2 = block.children[1].children[9].outerText.split('\n')[0] //TODO better way to access selected value
+        searchValue2 = block.children[1].children[9].outerText.split('\n')[0] //TODO better way to access selected value
       } 
       query.push({"searchField":searchField1+'||'+searchField2, "searchValue":searchValue1+'||'+searchValue2, "blockType":blockType})
       
