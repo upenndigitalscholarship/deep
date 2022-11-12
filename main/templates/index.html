@@ -811,12 +811,18 @@ function addORBlock() {
   let newBlock = document.createElement("div");
   newBlock.innerHTML = template
   
-  //  Don't add 'and' or buttons to first block
-  if (document.getElementById('filterBlocks').childElementCount === 0) {
+ 
+  // on first click, add OR as first block, 
+  if (document.getElementById('filterBlocks').childElementCount == 1 && document.getElementById('filterBlocks').children[0].dataset.type == 'AND') {
+    document.getElementById('filterBlocks').children[0].remove()
+    document.getElementById('filterBlocks').append(newBlock);
     newBlock.children[0].style.display = "none";
+    
+  } else {
+    console.log('is else')
+    document.getElementById('filterBlocks').append(newBlock);
   }
   
-  document.getElementById('filterBlocks').append(newBlock);
   
 
   // Add a unique id to the new block and update as AND OR filter
