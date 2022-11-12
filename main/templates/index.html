@@ -1349,14 +1349,288 @@ const processQueries = queries => {
       }
     }
     if (query.blockType == 'OR') { 
-      console.log('TODO')
-      if (query.searchField == 'title') {
+      // build two separate filters, then join them 
+      let fields = query.searchField.split('||')
+      let values = query.searchValue.split('||')
+      let ORquery = []
+      for (i in fields){
+        if (fields[i] == 'title') {
         let title = item => (
-            item.title.toLowerCase().includes(query.searchValue.toLowerCase()) || 
-            item.title_alternative_keywords.toLowerCase().includes(query.searchValue.toLowerCase())
+            item.title.toLowerCase().includes(values[i].toLowerCase()) || 
+            item.title_alternative_keywords.toLowerCase().includes(values[i].toLowerCase())
             )
-        filters.push({'filter':title,'type':query.blockType})
+            ORquery.push(title)
       }
+      
+      filters.push({'filter':ORquery,'type':'OR'})
+      
+      // if (query.searchField == 'stationer') { 
+      //   let stationer = item => (
+      //       item.stationer_printer.toLowerCase().includes(query.searchValue.toLowerCase()) || 
+      //       item.stationer_publisher.toLowerCase().includes(query.searchValue.toLowerCase()) || 
+      //       item.stationer_bookseller.toLowerCase().includes(query.searchValue.toLowerCase())
+      //       )
+      //   filters.push({'filter':stationer,'type':query.blockType})
+      // }
+      // if (query.searchField == 'paratextual') {
+      //   let paratextual = item => (
+      //       item.paratext_dedication.toLowerCase().includes(query.searchValue.toLowerCase()) || 
+      //       item.paratext_commendatory_verses.toLowerCase().includes(query.searchValue.toLowerCase()) || 
+      //       item.paratext_to_the_reader.toLowerCase().includes(query.searchValue.toLowerCase()) || 
+      //       item.paratext_argument.toLowerCase().includes(query.searchValue.toLowerCase()) || 
+      //       item.paratext_actor_list.toLowerCase().includes(query.searchValue.toLowerCase()) || 
+      //       item.paratext_charachter_list.toLowerCase().includes(query.searchValue.toLowerCase()) || 
+      //       item.title_page_explicit.toLowerCase().includes(query.searchValue.toLowerCase()) || 
+      //       item.paratext_errata.toLowerCase().includes(query.searchValue.toLowerCase()) || 
+      //       item.paratext_other_paratexts.toLowerCase().includes(query.searchValue.toLowerCase())
+      //       )
+      //   filters.push({'filter':paratextual,'type':query.blockType})
+        
+      // }
+      // if (query.searchField == 'commendatory-verses') {
+      //   let commendatoryVerses = item => (
+      //       item.paratext_commendatory_verses.toLowerCase().includes(query.searchValue.toLowerCase())
+      //       )
+      //   filters.push({'filter':commendatoryVerses,'type':query.blockType})
+      // }
+      // if (query.searchField == 'title-page-modern') {
+      //   let titlePageModern = item => (
+      //       item.title_page_modern_spelling.toLowerCase().includes(query.searchValue.toLowerCase())
+      //       )
+      //   filters.push({'filter':titlePageModern,'type':query.blockType})
+      // }
+      // if (query.searchField == 'imprintlocation') {
+      //   let imprintLocation = item => (
+      //       item.title_page_imprint.toLowerCase().includes(query.searchValue.toLowerCase())
+      //       )
+      //   filters.push({'filter':imprintLocation,'type':query.blockType})
+      // }
+      // if (query.searchField == 'title-page-old') {
+      //   let titlePageOld = item => (
+      //       item.title_page_title.toLowerCase().includes(query.searchValue.toLowerCase()) ||
+      //       item.title_page_author.toLowerCase().includes(query.searchValue.toLowerCase()) ||
+      //       item.title_page_performance.toLowerCase().includes(query.searchValue.toLowerCase()) ||
+      //       item.title_page_latin_motto.toLowerCase().includes(query.searchValue.toLowerCase()) ||
+      //       item.title_page_imprint.toLowerCase().includes(query.searchValue.toLowerCase())
+      //       )
+      //   filters.push({'filter':titlePageOld,'type':query.blockType})
+      // }
+      // if (query.searchField == 'title-page-author') {
+      //   let titlePageAuthor = item => (
+      //     item.title_page_author.toLowerCase().includes(query.searchValue.toLowerCase())
+      //   )
+      //   filters.push({'filter':titlePageAuthor,'type':query.blockType})
+      // }
+      // if (query.searchField == 'actor-list') {
+      //   let actorList = item => (
+      //     item.paratext_actor_list.toLowerCase().includes(query.searchValue.toLowerCase())
+      //   )
+      //   filters.push({'filter':actorList,'type':query.blockType})
+      // }
+      // if (query.searchField == 'explicit') {
+      //   let explicit = item => (
+      //     item.title_page_explicit.toLowerCase().includes(query.searchValue.toLowerCase())
+      //   )
+      //   filters.push({'filter':explicit,'type':query.blockType})
+      // }
+      // if (query.searchField == 'toreader') {
+      //   let toreader = item => (
+      //     item.paratext_to_the_reader.toLowerCase().includes(query.searchValue.toLowerCase())
+      //   )
+      //   filters.push({'filter':toreader,'type':query.blockType})
+      // }
+      // if (query.searchField == 'argument') {
+      //   let argument = item => (
+      //     item.paratext_argument.toLowerCase().includes(query.searchValue.toLowerCase())
+      //   )
+      //   filters.push({'filter':argument,'type':query.blockType})
+      // }
+      // if (query.searchField == 'dedication') {
+      //   let dedication = item => (
+      //     item.paratext_dedication.toLowerCase().includes(query.searchValue.toLowerCase())
+      //   )
+      //   filters.push({'filter':dedication,'type':query.blockType})
+      // }
+      // if (query.searchField == 'charachter-list') {
+      //   let charachterList = item => (
+      //     item.paratext_charachter_list.toLowerCase().includes(query.searchValue.toLowerCase())
+      //   )
+      //   filters.push({'filter':charachterList,'type':query.blockType})
+      // }
+      // if (query.searchField == 'errata') {
+      //   let errata = item => (
+      //     item.paratext_errata.toLowerCase().includes(query.searchValue.toLowerCase())
+      //   )
+      //   filters.push({'filter':errata,'type':query.blockType})
+      // }
+      // if (query.searchField == 'other-paratexts') {
+      //   let otherParatexts = item => (
+      //     item.paratext_other_paratexts.toLowerCase().includes(query.searchValue.toLowerCase())
+      //   )
+      //   filters.push({'filter':otherParatexts,'type':query.blockType})
+      // }
+      // if (query.searchField == 'illustration') {
+      //   let illustration = item => (
+      //     item.title_page_illustration.toLowerCase().includes(query.searchValue.toLowerCase())
+      //   )
+      //   filters.push({'filter':illustration,'type':query.blockType})
+      // }
+      // if (query.searchField == 'latinontitle') {
+      //   let latinontitle = item => (
+      //     item.title_page_latin_motto.toLowerCase().includes(query.searchValue.toLowerCase())
+      //   )
+      //   filters.push({'filter':latinontitle,'type':query.blockType})
+      // }
+      // if (query.searchField == 'deep-id') {
+      //   let deepID = item => (
+      //     item.deep_id.toLowerCase().includes(query.searchValue.toLowerCase())
+      //     )
+      //   filters.push({'filter':deepID,'type':query.blockType})
+      // }
+      // if (query.searchField == 'greg_number') {
+      //   let gregNumber = item => (
+      //     item.greg_full.toLowerCase().includes(query.searchValue.toLowerCase())
+      //     )
+      //   filters.push({'filter':gregNumber,'type':query.blockType})
+      // }
+      // if (query.searchField == 'book_edition') {
+      //   let bookEdition = item => (
+      //     item.book_edition.toLowerCase().includes(query.searchValue.toLowerCase())
+      //     )
+      //   filters.push({'filter':bookEdition,'type':query.blockType})
+      // }
+      // if (query.searchField == 'play_edition') {
+      //   let playEdition = item => (
+      //     item.play_edition.toLowerCase().includes(query.searchValue.toLowerCase())
+      //     )
+      //   filters.push({'filter':playEdition,'type':query.blockType})
+      // }
+      // if (query.searchField == 'stc_or_wing') {
+      //   let stcWing = item => (
+      //     item.stc.toLowerCase().includes(query.searchValue.toLowerCase())
+      //     )
+      //   filters.push({'filter':stcWing,'type':query.blockType})
+      // }
+      // if (query.searchField == 'author') {
+        
+      //   let author = item => (
+      //     item.author.toLowerCase().includes(query.searchValue.toLowerCase())
+      //     )
+      //   filters.push({'filter':author,'type':query.blockType})
+      // }
+      // if (query.searchField == 'authorial-status') {
+      //   let authorialStatus = item => (
+      //     item.author_status.toLowerCase().includes(query.searchValue.toLowerCase())
+      //     )
+      //   filters.push({'filter':authorialStatus,'type':query.blockType})
+      // }
+      // if (query.searchField == 'blackletter') {
+      //   let blackletter = item => (
+      //     item.blackletter.toLowerCase().includes(query.searchValue.toLowerCase())
+      //     )
+      //   filters.push({'filter':blackletter,'type':query.blockType})
+      // }
+      // if (query.searchField == 'genre') {
+      //   let genre = item => (
+      //     item.genre.toLowerCase().includes(query.searchValue.toLowerCase())
+      //     )
+      //   filters.push({'filter':genre,'type':query.blockType})
+      // }
+      // if (query.searchField == 'format') {
+      //   let format = item => (
+      //     item.genre.toLowerCase().includes(query.searchValue.toLowerCase())
+      //     )
+      //   filters.push({'filter':format,'type':query.blockType})
+      // }
+      // if (query.searchField == 'playtype') {
+      //   let playtype = item => (
+      //     item.play_type.toLowerCase().includes(query.searchValue.toLowerCase())
+      //     )
+      //   filters.push({'filter':playtype,'type':query.blockType})
+      // }
+      // if (query.searchField == 'company-first-performance') {
+      //   let companyFirstPerformance = item => (
+      //     item.company_first_performance.toLowerCase().includes(query.searchValue.toLowerCase())
+      //     )
+      //   filters.push({'filter':companyFirstPerformance,'type':query.blockType})
+      // }
+      // if (query.searchField == 'dedication') {
+      //   let dedication = item => (
+      //     item.paratext_dedication.toLowerCase().includes(query.searchValue.toLowerCase())
+      //     )
+      //   filters.push({'filter':dedication,'type':query.blockType})
+      // }
+      // if (query.searchField == 'printer') {
+      //   let printer = item => (
+      //     item.stationer_printer.toLowerCase().includes(query.searchValue.toLowerCase())
+      //     )
+      //   filters.push({'filter':printer,'type':query.blockType})
+      // }
+      // if (query.searchField == 'publisher') {
+      //   let publisher = item => (
+      //     item.stationer_publisher.toLowerCase().includes(query.searchValue.toLowerCase())
+      //     )
+      //   filters.push({'filter':publisher,'type':query.blockType})
+      // }
+      // if (query.searchField == 'bookseller') {
+      //   let bookseller = item => (
+      //     item.stationer_bookseller.toLowerCase().includes(query.searchValue.toLowerCase())
+      //     )
+      //   filters.push({'filter':bookseller,'type':query.blockType})
+      // }
+      // if (query.searchField == 'authorial-status') {
+      //   let authorialStatus = item => (
+      //     item.author_status.toLowerCase().includes(query.searchValue.toLowerCase())
+      //     )
+      //   filters.push({'filter':authorialStatus,'type':query.blockType})
+      // }
+      // if (query.searchField == 'theater') {
+      //   let theater = item => (
+      //     item.theater.toLowerCase().includes(query.searchValue.toLowerCase()) ||
+      //     item.theater_type.toLowerCase().includes(query.searchValue.toLowerCase())
+      //     )
+      //   filters.push({'filter':theater,'type':query.blockType})
+      // }
+      // if (query.searchField == 'year-published') {
+      //   let [ start, end ] = query.searchValue.split('-')
+      //   let yearPublished = item => (
+      //     item.year_int > start && item.year_int < end 
+      //     )
+      //   filters.push({'filter':yearPublished,'type':query.blockType})
+      // }
+      // if (query.searchField == 'first-production') {
+      //   let [ start, end ] = query.searchValue.split('-')
+      //   let yearPublished = item => (
+      //     item.composition_date > start && item.composition_date < end 
+      //     )
+      //   filters.push({'filter':yearPublished,'type':query.blockType})
+      // }
+      // if (query.searchField == 'first-edition') {
+      //   let [ start, end ] = query.searchValue.split('-')
+      //   let yearPublished = item => (
+      //     item.date_first_publication > start && item.date_first_publication < end 
+      //     )
+      //   filters.push({'filter':yearPublished,'type':query.blockType})
+      // }
+
+      // let singlePlay = document.getElementById('singlePlay') 
+      // if (!singlePlay.checked) {
+      //   let singlePlayFilter = item => item.record_type != 'Single-Play Playbook'
+      //   filters.push({'filter':singlePlayFilter,'type':'AND'})
+      // }
+      // let Collections = document.getElementById('Collections')
+      // if (!Collections.checked) {
+      //   let collectionsFilter = item => item.record_type != 'Collection'
+      //   filters.push({'filter':collectionsFilter,'type':'AND'})
+      // }
+      // let PlaysinCollections = document.getElementById('PlaysinCollections')
+      // if (!PlaysinCollections.checked) {
+      //   let playsinCollections = item => item.record_type != 'Play in Collection'
+      //   filters.push({'filter':playsinCollections,'type':'AND'})
+      // }
+      
+      }
+    
     }    
   }
   return filters
@@ -1384,14 +1658,14 @@ const search = () => {
   //   (previousValue, currentValue) => previousValue + currentValue,
   //   initialValue
   // );
-
+  console.log(filters)
   const results = filters.reduce(
       (d, f) => {
         if (f.type == "AND") { 
           return d.filter(f.filter) 
         } 
         if (f.type == "OR") { 
-          return [...new Set([...d, ...item_array.filter(f.filter)])] 
+          return d.filter(f.filter[0] || f.filter[1])  //[...new Set([...d, ...item_array.filter(f.filter)])] 
         } 
       }, 
       item_array

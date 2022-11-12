@@ -170,6 +170,7 @@ http://deep.sas.upenn.edu/viewrecord.php?deep_id=5021.02
 2.  when field is changed calls update_searchSelect
     - this changes which the user input type is visible. 1. text input, 2. choice dropdown 3. dates
 3.  all events trigger search();
+4. If the first block is AND and you click OR, it will convert the first block to OR, otherwise it adds an OR block
 
 ### Search
 Gather the current queries from the filterBlocks
