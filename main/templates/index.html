@@ -1099,7 +1099,6 @@ const processQueries = queries => {
             item.paratext_argument.toLowerCase().includes(query.searchValue.toLowerCase()) || 
             item.paratext_actor_list.toLowerCase().includes(query.searchValue.toLowerCase()) || 
             item.paratext_charachter_list.toLowerCase().includes(query.searchValue.toLowerCase()) || 
-            item.title_page_explicit.toLowerCase().includes(query.searchValue.toLowerCase()) || 
             item.paratext_errata.toLowerCase().includes(query.searchValue.toLowerCase()) || 
             item.paratext_other_paratexts.toLowerCase().includes(query.searchValue.toLowerCase())
             )
@@ -1319,35 +1318,20 @@ const processQueries = queries => {
       }
       if (query.searchField == 'first-production') {
         let [ start, end ] = query.searchValue.split('-')
-        let yearPublished = item => (
+        let firstProduction = item => (
           item.composition_date > start && item.composition_date < end 
           )
-        filters.push({'filter':yearPublished,'type':query.blockType})
+        filters.push({'filter':firstProduction,'type':query.blockType})
       }
       if (query.searchField == 'first-edition') {
         let [ start, end ] = query.searchValue.split('-')
-        let yearPublished = item => (
+        let firstEdition = item => (
           item.date_first_publication > start && item.date_first_publication < end 
           )
-        filters.push({'filter':yearPublished,'type':query.blockType})
-      }
-
-      let singlePlay = document.getElementById('singlePlay') 
-      if (!singlePlay.checked) {
-        let singlePlayFilter = item => item.record_type != 'Single-Play Playbook'
-        filters.push({'filter':singlePlayFilter,'type':'AND'})
-      }
-      let Collections = document.getElementById('Collections')
-      if (!Collections.checked) {
-        let collectionsFilter = item => item.record_type != 'Collection'
-        filters.push({'filter':collectionsFilter,'type':'AND'})
-      }
-      let PlaysinCollections = document.getElementById('PlaysinCollections')
-      if (!PlaysinCollections.checked) {
-        let playsinCollections = item => item.record_type != 'Play in Collection'
-        filters.push({'filter':playsinCollections,'type':'AND'})
+        filters.push({'filter':firstEdition,'type':query.blockType})
       }
     }
+//OR!
     if (query.blockType == 'OR') { 
       // build two separate filters, then join them 
       let fields = query.searchField.split('||')
@@ -1355,15 +1339,274 @@ const processQueries = queries => {
       let ORquery = []
       for (let i = 0; i < fields.length; i++) {
         if (fields[i] == 'title' && !values[i] =='') {
-        let title = item => (
-            item.title.toLowerCase().includes(values[i].toLowerCase()) || 
-            item.title_alternative_keywords.toLowerCase().includes(values[i].toLowerCase())
+          let title = item => (
+              item.title.toLowerCase().includes(values[i].toLowerCase()) || 
+              item.title_alternative_keywords.toLowerCase().includes(values[i].toLowerCase())
+              )
+              ORquery.push(title)
+        }
+        if (fields[i] == 'stationer' && values[i]) { 
+          let stationer = item => (
+              item.stationer_printer.toLowerCase().includes(values[i].toLowerCase()) || 
+              item.stationer_publisher.toLowerCase().includes(values[i].toLowerCase()) || 
+              item.stationer_bookseller.toLowerCase().includes(values[i].toLowerCase())
+              )
+              ORquery.push(stationer)
+        }
+        if (fields[i] == 'paratextual' && values[i]) {
+          let paratextual = item => (
+              item.paratext_dedication.toLowerCase().includes(values[i].toLowerCase()) || 
+              item.paratext_commendatory_verses.toLowerCase().includes(values[i].toLowerCase()) || 
+              item.paratext_to_the_reader.toLowerCase().includes(values[i].toLowerCase()) || 
+              item.paratext_argument.toLowerCase().includes(values[i].toLowerCase()) || 
+              item.paratext_actor_list.toLowerCase().includes(values[i].toLowerCase()) || 
+              item.paratext_charachter_list.toLowerCase().includes(values[i].toLowerCase()) || 
+              item.paratext_errata.toLowerCase().includes(values[i].toLowerCase()) || 
+              item.paratext_other_paratexts.toLowerCase().includes(values[i].toLowerCase())
+              )
+              ORquery.push(paratextual)
+        }
+        if (fields[i] == 'commendatory-verses' && values[i]) {
+          let commendatoryVerses = item => (
+              item.paratext_commendatory_verses.toLowerCase().includes(values[i].toLowerCase())
+              )
+              ORquery.push(commendatoryVerses)
+        }
+        if (fields[i] == 'title-page-modern' && values[i]) {
+          let titlePageModern = item => (
+              item.title_page_modern_spelling.toLowerCase().includes(values[i].toLowerCase())
+              )
+              ORquery.push(titlePageModern)
+        }
+        if (fields[i] == 'imprintlocation' && values[i]) {
+          let imprintLocation = item => (
+              item.title_page_imprint.toLowerCase().includes(values[i].toLowerCase())
+              )
+              ORquery.push(imprintLocation)
+        }
+        if (fields[i] == 'title-page-old' && values[i]) {
+          let titlePageOld = item => (
+              item.title_page_title.toLowerCase().includes(values[i].toLowerCase()) ||
+              item.title_page_author.toLowerCase().includes(values[i].toLowerCase()) ||
+              item.title_page_performance.toLowerCase().includes(values[i].toLowerCase()) ||
+              item.title_page_latin_motto.toLowerCase().includes(values[i].toLowerCase()) ||
+              item.title_page_imprint.toLowerCase().includes(values[i].toLowerCase())
+              )
+              ORquery.push(titlePageOld)
+        }
+        if (fields[i] == 'title-page-author' && values[i]) {
+          let titlePageAuthor = item => (
+              item.title_page_author.toLowerCase().includes(values[i].toLowerCase())
+              )
+              ORquery.push(titlePageAuthor)
+        }
+        if (fields[i] == 'actor-list' && values[i]) {
+          let actorList = item => (
+              item.paratext_actor_list.toLowerCase().includes(values[i].toLowerCase())
+              )
+              ORquery.push(actorList)
+        }
+        if (fields[i] == 'explicit' && values[i]) {
+          let explicit = item => (
+              item.title_page_explicit.toLowerCase().includes(values[i].toLowerCase())
+              )
+              ORquery.push(explicit)
+        }
+        if (fields[i] == 'toreader' && values[i]) {
+          let toreader = item => (
+              item.paratext_to_the_reader.toLowerCase().includes(values[i].toLowerCase())
+              )
+              ORquery.push(toreader)
+        }
+        if (fields[i] == 'argument' && values[i]) {
+          let argument = item => (
+             item.paratext_argument.toLowerCase().includes(values[i].toLowerCase())
             )
-            ORquery.push(title)
+            ORquery.push(argument)
+        }
+        if (fields[i] == 'dedication' && values[i]) {
+          let dedication = item => (
+            item.paratext_dedication.toLowerCase().includes(values[i].toLowerCase())
+            )
+            ORquery.push(dedication)
+        }
+        if (fields[i] == 'charachter-list' && values[i]) {
+          let charachterList = item => (
+            item.paratext_charachter_list.toLowerCase().includes(values[i].toLowerCase())
+          )
+          ORquery.push(charachterList)
+        }
+        if (fields[i] == 'errata' && values[i]) {
+          let errata = item => (
+            item.paratext_errata.toLowerCase().includes(values[i].toLowerCase())
+          )
+          ORquery.push(errata)
+        }
+        if (fields[i] == 'other-paratexts' && values[i]) {
+          let otherParatexts = item => (
+            item.paratext_other_paratexts.toLowerCase().includes(values[i].toLowerCase())
+          )
+          ORquery.push(otherParatexts)
+        }
+        if (fields[i] == 'illustration' && values[i]) {
+          let illustration = item => (
+            item.title_page_illustration.toLowerCase().includes(values[i].toLowerCase())
+          )
+          ORquery.push(illustration)
+        }
+        if (fields[i] == 'latinontitle' && values[i]) {
+          let latinontitle = item => (
+            item.title_page_latin_motto.toLowerCase().includes(values[i].toLowerCase())
+          )
+          ORquery.push(latinontitle)
+        }
+        if (fields[i] == 'deep-id' && values[i]) {
+          let deepID = item => (
+            item.deep_id.toLowerCase().includes(values[i].toLowerCase())
+          )
+          ORquery.push(deepID)
+        }
+        if (fields[i] == 'greg_number' && values[i]) {
+          let gregNumber = item => (
+            item.greg_full.toLowerCase().includes(values[i].toLowerCase())
+          )
+          ORquery.push(gregNumber)
+        }
+        if (fields[i] == 'book_edition' && values[i]) {
+          let bookEdition = item => (
+            item.book_edition.toLowerCase().includes(values[i].toLowerCase())
+          )
+          ORquery.push(bookEdition)
+        }
+        if (fields[i] == 'play_edition' && values[i]) {
+          let playEdition = item => (
+            item.play_edition.toLowerCase().includes(values[i].toLowerCase())
+          )
+          ORquery.push(playEdition)
+        }
+        if (fields[i] == 'stc_or_wing' && values[i]) {
+          let stcWing = item => (
+            item.stc.toLowerCase().includes(values[i].toLowerCase())
+          )
+          ORquery.push(stcWing)
+        }
+        if (fields[i] == 'author' && values[i]) {
+          let author = item => (
+            item.author.toLowerCase().includes(values[i].toLowerCase())
+          )
+          ORquery.push(author)
+        }
+        if (fields[i] == 'authorial-status' && values[i]) {
+          let authorialStatus = item => (
+            item.author_status.toLowerCase().includes(values[i].toLowerCase())
+          )
+          ORquery.push(authorialStatus)
+        }
+        if (fields[i] == 'blackletter' && values[i]) {
+          let blackletter = item => (
+            item.blackletter.toLowerCase().includes(values[i].toLowerCase())
+          )
+          ORquery.push(blackletter)
+        }
+        if (fields[i] == 'genre' && values[i]) {
+          let genre = item => (
+            item.genre.toLowerCase().includes(values[i].toLowerCase())
+          )
+          ORquery.push(genre)
+        }
+        if (fields[i] == 'format' && values[i]) {
+          let format = item => (
+            item.genre.toLowerCase().includes(values[i].toLowerCase())
+          )
+          ORquery.push(format)
+        }
+        if (fields[i] == 'playtype' && values[i]) {
+          let playtype = item => (
+            item.play_type.toLowerCase().includes(values[i].toLowerCase())
+          )
+          ORquery.push(playtype)
+        }
+        if (fields[i] == 'company-first-performance' && values[i]) {
+          let companyFirstPerformance = item => (
+            item.company_first_performance.toLowerCase().includes(values[i].toLowerCase())
+          )
+          ORquery.push(companyFirstPerformance)
+        }
+        if (fields[i] == 'dedication' && values[i]) {
+          let dedication = item => (
+            item.paratext_dedication.toLowerCase().includes(values[i].toLowerCase())
+          )
+          ORquery.push(dedication)
+        }
+        if (fields[i] == 'printer' && values[i]) {
+          let printer = item => (
+            item.stationer_printer.toLowerCase().includes(values[i].toLowerCase())
+          )
+          ORquery.push(printer)
+        }
+        if (fields[i] == 'publisher' && values[i]) {
+          let publisher = item => (
+            item.stationer_publisher.toLowerCase().includes(values[i].toLowerCase())
+          )
+          ORquery.push(publisher)
+        }
+        if (fields[i] == 'bookseller' && values[i]) {
+          let bookseller = item => (
+            item.stationer_bookseller.toLowerCase().includes(values[i].toLowerCase())
+          )
+          ORquery.push(bookseller)
+        }
+        if (fields[i] == 'authorial-status' && values[i]) {
+          let authorialStatus = item => (
+            item.author_status.toLowerCase().includes(values[i].toLowerCase())
+          )
+          ORquery.push(authorialStatus)
+        }
+        if (fields[i] == 'theater' && values[i]) {
+          let theater = item => (
+            item.theater.toLowerCase().includes(values[i].toLowerCase()) ||
+            item.theater_type.toLowerCase().includes(values[i].toLowerCase())
+          )
+          ORquery.push(theater)
+        }
+        if (fields[i] == 'year-published' && values[i]) {
+          let [ start, end ] = values[i].split('-')
+          let yearPublished = item => (
+            item.year_int > start && item.year_int < end 
+          )
+          ORquery.push(yearPublished)
+        }
+        if (fields[i] == 'first-production' && values[i]) {
+          let [ start, end ] = values[i].split('-')
+          let firstProduction = item => (
+            item.composition_date > start && item.composition_date < end 
+          )
+          ORquery.push(firstProduction)
+        }
+        if (fields[i] == 'first-edition' && values[i]) {
+          let [ start, end ] = values[i].split('-')
+          let firstEdition = item => (
+            item.date_first_publication > start && item.date_first_publication < end 
+          )
+          ORquery.push(firstEdition)
         }
       }
-      console.log(ORquery, 'oar query')
       filters.push({'filter':ORquery,'type':'OR'})
+    }
+    let singlePlay = document.getElementById('singlePlay') 
+    if (!singlePlay.checked) {
+      let singlePlayFilter = item => item.record_type != 'Single-Play Playbook'
+      filters.push({'filter':singlePlayFilter,'type':'AND'})
+    }
+    let Collections = document.getElementById('Collections')
+    if (!Collections.checked) {
+      let collectionsFilter = item => item.record_type != 'Collection'
+      filters.push({'filter':collectionsFilter,'type':'AND'})
+    }
+    let PlaysinCollections = document.getElementById('PlaysinCollections')
+    if (!PlaysinCollections.checked) {
+      let playsinCollections = item => item.record_type != 'Play in Collection'
+      filters.push({'filter':playsinCollections,'type':'AND'})
     }    
   }
   return filters
@@ -1401,8 +1644,8 @@ const search = () => {
             return d.filter(f.filter[0])
           }
           if (f.filter.length == 2){
-          return d.filter(f.filter[0]).concat(d.filter(f.filter[1]))
-          }//return d.filter(f.filter[0]) && d.filter(f.filter[1])  //[...new Set([...d, ...item_array.filter(f.filter)])] 
+            return d.filter(f.filter[0]).concat(d.filter(f.filter[1]))
+          }
         } 
       }, 
       item_array
