@@ -179,20 +179,27 @@ let date_fields = ['first-production','first-edition','year-published','dateofco
 let choice_fields = ['author','authorial-status','company-first-performance','company','theater','playtype','genre','genreplaybook','blackletter','format']
 
               
-              
 
-const update_searchSelect = searchSelect => {
-    let filter = searchSelect.value 
-    let searchField = searchSelect.parentElement.children[1]
-    
-    //let this_years = searchSelect.;
-    //TODO better way to select siblings?
-    let this_years = searchSelect.parentElement.children[5]
-    this_years.classList.add('d-none')
+const update_searchSelect = (searchSelect, or=false) => {
+    let filter = searchSelect.value
+    searchField = searchSelect.nextElementSibling
+    let this_years
+    if (or) {
+      this_years = searchSelect.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling
+      this_years.classList.add('d-none')
+    } else {
+      this_years = searchSelect.parentElement.children[5]
+      this_years.classList.add('d-none')
+    }
+    let choicesSelect;
+    if (or) {
+      choicesSelect = searchSelect.nextElementSibling.nextElementSibling
+      searchSelect.dataset.name = filter
+    } else {
+      choicesSelect = searchSelect.parentElement.children[2]
+      searchSelect.dataset.name = filter
+    }
 
-    let choicesSelect = searchSelect.parentElement.children[2]
-    
-    searchSelect.dataset.name = filter
     // search fields
     
     if (search_fields.indexOf(filter) > -1) {
@@ -561,13 +568,13 @@ function addANDBlock() {
         <option value="title-page-old">All Title-Page Text (old spelling)</option>
         <option value="company-first-performance">Company (First Production)</option>
         <option value="company">Company (Title-Page Attribution)</option>
-        <option value="dateofcomp" disabled>Date of First Production</option>
+        <option value="dateofcomp" >Date of First Production</option>
         <option value="theater">Theater (Title-Page Attribution)</option>
         <option value="playtype">Play Type</option>
         <option value="dedication">Dedication</option>
         <option value="genre">Genre (Annals)</option>
         <option value="toreader">To the Reader</option>
-        <option value="genreplaybook" disabled>Genre (Title-Page Attribution)</option>
+        <option value="genreplaybook" >Genre (Title-Page Attribution)</option>
         <option value="argument">Argument</option>
         <option value="actor-list">Actor List</option>
         <option value="explicit">Explicit</option>
@@ -584,7 +591,7 @@ function addANDBlock() {
         <option value="bookseller" >&nbsp;&nbsp;&nbsp;&nbsp;Bookseller</option>
         <option value="commendatory-verses" >Commendatory Verses</option>
         <option value="imprintlocation">Imprint Location</option>
-        <option value="dateoffirsted" disabled>Date of First Edition</option>
+        <option value="dateoffirsted" >Date of First Edition</option>
         <option value="format">Format</option>
         <option value="book_edition">Book edition number</option>
         <option value="play_edition">Play edition number</option>
@@ -672,20 +679,16 @@ function addANDBlock() {
 function addORBlock() {
   const min_year = {{ min_year|safe }}
   const max_year = {{ max_year|safe }}
+
   let template = `
-    <div id="andORButtons" class="btn-group" role="group" aria-label="Basic radio toggle button group">
-        <!-- Add new filter box 
-          The top box has option to add AND OR
-          Each child has a disabled button with the operator selected, and a remove button
-        -->
-                  
+    <div id="andORButtons" class="btn-group" role="group" aria-label="Basic radio toggle button group">          
         <input type="radio" class="btn-check" name="addAND" id="addAND" autocomplete="off" disabled >
           <label class="btn btn-sm  " for="addAND">and</label>              
             <input type="radio" class="btn-check btn-outline-dark" name="removeBlock" id="removeBlock" autocomplete="off">
             <label class="btn btn-sm" for="removeBlock"><i id="removeFilterBlock" class="bi bi-dash-circle" ></i></label>
     </div>
     <div class="border border-dark rounded border-2">
-      <select id="searchSelect" class="input-group form-select form-select-sm">
+      <select id="searchSelect1" class="input-group form-select form-select-sm">
         
         <option value="">Please select...</option>
         <option value="deep-id">DEEP ID</option>
@@ -697,13 +700,13 @@ function addORBlock() {
         <option value="title-page-old">All Title-Page Text (old spelling)</option>
         <option value="company-first-performance">Company (First Production)</option>
         <option value="company">Company (Title-Page Attribution)</option>
-        <option value="dateofcomp" disabled>Date of First Production</option>
+        <option value="dateofcomp" >Date of First Production</option>
         <option value="theater">Theater (Title-Page Attribution)</option>
         <option value="playtype">Play Type</option>
         <option value="dedication">Dedication</option>
         <option value="genre">Genre (Annals)</option>
         <option value="toreader">To the Reader</option>
-        <option value="genreplaybook" disabled>Genre (Title-Page Attribution)</option>
+        <option value="genreplaybook" >Genre (Title-Page Attribution)</option>
         <option value="argument">Argument</option>
         <option value="actor-list">Actor List</option>
         <option value="explicit">Explicit</option>
@@ -720,7 +723,7 @@ function addORBlock() {
         <option value="bookseller" >&nbsp;&nbsp;&nbsp;&nbsp;Bookseller</option>
         <option value="commendatory-verses" >Commendatory Verses</option>
         <option value="imprintlocation">Imprint Location</option>
-        <option value="dateoffirsted" disabled>Date of First Edition</option>
+        <option value="dateoffirsted" >Date of First Edition</option>
         <option value="format">Format</option>
         <option value="book_edition">Book edition number</option>
         <option value="play_edition">Play edition number</option>
@@ -747,7 +750,7 @@ function addORBlock() {
       
       <label class="btn btn-sm  " for="addAND">or</label> 
                  
-      <select id="searchSelect" class="input-group form-select form-select-sm">
+      <select id="searchSelect2" class="input-group form-select form-select-sm">
         
         <option value="">Please select...</option>
         <option value="deep-id">DEEP ID</option>
@@ -759,13 +762,13 @@ function addORBlock() {
         <option value="title-page-old">All Title-Page Text (old spelling)</option>
         <option value="company-first-performance">Company (First Production)</option>
         <option value="company">Company (Title-Page Attribution)</option>
-        <option value="dateofcomp" disabled>Date of First Production</option>
+        <option value="dateofcomp" >Date of First Production</option>
         <option value="theater">Theater (Title-Page Attribution)</option>
         <option value="playtype">Play Type</option>
         <option value="dedication">Dedication</option>
         <option value="genre">Genre (Annals)</option>
         <option value="toreader">To the Reader</option>
-        <option value="genreplaybook" disabled>Genre (Title-Page Attribution)</option>
+        <option value="genreplaybook" >Genre (Title-Page Attribution)</option>
         <option value="argument">Argument</option>
         <option value="actor-list">Actor List</option>
         <option value="explicit">Explicit</option>
@@ -782,7 +785,7 @@ function addORBlock() {
         <option value="bookseller" >&nbsp;&nbsp;&nbsp;&nbsp;Bookseller</option>
         <option value="commendatory-verses" >Commendatory Verses</option>
         <option value="imprintlocation">Imprint Location</option>
-        <option value="dateoffirsted" disabled>Date of First Edition</option>
+        <option value="dateoffirsted" >Date of First Edition</option>
         <option value="format">Format</option>
         <option value="book_edition">Book edition number</option>
         <option value="play_edition">Play edition number</option>
@@ -819,7 +822,6 @@ function addORBlock() {
     newBlock.children[0].style.display = "none";
     
   } else {
-    console.log('is else')
     document.getElementById('filterBlocks').append(newBlock);
   }
   
@@ -829,7 +831,7 @@ function addORBlock() {
   //let newBlock = document.getElementById('filterBlocks').lastElementChild
   newBlock.id = 'filterBlock-'+document.getElementById('filterBlocks').childElementCount
   // <div id="filterBlock" class="input-group-md">
-    newBlock.dataset.type = "OR"
+  newBlock.dataset.type = "OR"
   
   
   // First input
@@ -860,10 +862,9 @@ function addORBlock() {
   
   // Second input
   let searchSelect2 = newBlock.children[1].children[7]
-  update_searchSelect(searchSelect2);
-  console.log(searchSelect2)
+  update_searchSelect(searchSelect2, or=true);
   searchSelect2.addEventListener('change', (event) => {
-    update_searchSelect(searchSelect2);
+    update_searchSelect(searchSelect2,or=true);
   })
 
   let thisSearchField2 = newBlock.children[1].children[8]
@@ -929,13 +930,13 @@ function addFilterBlock_old(type) {
                 <option value="title-page-old">All Title-Page Text (old spelling)</option>
                 <option value="company-first-performance">Company (First Production)</option>
                 <option value="company">Company (Title-Page Attribution)</option>
-                <option value="dateofcomp" disabled>Date of First Production</option>
+                <option value="dateofcomp" >Date of First Production</option>
                 <option value="theater">Theater (Title-Page Attribution)</option>
                 <option value="playtype">Play Type</option>
                 <option value="dedication">Dedication</option>
                 <option value="genre">Genre (Annals)</option>
                 <option value="toreader">To the Reader</option>
-                <option value="genreplaybook" disabled>Genre (Title-Page Attribution)</option>
+                <option value="genreplaybook" >Genre (Title-Page Attribution)</option>
                 <option value="argument">Argument</option>
                 <option value="actor-list">Actor List</option>
                 <option value="explicit">Explicit</option>
@@ -952,7 +953,7 @@ function addFilterBlock_old(type) {
                 <option value="bookseller" >&nbsp;&nbsp;&nbsp;&nbsp;Bookseller</option>
                 <option value="commendatory-verses" >Commendatory Verses</option>
                 <option value="imprintlocation">Imprint Location</option>
-                <option value="dateoffirsted" disabled>Date of First Edition</option>
+                <option value="dateoffirsted" >Date of First Edition</option>
                 <option value="format">Format</option>
                 <option value="book_edition">Book edition number</option>
                 <option value="play_edition">Play edition number</option>
