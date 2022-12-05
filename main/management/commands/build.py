@@ -169,6 +169,12 @@ class Command(BaseCommand):
         about = render_to_string('about.html')
         (out_path / 'about.html').write_text(about)     
 
+        download = render_to_string('download.html')
+        (out_path / 'download.html').write_text(download)  
+        
+        sources = render_to_string('download.html')
+        (out_path / 'download.html').write_text(sources)  
+        
         browse = render_to_string('browse.html')
         (out_path / 'browse.html').write_text(browse)    
         end = time.time()
