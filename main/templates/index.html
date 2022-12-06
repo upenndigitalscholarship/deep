@@ -1231,7 +1231,7 @@ const processQueries = queries => {
       }
       if (query.searchField == 'authorial-status') {
         let authorialStatus = item => (
-          item.author_status.toLowerCase().includes(query.searchValue.toLowerCase())
+          item.title_page_author.toLowerCase().includes(query.searchValue.toLowerCase())
           )
         filters.push({'filter':authorialStatus,'type':query.blockType})
       }

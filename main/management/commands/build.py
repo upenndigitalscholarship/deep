@@ -66,22 +66,26 @@ class Command(BaseCommand):
         srsly.write_json(static_dir / 'data/companies.json', companies)
 
         # Author status 
-        db_author_status = [] 
-        for item in Item.objects.all().order_by('edition__title'):
-            if item and item.author_status and item.author_status not in db_author_status:
-                db_author_status.append(item.author_status)
-        author_statuses = []
-        for i, auth_stat in enumerate(db_author_status):
-            author_statuses.append({
-                'value': i,
-                'label': auth_stat.strip()
-            })
-        srsly.write_json(static_dir / 'data/author_status.json', author_statuses)
+        # It is not clear where this data comes from, so I am manually 
+        # replacing author_status.json with values from the current site
+        # db_author_status = [] 
+        # for item in Item.objects.all().order_by('edition__title'):
+        #     if item and item.author_status and item.author_status not in db_author_status:
+        #         db_author_status.append(item.author_status)
+        # author_statuses = []
+        # for i, auth_stat in enumerate(db_author_status):
+        #     author_statuses.append({
+        #         'value': i,
+        #         'label': auth_stat.strip()
+        #     })
+        # srsly.write_json(static_dir / 'data/author_status.json', author_statuses)
 
         ## Company First Performance
         # very few records have a company of first performance, to limit the list to just companies that 
         # appear a company of first performance in the data, this field needs its own set of valid choices
-        first_companies = [company[0] for company in Title.objects.order_by('title').values_list('company_first_performance').distinct() if company[0] is not None]
+        first_companies = [company[0] for company in Title.objects.order_by('title').values_list('company_first_performance').distinct() if company[0] is not None and company[0] != 'n/a' or 'Unknown' ]
+        first_companies = list(set(first_companies)) #also sorts alphabetically, who knew!?
+        first_companies.sort()
         first_companies_json = []
         for i, company in enumerate(first_companies):
             first_companies_json.append({
