@@ -445,7 +445,7 @@ const update_searchSelect = (searchSelect, or=false) => {
       // change element to choices field
       this_choices.setChoices(async () => {
         try {
-          const items = await fetch('/assets/data/companies.json');
+          const items = await fetch('/assets/data/first-companies.json');
           return items.json();
           
       } catch (err) {
@@ -1259,6 +1259,12 @@ const processQueries = queries => {
           )
         filters.push({'filter':playtype,'type':query.blockType})
       }
+      if (query.searchField == 'company') {
+        let company = item => (
+          item.company_attribution.toLowerCase().includes(query.searchValue.toLowerCase())
+          )
+        filters.push({'filter':company,'type':query.blockType})
+      }
       if (query.searchField == 'company-first-performance') {
         let companyFirstPerformance = item => (
           item.company_first_performance.toLowerCase().includes(query.searchValue.toLowerCase())
@@ -1518,6 +1524,12 @@ const processQueries = queries => {
             item.play_type.toLowerCase().includes(values[i].toLowerCase())
           )
           ORquery.push(playtype)
+        }
+        if (query.searchField == 'company') {
+        let company = item => (
+          item.company_attribution.toLowerCase().includes(query.searchValue.toLowerCase())
+          )
+        filters.push({'filter':company,'type':query.blockType})
         }
         if (fields[i] == 'company-first-performance' && values[i]) {
           let companyFirstPerformance = item => (
