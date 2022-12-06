@@ -1,5 +1,5 @@
 from pathlib import Path
-
+import csv
 import srsly
 from django.core.management.base import BaseCommand
 from lunr import lunr
@@ -105,5 +105,16 @@ class Command(BaseCommand):
         # create json item lookup for search results 
         srsly.write_json(Path('main/assets/data/item_data.json'), item_data)
         self.stdout.write(self.style.SUCCESS('Created item data'))
-
-        self.stdout.write(self.style.SUCCESS('Search index created'))
+        # Write data to csv 
+        data_file = open('main/assets/data/DEEP_data.csv', 'w', newline='')
+        csv_writer = csv.writer(data_file)
+        count = 0
+        for key_ in item_data.keys():
+            if count == 0:
+                header = item_data[key_].keys()
+                csv_writer.writerow(header)
+                count += 1
+            csv_writer.writerow(item_data[key_].values())
+        
+        data_file.close()
+        self.stdout.write(self.style.SUCCESS('Wrote data to CSV'))

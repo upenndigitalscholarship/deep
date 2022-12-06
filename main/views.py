@@ -24,7 +24,11 @@ def browse(request):
 def about(request):
     return render(request, 'about.html')
 
+def download(request):
+    return render(request, 'download.html')
 
+def sources(request):
+    return render(request, 'sources.html')
 
 class TitleAutocomplete(autocomplete.Select2QuerySetView):
     def get_queryset(self):
