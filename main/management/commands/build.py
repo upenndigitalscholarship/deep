@@ -44,7 +44,7 @@ class Command(BaseCommand):
 
         #Authors 
         authors = [] 
-        for author in Person.objects.all():
+        for author in Person.objects.all().order_by('name'):
             if not '(?)' in author.__str__().strip():
                 authors.append({
                     'value': author.id,
@@ -54,7 +54,7 @@ class Command(BaseCommand):
         
         ## Companies
         db_companies = [] 
-        for item in Item.objects.all():
+        for item in Item.objects.all().order_by('edition__title'):
             if item and item.company.name and item.company.name not in db_companies:
                 db_companies.append(item.company.name)
         companies = []
@@ -67,7 +67,7 @@ class Command(BaseCommand):
 
         # Author status 
         db_author_status = [] 
-        for item in Item.objects.all():
+        for item in Item.objects.all().order_by('edition__title'):
             if item and item.author_status and item.author_status not in db_author_status:
                 db_author_status.append(item.author_status)
         author_statuses = []
@@ -81,7 +81,7 @@ class Command(BaseCommand):
         ## Company First Performance
         # very few records have a company of first performance, to limit the list to just companies that 
         # appear a company of first performance in the data, this field needs its own set of valid choices
-        first_companies = [company[0] for company in Title.objects.values_list('company_first_performance').distinct() if company[0] is not None]
+        first_companies = [company[0] for company in Title.objects.order_by('title').values_list('company_first_performance').distinct() if company[0] is not None]
         first_companies_json = []
         for i, company in enumerate(first_companies):
             first_companies_json.append({
@@ -101,7 +101,7 @@ class Command(BaseCommand):
         
         ## Genre 
         genres = []
-        genre_query = set([t.genre for t in Title.objects.all()])
+        genre_query = set([t.genre for t in Title.objects.all().order_by('title')])
         
         for i, g in enumerate(genre_query):
             genres.append({"value":i, "label":g})
