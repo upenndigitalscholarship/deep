@@ -187,8 +187,8 @@ class Command(BaseCommand):
         download = render_to_string('download.html')
         (out_path / 'download.html').write_text(download)  
         
-        sources = render_to_string('download.html')
-        (out_path / 'download.html').write_text(sources)  
+        sources = render_to_string('sources.html')
+        (out_path / 'sources.html').write_text(sources)  
         
         browse = render_to_string('browse.html')
         (out_path / 'browse.html').write_text(browse)    
