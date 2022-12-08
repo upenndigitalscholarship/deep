@@ -16,7 +16,7 @@ class EditionAdmin(admin.ModelAdmin):
 admin.site.register(Edition, EditionAdmin)
 
 class TitleAdmin(admin.ModelAdmin):
-    pass 
+    list_filter = ['greg'] 
 
 admin.site.register(Title, TitleAdmin)
 

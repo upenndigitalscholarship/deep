@@ -11,6 +11,8 @@ class Title(models.Model):
     title = models.CharField("Title",max_length=200)
     title_alternative_keywords = models.CharField("Title Alternative Keywords",max_length=200, null=True, default='')
     greg = models.CharField("Greg (Brief)(e.g., 197 for Hamlet)", max_length=200)
+    brit_drama_number = models.CharField("BritDrama #", max_length=200, blank=True, null=True)
+
     genre = models.CharField("Genre (Annals)", max_length=200, blank=True, null=True)
     genre_brit_display = models.CharField("Display Genre (BritDrama)", max_length=200, blank=True, null=True)
     genre_brit_filter = models.CharField("Genre (BritDrama): filter terms", max_length=200, blank=True, null=True)
@@ -86,7 +88,6 @@ class Item(models.Model): #Previously known as "DEEP"
     year_int = models.IntegerField("Year INT", blank=True, null=True)
     deep_id = models.CharField("DEEP #", max_length=200, blank=True, null=True)
     deep_id_display = models.CharField("DEEP Display #", max_length=200, blank=True, null=True)
-    brit_drama_number = models.CharField("BritDrama #", max_length=200, blank=True, null=True)
     greg_full = models.CharField("Greg #(i.e., Greg full, e.g., 197b(*) and 197b(†) for the two issues of the second edition of Hamlet)", max_length=200, blank=True, null=True)
     stc = models.CharField("STC/Wing #", max_length=200, blank=True, null=True)
     format = models.CharField("Format", max_length=200, blank=True, null=True)
