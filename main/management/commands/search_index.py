@@ -20,6 +20,7 @@ def item_to_dict(item:Item):
     else: 
         item_dict["in_collection"] = ""
     
+
     item_dict['collection_contains'] = ''
     if item.collection_contains and item.record_type == "Collection": #m2m
         for i, link in enumerate(item.collection_contains.all()):
@@ -44,6 +45,11 @@ def item_to_dict(item:Item):
     edition['author_id'] = edition_authors
     edition['author'] = authors_display
     edition['play_type'] = play_type
+    if edition["blackletter"] == "":
+        edition["blackletter"] = "No"
+    else:
+        edition["blackletter"] = "Yes" 
+        
     del edition['id']
     if '_state' in edition.keys():
         del edition['_state']    

@@ -153,15 +153,7 @@ class Command(BaseCommand):
         srsly.write_json(static_dir / 'data/formats.json', formats_json)
 
         #Blackletter 
-        
-        blackletters = set([i.blackletter for i in Edition.objects.all() if i.blackletter])
-        bl_json = []
-        for i, bl in enumerate(blackletters):
-            bl_json.append({
-                'value': i,
-                'label': bl.strip()
-            })
-        srsly.write_json(static_dir / 'data/blackletter.json', bl_json)
+        #Removed dynamic generation of values, given that yes and no are only requested options.
 
         #copy all static files
         site_static = (out_path / 'assets')
