@@ -172,11 +172,11 @@ let groupBy = function(xs, key) {
 let search_fields = ['deep-id','title','title-page-modern','errata','paratextual','title-page-old','title-page-author',
   'argument','latinontitle','toreader','imprintlocation','illustration','stationer','printer','publisher','bookseller',
   'charachter-list','commendatory-verses','explicit','dedication','other-paratexts','book_edition',
-  'play_edition','actor-list','authororial-status','greg_number','stc_or_wing']
+  'play_edition','actor-list','authororial-status','greg_number','stc_or_wing','brit-drama-number']
 
-let date_fields = ['first-production','first-edition','year-published']
+let date_fields = ['first-production','first-edition','year-published','date-first-performance-brit-filter']
 
-let choice_fields = ['author','authorial-status','company-first-performance','company','theater','playtype','genre','genreplaybook','blackletter','format']
+let choice_fields = ['author','authorial-status','company-first-performance','company','theater','playtype','genre','genreplaybook','blackletter','format','genre-brit-filter','company-first-performance-brit-filter']
 
               
 
@@ -586,6 +586,7 @@ function addANDBlock() {
         
         <option value="">Please select...</option>
         <option value="deep-id">DEEP ID</option>
+        <option value="brit-drama-number">BritDrama #</option>
         <option value="title" selected>Title</option>
         <option value="title-page-modern">All Title-Page Text (modern spelling)</option>
         <option value="title-page-old">All Title-Page Text (old spelling)</option>  
@@ -593,10 +594,12 @@ function addANDBlock() {
         <option value="title-page-author">Author (Title-Page Attribution)</option>
         <option value="authorial-status">Authorial Status (Title-Page Attribution)</option>
         <option value="company-first-performance">Company (First Production)</option>
+        <option value="company_first-performance-brit-filter">Company of First Performance (BritDrama)</option>
         <option value="company">Company (Title-Page Attribution)</option>
         <option value="theater">Theater (Title-Page Attribution)</option>
         <option value="playtype">Play Type</option>
         <option value="genre">Genre (Annals)</option>
+        <option value="genre-brit-filter">Genre (BritDrama)</option>
         <option value="genreplaybook" >Genre (Title-Page Attribution)</option>
         <option value="paratextual" >All Paratextual Material</option>
         <option value="illustration">Illustration</option>
@@ -608,6 +611,7 @@ function addANDBlock() {
         <option value="bookseller" >&nbsp;&nbsp;&nbsp;&nbsp;Bookseller</option>
         <option value="imprintlocation">Imprint Location</option>
         <option value="first-production">Date of First Production</option>
+        <option value="date-first-performance-brit-filter">Date of First Performance (BritDrama)</option>
         <option value="first-edition">Date of First Edition</option>
         <option value="format">Format</option>
         <option value="book_edition">Book edition number</option>
@@ -716,6 +720,7 @@ function addORBlock() {
         
         <option value="">Please select...</option>
         <option value="deep-id">DEEP ID</option>
+        <option value="brit-drama-number">BritDrama #</option>
         <option value="title" selected>Title</option>
         <option value="title-page-modern">All Title-Page Text (modern spelling)</option>
         <option value="title-page-old">All Title-Page Text (old spelling)</option>  
@@ -723,10 +728,12 @@ function addORBlock() {
         <option value="title-page-author">Author (Title-Page Attribution)</option>
         <option value="authorial-status">Authorial Status (Title-Page Attribution)</option>
         <option value="company-first-performance">Company (First Production)</option>
+        <option value="company_first-performance-brit-filter">Company of First Performance (BritDrama)</option>
         <option value="company">Company (Title-Page Attribution)</option>
         <option value="theater">Theater (Title-Page Attribution)</option>
         <option value="playtype">Play Type</option>
         <option value="genre">Genre (Annals)</option>
+        <option value="genre-brit-filter">Genre (BritDrama)</option>
         <option value="genreplaybook" >Genre (Title-Page Attribution)</option>
         <option value="paratextual" >All Paratextual Material</option>
         <option value="illustration">Illustration</option>
@@ -738,6 +745,7 @@ function addORBlock() {
         <option value="bookseller" >&nbsp;&nbsp;&nbsp;&nbsp;Bookseller</option>
         <option value="imprintlocation">Imprint Location</option>
         <option value="first-production">Date of First Production</option>
+        <option value="date-first-performance-brit-filter">Date of First Performance (BritDrama)</option>
         <option value="first-edition">Date of First Edition</option>
         <option value="format">Format</option>
         <option value="book_edition">Book edition number</option>
@@ -776,6 +784,7 @@ function addORBlock() {
         
         <option value="">Please select...</option>
         <option value="deep-id">DEEP ID</option>
+        <option value="brit-drama-number">BritDrama #</option>
         <option value="title" selected>Title</option>
         <option value="title-page-modern">All Title-Page Text (modern spelling)</option>
         <option value="title-page-old">All Title-Page Text (old spelling)</option>  
@@ -783,10 +792,12 @@ function addORBlock() {
         <option value="title-page-author">Author (Title-Page Attribution)</option>
         <option value="authorial-status">Authorial Status (Title-Page Attribution)</option>
         <option value="company-first-performance">Company (First Production)</option>
+        <option value="company_first-performance-brit-filter">Company of First Performance (BritDrama)</option>
         <option value="company">Company (Title-Page Attribution)</option>
         <option value="theater">Theater (Title-Page Attribution)</option>
         <option value="playtype">Play Type</option>
         <option value="genre">Genre (Annals)</option>
+        <option value="genre-brit-filter">Genre (BritDrama)</option>
         <option value="genreplaybook" >Genre (Title-Page Attribution)</option>
         <option value="paratextual" >All Paratextual Material</option>
         <option value="illustration">Illustration</option>
@@ -798,6 +809,7 @@ function addORBlock() {
         <option value="bookseller" >&nbsp;&nbsp;&nbsp;&nbsp;Bookseller</option>
         <option value="imprintlocation">Imprint Location</option>
         <option value="first-production">Date of First Production</option>
+        <option value="date-first-performance-brit-filter">Date of First Performance (BritDrama)</option>
         <option value="first-edition">Date of First Edition</option>
         <option value="format">Format</option>
         <option value="book_edition">Book edition number</option>
@@ -1321,6 +1333,12 @@ const processQueries = queries => {
           )
         filters.push({'filter':bookseller,'type':query.blockType})
       }
+      if (query.searchField == 'brit-drama-number') {
+        let britDrama = item => (
+          item.brit_drama_number.toLowerCase().includes(query.searchValue.toLowerCase())
+          )
+        filters.push({'filter':britDrama,'type':query.blockType})
+      }
       if (query.searchField == 'authorial-status') {
         let authorialStatus = item => (
           item.author_status.toLowerCase().includes(query.searchValue.toLowerCase())
@@ -1442,6 +1460,12 @@ const processQueries = queries => {
               item.paratext_to_the_reader.toLowerCase().includes(values[i].toLowerCase())
               )
               ORquery.push(toreader)
+        }
+        if (fields[i] == 'brit-drama-number' && values[i]) {
+          let britDrama = item => (
+              item.brit_drama_number.toLowerCase().includes(values[i].toLowerCase())
+              )
+              ORquery.push(britDrama)
         }
         if (fields[i] == 'argument' && values[i]) {
           let argument = item => (
@@ -1777,9 +1801,11 @@ function expand(e, id) {
             </div>
           </div>
           <div class="row">
+          
             <div class="col-5">
               <p>
                 ${!data.deep_id ? '' : '<span class="expand">DEEP #: </span><span id="deep_id"><a target="_blank" href="'+ data.deep_id +'.html">' + data.deep_id + '</a></span><br>'}
+                ${!data.brit_drama_number ? '' : '<span class="expand">BritDrama #: </span><span id="deep_id">' + data.brit_drama_number + '</span><br>'}
                 ${!data.greg_full ? '' : '<span class="expand">Greg #: </span><span id="greg_full">' + data.greg_full + '</span><br>'}
                 ${!data.stc ? '' : '<span class="expand">STC/WING: </span><span id="stc"> ' + data.stc + '</span><br>'}
                 ${!data.book_edition ? '' : '<span class="expand">Book Edition: </span><span id="book_edition"> ' + data.book_edition + '</span><br>'}
@@ -1794,11 +1820,14 @@ function expand(e, id) {
                 ${!data.record_type ? '' : '<span class="expand">Record Type: </span><span id="record_type">' + data.record_type + '</span><br>'}
                 ${!data.play_type ? '' : '<span class="expand">Play Type: </span><span id="play_type">' + data.play_type + '</span><br>'}
                 ${!data.genre ? '' : '<span class="expand">Genre (Annals): </span><span id="genre">' + data.genre + '</span><br>'}
+                ${!data.genre_brit_display ? '' : '<span class="expand">Genre (BritDrama): </span><span id="genre">' + data.genre_brit_display + '</span><br>'}
                 ${!data.date_first_publication ? '' : '<br><span class="expand">Date of First Publication: </span><span id="date_first_publication">' + data.date_first_publication + '</span><br>'}
                 ${!data.date_first_performance ? '' : '<span class="expand">Date of First Performance: </span><span id="date_first_performance">' + data.date_first_performance + '</span><br>'}
+                ${!data.date_first_performance_brit_display ? '' : '<span class="expand">Date of First Performance (BritDrama): </span><span id="date_first_performance">' + data.date_first_performance_brit_display + '</span><br>'}
                 ${!data.theater ? '' : '<span class="expand">Theater: </span><span id="theater">' + data.theater + '</span><br>'}
                 ${data.theater_type === "None" ? '' : '<span class="expand">Theater type: </span><span id="theater_type">' + data.theater_type + '</span><br>'}
                 ${!data.company_first_performance ? '' : '<span class="expand">Company of First Performance: </span><span id="company_first_performance">' + data.company_first_performance + '</span><br>'}
+                ${!data.company_first_performance_brit_display ? '' : '<span class="expand">Company of First Performance (BritDrama): </span><span id="company_first_performance">' + data.company_first_performance_brit_display + '</span><br>'}
                 ${!data.company_attribution ? '' : '<span class="expand">Company Attribution: </span><span id="company_attribution">' + data.company_attribution + '</span><br>'}
               </p>
             </div>

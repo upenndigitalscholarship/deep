@@ -24,15 +24,15 @@ class Command(BaseCommand):
         # 11 Company of First Performance (BritDrama): filter terms Title
 
         for i, row in tqdm(df1.iterrows()):
-            greg_num = row[0] if row[0] != 'nan' else None
-            greg_sort = row[1] if row[1] != 'nan' else None
-            brit_drama_number = row[2] if row[2] != 'nan' else None
-            genre_brit_display = row[4] if row[4] != 'nan' else None
-            genre_brit_filter= row[5] if row[5] != 'nan' else None
-            date_first_performance_brit_filter= row[7] if row[7] != 'nan' else None
-            date_first_performance_brit_display= row[8] if row[8] != 'nan' else None
-            company_first_performance_brit_filter= row[11] if row[11] != 'nan' else None
-            company_first_performance_brit_display= row[10] if row[10] != 'nan' else None
+            greg_num = row[0] if row[0] else ''
+            greg_sort = row[1] if row[1] else ''
+            brit_drama_number = row[2] if row[2] else ''
+            genre_brit_display = row[4] if row[4] else ''
+            genre_brit_filter= row[5] if row[5] else ''
+            date_first_performance_brit_filter= row[7] if row[7] else ''
+            date_first_performance_brit_display= row[8] if row[8] else ''
+            company_first_performance_brit_filter= row[11] if row[11] else ''
+            company_first_performance_brit_display= row[10] if row[10] else ''
 
             title = Title.objects.filter(greg=greg_num).first()
             if title:
