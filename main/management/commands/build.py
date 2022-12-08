@@ -142,7 +142,8 @@ class Command(BaseCommand):
         srsly.write_json(static_dir / 'data/theater.json', theater_json)
 
         ## Formats
-        formats = set([i.format for i in Item.objects.all() if i.format])
+        formats = list(set([i.format for i in Item.objects.all() if i.format]))
+        formats.sort()
         formats_json = []
         for i, form in enumerate(formats):
             formats_json.append({
