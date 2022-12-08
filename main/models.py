@@ -12,16 +12,26 @@ class Title(models.Model):
     title_alternative_keywords = models.CharField("Title Alternative Keywords",max_length=200, null=True, default='')
     greg = models.CharField("Greg (Brief)(e.g., 197 for Hamlet)", max_length=200)
     genre = models.CharField("Genre (Annals)", max_length=200, blank=True, null=True)
+    genre_brit_display = models.CharField("Display Genre (BritDrama)", max_length=200, blank=True, null=True)
+    genre_brit_filter = models.CharField("Genre (BritDrama): filter terms", max_length=200, blank=True, null=True)
+
+
     date_first_publication = models.CharField("Date of First Publication", max_length=200)
     date_first_publication_display = models.CharField("Date of First Publication Display", max_length=200, blank=True, null=True)
     # TODO Where is this on the site? I don't see in DB
     date_first_performance = models.CharField("Date of First Performance", max_length=200, blank=True, null=True)
-    
+    date_first_performance_brit_filter = models.CharField("Date of First Performance (BritDrama)", max_length=200, blank=True, null=True)
+    date_first_performance_brit_display = models.CharField("Date of First Performance (BritDrama) (display)", max_length=200, blank=True, null=True)
+
+
     company_first_performance = models.CharField("Company First Performance", max_length=200, blank=True, null=True)
+    company_first_performance_brit_display = models.CharField("Company of First Performance (BritDrama) (display)", max_length=200, blank=True, null=True)
+    company_first_performance_brit_filter = models.CharField("Company of First Performance (BritDrama): filter terms", max_length=200, blank=True, null=True)
+    
+
     total_editions = models.CharField("Total Editions", blank=True, null=True, max_length=200)
     stationers_register = models.CharField("Stationers Register", max_length=200, blank=True, null=True)
-    # TODO Need this data 
-    british_drama = models.IntegerField("British Drama", blank=True, null=True)
+    
     # TODO Is this data in DB?
     genre_wiggins = models.CharField("Genre (Wiggins)", max_length=200, blank=True, null=True)
     #date_first_performance_wiggins = models.CharField("Date of First Performance (Wiggins)", max_length=200)
@@ -76,6 +86,7 @@ class Item(models.Model): #Previously known as "DEEP"
     year_int = models.IntegerField("Year INT", blank=True, null=True)
     deep_id = models.CharField("DEEP #", max_length=200, blank=True, null=True)
     deep_id_display = models.CharField("DEEP Display #", max_length=200, blank=True, null=True)
+    brit_drama_number = models.CharField("BritDrama #", max_length=200, blank=True, null=True)
     greg_full = models.CharField("Greg #(i.e., Greg full, e.g., 197b(*) and 197b(†) for the two issues of the second edition of Hamlet)", max_length=200, blank=True, null=True)
     stc = models.CharField("STC/Wing #", max_length=200, blank=True, null=True)
     format = models.CharField("Format", max_length=200, blank=True, null=True)
