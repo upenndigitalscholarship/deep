@@ -84,6 +84,32 @@ const update_searchSelect = (searchSelect, or=false) => {
     }
 
     // choice fields
+    
+    if (filter === 'genre-brit-filter') { 
+        this_choices = new Choices(choicesSelect,{
+          addItems: false,
+          shouldSort: false,
+          shouldSortItems: false,
+          allowHTML: true,
+          position: 'bottom',
+          placeholder: 'Select an option',
+        }) 
+        searchField.style.display = "none";
+        this_years.classList.add('d-none')
+        choicesSelect.style.display = "block";
+        this_choices.init()
+        this_choices.clearChoices()
+        // change element to choices field
+        this_choices.setChoices(async () => {
+          try {
+            const items = await fetch('/assets/data/genres_bd.json');
+            return items.json();
+            
+        } catch (err) {
+          console.error(err);
+        }
+        });
+      }
     if (filter === 'author') { 
       this_choices = new Choices(choicesSelect,{
         addItems: false,
