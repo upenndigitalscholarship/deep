@@ -1287,7 +1287,7 @@ const processQueries = queries => {
       }
       if (query.searchField == 'format') {
         let format = item => (
-          item.genre.toLowerCase().includes(query.searchValue.toLowerCase())
+          item.format.toLowerCase().includes(query.searchValue.toLowerCase())
           )
         filters.push({'filter':format,'type':query.blockType})
       }
