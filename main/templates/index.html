@@ -1785,11 +1785,10 @@ advancedSearchField.addEventListener('keyup', (event) => {
 
       
 function expand(e, id) {
+  changeButtonCollapse();
   let data = item_data[id];
-  
   e.outerHTML = `
   <tr id="${data.id}" onclick="collapse(this, ${data.id});"><td class="deep_id">${data.deep_id}</td><td class="year">${data.year}</td><td class="authors_display">${data.authors_display}</td><td class="title">${data.title}</td><td>Collapse</td>
-  
     <tr id="${data.id}-exp">
     <td colspan="5">
       <div class="card" style="width: 100%;">
@@ -1922,6 +1921,13 @@ function collapse(e, id) {
       }
     }
   }
+
+function changeButtonCollapse() {
+  let changeButton = document.getElementById('expandAllButton')
+  changeButton.textContent = 'Collapse All';
+  changeButton.setAttribute( "onClick", "collapseAll(this)" );
+}
+  
 
 function expandAll(e) { 
   e.textContent = 'Collapse All';
