@@ -6,17 +6,15 @@ from main.models import Edition, Item, Person, Title
 
 
 class ItemAdmin(admin.ModelAdmin):
-    search_fields = ['edition__title__title','deep_id']
-    list_filter = ['edition__title__title','edition__title__genre','deep_id','collection']
+    list_filter = ['deep_id','greg_full','edition__title__title']
 admin.site.register(Item, ItemAdmin)
 
 class EditionAdmin(admin.ModelAdmin):
-    search_fields = ['title__title']
-    list_filter = ['title__genre']
+    list_filter = ['title__deep_id','greg_middle','title__title']
 admin.site.register(Edition, EditionAdmin)
 
 class TitleAdmin(admin.ModelAdmin):
-    list_filter = ['greg'] 
+    list_filter = ['deep_id','title','greg'] 
 
 admin.site.register(Title, TitleAdmin)
 
