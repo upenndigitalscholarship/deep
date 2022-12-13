@@ -639,9 +639,9 @@ function addANDBlock() {
       <div id="spacer" style="height:10px;"></div>
       <div id="date-input" class="input-group d-none">
         <span class="input-group-text">Begin:</span>
-        <input type="number" aria-label="start-date" value="${min_year}" pattern="\d{4}"  maxlength="4" class="form-control"></input>
+        <input type="number" aria-label="start-date" placeholder="${min_year}" pattern="\d{4}"  maxlength="4" class="form-control"></input>
         <span class="input-group-text">End:</span>
-        <input type="number" aria-label="end-date" value="${max_year}" pattern="\d{4}"  maxlength="4" class="form-control"></input>
+        <input type="number" aria-label="end-date" placeholder="${max_year}" pattern="\d{4}"  maxlength="4" class="form-control"></input>
       </div></div>`
   
   
@@ -1355,21 +1355,21 @@ const processQueries = queries => {
       if (query.searchField == 'year-published') {
         let [ start, end ] = query.searchValue.split('-')
         let yearPublished = item => (
-          item.year_int > start && item.year_int < end 
+          item.year_int >= start && item.year_int <= end 
           )
         filters.push({'filter':yearPublished,'type':query.blockType})
       }
       if (query.searchField == 'first-production') {
         let [ start, end ] = query.searchValue.split('-')
         let firstProduction = item => (
-          item.composition_date > start && item.composition_date < end 
+          item.composition_date >= start && item.composition_date <= end 
           )
         filters.push({'filter':firstProduction,'type':query.blockType})
       }
       if (query.searchField == 'first-edition') {
         let [ start, end ] = query.searchValue.split('-')
         let firstEdition = item => (
-          item.date_first_publication > start && item.date_first_publication < end 
+          item.date_first_publication >= start && item.date_first_publication <= end 
           )
         filters.push({'filter':firstEdition,'type':query.blockType})
       }
@@ -1627,21 +1627,21 @@ const processQueries = queries => {
         if (fields[i] == 'year-published' && values[i]) {
           let [ start, end ] = values[i].split('-')
           let yearPublished = item => (
-            item.year_int > start && item.year_int < end 
+            item.year_int >= start && item.year_int <= end 
           )
           ORquery.push(yearPublished)
         }
         if (fields[i] == 'first-production' && values[i]) {
           let [ start, end ] = values[i].split('-')
           let firstProduction = item => (
-            item.composition_date > start && item.composition_date < end 
+            item.composition_date >= start && item.composition_date <= end 
           )
           ORquery.push(firstProduction)
         }
         if (fields[i] == 'first-edition' && values[i]) {
           let [ start, end ] = values[i].split('-')
           let firstEdition = item => (
-            item.date_first_publication > start && item.date_first_publication < end 
+            item.date_first_publication >= start && item.date_first_publication <= end 
           )
           ORquery.push(firstEdition)
         }
