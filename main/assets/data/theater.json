@@ -1,0 +1,86 @@
+[
+  {
+    "value":0,
+    "label":"Any"
+  },
+  {
+    "value":1,
+    "label":"None"
+  },
+  {
+    "value":2,
+    "label":"---"
+  },
+  {
+    "value":3,
+    "label":"Indoor Professional"
+  },
+  {
+    "value":4,
+    "label":"Outdoor Professional"
+  },
+  {
+    "value":5,
+    "label":"before the Court"
+  },
+  {
+    "value":6,
+    "label":"at University"
+  },
+  {
+    "value":7,
+    "label":"---"
+  },
+  {
+    "value":8,
+    "label":"Blackfriars"
+  },
+  {
+    "value":9,
+    "label":"Curtain"
+  },
+  {
+    "value":10,
+    "label":"Fortune"
+  },
+  {
+    "value":11,
+    "label":"Globe"
+  },
+  {
+    "value":12,
+    "label":"Paul's"
+  },
+  {
+    "value":13,
+    "label":"Phoenix/Cockpit"
+  },
+  {
+    "value":14,
+    "label":"Red Bull"
+  },
+  {
+    "value":15,
+    "label":"Rutland House"
+  },
+  {
+    "value":16,
+    "label":"Salisbury Court"
+  },
+  {
+    "value":17,
+    "label":"St. Werburgh Street, Dublin"
+  },
+  {
+    "value":18,
+    "label":"Swan"
+  },
+  {
+    "value":19,
+    "label":"Whitefriars"
+  },
+  {
+    "value":20,
+    "label":"Whitehall"
+  }
+]

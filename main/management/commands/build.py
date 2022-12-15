@@ -138,34 +138,34 @@ class Command(BaseCommand):
         srsly.write_json(static_dir / 'data/genre.json', genres)
 
         ## Theaters 
-        theater_json = []
-        theater_types = list(set([item.theater_type for item in Item.objects.all()]))
-        theater_types.sort()
-        count = 0
-        for i, t in enumerate(theater_types):
-            if t != "" and t != "None":
-                theater_json.append({"value":i, "label":t})
-                count += 1 
+        # Changed to manual given client requirements
+        # theater_json = []
+        # theater_types = list(set([item.theater_type for item in Item.objects.all()]))
+        # theater_types.sort()
+        # count = 0
+        # for i, t in enumerate(theater_types):
+        #     if t != "" and t != "None":
+        #         theater_json.append({"value":i, "label":t})
+        #         count += 1 
         
-        theaters = list(set([item.theater for item in Item.objects.all()]))
+        # theaters = list(set([item.theater for item in Item.objects.all()]))
         
-        theater_parts = []
-        for t in theaters:
-            if ';' in t:
-                for s in t.split(';'):
-                    if s not in theater_parts:
-                        theater_parts.append(s)
-        theaters = theater_parts + theater_types
-        theaters.remove('')
+        # theater_parts = []
+        # for t in theaters:
+        #     if ';' in t:
+        #         for s in t.split(';'):
+        #             if s not in theater_parts:
+        #                 theater_parts.append(s)
+        # theaters = theater_parts + theater_types
+        # theaters.remove('')
 
-        theaters.sort()
+        # theaters.sort()
         
-        #TODO in progress, also theater type
-        for i, t in enumerate(theaters):
-            if t != "":
-                theater_json.append({"value":i, "label":t})
-                count += 1
-        srsly.write_json(static_dir / 'data/theater.json', theater_json)
+        # for i, t in enumerate(theaters):
+        #     if t != "":
+        #         theater_json.append({"value":i, "label":t})
+        #         count += 1
+        # srsly.write_json(static_dir / 'data/theater.json', theater_json)
 
         ## Formats
         formats = list(set([i.format for i in Item.objects.all() if i.format]))
