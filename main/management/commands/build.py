@@ -104,6 +104,7 @@ class Command(BaseCommand):
         first_companies = [company[0] for company in Title.objects.order_by('title').values_list('company_first_performance').distinct() if company[0] is not None and company[0] != 'n/a' or 'Unknown' ]
         first_companies = list(set(first_companies)) #also sorts alphabetically, who knew!?
         first_companies.sort()
+        first_companies.remove('n/a')
         first_companies_json = [{
                 'value': 0,
                 'label': "Any"

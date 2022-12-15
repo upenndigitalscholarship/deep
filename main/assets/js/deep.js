@@ -38,13 +38,13 @@ let groupBy = function(xs, key) {
 // based on string matching.  Date fields allow the entry of a four-digit start and end year number. Choice fields
 // allow search and selection from a dropdown of valid choices.
 let search_fields = ['deep-id','title','title-page-modern','errata','paratextual','title-page-old','title-page-author',
-  'argument','latinontitle','toreader','imprintlocation','illustration','stationer','printer','publisher','bookseller',
+  'argument','latinontitle','toreader','imprintlocation','stationer','printer','publisher','bookseller',
   'charachter-list','commendatory-verses','explicit','dedication','other-paratexts','book_edition',
   'play_edition','actor-list','authororial-status','greg_number','stc_or_wing','brit-drama-number']
 
 let date_fields = ['first-production','first-edition','year-published','date-first-performance-brit-filter']
 
-let choice_fields = ['author','authorial-status','company-first-performance','company','theater','playtype','genre','genreplaybook','blackletter','format','genre-brit-filter','company-first-performance-brit-filter']
+let choice_fields = ['illustration','author','authorial-status','company-first-performance','company','theater','playtype','genre','genreplaybook','blackletter','format','genre-brit-filter','company-first-performance-brit-filter']
 
               
 
@@ -155,6 +155,33 @@ const update_searchSelect = (searchSelect, or=false) => {
           //TODO why fetch json? just use item_data directly
           // get distinct author values from item_data
           const items = await fetch('/assets/data/author_status.json');
+          return items.json();
+          
+      } catch (err) {
+        console.error(err);
+      }
+      });
+    }
+    if (filter === 'illustration') { 
+      this_choices = new Choices(choicesSelect,{
+        addItems: false,
+        shouldSort: false,
+        shouldSortItems: false,
+        allowHTML: true,
+        position: 'bottom',
+        placeholder: 'Select an option',
+      })
+      searchField.style.display = "none";
+      this_years.classList.add("d-none");
+      choicesSelect.style.display = "block";
+      this_choices.init()
+      this_choices.clearChoices()
+      // change element to choices field
+      this_choices.setChoices(async () => {
+        try {
+          //TODO why fetch json? just use item_data directly
+          // get distinct author values from item_data
+          const items = await fetch('/assets/data/yes-no.json');
           return items.json();
           
       } catch (err) {
@@ -960,11 +987,19 @@ const processQueries = queries => {
         filters.push({'filter':otherParatexts,'type':query.blockType})
       }
       if (query.searchField == 'illustration') {
-        let illustration = item => (
-          item.title_page_illustration.toLowerCase().includes(query.searchValue.toLowerCase())
-        )
-        filters.push({'filter':illustration,'type':query.blockType})
-      }
+        if (query.searchValue == "Yes") {
+          let illustration = item => (
+              item.title_page_illustration != ""
+          )
+          filters.push({'filter':illustration,'type':query.blockType})
+        }    
+        if (query.searchValue == "No") {
+            let illustration = item => (
+                item.title_page_illustration == ""
+            )
+            filters.push({'filter':illustration,'type':query.blockType})    
+        }
+      } 
       if (query.searchField == 'latinontitle') {
         let latinontitle = item => (
           item.title_page_latin_motto.toLowerCase().includes(query.searchValue.toLowerCase())
