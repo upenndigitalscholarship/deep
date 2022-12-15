@@ -1038,11 +1038,25 @@ const processQueries = queries => {
           )
         filters.push({'filter':playtype,'type':query.blockType})
       }
-      if (query.searchField == 'company') {
-        let company = item => (
-          item.company_attribution.toLowerCase().includes(query.searchValue.toLowerCase())
-          )
-        filters.push({'filter':company,'type':query.blockType})
+      if (query.searchField == 'company') {  
+        if (query.searchValue == "Any") {
+            let company = item => (
+                item.company_attribution != ""
+            )
+            filters.push({'filter':company,'type':query.blockType})
+        }    
+        if (query.searchValue == "None") {
+            let company = item => (
+                item.company_attribution == ""
+            )
+            filters.push({'filter':company,'type':query.blockType})    
+        } else {
+            let company = item => (
+                item.company_attribution.toLowerCase().includes(query.searchValue.toLowerCase())
+            )
+            filters.push({'filter':company,'type':query.blockType})    
+          
+        }
       }
       if (query.searchField == 'company-first-performance') {
         let companyFirstPerformance = item => (
@@ -1620,7 +1634,7 @@ function expand(e, id) {
                 ${!data.paratext_commendatory_verses ? '' : '<span class="expand">Commendatory Verses: </span><span id="paratext_commendatory_verses">' + data.paratext_commendatory_verses + '</span><br>'}
                 ${!data.paratext_to_the_reader ? '' : '<span class="expand">To the Reader: </span><span id="paratext_to_the_reader">' + data.paratext_to_the_reader + '</span><br>'}
                 ${!data.paratext_argument ? '' : '<span class="expand">Argument: </span><span id="paratext_argument">' + data.paratext_argument + '</span><br>'}
-                ${!data.paratext_charachter_list ? '' : '<span class="expand">Charachter List: </span><span id="paratext_charachter_list">' + data.paratext_charachter_list + '</span><br>'}
+                ${!data.paratext_charachter_list ? '' : '<span class="expand">Character List: </span><span id="paratext_charachter_list">' + data.paratext_charachter_list + '</span><br>'}
                 ${!data.paratext_errata ? '' : '<span class="expand">Errata: </span><span id="paratext_errata">' + data.paratext_errata + '</span><br>'}
                 ${!data.paratext_actor_list ? '' : '<span class="expand">Actor List: </span><span id="paratext_actor_list">' + data.paratext_actor_list + '</span><br>'}
                 ${!data.paratext_other_paratexts ? '' : '<span class="expand">Other: </span><span id="paratext_other_paratexts">' + data.paratext_other_paratexts + '</span><br>'}
