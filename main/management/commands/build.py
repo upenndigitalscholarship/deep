@@ -104,10 +104,16 @@ class Command(BaseCommand):
         first_companies = [company[0] for company in Title.objects.order_by('title').values_list('company_first_performance').distinct() if company[0] is not None and company[0] != 'n/a' or 'Unknown' ]
         first_companies = list(set(first_companies)) #also sorts alphabetically, who knew!?
         first_companies.sort()
-        first_companies_json = []
+        first_companies_json = [{
+                'value': 0,
+                'label': "Any"
+            },{
+                'value': 1,
+                'label': "None"
+            }]
         for i, company in enumerate(first_companies):
             first_companies_json.append({
-                'value': i,
+                'value': i+2,
                 'label': company.strip()
             })
         srsly.write_json(static_dir / 'data/first-companies.json', first_companies_json)
@@ -123,9 +129,9 @@ class Command(BaseCommand):
         
         ## Genre (Annals)
         genres = []
-        genre_query = set([t.genre for t in Title.objects.all().order_by('title')])
+        genre_query = list(set([t.genre_annals_filter for t in Title.objects.all().order_by('title')]))
         genre_query.sort()
-        
+
         for i, g in enumerate(genre_query):
             genres.append({"value":i, "label":g})
         srsly.write_json(static_dir / 'data/genre.json', genres)

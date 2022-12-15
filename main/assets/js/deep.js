@@ -1047,7 +1047,7 @@ const processQueries = queries => {
         }    
         if (query.searchValue == "None") {
             let company = item => (
-                item.company_attribution == ""
+                item.company_attribution == "n/a"
             )
             filters.push({'filter':company,'type':query.blockType})    
         } else {
