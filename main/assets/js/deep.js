@@ -995,7 +995,7 @@ const processQueries = queries => {
         }    
         if (query.searchValue == "No") {
             let illustration = item => (
-                item.title_page_illustration == ""
+                item.title_page_illustration == "n/a"
             )
             filters.push({'filter':illustration,'type':query.blockType})    
         }
@@ -1136,12 +1136,30 @@ const processQueries = queries => {
         filters.push({'filter':authorialStatus,'type':query.blockType})
       }
       if (query.searchField == 'theater') {
-        let theater = item => (
-          item.theater.toLowerCase().includes(query.searchValue.toLowerCase()) ||
-          item.theater_type.toLowerCase().includes(query.searchValue.toLowerCase())
+        if (query.searchValue == "Any") {
+          // TODO Any theater not working as expected
+          let theater = item => (
+              item.theater != "" ||
+              item.theater_type != "None"
           )
-        filters.push({'filter':theater,'type':query.blockType})
+          filters.push({'filter':theater,'type':query.blockType})
+        }    
+        if (query.searchValue == "None") {
+          let theater = item => (
+            item.theater == "" ||
+            item.theater_type == "None"
+          )
+          filters.push({'filter':theater,'type':query.blockType})    
+        } else {
+          let theater = item => (
+            item.theater.toLowerCase().includes(query.searchValue.toLowerCase()) ||
+            item.theater_type.toLowerCase().includes(query.searchValue.toLowerCase())
+          )
+          filters.push({'filter':theater,'type':query.blockType})    
+        }
       }
+
+      
       if (query.searchField == 'year-published') {
         let [ start, end ] = query.searchValue.split('-')
         let yearPublished = item => (
@@ -1365,11 +1383,27 @@ const processQueries = queries => {
           )
           ORquery.push(playtype)
         }
-        if (query.searchField == 'company') {
-        let company = item => (
-          item.company_attribution.toLowerCase().includes(query.searchValue.toLowerCase())
-          )
-        filters.push({'filter':company,'type':query.blockType})
+        
+        if (fields[i] == 'company' && values[i]) {
+        
+          if (values[i] == "Any") {
+            let company = item => (
+                item.company_attribution != ""
+            )
+            ORquery.push(company)
+          }    
+          if (values[i] == "None") {
+            let company = item => (
+               item.company_attribution == "n/a"
+            )
+            ORquery.push(company)    
+          } else {
+            let company = item => (
+              item.company_attribution.toLowerCase().includes(values[i].toLowerCase())
+            )
+            ORquery.push(company)    
+        
+          }
         }
         if (fields[i] == 'company-first-performance' && values[i]) {
           let companyFirstPerformance = item => (
@@ -1407,12 +1441,30 @@ const processQueries = queries => {
           )
           ORquery.push(authorialStatus)
         }
+
         if (fields[i] == 'theater' && values[i]) {
-          let theater = item => (
-            item.theater.toLowerCase().includes(values[i].toLowerCase()) ||
-            item.theater_type.toLowerCase().includes(values[i].toLowerCase())
-          )
-          ORquery.push(theater)
+        
+          if (values[i] == "Any") {
+            let theater = item => (
+              item.theater != "" ||
+              item.theater_type != "None"
+            )
+            ORquery.push(theater)
+          }    
+          if (values[i] == "None") {
+            let theater = item => (
+              item.theater == "" ||
+              item.theater_type == "None"
+            )
+            ORquery.push(theater)    
+          } else {
+            let theater = item => (
+              item.theater.toLowerCase().includes(values[i].toLowerCase()) ||
+              item.theater_type.toLowerCase().includes(values[i].toLowerCase())
+            )
+            ORquery.push(theater)    
+        
+          }
         }
         if (fields[i] == 'year-published' && values[i]) {
           let [ start, end ] = values[i].split('-')
