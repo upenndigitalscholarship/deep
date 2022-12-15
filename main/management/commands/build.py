@@ -66,7 +66,6 @@ class Command(BaseCommand):
         srsly.write_json(static_dir / 'data/companies.json', companies)
 
         # Genre BritDrama 
-        
         genre_BritDrama = [a[0] for a in Title.objects.values_list('genre_brit_filter').distinct() if a[0]]
         genres = []
         for g in genre_BritDrama:
@@ -122,9 +121,10 @@ class Command(BaseCommand):
                 playtypes.append({"value":i, "label":pt.name})
         srsly.write_json(static_dir / 'data/playtype.json', playtypes)
         
-        ## Genre 
+        ## Genre (Annals)
         genres = []
         genre_query = set([t.genre for t in Title.objects.all().order_by('title')])
+        genre_query.sort()
         
         for i, g in enumerate(genre_query):
             genres.append({"value":i, "label":g})

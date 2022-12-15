@@ -13,9 +13,10 @@ class Title(models.Model):
     greg = models.CharField("Greg (Brief)(e.g., 197 for Hamlet)", max_length=400)
     brit_drama_number = models.CharField("BritDrama #", max_length=400, blank=True, null=True)
 
-    genre = models.CharField("Genre (Annals)", max_length=400, blank=True, null=True)
+    genre_annals_display = models.CharField("Display Genre (Annals)", max_length=400, blank=True, null=True)
+    genre_annals_filter = models.CharField("Filter Genre (Annals)", max_length=400, blank=True, null=True)
     genre_brit_display = models.CharField("Display Genre (BritDrama)", max_length=400, blank=True, null=True)
-    genre_brit_filter = models.CharField("Genre (BritDrama): filter terms", max_length=400, blank=True, null=True)
+    genre_brit_filter = models.CharField("Filter Genre (BritDrama)", max_length=400, blank=True, null=True)
 
 
     date_first_publication = models.CharField("Date of First Publication", max_length=400)

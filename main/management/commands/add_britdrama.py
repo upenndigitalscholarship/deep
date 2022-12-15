@@ -34,8 +34,8 @@ class Command(BaseCommand):
             company_first_performance_brit_filter= row[11] if row[11] else ''
             company_first_performance_brit_display= row[10] if row[10] else ''
 
-            title = Title.objects.filter(greg=greg_num).first()
-            if title:
+            titles = Title.objects.filter(greg=greg_num)
+            for title in titles:
                 title.brit_drama_number = brit_drama_number
                 title.genre_brit_display = genre_brit_display
                 title.genre_brit_filter = genre_brit_filter

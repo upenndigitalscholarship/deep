@@ -1545,13 +1545,17 @@ function expand(e, id) {
             <div class="col-5">
               <p>
                 ${!data.deep_id ? '' : '<span class="expand">DEEP #: </span><span id="deep_id"><a target="_blank" href="'+ data.deep_id +'.html">' + data.deep_id + '</a></span><br>'}
-                ${!data.brit_drama_number ? '' : '<span class="expand">BritDrama #: </span><span id="deep_id">' + data.brit_drama_number + '</span><br>'}
                 ${!data.greg_full ? '' : '<span class="expand">Greg #: </span><span id="greg_full">' + data.greg_full + '</span><br>'}
                 ${!data.stc ? '' : '<span class="expand">STC/WING: </span><span id="stc"> ' + data.stc + '</span><br>'}
+                ${!data.brit_drama_number ? '' : '<span class="expand">BritDrama #: </span><span id="deep_id">' + data.brit_drama_number + '</span><br>'}
+              </p>
+              <p>
+                ${!data.date_first_publication ? '' : '<br><span class="expand">Date of First Publication: </span><span id="date_first_publication">' + data.date_first_publication + '</span><br>'}
                 ${!data.book_edition ? '' : '<span class="expand">Book Edition: </span><span id="book_edition"> ' + data.book_edition + '</span><br>'}
                 ${!data.play_edition ? '' : '<span class="expand">Play Edition: </span><span id="play_edition"> ' + data.play_edition + '</span><br>'}
                 ${!data.format ? '' : '<span class="expand">Format: </span><span id="format"> ' + data.format + '</span><br>'}
                 ${!data.leaves ? '' : '<span class="expand">Leaves: </span><span id="leaves"> ' + data.leaves + '</span><br>'}
+                ${!data.blackletter ? '' : '<span class="expand">Black Letter: </span><span id="leaves"> ' + data.leaves + '</span><br>'}
               </p>
             </div>    
             
@@ -1561,12 +1565,13 @@ function expand(e, id) {
                 ${!data.play_type ? '' : '<span class="expand">Play Type: </span><span id="play_type">' + data.play_type + '</span><br>'}
                 ${!data.genre ? '' : '<span class="expand">Genre (Annals): </span><span id="genre">' + data.genre + '</span><br>'}
                 ${!data.genre_brit_display ? '' : '<span class="expand">Genre (BritDrama): </span><span id="genre">' + data.genre_brit_display + '</span><br>'}
-                ${!data.date_first_publication ? '' : '<br><span class="expand">Date of First Publication: </span><span id="date_first_publication">' + data.date_first_publication + '</span><br>'}
-                ${!data.date_first_performance ? '' : '<span class="expand">Date of First Performance: </span><span id="date_first_performance">' + data.date_first_performance + '</span><br>'}
-                ${!data.date_first_performance_brit_display ? '' : '<span class="expand">Date of First Performance (BritDrama): </span><span id="date_first_performance">' + data.date_first_performance_brit_display + '</span><br>'}
-                ${!data.company_first_performance ? '' : '<span class="expand">Company of First Performance: </span><span id="company_first_performance">' + data.company_first_performance + '</span><br>'}
-                ${!data.company_first_performance_brit_display ? '' : '<span class="expand">Company of First Performance (BritDrama): </span><span id="company_first_performance">' + data.company_first_performance_brit_display + '</span><br>'}
-                ${!data.company_attribution ? '' : '<span class="expand">Company Attribution: </span><span id="company_attribution">' + data.company_attribution + '</span><br>'}
+              </p>
+              <p>
+                ${!data.date_first_performance ? '' : '<span class="expand">Date of First Production (Annals): </span><span id="date_first_performance">' + data.date_first_performance + '</span><br>'}
+                ${!data.date_first_performance_brit_display ? '' : '<span class="expand">Date of First Production (BritDrama): </span><span id="date_first_performance">' + data.date_first_performance_brit_display + '</span><br>'}
+                ${!data.company_first_performance ? '' : '<span class="expand">Company of First Production (Annals): </span><span id="company_first_performance">' + data.company_first_performance + '</span><br>'}
+                ${!data.company_first_performance_brit_display ? '' : '<span class="expand">Company of First Production (BritDrama): </span><span id="company_first_performance">' + data.company_first_performance_brit_display + '</span><br>'}
+                ${!data.company_attribution ? '' : '<span class="expand">Company Attribution (Title-Page): </span><span id="company_attribution">' + data.company_attribution + '</span><br>'}
               </p>
             </div>
 
@@ -1594,10 +1599,10 @@ function expand(e, id) {
                 ${!data.title_page_title ? '' : '<span class="expand">Title: </span><span id="title_page_title">' + data.title_page_title + '</span><br>'}
                 ${!data.title_page_author ? '' : '<span class="expand">Author: </span><span id="title_page_author">' + data.title_page_author + '</span><br>'}
                 ${!data.title_page_performance ? '' : '<span class="expand">Performance: </span><span id="title_page_performance">' + data.title_page_performance + '</span><br>'}
+                ${!data.title_page_latin_motto ? '' : '<span class="expand">Latin Motto: </span><span id="title_page_latin_motto">' + data.title_page_latin_motto + '</span><br>'}
+                ${!data.title_page_illustration ? '' : '<span class="expand">Illustration: </span><span id="title_page_illustration">' + data.title_page_illustration + '</span><br>'}
                 ${!data.title_page_imprint ? '' : '<span class="expand">Imprint: </span><span id="title_page_imprint">' + data.title_page_imprint + '</span><br>'}
                 ${!data.title_page_colophon ? '' : '<span class="expand">Colophon: </span><span id="title_page_colophon">' + data.title_page_colophon + '</span><br>'}
-                ${!data.title_page_illustration ? '' : '<span class="expand">Illustration: </span><span id="title_page_illustration">' + data.title_page_illustration + '</span><br>'}
-                ${!data.title_page_latin_motto ? '' : '<span class="expand">Latin Motto: </span><span id="title_page_latin_motto">' + data.title_page_latin_motto + '</span><br>'}
               </p>
             </div>
           </div>
@@ -1614,9 +1619,9 @@ function expand(e, id) {
                 ${!data.paratext_dedication ? '' : '<span class="expand">Dedication: </span><span id="paratext_dedication">' + data.paratext_dedication + '</span><br>'}
                 ${!data.paratext_commendatory_verses ? '' : '<span class="expand">Commendatory Verses: </span><span id="paratext_commendatory_verses">' + data.paratext_commendatory_verses + '</span><br>'}
                 ${!data.paratext_to_the_reader ? '' : '<span class="expand">To the Reader: </span><span id="paratext_to_the_reader">' + data.paratext_to_the_reader + '</span><br>'}
-                ${!data.paratext_errata ? '' : '<span class="expand">Errata: </span><span id="paratext_errata">' + data.paratext_errata + '</span><br>'}
                 ${!data.paratext_argument ? '' : '<span class="expand">Argument: </span><span id="paratext_argument">' + data.paratext_argument + '</span><br>'}
                 ${!data.paratext_charachter_list ? '' : '<span class="expand">Charachter List: </span><span id="paratext_charachter_list">' + data.paratext_charachter_list + '</span><br>'}
+                ${!data.paratext_errata ? '' : '<span class="expand">Errata: </span><span id="paratext_errata">' + data.paratext_errata + '</span><br>'}
                 ${!data.paratext_actor_list ? '' : '<span class="expand">Actor List: </span><span id="paratext_actor_list">' + data.paratext_actor_list + '</span><br>'}
                 ${!data.paratext_other_paratexts ? '' : '<span class="expand">Other: </span><span id="paratext_other_paratexts">' + data.paratext_other_paratexts + '</span><br>'}
               </p>
