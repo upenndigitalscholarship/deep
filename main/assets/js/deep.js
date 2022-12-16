@@ -90,19 +90,21 @@ const update_searchSelect = (searchSelectPointer, or=false) => {
     
     if (filter === 'genre-brit-filter') { 
     // <select id="choicesSelect-${selectID}" style="display: hide;" class="form-control"></select>
-        const newSelect = document.createElement("select");
-        newSelect.id = choicesSelect.id
-        newSelect.classList.add("form-control");
-        choicesSelect.replaceWith(newSelect);
-
-        this_choices = new Choices(newSelect,{
+      if (choicesSelect.tagName == "DIV"){
+        console.log('i am a Choices object just clear and set choices')
+      }    
+      if (choicesSelect.tagName == "SELECT"){
+        console.log('i am not  a Choices object')
+        this_choices = new Choices(choicesSelect,{
           addItems: false,
           shouldSort: false,
           shouldSortItems: false,
           allowHTML: true,
           position: 'bottom',
           placeholder: 'Select an option',
-        }) 
+        })
+      }
+         
         searchField.style.display = "none";
         this_years.classList.add('d-none')
         choicesSelect.style.display = "block";
@@ -120,19 +122,20 @@ const update_searchSelect = (searchSelectPointer, or=false) => {
         });
       }
     if (filter === 'author') { 
-      const newSelect = document.createElement("select");
-      newSelect.id = choicesSelect.id
-      newSelect.classList.add("form-control");
-      choicesSelect.replaceWith(newSelect);
-
-      this_choices = new Choices(newSelect,{
-        addItems: false,
-        shouldSort: false,
-        shouldSortItems: false,
-        allowHTML: true,
-        position: 'bottom',
-        placeholder: 'Select an option',
-      }) 
+      if (choicesSelect.tagName == "DIV"){
+        console.log('i am a Choices object just clear and set choices')
+      }    
+      if (choicesSelect.tagName == "SELECT"){
+        console.log('i am not  a Choices object')
+        this_choices = new Choices(choicesSelect,{
+          addItems: false,
+          shouldSort: false,
+          shouldSortItems: false,
+          allowHTML: true,
+          position: 'bottom',
+          placeholder: 'Select an option',
+        })
+      } 
       searchField.style.display = "none";
       this_years.classList.add('d-none')
       choicesSelect.style.display = "block";
@@ -150,21 +153,20 @@ const update_searchSelect = (searchSelectPointer, or=false) => {
       });
     }
     if (filter === 'authorial-status') { 
-      // experiment, given that Choices.js is asking for a select element
-      // remove the div that's created by Choices, swap with a new one
-      const newSelect = document.createElement("select");
-      newSelect.id = choicesSelect.id
-      newSelect.classList.add("form-control");
-      choicesSelect.replaceWith(newSelect);
-      
-      this_choices = new Choices(newSelect,{
-        addItems: false,
-        shouldSort: false,
-        shouldSortItems: false,
-        allowHTML: true,
-        position: 'bottom',
-        placeholder: 'Select an option',
-      })
+      if (choicesSelect.tagName == "DIV"){
+        console.log('i am a Choices object just clear and set choices')
+      }    
+      if (choicesSelect.tagName == "SELECT"){
+        console.log('i am not  a Choices object')
+        this_choices = new Choices(choicesSelect,{
+          addItems: false,
+          shouldSort: false,
+          shouldSortItems: false,
+          allowHTML: true,
+          position: 'bottom',
+          placeholder: 'Select an option',
+        })
+      }
       searchField.style.display = "none";
       this_years.classList.add("d-none");
       choicesSelect.style.display = "block";
@@ -184,19 +186,20 @@ const update_searchSelect = (searchSelectPointer, or=false) => {
       });
     }
     if (filter === 'illustration') { 
-      const newSelect = document.createElement("select");
-      newSelect.id = choicesSelect.id
-      newSelect.classList.add("form-control");
-      choicesSelect.replaceWith(newSelect);
-
-      this_choices = new Choices(newSelect,{
-        addItems: false,
-        shouldSort: false,
-        shouldSortItems: false,
-        allowHTML: true,
-        position: 'bottom',
-        placeholder: 'Select an option',
-      })
+      if (choicesSelect.tagName == "DIV"){
+        console.log('i am a Choices object just clear and set choices')
+      }    
+      if (choicesSelect.tagName == "SELECT"){
+        console.log('i am not  a Choices object')
+        this_choices = new Choices(choicesSelect,{
+          addItems: false,
+          shouldSort: false,
+          shouldSortItems: false,
+          allowHTML: true,
+          position: 'bottom',
+          placeholder: 'Select an option',
+        })
+      }
       searchField.style.display = "none";
       this_years.classList.add("d-none");
       choicesSelect.style.display = "block";
@@ -216,20 +219,20 @@ const update_searchSelect = (searchSelectPointer, or=false) => {
       });
     }
     if (filter === 'format') { 
-      // hide advancedSearchField
-      const newSelect = document.createElement("select");
-      newSelect.id = choicesSelect.id
-      newSelect.classList.add("form-control");
-      choicesSelect.replaceWith(newSelect);
-
-      this_choices = new Choices(newSelect,{
-        addItems: false,
-        shouldSort: false,
-        shouldSortItems: false,
-        allowHTML: true,
-        position: 'bottom',
-        placeholder: 'Select an option',
-      })
+      if (choicesSelect.tagName == "DIV"){
+        console.log('i am a Choices object just clear and set choices')
+      }    
+      if (choicesSelect.tagName == "SELECT"){
+        console.log('i am not  a Choices object')
+        this_choices = new Choices(choicesSelect,{
+          addItems: false,
+          shouldSort: false,
+          shouldSortItems: false,
+          allowHTML: true,
+          position: 'bottom',
+          placeholder: 'Select an option',
+        })
+      }
       searchField.style.display = "none";
       this_years.classList.add("d-none");
       choicesSelect.style.display = "block";
@@ -250,20 +253,20 @@ const update_searchSelect = (searchSelectPointer, or=false) => {
     }
 
     if (filter === 'blackletter') { 
-      // hide advancedSearchField
-      const newSelect = document.createElement("select");
-      newSelect.id = choicesSelect.id
-      newSelect.classList.add("form-control");
-      choicesSelect.replaceWith(newSelect);
-
-      this_choices = new Choices(newSelect,{
-        addItems: false,
-        shouldSort: false,
-        shouldSortItems: false,
-        allowHTML: true,
-        position: 'bottom',
-        placeholder: 'Select an option',
-      })
+      if (choicesSelect.tagName == "DIV"){
+        console.log('i am a Choices object just clear and set choices')
+      }    
+      if (choicesSelect.tagName == "SELECT"){
+        console.log('i am not  a Choices object')
+        this_choices = new Choices(choicesSelect,{
+          addItems: false,
+          shouldSort: false,
+          shouldSortItems: false,
+          allowHTML: true,
+          position: 'bottom',
+          placeholder: 'Select an option',
+        })
+      }
       searchField.style.display = "none";
       this_years.classList.add("d-none");
       choicesSelect.style.display = "block";
@@ -281,20 +284,20 @@ const update_searchSelect = (searchSelectPointer, or=false) => {
       });
     }
     if (filter === 'genre') { 
-      // hide advancedSearchField
-      const newSelect = document.createElement("select");
-      newSelect.id = choicesSelect.id
-      newSelect.classList.add("form-control");
-      choicesSelect.replaceWith(newSelect);
-
-      this_choices = new Choices(newSelect,{
-        addItems: false,
-        shouldSort: false,
-        shouldSortItems: false,
-        allowHTML: true,
-        position: 'bottom',
-        placeholder: 'Select an option',
-      })
+      if (choicesSelect.tagName == "DIV"){
+        console.log('i am a Choices object just clear and set choices')
+      }    
+      if (choicesSelect.tagName == "SELECT"){
+        console.log('i am not  a Choices object')
+        this_choices = new Choices(choicesSelect,{
+          addItems: false,
+          shouldSort: false,
+          shouldSortItems: false,
+          allowHTML: true,
+          position: 'bottom',
+          placeholder: 'Select an option',
+        })
+      }
       searchField.style.display = "none";
       this_years.classList.add("d-none");
       choicesSelect.style.display = "block";
@@ -312,20 +315,20 @@ const update_searchSelect = (searchSelectPointer, or=false) => {
       });
     }
     if (filter === 'genreplaybook') { 
-      // hide advancedSearchField
-      const newSelect = document.createElement("select");
-      newSelect.id = choicesSelect.id
-      newSelect.classList.add("form-control");
-      choicesSelect.replaceWith(newSelect);
-
-      this_choices = new Choices(newSelect,{
-        addItems: false,
-        shouldSort: false,
-        shouldSortItems: false,
-        allowHTML: true,
-        position: 'bottom',
-        placeholder: 'Select an option',
-      })
+      if (choicesSelect.tagName == "DIV"){
+        console.log('i am a Choices object just clear and set choices')
+      }    
+      if (choicesSelect.tagName == "SELECT"){
+        console.log('i am not  a Choices object')
+        this_choices = new Choices(choicesSelect,{
+          addItems: false,
+          shouldSort: false,
+          shouldSortItems: false,
+          allowHTML: true,
+          position: 'bottom',
+          placeholder: 'Select an option',
+        })
+      }
       searchField.style.display = "none";
       this_years.classList.add("d-none");
       choicesSelect.style.display = "block";
@@ -343,19 +346,20 @@ const update_searchSelect = (searchSelectPointer, or=false) => {
       });
     }
     if (filter === 'playtype') {
-      const newSelect = document.createElement("select");
-      newSelect.id = choicesSelect.id
-      newSelect.classList.add("form-control");
-      choicesSelect.replaceWith(newSelect);
-
-      this_choices = new Choices(newSelect,{
-        addItems: false,
-        shouldSort: false,
-        shouldSortItems: false,
-        allowHTML: true,
-        position: 'bottom',
-        placeholder: 'Select an option',
-      })
+      if (choicesSelect.tagName == "DIV"){
+        console.log('i am a Choices object just clear and set choices')
+      }    
+      if (choicesSelect.tagName == "SELECT"){
+        console.log('i am not  a Choices object')
+        this_choices = new Choices(choicesSelect,{
+          addItems: false,
+          shouldSort: false,
+          shouldSortItems: false,
+          allowHTML: true,
+          position: 'bottom',
+          placeholder: 'Select an option',
+        })
+      }
       searchField.style.display = "none";
       this_years.classList.add("d-none");
       choicesSelect.style.display = "block";
@@ -375,19 +379,20 @@ const update_searchSelect = (searchSelectPointer, or=false) => {
       
     }
     if (filter === 'theater') {
-      const newSelect = document.createElement("select");
-      newSelect.id = choicesSelect.id
-      newSelect.classList.add("form-control");
-      choicesSelect.replaceWith(newSelect);
-
-      this_choices = new Choices(newSelect,{
-        addItems: false,
-        shouldSort: false,
-        shouldSortItems: false,
-        allowHTML: true,
-        position: 'bottom',
-        placeholder: 'Select an option',
-      })
+      if (choicesSelect.tagName == "DIV"){
+        console.log('i am a Choices object just clear and set choices')
+      }    
+      if (choicesSelect.tagName == "SELECT"){
+        console.log('i am not  a Choices object')
+        this_choices = new Choices(choicesSelect,{
+          addItems: false,
+          shouldSort: false,
+          shouldSortItems: false,
+          allowHTML: true,
+          position: 'bottom',
+          placeholder: 'Select an option',
+        })
+      }
       searchField.style.display = "none";
       this_years.classList.add("d-none");
       choicesSelect.style.display = "block";
@@ -405,19 +410,20 @@ const update_searchSelect = (searchSelectPointer, or=false) => {
       });
     }
     if (filter === 'company-first-performance') {
-      const newSelect = document.createElement("select");
-      newSelect.id = choicesSelect.id
-      newSelect.classList.add("form-control");
-      choicesSelect.replaceWith(newSelect);
-
-      this_choices = new Choices(newSelect,{
-        addItems: false,
-        shouldSort: false,
-        shouldSortItems: false,
-        allowHTML: true,
-        position: 'bottom',
-        placeholder: 'Select an option',
-      })
+      if (choicesSelect.tagName == "DIV"){
+        console.log('i am a Choices object just clear and set choices')
+      }    
+      if (choicesSelect.tagName == "SELECT"){
+        console.log('i am not  a Choices object')
+        this_choices = new Choices(choicesSelect,{
+          addItems: false,
+          shouldSort: false,
+          shouldSortItems: false,
+          allowHTML: true,
+          position: 'bottom',
+          placeholder: 'Select an option',
+        })
+      }
       searchField.style.display = "none";
       this_years.classList.add("d-none");
       choicesSelect.style.display = "block";
@@ -437,19 +443,20 @@ const update_searchSelect = (searchSelectPointer, or=false) => {
       
     }
     if (filter === 'company') {
-      const newSelect = document.createElement("select");
-      newSelect.id = choicesSelect.id
-      newSelect.classList.add("form-control");
-      choicesSelect.replaceWith(newSelect);
-
-      this_choices = new Choices(newSelect,{
-        addItems: false,
-        shouldSort: false,
-        shouldSortItems: false,
-        allowHTML: true,
-        position: 'bottom',
-        placeholder: 'Select an option',
-      })
+      if (choicesSelect.tagName == "DIV"){
+        console.log('i am a Choices object just clear and set choices')
+      }    
+      if (choicesSelect.tagName == "SELECT"){
+        console.log('i am not  a Choices object')
+        this_choices = new Choices(choicesSelect,{
+          addItems: false,
+          shouldSort: false,
+          shouldSortItems: false,
+          allowHTML: true,
+          position: 'bottom',
+          placeholder: 'Select an option',
+        })
+      }
       searchField.style.display = "none";
       this_years.classList.add("d-none");
       choicesSelect.style.display = "block";
@@ -654,7 +661,6 @@ function addANDBlock() {
   let searchSelect = newBlock.children[1].children[0]
   update_searchSelect(searchSelect);
   searchSelect.addEventListener('change', (event) => {
-    console.log('I am the event listener')
     update_searchSelect(searchSelect);
   })
 
