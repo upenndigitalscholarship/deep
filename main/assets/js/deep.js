@@ -48,9 +48,11 @@ let choice_fields = ['illustration','author','authorial-status','company-first-p
 
               
 
-const update_searchSelect = (searchSelect, or=false) => {
+const update_searchSelect = (searchSelectPointer, or=false) => {
+    let searchSelect = document.getElementById(searchSelectPointer.id);
+    console.log(searchSelect,"!!!")
     let filter = searchSelect.value
-    searchField = searchSelect.nextElementSibling
+    let searchField = document.getElementById(searchSelectPointer.id.replace('searchSelect','advancedSearchField'))
     let this_years
     if (or) {
       this_years = searchSelect.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling
@@ -552,14 +554,14 @@ function addANDBlock() {
         <option value="commendatory-verses" >Commendatory Verses</option>
 
       </select>
-      <input id="advancedSearchField" type="text" class="form-control" aria-label="advancedSearchField" aria-describedby="advancedSearchField">
-      <select id="choicesSelect" style="display: hide;" class="form-control"></select>
+      <input id="advancedSearchField-${selectID}" type="text" class="form-control" aria-label="advancedSearchField" aria-describedby="advancedSearchField">
+      <select id="choicesSelect-${selectID}" style="display: hide;" class="form-control"></select>
         
       <style>.noUi-connect {
         background: #0e0076;
       }</style>
       <div id="spacer" style="height:10px;"></div>
-      <div id="date-input" class="input-group d-none">
+      <div id="date-input-${selectID}" class="input-group d-none">
         <span class="input-group-text">Begin:</span>
         <input type="number" aria-label="start-date" placeholder="${min_year}" pattern="\d{4}"  maxlength="4" class="form-control"></input>
         <span class="input-group-text">End:</span>
@@ -1619,11 +1621,6 @@ Collections.addEventListener('change', (event) => {
 
 const PlaysinCollections = document.getElementById('PlaysinCollections')
 PlaysinCollections.addEventListener('change', (event) => {
-  search();
-});
-
-const advancedSearchField = document.getElementById('advancedSearchField')
-advancedSearchField.addEventListener('keyup', (event) => {
   search();
 });
 
