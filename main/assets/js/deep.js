@@ -50,7 +50,6 @@ let choice_fields = ['illustration','author','authorial-status','company-first-p
 
 const update_searchSelect = (searchSelectPointer, or=false) => {
     let searchSelect = document.getElementById(searchSelectPointer.id);
-    console.log(searchSelect,"!!!")
     let filter = searchSelect.value
     let searchField = document.getElementById(searchSelectPointer.id.replace('searchSelect','advancedSearchField'))
     let this_years
@@ -61,7 +60,9 @@ const update_searchSelect = (searchSelectPointer, or=false) => {
       this_years = searchSelect.parentElement.children[5]
       this_years.classList.add('d-none')
     }
-    let choicesSelect;
+    // choicesSelect = document.getElementById(searchSelectPointer.id.replace('choicesSelect','advancedSearchField'))
+    // console.log(choicesSelect,"!!!")
+    // searchSelect.dataset.name = filter
     if (or) {
       choicesSelect = searchSelect.nextElementSibling.nextElementSibling
       searchSelect.dataset.name = filter
