@@ -89,6 +89,13 @@ const update_searchSelect = (searchSelectPointer, or=false) => {
     // choice fields
     
     if (filter === 'genre-brit-filter') { 
+    // <select id="choicesSelect-${selectID}" style="display: hide;" class="form-control"></select>
+        const newSelect = document.createElement("select");
+        let currentId = choicesSelect.id
+        choicesSelect.replaceWith(newSelect);
+        choicesSelect.id = currentId
+        choicesSelect.classList.add("form-control");
+
         this_choices = new Choices(choicesSelect,{
           addItems: false,
           shouldSort: false,
@@ -114,7 +121,12 @@ const update_searchSelect = (searchSelectPointer, or=false) => {
         });
       }
     if (filter === 'author') { 
-      this_choices = new Choices(choicesSelect,{
+      const newSelect = document.createElement("select");
+      newSelect.id = choicesSelect.id
+      newSelect.classList.add("form-control");
+      choicesSelect.replaceWith(newSelect);
+
+      this_choices = new Choices(newSelect,{
         addItems: false,
         shouldSort: false,
         shouldSortItems: false,
@@ -139,7 +151,14 @@ const update_searchSelect = (searchSelectPointer, or=false) => {
       });
     }
     if (filter === 'authorial-status') { 
-      this_choices = new Choices(choicesSelect,{
+      // experiment, given that Choices.js is asking for a select element
+      // remove the div that's created by Choices, swap with a new one
+      const newSelect = document.createElement("select");
+      newSelect.id = choicesSelect.id
+      newSelect.classList.add("form-control");
+      choicesSelect.replaceWith(newSelect);
+      
+      this_choices = new Choices(newSelect,{
         addItems: false,
         shouldSort: false,
         shouldSortItems: false,
@@ -591,6 +610,7 @@ function addANDBlock() {
   let searchSelect = newBlock.children[1].children[0]
   update_searchSelect(searchSelect);
   searchSelect.addEventListener('change', (event) => {
+    console.log('I am the event listener')
     update_searchSelect(searchSelect);
   })
 
