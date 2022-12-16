@@ -490,6 +490,7 @@ function removeFilterBlock(id) {
 function addANDBlock() {
   const min_year = '1512'
   const max_year = '1661'
+  selectID = Date.now()
   let template = `
     <div id="andORButtons" class="btn-group" style="visibility:collapse;" role="group">
         <!-- Add new filter box 
@@ -503,7 +504,7 @@ function addANDBlock() {
             <label class="btn btn-sm" for="removeBlock"><i id="removeFilterBlock" class="bi bi-dash-circle" ></i></label>
     </div>
     <div>
-      <select id="searchSelect" class="input-group form-select form-select-sm">
+      <select id="searchSelect-${selectID}" class="input-group form-select form-select-sm">
         
         <option value="">Please select...</option>
         <option value="deep-id">DEEP ID</option>
@@ -628,7 +629,8 @@ function addANDBlock() {
 function addORBlock() {
     const min_year = '1512'
     const max_year = '1661'
-
+    selectID1 = Date.now()
+    selectID2 = Date.now() // 2
   let template = `
     <div id="andORButtons" class="btn-group" role="group" aria-label="Basic radio toggle button group">          
         <input type="radio" class="btn-check" name="addAND" id="addAND" autocomplete="off" disabled >
@@ -637,7 +639,7 @@ function addORBlock() {
             <label class="btn btn-sm" for="removeBlock"><i id="removeFilterBlock" class="bi bi-dash-circle" ></i></label>
     </div>
     <div class="border border-dark rounded border-2">
-      <select id="searchSelect1" class="input-group form-select form-select-sm">
+      <select id="searchSelect1-${selectID1}" class="input-group form-select form-select-sm">
         
         <option value="">Please select...</option>
         <option value="deep-id">DEEP ID</option>
@@ -701,7 +703,7 @@ function addORBlock() {
       
       <label class="btn btn-sm  " for="addAND">or</label> 
                  
-      <select id="searchSelect2" class="input-group form-select form-select-sm">
+      <select id="searchSelect2-${selectID2}" class="input-group form-select form-select-sm">
         
         <option value="">Please select...</option>
         <option value="deep-id">DEEP ID</option>
@@ -859,7 +861,8 @@ function readFilterBlocks() {
 // initialize searchBlock on page load
 const init_firstBlock = () => {
   addANDBlock()
-  const searchSelect = document.getElementById("searchSelect");
+  let filterBlock = document.getElementById("filterBlock-1");
+  searchSelect = filterBlock.children[1].children[0]
   update_searchSelect(searchSelect);
   searchSelect.addEventListener('change', (event) => {
     update_searchSelect(searchSelect);
