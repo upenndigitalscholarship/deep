@@ -60,9 +60,7 @@ const update_searchSelect = (searchSelectPointer, or=false) => {
       this_years = searchSelect.parentElement.children[5]
       this_years.classList.add('d-none')
     }
-    // choicesSelect = document.getElementById(searchSelectPointer.id.replace('choicesSelect','advancedSearchField'))
-    // console.log(choicesSelect,"!!!")
-    // searchSelect.dataset.name = filter
+    
     if (or) {
       choicesSelect = searchSelect.nextElementSibling.nextElementSibling
       searchSelect.dataset.name = filter
@@ -703,7 +701,7 @@ function addORBlock() {
     const min_year = '1512'
     const max_year = '1661'
     selectID1 = Date.now()
-    selectID2 = Date.now() // 2
+    selectID2 = Math.floor(Date.now() / 2)
   let template = `
     <div id="andORButtons" class="btn-group" role="group" aria-label="Basic radio toggle button group">          
         <input type="radio" class="btn-check" name="addAND" id="addAND" autocomplete="off" disabled >
@@ -712,7 +710,7 @@ function addORBlock() {
             <label class="btn btn-sm" for="removeBlock"><i id="removeFilterBlock" class="bi bi-dash-circle" ></i></label>
     </div>
     <div class="border border-dark rounded border-2">
-      <select id="searchSelect1-${selectID1}" class="input-group form-select form-select-sm">
+      <select id="searchSelect-${selectID1}" class="input-group form-select form-select-sm">
         
         <option value="">Please select...</option>
         <option value="deep-id">DEEP ID</option>
@@ -760,14 +758,14 @@ function addORBlock() {
         <option value="commendatory-verses" >Commendatory Verses</option>
 
       </select>
-      <input id="advancedSearchField" type="text" class="form-control" aria-label="advancedSearchField" aria-describedby="advancedSearchField">
-      <select id="choicesSelect" style="display: hide;" class="form-control"></select>
+      <input id="advancedSearchField-${selectID1}" type="text" class="form-control" aria-label="advancedSearchField" aria-describedby="advancedSearchField">
+      <select id="choicesSelect-${selectID1}" style="display: hide;" class="form-control"></select>
         
       <style>.noUi-connect {
         background: #0e0076;
       }</style>
       <div id="spacer" style="height:10px;"></div>
-      <div id="date-input" class="input-group d-none">
+      <div id="date-input-${selectID1}" class="input-group d-none">
         <span class="input-group-text">Begin:</span>
         <input type="number" aria-label="start-date" value="${min_year}" pattern="\d{4}"  maxlength="4" class="form-control"></input>
         <span class="input-group-text">End:</span>
@@ -776,7 +774,7 @@ function addORBlock() {
       
       <label class="btn btn-sm  " for="addAND">or</label> 
                  
-      <select id="searchSelect2-${selectID2}" class="input-group form-select form-select-sm">
+      <select id="searchSelect-${selectID2}" class="input-group form-select form-select-sm">
         
         <option value="">Please select...</option>
         <option value="deep-id">DEEP ID</option>
@@ -824,14 +822,14 @@ function addORBlock() {
         <option value="commendatory-verses" >Commendatory Verses</option>
 
       </select>
-      <input id="advancedSearchField" type="text" class="form-control" aria-label="advancedSearchField" aria-describedby="advancedSearchField">
-      <select id="choicesSelect" style="display: hide;" class="form-control"></select>
+      <input id="advancedSearchField-${selectID2}" type="text" class="form-control" aria-label="advancedSearchField" aria-describedby="advancedSearchField">
+      <select id="choicesSelect-${selectID2}" style="display: hide;" class="form-control"></select>
         
       <style>.noUi-connect {
         background: #0e0076;
       }</style>
       <div id="spacer" style="height:10px;"></div>
-      <div id="date-input" class="input-group d-none">
+      <div id="date-input-${selectID2}" class="input-group d-none">
         <span class="input-group-text">Begin:</span>
         <input type="number" aria-label="start-date" value="${min_year}" pattern="\d{4}"  maxlength="4" class="form-control"></input>
         <span class="input-group-text">End:</span>
