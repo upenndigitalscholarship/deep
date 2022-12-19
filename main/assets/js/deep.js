@@ -52,6 +52,8 @@ const update_searchSelect = (searchSelectPointer, or=false) => {
     let searchSelect = document.getElementById(searchSelectPointer.id);
     let filter = searchSelect.value
     let searchField = document.getElementById(searchSelectPointer.id.replace('searchSelect','advancedSearchField'))
+    // clear existing input in search field
+    searchField.value = '';
     let this_years
     if (or) {
       this_years = searchSelect.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling
@@ -1291,6 +1293,7 @@ const processQueries = queries => {
               )
               ORquery.push(paratextual)
         }
+        // TODO There isn't an option for this, is that right?
         if (fields[i] == 'commendatory-verses' && values[i]) {
           let commendatoryVerses = item => (
               item.paratext_commendatory_verses.toLowerCase().includes(values[i].toLowerCase())
