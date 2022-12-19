@@ -8,6 +8,8 @@ from tqdm import tqdm
 
 backup_dir = Path.cwd() / 'backup'
 
+#TODO some fields contain formatting information, ex. 5.html Additional notes.
+# get_text removes all tags. they can be transferred with decode_contents() https://stackoverflow.com/questions/8112922/beautifulsoup-innerhtml
 class Command(BaseCommand):
     help = 'Request pages for old site and save to disk as html'
     
@@ -19,16 +21,16 @@ class Command(BaseCommand):
             item = {}
             soup = BeautifulSoup(html_doc.read_bytes(), 'html.parser')
             try:
-                item["year"] = soup.find("td", {"class": "resultsyear"}).getText().encode('ISO-8859-1').decode('utf-8')
+                item["year"] = soup.find("td", {"class": "resultsyear"}).get_text().encode('ISO-8859-1').decode('utf-8')
             except Exception as e:
                 log += "[*]"+"year" + html_doc.stem
             try:
-                item["author"] = soup.find("td", {"class": "authorname"}).getText().encode('ISO-8859-1').decode('utf-8')
+                item["author"] = soup.find("td", {"class": "authorname"}).get_text().encode('ISO-8859-1').decode('utf-8')
             except Exception as e:
                 log += "[*]"+"author" + html_doc.stem
             # still need to parse display to get author ids, there's also author_display?
             try:
-                item["title"] = soup.find("td", {"class": "playname"}).getText().encode('ISO-8859-1').decode('utf-8')
+                item["title"] = soup.find("td", {"class": "playname"}).get_text().encode('ISO-8859-1').decode('utf-8')
             except Exception as e:
                 log += "[*]"+"title" + html_doc.stem
         

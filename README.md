@@ -177,3 +177,21 @@ Gather the current queries from the filterBlocks
 - getQueries
 Turn the queries into an array of filter functions 
 - processQueries(queries)
+
+### Formatting from the old data 
+In some of the fields, there is formatting markup. To keep this, rather than using bs4's get_text(), I used decode_contents()
+This retains the `<i>` and `<b>` tags. I looked for a simple way to remove the a tags, but landed on a mix of regex and simple find/replace detailed below:
+
+```html
+start with:
+<a href=\"javascript:showRecord('5135')\">
+
+1. get ('123')     (\W'\d\d\d'\W)  430    
+2. get ('1234')    (\W'\d\d\d\d'\W)  1000    
+3. get ('1234.56') ('\d\d\d\d.\d\d') 974
+
+4. replace <a href=\"javascript:showRecord(  2400
+5. replace )\">
+6. remove </a>
+7. also removed \t\t\t\t\t
+```
