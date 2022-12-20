@@ -50,6 +50,7 @@ let choice_fields = ['illustration','author','authorial-status','company-first-p
 
 const update_searchSelect = (searchSelectPointer, or=false) => {
     let searchSelect = document.getElementById(searchSelectPointer.id);
+    
     let filter = searchSelect.value
     let searchField = document.getElementById(searchSelectPointer.id.replace('searchSelect','advancedSearchField'))
     // clear existing input in search field
@@ -70,7 +71,19 @@ const update_searchSelect = (searchSelectPointer, or=false) => {
       choicesSelect = searchSelect.parentElement.children[2]
       searchSelect.dataset.name = filter
     }
-
+    // if Choices not initialized, create one
+    try {
+      (this_choices)
+    } catch (error) {
+      this_choices = new Choices(choicesSelect,{
+        addItems: false,
+        shouldSort: false,
+        shouldSortItems: false,
+        allowHTML: true,
+        position: 'bottom',
+        placeholder: 'Select an option',
+      })
+    }
     // search fields
     
     if (search_fields.indexOf(filter) > -1) {
@@ -88,60 +101,27 @@ const update_searchSelect = (searchSelectPointer, or=false) => {
 
     // choice fields
     
-    if (filter === 'genre-brit-filter') { 
-    // <select id="choicesSelect-${selectID}" style="display: hide;" class="form-control"></select>
-      if (choicesSelect.tagName == "DIV"){
-        console.log('i am a Choices object just clear and set choices')
-      }    
-      if (choicesSelect.tagName == "SELECT"){
-        console.log('i am not  a Choices object')
-        this_choices = new Choices(choicesSelect,{
-          addItems: false,
-          shouldSort: false,
-          shouldSortItems: false,
-          allowHTML: true,
-          position: 'bottom',
-          placeholder: 'Select an option',
-        })
+    if (filter === 'genre-brit-filter') {
+      this_choices.setChoices(async () => {
+        try {
+          const items = await fetch('/assets/data/genres_bd.json');
+          return items.json();
+          
+      } catch (err) {
+        console.error(err);
       }
-         
-        searchField.style.display = "none";
-        this_years.classList.add('d-none')
-        choicesSelect.style.display = "block";
-        this_choices.init()
-        this_choices.clearChoices()
-        // change element to choices field
-        this_choices.setChoices(async () => {
-          try {
-            const items = await fetch('/assets/data/genres_bd.json');
-            return items.json();
-            
-        } catch (err) {
-          console.error(err);
-        }
-        });
-      }
-    if (filter === 'author') { 
-      if (choicesSelect.tagName == "DIV"){
-        console.log('i am a Choices object just clear and set choices')
-      }    
-      if (choicesSelect.tagName == "SELECT"){
-        console.log('i am not  a Choices object')
-        this_choices = new Choices(choicesSelect,{
-          addItems: false,
-          shouldSort: false,
-          shouldSortItems: false,
-          allowHTML: true,
-          position: 'bottom',
-          placeholder: 'Select an option',
-        })
-      } 
+      },
+        'value',
+        'label',
+        true);
+      
+      
       searchField.style.display = "none";
       this_years.classList.add('d-none')
       choicesSelect.style.display = "block";
-      this_choices.init()
-      this_choices.clearChoices()
-      // change element to choices field
+    }
+    if (filter === 'author') { 
+      
       this_choices.setChoices(async () => {
         try {
           const items = await fetch('/assets/data/authors.json');
@@ -150,160 +130,97 @@ const update_searchSelect = (searchSelectPointer, or=false) => {
       } catch (err) {
         console.error(err);
       }
-      });
-    }
-    if (filter === 'authorial-status') { 
-      if (choicesSelect.tagName == "DIV"){
-        console.log('i am a Choices object just clear and set choices')
-      }    
-      if (choicesSelect.tagName == "SELECT"){
-        console.log('i am not  a Choices object')
-        this_choices = new Choices(choicesSelect,{
-          addItems: false,
-          shouldSort: false,
-          shouldSortItems: false,
-          allowHTML: true,
-          position: 'bottom',
-          placeholder: 'Select an option',
-        })
-      }
+      },
+        'value',
+        'label',
+        true);
+      
+      
       searchField.style.display = "none";
-      this_years.classList.add("d-none");
+      this_years.classList.add('d-none')
       choicesSelect.style.display = "block";
-      this_choices.init()
-      this_choices.clearChoices()
-      // change element to choices field
+    }
+
+    if (filter === 'authorial-status') { 
       this_choices.setChoices(async () => {
         try {
-          //TODO why fetch json? just use item_data directly
-          // get distinct author values from item_data
           const items = await fetch('/assets/data/author_status.json');
           return items.json();
           
       } catch (err) {
         console.error(err);
       }
-      });
-    }
-    if (filter === 'illustration') { 
-      if (choicesSelect.tagName == "DIV"){
-        console.log('i am a Choices object just clear and set choices')
-      }    
-      if (choicesSelect.tagName == "SELECT"){
-        console.log('i am not  a Choices object')
-        this_choices = new Choices(choicesSelect,{
-          addItems: false,
-          shouldSort: false,
-          shouldSortItems: false,
-          allowHTML: true,
-          position: 'bottom',
-          placeholder: 'Select an option',
-        })
-      }
+      },
+        'value',
+        'label',
+        true);
+      
+      
       searchField.style.display = "none";
-      this_years.classList.add("d-none");
+      this_years.classList.add('d-none')
       choicesSelect.style.display = "block";
-      this_choices.init()
-      this_choices.clearChoices()
-      // change element to choices field
+    }
+
+    if (filter === 'illustration') { 
       this_choices.setChoices(async () => {
         try {
-          //TODO why fetch json? just use item_data directly
-          // get distinct author values from item_data
           const items = await fetch('/assets/data/yes-no.json');
           return items.json();
           
       } catch (err) {
         console.error(err);
       }
-      });
+      },
+        'value',
+        'label',
+        true);
+      
+      
+      searchField.style.display = "none";
+      this_years.classList.add('d-none')
+      choicesSelect.style.display = "block";
     }
     if (filter === 'format') { 
-      if (choicesSelect.tagName == "DIV"){
-        console.log('i am a Choices object just clear and set choices')
-      }    
-      if (choicesSelect.tagName == "SELECT"){
-        console.log('i am not  a Choices object')
-        this_choices = new Choices(choicesSelect,{
-          addItems: false,
-          shouldSort: false,
-          shouldSortItems: false,
-          allowHTML: true,
-          position: 'bottom',
-          placeholder: 'Select an option',
-        })
-      }
-      searchField.style.display = "none";
-      this_years.classList.add("d-none");
-      choicesSelect.style.display = "block";
-      this_choices.init()
-      this_choices.clearChoices()
-      // change element to choices field
       this_choices.setChoices(async () => {
         try {
-          //TODO why fetch json? just use item_data directly
-          // get distinct author values from item_data
           const items = await fetch('/assets/data/formats.json');
           return items.json();
           
       } catch (err) {
         console.error(err);
       }
-      });
+      },
+        'value',
+        'label',
+        true);
+      
+      
+      searchField.style.display = "none";
+      this_years.classList.add('d-none')
+      choicesSelect.style.display = "block";
     }
 
     if (filter === 'blackletter') { 
-      if (choicesSelect.tagName == "DIV"){
-        console.log('i am a Choices object just clear and set choices')
-      }    
-      if (choicesSelect.tagName == "SELECT"){
-        console.log('i am not  a Choices object')
-        this_choices = new Choices(choicesSelect,{
-          addItems: false,
-          shouldSort: false,
-          shouldSortItems: false,
-          allowHTML: true,
-          position: 'bottom',
-          placeholder: 'Select an option',
-        })
-      }
-      searchField.style.display = "none";
-      this_years.classList.add("d-none");
-      choicesSelect.style.display = "block";
-      this_choices.init()
-      this_choices.clearChoices()
-      // change element to choices field
       this_choices.setChoices(async () => {
         try {
-          const items = await fetch('/assets/data/blackletter.json');
+          const items = await fetch('/assets/data/yes-no.json');
           return items.json();
           
       } catch (err) {
         console.error(err);
       }
-      });
-    }
-    if (filter === 'genre') { 
-      if (choicesSelect.tagName == "DIV"){
-        console.log('i am a Choices object just clear and set choices')
-      }    
-      if (choicesSelect.tagName == "SELECT"){
-        console.log('i am not  a Choices object')
-        this_choices = new Choices(choicesSelect,{
-          addItems: false,
-          shouldSort: false,
-          shouldSortItems: false,
-          allowHTML: true,
-          position: 'bottom',
-          placeholder: 'Select an option',
-        })
-      }
+      },
+        'value',
+        'label',
+        true);
+      
+      
       searchField.style.display = "none";
-      this_years.classList.add("d-none");
+      this_years.classList.add('d-none')
       choicesSelect.style.display = "block";
-      this_choices.init()
-      this_choices.clearChoices()
-      // change element to choices field
+    }
+
+    if (filter === 'genre') { 
       this_choices.setChoices(async () => {
         try {
           const items = await fetch('/assets/data/genre.json');
@@ -312,29 +229,18 @@ const update_searchSelect = (searchSelectPointer, or=false) => {
       } catch (err) {
         console.error(err);
       }
-      });
-    }
-    if (filter === 'genreplaybook') { 
-      if (choicesSelect.tagName == "DIV"){
-        console.log('i am a Choices object just clear and set choices')
-      }    
-      if (choicesSelect.tagName == "SELECT"){
-        console.log('i am not  a Choices object')
-        this_choices = new Choices(choicesSelect,{
-          addItems: false,
-          shouldSort: false,
-          shouldSortItems: false,
-          allowHTML: true,
-          position: 'bottom',
-          placeholder: 'Select an option',
-        })
-      }
+      },
+        'value',
+        'label',
+        true);
+      
+      
       searchField.style.display = "none";
-      this_years.classList.add("d-none");
+      this_years.classList.add('d-none')
       choicesSelect.style.display = "block";
-      this_choices.init()
-      this_choices.clearChoices()
-      // change element to choices field
+    }
+
+    if (filter === 'genreplaybook') { 
       this_choices.setChoices(async () => {
         try {
           const items = await fetch('/assets/data/genre_playbook.json');
@@ -343,29 +249,17 @@ const update_searchSelect = (searchSelectPointer, or=false) => {
       } catch (err) {
         console.error(err);
       }
-      });
+      },
+        'value',
+        'label',
+        true);
+      
+      
+      searchField.style.display = "none";
+      this_years.classList.add('d-none')
+      choicesSelect.style.display = "block";
     }
     if (filter === 'playtype') {
-      if (choicesSelect.tagName == "DIV"){
-        console.log('i am a Choices object just clear and set choices')
-      }    
-      if (choicesSelect.tagName == "SELECT"){
-        console.log('i am not  a Choices object')
-        this_choices = new Choices(choicesSelect,{
-          addItems: false,
-          shouldSort: false,
-          shouldSortItems: false,
-          allowHTML: true,
-          position: 'bottom',
-          placeholder: 'Select an option',
-        })
-      }
-      searchField.style.display = "none";
-      this_years.classList.add("d-none");
-      choicesSelect.style.display = "block";
-      this_choices.init()
-      this_choices.clearChoices()
-      // change element to choices field
       this_choices.setChoices(async () => {
         try {
           const items = await fetch('/assets/data/playtype.json');
@@ -374,31 +268,17 @@ const update_searchSelect = (searchSelectPointer, or=false) => {
       } catch (err) {
         console.error(err);
       }
-      });
-
+      },
+        'value',
+        'label',
+        true);
       
+      
+      searchField.style.display = "none";
+      this_years.classList.add('d-none')
+      choicesSelect.style.display = "block";
     }
     if (filter === 'theater') {
-      if (choicesSelect.tagName == "DIV"){
-        console.log('i am a Choices object just clear and set choices')
-      }    
-      if (choicesSelect.tagName == "SELECT"){
-        console.log('i am not  a Choices object')
-        this_choices = new Choices(choicesSelect,{
-          addItems: false,
-          shouldSort: false,
-          shouldSortItems: false,
-          allowHTML: true,
-          position: 'bottom',
-          placeholder: 'Select an option',
-        })
-      }
-      searchField.style.display = "none";
-      this_years.classList.add("d-none");
-      choicesSelect.style.display = "block";
-      this_choices.init()
-      this_choices.clearChoices()
-      // change element to choices field
       this_choices.setChoices(async () => {
         try {
           const items = await fetch('/assets/data/theater.json');
@@ -407,29 +287,17 @@ const update_searchSelect = (searchSelectPointer, or=false) => {
       } catch (err) {
         console.error(err);
       }
-      });
+      },
+        'value',
+        'label',
+        true);
+      
+      
+      searchField.style.display = "none";
+      this_years.classList.add('d-none')
+      choicesSelect.style.display = "block";
     }
     if (filter === 'company-first-performance') {
-      if (choicesSelect.tagName == "DIV"){
-        console.log('i am a Choices object just clear and set choices')
-      }    
-      if (choicesSelect.tagName == "SELECT"){
-        console.log('i am not  a Choices object')
-        this_choices = new Choices(choicesSelect,{
-          addItems: false,
-          shouldSort: false,
-          shouldSortItems: false,
-          allowHTML: true,
-          position: 'bottom',
-          placeholder: 'Select an option',
-        })
-      }
-      searchField.style.display = "none";
-      this_years.classList.add("d-none");
-      choicesSelect.style.display = "block";
-      this_choices.init()
-      this_choices.clearChoices()
-      // change element to choices field
       this_choices.setChoices(async () => {
         try {
           const items = await fetch('/assets/data/first-companies.json');
@@ -438,31 +306,17 @@ const update_searchSelect = (searchSelectPointer, or=false) => {
       } catch (err) {
         console.error(err);
       }
-      });
-
+      },
+        'value',
+        'label',
+        true);
       
+      
+      searchField.style.display = "none";
+      this_years.classList.add('d-none')
+      choicesSelect.style.display = "block";
     }
     if (filter === 'company') {
-      if (choicesSelect.tagName == "DIV"){
-        console.log('i am a Choices object just clear and set choices')
-      }    
-      if (choicesSelect.tagName == "SELECT"){
-        console.log('i am not  a Choices object')
-        this_choices = new Choices(choicesSelect,{
-          addItems: false,
-          shouldSort: false,
-          shouldSortItems: false,
-          allowHTML: true,
-          position: 'bottom',
-          placeholder: 'Select an option',
-        })
-      }
-      searchField.style.display = "none";
-      this_years.classList.add("d-none");
-      choicesSelect.style.display = "block";
-      this_choices.init()
-      this_choices.clearChoices()
-      // change element to choices field
       this_choices.setChoices(async () => {
         try {
           const items = await fetch('/assets/data/first-companies.json');
@@ -471,9 +325,15 @@ const update_searchSelect = (searchSelectPointer, or=false) => {
       } catch (err) {
         console.error(err);
       }
-      });
-
+      },
+        'value',
+        'label',
+        true);
       
+      
+      searchField.style.display = "none";
+      this_years.classList.add('d-none')
+      choicesSelect.style.display = "block";
     }
   }
 
@@ -1071,7 +931,7 @@ const processQueries = queries => {
         }    
         if (query.searchValue == "No") {
             let illustration = item => (
-                item.title_page_illustration == "n/a"
+                item.title_page_illustration == ""
             )
             filters.push({'filter':illustration,'type':query.blockType})    
         }
@@ -1126,10 +986,18 @@ const processQueries = queries => {
         filters.push({'filter':authorialStatus,'type':query.blockType})
       }
       if (query.searchField == 'blackletter') {
-        let blackletter = item => (
-          item.blackletter.toLowerCase().includes(query.searchValue.toLowerCase())
+        if (query.searchValue == "Yes") {
+          let blackletter = item => (
+            item.blackletter.toLowerCase().includes(query.searchValue.toLowerCase())
           )
-        filters.push({'filter':blackletter,'type':query.blockType})
+          filters.push({'filter':blackletter,'type':query.blockType})
+        }    
+        if (query.searchValue == "No") {
+            let blackletter = item => (
+              item.blackletter.toLowerCase().includes(query.searchValue.toLowerCase())
+            )
+            filters.push({'filter':blackletter,'type':query.blockType})    
+        }
       }
       if (query.searchField == 'genre') {
         let genre = item => (
@@ -1437,10 +1305,18 @@ const processQueries = queries => {
           ORquery.push(authorialStatus)
         }
         if (fields[i] == 'blackletter' && values[i]) {
-          let blackletter = item => (
-            item.blackletter.toLowerCase().includes(values[i].toLowerCase())
-          )
-          ORquery.push(blackletter)
+          if (values[i] == "Yes") {
+            let blackletter = item => (
+              item.blackletter.toLowerCase().includes(values[i].toLowerCase())
+            )
+            ORquery.push(blackletter)
+          }    
+          if (values[i] == "No") {
+            let blackletter = item => (
+              item.blackletter == "No"
+            )
+            ORquery.push(blackletter)    
+          }
         }
         if (fields[i] == 'genre' && values[i]) {
           let genre = item => (
@@ -1728,7 +1604,7 @@ function expand(e, id) {
                 ${!data.play_edition ? '' : '<span class="expand">Play Edition: </span><span id="play_edition"> ' + data.play_edition + '</span><br>'}
                 ${!data.format ? '' : '<span class="expand">Format: </span><span id="format"> ' + data.format + '</span><br>'}
                 ${!data.leaves ? '' : '<span class="expand">Leaves: </span><span id="leaves"> ' + data.leaves + '</span><br>'}
-                ${!data.blackletter ? '' : '<span class="expand">Black Letter: </span><span id="leaves"> ' + data.leaves + '</span><br>'}
+                ${!data.blackletter ? '' : '<span class="expand">Black Letter: </span><span id="leaves"> ' + data.blackletter + '</span><br>'}
               </p>
             </div>    
             

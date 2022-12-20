@@ -129,13 +129,14 @@ class Command(BaseCommand):
         srsly.write_json(static_dir / 'data/playtype.json', playtypes)
         
         ## Genre (Annals)
-        genres = []
-        genre_query = list(set([t.genre_annals_filter for t in Title.objects.all().order_by('title')]))
-        genre_query.sort()
+        # Temp disable to match old site's terms
+        # genres = []
+        # genre_query = list(set([t.genre_annals_filter for t in Title.objects.all().order_by('title')]))
+        # genre_query.sort()
 
-        for i, g in enumerate(genre_query):
-            genres.append({"value":i, "label":g})
-        srsly.write_json(static_dir / 'data/genre.json', genres)
+        # for i, g in enumerate(genre_query):
+        #     genres.append({"value":i, "label":g})
+        # srsly.write_json(static_dir / 'data/genre.json', genres)
 
         ## Theaters 
         # Changed to manual given client requirements
