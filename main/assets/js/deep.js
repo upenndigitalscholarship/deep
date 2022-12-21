@@ -55,20 +55,16 @@ const update_searchSelect = (searchSelectPointer, or=false) => {
     let searchField = document.getElementById(searchSelectPointer.id.replace('searchSelect','advancedSearchField'))
     // clear existing input in search field
     searchField.value = '';
-    let this_years
-    if (or) {
-      this_years = searchSelect.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling
-      this_years.classList.add('d-none')
-    } else {
-      this_years = searchSelect.parentElement.children[5]
-      this_years.classList.add('d-none')
-    }
+    
+    this_years = document.getElementById(searchSelectPointer.id.replace('searchSelect','date-input'))
+    this_years.classList.add('d-none')
+    
     
     if (or) {
       choicesSelect = searchSelect.nextElementSibling.nextElementSibling
       searchSelect.dataset.name = filter
     } else {
-      choicesSelect = searchSelect.parentElement.children[2]
+      choicesSelect = document.getElementById(searchSelectPointer.id.replace('searchSelect','choicesSelect'))
       searchSelect.dataset.name = filter
     }
     // if Choices not initialized, create one
@@ -726,6 +722,7 @@ function addORBlock() {
   let searchSelect1 = newBlock.children[1].children[0]
   update_searchSelect(searchSelect1);
   searchSelect1.addEventListener('change', (event) => {
+    console.log('Iam searchSelect1 id',searchSelect1)
     update_searchSelect(searchSelect1);
   })
   let thisSearchField1 = newBlock.children[1].children[1]
