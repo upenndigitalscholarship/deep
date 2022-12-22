@@ -48,29 +48,71 @@ let choice_fields = ['illustration','author','authorial-status','company-first-p
 
               
 
-const update_searchSelect = (searchSelectPointer, or=false) => {
-    let searchSelect = document.getElementById(searchSelectPointer.id);
+const update_searchSelect = (searchSelect, or=false) => {
     
     let filter = searchSelect.value
-    let searchField = document.getElementById(searchSelectPointer.id.replace('searchSelect','advancedSearchField'))
+    let searchField = document.getElementById(searchSelect.id.replace('searchSelect','advancedSearchField'))
     // clear existing input in search field
     searchField.value = '';
     
-    this_years = document.getElementById(searchSelectPointer.id.replace('searchSelect','date-input'))
-    this_years.classList.add('d-none')
+    this_years = document.getElementById(searchSelect.id.replace('searchSelect','date-input'))
+    this_years.classList.add('invisible')
     
+    // Choice.js changes the <select> to a <div class="choices"> when initialized
+    // when a div, it does not contain the id, so a sibling relation is used
+    choicesSelect = searchSelect.nextElementSibling.nextElementSibling
+    // if (choicesSelect.tagName == 'SELECT') {
+    //   console.log('i am a select element')
+    //   if (choice_fields.indexOf(filter) > -1) {      
+    //     // if Choices not initialized, run init
+    //     if (typeof this_choices !== 'undefined') {
+    //       this_choices.clearChoices()
+    //     } else {
+    //       this_choices = new Choices(choicesSelect,{
+    //         addItems: false,
+    //         shouldSort: false,
+    //         shouldSortItems: false,
+    //         allowHTML: true,
+    //         position: 'bottom',
+    //         placeholder: 'Select an option',
+    //       })
+    //     }
+    //   }
+      
+    // } 
+    // if (choicesSelect.tagName == 'DIV') {
+    //   console.log('i am a select element')
+    //   this_choices.clearChoices()
+    // }
+
+    searchSelect.dataset.name = filter
     
-    if (or) {
-      choicesSelect = searchSelect.nextElementSibling.nextElementSibling
-      searchSelect.dataset.name = filter
-    } else {
-      choicesSelect = document.getElementById(searchSelectPointer.id.replace('searchSelect','choicesSelect'))
-      searchSelect.dataset.name = filter
+    // search fields
+    if (search_fields.indexOf(filter) > -1) {
+      if (typeof this_choices !== 'undefined') {
+        this_choices.destroy()
+      }
+      searchField.style.display = "block";
+      this_years.classList.add('d-none')
+      choicesSelect.classList.add('invisible')
     }
-    // if Choices not initialized, create one
-    try {
-      (this_choices)
-    } catch (error) {
+
+    // date fields
+    if (date_fields.indexOf(filter) > -1) {
+      if (typeof this_choices !== 'undefined') {
+        this_choices.destroy()
+      }
+      searchField.style.display = "none";
+      this_years.classList.remove("d-none");
+      choicesSelect.classList.add('invisible')
+    }
+
+    // choice fields
+    if (choice_fields.indexOf(filter) > -1) {      
+      // if Choices not initialized, run init
+      if (typeof this_choices !== 'undefined') {
+        this_choices.clearChoices()
+      }
       this_choices = new Choices(choicesSelect,{
         addItems: false,
         shouldSort: false,
@@ -79,23 +121,10 @@ const update_searchSelect = (searchSelectPointer, or=false) => {
         position: 'bottom',
         placeholder: 'Select an option',
       })
-    }
-    // search fields
-    
-    if (search_fields.indexOf(filter) > -1) {
+     
+      //choicesSelect.parentElement.classList.remove('invisible')
       
-      searchField.style.display = "block";
-      this_years.classList.add('d-none')
-      choicesSelect.style.display = "none";
     }
-    // date fields
-    if (date_fields.indexOf(filter) > -1) {
-      searchField.style.display = "none";
-      this_years.classList.remove("d-none");
-      choicesSelect.style.display = "none";
-    }
-
-    // choice fields
     
     if (filter === 'genre-brit-filter') {
       this_choices.setChoices(async () => {
