@@ -60,71 +60,34 @@ const update_searchSelect = (searchSelect, or=false) => {
     
     // Choice.js changes the <select> to a <div class="choices"> when initialized
     // when a div, it does not contain the id, so a sibling relation is used
-    choicesSelect = searchSelect.nextElementSibling.nextElementSibling
-    // if (choicesSelect.tagName == 'SELECT') {
-    //   console.log('i am a select element')
-    //   if (choice_fields.indexOf(filter) > -1) {      
-    //     // if Choices not initialized, run init
-    //     if (typeof this_choices !== 'undefined') {
-    //       this_choices.clearChoices()
-    //     } else {
-    //       this_choices = new Choices(choicesSelect,{
-    //         addItems: false,
-    //         shouldSort: false,
-    //         shouldSortItems: false,
-    //         allowHTML: true,
-    //         position: 'bottom',
-    //         placeholder: 'Select an option',
-    //       })
-    //     }
-    //   }
-      
-    // } 
-    // if (choicesSelect.tagName == 'DIV') {
-    //   console.log('i am a select element')
-    //   this_choices.clearChoices()
-    // }
-
+    if (or) {
+      choicesSelect = searchSelect.nextElementSibling.nextElementSibling
+      searchSelect.dataset.name = filter
+    } else {
+      choicesSelect = searchSelect.parentElement.children[2]
+      searchSelect.dataset.name = filter
+    }
+    const newSelect = document.createElement("select");
+    newSelect.id = choicesSelect.id
+    newSelect.classList.add("form-control");
+    choicesSelect.replaceWith(newSelect);
+    
     searchSelect.dataset.name = filter
     
     // search fields
     if (search_fields.indexOf(filter) > -1) {
-      if (typeof this_choices !== 'undefined') {
-        this_choices.destroy()
-      }
-      searchField.style.display = "block";
-      this_years.classList.add('d-none')
-      choicesSelect.classList.add('invisible')
-    }
-
-    // date fields
-    if (date_fields.indexOf(filter) > -1) {
-      if (typeof this_choices !== 'undefined') {
-        this_choices.destroy()
-      }
       searchField.style.display = "none";
       this_years.classList.remove("d-none");
       choicesSelect.classList.add('invisible')
     }
 
-    // choice fields
-    if (choice_fields.indexOf(filter) > -1) {      
-      // if Choices not initialized, run init
-      if (typeof this_choices !== 'undefined') {
-        this_choices.clearChoices()
-      }
-      this_choices = new Choices(choicesSelect,{
-        addItems: false,
-        shouldSort: false,
-        shouldSortItems: false,
-        allowHTML: true,
-        position: 'bottom',
-        placeholder: 'Select an option',
-      })
-     
-      //choicesSelect.parentElement.classList.remove('invisible')
-      
+    // date fields
+    if (date_fields.indexOf(filter) > -1) {
+      searchField.style.display = "none";
+      this_years.classList.remove("d-none");
+      choicesSelect.classList.add('invisible')
     }
+
     
     if (filter === 'genre-brit-filter') {
       this_choices.setChoices(async () => {
@@ -146,7 +109,14 @@ const update_searchSelect = (searchSelect, or=false) => {
       choicesSelect.style.display = "block";
     }
     if (filter === 'author') { 
-      
+      this_choices = new Choices(choicesSelect,{
+        addItems: false,
+        shouldSort: false,
+        shouldSortItems: false,
+        allowHTML: true,
+        position: 'bottom',
+        placeholder: 'Select an option',
+      })
       this_choices.setChoices(async () => {
         try {
           const items = await fetch('/assets/data/authors.json');
