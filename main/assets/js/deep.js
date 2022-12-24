@@ -289,11 +289,11 @@ const getQueries = () => {
   // for each block
   let query = []
   let blocks = document.getElementById('filterBlocks')
-
   for (let i = 0; i < blocks.children.length; i++) {
     let block = blocks.children[i]
     // get AND OR operator 
     let blockType = block.dataset.type
+    
     if (blockType == 'AND') {
       let searchField = block.children[1].children[0].value 
       
@@ -339,7 +339,6 @@ const getQueries = () => {
       } 
       // second block
       let searchField2 = block.children[1].children[7].value
-      
       if (search_fields.indexOf(searchField2) > -1) {
         searchValue2 = block.children[1].children[8].value
       }
@@ -348,7 +347,7 @@ const getQueries = () => {
         let end = block.children[1].children[12].children[3].value
         searchValue2 = start+'-'+end
       }
-      if (choice_fields.indexOf(searchField1) > -1) {
+      if (choice_fields.indexOf(searchField2) > -1) {
         searchValue2 = block.children[1].children[9].outerText.split('\n')[0] //TODO better way to access selected value
       } 
       query.push({"searchField":searchField1+'||'+searchField2, "searchValue":searchValue1+'||'+searchValue2, "blockType":blockType})
