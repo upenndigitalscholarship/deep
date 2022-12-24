@@ -49,12 +49,13 @@ let choice_fields = ['illustration','author','authorial-status','company-first-p
               
 
 const update_searchSelect = (searchSelect, or=false) => {
-    
+    console.log(searchSelect, 'query: proper element is called')
+
     let filter = searchSelect.value
     let searchField = document.getElementById(searchSelect.id.replace('searchSelect','advancedSearchField'))
     // clear existing input in search field
     searchField.value = '';
-    
+    console.log(searchField, 'this is searchField')
     this_years = document.getElementById(searchSelect.id.replace('searchSelect','date-input'))
     this_years.classList.add('invisible')
     
@@ -67,27 +68,45 @@ const update_searchSelect = (searchSelect, or=false) => {
       choicesSelect = searchSelect.parentElement.children[2]
       searchSelect.dataset.name = filter
     }
+    // when switching between choice and search fields, then back, there is an issue
+    // reconnecting with the choicefield. To avoid this issue, the choice element is 
+    // removed and re-added, then re-initialized. It's kind of excessive, but necessisary 
     const newSelect = document.createElement("select");
     newSelect.id = choicesSelect.id
     newSelect.classList.add("form-control");
+    newSelect.classList.add('invisible')
     choicesSelect.replaceWith(newSelect);
     
     searchSelect.dataset.name = filter
     
     // search fields
     if (search_fields.indexOf(filter) > -1) {
-      searchField.style.display = "none";
+      searchField.style.display = "block";
       this_years.classList.remove("d-none");
-      choicesSelect.classList.add('invisible')
+      
     }
 
     // date fields
     if (date_fields.indexOf(filter) > -1) {
       searchField.style.display = "none";
       this_years.classList.remove("d-none");
-      choicesSelect.classList.add('invisible')
+      choicesSelect.classList.add('d-none')
     }
 
+    // choice fields
+    if (choice_fields.indexOf(filter) > -1) {
+      searchField.style.display = "none";
+      this_years.classList.add('d-none')
+      newSelect.classList.remove('invisible')
+      this_choices = new Choices(newSelect,{
+        addItems: false,
+        shouldSort: false,
+        shouldSortItems: false,
+        allowHTML: true,
+        position: 'bottom',
+        placeholder: 'Select an option',
+      })
+    }
     
     if (filter === 'genre-brit-filter') {
       this_choices.setChoices(async () => {
@@ -102,21 +121,8 @@ const update_searchSelect = (searchSelect, or=false) => {
         'value',
         'label',
         true);
-      
-      
-      searchField.style.display = "none";
-      this_years.classList.add('d-none')
-      choicesSelect.style.display = "block";
     }
     if (filter === 'author') { 
-      this_choices = new Choices(choicesSelect,{
-        addItems: false,
-        shouldSort: false,
-        shouldSortItems: false,
-        allowHTML: true,
-        position: 'bottom',
-        placeholder: 'Select an option',
-      })
       this_choices.setChoices(async () => {
         try {
           const items = await fetch('/assets/data/authors.json');
