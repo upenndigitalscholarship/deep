@@ -49,13 +49,11 @@ let choice_fields = ['illustration','author','authorial-status','company-first-p
               
 
 const update_searchSelect = (searchSelect, or=false) => {
-    console.log(searchSelect, 'query: proper element is called')
-
+    
     let filter = searchSelect.value
     let searchField = document.getElementById(searchSelect.id.replace('searchSelect','advancedSearchField'))
     // clear existing input in search field
     searchField.value = '';
-    console.log(searchField, 'this is searchField')
     this_years = document.getElementById(searchSelect.id.replace('searchSelect','date-input'))
     this_years.classList.add('invisible')
     
@@ -77,6 +75,9 @@ const update_searchSelect = (searchSelect, or=false) => {
     newSelect.classList.add('invisible')
     choicesSelect.replaceWith(newSelect);
     
+    newSelect.addEventListener('change', (event) => {
+      search();
+    })
     searchSelect.dataset.name = filter
     
     // search fields
@@ -135,11 +136,6 @@ const update_searchSelect = (searchSelect, or=false) => {
         'value',
         'label',
         true);
-      
-      
-      searchField.style.display = "none";
-      this_years.classList.add('d-none')
-      choicesSelect.style.display = "block";
     }
 
     if (filter === 'authorial-status') { 
@@ -155,11 +151,6 @@ const update_searchSelect = (searchSelect, or=false) => {
         'value',
         'label',
         true);
-      
-      
-      searchField.style.display = "none";
-      this_years.classList.add('d-none')
-      choicesSelect.style.display = "block";
     }
 
     if (filter === 'illustration') { 
@@ -175,11 +166,6 @@ const update_searchSelect = (searchSelect, or=false) => {
         'value',
         'label',
         true);
-      
-      
-      searchField.style.display = "none";
-      this_years.classList.add('d-none')
-      choicesSelect.style.display = "block";
     }
     if (filter === 'format') { 
       this_choices.setChoices(async () => {
@@ -194,11 +180,6 @@ const update_searchSelect = (searchSelect, or=false) => {
         'value',
         'label',
         true);
-      
-      
-      searchField.style.display = "none";
-      this_years.classList.add('d-none')
-      choicesSelect.style.display = "block";
     }
 
     if (filter === 'blackletter') { 
@@ -214,11 +195,6 @@ const update_searchSelect = (searchSelect, or=false) => {
         'value',
         'label',
         true);
-      
-      
-      searchField.style.display = "none";
-      this_years.classList.add('d-none')
-      choicesSelect.style.display = "block";
     }
 
     if (filter === 'genre') { 
@@ -234,11 +210,6 @@ const update_searchSelect = (searchSelect, or=false) => {
         'value',
         'label',
         true);
-      
-      
-      searchField.style.display = "none";
-      this_years.classList.add('d-none')
-      choicesSelect.style.display = "block";
     }
 
     if (filter === 'genreplaybook') { 
@@ -254,11 +225,6 @@ const update_searchSelect = (searchSelect, or=false) => {
         'value',
         'label',
         true);
-      
-      
-      searchField.style.display = "none";
-      this_years.classList.add('d-none')
-      choicesSelect.style.display = "block";
     }
     if (filter === 'playtype') {
       this_choices.setChoices(async () => {
@@ -274,10 +240,6 @@ const update_searchSelect = (searchSelect, or=false) => {
         'label',
         true);
       
-      
-      searchField.style.display = "none";
-      this_years.classList.add('d-none')
-      choicesSelect.style.display = "block";
     }
     if (filter === 'theater') {
       this_choices.setChoices(async () => {
@@ -292,11 +254,6 @@ const update_searchSelect = (searchSelect, or=false) => {
         'value',
         'label',
         true);
-      
-      
-      searchField.style.display = "none";
-      this_years.classList.add('d-none')
-      choicesSelect.style.display = "block";
     }
     if (filter === 'company-first-performance') {
       this_choices.setChoices(async () => {
@@ -311,11 +268,6 @@ const update_searchSelect = (searchSelect, or=false) => {
         'value',
         'label',
         true);
-      
-      
-      searchField.style.display = "none";
-      this_years.classList.add('d-none')
-      choicesSelect.style.display = "block";
     }
     if (filter === 'company') {
       this_choices.setChoices(async () => {
@@ -330,11 +282,6 @@ const update_searchSelect = (searchSelect, or=false) => {
         'value',
         'label',
         true);
-      
-      
-      searchField.style.display = "none";
-      this_years.classList.add('d-none')
-      choicesSelect.style.display = "block";
     }
   }
 
