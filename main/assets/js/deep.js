@@ -56,7 +56,7 @@ const update_searchSelect = (searchSelect, or=false) => {
     searchField.value = '';
     this_years = document.getElementById(searchSelect.id.replace('searchSelect','date-input'))
     this_years.classList.add('invisible')
-    
+
     // Choice.js changes the <select> to a <div class="choices"> when initialized
     // when a div, it does not contain the id, so a sibling relation is used
     if (or) {
@@ -90,14 +90,13 @@ const update_searchSelect = (searchSelect, or=false) => {
     // date fields
     if (date_fields.indexOf(filter) > -1) {
       searchField.style.display = "none";
-      this_years.classList.remove("d-none");
+      this_years.classList.remove('invisible')
       choicesSelect.classList.add('d-none')
     }
 
     // choice fields
     if (choice_fields.indexOf(filter) > -1) {
       searchField.style.display = "none";
-      this_years.classList.add('d-none')
       newSelect.classList.remove('invisible')
       this_choices = new Choices(newSelect,{
         addItems: false,
