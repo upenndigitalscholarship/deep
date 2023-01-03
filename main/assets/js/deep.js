@@ -1158,10 +1158,17 @@ const processQueries = queries => {
               ORquery.push(titlePageOld)
         }
         if (fields[i] == 'title-page-author' && values[i]) {
-          let titlePageAuthor = item => (
+          if (values[i] == "Any") {
+            let titlePageAuthor = item => (
+              item.title_page_author_filter != "None"
+            )
+            ORquery.push(titlePageAuthor)
+          } else {
+            let titlePageAuthor = item => (
               item.title_page_author_filter.toLowerCase().includes(values[i].toLowerCase())
               )
               ORquery.push(titlePageAuthor)
+          }
         }
         if (fields[i] == 'actor-list' && values[i]) {
           let actorList = item => (
