@@ -43,6 +43,7 @@ class Command(BaseCommand):
         # }
 
         #Authors 
+        # 43 For this search, place "Anonymous" at the top, with a blank line after, and then the alphabetized list of names
         authors = [] 
         for author in Person.objects.all().order_by('name'):
             if not '(?)' in author.__str__().strip():
@@ -50,6 +51,9 @@ class Command(BaseCommand):
                     'value': author.id,
                     'label': author.__str__().strip()
                 })
+        anonymous_index = next((index for (index, d) in enumerate(authors) if d["label"] == "Anonymous"), None)
+        authors.insert(0, authors.pop(anonymous_index))
+        authors.insert(1, {"value":0,"label":"---" })
         srsly.write_json(static_dir / 'data/authors.json', authors)
         
         ## Companies

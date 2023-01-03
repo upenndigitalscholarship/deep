@@ -1,5 +1,13 @@
 [
   {
+    "value":1,
+    "label":"Anonymous"
+  },
+  {
+    "value":0,
+    "label":"---"
+  },
+  {
     "value":218,
     "label":"A., R."
   },
@@ -22,10 +30,6 @@
   {
     "value":208,
     "label":"Amerie, Robert"
-  },
-  {
-    "value":1,
-    "label":"Anonymous"
   },
   {
     "value":161,
