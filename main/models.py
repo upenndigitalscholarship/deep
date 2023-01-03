@@ -101,6 +101,7 @@ class Item(models.Model): #Previously known as "DEEP"
     date_first_publication = models.CharField("Date of First Publication", max_length=400, blank=True, null=True)
     title_page_title = models.CharField("Title Page: Title", max_length=400, blank=True, null=True)
     title_page_author = models.CharField("Title Page: Author", max_length=400, blank=True, null=True)
+    title_page_author_filter = models.CharField("Title Page: Author Filter", max_length=400, blank=True, null=True)
     title_page_performance = models.CharField("Title Page: Performance", max_length=400, blank=True, null=True)
     title_page_latin_motto = models.CharField("Title Page: Latin Motto", max_length=400, blank=True, null=True)
     title_page_imprint = models.CharField("Title Page: Imprint", max_length=400, blank=True, null=True)

@@ -56,6 +56,23 @@ class Command(BaseCommand):
         authors.insert(1, {"value":0,"label":"---" })
         srsly.write_json(static_dir / 'data/authors.json', authors)
         
+        # Author Title-Page Attribution
+        title_page_author_filter = [a[0] for a in Item.objects.values_list('title_page_author_filter').distinct() if a[0]]
+        title_page_author = []
+        for t in title_page_author_filter:
+             if ';' in t:
+                 for s in t.split(';'):
+                     if s not in title_page_author:
+                         title_page_author.append(s.strip())
+        title_page_author.sort()
+        title_page_author = list(set(title_page_author))
+        title_page_author_choices = []
+        for i, author in enumerate(title_page_author):
+            title_page_author_choices.append({"value":i, "label":author})
+        title_page_author_choices.insert(0, {"value":0,"label":"Any" })
+        title_page_author_choices.insert(1, {"value":0,"label":"None" })
+        title_page_author_choices.insert(2, {"value":0,"label":"---" })
+        srsly.write_json(static_dir / 'data/title_page_author_filter.json', title_page_author_choices)
         ## Companies
         db_companies = [] 
         for item in Item.objects.all().order_by('edition__title'):

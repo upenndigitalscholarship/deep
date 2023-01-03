@@ -1,4 +1,5 @@
-deep_id	greg	stc	author_name	title12	11a	22607	Skelton, John	Magnificence
+deep_id	greg	stc	author_name	title
+12	11a	22607	Skelton, John	Magnificence
 17	15a	13305	Heywood, John	The Play of the Weather
 18	15b	13305.5	Heywood, John	The Play of the Weather
 19	15c	13306	Heywood, John	The Play of the Weather
@@ -909,8 +910,7 @@ deep_id	greg	stc	author_name	title12	11a	22607	Skelton, John	Magnificence
 759	436a †1 436a †2	17640.5	Massinger, Philip	The Picture
 5060		343	Alexander, William	The Monarchic Tragedies
 5060.02	196b	n/a	Alexander, William	Darius
-5059		14756	Jonson, Ben	King James his Royal and Magnificent Entertainment through his Honorable
-City of London
+5059		14756	Jonson, Ben	King James his Royal and Magnificent Entertainment through his Honorable City of London
 1159	788a*1 788a‡2	M1046	Massinger, Philip	The City Madam
 1158	788a*1 788a||2	M1046	Massinger, Philip	The City Madam
 5058		15682	Lindsay, David	1 & 2 A Satire of the Three Estates

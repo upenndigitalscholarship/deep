@@ -37,14 +37,14 @@ let groupBy = function(xs, key) {
 // In the search interface, there are three types of input field. Some are text entry search field. These allow filtering 
 // based on string matching.  Date fields allow the entry of a four-digit start and end year number. Choice fields
 // allow search and selection from a dropdown of valid choices.
-let search_fields = ['deep-id','title','title-page-modern','errata','paratextual','title-page-old','title-page-author',
+let search_fields = ['deep-id','title','title-page-modern','errata','paratextual','title-page-old',
   'argument','latinontitle','toreader','imprintlocation','stationer','printer','publisher','bookseller',
   'charachter-list','commendatory-verses','explicit','dedication','other-paratexts','book_edition',
   'play_edition','actor-list','authororial-status','greg_number','stc_or_wing','brit-drama-number']
 
 let date_fields = ['first-production','first-edition','year-published','date-first-performance-brit-filter']
 
-let choice_fields = ['illustration','author','authorial-status','company-first-performance','company','theater','playtype','genre','genreplaybook','blackletter','format','genre-brit-filter','company-first-performance-brit-filter']
+let choice_fields = ['title-page-author','illustration','author','authorial-status','company-first-performance','company','theater','playtype','genre','genreplaybook','blackletter','format','genre-brit-filter','company-first-performance-brit-filter']
 
               
 
@@ -107,7 +107,20 @@ const update_searchSelect = (searchSelect, or=false) => {
         placeholder: 'Select an option',
       })
     }
-    
+    if (filter === 'title-page-author') {
+      this_choices.setChoices(async () => {
+        try {
+          const items = await fetch('/assets/data/title_page_author_filter.json');
+          return items.json();
+          
+      } catch (err) {
+        console.error(err);
+      }
+      },
+        'value',
+        'label',
+        true);
+    }
     if (filter === 'genre-brit-filter') {
       this_choices.setChoices(async () => {
         try {
@@ -816,10 +829,17 @@ const processQueries = queries => {
         filters.push({'filter':titlePageOld,'type':query.blockType})
       }
       if (query.searchField == 'title-page-author') {
-        let titlePageAuthor = item => (
-          item.title_page_author.toLowerCase().includes(query.searchValue.toLowerCase())
-        )
-        filters.push({'filter':titlePageAuthor,'type':query.blockType})
+        if (query.searchValue == "Any") {
+          let titlePageAuthor = item => (
+            item.title_page_author_filter !== "None"
+          )
+          filters.push({'filter':titlePageAuthor,'type':query.blockType})
+        } else {
+          let titlePageAuthor = item => (
+            item.title_page_author_filter.toLowerCase().includes(query.searchValue.toLowerCase())
+          )
+          filters.push({'filter':titlePageAuthor,'type':query.blockType})  
+        }
       }
       if (query.searchField == 'actor-list') {
         let actorList = item => (
@@ -1139,7 +1159,7 @@ const processQueries = queries => {
         }
         if (fields[i] == 'title-page-author' && values[i]) {
           let titlePageAuthor = item => (
-              item.title_page_author.toLowerCase().includes(values[i].toLowerCase())
+              item.title_page_author_filter.toLowerCase().includes(values[i].toLowerCase())
               )
               ORquery.push(titlePageAuthor)
         }
