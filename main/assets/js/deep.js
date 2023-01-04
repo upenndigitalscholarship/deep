@@ -407,7 +407,7 @@ function addANDBlock() {
         <option value="author">Author (Modern Attribution)</option>
         <option value="title-page-author">Author (Title-Page Attribution)</option>
         <option value="authorial-status">Authorial Status (Title-Page Attribution)</option>
-        <option value="company-first-performance">Company (First Production)</option>
+        <option value="company-first-performance">Company of First Performance (Annals)</option>
         <option value="company_first-performance-brit-filter">Company of First Performance (BritDrama)</option>
         <option value="company">Company (Title-Page Attribution)</option>
         <option value="theater">Theater (Title-Page Attribution)</option>
@@ -542,7 +542,7 @@ function addORBlock() {
         <option value="author">Author (Modern Attribution)</option>
         <option value="title-page-author">Author (Title-Page Attribution)</option>
         <option value="authorial-status">Authorial Status (Title-Page Attribution)</option>
-        <option value="company-first-performance">Company (First Production)</option>
+        <option value="company-first-performance">Company of First Performance (Annals)</option>
         <option value="company_first-performance-brit-filter">Company of First Performance (BritDrama)</option>
         <option value="company">Company (Title-Page Attribution)</option>
         <option value="theater">Theater (Title-Page Attribution)</option>
@@ -606,7 +606,7 @@ function addORBlock() {
         <option value="author">Author (Modern Attribution)</option>
         <option value="title-page-author">Author (Title-Page Attribution)</option>
         <option value="authorial-status">Authorial Status (Title-Page Attribution)</option>
-        <option value="company-first-performance">Company (First Production)</option>
+        <option value="company-first-performance">Company of First Performance (Annals)</option>
         <option value="company_first-performance-brit-filter">Company of First Performance (BritDrama)</option>
         <option value="company">Company (Title-Page Attribution)</option>
         <option value="theater">Theater (Title-Page Attribution)</option>
