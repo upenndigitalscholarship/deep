@@ -14,7 +14,9 @@ def item_to_dict(item:Item):
     
     if not item_dict.get('title_page_author_filter',None): # Replace none with 'None' (else search crashes)
         item_dict["title_page_author_filter"] = 'None'
-
+    if not item_dict.get('author_status',None): # Replace none with 'None' (else search crashes)
+        item_dict["author_status"] = 'None'
+    
     item_dict['variant_link'] = ''
     for link in item.variant_links.all():
         item_dict['variant_link'] += f'<a target="_blank" href="{link.deep_id}.html">{link.greg_full}</a> '

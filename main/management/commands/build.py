@@ -112,10 +112,18 @@ class Command(BaseCommand):
         for item in Item.objects.all().order_by('edition__title'):
             if item and item.author_status and item.author_status not in db_author_status:
                 db_author_status.append(item.author_status)
-        db_author_status.sort()
-        
+        author_status_filter = []
+        for g in db_author_status:
+            if ';' in g:
+                for l in g.split(';'):
+                    author_status_filter.append(l.strip())
+            else:
+                author_status_filter.append(g)
+        author_status_filter = list(set(author_status_filter))
+        author_status_filter.sort()
+
         author_statuses = []
-        for i, auth_stat in enumerate(db_author_status):
+        for i, auth_stat in enumerate(author_status_filter):
             author_statuses.append({
                 'value': i,
                 'label': auth_stat.strip()

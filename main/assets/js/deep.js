@@ -947,10 +947,17 @@ const processQueries = queries => {
         filters.push({'filter':author,'type':query.blockType})
       }
       if (query.searchField == 'authorial-status') {
-        let authorialStatus = item => (
-          item.title_page_author.toLowerCase().includes(query.searchValue.toLowerCase())
-          )
-        filters.push({'filter':authorialStatus,'type':query.blockType})
+        if (query.searchValue == 'Any') {
+          let authorialStatus = item => (
+            item.author_status != "None"
+            )
+          filters.push({'filter':authorialStatus,'type':query.blockType})
+        } else {
+          let authorialStatus = item => (
+            item.author_status.split(';').indexOf(query.searchValue) > -1
+            )
+          filters.push({'filter':authorialStatus,'type':query.blockType})
+        }
       }
       if (query.searchField == 'blackletter') {
         if (query.searchValue == "Yes") {
@@ -1040,12 +1047,7 @@ const processQueries = queries => {
           )
         filters.push({'filter':britDrama,'type':query.blockType})
       }
-      if (query.searchField == 'authorial-status') {
-        let authorialStatus = item => (
-          item.author_status.toLowerCase().includes(query.searchValue.toLowerCase())
-          )
-        filters.push({'filter':authorialStatus,'type':query.blockType})
-      }
+      
       if (query.searchField == 'theater') {
         if (query.searchValue == "Any") {
           // TODO Any theater not working as expected
@@ -1274,7 +1276,7 @@ const processQueries = queries => {
         }
         if (fields[i] == 'authorial-status' && values[i]) {
           let authorialStatus = item => (
-            item.author_status.toLowerCase().includes(values[i].toLowerCase())
+            item.author_status.split(';').indexOf(values[i]) > -1
           )
           ORquery.push(authorialStatus)
         }
@@ -1362,12 +1364,7 @@ const processQueries = queries => {
           )
           ORquery.push(bookseller)
         }
-        if (fields[i] == 'authorial-status' && values[i]) {
-          let authorialStatus = item => (
-            item.author_status.toLowerCase().includes(values[i].toLowerCase())
-          )
-          ORquery.push(authorialStatus)
-        }
+        
 
         if (fields[i] == 'theater' && values[i]) {
         

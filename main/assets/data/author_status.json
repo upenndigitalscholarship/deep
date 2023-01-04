@@ -13,106 +13,218 @@
   },
   {
     "value":0,
-    "label":"Author"
+    "label":"Architect"
   },
   {
     "value":1,
-    "label":"Clerk"
+    "label":"Aulae Clarensis"
   },
   {
     "value":2,
-    "label":"Countess"
+    "label":"Author"
   },
   {
     "value":3,
-    "label":"Doctor"
+    "label":"Bachelor of Arts"
   },
   {
     "value":4,
-    "label":"Earl"
+    "label":"Chaplain"
   },
   {
     "value":5,
-    "label":"Esquire"
+    "label":"Citizen"
   },
   {
     "value":6,
-    "label":"Fellow"
+    "label":"Clerk"
   },
   {
     "value":7,
-    "label":"Gentleman"
+    "label":"Conte"
   },
   {
     "value":8,
-    "label":"Knight"
+    "label":"Countess"
   },
   {
     "value":9,
-    "label":"Lady"
+    "label":"Doctor"
   },
   {
     "value":10,
-    "label":"Lord"
+    "label":"Draper"
   },
   {
     "value":11,
-    "label":"Major"
+    "label":"Earl"
   },
   {
     "value":12,
-    "label":"Master"
+    "label":"Esquire"
   },
   {
     "value":13,
-    "label":"Master of Arts"
+    "label":"Fellow"
   },
   {
     "value":14,
-    "label":"Merchant Tailor"
+    "label":"Gentleman"
   },
   {
     "value":15,
-    "label":"Minister"
+    "label":"Gentleman of the bows"
   },
   {
     "value":16,
-    "label":"Person of Quality"
+    "label":"Groom"
   },
   {
     "value":17,
-    "label":"Secretary"
+    "label":"J.V."
   },
   {
     "value":18,
-    "label":"Servant to his Catholic Majesty"
+    "label":"Joiner"
   },
   {
     "value":19,
-    "label":"Servant to the King"
+    "label":"Knight"
   },
   {
     "value":20,
-    "label":"Servant to the Prince"
+    "label":"Lady"
   },
   {
     "value":21,
-    "label":"Signor"
+    "label":"Lord"
   },
   {
     "value":22,
-    "label":"Sir"
+    "label":"Major"
   },
   {
     "value":23,
-    "label":"Student"
+    "label":"Master"
   },
   {
     "value":24,
-    "label":"of Christ Church, Oxford"
+    "label":"Master of Arts"
   },
   {
     "value":25,
+    "label":"Merchant Tailor"
+  },
+  {
+    "value":26,
+    "label":"Minister"
+  },
+  {
+    "value":27,
+    "label":"Orator of the University of Oxford"
+  },
+  {
+    "value":28,
+    "label":"Person of Quality"
+  },
+  {
+    "value":29,
+    "label":"Poet Laureate"
+  },
+  {
+    "value":30,
+    "label":"Proctor of the University of Oxford"
+  },
+  {
+    "value":31,
+    "label":"Scholar"
+  },
+  {
+    "value":32,
+    "label":"Scoto-Brit"
+  },
+  {
+    "value":33,
+    "label":"Secretary"
+  },
+  {
+    "value":34,
+    "label":"Servant to his Catholic Majesty"
+  },
+  {
+    "value":35,
+    "label":"Servant to the King"
+  },
+  {
+    "value":36,
+    "label":"Servant to the Prince"
+  },
+  {
+    "value":37,
+    "label":"Servant to the Queen"
+  },
+  {
+    "value":38,
+    "label":"Sewer in Ordinary to His Majesty"
+  },
+  {
+    "value":39,
+    "label":"Signor"
+  },
+  {
+    "value":40,
+    "label":"Sir"
+  },
+  {
+    "value":41,
+    "label":"Socio"
+  },
+  {
+    "value":42,
+    "label":"Student"
+  },
+  {
+    "value":43,
+    "label":"Surveyor of the King's Works"
+  },
+  {
+    "value":44,
+    "label":"of Christ Church, Oxford"
+  },
+  {
+    "value":45,
+    "label":"of Exeter College, Oxford"
+  },
+  {
+    "value":46,
     "label":"of Gray's Inn"
+  },
+  {
+    "value":47,
+    "label":"of Lincoln's Inn"
+  },
+  {
+    "value":48,
+    "label":"of St John's College, Oxford"
+  },
+  {
+    "value":49,
+    "label":"of Trinity College, Cambridge"
+  },
+  {
+    "value":50,
+    "label":"of Westminster School"
+  },
+  {
+    "value":51,
+    "label":"of the Middle Temple"
+  },
+  {
+    "value":52,
+    "label":"of the Mont"
+  },
+  {
+    "value":53,
+    "label":"of the Privy Chamber"
   }
 ]
