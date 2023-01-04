@@ -104,20 +104,27 @@ class Command(BaseCommand):
                 'label': genre.strip()
             })
         srsly.write_json(static_dir / 'data/genres_bd.json', genre_out)
+        
         # Author status 
         # It is not clear where this data comes from, so I am manually 
         # replacing author_status.json with values from the current site
-        # db_author_status = [] 
-        # for item in Item.objects.all().order_by('edition__title'):
-        #     if item and item.author_status and item.author_status not in db_author_status:
-        #         db_author_status.append(item.author_status)
-        # author_statuses = []
-        # for i, auth_stat in enumerate(db_author_status):
-        #     author_statuses.append({
-        #         'value': i,
-        #         'label': auth_stat.strip()
-        #     })
-        # srsly.write_json(static_dir / 'data/author_status.json', author_statuses)
+        db_author_status = [] 
+        for item in Item.objects.all().order_by('edition__title'):
+            if item and item.author_status and item.author_status not in db_author_status:
+                db_author_status.append(item.author_status)
+        db_author_status.sort()
+        
+        author_statuses = []
+        for i, auth_stat in enumerate(db_author_status):
+            author_statuses.append({
+                'value': i,
+                'label': auth_stat.strip()
+            })
+        author_statuses.insert(0, {"value":0,"label":"Any" })
+        author_statuses.insert(1, {"value":0,"label":"None" })
+        author_statuses.insert(2, {"value":0,"label":"---" })
+
+        srsly.write_json(static_dir / 'data/author_status.json', author_statuses)
 
         ## Company First Performance
         # very few records have a company of first performance, to limit the list to just companies that 
