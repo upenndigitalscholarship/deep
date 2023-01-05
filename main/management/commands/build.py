@@ -134,7 +134,7 @@ class Command(BaseCommand):
 
         srsly.write_json(static_dir / 'data/author_status.json', author_statuses)
 
-        ## Company First Performance
+        ## Company First Performance Annals
         # very few records have a company of first performance, to limit the list to just companies that 
         # appear a company of first performance in the data, this field needs its own set of valid choices
         first_companies = [company[0] for company in Title.objects.order_by('title').values_list('company_first_performance_annals_filter').distinct() if company[0] is not None and company[0] != 'n/a' or 'Unknown' ]
@@ -160,6 +160,31 @@ class Command(BaseCommand):
         first_companies_json.insert(1, {"value":0,"label":"None" })
         first_companies_json.insert(2, {"value":0,"label":"---" })
         srsly.write_json(static_dir / 'data/first-companies.json', first_companies_json)
+
+        ## Company First Performance British Drama
+        first_companies = [company[0] for company in Title.objects.order_by('title').values_list('company_first_performance_brit_filter').distinct() if company[0] is not None and company[0] != 'n/a' or 'Unknown' ]
+        first_companies = list(set(first_companies)) #also sorts alphabetically, who knew!?
+        first_companies_distinct = []
+        for g in first_companies:
+            if not g:
+                g = "None"
+            if ';' in g:
+                for l in g.split(';'):
+                    first_companies_distinct.append(l.strip())
+            else:
+                first_companies_distinct.append(g)
+        first_companies_distinct = list(set(first_companies_distinct))
+        first_companies_distinct.sort()
+        first_companies_json = []
+        for i, company in enumerate(first_companies_distinct):
+            first_companies_json.append({
+                'value': i,
+                'label': company.strip()
+            })
+        first_companies_json.insert(0, {"value":0,"label":"Any" })
+        first_companies_json.insert(1, {"value":0,"label":"None" })
+        first_companies_json.insert(2, {"value":0,"label":"---" })
+        srsly.write_json(static_dir / 'data/first-companies-brit.json', first_companies_json)
 
         ## Play Types
         playtypes = []

@@ -44,7 +44,7 @@ let search_fields = ['deep-id','title','title-page-modern','errata','paratextual
 
 let date_fields = ['first-production','first-edition','year-published','date-first-performance-brit-filter']
 
-let choice_fields = ['title-page-author','illustration','author','authorial-status','company-first-performance','company','theater','playtype','genre','genreplaybook','blackletter','format','genre-brit-filter','company-first-performance-brit-filter']
+let choice_fields = ['company_first-performance-brit-filter','title-page-author','illustration','author','authorial-status','company-first-performance','company','theater','playtype','genre','genreplaybook','blackletter','format','genre-brit-filter']
 
               
 
@@ -96,6 +96,7 @@ const update_searchSelect = (searchSelect, or=false) => {
 
     // choice fields
     if (choice_fields.indexOf(filter) > -1) {
+      
       searchField.style.display = "none";
       newSelect.classList.remove('invisible')
       this_choices = new Choices(newSelect,{
@@ -125,6 +126,20 @@ const update_searchSelect = (searchSelect, or=false) => {
       this_choices.setChoices(async () => {
         try {
           const items = await fetch('/assets/data/genres_bd.json');
+          return items.json();
+          
+      } catch (err) {
+        console.error(err);
+      }
+      },
+        'value',
+        'label',
+        true);
+    }
+    if (filter === 'company_first-performance-brit-filter') {
+      this_choices.setChoices(async () => {
+        try {
+          const items = await fetch('/assets/data/first-companies-brit.json');
           return items.json();
           
       } catch (err) {
@@ -1022,6 +1037,19 @@ const processQueries = queries => {
             item.company_first_performance_annals_filter.toLowerCase().includes(query.searchValue.toLowerCase())
             )
           filters.push({'filter':companyFirstPerformance,'type':query.blockType})
+        }
+      }
+      if (query.searchField == 'company_first-performance-brit-filter') {
+        if (query.searchValue == "Any") {
+          let companyFirstPerformanceBrit = item => (
+            item.company_first_performance_brit_filter != "None"
+            )
+          filters.push({'filter':companyFirstPerformanceBrit,'type':query.blockType})
+        } else {
+          let companyFirstPerformanceBrit = item => (
+            item.company_first_performance_brit_filter.toLowerCase().includes(query.searchValue.toLowerCase())
+            )
+          filters.push({'filter':companyFirstPerformanceBrit,'type':query.blockType})
         }
       }
       if (query.searchField == 'dedication') {
