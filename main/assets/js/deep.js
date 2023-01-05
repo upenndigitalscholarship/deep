@@ -1012,10 +1012,17 @@ const processQueries = queries => {
         }
       }
       if (query.searchField == 'company-first-performance') {
-        let companyFirstPerformance = item => (
-          item.company_first_performance.toLowerCase().includes(query.searchValue.toLowerCase())
-          )
-        filters.push({'filter':companyFirstPerformance,'type':query.blockType})
+        if (query.searchValue == "Any") {
+          let companyFirstPerformance = item => (
+            item.company_first_performance_annals_filter != "None"
+            )
+          filters.push({'filter':companyFirstPerformance,'type':query.blockType})
+        } else {
+          let companyFirstPerformance = item => (
+            item.company_first_performance_annals_filter.toLowerCase().includes(query.searchValue.toLowerCase())
+            )
+          filters.push({'filter':companyFirstPerformance,'type':query.blockType})
+        }
       }
       if (query.searchField == 'dedication') {
         let dedication = item => (
