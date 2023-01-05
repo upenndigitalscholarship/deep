@@ -21,7 +21,7 @@ def item_page(request, deep_id):
 
 def build(request):
     call_command('build')
-    return redirect('./admin')
+    return redirect('admin:index')
 
 def browse(request):
     return render(request, 'browse.html')

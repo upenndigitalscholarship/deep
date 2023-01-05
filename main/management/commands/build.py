@@ -148,6 +148,7 @@ class Command(BaseCommand):
                     first_companies_distinct.append(l.strip())
             else:
                 first_companies_distinct.append(g)
+        first_companies_distinct = list(set(first_companies_distinct))
         first_companies_distinct.sort()
         first_companies_json = []
         for i, company in enumerate(first_companies_distinct):

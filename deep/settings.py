@@ -128,7 +128,7 @@ JAZZMIN_SETTINGS = {
         {"name": "Home",  "url": "admin:index", "permissions": ["auth.view_user"]},
 
         # external url that opens in a new window (Permissions can be added)
-        {"name": "Build", "url": "../run-build", },
+        {"name": "Build", "url": "/run-build", },
 
         # model admin to link to (Permissions checked against model)
         {"Items": "main.Item"}
