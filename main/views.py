@@ -1,6 +1,7 @@
 from dal import autocomplete
 from django.db.models import Max, Min
-from django.shortcuts import render
+from django.shortcuts import render,redirect
+from django.core.management import call_command
 
 from main.management.commands.search_index import item_to_dict
 from main.models import Edition, Item, Person, Theater, Title
@@ -17,6 +18,10 @@ def item_page(request, deep_id):
     context = {}
     context['data'] = item_to_dict(Item.objects.get(deep_id=deep_id))
     return render(request, 'item_page.html', context)
+
+def build(request):
+    call_command('build')
+    return redirect('./admin')
 
 def browse(request):
     return render(request, 'browse.html')

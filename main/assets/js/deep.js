@@ -1564,7 +1564,7 @@ function expand(e, id) {
           
             <div class="col-5">
               <p>
-                ${!data.deep_id ? '' : '<span class="expand">DEEP #: </span><span id="deep_id"><a target="_blank" href="'+ data.deep_id +'.html">' + data.deep_id + '</a></span><br>'}
+                ${!data.deep_id ? '' : '<span class="expand">DEEP #: </span><span id="deep_id"><a target="_blank" href="'+ data.deep_id +'">' + data.deep_id + '</a></span><br>'}
                 ${!data.greg_full ? '' : '<span class="expand">Greg #: </span><span id="greg_full">' + data.greg_full + '</span><br>'}
                 ${!data.stc ? '' : '<span class="expand">STC/WING: </span><span id="stc"> ' + data.stc + '</span><br>'}
                 ${!data.brit_drama_number ? '' : '<span class="expand">BritDrama #: </span><span id="deep_id">' + data.brit_drama_number + '</span><br>'}
@@ -1601,7 +1601,7 @@ function expand(e, id) {
                 ${data.variants === '' ? '' : '<br><span class="expand">Variants:</span><span id="variants"> ' + data.variants + ' ' + data.variant_link + '<br>'}
                 ${data.in_collection === '' ? '' : '<br><span class="expand">In Collection:</span><span id="in_collection"> ' + data.in_collection + '</span><br>'}
                 ${data.collection_contains === '' ? '' : '<br><span class="expand">Collection Contains:</span><span id="collection_contains"> ' + data.collection_contains + '</span><br>'}
-                ${!data.independent_playbook ? '' : '<br><span class="expand">Also appears as a bibliographically independent playbook in </span><span id="independent_playbook"><a target="_blank" href="' + data.independent_playbook_link_id + '.html">' + data.independent_playbook + '</a></span><br>'}
+                ${!data.independent_playbook ? '' : '<br><span class="expand">Also appears as a bibliographically independent playbook in </span><span id="independent_playbook"><a target="_blank" href="' + data.independent_playbook_link_id + '">' + data.independent_playbook + '</a></span><br>'}
                 ${!data.also_in_collection ? '' : '<br><span class="expand">Also appears in collection: </span><span id="also_in_collection">' + data.also_in_collection_link + '</span><br>'}
               </p>
             </div>    
@@ -1740,6 +1740,6 @@ document.querySelectorAll('input[type=radio]').forEach(item => {
     const deep_id = urlParams.get('deep_id') // returns null if not in url
     if (deep_id) {
       // NOTE requires user to allow pop-up
-      window.open(`${deep_id}.html`);
+      window.open(`${deep_id}`);
     }
    

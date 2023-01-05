@@ -137,22 +137,27 @@ class Command(BaseCommand):
         ## Company First Performance
         # very few records have a company of first performance, to limit the list to just companies that 
         # appear a company of first performance in the data, this field needs its own set of valid choices
-        first_companies = [company[0] for company in Title.objects.order_by('title').values_list('company_first_performance').distinct() if company[0] is not None and company[0] != 'n/a' or 'Unknown' ]
+        first_companies = [company[0] for company in Title.objects.order_by('title').values_list('company_first_performance_annals_filter').distinct() if company[0] is not None and company[0] != 'n/a' or 'Unknown' ]
         first_companies = list(set(first_companies)) #also sorts alphabetically, who knew!?
-        first_companies.sort()
-        first_companies.remove('n/a')
-        first_companies_json = [{
-                'value': 0,
-                'label': "Any"
-            },{
-                'value': 1,
-                'label': "None"
-            }]
-        for i, company in enumerate(first_companies):
+        first_companies_distinct = []
+        for g in first_companies:
+            if not g:
+                g = "None"
+            if ';' in g:
+                for l in g.split(';'):
+                    first_companies_distinct.append(l.strip())
+            else:
+                first_companies_distinct.append(g)
+        first_companies_distinct.sort()
+        first_companies_json = []
+        for i, company in enumerate(first_companies_distinct):
             first_companies_json.append({
-                'value': i+2,
+                'value': i,
                 'label': company.strip()
             })
+        title_page_author_choices.insert(0, {"value":0,"label":"Any" })
+        title_page_author_choices.insert(1, {"value":0,"label":"None" })
+        title_page_author_choices.insert(2, {"value":0,"label":"---" })
         srsly.write_json(static_dir / 'data/first-companies.json', first_companies_json)
 
         ## Play Types
@@ -235,7 +240,11 @@ class Command(BaseCommand):
         self.stdout.write(self.style.SUCCESS('Creating item pages'))
         for item in tqdm(Item.objects.all()):
             page = render_to_string('item_page.html', {"data":item_to_dict(item)})
-            (out_path / f'{item.deep_id}.html').write_text(page)     
+            page_path = (out_path / f'{item.deep_id}')
+            if not page_path.exists():
+                page_path.mkdir(parents=True, exist_ok=True)
+
+            (page_path / 'index.html').write_text(page)     
 
         about = render_to_string('about.html')
         (out_path / 'about.html').write_text(about)     

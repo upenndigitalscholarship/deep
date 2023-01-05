@@ -26,8 +26,8 @@ class Title(models.Model):
     date_first_performance_brit_filter = models.CharField("Date of First Performance (BritDrama)", max_length=1000, blank=True, null=True)
     date_first_performance_brit_display = models.CharField("Date of First Performance (BritDrama) (display)", max_length=1000, blank=True, null=True)
 
-
-    company_first_performance_annals_display = models.CharField("Company First Performance (Annals)", max_length=1000, blank=True, null=True)
+    company_first_performance_annals_display = models.CharField("Company First Performance (Annals)(display)", max_length=1000, blank=True, null=True)
+    company_first_performance_annals_filter = models.CharField("Company First Performance (Annals):filter", max_length=1000, blank=True, null=True)
     
     company_first_performance_brit_display = models.CharField("Company of First Performance (BritDrama) (display)", max_length=1000, blank=True, null=True)
     company_first_performance_brit_filter = models.CharField("Company of First Performance (BritDrama): filter terms", max_length=1000, blank=True, null=True)
