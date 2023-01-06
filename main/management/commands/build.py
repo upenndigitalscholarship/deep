@@ -152,10 +152,11 @@ class Command(BaseCommand):
         first_companies_distinct.sort()
         first_companies_json = []
         for i, company in enumerate(first_companies_distinct):
-            first_companies_json.append({
-                'value': i,
-                'label': company.strip()
-            })
+            if not company == 'None':
+                first_companies_json.append({
+                    'value': i,
+                    'label': company.strip()
+                })
         first_companies_json.insert(0, {"value":0,"label":"Any" })
         first_companies_json.insert(1, {"value":0,"label":"None" })
         first_companies_json.insert(2, {"value":0,"label":"---" })
@@ -177,10 +178,11 @@ class Command(BaseCommand):
         first_companies_distinct.sort()
         first_companies_json = []
         for i, company in enumerate(first_companies_distinct):
-            first_companies_json.append({
-                'value': i,
-                'label': company.strip()
-            })
+            if not company == 'None':
+                first_companies_json.append({
+                    'value': i,
+                    'label': company.strip()
+                })
         first_companies_json.insert(0, {"value":0,"label":"Any" })
         first_companies_json.insert(1, {"value":0,"label":"None" })
         first_companies_json.insert(2, {"value":0,"label":"---" })
