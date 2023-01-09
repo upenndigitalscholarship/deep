@@ -16,6 +16,8 @@ def item_to_dict(item:Item):
         item_dict["title_page_author_filter"] = 'None'
     if not item_dict.get('author_status',None): # Replace none with 'None' (else search crashes)
         item_dict["author_status"] = 'None'
+    if not item_dict.get('theater',None): 
+        item_dict["theater"] = 'None'
     
     
     item_dict['variant_link'] = ''

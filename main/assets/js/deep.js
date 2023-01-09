@@ -911,7 +911,7 @@ const processQueries = queries => {
           )
           filters.push({'filter':illustration,'type':query.blockType})
         }    
-        if (query.searchValue == "No") {
+        else if (query.searchValue == "No") {
             let illustration = item => (
                 item.title_page_illustration == ""
             )
@@ -981,7 +981,7 @@ const processQueries = queries => {
           )
           filters.push({'filter':blackletter,'type':query.blockType})
         }    
-        if (query.searchValue == "No") {
+        else if (query.searchValue == "No") {
             let blackletter = item => (
               item.blackletter.toLowerCase().includes(query.searchValue.toLowerCase())
             )
@@ -1013,7 +1013,7 @@ const processQueries = queries => {
             )
             filters.push({'filter':company,'type':query.blockType})
         }    
-        if (query.searchValue == "None") {
+        else if (query.searchValue == "None") {
             let company = item => (
                 item.company_attribution == "n/a"
             )
@@ -1084,26 +1084,39 @@ const processQueries = queries => {
       }
       
       if (query.searchField == 'theater') {
-        if (query.searchValue == "Any") {
-          // TODO Any theater not working as expected
-          let theater = item => (
-              item.theater != "" ||
-              item.theater_type != "None"
+        if (query.searchValue == "Indoor Professional") {
+          let theater_filter = item => (
+              item.theater_type == "Indoor" ||
+              item.theater_type == "Both Indoor and Outdoor"
           )
-          filters.push({'filter':theater,'type':query.blockType})
+          filters.push({'filter':theater_filter,'type':query.blockType})
+        }  
+        else if (query.searchValue == "Outdoor Professional") {
+          let theater_filter = item => (
+              item.theater_type == "Outdoor" ||
+              item.theater_type == "Both Indoor and Outdoor"
+          )
+          filters.push({'filter':theater_filter,'type':query.blockType})
+        }
+        else if (query.searchValue == "Any") {
+          let theater_filter = item => (
+            item.theater != "None" ||
+            item.theater_type != "None"
+          )
+          filters.push({'filter':theater_filter,'type':query.blockType})
         }    
-        if (query.searchValue == "None") {
-          let theater = item => (
-            item.theater == "" ||
+        else if (query.searchValue == "None") {
+          let theater_filter = item => (
+            item.theater == "None" ||
             item.theater_type == "None"
           )
-          filters.push({'filter':theater,'type':query.blockType})    
+          filters.push({'filter':theater_filter,'type':query.blockType})    
         } else {
-          let theater = item => (
+          let theater_filter = item => (
             item.theater.toLowerCase().includes(query.searchValue.toLowerCase()) ||
             item.theater_type.toLowerCase().includes(query.searchValue.toLowerCase())
           )
-          filters.push({'filter':theater,'type':query.blockType})    
+          filters.push({'filter':theater_filter,'type':query.blockType})    
         }
       }
 
@@ -1400,19 +1413,32 @@ const processQueries = queries => {
           ORquery.push(bookseller)
         }
         
-
         if (fields[i] == 'theater' && values[i]) {
         
-          if (values[i] == "Any") {
+          if (values[i] == "Indoor Professional") {
             let theater = item => (
-              item.theater != "" ||
+              item.theater_type == "Indoor" ||
+              item.theater_type == "Both Indoor and Outdoor"
+            )
+            ORquery.push(theater)
+          }  
+          else if (values[i] == "Outdoor Professional") {
+            let theater = item => (
+              item.theater_type == "Outdoor" ||
+              item.theater_type == "Both Indoor and Outdoor"
+            )
+            ORquery.push(theater)
+          }  
+          else if (values[i] == "Any") {
+            let theater = item => (
+              item.theater != "None" ||
               item.theater_type != "None"
             )
             ORquery.push(theater)
           }    
-          if (values[i] == "None") {
+          else if (values[i] == "None") {
             let theater = item => (
-              item.theater == "" ||
+              item.theater == "None" ||
               item.theater_type == "None"
             )
             ORquery.push(theater)    
