@@ -56,11 +56,9 @@ class Edition(models.Model):
     greg_middle = models.CharField("Greg (middle)(e.g., 197b for the second edition of Hamlet)", max_length=1000, blank=True, null=True)
     book_edition = models.CharField("Book Edition", max_length=1000, blank=True, null=True)
     play_edition = models.CharField("Play Edition", max_length=1000, blank=True, null=True)
-    play_type = models.ManyToManyField("PlayType")
+    play_type_filter = models.CharField("Play Type: Filter", max_length=1000, blank=True, null=True)
+    play_type_display = models.CharField("Play Type: Display", max_length=1000, blank=True, null=True)
     blackletter = models.CharField(max_length=255,blank=True, null=True)
-
-    def play_type_display(self):
-        return ''.join([pt.name for pt in self.play_type])
 
     def __str__(self):
         return f"{self.title.title} - {self.greg_middle} - {self.book_edition}"
@@ -183,12 +181,6 @@ class Company(models.Model):
 
 
 class Theater(models.Model):
-    name = models.CharField(max_length=1000)
-    def __str__(self):
-        return self.name
-
-
-class PlayType(models.Model):
     name = models.CharField(max_length=1000)
     def __str__(self):
         return self.name

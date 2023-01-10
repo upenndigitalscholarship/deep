@@ -10,7 +10,7 @@ from django.template.loader import render_to_string
 from tqdm import tqdm
 
 from main.management.commands.search_index import item_to_dict
-from main.models import Edition, Item, Person, PlayType, Title
+from main.models import Edition, Item, Person, Title
 
 
 class Command(BaseCommand):
@@ -188,14 +188,27 @@ class Command(BaseCommand):
         first_companies_json.insert(2, {"value":0,"label":"---" })
         srsly.write_json(static_dir / 'data/first-companies-brit.json', first_companies_json)
 
-        ## Play Types
+        ## Play Type Filter
         playtypes = []
-        playquery = PlayType.objects.all().distinct()
-        
-        for i, pt in enumerate(playquery):
-            if not '(?)' in pt.name:
-                playtypes.append({"value":i, "label":pt.name})
-        srsly.write_json(static_dir / 'data/playtype.json', playtypes)
+        playquery = Edition.objects.values_list('play_type_filter')
+        for p in playquery:
+            if p[0] and ';' in p[0]:
+                for t in p[0].split(';'):
+                    if t not in playtypes:
+                        playtypes.append(t)
+            else:
+                if p[0] and p[0] not in playtypes:
+                    playtypes.append(p[0])
+        playtypes.remove('Professional')
+        playtypes.remove('Nonprofessional')
+        playtypes.sort()
+        playtypes_json = []
+        for i, pt in enumerate(playtypes):
+            playtypes_json.append({"value":i, "label":pt})
+        playtypes_json.insert(0, {"value":0,"label":"Professional" })
+        playtypes_json.insert(1, {"value":1,"label":"Nonprofessional" })
+        playtypes_json.insert(2, {"value":2,"label":"---" })
+        srsly.write_json(static_dir / 'data/playtype.json', playtypes_json)
         
         ## Genre (Annals)
         # Temp disable to match old site's terms

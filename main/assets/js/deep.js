@@ -1002,7 +1002,7 @@ const processQueries = queries => {
       }
       if (query.searchField == 'playtype') {
         let playtype = item => (
-          item.play_type.toLowerCase().includes(query.searchValue.toLowerCase())
+          item.play_type_filter.toLowerCase().includes(query.searchValue.toLowerCase())
           )
         filters.push({'filter':playtype,'type':query.blockType})
       }
@@ -1356,7 +1356,7 @@ const processQueries = queries => {
         }
         if (fields[i] == 'playtype' && values[i]) {
           let playtype = item => (
-            item.play_type.toLowerCase().includes(values[i].toLowerCase())
+            item.play_type_filter.toLowerCase().includes(values[i].toLowerCase())
           )
           ORquery.push(playtype)
         }
@@ -1643,7 +1643,7 @@ function expand(e, id) {
             <div class="col-7">
               <p>
                 ${!data.record_type ? '' : '<span class="expand">Record Type: </span><span id="record_type">' + data.record_type + '</span><br>'}
-                ${!data.play_type ? '' : '<span class="expand">Play Type: </span><span id="play_type">' + data.play_type + '</span><br>'}
+                ${!data.play_type_display ? '' : '<span class="expand">Play Type: </span><span id="play_type">' + data.play_type_display + '</span><br>'}
                 ${!data.genre ? '' : '<span class="expand">Genre (Annals): </span><span id="genre">' + data.genre + '</span><br>'}
                 ${!data.genre_brit_display ? '' : '<span class="expand">Genre (BritDrama): </span><span id="genre">' + data.genre_brit_display + '</span><br>'}
               </p>

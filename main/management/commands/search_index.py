@@ -48,11 +48,9 @@ def item_to_dict(item:Item):
     edition = Edition.objects.get(id=item_dict['edition_id'])
     edition_authors = list(edition.authors.all().values_list('id', flat=True))
     authors_display = ''.join(list(edition.authors.all().values_list('name', flat=True)))
-    play_type = ''.join(list(edition.play_type.all().values_list('name', flat=True)))
     edition = edition.__dict__
     edition['author_id'] = edition_authors
     edition['author'] = authors_display
-    edition['play_type'] = play_type
     if edition["blackletter"] == "":
         edition["blackletter"] = "No"
     else:
@@ -61,6 +59,10 @@ def item_to_dict(item:Item):
     del edition['id']
     if '_state' in edition.keys():
         del edition['_state']    
+    if not edition.get('play_type_filter',None): # Replace none with 'None' (else search crashes)
+        edition["play_type_filter"] = 'None'
+    if not edition.get('play_type_display',None): # Replace none with 'None' (else search crashes)
+        edition["play_type_display"] = 'None'
 
     title = Title.objects.get(id=edition['title_id'])
     title = title.__dict__
