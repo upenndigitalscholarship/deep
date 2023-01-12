@@ -72,7 +72,8 @@ def item_to_dict(item:Item):
         title["company_first_performance_annals_filter"] = 'None'
     if not title.get('brit_drama_number',None): # Replace none with 'None' (else search crashes)
         title["brit_drama_number"] = 'None'
-        
+    if not title.get('genre_annals_filter',None): # Replace none with 'None' (else search crashes)
+        title["genre_annals_filter"] = 'None'        
     if not title.get('company_first_performance_brit_filter',None): # Replace none with 'None' (else search crashes)
         title["company_first_performance_brit_filter"] = 'None'
     if not title.get('company_first_performance_brit_display',None): # Replace none with 'None' (else search crashes)

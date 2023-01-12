@@ -990,7 +990,7 @@ const processQueries = queries => {
       }
       if (query.searchField == 'genre') {
         let genre = item => (
-          item.genre.toLowerCase().includes(query.searchValue.toLowerCase())
+          item.genre_annals_filter.toLowerCase().includes(query.searchValue.toLowerCase())
           )
         filters.push({'filter':genre,'type':query.blockType})
       }
@@ -1344,13 +1344,13 @@ const processQueries = queries => {
         }
         if (fields[i] == 'genre' && values[i]) {
           let genre = item => (
-            item.genre.toLowerCase().includes(values[i].toLowerCase())
+            item.genre_annals_filter.toLowerCase().includes(values[i].toLowerCase())
           )
           ORquery.push(genre)
         }
         if (fields[i] == 'format' && values[i]) {
           let format = item => (
-            item.genre.toLowerCase().includes(values[i].toLowerCase())
+            item.format.toLowerCase().includes(values[i].toLowerCase())
           )
           ORquery.push(format)
         }
