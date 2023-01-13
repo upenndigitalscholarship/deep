@@ -78,6 +78,8 @@ def item_to_dict(item:Item):
         title["company_first_performance_brit_filter"] = 'None'
     if not title.get('company_first_performance_brit_display',None): # Replace none with 'None' (else search crashes)
         title["company_first_performance_brit_display"] = 'None'
+    if not title.get('genre_brit_filter',None): # Replace none with 'None' (else search crashes)
+        title["genre_brit_filter"] = 'None'
     title['title_id'] = edition['title_id']
     if '_state' in title.keys():
         del title['_state']    
