@@ -119,6 +119,8 @@ class Item(models.Model): #Previously known as "DEEP"
     stationer_colophon = models.CharField("Stationer: Colophon", max_length=1000, blank=True, null=True)
     stationer_printer = models.CharField("Stationer: Printer", max_length=1000, blank=True, null=True)
     stationer_publisher = models.CharField("Stationer: Publisher", max_length=1000, blank=True, null=True)
+    stationer_license = models.CharField("Stationer: License", max_length=1000, blank=True, null=True)
+    stationer_imprint_location = models.CharField("Stationer: Imprint Location", max_length=1000, blank=True, null=True)
     stationer_bookseller = models.CharField("Stationer: Bookseller", max_length=1000, blank=True, null=True)
     stationer_entries_in_register = models.CharField("Stationer: Entries in Register", max_length=1000, blank=True, null=True)
     stationer_additional_notes = models.CharField("Additional Notes", max_length=1000, blank=True, null=True)

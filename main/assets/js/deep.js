@@ -414,7 +414,7 @@ function addANDBlock() {
       <select id="searchSelect-${selectID}" class="input-group form-select form-select-sm">
         
         <option value="">Please select...</option>
-        <option value="deep-id">DEEP ID</option>
+        <option value="deep-id">DEEP #</option>
         <option value="brit-drama-number">BritDrama #</option>
         <option value="title" selected>Title</option>
         <option value="title-page-modern">All Title-Page Text (modern spelling)</option>
@@ -549,7 +549,7 @@ function addORBlock() {
       <select id="searchSelect-${selectID1}" class="input-group form-select form-select-sm">
         
         <option value="">Please select...</option>
-        <option value="deep-id">DEEP ID</option>
+        <option value="deep-id">DEEP #</option>
         <option value="brit-drama-number">BritDrama #</option>
         <option value="title" selected>Title</option>
         <option value="title-page-modern">All Title-Page Text (modern spelling)</option>
@@ -613,7 +613,7 @@ function addORBlock() {
       <select id="searchSelect-${selectID2}" class="input-group form-select form-select-sm">
         
         <option value="">Please select...</option>
-        <option value="deep-id">DEEP ID</option>
+        <option value="deep-id">DEEP #</option>
         <option value="brit-drama-number">BritDrama #</option>
         <option value="title" selected>Title</option>
         <option value="title-page-modern">All Title-Page Text (modern spelling)</option>
@@ -1721,6 +1721,8 @@ function expand(e, id) {
                 ${!data.stationer_printer ? '' : '<span class="expand">Printer: </span><span id="stationer_printer">' + data.stationer_printer + '</span><br>'}
                 ${!data.stationer_publisher ? '' : '<span class="expand">Publisher: </span><span id="stationer_publisher">' + data.stationer_publisher + '</span><br>'}
                 ${!data.stationer_bookseller ? '' : '<span class="expand">Bookseller: </span><span id="stationer_bookseller">' + data.stationer_bookseller + '</span><br>'}
+                ${!data.stationer_imprint_location ? '' : '<span class="expand">Imprint Location: </span><span id="stationer_imprint_location">' + data.stationer_imprint_location + '</span><br>'}
+                ${!data.stationer_license ? '' : '<span class="expand">License: </span><span id="stationer_license">' + data.stationer_license + '</span><br>'}
                 ${data.stationer_entries_in_register === "None" ? "" : "<span class='expand'>Entries in Stationers' Register: </span><span id='stationer_entries_in_register'>" + data.stationer_entries_in_register + '</span><br>'}
                 ${!data.stationer_additional_notes ? '' : '<span class="expand">Additional Notes: </span><span id="stationer_additional_notes">' + data.stationer_additional_notes + '</span><br>'}
               </p>
