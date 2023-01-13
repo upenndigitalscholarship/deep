@@ -787,10 +787,17 @@ const processQueries = queries => {
     let query = queries[i]
     if (query.blockType == 'AND') {
       if (query.searchField == 'genreplaybook') {
-        let genreplaybook = item => (
+        if (query.searchValue == "Any") {
+          let genreplaybook = item => (
+            item.title_page_genre != "None"
+            )
+          filters.push({'filter':genreplaybook,'type':query.blockType})
+        } else {
+          let genreplaybook = item => (
             item.title_page_genre.toLowerCase().includes(query.searchValue.toLowerCase())
             )
-        filters.push({'filter':genreplaybook,'type':query.blockType})
+          filters.push({'filter':genreplaybook,'type':query.blockType})
+        }
       }
       if (query.searchField == 'genre-brit-filter') {
         let genreBrit = item => (
@@ -1155,7 +1162,7 @@ const processQueries = queries => {
         filters.push({'filter':firstEdition,'type':query.blockType})
       }
     }
-//OR!
+    //OR!
     if (query.blockType == 'OR') { 
       // build two separate filters, then join them 
       let fields = query.searchField.split('||')
@@ -1174,6 +1181,7 @@ const processQueries = queries => {
               item.title_page_genre.toLowerCase().includes(query.searchValue.toLowerCase())
               )
             ORquery.push(genreplaybook)
+        }
         if (fields[i] == 'genre-brit-filter' && values[i]) {
           let genreBrit = item => (
               item.genre_brit_filter.toLowerCase().includes(query.searchValue.toLowerCase())
