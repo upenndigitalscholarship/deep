@@ -786,6 +786,12 @@ const processQueries = queries => {
   for (i in queries){
     let query = queries[i]
     if (query.blockType == 'AND') {
+      if (query.searchField == 'genre-brit-filter') {
+        let genreBrit = item => (
+            item.genre_brit_filter.toLowerCase().includes(query.searchValue.toLowerCase())
+            )
+        filters.push({'filter':genreBrit,'type':query.blockType})
+      }
       if (query.searchField == 'title') {
         let title = item => (
             item.title.toLowerCase().includes(query.searchValue.toLowerCase()) || 
@@ -1156,6 +1162,12 @@ const processQueries = queries => {
               item.title_alternative_keywords.toLowerCase().includes(values[i].toLowerCase())
               )
               ORquery.push(title)
+        }
+        if (fields[i] == 'genre-brit-filter' && values[i]) {
+          let genreBrit = item => (
+              item.genre_brit_filter.toLowerCase().includes(query.searchValue.toLowerCase())
+              )
+              ORquery.push(genreBrit)
         }
         if (fields[i] == 'stationer' && values[i]) { 
           let stationer = item => (
