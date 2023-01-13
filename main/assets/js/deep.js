@@ -791,6 +791,7 @@ const processQueries = queries => {
             item.title_page_genre.toLowerCase().includes(query.searchValue.toLowerCase())
             )
         filters.push({'filter':genreplaybook,'type':query.blockType})
+      }
       if (query.searchField == 'genre-brit-filter') {
         let genreBrit = item => (
             item.genre_brit_filter.toLowerCase().includes(query.searchValue.toLowerCase())
