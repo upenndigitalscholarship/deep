@@ -105,6 +105,28 @@ class Command(BaseCommand):
             })
         srsly.write_json(static_dir / 'data/genres_bd.json', genre_out)
         
+        #Genre Playbook  --- Genre (Title-Page Attribution)
+        genre_BritDrama = [a[0] for a in Item.objects.values_list('title_page_genre').distinct() if a[0]]
+        genres = []
+        for g in genre_BritDrama:
+            if ';' in g:
+                for l in g.split(';'):
+                    genres.append(l.strip())
+            else:
+                genres.append(g)
+        genres = list(set(genres))
+        genres.sort()
+        genre_out = []
+        for i, genre in enumerate(genres):
+            genre_out.append({
+                'value': i,
+                'label': genre.strip()
+            })
+        genre_out.insert(0, {"value":0,"label":"Any" })
+        genre_out.insert(1, {"value":0,"label":"None" })
+        genre_out.insert(2, {"value":0,"label":"---" })
+        srsly.write_json(static_dir / 'data/genre_playbook.json', genre_out)
+        
         # Author status 
         # It is not clear where this data comes from, so I am manually 
         # replacing author_status.json with values from the current site
