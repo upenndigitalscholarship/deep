@@ -786,19 +786,16 @@ const processQueries = queries => {
   for (i in queries){
     let query = queries[i]
     if (query.blockType == 'AND') {
-<<<<<<< HEAD
       if (query.searchField == 'genreplaybook') {
         let genreplaybook = item => (
             item.title_page_genre.toLowerCase().includes(query.searchValue.toLowerCase())
             )
         filters.push({'filter':genreplaybook,'type':query.blockType})
-=======
       if (query.searchField == 'genre-brit-filter') {
         let genreBrit = item => (
             item.genre_brit_filter.toLowerCase().includes(query.searchValue.toLowerCase())
             )
         filters.push({'filter':genreBrit,'type':query.blockType})
->>>>>>> 1224c5bd14668b6f20a61b36a16ddb5b4ad5a696
       }
       if (query.searchField == 'title') {
         let title = item => (
