@@ -21,6 +21,7 @@ from main import views
 admin.site.site_header = 'DEEP'
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('admin', admin.site.urls),
     path('', views.index, name='index'),
     path('download.html', views.download, name='download'),
     path('sources.html', views.sources, name='sources'),

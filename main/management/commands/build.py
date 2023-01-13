@@ -101,7 +101,7 @@ class Command(BaseCommand):
         for i, genre in enumerate(genres):
             genre_out.append({
                 'value': i,
-                'label': genre.strip()
+                'label': genre.title().strip()
             })
         srsly.write_json(static_dir / 'data/genres_bd.json', genre_out)
         
