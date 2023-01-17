@@ -1,0 +1,54 @@
+[
+    {
+        "value": 0,
+        "label": "Any"
+    },
+    {
+        "value": 1,
+        "label": "None"
+    },
+    {
+        "value": 2,
+        "label": "---"
+    },
+    {
+        "value": 3,
+        "label": "Dedication"
+    },
+    {
+        "value": 4,
+        "label": "Dedication"
+    },
+    {
+        "value": 5,
+        "label": "Commendatory Verses"
+    },
+    {
+        "value": 6,
+        "label": "To the Reader"
+    },
+    {
+        "value": 7,
+        "label": "Argument"
+    },
+    {
+        "value": 8,
+        "label": "Character List"
+    },
+    {
+        "value": 9,
+        "label": "Actor List"
+    },
+    {
+        "value": 10,
+        "label": "Explicit"
+    },
+    {
+        "value": 11,
+        "label": "Errata"
+    },
+    {
+        "value": 12,
+        "label": "Other Paratexts"
+    }
+]

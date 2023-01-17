@@ -37,14 +37,14 @@ let groupBy = function(xs, key) {
 // In the search interface, there are three types of input field. Some are text entry search field. These allow filtering 
 // based on string matching.  Date fields allow the entry of a four-digit start and end year number. Choice fields
 // allow search and selection from a dropdown of valid choices.
-let search_fields = ['deep-id','title','title-page-modern','errata','paratextual','title-page-old',
+let search_fields = ['deep-id','title','title-page-modern','errata','title-page-old',
   'argument','latinontitle','toreader','imprintlocation','stationer','printer','publisher','bookseller',
   'charachter-list','commendatory-verses','explicit','dedication','other-paratexts','book_edition',
   'play_edition','actor-list','authororial-status','greg_number','stc_or_wing','brit-drama-number']
 
 let date_fields = ['first-production','first-edition','year-published','date-first-performance-brit-filter']
 
-let choice_fields = ['company_first-performance-brit-filter','title-page-author','illustration','author','authorial-status','company-first-performance','company','theater','playtype','genre','genreplaybook','blackletter','format','genre-brit-filter']
+let choice_fields = ['paratextual','company_first-performance-brit-filter','title-page-author','illustration','author','authorial-status','company-first-performance','company','theater','playtype','genre','genreplaybook','blackletter','format','genre-brit-filter']
 
               
 
@@ -112,6 +112,20 @@ const update_searchSelect = (searchSelect, or=false) => {
       this_choices.setChoices(async () => {
         try {
           const items = await fetch('/assets/data/title_page_author_filter.json');
+          return items.json();
+          
+      } catch (err) {
+        console.error(err);
+      }
+      },
+        'value',
+        'label',
+        true);
+    }
+    if (filter === 'paratextual') {
+      this_choices.setChoices(async () => {
+        try {
+          const items = await fetch('/assets/data/paratextual.json');
           return items.json();
           
       } catch (err) {
@@ -430,7 +444,7 @@ function addANDBlock() {
         <option value="genre">Genre (Annals)</option>
         <option value="genre-brit-filter">Genre (BritDrama)</option>
         <option value="genreplaybook" >Genre (Title-Page Attribution)</option>
-        <option value="paratextual" >All Paratextual Material</option>
+        <option value="paratextual" >Paratextual Material</option>
         <option value="illustration">Illustration</option>
         <option value="blackletter">Black Letter</option>
         <option value="latinontitle">Latin on Title Page</option>
@@ -448,15 +462,6 @@ function addANDBlock() {
         <option value="greg_number">Greg Number</option>
         <option value="stc_or_wing">STC / Wing Number</option>
         <option value="year-published">Year Published</option>
-        <option value="dedication">Dedication</option>
-        <option value="toreader">To the Reader</option>
-        <option value="argument">Argument</option>
-        <option value="actor-list">Actor List</option>
-        <option value="explicit">Explicit</option>
-        <option value="errata">Errata</option>
-        <option value="charachter-list">Character List</option>
-        <option value="other-paratexts">Other Paratexts</option>
-        <option value="commendatory-verses" >Commendatory Verses</option>
 
       </select>
       <input id="advancedSearchField-${selectID}" type="text" class="form-control" aria-label="advancedSearchField" aria-describedby="advancedSearchField">
@@ -565,7 +570,7 @@ function addORBlock() {
         <option value="genre">Genre (Annals)</option>
         <option value="genre-brit-filter">Genre (BritDrama)</option>
         <option value="genreplaybook" >Genre (Title-Page Attribution)</option>
-        <option value="paratextual" >All Paratextual Material</option>
+        <option value="paratextual" >Paratextual Material</option>
         <option value="illustration">Illustration</option>
         <option value="blackletter">Black Letter</option>
         <option value="latinontitle">Latin on Title Page</option>
@@ -583,16 +588,7 @@ function addORBlock() {
         <option value="greg_number">Greg Number</option>
         <option value="stc_or_wing">STC / Wing Number</option>
         <option value="year-published">Year Published</option>
-        <option value="dedication">Dedication</option>
-        <option value="toreader">To the Reader</option>
-        <option value="argument">Argument</option>
-        <option value="actor-list">Actor List</option>
-        <option value="explicit">Explicit</option>
-        <option value="errata">Errata</option>
-        <option value="charachter-list">Character List</option>
-        <option value="other-paratexts">Other Paratexts</option>
-        <option value="commendatory-verses" >Commendatory Verses</option>
-
+        
       </select>
       <input id="advancedSearchField-${selectID1}" type="text" class="form-control" aria-label="advancedSearchField" aria-describedby="advancedSearchField">
       <select id="choicesSelect-${selectID1}" style="display: hide;" class="form-control"></select>
@@ -629,7 +625,7 @@ function addORBlock() {
         <option value="genre">Genre (Annals)</option>
         <option value="genre-brit-filter">Genre (BritDrama)</option>
         <option value="genreplaybook" >Genre (Title-Page Attribution)</option>
-        <option value="paratextual" >All Paratextual Material</option>
+        <option value="paratextual" >Paratextual Material</option>
         <option value="illustration">Illustration</option>
         <option value="blackletter">Black Letter</option>
         <option value="latinontitle">Latin on Title Page</option>
@@ -647,16 +643,7 @@ function addORBlock() {
         <option value="greg_number">Greg Number</option>
         <option value="stc_or_wing">STC / Wing Number</option>
         <option value="year-published">Year Published</option>
-        <option value="dedication">Dedication</option>
-        <option value="toreader">To the Reader</option>
-        <option value="argument">Argument</option>
-        <option value="actor-list">Actor List</option>
-        <option value="explicit">Explicit</option>
-        <option value="errata">Errata</option>
-        <option value="charachter-list">Character List</option>
-        <option value="other-paratexts">Other Paratexts</option>
-        <option value="commendatory-verses" >Commendatory Verses</option>
-
+       
       </select>
       <input id="advancedSearchField-${selectID2}" type="text" class="form-control" aria-label="advancedSearchField" aria-describedby="advancedSearchField">
       <select id="choicesSelect-${selectID2}" style="display: hide;" class="form-control"></select>
@@ -821,24 +808,88 @@ const processQueries = queries => {
         filters.push({'filter':stationer,'type':query.blockType})
       }
       if (query.searchField == 'paratextual') {
-        let paratextual = item => (
-            item.paratext_dedication.toLowerCase().includes(query.searchValue.toLowerCase()) || 
-            item.paratext_commendatory_verses.toLowerCase().includes(query.searchValue.toLowerCase()) || 
-            item.paratext_to_the_reader.toLowerCase().includes(query.searchValue.toLowerCase()) || 
-            item.paratext_argument.toLowerCase().includes(query.searchValue.toLowerCase()) || 
-            item.paratext_actor_list.toLowerCase().includes(query.searchValue.toLowerCase()) || 
-            item.paratext_charachter_list.toLowerCase().includes(query.searchValue.toLowerCase()) || 
-            item.paratext_errata.toLowerCase().includes(query.searchValue.toLowerCase()) || 
-            item.paratext_other_paratexts.toLowerCase().includes(query.searchValue.toLowerCase())
+        if (query.searchValue == 'Any') {
+          let paratextual = item => (
+            !item.paratext_dedication == "" || 
+            !item.paratext_commendatory_verses == "" || 
+            !item.paratext_to_the_reader == "" || 
+            !item.paratext_argument == "" || 
+            !item.paratext_actor_list == "" || 
+            !item.paratext_charachter_list == "" || 
+            !item.paratext_explicit == "" ||
+            !item.paratext_errata == "" || 
+            !item.paratext_other_paratexts == ""
+          )
+          filters.push({'filter':paratextual,'type':query.blockType})
+        } 
+        else if (query.searchValue == 'None') {
+          let paratextual = item => (
+            item.paratext_dedication == "" &&
+            item.paratext_commendatory_verses == "" && 
+            item.paratext_to_the_reader == "" && 
+            item.paratext_argument == "" && 
+            item.paratext_actor_list == "" && 
+            item.paratext_charachter_list == "" && 
+            item.paratext_explicit == "" &&
+            item.paratext_errata == "" &&
+            item.paratext_other_paratexts == ""
             )
-        filters.push({'filter':paratextual,'type':query.blockType})
-        
-      }
-      if (query.searchField == 'commendatory-verses') {
-        let commendatoryVerses = item => (
-            item.paratext_commendatory_verses.toLowerCase().includes(query.searchValue.toLowerCase())
+          filters.push({'filter':paratextual,'type':query.blockType})
+        }
+        else if (query.searchValue == 'Dedication') {
+          let paratextual = item => (
+            !item.paratext_dedication == "" 
             )
-        filters.push({'filter':commendatoryVerses,'type':query.blockType})
+          filters.push({'filter':paratextual,'type':query.blockType})
+        }
+        else if (query.searchValue == 'Commendatory Verses') {
+          let paratextual = item => (
+            !item.paratext_commendatory_verses == "" 
+            )
+          filters.push({'filter':paratextual,'type':query.blockType})
+        } 
+        else if (query.searchValue == 'To the Reader') {
+          let paratextual = item => (
+            !item.paratext_to_the_reader == "" 
+            )
+          filters.push({'filter':paratextual,'type':query.blockType})
+        } 
+        else if (query.searchValue == 'Argument') {
+          let paratextual = item => (
+            !item.paratext_argument == "" 
+            )
+          filters.push({'filter':paratextual,'type':query.blockType})
+        } 
+        else if (query.searchValue == 'Character List') {
+          let paratextual = item => (
+            !item.paratext_charachter_list == "" 
+            )
+          filters.push({'filter':paratextual,'type':query.blockType})
+        } 
+        else if (query.searchValue == 'Actor List') {
+          let paratextual = item => (
+            !item.paratext_actor_list == "" 
+            )
+          filters.push({'filter':paratextual,'type':query.blockType})
+        }
+        else if (query.searchValue == 'Explicit') {
+          let paratextual = item => (
+            !item.paratext_explicit == "" 
+            )
+          filters.push({'filter':paratextual,'type':query.blockType})
+        }
+        else if (query.searchValue == 'Errata') {
+          let paratextual = item => (
+            !item.paratext_errata == "" 
+            )
+          filters.push({'filter':paratextual,'type':query.blockType})
+        }
+        else if (query.searchValue == 'Other Paratexts') {
+          let paratextual = item => (
+            !item.paratext_other_paratexts == "" 
+            )
+          filters.push({'filter':paratextual,'type':query.blockType})
+        } 
       }
       if (query.searchField == 'title-page-modern') {
         let titlePageModern = item => (
@@ -875,54 +926,7 @@ const processQueries = queries => {
           filters.push({'filter':titlePageAuthor,'type':query.blockType})  
         }
       }
-      if (query.searchField == 'actor-list') {
-        let actorList = item => (
-          item.paratext_actor_list.toLowerCase().includes(query.searchValue.toLowerCase())
-        )
-        filters.push({'filter':actorList,'type':query.blockType})
-      }
-      if (query.searchField == 'explicit') {
-        let explicit = item => (
-          item.title_page_explicit.toLowerCase().includes(query.searchValue.toLowerCase())
-        )
-        filters.push({'filter':explicit,'type':query.blockType})
-      }
-      if (query.searchField == 'toreader') {
-        let toreader = item => (
-          item.paratext_to_the_reader.toLowerCase().includes(query.searchValue.toLowerCase())
-        )
-        filters.push({'filter':toreader,'type':query.blockType})
-      }
-      if (query.searchField == 'argument') {
-        let argument = item => (
-          item.paratext_argument.toLowerCase().includes(query.searchValue.toLowerCase())
-        )
-        filters.push({'filter':argument,'type':query.blockType})
-      }
-      if (query.searchField == 'dedication') {
-        let dedication = item => (
-          item.paratext_dedication.toLowerCase().includes(query.searchValue.toLowerCase())
-        )
-        filters.push({'filter':dedication,'type':query.blockType})
-      }
-      if (query.searchField == 'charachter-list') {
-        let charachterList = item => (
-          item.paratext_charachter_list.toLowerCase().includes(query.searchValue.toLowerCase())
-        )
-        filters.push({'filter':charachterList,'type':query.blockType})
-      }
-      if (query.searchField == 'errata') {
-        let errata = item => (
-          item.paratext_errata.toLowerCase().includes(query.searchValue.toLowerCase())
-        )
-        filters.push({'filter':errata,'type':query.blockType})
-      }
-      if (query.searchField == 'other-paratexts') {
-        let otherParatexts = item => (
-          item.paratext_other_paratexts.toLowerCase().includes(query.searchValue.toLowerCase())
-        )
-        filters.push({'filter':otherParatexts,'type':query.blockType})
-      }
+      
       if (query.searchField == 'illustration') {
         if (query.searchValue == "Yes") {
           let illustration = item => (
@@ -1071,12 +1075,6 @@ const processQueries = queries => {
           filters.push({'filter':companyFirstPerformanceBrit,'type':query.blockType})
         }
       }
-      if (query.searchField == 'dedication') {
-        let dedication = item => (
-          item.paratext_dedication.toLowerCase().includes(query.searchValue.toLowerCase())
-          )
-        filters.push({'filter':dedication,'type':query.blockType})
-      }
       if (query.searchField == 'printer') {
         let printer = item => (
           item.stationer_printer.toLowerCase().includes(query.searchValue.toLowerCase())
@@ -1197,25 +1195,90 @@ const processQueries = queries => {
               ORquery.push(stationer)
         }
         if (fields[i] == 'paratextual' && values[i]) {
-          let paratextual = item => (
-              item.paratext_dedication.toLowerCase().includes(values[i].toLowerCase()) || 
-              item.paratext_commendatory_verses.toLowerCase().includes(values[i].toLowerCase()) || 
-              item.paratext_to_the_reader.toLowerCase().includes(values[i].toLowerCase()) || 
-              item.paratext_argument.toLowerCase().includes(values[i].toLowerCase()) || 
-              item.paratext_actor_list.toLowerCase().includes(values[i].toLowerCase()) || 
-              item.paratext_charachter_list.toLowerCase().includes(values[i].toLowerCase()) || 
-              item.paratext_errata.toLowerCase().includes(values[i].toLowerCase()) || 
-              item.paratext_other_paratexts.toLowerCase().includes(values[i].toLowerCase())
+          if (values[i] == 'Any') {
+            let paratextual = item => (
+              !item.paratext_dedication == "" || 
+              !item.paratext_commendatory_verses == "" || 
+              !item.paratext_to_the_reader == "" || 
+              !item.paratext_argument == "" || 
+              !item.paratext_actor_list == "" || 
+              !item.paratext_charachter_list == "" || 
+              !item.paratext_explicit == "" ||
+              !item.paratext_errata == "" || 
+              !item.paratext_other_paratexts == ""
+            )
+            ORquery.push(paratextual)
+          } 
+          else if (values[i] == 'None') {
+            let paratextual = item => (
+              item.paratext_dedication == "" &&
+              item.paratext_commendatory_verses == "" && 
+              item.paratext_to_the_reader == "" && 
+              item.paratext_argument == "" && 
+              item.paratext_actor_list == "" && 
+              item.paratext_charachter_list == "" && 
+              item.paratext_explicit == "" &&
+              item.paratext_errata == "" &&
+              item.paratext_other_paratexts == ""
               )
               ORquery.push(paratextual)
+          }
+          else if (values[i] == 'Dedication') {
+            let paratextual = item => (
+              !item.paratext_dedication == "" 
+              )
+              ORquery.push(paratextual)
+          }
+          else if (values[i] == 'Commendatory Verses') {
+            let paratextual = item => (
+              !item.paratext_commendatory_verses == "" 
+              )
+              ORquery.push(paratextual)
+          } 
+          else if (values[i] == 'To the Reader') {
+            let paratextual = item => (
+              !item.paratext_to_the_reader == "" 
+              )
+              ORquery.push(paratextual)
+          } 
+          else if (values[i] == 'Argument') {
+            let paratextual = item => (
+              !item.paratext_argument == "" 
+              )
+              ORquery.push(paratextual)
+          } 
+          else if (values[i] == 'Character List') {
+            let paratextual = item => (
+              !item.paratext_charachter_list == "" 
+              )
+              ORquery.push(paratextual)
+          } 
+          else if (values[i] == 'Actor List') {
+            let paratextual = item => (
+              !item.paratext_actor_list == "" 
+              )
+              ORquery.push(paratextual)
+          }
+          else if (values[i] == 'Explicit') {
+            let paratextual = item => (
+              !item.paratext_explicit == "" 
+              )
+              ORquery.push(paratextual)
+          }
+          else if (values[i] == 'Errata') {
+            let paratextual = item => (
+              !item.paratext_errata == "" 
+              )
+              ORquery.push(paratextual)
+          }
+          else if (values[i] == 'Other Paratexts') {
+            let paratextual = item => (
+              !item.paratext_other_paratexts == "" 
+              )
+              ORquery.push(paratextual)
+          } 
         }
         // TODO There isn't an option for this, is that right?
-        if (fields[i] == 'commendatory-verses' && values[i]) {
-          let commendatoryVerses = item => (
-              item.paratext_commendatory_verses.toLowerCase().includes(values[i].toLowerCase())
-              )
-              ORquery.push(commendatoryVerses)
-        }
         if (fields[i] == 'title-page-modern' && values[i]) {
           let titlePageModern = item => (
               item.title_page_modern_spelling.toLowerCase().includes(values[i].toLowerCase())
@@ -1251,59 +1314,11 @@ const processQueries = queries => {
               ORquery.push(titlePageAuthor)
           }
         }
-        if (fields[i] == 'actor-list' && values[i]) {
-          let actorList = item => (
-              item.paratext_actor_list.toLowerCase().includes(values[i].toLowerCase())
-              )
-              ORquery.push(actorList)
-        }
-        if (fields[i] == 'explicit' && values[i]) {
-          let explicit = item => (
-              item.title_page_explicit.toLowerCase().includes(values[i].toLowerCase())
-              )
-              ORquery.push(explicit)
-        }
-        if (fields[i] == 'toreader' && values[i]) {
-          let toreader = item => (
-              item.paratext_to_the_reader.toLowerCase().includes(values[i].toLowerCase())
-              )
-              ORquery.push(toreader)
-        }
         if (fields[i] == 'brit-drama-number' && values[i]) {
           let britDrama = item => (
               item.brit_drama_number.toLowerCase().includes(values[i].toLowerCase())
               )
               ORquery.push(britDrama)
-        }
-        if (fields[i] == 'argument' && values[i]) {
-          let argument = item => (
-             item.paratext_argument.toLowerCase().includes(values[i].toLowerCase())
-            )
-            ORquery.push(argument)
-        }
-        if (fields[i] == 'dedication' && values[i]) {
-          let dedication = item => (
-            item.paratext_dedication.toLowerCase().includes(values[i].toLowerCase())
-            )
-            ORquery.push(dedication)
-        }
-        if (fields[i] == 'charachter-list' && values[i]) {
-          let charachterList = item => (
-            item.paratext_charachter_list.toLowerCase().includes(values[i].toLowerCase())
-          )
-          ORquery.push(charachterList)
-        }
-        if (fields[i] == 'errata' && values[i]) {
-          let errata = item => (
-            item.paratext_errata.toLowerCase().includes(values[i].toLowerCase())
-          )
-          ORquery.push(errata)
-        }
-        if (fields[i] == 'other-paratexts' && values[i]) {
-          let otherParatexts = item => (
-            item.paratext_other_paratexts.toLowerCase().includes(values[i].toLowerCase())
-          )
-          ORquery.push(otherParatexts)
         }
         if (fields[i] == 'illustration' && values[i]) {
           let illustration = item => (
@@ -1419,12 +1434,7 @@ const processQueries = queries => {
           )
           ORquery.push(companyFirstPerformance)
         }
-        if (fields[i] == 'dedication' && values[i]) {
-          let dedication = item => (
-            item.paratext_dedication.toLowerCase().includes(values[i].toLowerCase())
-          )
-          ORquery.push(dedication)
-        }
+        
         if (fields[i] == 'printer' && values[i]) {
           let printer = item => (
             item.stationer_printer.toLowerCase().includes(values[i].toLowerCase())
@@ -1667,7 +1677,7 @@ function expand(e, id) {
                 ${!data.play_edition ? '' : '<span class="expand">Play Edition: </span><span id="play_edition"> ' + data.play_edition + '</span><br>'}
                 ${!data.format ? '' : '<span class="expand">Format: </span><span id="format"> ' + data.format + '</span><br>'}
                 ${!data.leaves ? '' : '<span class="expand">Leaves: </span><span id="leaves"> ' + data.leaves + '</span><br>'}
-                ${!data.blackletter ? '' : '<span class="expand">Black Letter: </span><span id="leaves"> ' + data.blackletter + '</span><br>'}
+                
               </p>
             </div>    
             
