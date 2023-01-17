@@ -22,7 +22,12 @@ def item_to_dict(item:Item):
         item_dict["title_page_genre"] = 'None'
     if not item_dict.get('title_page_has_latin',None): 
         item_dict["title_page_has_latin"] = 'No'
-    
+    if not item_dict.get('stationer_publisher_filter',None): 
+        item_dict["stationer_publisher_filter"] = 'None'
+    if not item_dict.get('stationer_printer_filter',None): 
+        item_dict["stationer_printer_filter"] = 'None'
+    if not item_dict.get('stationer_bookseller_filter',None): 
+        item_dict["stationer_bookseller_filter"] = 'None'
     item_dict['variant_link'] = ''
     for link in item.variant_links.all():
         item_dict['variant_link'] += f'<a target="_blank" href="../{link.deep_id}">{link.greg_full}</a> '

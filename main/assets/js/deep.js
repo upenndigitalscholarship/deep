@@ -869,9 +869,9 @@ const processQueries = queries => {
       }
       if (query.searchField == 'stationer') { 
         let stationer = item => (
-            item.stationer_printer.toLowerCase().includes(query.searchValue.toLowerCase()) || 
-            item.stationer_publisher.toLowerCase().includes(query.searchValue.toLowerCase()) || 
-            item.stationer_bookseller.toLowerCase().includes(query.searchValue.toLowerCase())
+            item.stationer_printer_filter.toLowerCase().includes(query.searchValue.toLowerCase()) || 
+            item.stationer_publisher_filter.toLowerCase().includes(query.searchValue.toLowerCase()) || 
+            item.stationer_bookseller_filter.toLowerCase().includes(query.searchValue.toLowerCase())
             )
         filters.push({'filter':stationer,'type':query.blockType})
       }
@@ -1146,19 +1146,19 @@ const processQueries = queries => {
       }
       if (query.searchField == 'printer') {
         let printer = item => (
-          item.stationer_printer.toLowerCase().includes(query.searchValue.toLowerCase())
+          item.stationer_printer_filter.toLowerCase().includes(query.searchValue.toLowerCase())
           )
         filters.push({'filter':printer,'type':query.blockType})
       }
       if (query.searchField == 'publisher') {
         let publisher = item => (
-          item.stationer_publisher.toLowerCase().includes(query.searchValue.toLowerCase())
+          item.stationer_publisher_filter.toLowerCase().includes(query.searchValue.toLowerCase())
           )
         filters.push({'filter':publisher,'type':query.blockType})
       }
       if (query.searchField == 'bookseller') {
         let bookseller = item => (
-          item.stationer_bookseller.toLowerCase().includes(query.searchValue.toLowerCase())
+          item.stationer_bookseller_filter.toLowerCase().includes(query.searchValue.toLowerCase())
           )
         filters.push({'filter':bookseller,'type':query.blockType})
       }
