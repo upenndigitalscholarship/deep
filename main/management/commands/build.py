@@ -179,9 +179,6 @@ class Command(BaseCommand):
                     'value': i,
                     'label': company.strip()
                 })
-        first_companies_json.insert(0, {"value":0,"label":"Any" })
-        first_companies_json.insert(1, {"value":0,"label":"None" })
-        first_companies_json.insert(2, {"value":0,"label":"---" })
         srsly.write_json(static_dir / 'data/first-companies.json', first_companies_json)
 
         ## Company First Performance British Drama
@@ -205,9 +202,6 @@ class Command(BaseCommand):
                     'value': i,
                     'label': company.strip()
                 })
-        first_companies_json.insert(0, {"value":0,"label":"Any" })
-        first_companies_json.insert(1, {"value":0,"label":"None" })
-        first_companies_json.insert(2, {"value":0,"label":"---" })
         srsly.write_json(static_dir / 'data/first-companies-brit.json', first_companies_json)
 
         ## Play Type Filter
