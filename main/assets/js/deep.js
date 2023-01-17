@@ -37,13 +37,11 @@ let groupBy = function(xs, key) {
 // In the search interface, there are three types of input field. Some are text entry search field. These allow filtering 
 // based on string matching.  Date fields allow the entry of a four-digit start and end year number. Choice fields
 // allow search and selection from a dropdown of valid choices.
-let search_fields = ['deep-id','title','title-page-modern','errata','title-page-old',
-  'argument','toreader','charachter-list','commendatory-verses','explicit','dedication','other-paratexts','book_edition',
-  'play_edition','actor-list','authororial-status','greg_number','stc_or_wing','brit-drama-number']
+let search_fields = ['deep-id','title','title-page-modern','errata','title-page-old','argument','toreader','charachter-list','commendatory-verses','explicit','dedication','other-paratexts','actor-list','authororial-status','greg_number','stc_or_wing','brit-drama-number']
 
 let date_fields = ['first-production','first-edition','year-published','date-first-performance-brit-filter']
 
-let choice_fields = ['imprintlocation','stationer','printer','publisher','bookseller','latinontitle','paratextual','company_first-performance-brit-filter','title-page-author','illustration','author','authorial-status','company-first-performance','company','theater','playtype','genre','genreplaybook','blackletter','format','genre-brit-filter']
+let choice_fields = ['book_edition','play_edition','imprintlocation','stationer','printer','publisher','bookseller','latinontitle','paratextual','company_first-performance-brit-filter','title-page-author','illustration','author','authorial-status','company-first-performance','company','theater','playtype','genre','genreplaybook','blackletter','format','genre-brit-filter']
 
               
 
@@ -139,6 +137,34 @@ const update_searchSelect = (searchSelect, or=false) => {
       this_choices.setChoices(async () => {
         try {
           const items = await fetch('/assets/data/locations.json');
+          return items.json();
+          
+      } catch (err) {
+        console.error(err);
+      }
+      },
+        'value',
+        'label',
+        true);
+    }
+    if (filter === 'book_edition') {
+      this_choices.setChoices(async () => {
+        try {
+          const items = await fetch('/assets/data/book_editions.json');
+          return items.json();
+          
+      } catch (err) {
+        console.error(err);
+      }
+      },
+        'value',
+        'label',
+        true);
+    }
+    if (filter === 'play_edition') {
+      this_choices.setChoices(async () => {
+        try {
+          const items = await fetch('/assets/data/play_editions.json');
           return items.json();
           
       } catch (err) {
@@ -1043,16 +1069,41 @@ const processQueries = queries => {
         filters.push({'filter':gregNumber,'type':query.blockType})
       }
       if (query.searchField == 'book_edition') {
-        let bookEdition = item => (
-          item.book_edition.toLowerCase().includes(query.searchValue.toLowerCase())
-          )
-        filters.push({'filter':bookEdition,'type':query.blockType})
+        if (query.searchValue == "First") {
+          let bookEdition = item => (
+            item.book_edition == '1'
+            )
+          filters.push({'filter':bookEdition,'type':query.blockType})
+        } else if (query.searchValue == "Second-plus") { 
+          let bookEdition = item => (
+            item.book_edition >= '2'
+            )
+          filters.push({'filter':bookEdition,'type':query.blockType})
+        } else {
+          let bookEdition = item => (
+            item.book_edition == query.searchValue
+            )
+          filters.push({'filter':bookEdition,'type':query.blockType})
+        }
+        
       }
       if (query.searchField == 'play_edition') {
-        let playEdition = item => (
-          item.play_edition.toLowerCase().includes(query.searchValue.toLowerCase())
-          )
-        filters.push({'filter':playEdition,'type':query.blockType})
+        if (query.searchValue == "First") {
+          let bookEdition = item => (
+            item.play_edition == '1'
+            )
+          filters.push({'filter':bookEdition,'type':query.blockType})
+        } else if (query.searchValue == "Second-plus") { 
+          let bookEdition = item => (
+            item.play_edition >= '2'
+            )
+          filters.push({'filter':bookEdition,'type':query.blockType})
+        } else {
+          let bookEdition = item => (
+            item.play_edition == query.searchValue
+            )
+          filters.push({'filter':bookEdition,'type':query.blockType})
+        }
       }
       if (query.searchField == 'stc_or_wing') {
         let stcWing = item => (
@@ -1428,16 +1479,41 @@ const processQueries = queries => {
           ORquery.push(gregNumber)
         }
         if (fields[i] == 'book_edition' && values[i]) {
-          let bookEdition = item => (
-            item.book_edition.toLowerCase().includes(values[i].toLowerCase())
-          )
-          ORquery.push(bookEdition)
+          if (values[i] == "First") {
+            let bookEdition = item => (
+              item.book_edition == '1'
+              )
+              ORquery.push(bookEdition)
+          } else if (values[i] == "Second-plus") { 
+            let bookEdition = item => (
+              item.book_edition >= '2'
+              )
+              ORquery.push(bookEdition)
+          } else {
+            let bookEdition = item => (
+              item.book_edition == query.searchValue
+              )
+              ORquery.push(bookEdition)
+          }
         }
         if (fields[i] == 'play_edition' && values[i]) {
-          let playEdition = item => (
-            item.play_edition.toLowerCase().includes(values[i].toLowerCase())
-          )
-          ORquery.push(playEdition)
+          if (values[i] == "First") {
+            let playEdition = item => (
+              item.play_edition == '1'
+              )
+              ORquery.push(playEdition)
+          } else if (values[i] == "Second-plus") { 
+            let playEdition = item => (
+              item.play_edition >= '2'
+              )
+              ORquery.push(playEdition)
+          } else {
+            let playEdition = item => (
+              item.play_edition == query.searchValue
+              )
+              ORquery.push(playEdition)
+          }
+          
         }
         if (fields[i] == 'stc_or_wing' && values[i]) {
           let stcWing = item => (

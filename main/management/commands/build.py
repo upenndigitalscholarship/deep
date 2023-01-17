@@ -363,7 +363,41 @@ class Command(BaseCommand):
                 'label': form.strip()
             })
         srsly.write_json(static_dir / 'data/locations.json', locations_json)
+
+        #Book Edition 
+        editions = [int(i.book_edition) for i in Edition.objects.all() if i.book_edition != 'n/a']
+
+        editions = list(set(editions))
+        editions.sort()
+        editions_json = []
+        for i, form in enumerate(editions):
+            if form != 1:
+                editions_json.append({
+                    'value': i,
+                    'label': str(form)
+                })
+        editions_json.insert(0, {"value":0,"label":"First" })
+        editions_json.insert(1, {"value":1,"label":"Second-plus" })
+        editions_json.insert(2, {"value":2,"label":"---" })
+        srsly.write_json(static_dir / 'data/book_editions.json', editions_json)
         
+        #Play Edition 
+        editions = [int(i.play_edition) for i in Edition.objects.all() if i.play_edition != 'n/a']
+
+        editions = list(set(editions))
+        editions.sort()
+        editions_json = []
+        for i, form in enumerate(editions):
+            if form != 1:
+                editions_json.append({
+                    'value': i,
+                    'label': str(form)
+                })
+        editions_json.insert(0, {"value":0,"label":"First" })
+        editions_json.insert(1, {"value":1,"label":"Second-plus" })
+        editions_json.insert(2, {"value":2,"label":"---" })
+        srsly.write_json(static_dir / 'data/play_editions.json', editions_json)
+
         #Blackletter 
         #Removed dynamic generation of values, given that yes and no are only requested options.
 
