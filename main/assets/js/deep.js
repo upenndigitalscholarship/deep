@@ -38,13 +38,13 @@ let groupBy = function(xs, key) {
 // based on string matching.  Date fields allow the entry of a four-digit start and end year number. Choice fields
 // allow search and selection from a dropdown of valid choices.
 let search_fields = ['deep-id','title','title-page-modern','errata','title-page-old',
-  'argument','latinontitle','toreader','imprintlocation','stationer','printer','publisher','bookseller',
+  'argument','toreader','imprintlocation','stationer','printer','publisher','bookseller',
   'charachter-list','commendatory-verses','explicit','dedication','other-paratexts','book_edition',
   'play_edition','actor-list','authororial-status','greg_number','stc_or_wing','brit-drama-number']
 
 let date_fields = ['first-production','first-edition','year-published','date-first-performance-brit-filter']
 
-let choice_fields = ['paratextual','company_first-performance-brit-filter','title-page-author','illustration','author','authorial-status','company-first-performance','company','theater','playtype','genre','genreplaybook','blackletter','format','genre-brit-filter']
+let choice_fields = ['latinontitle','paratextual','company_first-performance-brit-filter','title-page-author','illustration','author','authorial-status','company-first-performance','company','theater','playtype','genre','genreplaybook','blackletter','format','genre-brit-filter']
 
               
 
@@ -237,7 +237,20 @@ const update_searchSelect = (searchSelect, or=false) => {
         'label',
         true);
     }
-
+    if (filter === 'latinontitle') { 
+      this_choices.setChoices(async () => {
+        try {
+          const items = await fetch('/assets/data/yes-no.json');
+          return items.json();
+          
+      } catch (err) {
+        console.error(err);
+      }
+      },
+        'value',
+        'label',
+        true);
+    }
     if (filter === 'genre') { 
       this_choices.setChoices(async () => {
         try {
@@ -943,9 +956,10 @@ const processQueries = queries => {
       } 
       if (query.searchField == 'latinontitle') {
         let latinontitle = item => (
-          item.title_page_latin_motto.toLowerCase().includes(query.searchValue.toLowerCase())
-        )
+          item.title_page_has_latin.toLowerCase().includes(query.searchValue.toLowerCase())
+          )
         filters.push({'filter':latinontitle,'type':query.blockType})
+        
       }
       if (query.searchField == 'deep-id') {
         let deepID = item => (

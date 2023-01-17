@@ -104,6 +104,7 @@ class Item(models.Model): #Previously known as "DEEP"
     title_page_performance = models.CharField("Title Page: Performance", max_length=1000, blank=True, null=True)
     title_page_latin_motto = models.CharField("Title Page: Latin Motto", max_length=1000, blank=True, null=True)
     title_page_imprint = models.CharField("Title Page: Imprint", max_length=1000, blank=True, null=True)
+    title_page_has_latin = models.CharField("Title Page: Has Latin", max_length=1000, blank=True, null=True)
     title_page_genre = models.CharField("Genre: Playbook Attribution", max_length=1000, blank=True, null=True)
     title_page_illustration = models.CharField("Title Page: Illustration", max_length=1000, blank=True, null=True)
     stationer_colophon = models.CharField("Title Page: Colophon", max_length=1000, blank=True, null=True)

@@ -20,6 +20,8 @@ def item_to_dict(item:Item):
         item_dict["theater"] = 'None'
     if not item_dict.get('title_page_genre',None): 
         item_dict["title_page_genre"] = 'None'
+    if not item_dict.get('title_page_has_latin',None): 
+        item_dict["title_page_has_latin"] = 'No'
     
     item_dict['variant_link'] = ''
     for link in item.variant_links.all():
