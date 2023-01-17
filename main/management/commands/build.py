@@ -283,6 +283,75 @@ class Command(BaseCommand):
             })
         srsly.write_json(static_dir / 'data/formats.json', formats_json)
 
+        #Printer
+        printers_query = [i.stationer_printer_filter for i in Item.objects.all() if i.stationer_printer_filter]
+        printers = []
+        for p in printers_query:
+            if ';' in p:
+                for p_ in p.split(';'):
+                    printers.append(p_)
+            else:
+                printers.append(p)
+        printers = list(set(printers))
+        printers.sort()
+        printers_json = []
+        for i, form in enumerate(printers):
+            printers_json.append({
+                'value': i,
+                'label': form.strip()
+            })
+        srsly.write_json(static_dir / 'data/printer.json', printers_json)
+
+        #Publisher
+        publisher_query = [i.stationer_publisher_filter for i in Item.objects.all() if i.stationer_publisher_filter]
+        publishers = []
+        for p in publisher_query:
+            if ';' in p:
+                for p_ in p.split(';'):
+                    publishers.append(p_)
+            else:
+                publishers.append(p)
+        publishers = list(set(publishers))
+        publishers.sort()
+        publishers_json = []
+        for i, form in enumerate(publishers):
+            publishers_json.append({
+                'value': i,
+                'label': form.strip()
+            })
+        srsly.write_json(static_dir / 'data/publisher.json', publishers_json)
+
+        #Bookseller
+        bookseller_query = [i.stationer_bookseller_filter for i in Item.objects.all() if i.stationer_bookseller_filter]
+        booksellers = []
+        for p in bookseller_query:
+            if ';' in p:
+                for p_ in p.split(';'):
+                    booksellers.append(p_)
+            else:
+                booksellers.append(p)
+        booksellers = list(set(booksellers))
+        booksellers.sort()
+        booksellers_json = []
+        for i, form in enumerate(booksellers):
+            booksellers_json.append({
+                'value': i,
+                'label': form.strip()
+            })
+        srsly.write_json(static_dir / 'data/bookseller.json', booksellers_json)
+
+        #Stationer
+        stationers = printers + publishers + booksellers 
+        stationers = list(set(stationers))
+        stationers.sort()
+        stationer_json = []
+        for i, form in enumerate(stationers):
+            stationer_json.append({
+                'value': i,
+                'label': form.strip()
+            })
+        srsly.write_json(static_dir / 'data/stationer.json', stationer_json)
+        
         #Blackletter 
         #Removed dynamic generation of values, given that yes and no are only requested options.
 

@@ -38,13 +38,12 @@ let groupBy = function(xs, key) {
 // based on string matching.  Date fields allow the entry of a four-digit start and end year number. Choice fields
 // allow search and selection from a dropdown of valid choices.
 let search_fields = ['deep-id','title','title-page-modern','errata','title-page-old',
-  'argument','toreader','imprintlocation','stationer','printer','publisher','bookseller',
-  'charachter-list','commendatory-verses','explicit','dedication','other-paratexts','book_edition',
+  'argument','toreader','imprintlocation', 'charachter-list','commendatory-verses','explicit','dedication','other-paratexts','book_edition',
   'play_edition','actor-list','authororial-status','greg_number','stc_or_wing','brit-drama-number']
 
 let date_fields = ['first-production','first-edition','year-published','date-first-performance-brit-filter']
 
-let choice_fields = ['latinontitle','paratextual','company_first-performance-brit-filter','title-page-author','illustration','author','authorial-status','company-first-performance','company','theater','playtype','genre','genreplaybook','blackletter','format','genre-brit-filter']
+let choice_fields = ['stationer','printer','publisher','bookseller','latinontitle','paratextual','company_first-performance-brit-filter','title-page-author','illustration','author','authorial-status','company-first-performance','company','theater','playtype','genre','genreplaybook','blackletter','format','genre-brit-filter']
 
               
 
@@ -126,6 +125,62 @@ const update_searchSelect = (searchSelect, or=false) => {
       this_choices.setChoices(async () => {
         try {
           const items = await fetch('/assets/data/paratextual.json');
+          return items.json();
+          
+      } catch (err) {
+        console.error(err);
+      }
+      },
+        'value',
+        'label',
+        true);
+    }
+    if (filter === 'stationer') {
+      this_choices.setChoices(async () => {
+        try {
+          const items = await fetch('/assets/data/stationer.json');
+          return items.json();
+          
+      } catch (err) {
+        console.error(err);
+      }
+      },
+        'value',
+        'label',
+        true);
+    }
+    if (filter === 'printer') {
+      this_choices.setChoices(async () => {
+        try {
+          const items = await fetch('/assets/data/printer.json');
+          return items.json();
+          
+      } catch (err) {
+        console.error(err);
+      }
+      },
+        'value',
+        'label',
+        true);
+    }
+    if (filter === 'publisher') {
+      this_choices.setChoices(async () => {
+        try {
+          const items = await fetch('/assets/data/publisher.json');
+          return items.json();
+          
+      } catch (err) {
+        console.error(err);
+      }
+      },
+        'value',
+        'label',
+        true);
+    }
+    if (filter === 'bookseller') {
+      this_choices.setChoices(async () => {
+        try {
+          const items = await fetch('/assets/data/bookseller.json');
           return items.json();
           
       } catch (err) {
