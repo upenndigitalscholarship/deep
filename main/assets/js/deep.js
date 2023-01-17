@@ -1293,6 +1293,14 @@ const processQueries = queries => {
           )
         filters.push({'filter':firstEdition,'type':query.blockType})
       }
+      if (query.searchField == 'date-first-performance-brit-filter') {
+        let [ start, end ] = query.searchValue.split('-')
+        let firstPerformanceBrit = item => (
+          item.date_first_performance_brit_filter >= start && item.date_first_performance_brit_filter <= end 
+          )
+        filters.push({'filter':firstPerformanceBrit,'type':query.blockType})
+      }
+      
     }
     //OR!
     if (query.blockType == 'OR') { 
@@ -1664,6 +1672,13 @@ const processQueries = queries => {
             item.composition_date >= start && item.composition_date <= end 
           )
           ORquery.push(firstProduction)
+        }
+        if (fields[i] == 'date-first-performance-brit-filter' && values[i]) {
+          let [ start, end ] = values[i].split('-')
+          let firstPerformanceBrit = item => (
+            item.date_first_performance_brit_filter >= start && item.date_first_performance_brit_filter <= end 
+          )
+          ORquery.push(firstPerformanceBrit)
         }
         if (fields[i] == 'first-edition' && values[i]) {
           let [ start, end ] = values[i].split('-')
