@@ -52,9 +52,7 @@
                 {% if data.leaves %}
                 <span class="expand">Leaves: </span><span id="leaves">{{ data.leaves }}</span><br>
                 {% endif %}
-                {% if data.blackletter %}
-                <span class="expand">Black Letter: </span><span id="leaves">{{ data.blackletter }}</span><br>
-                {% endif %}
+                
                 </p>
               </div>
     
@@ -87,7 +85,7 @@
                 <span class="expand">Company of First Production (BritDrama): </span><span id="company_first_performance_brit_display">{{ data.company_first_performance_brit_display }}</span><br>
                 {% endif %}
                 {% if data.company_attribution %}
-                <span class="expand">Company Attribution (Title-Page): </span><span id="company_attribution">{{ data.company_attribution }}</span><br>
+                <span class="expand">Company Attribution (Title-Page): </span><span id="company_attribution">{{ data.company_attribution|safe }}</span><br>
                 {% endif %}
             </p>
             </div>
@@ -123,25 +121,25 @@
               <strong>Title-Page Features</strong>
               <p>
                 {% if data.title_page_title %}
-                <span class="expand">Title: </span><span id="title_page_title">{{ data.title_page_title }}</span><br>
+                <span class="expand">Title: </span><span id="title_page_title">{{ data.title_page_title|safe }}</span><br>
                 {% endif %}
                 {% if data.title_page_author %}
-                <span class="expand">Author: </span><span id="title_page_author">{{ data.title_page_author }}</span><br>
+                <span class="expand">Author: </span><span id="title_page_author">{{ data.title_page_author|safe }}</span><br>
                 {% endif %}
                 {% if data.title_page_performance %}
-                <span class="expand">Performance: </span><span id="title_page_performance">{{ data.title_page_performance }}</span><br>
+                <span class="expand">Performance: </span><span id="title_page_performance">{{ data.title_page_performance|safe }}</span><br>
                 {% endif %}
                 {% if data.title_page_latin_motto %}
-                <span class="expand">Latin Motto: </span><span id="title_page_latin_motto">{{ data.title_page_latin_motto }}</span><br>
+                <span class="expand">Latin Motto: </span><span id="title_page_latin_motto">{{ data.title_page_latin_motto|safe }}</span><br>
                 {% endif %}
                 {% if data.title_page_illustration %}
-                <span class="expand">Illustration: </span><span id="title_page_illustration">{{ data.title_page_illustration }}</span><br>
+                <span class="expand">Illustration: </span><span id="title_page_illustration">{{ data.title_page_illustration|safe }}</span><br>
                 {% endif %}
                 {% if data.title_page_imprint %}
-                <span class="expand">Imprint: </span><span id="title_page_imprint">{{ data.title_page_imprint }}</span><br>
+                <span class="expand">Imprint: </span><span id="title_page_imprint">{{ data.title_page_imprint|safe }}</span><br>
                 {% endif %}
                 {% if data.title_page_colophon %}
-                <span class="expand">Colophon: </span><span id="title_page_colophon">{{ data.title_page_colophon }}</span><br>
+                <span class="expand">Colophon: </span><span id="title_page_colophon">{{ data.title_page_colophon|safe }}</span><br>
                 {% endif %}
             </p>
             </div>
@@ -159,28 +157,28 @@
                 None
                 {% endif %}
                 {% if data.paratext_dedication %}
-                <span class="expand">Dedication: </span><span id="paratext_dedication">{{ data.paratext_dedication }}</span><br>
+                <span class="expand">Dedication: </span><span id="paratext_dedication">{{ data.paratext_dedication|safe }}</span><br>
                 {% endif %}
                 {% if data.paratext_cemmendatory_verses %}
-                <span class="expand">Commendatory Verses: </span><span id="paratext_cemmendatory_verses">{{ data.paratext_cemmendatory_verses }}</span><br>
+                <span class="expand">Commendatory Verses: </span><span id="paratext_cemmendatory_verses">{{ data.paratext_cemmendatory_verses|safe }}</span><br>
                 {% endif %}
                 {% if data.paratext_to_the_reader %}
-                <span class="expand">To the Reader: </span><span id="paratext_to_the_reader">{{ data.paratext_to_the_reader }}</span><br>
+                <span class="expand">To the Reader: </span><span id="paratext_to_the_reader">{{ data.paratext_to_the_reader|safe }}</span><br>
                 {% endif %}
                 {% if data.paratext_argument %}
-                <span class="expand">Argument: </span><span id="paratext_argument">{{ data.paratext_argument }}</span><br>
+                <span class="expand">Argument: </span><span id="paratext_argument">{{ data.paratext_argument|safe }}</span><br>
                 {% endif %}
                 {% if data.paratext_charachter_list %}
-                <span class="expand">Charachter List: </span><span id="paratext_charachter_list">{{ data.paratext_charachter_list }}</span><br>
+                <span class="expand">Charachter List: </span><span id="paratext_charachter_list">{{ data.paratext_charachter_list|safe }}</span><br>
                 {% endif %}
                 {% if data.paratext_errata %}
-                <span class="expand">Errata: </span><span id="paratext_errata">{{ data.paratext_errata }}</span><br>
+                <span class="expand">Errata: </span><span id="paratext_errata">{{ data.paratext_errata|safe }}</span><br>
                 {% endif %}
                 {% if data.paratext_actor_list %}
-                <span class="expand">Actor List: </span><span id="paratext_actor_list">{{ data.paratext_actor_list }}</span><br>
+                <span class="expand">Actor List: </span><span id="paratext_actor_list">{{ data.paratext_actor_list|safe }}</span><br>
                 {% endif %}
                 {% if data.paratext_other_paratexts %}
-                <span class="expand">Other: </span><span id="paratext_other_paratexts">{{ data.paratext_other_paratexts }}</span><br>
+                <span class="expand">Other: </span><span id="paratext_other_paratexts">{{ data.paratext_other_paratexts|safe }}</span><br>
                 {% endif %}
             </p>
             </div>
