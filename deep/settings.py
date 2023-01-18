@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/4.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.0/ref/settings/
 """
-
+import os
 from pathlib import Path
 
 from deep.secrets import *
@@ -33,6 +33,10 @@ INSTALLED_APPS = [
     'dal',
     'dal_select2',
     'jazzmin',
+    'ckeditor',
+    'ckeditor_uploader',
+    'django.contrib.sites',
+    'django.contrib.flatpages',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -42,6 +46,7 @@ INSTALLED_APPS = [
     'main',
 ]
 
+#SITE_ID = 1
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -50,6 +55,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.contrib.flatpages.middleware.FlatpageFallbackMiddleware'
 ]
 
 ROOT_URLCONF = 'deep.urls'
@@ -138,3 +144,15 @@ JAZZMIN_UI_TWEAKS = {
     "theme": "flatly",
     #"dark_mode_theme": "darkly",
 }
+
+CKEDITOR_CONFIGS = {
+  "default": {
+      "removePlugins": "stylesheetparser",
+      'allowedContent' : True,
+   }
+ }
+
+MEDIA_ROOT= os.path.join(BASE_DIR, 'media/')
+MEDIA_URL = '/media/'
+CKEDITOR_UPLOAD_PATH = "uploads/"
+CKEDITOR_IMAGE_BACKEND = "pillow"

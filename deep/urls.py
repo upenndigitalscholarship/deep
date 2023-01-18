@@ -15,11 +15,14 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from django.contrib.flatpages import views as flat_views
+from django.urls import include
 
 from main import views
 
 admin.site.site_header = 'DEEP'
 urlpatterns = [
+    path('ckeditor/', include('ckeditor_uploader.urls')),
     path('admin/', admin.site.urls),
     path('admin', admin.site.urls),
     path('', views.index, name='index'),
@@ -27,8 +30,9 @@ urlpatterns = [
     path('sources.html', views.sources, name='sources'),
     path('run-build/', views.build, name='build'),
     path('about.html', views.about, name='about'),
+    path('whats_new/', flat_views.flatpage, {'url': '/whats_new/'}, name='whats_new'),
     path('title_autocomplete/', views.TitleAutocomplete.as_view(), name='title_autocomplete'),
     path('person_autocomplete/', views.PersonAutocomplete.as_view(), name='person_autocomplete'),
     path('theater_autocomplete/', views.TheaterAutocomplete.as_view(), name='theater_autocomplete'),
-    path('<deep_id>', views.item_page, name='item_page'),
+    path('<deep_id>', views.item_page, name='item_page')
 ]

@@ -1,8 +1,12 @@
 # Register your models here.
 from django.apps import apps
 from django.contrib import admin
+from ckeditor.widgets import CKEditorWidget
+from ckeditor_uploader.widgets import CKEditorUploadingWidget
 
 from main.models import Edition, Item, Person, Title
+
+from django import forms
 
 
 class ItemAdmin(admin.ModelAdmin):
