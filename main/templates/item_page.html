@@ -94,7 +94,7 @@
               <br><span class="expand">Total Editions:</span><span id="total_editions">{{ data.total_editions }}</span><br>
               {% endif %}
               {% if data.variants %}
-              <br><span class="expand">Variants:</span><span id="variants">{{ data.variants }} {{ data.variant_link|safe }}<br>
+              <br><span class="expand">Variants:</span><span id="variants">{{ data.variants|safe }} {{ data.variant_link|safe }}<br>
               {% endif %}
               {% if data.in_collection %}    
               <br><span class="expand">In Collection:</span><span id="in_collection"> {{ data.in_collection|safe }}</span><br>

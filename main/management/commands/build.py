@@ -7,6 +7,7 @@ from django.core.management import call_command
 from django.core.management.base import BaseCommand, CommandError
 from django.db.models import Max, Min
 from django.template.loader import render_to_string
+from django.contrib.flatpages.models import FlatPage
 from tqdm import tqdm
 
 from main.management.commands.search_index import item_to_dict
@@ -418,16 +419,18 @@ class Command(BaseCommand):
 
             (page_path / 'index.html').write_text(page)     
 
-        about = render_to_string('about.html')
-        (out_path / 'about.html').write_text(about)     
-
+        download_path = (out_path / "download")
+        if not download_path.exists():
+            download_path.mkdir(parents=True, exist_ok=True)
         download = render_to_string('download.html')
-        (out_path / 'download.html').write_text(download)  
-        
-        sources = render_to_string('sources.html')
-        (out_path / 'sources.html').write_text(sources)  
-        
-        browse = render_to_string('browse.html')
-        (out_path / 'browse.html').write_text(browse)    
+        (download_path / 'index.html').write_text(download)
+
+        # Flatpages 
+        for flat_page in FlatPage.objects.all():
+            page = render_to_string('flatpages/default.html', {"flatpage":{"content": flat_page.content}})
+            flat_page_path = (out_path / f"{flat_page.url.replace('/','')}")
+            if not flat_page_path.exists():
+                flat_page_path.mkdir(parents=True, exist_ok=True)
+            (flat_page_path / 'index.html').write_text(page)
         end = time.time()
         self.stdout.write(self.style.SUCCESS(f'Build Complete in {end-start:.2f} seconds'))

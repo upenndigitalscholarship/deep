@@ -12,7 +12,7 @@ class Command(BaseCommand):
         for line in txt_file.split('\n'):
             deep_id, variant_description = line.split('\t')
             item = Item.objects.get(deep_id=deep_id)
-            item.variant_description = variant_description
+            item.variants = variant_description
             item.save() 
             
             
