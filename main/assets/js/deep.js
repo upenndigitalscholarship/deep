@@ -561,7 +561,7 @@ function addANDBlock() {
         <option value="publisher" >&nbsp;&nbsp;&nbsp;&nbsp;Publisher</option>
         <option value="bookseller" >&nbsp;&nbsp;&nbsp;&nbsp;Bookseller</option>
         <option value="imprintlocation">Imprint Location</option>
-        <option value="first-production">Date of First Production</option>
+        <option value="first-production">Date of First Performance (Annals)</option>
         <option value="date-first-performance-brit-filter">Date of First Performance (BritDrama)</option>
         <option value="first-edition">Date of First Edition</option>
         <option value="format">Format</option>
@@ -687,7 +687,7 @@ function addORBlock() {
         <option value="publisher" >&nbsp;&nbsp;&nbsp;&nbsp;Publisher</option>
         <option value="bookseller" >&nbsp;&nbsp;&nbsp;&nbsp;Bookseller</option>
         <option value="imprintlocation">Imprint Location</option>
-        <option value="first-production">Date of First Production</option>
+        <option value="first-production">Date of First Performance (Annals)</option>
         <option value="date-first-performance-brit-filter">Date of First Performance (BritDrama)</option>
         <option value="first-edition">Date of First Edition</option>
         <option value="format">Format</option>
@@ -742,7 +742,7 @@ function addORBlock() {
         <option value="publisher" >&nbsp;&nbsp;&nbsp;&nbsp;Publisher</option>
         <option value="bookseller" >&nbsp;&nbsp;&nbsp;&nbsp;Bookseller</option>
         <option value="imprintlocation">Imprint Location</option>
-        <option value="first-production">Date of First Production</option>
+        <option value="first-production">Date of First Performance (Annals)</option>
         <option value="date-first-performance-brit-filter">Date of First Performance (BritDrama)</option>
         <option value="first-edition">Date of First Edition</option>
         <option value="format">Format</option>
@@ -1282,7 +1282,7 @@ const processQueries = queries => {
       if (query.searchField == 'first-production') {
         let [ start, end ] = query.searchValue.split('-')
         let firstProduction = item => (
-          item.composition_date >= start && item.composition_date <= end 
+          item.date_first_performance >= start && item.date_first_performance <= end 
           )
         filters.push({'filter':firstProduction,'type':query.blockType})
       }
@@ -1669,7 +1669,7 @@ const processQueries = queries => {
         if (fields[i] == 'first-production' && values[i]) {
           let [ start, end ] = values[i].split('-')
           let firstProduction = item => (
-            item.composition_date >= start && item.composition_date <= end 
+            item.date_first_performance >= start && item.date_first_performance <= end 
           )
           ORquery.push(firstProduction)
         }

@@ -97,7 +97,7 @@ in_collection: http://deep.sas.upenn.edu/viewrecord.php?deep_id=5074.03
 collection_contains: http://deep.sas.upenn.edu/viewrecord.php?deep_id=5181
 independent_playbook: http://deep.sas.upenn.edu/viewrecord.php?deep_id=5147.01
 also in collection: http://deep.sas.upenn.edu/viewrecord.php?deep_id=1002
-
+```
 +-------------------------------+
 | Tables_in_deep                |
 +-------------------------------+
@@ -149,7 +149,7 @@ also in collection: http://deep.sas.upenn.edu/viewrecord.php?deep_id=1002
 | variant_newish                |
 +-------------------------------+
 46 rows in set (0.00 sec)
-
+```
 
 ## Notes
 Broken links in old site
