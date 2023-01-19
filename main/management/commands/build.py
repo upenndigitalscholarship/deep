@@ -348,16 +348,16 @@ class Command(BaseCommand):
         srsly.write_json(static_dir / 'data/stationer.json', stationer_json)
         
         #Imprint Location
-        locations = [i.stationer_imprint_location for i in Item.objects.all() if i.stationer_imprint_location]
-        locations = list(set(locations))
-        locations.sort()
-        locations_json = []
-        for i, form in enumerate(locations):
-            locations_json.append({
-                'value': i,
-                'label': form.strip()
-            })
-        srsly.write_json(static_dir / 'data/locations.json', locations_json)
+        # locations = [i.stationer_imprint_location for i in Item.objects.all() if i.stationer_imprint_location]
+        # locations = list(set(locations))
+        # locations.sort()
+        # locations_json = []
+        # for i, form in enumerate(locations):
+        #     locations_json.append({
+        #         'value': i,
+        #         'label': form.strip()
+        #     })
+        # srsly.write_json(static_dir / 'data/locations.json', locations_json)
 
         #Book Edition 
         editions = [int(i.book_edition) for i in Edition.objects.all() if i.book_edition != 'n/a']
