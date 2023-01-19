@@ -434,6 +434,10 @@ const update_searchSelect = (searchSelect, or=false) => {
     }
   }
 
+const noPunct = string => {
+  return string.replace(',',' ').replace('.',' ').replace(':',' ').replace(';',' ').replace('?',' ').replace('-',' ').replace('_',' ')
+}
+
 const getQueries = () => {
   // for each block
   let query = []
@@ -902,8 +906,8 @@ const processQueries = queries => {
       }
       if (query.searchField == 'title') {
         let title = item => (
-            item.title.toLowerCase().includes(query.searchValue.toLowerCase()) || 
-            item.title_alternative_keywords.toLowerCase().includes(query.searchValue.toLowerCase())
+            noPunct(item.title).toLowerCase().includes(query.searchValue.toLowerCase()) || 
+            noPunct(item.title_alternative_keywords).toLowerCase().includes(query.searchValue.toLowerCase())
             )
         filters.push({'filter':title,'type':query.blockType})
       }
