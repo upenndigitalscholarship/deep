@@ -137,7 +137,7 @@ JAZZMIN_SETTINGS = {
         {"name": "Build", "url": "/run-build/", "new_window": True },
 
         # model admin to link to (Permissions checked against model)
-        {"Items": "main.Item"}
+        {"name": "Logout", "url":"/admin/logout"}
     ]
 }
 JAZZMIN_UI_TWEAKS = {
