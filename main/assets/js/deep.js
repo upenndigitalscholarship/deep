@@ -53,7 +53,11 @@ const update_searchSelect = (searchSelect, or=false) => {
     searchField.value = '';
     this_years = document.getElementById(searchSelect.id.replace('searchSelect','date-input'))
     this_years.classList.add('invisible')
-
+    
+    //reset result count
+    rC = document.getElementById("resultCount")
+    rC.innerText = ''
+    
     // Choice.js changes the <select> to a <div class="choices"> when initialized
     // when a div, it does not contain the id, so a sibling relation is used
     if (or) {
@@ -1724,6 +1728,7 @@ const search = () => {
   types = []
   let queries = getQueries()
   let filters = processQueries(queries)
+  
   // check if a type appears more than once
   // if not, then just chain filters and reduce
   // if yes, chain reduce, then join 
