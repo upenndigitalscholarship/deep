@@ -54,10 +54,11 @@ const update_searchSelect = (searchSelect, or=false) => {
     this_years = document.getElementById(searchSelect.id.replace('searchSelect','date-input'))
     this_years.classList.add('invisible')
     
-    //reset result count
+    //reset result count, clear table
     rC = document.getElementById("resultCount")
     rC.innerText = ''
-    
+    table.clear(); 
+
     // Choice.js changes the <select> to a <div class="choices"> when initialized
     // when a div, it does not contain the id, so a sibling relation is used
     if (or) {

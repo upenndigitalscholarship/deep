@@ -2,7 +2,7 @@ from dal import autocomplete
 from django.db.models import Max, Min
 from django.shortcuts import render,redirect
 from django.core.management import call_command
-
+from django.http import JsonResponse
 from main.management.commands.search_index import item_to_dict
 from main.models import Edition, Item, Person, Theater, Title
 
@@ -21,8 +21,9 @@ def item_page(request, deep_id):
 
 def build(request):
     call_command('build')
-    return render(request, 'build.html', {})
-    #return redirect('/admin/')
+    #return render(request, 'build.html', {})
+    data = {"message":"Build complete"}
+    return JsonResponse(data, safe=False)
 
 def browse(request):
     return render(request, 'browse.html')

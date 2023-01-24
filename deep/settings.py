@@ -128,13 +128,14 @@ JAZZMIN_SETTINGS = {
     "order_with_respect_to": ["main", "main.Item","main.Edition", "main.Title"],
     "hide_models": ['sessions.Session', 'contenttypes.ContentType', 'auth.Permission', 'auth.Group','admin.LogEntry'],
     "site_logo": "/img/logo.png",
+    "custom_js": '/js/admin.js',
     "topmenu_links": [
 
         # Url that gets reversed (Permissions can be added)
         {"name": "Home",  "url": "admin:index", "permissions": ["auth.view_user"]},
 
         # external url that opens in a new window (Permissions can be added)
-        {"name": "Build", "url": "/run-build/", "new_window": True },
+        {"name": "Build", "url": "/run-build/"},
 
         # model admin to link to (Permissions checked against model)
         {"name": "Logout", "url":"/admin/logout"}
