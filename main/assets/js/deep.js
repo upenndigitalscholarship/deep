@@ -13,11 +13,11 @@ fetch("../assets/data/item_data.json").then(
 
 //listen for search_bar
 let options = {
-      valueNames: ['deep_id','title', 'authors_display', 'year', 'greg_full' ],
+      valueNames: ['result_number','deep_id','title', 'authors_display', 'year', 'greg_full' ],
       
       // Since there are no elements in the list, this will be used as template.
       item: function(values) { 
-        return `<tr id="${values.id}" onclick="expand(this, ${values.id});"><td class="deep_id"></td><td class="year"></td><td class="authors_display"></td><td class="title"></td><td>Expand</td></tr>`
+        return `<tr id="${values.id}" onclick="expand(this, ${values.id});"><td class="result_number"><td class="deep_id"></td><td class="year"></td><td class="authors_display"></td><td class="title"></td><td>Expand</td></tr>`
       }
     };
 let table = new List('users', options, []);
@@ -1802,6 +1802,10 @@ const search = () => {
   } else if (filter == 'record') {
     grouped_results = results
   }
+  for (i in grouped_results){ 
+    grouped_results[i].result_number = parseInt(i)+1
+  }
+  console.log(grouped_results)
   resultCount = document.getElementById("resultCount")
   resultCount.innerText = grouped_results.length
   table.add(grouped_results);
@@ -1835,7 +1839,7 @@ function expand(e, id) {
   changeButtonCollapse();
   let data = item_data[id];
   e.outerHTML = `
-  <tr id="${data.id}" onclick="collapse(this, ${data.id});"><td class="deep_id">${data.deep_id}</td><td class="year">${data.year}</td><td class="authors_display">${data.authors_display}</td><td class="title">${data.title}</td><td>Collapse</td>
+  <tr id="${data.id}" onclick="collapse(this, ${data.id});"><td class="result_number">${data.result_number}</td><td class="deep_id">${data.deep_id}</td><td class="year">${data.year}</td><td class="authors_display">${data.authors_display}</td><td class="title">${data.title}</td><td>Collapse</td>
     <tr id="${data.id}-exp">
     <td colspan="5">
       <div class="card" style="width: 100%;">
@@ -1966,7 +1970,7 @@ function collapse(e, id) {
     let data = item_data[id];
     if (data) {
       e.outerHTML = `
-      <tr id="${data.id}" onclick="expand(this, ${data.id});"><td class="deep_id">${data.deep_id}</td><td class="year">${data.year}</td><td class="authors_display">${data.authors_display}</td><td class="title">${data.title}</td><td>Expand</td>`
+      <tr id="${data.id}" onclick="expand(this, ${data.id});"><td class="result_number">${data.result_number}</td><td class="deep_id">${data.deep_id}</td><td class="year">${data.year}</td><td class="authors_display">${data.authors_display}</td><td class="title">${data.title}</td><td>Expand</td>`
       let expandCard = document.getElementById(id+'-exp');
       if (expandCard) {
         expandCard.remove();
