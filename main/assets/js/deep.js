@@ -1865,7 +1865,7 @@ function expand(e, id) {
                 ${!data.brit_drama_number ? '' : '<span class="expand">BritDrama #: </span><span id="deep_id">' + data.brit_drama_number + '</span><br>'}
               </p>
               <p>
-                ${!data.date_first_publication ? '' : '<br><span class="expand">Date of First Publication: </span><span id="date_first_publication">' + data.date_first_publication + '</span><br>'}
+                ${!data.date_first_publication ? '' : '<br><span class="expand">Date of First Publication: </span><span id="date_first_publication">' + data.date_first_publication_display + '</span><br>'}
                 ${!data.book_edition ? '' : '<span class="expand">Book Edition: </span><span id="book_edition"> ' + data.book_edition + '</span><br>'}
                 ${!data.play_edition ? '' : '<span class="expand">Play Edition: </span><span id="play_edition"> ' + data.play_edition + '</span><br>'}
                 ${!data.format ? '' : '<span class="expand">Format: </span><span id="format"> ' + data.format + '</span><br>'}
