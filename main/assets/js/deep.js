@@ -1802,6 +1802,11 @@ const search = () => {
   } else if (filter == 'record') {
     grouped_results = results
   }
+  // sort results by year, by deep if same year 
+  grouped_results.sort(function (a, b) {
+    return a.year_int - b.year_int || a.deep_id - b.deep_id;
+  });
+
   for (i in grouped_results){ 
     grouped_results[i].result_number = parseInt(i)+1
   }
