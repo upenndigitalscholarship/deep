@@ -12,11 +12,11 @@ class ItemAdmin(admin.ModelAdmin):
 admin.site.register(Item, ItemAdmin)
 
 class EditionAdmin(admin.ModelAdmin):
-    list_filter = ['title__deep_id','greg_middle','title__title']
+    list_filter = ['greg_middle','title__title']
 admin.site.register(Edition, EditionAdmin)
 
 class TitleAdmin(admin.ModelAdmin):
-    list_filter = ['deep_id','title','greg'] 
+    list_filter = ['title','greg'] 
 
 admin.site.register(Title, TitleAdmin)
 

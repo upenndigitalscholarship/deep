@@ -92,6 +92,9 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         item_data = srsly.read_jsonl('main/assets/data/deeps.jsonl')
         item_data = list(item_data)
+        
+        #new_deep['id'] = deep.deep_id_revised
+        
         for item in item_data: # This is because the old app re-formats the id, so the db and site don't match
             if '.000' in item["deep_id_display"]:
                 item["deep_id_display"] = item["deep_id_display"].replace('.000','')
@@ -113,30 +116,36 @@ class Command(BaseCommand):
             except KeyError:
                 print('KeyError',item)
             # Title fields
-            title, created = Title.objects.get_or_create(
-                deep_id=item['deep_id'],
-                authors_display = db_item_data['authors_display'],
-                title = item['title'],
-                title_alternative_keywords = db_item_data['title_alternative_keywords'],
-                greg = db_item_data['greg_brief'],
-                #genre = item['genre'],
-                date_first_publication = db_item_data['date_first_publication'],
-                date_first_publication_display = item['date_first_publication_display'],
-                #company_first_performance = item['company_first_performance'],
-                total_editions = item['total_editions'],
-            )
+            try:
+                title = Title.objects.get(title = item['title'], authors_display = db_item_data['authors_display'])
+            except:
+                title = Title.objects.create(
+                    #deep_id=item['deep_id'],
+                    authors_display = db_item_data['authors_display'],
+                    title = item['title'],
+                    title_alternative_keywords = db_item_data['title_alternative_keywords'],
+                    greg = db_item_data['greg_brief'],
+                    #genre = item['genre'],
+                    date_first_publication = db_item_data['date_first_publication'],
+                    date_first_publication_display = item['date_first_publication_display'],
+                    #company_first_performance = item['company_first_performance'],
+                    total_editions = item['total_editions'],
+                )
             #if created:
             #    self.stdout.write(self.style.SUCCESS(f'Added new Title: {title.title}'))
     
             # Create Edition objects
             if title:
-                edition, created = Edition.objects.get_or_create(
-                    title = title,
-                    greg_middle = db_item_data['greg_middle'],
-                    book_edition = item['book_edition'], 
-                    play_edition = item['play_edition'],
-                    blackletter = item['blackletter'],
-                )
+                try:
+                    edition = Edition.objects.get(title=title)
+                except:
+                    edition = Edition.objects.create(
+                        title = title,
+                        greg_middle = db_item_data['greg_middle'],
+                        book_edition = item['book_edition'], 
+                        play_edition = item['play_edition'],
+                        blackletter = item['blackletter'],
+                    )
                 #if created:
                 #    self.stdout.write(self.style.SUCCESS(f'Added new Edition: {edition.title}'))
                 

@@ -6,7 +6,7 @@ from django.db import models
 
 
 class Title(models.Model):
-    deep_id = models.CharField(max_length=20, blank=True, null=True)
+    
     authors_display = models.CharField("Authors Display", max_length=1000, blank=True, null=True)
     title = models.CharField("Title",max_length=1000)
     title_alternative_keywords = models.CharField("Title Alternative Keywords",max_length=1000, null=True, default='')
@@ -47,7 +47,7 @@ class Title(models.Model):
         super(Title, self).save(*args, **kwargs)
 
     def __str__(self):
-        return f"{self.title} {self.date_first_publication} ({self.deep_id})"
+        return f"{self.title} {self.date_first_publication}"
 
 
 class Edition(models.Model):
