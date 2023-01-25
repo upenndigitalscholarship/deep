@@ -1775,7 +1775,7 @@ const search = () => {
   let filter = radioHelper();
   let grouped_results = []
   if (filter == 'title') {
-    let groups = groupBy(results, 'greg');
+    let groups = groupBy(results, 'title');
     
     for (i in groups) {
       if (groups[i].length == 1) {
@@ -1787,14 +1787,22 @@ const search = () => {
       }
     }
   } else if (filter == 'edition') {
-    let groups = groupBy(results, 'greg_middle');
+    let groups = groupBy(results, 'title');
     for (i in groups) {
       if (groups[i].length == 1) {
         grouped_results.push(groups[i][0])
       } else {
-        // sort the group by deep_id, return only lowest deep id
-        let d = groups[i].sort((a,b) => a.deep_id - b.deep_id);
-        grouped_results.push(d[0])
+        
+        let play_editions = groupBy(groups[i], 'play_edition');
+        for (p in play_editions) {
+          if (play_editions[p].length == 1) {
+            grouped_results.push(play_editions[p][0])
+          }  else {
+            // sort edition group by deep_id, return lowest deep id
+            let pe = play_editions[p].sort((a,b) => a.deep_id - b.deep_id);
+            grouped_results.push(pe[0])
+          }
+        }
       }
       
       
