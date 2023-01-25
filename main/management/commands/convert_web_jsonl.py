@@ -119,10 +119,10 @@ class Command(BaseCommand):
                 title = item['title'],
                 title_alternative_keywords = db_item_data['title_alternative_keywords'],
                 greg = db_item_data['greg_brief'],
-                genre = item['genre'],
+                #genre = item['genre'],
                 date_first_publication = db_item_data['date_first_publication'],
                 date_first_publication_display = item['date_first_publication_display'],
-                company_first_performance = item['company_first_performance'],
+                #company_first_performance = item['company_first_performance'],
                 total_editions = item['total_editions'],
             )
             #if created:
@@ -143,8 +143,8 @@ class Command(BaseCommand):
                 if edition:
                     authors = get_authors(db_item_data)
                     edition.authors.add(*authors)
-                    playtype = get_playtype(item)
-                    edition.play_type.add(*playtype)
+                    #playtype = get_playtype(item)
+                    #edition.play_type.add(*playtype)
                     edition.save()
                 
                     # Create Item object
