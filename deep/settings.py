@@ -33,8 +33,6 @@ INSTALLED_APPS = [
     'dal',
     'dal_select2',
     'jazzmin',
-    'ckeditor',
-    'ckeditor_uploader',
     'django.contrib.sites',
     'django.contrib.flatpages',
     'django.contrib.admin',
