@@ -8,7 +8,7 @@ class Command(BaseCommand):
     help = 'Request pages for old site and save to disk as html'
     
     def handle(self, *args, **options):
-        df = pd.read_csv('/home/apjanco/Downloads/DEEP--BritDrama.csv')
+        df = pd.read_csv('/backup/DEEP--BritDrama.csv')
         df1 = df.where(pd.notnull(df), None)
         # 0 Greg # Item.greg_full
         # 1 Greg (sort)
