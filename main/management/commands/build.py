@@ -65,8 +65,9 @@ class Command(BaseCommand):
                  for s in t.split(';'):
                      if s not in title_page_author:
                          title_page_author.append(s.strip())
-        title_page_author.sort()
+        
         title_page_author = list(set(title_page_author))
+        title_page_author.sort()
         title_page_author_choices = []
         for i, author in enumerate(title_page_author):
             title_page_author_choices.append({"value":i, "label":author})
