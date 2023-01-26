@@ -1851,9 +1851,9 @@ PlaysinCollections.addEventListener('change', (event) => {
       
 function expand(e, id) {
   changeButtonCollapse();
-  let data = item_data[id];
+  let data = item_data[deep_id];
   e.outerHTML = `
-  <tr id="${data.id}" onclick="collapse(this, ${data.id});"><td class="result_number">${data.result_number}</td><td class="deep_id">${data.deep_id}</td><td class="year">${data.year}</td><td class="authors_display">${data.authors_display}</td><td class="title">${data.title}</td><td>Collapse</td>
+  <tr id="${data.deep_id}" onclick="collapse(this, ${data.deep_id});"><td class="result_number">${data.result_number}</td><td class="deep_id">${data.deep_id}</td><td class="year">${data.year}</td><td class="authors_display">${data.authors_display}</td><td class="title">${data.title}</td><td>Collapse</td>
     <tr id="${data.id}-exp">
     <td colspan="5">
       <div class="card" style="width: 100%;">
@@ -1981,10 +1981,10 @@ function expand(e, id) {
 
 function collapse(e, id) {
   
-    let data = item_data[id];
+    let data = item_data[deep_id];
     if (data) {
       e.outerHTML = `
-      <tr id="${data.id}" onclick="expand(this, ${data.id});"><td class="result_number">${data.result_number}</td><td class="deep_id">${data.deep_id}</td><td class="year">${data.year}</td><td class="authors_display">${data.authors_display}</td><td class="title">${data.title}</td><td>Expand</td>`
+      <tr id="${data.deep_id}" onclick="expand(this, ${data.deep_id});"><td class="result_number">${data.result_number}</td><td class="deep_id">${data.deep_id}</td><td class="year">${data.year}</td><td class="authors_display">${data.authors_display}</td><td class="title">${data.title}</td><td>Expand</td>`
       let expandCard = document.getElementById(id+'-exp');
       if (expandCard) {
         expandCard.remove();
