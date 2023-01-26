@@ -294,10 +294,11 @@ class Command(BaseCommand):
         print(printers)
         printers_json = []
         for i, form in enumerate(printers):
-            printers_json.append({
-                'value': i,
-                'label': form.strip()
-            })
+            if form != "":
+                printers_json.append({
+                    'value': i,
+                    'label': form.strip()
+                })
         srsly.write_json(static_dir / 'data/printer.json', printers_json)
 
         #Publisher
@@ -313,10 +314,11 @@ class Command(BaseCommand):
         publishers.sort()
         publishers_json = []
         for i, form in enumerate(publishers):
-            publishers_json.append({
-                'value': i,
-                'label': form.strip()
-            })
+            if form != "":
+                publishers_json.append({
+                    'value': i,
+                    'label': form.strip()
+                })
         srsly.write_json(static_dir / 'data/publisher.json', publishers_json)
 
         #Bookseller
@@ -333,10 +335,11 @@ class Command(BaseCommand):
         booksellers.sort()
         booksellers_json = []
         for i, form in enumerate(booksellers):
-            booksellers_json.append({
-                'value': i,
-                'label': form.strip()
-            })
+            if form != "":
+                booksellers_json.append({
+                    'value': i,
+                    'label': form.strip()
+                })
         srsly.write_json(static_dir / 'data/bookseller.json', booksellers_json)
 
         #Stationer

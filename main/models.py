@@ -7,7 +7,7 @@ from django.db import models
 
 class Title(models.Model):
     
-    authors_display = models.CharField("Authors Display", max_length=1000, blank=True, null=True)
+    
     title = models.CharField("Title",max_length=1000)
     title_alternative_keywords = models.CharField("Title Alternative Keywords",max_length=1000, null=True, default='')
     greg = models.CharField("Greg (Brief)(e.g., 197 for Hamlet)", max_length=1000)
@@ -53,6 +53,7 @@ class Title(models.Model):
 class Edition(models.Model):
     title = models.ForeignKey(Title, on_delete=models.CASCADE)
     authors = models.ManyToManyField('Person')
+    authors_display = models.CharField("Authors Display", max_length=1000, blank=True, null=True)
     greg_middle = models.CharField("Greg (middle)(e.g., 197b for the second edition of Hamlet)", max_length=1000, blank=True, null=True)
     book_edition = models.CharField("Book Edition", max_length=1000, blank=True, null=True)
     play_edition = models.CharField("Play Edition", max_length=1000, blank=True, null=True)
@@ -122,14 +123,14 @@ class Item(models.Model): #Previously known as "DEEP"
     stationer_colophon = models.CharField("Stationer: Colophon", max_length=1000, blank=True, null=True)
     temp = models.CharField("Djanog is terrible", max_length=1000, blank=True, null=True)
     stationer_printer = models.ManyToManyField('Person', related_name="stationer_printer")
-    stationer_printer_filter = models.CharField("Stationer: Printer Filter", max_length=1000, blank=True, null=True)
+    stationer_printer_display = models.CharField("Stationer: Printer Display", max_length=1000, blank=True, null=True)
     stationer_publisher = models.ManyToManyField('Person', related_name="stationer_publisher")
-    stationer_publisher_filter = models.CharField("Stationer: Publisher Filter", max_length=1000, blank=True, null=True)
+    stationer_publisher_display = models.CharField("Stationer: Publisher Display", max_length=1000, blank=True, null=True)
 
     stationer_license = models.CharField("Stationer: License", max_length=1000, blank=True, null=True)
     stationer_imprint_location = models.CharField("Stationer: Imprint Location", max_length=1000, blank=True, null=True)
     stationer_bookseller = models.ManyToManyField('Person', related_name="stationer_bookseller")
-    stationer_bookseller_filter = models.CharField("Stationer: Bookseller Filter", max_length=1000, blank=True, null=True)
+    stationer_bookseller_display = models.CharField("Stationer: Bookseller Display", max_length=1000, blank=True, null=True)
     stationer_entries_in_register = models.CharField("Stationer: Entries in Register", max_length=1000, blank=True, null=True)
     stationer_additional_notes = models.CharField("Additional Notes", max_length=1000, blank=True, null=True)
     theater_type = models.CharField("Theater Type", max_length=1000, blank=True, null=True)

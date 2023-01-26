@@ -18,7 +18,7 @@ def get_authors(item:dict):
 
 def get_stationer_printer(item:dict):
     stationer_printer = []
-    names = item.get('authors_display', None)
+    names = item.get('stationer_printer', None)
     if names:
         names = names.split(';')
         for name in names:
@@ -146,11 +146,16 @@ class Command(BaseCommand):
             except KeyError:
                 print('KeyError',item)
             # Title fields
-            title = Title.objects.filter(title = item['title'], greg = db_item_data['greg_brief']).first()
+            p_edition = db_item_data.get('play_edition',None)
+            b_edition = db_item_data.get('book_edition',None)
+
+            if p_edition != 0:
+                title = Title.objects.filter(title = item['title'], edition__play_edition=db_item_data['play_edition']).first()    
+            elif b_edition != 0:
+                title = Title.objects.filter(title = item['title'], edition__book_edition=db_item_data['book_edition']).first()    
             if not title:
                 title = Title.objects.create(
                     #deep_id=item['deep_id'],
-                    authors_display = db_item_data['authors_display'],
                     title = item['title'],
                     title_alternative_keywords = db_item_data['title_alternative_keywords'],
                     greg = db_item_data['greg_brief'],
@@ -165,11 +170,14 @@ class Command(BaseCommand):
     
             # Create Edition objects
             if title:
-                
-                edition = Edition.objects.filter(title=title, greg_middle = db_item_data['greg_middle']).first()
+                if p_edition and p_edition != 'n/a':
+                    edition = Edition.objects.filter(title = title, play_edition=db_item_data['play_edition']).first()    
+                elif b_edition and b_edition != 'n/a':
+                    edition = Edition.objects.filter(title = title, book_edition=db_item_data['book_edition']).first()    
                 if not edition:
                     edition = Edition.objects.create(
                         title = title,
+                        authors_display = db_item_data['authors_display'],
                         greg_middle = db_item_data['greg_middle'],
                         book_edition = item['book_edition'], 
                         play_edition = item['play_edition'],
@@ -269,6 +277,10 @@ class Command(BaseCommand):
                 if item["also_in_collection"]:
                     django_item.also_in_collection = item["also_in_collection"]
                     django_item.also_in_collection_link = Link.objects.get(deep_id=item["also_in_collection_link_href"])
+                django_item.stationer_bookseller_display = item['stationer_bookseller']
+                django_item.stationer_publisher_display = item['stationer_publisher']
+                django_item.stationer_printer_display = item['stationer_printer']
+                
                 django_item.save()
        
 
