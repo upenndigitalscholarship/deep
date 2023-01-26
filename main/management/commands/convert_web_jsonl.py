@@ -16,6 +16,36 @@ def get_authors(item:dict):
             authors.append(person)
     return authors
 
+def get_stationer_printer(item:dict):
+    stationer_printer = []
+    names = item.get('authors_display', None)
+    if names:
+        names = names.split(';')
+        for name in names:
+            person, created = Person.objects.get_or_create(name=name.strip())
+            stationer_printer.append(person)
+    return stationer_printer
+
+def get_stationer_publisher(item:dict):
+    stationer_publisher = []
+    names = item.get('stationer_publisher', None)
+    if names:
+        names = names.split(';')
+        for name in names:
+            person, created = Person.objects.get_or_create(name=name.strip())
+            stationer_publisher.append(person)
+    return stationer_publisher
+
+def get_stationer_bookseller(item:dict):
+    stationer_bookseller = []
+    names = item.get('stationer_bookseller', None)
+    if names:
+        names = names.split(';')
+        for name in names:
+            person, created = Person.objects.get_or_create(name=name.strip())
+            stationer_bookseller.append(person)
+    return stationer_bookseller
+
 def get_collection_links(item:dict):
     links = []
     collection_links = item.get('collection_contains_links', None)
@@ -187,9 +217,6 @@ class Command(BaseCommand):
                         paratext_actor_list = item["paratext_actor_list"],
                         paratext_charachter_list = item["paratext_charachter_list"],
                         paratext_other_paratexts = item["paratext_other_paratexts"],
-                        stationer_printer = item["stationer_printer"],
-                        stationer_publisher = item["stationer_publisher"],
-                        stationer_bookseller = item["stationer_bookseller"],
                         stationer_entries_in_register = item["stationer_entries_in_register"],
                         stationer_additional_notes = item["stationer_additional_notes"],
                         theater_type = db_item_data["theater_type"],
@@ -204,7 +231,15 @@ class Command(BaseCommand):
                         publisher = db_item_data['publisher'],
                         printer = db_item_data['printer']
                     )
-                
+                    stationer_printer = get_stationer_printer(db_item_data)
+                    django_item.stationer_printer.add(*stationer_printer)
+                    
+                    stationer_publisher = get_stationer_publisher(db_item_data)
+                    django_item.stationer_publisher.add(*stationer_publisher)
+
+                    stationer_bookseller = get_stationer_bookseller(db_item_data)
+                    django_item.stationer_bookseller.add(*stationer_bookseller)
+                    
                     django_item.company, _ = Company.objects.get_or_create(name=django_item.company_attribution)
                     django_item.save()
 

@@ -12,8 +12,22 @@ from main.models import *
 def item_to_dict(item:Item):
     edition = item.edition
     title = item.edition.title
-    item_dict = item.__dict__ 
     
+    stationer_printer = '; '.join(list(item.stationer_printer.all().values_list('name', flat=True)))
+    #stationer_printer_filter = ';'.join(list(item.stationer_printer.all().values_list('name', flat=True)))
+    stationer_publisher = '; '.join(list(item.stationer_publisher.all().values_list('name', flat=True)))
+    #stationer_publisher_filter = ';'.join(list(item.stationer_publisher.all().values_list('name', flat=True)))
+    stationer_bookseller = '; '.join(list(item.stationer_bookseller.all().values_list('name', flat=True)))
+    #stationer_bookseller_filter = ';'.join(list(item.stationer_bookseller.all().values_list('name', flat=True)))
+
+    item_dict = item.__dict__ 
+    item_dict['stationer_printer'] = stationer_printer
+    #item_dict['stationer_printer_filter'] = stationer_printer_filter
+    item_dict['stationer_publisher'] = stationer_publisher
+    #item_dict['stationer_publisher_filter'] = stationer_publisher_filter
+    item_dict['stationer_bookseller'] = stationer_bookseller
+    #item_dict['stationer_bookseller_filter'] = stationer_bookseller_filter
+
     if not item_dict.get('title_page_author_filter',None): # Replace none with 'None' (else search crashes)
         item_dict["title_page_author_filter"] = 'None'
     if not item_dict.get('author_status',None): # Replace none with 'None' (else search crashes)

@@ -280,7 +280,8 @@ class Command(BaseCommand):
         srsly.write_json(static_dir / 'data/formats.json', formats_json)
 
         #Printer
-        printers_query = [i.stationer_printer_filter for i in Item.objects.all() if i.stationer_printer_filter]
+        
+        printers_query = [';'.join(list(item.stationer_printer.all().values_list('name', flat=True))) for item in Item.objects.all() if item.stationer_printer]
         printers = []
         for p in printers_query:
             if ';' in p:
@@ -290,6 +291,7 @@ class Command(BaseCommand):
                 printers.append(p)
         printers = list(set(printers))
         printers.sort()
+        print(printers)
         printers_json = []
         for i, form in enumerate(printers):
             printers_json.append({
@@ -299,7 +301,7 @@ class Command(BaseCommand):
         srsly.write_json(static_dir / 'data/printer.json', printers_json)
 
         #Publisher
-        publisher_query = [i.stationer_publisher_filter for i in Item.objects.all() if i.stationer_publisher_filter]
+        publisher_query = [';'.join(list(item.stationer_publisher.all().values_list('name', flat=True))) for item in Item.objects.all() if item.stationer_publisher]
         publishers = []
         for p in publisher_query:
             if ';' in p:
@@ -318,7 +320,8 @@ class Command(BaseCommand):
         srsly.write_json(static_dir / 'data/publisher.json', publishers_json)
 
         #Bookseller
-        bookseller_query = [i.stationer_bookseller_filter for i in Item.objects.all() if i.stationer_bookseller_filter]
+        
+        bookseller_query = [';'.join(list(item.stationer_bookseller.all().values_list('name', flat=True))) for item in Item.objects.all() if item.stationer_bookseller]
         booksellers = []
         for p in bookseller_query:
             if ';' in p:
