@@ -211,11 +211,9 @@ class Command(BaseCommand):
     
     def handle(self, *args, **options):
         items = [item_to_dict(item) for item in tqdm(Item.objects.all())]
-        print(len(items),'no items')
         item_data = {}
         for item in items: 
-            item_data[item['id']] = item
-        print(len(item_data.keys()),'item_sta')
+            item_data[item['deep_id']] = item
         # create json item lookup for search results 
         srsly.write_json(Path('main/assets/data/item_data.json'), item_data)
         self.stdout.write(self.style.SUCCESS('Created item data'))
