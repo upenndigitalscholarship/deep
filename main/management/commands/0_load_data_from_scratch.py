@@ -1,6 +1,6 @@
 from django.core.management import call_command
 from django.core.management.base import BaseCommand
-
+import srsly
 class Command(BaseCommand):
     help = 'Rebuild the database from scratch'
     
@@ -39,4 +39,6 @@ class Command(BaseCommand):
         call_command('loaddata','backup/flatpages.json')
         
         call_command('build')
-
+        data = srsly.read_json('main/assets/data/item_data.json')
+        data = list(data)
+        print(len(data))

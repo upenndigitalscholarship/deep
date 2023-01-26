@@ -434,3 +434,6 @@ class Command(BaseCommand):
             (flat_page_path / 'index.html').write_text(page)
         end = time.time()
         self.stdout.write(self.style.SUCCESS(f'Build Complete in {end-start:.2f} seconds'))
+        data = srsly.read_json('main/assets/data/item_data.json')
+        data = list(data)
+        self.stdout.write(self.style.SUCCESS(f'{len(data)}'))

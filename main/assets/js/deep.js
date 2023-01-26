@@ -1774,8 +1774,9 @@ const search = () => {
   // logic for title-edition-record filtering 
   let filter = radioHelper();
   let grouped_results = []
+  console.log(results,'results')
   if (filter == 'title') {
-    let groups = groupBy(results, 'title');
+    let groups = groupBy(results, 'title_id');
     
     for (i in groups) {
       if (groups[i].length == 1) {
@@ -1787,13 +1788,13 @@ const search = () => {
       }
     }
   } else if (filter == 'edition') {
-    let groups = groupBy(results, 'title');
+    let groups = groupBy(results, 'title_id');
     for (i in groups) {
       if (groups[i].length == 1) {
         grouped_results.push(groups[i][0])
       } else {
         
-        let play_editions = groupBy(groups[i], 'play_edition');
+        let play_editions = groupBy(groups[i], 'edition_id');
         for (p in play_editions) {
           if (play_editions[p].length == 1) {
             grouped_results.push(play_editions[p][0])

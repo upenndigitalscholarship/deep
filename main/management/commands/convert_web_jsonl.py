@@ -116,9 +116,8 @@ class Command(BaseCommand):
             except KeyError:
                 print('KeyError',item)
             # Title fields
-            try:
-                title = Title.objects.get(title = item['title'], authors_display = db_item_data['authors_display'])
-            except:
+            title = Title.objects.filter(title = item['title'], greg = db_item_data['greg_brief']).first()
+            if not title:
                 title = Title.objects.create(
                     #deep_id=item['deep_id'],
                     authors_display = db_item_data['authors_display'],
@@ -136,9 +135,9 @@ class Command(BaseCommand):
     
             # Create Edition objects
             if title:
-                try:
-                    edition = Edition.objects.get(title=title)
-                except:
+                
+                edition = Edition.objects.filter(title=title, greg_middle = db_item_data['greg_middle']).first()
+                if not edition:
                     edition = Edition.objects.create(
                         title = title,
                         greg_middle = db_item_data['greg_middle'],

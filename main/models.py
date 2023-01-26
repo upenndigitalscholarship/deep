@@ -109,6 +109,7 @@ class Item(models.Model): #Previously known as "DEEP"
     title_page_illustration = models.CharField("Title Page: Illustration", max_length=1000, blank=True, null=True)
     stationer_colophon = models.CharField("Title Page: Colophon", max_length=1000, blank=True, null=True)
     title_page_modern_spelling = models.CharField("Title Page: Modern Spelling", max_length=1000, blank=True, null=True)
+    paratext_author = models.CharField("Paratext: Author", max_length=1000, blank=True, null=True)
     paratext_explicit = models.CharField("Paratext: Explicit", max_length=1000, blank=True, null=True)
     paratext_errata = models.CharField("Paratext: Errata", max_length=1000, blank=True, null=True)
     paratext_commendatory_verses = models.CharField("Paratext: Commendatory Verses", max_length=1000, blank=True, null=True)
