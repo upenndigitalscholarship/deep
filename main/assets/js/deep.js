@@ -17,7 +17,7 @@ let options = {
       
       // Since there are no elements in the list, this will be used as template.
       item: function(values) { 
-        return `<tr id="${values.id}" onclick="expand(this, ${values.id});"><td class="result_number"><td class="deep_id"></td><td class="year"></td><td class="authors_display"></td><td class="title"></td><td>Expand</td></tr>`
+        return `<tr id="${values.deep_id}" onclick="expand(this, ${values.deep_id});"><td class="result_number"><td class="deep_id"></td><td class="year"></td><td class="authors_display"></td><td class="title"></td><td>Expand</td></tr>`
       }
     };
 let table = new List('users', options, []);
@@ -1849,12 +1849,12 @@ PlaysinCollections.addEventListener('change', (event) => {
 
 
       
-function expand(e, id) {
+function expand(e, deep_id) {
   changeButtonCollapse();
   let data = item_data[deep_id];
   e.outerHTML = `
-  <tr id="${data.deep_id}" onclick="collapse(this, ${data.deep_id});"><td class="result_number">${data.result_number}</td><td class="deep_id">${data.deep_id}</td><td class="year">${data.year}</td><td class="authors_display">${data.authors_display}</td><td class="title">${data.title}</td><td>Collapse</td>
-    <tr id="${data.id}-exp">
+  <tr id="${data.deep_id}" onclick="collapse(this, ${data.deep_id});"><td class="result_number"></td><td class="deep_id">${data.deep_id}</td><td class="year">${data.year}</td><td class="authors_display">${data.authors_display}</td><td class="title">${data.title}</td><td>Collapse</td>
+    <tr id="${data.deep_id}-exp">
     <td colspan="5">
       <div class="card" style="width: 100%;">
         
@@ -1979,13 +1979,13 @@ function expand(e, id) {
 }
 
 
-function collapse(e, id) {
+function collapse(e, deep_id) {
   
     let data = item_data[deep_id];
     if (data) {
       e.outerHTML = `
-      <tr id="${data.deep_id}" onclick="expand(this, ${data.deep_id});"><td class="result_number">${data.result_number}</td><td class="deep_id">${data.deep_id}</td><td class="year">${data.year}</td><td class="authors_display">${data.authors_display}</td><td class="title">${data.title}</td><td>Expand</td>`
-      let expandCard = document.getElementById(id+'-exp');
+      <tr id="${data.deep_id}" onclick="expand(this, ${data.deep_id});"><td class="result_number"></td><td class="deep_id">${data.deep_id}</td><td class="year">${data.year}</td><td class="authors_display">${data.authors_display}</td><td class="title">${data.title}</td><td>Expand</td>`
+      let expandCard = document.getElementById(deep_id+'-exp');
       if (expandCard) {
         expandCard.remove();
       }
@@ -2013,9 +2013,9 @@ function collapseAll(e){
   e.setAttribute( "onClick", "expandAll(this)" );
   let items = document.querySelectorAll('tr');
   items.forEach(function(item) {
-    if (!item.id.includes("-exp")) {
+    
       collapse(item, item.id);
-    }
+    
   });
 
 };
