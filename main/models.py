@@ -5,9 +5,9 @@ from django.db import models
 # Data at the edition or issue level can be updated without affecting the Title
 
 
-class Title(models.Model):
+class Title(models.Model): #Work
     
-    
+    work_id = models.FloatField("Work ID",blank=True, null=True)
     title = models.CharField("Title",max_length=1000)
     title_alternative_keywords = models.CharField("Title Alternative Keywords",max_length=1000, null=True, default='')
     greg = models.CharField("Greg (Brief)(e.g., 197 for Hamlet)", max_length=1000)
@@ -60,7 +60,8 @@ class Edition(models.Model):
     play_type_filter = models.CharField("Play Type: Filter", max_length=1000, blank=True, null=True)
     play_type_display = models.CharField("Play Type: Display", max_length=1000, blank=True, null=True)
     blackletter = models.CharField(max_length=255,blank=True, null=True)
-
+    collection = models.CharField("Collection", max_length=1000, blank=True, null=True)
+    
     def __str__(self):
         return f"{self.title.title} - {self.greg_middle} - {self.book_edition}"
 
@@ -121,7 +122,6 @@ class Item(models.Model): #Previously known as "DEEP"
     paratext_charachter_list = models.CharField("Paratext: Character List", max_length=1000, blank=True, null=True)
     paratext_other_paratexts = models.CharField("Paratext: Other Paratexts", max_length=1000, blank=True, null=True)
     stationer_colophon = models.CharField("Stationer: Colophon", max_length=1000, blank=True, null=True)
-    temp = models.CharField("Djanog is terrible", max_length=1000, blank=True, null=True)
     stationer_printer = models.ManyToManyField('Person', related_name="stationer_printer")
     stationer_printer_display = models.CharField("Stationer: Printer Display", max_length=1000, blank=True, null=True)
     stationer_publisher = models.ManyToManyField('Person', related_name="stationer_publisher")
