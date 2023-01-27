@@ -132,11 +132,12 @@ class Command(BaseCommand):
                 item["deep_id_display"] = item["deep_id_display"][:-2]
             elif item["deep_id_display"][-1:] == '0':
                 item["deep_id_display"] = item["deep_id_display"][:-1]
-            
+        
         web_data = srsly.read_jsonl('web_item_data.jsonl')
         
         self.stdout.write(self.style.SUCCESS(f'Loaded jsonl files'))
-        # Create Title objects
+
+        web_data = srsly.read_jsonl('web_item_data.jsonl')
         for item in tqdm(web_data):
             #There are three empty records to ignore
             if item["deep_id"] in ['47','48','1014']:
@@ -145,46 +146,74 @@ class Command(BaseCommand):
                 db_item_data = lookup(item_data, item["deep_id_display"]) 
             except KeyError:
                 print('KeyError',item)
-            # Title fields
-            p_edition = db_item_data.get('play_edition',None)
-            b_edition = db_item_data.get('book_edition',None)
+            # Generate list of distinct Editions, distinct Titles
+            p_edition = item.get('play_edition',None)
+            b_edition = item.get('book_edition',None)
 
+            if p_edition != 0: # on old site 0 appears as Play Edition: n/a
+                for item in tqdm(web_data):
+                    try:
+                        title = Title.objects.get(title = item['title'], edition__play_edition=db_item_data['play_edition'])
+                    except Title.DoesNotExist:
+                        title = Title.objects.create(
+                            title = item['title'],
+                            title_alternative_keywords = db_item_data['title_alternative_keywords'],
+                            greg = db_item_data['greg_brief'],
+                            date_first_publication = db_item_data['date_first_publication'],
+                            date_first_publication_display = item['date_first_publication_display'],
+                            total_editions = item['total_editions'],
+                        )
+                        edition = Edition.objects.create(
+                                title = title,
+                                authors_display = db_item_data['authors_display'],
+                                greg_middle = db_item_data['greg_middle'],
+                                book_edition = db_item_data['book_edition'], 
+                                play_edition = db_item_data['play_edition'],
+                                blackletter = db_item_data['blackletter'],
+                            )
+            elif b_edition != 0: # on old site 0 appears as Book Edition: n/a
+                try:
+                    title = Title.objects.get(title = item['title'], edition__book_edition=db_item_data['book_edition'])
+                except Title.DoesNotExist:
+                        title = Title.objects.create(
+                            title = item['title'],
+                            title_alternative_keywords = db_item_data['title_alternative_keywords'],
+                            greg = db_item_data['greg_brief'],
+                            date_first_publication = db_item_data['date_first_publication'],
+                            date_first_publication_display = item['date_first_publication_display'],
+                            total_editions = item['total_editions'],
+                        )
+                        edition = Edition.objects.create(
+                                title = title,
+                                authors_display = db_item_data['authors_display'],
+                                greg_middle = db_item_data['greg_middle'],
+                                book_edition = db_item_data['book_edition'], 
+                                play_edition = db_item_data['play_edition'],
+                                blackletter = db_item_data['blackletter'],
+                            )
+        
+        web_data = srsly.read_jsonl('web_item_data.jsonl')
+        for item in tqdm(web_data):
+            #There are three empty records to ignore
+            if item["deep_id"] in ['47','48','1014']:
+                continue 
+            try:
+                db_item_data = lookup(item_data, item["deep_id_display"]) 
+            except KeyError:
+                print('KeyError',item)
+            
             if p_edition != 0:
-                title = Title.objects.filter(title = item['title'], edition__play_edition=db_item_data['play_edition']).first()    
+                title = Title.objects.get(title = item['title'], edition__play_edition=db_item_data['play_edition']) 
             elif b_edition != 0:
-                title = Title.objects.filter(title = item['title'], edition__book_edition=db_item_data['book_edition']).first()    
-            if not title:
-                title = Title.objects.create(
-                    #deep_id=item['deep_id'],
-                    title = item['title'],
-                    title_alternative_keywords = db_item_data['title_alternative_keywords'],
-                    greg = db_item_data['greg_brief'],
-                    #genre = item['genre'],
-                    date_first_publication = db_item_data['date_first_publication'],
-                    date_first_publication_display = item['date_first_publication_display'],
-                    #company_first_performance = item['company_first_performance'],
-                    total_editions = item['total_editions'],
-                )
-            #if created:
-            #    self.stdout.write(self.style.SUCCESS(f'Added new Title: {title.title}'))
-    
+                title = Title.objects.get(title = item['title'], edition__book_edition=db_item_data['book_edition'])   
+            
             # Create Edition objects
             if title:
-                if p_edition and p_edition != 'n/a':
-                    edition = Edition.objects.filter(title = title, play_edition=db_item_data['play_edition']).first()    
-                elif b_edition and b_edition != 'n/a':
-                    edition = Edition.objects.filter(title = title, book_edition=db_item_data['book_edition']).first()    
-                if not edition:
-                    edition = Edition.objects.create(
-                        title = title,
-                        authors_display = db_item_data['authors_display'],
-                        greg_middle = db_item_data['greg_middle'],
-                        book_edition = item['book_edition'], 
-                        play_edition = item['play_edition'],
-                        blackletter = item['blackletter'],
-                    )
-                #if created:
-                #    self.stdout.write(self.style.SUCCESS(f'Added new Edition: {edition.title}'))
+                if p_edition and p_edition != 0:
+                    edition = Edition.objects.get(title = title, play_edition=db_item_data['play_edition'])    
+                elif b_edition and b_edition != 0:
+                    edition = Edition.objects.get(title = title, book_edition=db_item_data['book_edition'])  
+                
                 
                 if edition:
                     authors = get_authors(db_item_data)
