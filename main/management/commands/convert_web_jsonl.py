@@ -2,7 +2,7 @@ import srsly
 from django.core import serializers
 from django.core.management.base import BaseCommand, CommandError
 from tqdm import tqdm
-
+from pathlib import Path
 from main.models import *
 
 
@@ -137,60 +137,27 @@ class Command(BaseCommand):
         
         self.stdout.write(self.style.SUCCESS(f'Loaded jsonl files'))
 
-        web_data = srsly.read_jsonl('web_item_data.jsonl')
-        for item in tqdm(web_data):
-            #There are three empty records to ignore
-            if item["deep_id"] in ['47','48','1014']:
-                continue 
-            try:
-                db_item_data = lookup(item_data, item["deep_id_display"]) 
-            except KeyError:
-                print('KeyError',item)
-            # Generate list of distinct Editions, distinct Titles
-            p_edition = item.get('play_edition',None)
-            b_edition = item.get('book_edition',None)
-
-            if p_edition != 0: # on old site 0 appears as Play Edition: n/a
-                for item in tqdm(web_data):
+        # Read Work-ID data, create Title and Edition objects
+        work_ids = Path('backup/work_id_data.tsv').read_text()
+        work_ids = work_ids.split('\n')
+        for row in work_ids:
+            if len(row.split('\t')) == 4:
+                for deep_id, collection, greg_full, work_id in row.split('\t'):
                     try:
-                        title = Title.objects.get(title = item['title'], edition__play_edition=db_item_data['play_edition'])
+                        title = Title.objects.get(work_id=work_id)
                     except Title.DoesNotExist:
+                        # use deep_id to fetch item data
+                        db_item_data = lookup(item_data, deep_id)
                         title = Title.objects.create(
-                            title = item['title'],
-                            title_alternative_keywords = db_item_data['title_alternative_keywords'],
-                            greg = db_item_data['greg_brief'],
-                            date_first_publication = db_item_data['date_first_publication'],
-                            date_first_publication_display = item['date_first_publication_display'],
-                            total_editions = item['total_editions'],
-                        )
-                        edition = Edition.objects.create(
-                                title = title,
-                                authors_display = db_item_data['authors_display'],
-                                greg_middle = db_item_data['greg_middle'],
-                                book_edition = db_item_data['book_edition'], 
-                                play_edition = db_item_data['play_edition'],
-                                blackletter = db_item_data['blackletter'],
+                                work_id=work_id,
+                                title = db_item_data['title'],
+                                title_alternative_keywords = db_item_data['title_alternative_keywords'],
+                                greg = db_item_data['greg_brief'],
+                                date_first_publication = db_item_data['date_first_publication'],
+                                date_first_publication_display = db_item_data['date_first_publication_display'],
+                                total_editions = db_item_data['total_editions'],
                             )
-            elif b_edition != 0: # on old site 0 appears as Book Edition: n/a
-                try:
-                    title = Title.objects.get(title = item['title'], edition__book_edition=db_item_data['book_edition'])
-                except Title.DoesNotExist:
-                        title = Title.objects.create(
-                            title = item['title'],
-                            title_alternative_keywords = db_item_data['title_alternative_keywords'],
-                            greg = db_item_data['greg_brief'],
-                            date_first_publication = db_item_data['date_first_publication'],
-                            date_first_publication_display = item['date_first_publication_display'],
-                            total_editions = item['total_editions'],
-                        )
-                        edition = Edition.objects.create(
-                                title = title,
-                                authors_display = db_item_data['authors_display'],
-                                greg_middle = db_item_data['greg_middle'],
-                                book_edition = db_item_data['book_edition'], 
-                                play_edition = db_item_data['play_edition'],
-                                blackletter = db_item_data['blackletter'],
-                            )
+                            
         
         web_data = srsly.read_jsonl('web_item_data.jsonl')
         for item in tqdm(web_data):
