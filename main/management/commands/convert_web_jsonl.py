@@ -137,77 +137,80 @@ class Command(BaseCommand):
         self.stdout.write(self.style.SUCCESS(f'Loaded jsonl files'))
 
         # Read Work-ID data, create Title objects
-        work_ids = Path('backup/work_id_data.tsv').read_text()
+        work_ids = Path('backup/work_id_data.csv').read_text()
         work_ids = work_ids.split('\n')
         
         for row in work_ids[1:]:
-            row = row.split('\t')
-            deep_id = row[0]
-            collection = row[1]
-            greg_full = row[2]
-            work_id = row[3]
-            try:
-                title = Title.objects.get(work_id=work_id)
-            except Title.DoesNotExist:
-                # use deep_id to fetch item data
-                db_item_data = lookup(item_data, deep_id)
-                #assert db_item_data['greg_full'] == greg_full, f"Mismatch greg_full {db_item_data['greg_full']}:{greg_full}"
-                title = Title.objects.create(
-                        work_id=work_id,
-                        title = db_item_data['title'],
-                        title_alternative_keywords = db_item_data['title_alternative_keywords'],
-                        greg = db_item_data['greg_brief'],
-                        date_first_publication = db_item_data['date_first_publication'],
-                        date_first_publication_display = db_item_data['date_first_publication_display'],
-                        total_editions = db_item_data['total_editions'],
-                    )
-        
+            if ',' in row:
+                row = row.split(',')
+                deep_id = row[0]
+                work_id = row[1]
+                edition_id = row[2]
+   
+                try:
+                    title = Title.objects.get(work_id=work_id)
+                except Title.DoesNotExist:
+                    # use deep_id to fetch item data
+                    db_item_data = lookup(item_data, deep_id)
+                    #assert db_item_data['greg_full'] == greg_full, f"Mismatch greg_full {db_item_data['greg_full']}:{greg_full}"
+                    title = Title.objects.create(
+                            work_id=work_id,
+                            title = db_item_data['title'],
+                            title_alternative_keywords = db_item_data['title_alternative_keywords'],
+                            greg = db_item_data['greg_brief'],
+                            date_first_publication = db_item_data['date_first_publication'],
+                            date_first_publication_display = db_item_data['date_first_publication_display'],
+                            total_editions = db_item_data['total_editions'],
+                        )
+            
         # Read Work-ID data, create Edition objects
-        work_ids = Path('backup/work_id_data.tsv').read_text()
+        work_ids = Path('backup/work_id_data.csv').read_text()
         work_ids = work_ids.split('\n')
         
         for row in work_ids[1:]:
-            row = row.split('\t')
-            deep_id = row[0]
-            collection = row[1]
-            work_id = row[3]
-            db_item_data = lookup(item_data, deep_id)
-            greg_middle = db_item_data['greg_middle']
-            record_type = db_item_data['record_type']
-            title = Title.objects.get(work_id=work_id)
-            try:
-                if record_type == 'Collection':
-                    edition = Edition.objects.get(title=title,collection=collection)
-                else:
-                    edition = Edition.objects.get(title=title,greg_middle=greg_middle)
-
-            except Edition.DoesNotExist:
-                # use deep_id to fetch item data
+            if ',' in row:
+                row = row.split(',')
+                deep_id = row[0]
+                work_id = row[1]
+                edition_id = row[2]
                 db_item_data = lookup(item_data, deep_id)
-                #assert db_item_data['greg_full'] == greg_full, f"Mismatch greg_full {db_item_data['greg_full']}:{greg_full}"
-                edition = Edition.objects.create(
-                        title = title,
-                        greg_middle = db_item_data['greg_middle'],
-                        play_type_display = db_item_data['play_type'],
-                        authors_display = db_item_data['authors_display'],
-                        book_edition = db_item_data['book_edition'],
-                        play_edition = db_item_data['play_edition'],
-                        blackletter = db_item_data['blackletter'],
-                        collection= collection
-                    )
-                authors = get_authors(db_item_data)
-                edition.authors.add(*authors)
-                edition.save()
+                title = Title.objects.get(work_id=work_id)
+                try:
+                    
+                    edition = Edition.objects.get(title=title, edition_id=edition_id)
+
+                except Edition.DoesNotExist:
+                    # use deep_id to fetch item data
+                    db_item_data = lookup(item_data, deep_id)
+                    #assert db_item_data['greg_full'] == greg_full, f"Mismatch greg_full {db_item_data['greg_full']}:{greg_full}"
+                    edition = Edition.objects.create(
+                            title = title,
+                            edition_id= edition_id,
+                            greg_middle = db_item_data['greg_middle'],
+                            play_type_display = db_item_data['play_type'],
+                            authors_display = db_item_data['authors_display'],
+                            book_edition = db_item_data['book_edition'],
+                            play_edition = db_item_data['play_edition'],
+                            blackletter = db_item_data['blackletter'],
+                            collection= db_item_data['collection_full']
+                        )
+                    authors = get_authors(db_item_data)
+                    edition.authors.add(*authors)
+                    edition.save()
 
         # Create ITEM objects
-        work_ids = Path('backup/work_id_data.tsv').read_text()
+        work_ids = Path('backup/work_id_data.csv').read_text()
         work_ids = work_ids.split('\n')
         work_id_lookup = {}
+        edition_id_lookup = {}
         for row in work_ids[1:]:
-            row = row.split('\t')
-            deep_id = row[0]
-            work_id = row[3]
-            work_id_lookup[deep_id] = work_id
+            if ',' in row:
+                row = row.split(',')
+                deep_id = row[0]
+                work_id = row[1]
+                edition_id = row[2]
+                work_id_lookup[deep_id] = work_id
+                edition_id_lookup[deep_id] = edition_id
 
         web_data = srsly.read_jsonl('web_item_data.jsonl')
         for item in tqdm(web_data, total=1908):
@@ -221,15 +224,8 @@ class Command(BaseCommand):
             
             
             title = Title.objects.get(work_id=work_id_lookup[item['deep_id']]) 
-            editions_to_fix = []
-            if db_item_data['record_type'] == 'Collection':
-                try:
-                    edition = Edition.objects.get(title=title,collection=db_item_data['collection_full'])
-                except Edition.DoesNotExist:
-                    editions_to_fix.append(db_item_data['collection_full'])
-            else:
-                if greg_middle != 'n/a':
-                    edition = Edition.objects.get(title=title,greg_middle=db_item_data['greg_middle'])
+            edition = Edition.objects.get(title=title,edition_id=edition_id_lookup[item['deep_id']])
+                
 
             if title and edition:
                 authors = get_authors(db_item_data)
@@ -328,5 +324,4 @@ class Command(BaseCommand):
                 django_item.stationer_printer_display = item['stationer_printer']
                 
                 django_item.save()
-        print("fix these editions", editions_to_fix)
 

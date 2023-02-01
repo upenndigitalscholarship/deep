@@ -51,6 +51,7 @@ class Title(models.Model): #Work
 
 
 class Edition(models.Model):
+    edition_id = models.CharField("Edition ID", max_length=1000, blank=True, null=True)
     title = models.ForeignKey(Title, on_delete=models.CASCADE)
     authors = models.ManyToManyField('Person')
     authors_display = models.CharField("Authors Display", max_length=1000, blank=True, null=True)
