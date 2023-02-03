@@ -426,7 +426,7 @@ const update_searchSelect = (searchSelect, or=false) => {
     if (filter === 'company') {
       this_choices.setChoices(async () => {
         try {
-          const items = await fetch('/assets/data/first-companies.json');
+          const items = await fetch('/assets/data/title-page-companies.json');
           return items.json();
           
       } catch (err) {
@@ -1085,7 +1085,7 @@ const processQueries = queries => {
           filters.push({'filter':bookEdition,'type':query.blockType})
         } else if (query.searchValue == "Second-plus") { 
           let bookEdition = item => (
-            item.book_edition >= '2'
+            parseInt(item.book_edition) >= parseInt('2')
             )
           filters.push({'filter':bookEdition,'type':query.blockType})
         } else {
@@ -1104,7 +1104,7 @@ const processQueries = queries => {
           filters.push({'filter':bookEdition,'type':query.blockType})
         } else if (query.searchValue == "Second-plus") { 
           let bookEdition = item => (
-            item.play_edition >= '2'
+            parseInt(item.play_edition) >= parseInt('2')
             )
           filters.push({'filter':bookEdition,'type':query.blockType})
         } else {
@@ -1503,7 +1503,7 @@ const processQueries = queries => {
               ORquery.push(bookEdition)
           } else if (values[i] == "Second-plus") { 
             let bookEdition = item => (
-              item.book_edition >= '2'
+              parseInt(item.book_edition) >= parseInt('2')
               )
               ORquery.push(bookEdition)
           } else {
@@ -1521,7 +1521,7 @@ const processQueries = queries => {
               ORquery.push(playEdition)
           } else if (values[i] == "Second-plus") { 
             let playEdition = item => (
-              item.play_edition >= '2'
+              parseInt(item.play_edition) >= parseInt('2')
               )
               ORquery.push(playEdition)
           } else {
