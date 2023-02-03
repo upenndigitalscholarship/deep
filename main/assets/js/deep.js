@@ -1291,7 +1291,7 @@ const processQueries = queries => {
       if (query.searchField == 'first-production') {
         let [ start, end ] = query.searchValue.split('-')
         let firstProduction = item => (
-          item.date_first_performance >= start && item.date_first_performance <= end 
+          parseInt(item.date_first_performance_filter) >= parseInt(start) && parseInt(item.date_first_performance_filter) <= parseInt(end)
           )
         filters.push({'filter':firstProduction,'type':query.blockType})
       }
@@ -1305,7 +1305,7 @@ const processQueries = queries => {
       if (query.searchField == 'date-first-performance-brit-filter') {
         let [ start, end ] = query.searchValue.split('-')
         let firstPerformanceBrit = item => (
-          item.date_first_performance_brit_filter >= start && item.date_first_performance_brit_filter <= end 
+          parseInt(item.date_first_performance_brit_filter) >= parseInt(start) && parseInt(item.date_first_performance_brit_filter) <= parseInt(end) 
           )
         filters.push({'filter':firstPerformanceBrit,'type':query.blockType})
       }
@@ -1678,14 +1678,14 @@ const processQueries = queries => {
         if (fields[i] == 'first-production' && values[i]) {
           let [ start, end ] = values[i].split('-')
           let firstProduction = item => (
-            item.date_first_performance >= start && item.date_first_performance <= end 
+            parseInt(item.date_first_performance_filter) >= parseInt(start) && parseInt(item.date_first_performance_filter) <= parseInt(end)
           )
           ORquery.push(firstProduction)
         }
         if (fields[i] == 'date-first-performance-brit-filter' && values[i]) {
           let [ start, end ] = values[i].split('-')
           let firstPerformanceBrit = item => (
-            item.date_first_performance_brit_filter >= start && item.date_first_performance_brit_filter <= end 
+            parseInt(item.date_first_performance_brit_filter) >= parseInt(start) && parseInt(item.date_first_performance_brit_filter) <= parseInt(end)
           )
           ORquery.push(firstPerformanceBrit)
         }
