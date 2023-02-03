@@ -18,7 +18,7 @@ class Command(BaseCommand):
         call_command('add_author_status')
         call_command('add_bookseller_filter')
         call_command('add_britdrama')
-        #call_command('add_company_first_performance')
+        call_command('add_company_first_performance_annals')
         call_command('add_title_page_company')
         call_command('add_date_first_performance')
         call_command('add_date_first_publication')

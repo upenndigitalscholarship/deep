@@ -1893,7 +1893,7 @@ function expand(e, deep_id) {
               <p>
                 ${!data.date_first_performance ? '' : '<span class="expand">Date of First Production (Annals): </span><span id="date_first_performance">' + data.date_first_performance + '</span><br>'}
                 ${!data.date_first_performance_brit_display ? '' : '<span class="expand">Date of First Production (BritDrama): </span><span id="date_first_performance">' + data.date_first_performance_brit_display + '</span><br>'}
-                ${!data.company_first_performance ? '' : '<span class="expand">Company of First Production (Annals): </span><span id="company_first_performance">' + data.company_first_performance + '</span><br>'}
+                ${!data.company_first_performance_filter ? '' : '<span class="expand">Company of First Production (Annals): </span><span id="company_first_performance">' + data.company_first_performance_filter + '</span><br>'}
                 ${!data.company_first_performance_brit_display ? '' : '<span class="expand">Company of First Production (BritDrama): </span><span id="company_first_performance">' + data.company_first_performance_brit_display + '</span><br>'}
                 ${!data.company_attribution ? '' : '<span class="expand">Company Attribution (Title-Page): </span><span id="company_attribution">' + data.company_attribution + '</span><br>'}
               </p>

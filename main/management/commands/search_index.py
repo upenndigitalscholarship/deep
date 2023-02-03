@@ -19,8 +19,12 @@ def item_to_dict(item:Item):
     #stationer_publisher_filter = ';'.join(list(item.stationer_publisher.all().values_list('name', flat=True)))
     stationer_bookseller = '; '.join(list(item.stationer_bookseller.all().values_list('name', flat=True)))
     #stationer_bookseller_filter = ';'.join(list(item.stationer_bookseller.all().values_list('name', flat=True)))
-
+    title_page_company_filter = ';'.join(list(item.title_page_company_filter.all().values_list('name', flat=True)))
+    company_first_performance_brit_filter = '; '.join(list(item.edition.title.company_first_performance_brit_filter.all().values_list('name', flat=True)))
+    company_first_performance_annals_filter = '; '.join(list(item.edition.title.company_first_performance_annals_filter.all().values_list('name', flat=True)))
+    
     item_dict = item.__dict__ 
+    item_dict['title_page_company_filter'] = title_page_company_filter
     item_dict['stationer_printer'] = stationer_printer
     #item_dict['stationer_printer_filter'] = stationer_printer_filter
     item_dict['stationer_publisher'] = stationer_publisher
@@ -93,6 +97,9 @@ def item_to_dict(item:Item):
 
     
     title = title.__dict__
+    title["company_first_performance_brit_filter"] = company_first_performance_brit_filter
+    title["company_first_performance_annals_filter"] = company_first_performance_annals_filter
+    
     if not title.get('company_first_performance_annals_display',None): # Replace none with 'None' (else search crashes)
         title["company_first_performance_annals_display"] = 'None'
     if not title.get('company_first_performance_annals_filter',None): # Replace none with 'None' (else search crashes)

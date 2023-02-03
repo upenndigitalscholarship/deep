@@ -75,18 +75,21 @@ class Command(BaseCommand):
         title_page_author_choices.insert(1, {"value":0,"label":"None" })
         title_page_author_choices.insert(2, {"value":0,"label":"---" })
         srsly.write_json(static_dir / 'data/title_page_author_filter.json', title_page_author_choices)
-        ## Companies
+        
+        ## Company (Title-Page Attribution) 
         db_companies = [] 
-        for item in Item.objects.all().order_by('edition__title'):
-            if item and item.company.name and item.company.name not in db_companies:
-                db_companies.append(item.company.name)
+        for item in Item.objects.all():
+            for company in item.title_page_company_filter.all():
+                if company.name not in db_companies:
+                    db_companies.append(company.name)
+        db_companies.sort()
         companies = []
         for i, company in enumerate(db_companies):
             companies.append({
                 'value': i,
                 'label': company.strip()
             })
-        srsly.write_json(static_dir / 'data/companies.json', companies)
+        srsly.write_json(static_dir / 'data/title-page-companies.json', companies)
 
         # Genre BritDrama 
         genre_BritDrama = [a[0] for a in Title.objects.values_list('genre_brit_filter').distinct() if a[0]]
@@ -161,51 +164,36 @@ class Command(BaseCommand):
         ## Company First Performance Annals
         # very few records have a company of first performance, to limit the list to just companies that 
         # appear a company of first performance in the data, this field needs its own set of valid choices
-        first_companies = [company[0] for company in Title.objects.order_by('title').values_list('company_first_performance_annals_filter').distinct() if company[0] is not None and company[0] != 'n/a' or 'Unknown' ]
-        first_companies = list(set(first_companies)) #also sorts alphabetically, who knew!?
-        first_companies_distinct = []
-        for g in first_companies:
-            if not g:
-                g = "None"
-            if ';' in g:
-                for l in g.split(';'):
-                    first_companies_distinct.append(l.strip())
-            else:
-                first_companies_distinct.append(g)
-        first_companies_distinct = list(set(first_companies_distinct))
-        first_companies_distinct.sort()
-        first_companies_json = []
-        for i, company in enumerate(first_companies_distinct):
-            if not company == 'None':
-                first_companies_json.append({
-                    'value': i,
-                    'label': company.strip()
-                })
-        srsly.write_json(static_dir / 'data/first-companies.json', first_companies_json)
-
+        db_companies = [] 
+        for item in Item.objects.all():
+            for company in item.edition.title.company_first_performance_annals_filter.all():
+                if company.name not in db_companies:
+                    db_companies.append(company.name)
+        db_companies.sort()
+        companies = []
+        for i, company in enumerate(db_companies):
+            companies.append({
+                'value': i,
+                'label': company.strip()
+            })
+        srsly.write_json(static_dir / 'data/first-companies.json', companies)
+        
+        
         ## Company First Performance British Drama
-        first_companies = [company[0] for company in Title.objects.order_by('title').values_list('company_first_performance_brit_filter').distinct() if company[0] is not None and company[0] != 'n/a' or 'Unknown' ]
-        first_companies = list(set(first_companies)) #also sorts alphabetically, who knew!?
-        first_companies_distinct = []
-        for g in first_companies:
-            if not g:
-                g = "None"
-            if ';' in g:
-                for l in g.split(';'):
-                    first_companies_distinct.append(l.strip())
-            else:
-                first_companies_distinct.append(g)
-        first_companies_distinct = list(set(first_companies_distinct))
-        first_companies_distinct.sort()
-        first_companies_json = []
-        for i, company in enumerate(first_companies_distinct):
-            if not company == 'None':
-                first_companies_json.append({
-                    'value': i,
-                    'label': company.strip()
-                })
-        srsly.write_json(static_dir / 'data/first-companies-brit.json', first_companies_json)
-
+        db_companies = [] 
+        for item in Item.objects.all():
+            for company in item.edition.title.company_first_performance_brit_filter.all():
+                if company.name not in db_companies:
+                    db_companies.append(company.name)
+        db_companies.sort()
+        companies = []
+        for i, company in enumerate(db_companies):
+            companies.append({
+                'value': i,
+                'label': company.strip()
+            })
+        srsly.write_json(static_dir / 'data/first-companies-brit.json', companies)
+        
         ## Play Type Filter
         playtypes = []
         playquery = Edition.objects.values_list('play_type_filter')
@@ -291,7 +279,6 @@ class Command(BaseCommand):
                 printers.append(p)
         printers = list(set(printers))
         printers.sort()
-        print(printers)
         printers_json = []
         for i, form in enumerate(printers):
             if form != "":

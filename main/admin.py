@@ -2,7 +2,7 @@
 from django.apps import apps
 from django.contrib import admin
 
-from main.models import Edition, Item, Person, Title
+from main.models import Edition, Item, Person, Title, Company
 
 from django import forms
 
@@ -24,6 +24,11 @@ class PeopleAdmin(admin.ModelAdmin):
     pass 
 
 admin.site.register(Person, PeopleAdmin)
+
+class CompanyAdmin(admin.ModelAdmin):
+    pass 
+
+admin.site.register(Company, CompanyAdmin)
 
 # models = apps.get_models()
 # for model in models:

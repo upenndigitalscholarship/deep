@@ -18,8 +18,8 @@ class Title(models.Model): #Work
     
     work_id = models.FloatField("Work ID",blank=True, null=True)
     title = models.CharField("Title",max_length=1000)
-    title_alternative_keywords = models.CharField("Title Alternative Keywords",max_length=1000, null=True, default='')
-    greg = models.CharField("Greg (Brief)(e.g., 197 for Hamlet)", max_length=1000)
+    title_alternative_keywords = models.CharField("Work Alternative Keywords",max_length=1000, null=True, blank=True, default='')
+    greg = models.CharField("Greg (Brief)(e.g., 197 for Hamlet)", max_length=1000, blank=True)
     brit_drama_number = models.CharField("BritDrama #", max_length=1000, blank=True, null=True)
 
     genre_annals_display = models.CharField("Display Genre (Annals)", max_length=1000, blank=True, null=True)
@@ -28,7 +28,7 @@ class Title(models.Model): #Work
     genre_brit_filter = models.CharField("Filter Genre (BritDrama)", max_length=1000, blank=True, null=True)
 
 
-    date_first_publication = models.CharField("Date of First Publication", max_length=1000)
+    date_first_publication = models.CharField("Date of First Publication", max_length=1000,blank=True)
     date_first_publication_display = models.CharField("Date of First Publication Display", max_length=1000, blank=True, null=True)
 
     date_first_performance = models.CharField("Date of First Performance", max_length=1000, blank=True, null=True)
@@ -60,7 +60,7 @@ class Title(models.Model): #Work
 class Edition(models.Model):
     edition_id = models.CharField("Edition ID", max_length=1000, blank=True, null=True)
     title = models.ForeignKey(Title, on_delete=models.CASCADE)
-    authors = models.ManyToManyField('Person')
+    authors = models.ManyToManyField('Person',blank=True)
     authors_display = models.CharField("Authors Display", max_length=1000, blank=True, null=True)
     greg_middle = models.CharField("Greg (middle)(e.g., 197b for the second edition of Hamlet)", max_length=1000, blank=True, null=True)
     book_edition = models.CharField("Book Edition", max_length=1000, blank=True, null=True)
@@ -128,14 +128,14 @@ class Item(models.Model): #Previously known as "DEEP"
     paratext_charachter_list = models.CharField("Paratext: Character List", max_length=1000, blank=True, null=True)
     paratext_other_paratexts = models.CharField("Paratext: Other Paratexts", max_length=1000, blank=True, null=True)
     stationer_colophon = models.CharField("Stationer: Colophon", max_length=1000, blank=True, null=True)
-    stationer_printer = models.ManyToManyField('Person', related_name="stationer_printer")
+    stationer_printer = models.ManyToManyField('Person', related_name="stationer_printer",blank=True)
     stationer_printer_display = models.CharField("Stationer: Printer Display", max_length=1000, blank=True, null=True)
-    stationer_publisher = models.ManyToManyField('Person', related_name="stationer_publisher")
+    stationer_publisher = models.ManyToManyField('Person', related_name="stationer_publisher",blank=True)
     stationer_publisher_display = models.CharField("Stationer: Publisher Display", max_length=1000, blank=True, null=True)
 
     stationer_license = models.CharField("Stationer: License", max_length=1000, blank=True, null=True)
     stationer_imprint_location = models.CharField("Stationer: Imprint Location", max_length=1000, blank=True, null=True)
-    stationer_bookseller = models.ManyToManyField('Person', related_name="stationer_bookseller")
+    stationer_bookseller = models.ManyToManyField('Person', related_name="stationer_bookseller",blank=True)
     stationer_bookseller_display = models.CharField("Stationer: Bookseller Display", max_length=1000, blank=True, null=True)
     stationer_entries_in_register = models.CharField("Stationer: Entries in Register", max_length=1000, blank=True, null=True)
     stationer_additional_notes = models.CharField("Additional Notes", max_length=1000, blank=True, null=True)
