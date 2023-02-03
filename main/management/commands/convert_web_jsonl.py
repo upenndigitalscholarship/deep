@@ -113,6 +113,7 @@ def remove_variant_link_text(item:dict):
     else:
         return item["variants"]      
 
+
 class Command(BaseCommand):
     help = 'Load jsonl file to Django models.'
     
@@ -248,7 +249,6 @@ class Command(BaseCommand):
                     format = item['format'],
                     leaves = item['leaves'],
                     composition_date = db_item_data['composition_date_display'],
-                    company_attribution = item['company_attribution'],
                     title_page_title = item["title_page_title"],
                     title_page_author = item["title_page_author"],
                     title_page_performance = item["title_page_performance"],
@@ -289,7 +289,6 @@ class Command(BaseCommand):
                 stationer_bookseller = get_stationer_bookseller(db_item_data)
                 django_item.stationer_bookseller.add(*stationer_bookseller)
                 
-                django_item.company, _ = Company.objects.get_or_create(name=django_item.company_attribution)
                 django_item.save()
             else:
                 print(f'error, no title/edition {item["deep_id"]}')

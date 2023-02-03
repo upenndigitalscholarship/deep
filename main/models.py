@@ -4,6 +4,15 @@ from django.db import models
 # The models create a hierarchy of Title, Edition and Issue
 # Data at the edition or issue level can be updated without affecting the Title
 
+class Company(models.Model):
+    name = models.CharField(max_length=1000, null=True)
+
+    class Meta:
+        verbose_name_plural = "companies"
+
+    def __str__(self):
+        return self.name or ''
+
 
 class Title(models.Model): #Work
     
@@ -21,22 +30,20 @@ class Title(models.Model): #Work
 
     date_first_publication = models.CharField("Date of First Publication", max_length=1000)
     date_first_publication_display = models.CharField("Date of First Publication Display", max_length=1000, blank=True, null=True)
-    # TODO Where is this on the site? I don't see in DB
+
     date_first_performance = models.CharField("Date of First Performance", max_length=1000, blank=True, null=True)
     date_first_performance_brit_filter = models.CharField("Date of First Performance (BritDrama)", max_length=1000, blank=True, null=True)
     date_first_performance_brit_display = models.CharField("Date of First Performance (BritDrama) (display)", max_length=1000, blank=True, null=True)
 
     company_first_performance_annals_display = models.CharField("Company First Performance (Annals)(display)", max_length=1000, blank=True, null=True)
-    company_first_performance_annals_filter = models.CharField("Company First Performance (Annals):filter", max_length=1000, blank=True, null=True)
+    company_first_performance_annals_filter = models.ManyToManyField(Company,blank=True, related_name="company_first_performance_annals_filter")
     
     company_first_performance_brit_display = models.CharField("Company of First Performance (BritDrama) (display)", max_length=1000, blank=True, null=True)
-    company_first_performance_brit_filter = models.CharField("Company of First Performance (BritDrama): filter terms", max_length=1000, blank=True, null=True)
+    company_first_performance_brit_filter = models.ManyToManyField(Company,blank=True)
     
-
     total_editions = models.CharField("Total Editions", blank=True, null=True, max_length=1000)
     stationers_register = models.CharField("Stationers Register", max_length=1000, blank=True, null=True)
     
-    # TODO Is this data in DB?
     genre_wiggins = models.CharField("Genre (Wiggins)", max_length=1000, blank=True, null=True)
     #date_first_performance_wiggins = models.CharField("Date of First Performance (Wiggins)", max_length=1000)
     #company_first_performance_wiggins = models.ForeignKey('Company', on_delete=models.CASCADE, related_name="company_first_performance_wiggins")
@@ -95,11 +102,9 @@ class Item(models.Model): #Previously known as "DEEP"
     stc = models.CharField("STC/Wing #", max_length=1000, blank=True, null=True)
     format = models.CharField("Format", max_length=1000, blank=True, null=True)
     leaves = models.CharField("Leaves", max_length=1000, blank=True, null=True)
-    company_attribution = models.CharField("Company Attribution", max_length=1000, blank=True, null=True)
-    company = models.ForeignKey('Company', on_delete=models.CASCADE, related_name="variant_company", blank=True, null=True)
     composition_date = models.CharField("Composition Date", max_length=1000, blank=True, null=True)
-    #old_title = models.CharField(max_length=1000) What is this?
-    #title_page = models.ForeignKey('TitlePage', on_delete=models.CASCADE)
+    title_page_company_display = models.CharField("Company (Title Page Attribution) Display", max_length=1000, blank=True, null=True)
+    title_page_company_filter = models.ManyToManyField(Company,blank=True)
     date_first_publication = models.CharField("Date of First Publication", max_length=1000, blank=True, null=True)
     title_page_title = models.CharField("Title Page: Title", max_length=1000, blank=True, null=True)
     title_page_author = models.CharField("Title Page: Author", max_length=1000, blank=True, null=True)
@@ -181,16 +186,6 @@ class Person(models.Model):
 
     def __str__(self):
         return self.name
-
-class Company(models.Model):
-    name = models.CharField(max_length=1000, null=True)
-
-    class Meta:
-        verbose_name_plural = "companies"
-
-    def __str__(self):
-        return self.name or ''
-
 
 class Theater(models.Model):
     name = models.CharField(max_length=1000)

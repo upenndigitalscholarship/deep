@@ -4,6 +4,19 @@ from tqdm import tqdm
 from main.models import *
 import numpy as np
 
+def create_company_first_performance(companies:str):
+    results = []
+    if companies:
+        if ';' in companies:
+            for split in companies.split(';'):
+                company, created = Company.objects.get_or_create(name=split.strip())
+                results.append(company)
+        else: 
+            company, created = Company.objects.get_or_create(name=companies.strip()) 
+            results.append(company)
+    return results
+
+
 class Command(BaseCommand):
     help = 'Request pages for old site and save to disk as html'
     
@@ -41,10 +54,10 @@ class Command(BaseCommand):
                 title.genre_brit_filter = genre_brit_filter
                 title.date_first_performance_brit_filter = date_first_performance_brit_filter
                 title.date_first_performance_brit_display = date_first_performance_brit_display
-                title.company_first_performance_brit_filter = company_first_performance_brit_filter
+                company_first_performance = create_company_first_performance(company_first_performance_brit_filter)
+                title.company_first_performance_brit_filter.add(*company_first_performance)
                 title.company_first_performance_brit_display = company_first_performance_brit_display
                 title.save()
                 
         print("Done.")
-        
         
