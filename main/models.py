@@ -31,7 +31,8 @@ class Title(models.Model): #Work
     date_first_publication = models.CharField("Date of First Publication", max_length=1000,blank=True)
     date_first_publication_display = models.CharField("Date of First Publication Display", max_length=1000, blank=True, null=True)
 
-    date_first_performance = models.CharField("Date of First Performance", max_length=1000, blank=True, null=True)
+    date_first_performance = models.CharField("Date of First Performance (Annals): Display", max_length=1000, blank=True, null=True)
+    date_first_performance_filter = models.CharField("Date of First Performance (Annals): Filter", max_length=1000, blank=True, null=True)
     date_first_performance_brit_filter = models.CharField("Date of First Performance (BritDrama)", max_length=1000, blank=True, null=True)
     date_first_performance_brit_display = models.CharField("Date of First Performance (BritDrama) (display)", max_length=1000, blank=True, null=True)
 

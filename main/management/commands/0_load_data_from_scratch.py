@@ -52,7 +52,8 @@ class Command(BaseCommand):
         self.stdout.write(self.style.SUCCESS('add_variant_description'))
         call_command('readd_formatting_from_db')
         self.stdout.write(self.style.SUCCESS('readd_formatting_from_db'))
-
+        call_command('add_date_first_performance_filter')
+        self.stdout.write(self.style.SUCCESS('add_date_first_performance_filter'))
         # re-add sites
         call_command('loaddata','backup/sites.json')
         self.stdout.write(self.style.SUCCESS('loaddata sites'))
