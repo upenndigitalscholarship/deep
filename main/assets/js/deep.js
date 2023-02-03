@@ -1175,18 +1175,18 @@ const processQueries = queries => {
       if (query.searchField == 'company') {  
         if (query.searchValue == "Any") {
             let company = item => (
-                item.company_attribution != ""
+                item.title_page_company_filter != ""
             )
             filters.push({'filter':company,'type':query.blockType})
         }    
         else if (query.searchValue == "None") {
             let company = item => (
-                item.company_attribution == "n/a"
+                item.title_page_company_filter == "n/a"
             )
             filters.push({'filter':company,'type':query.blockType})    
         } else {
             let company = item => (
-                item.company_attribution.toLowerCase().includes(query.searchValue.toLowerCase())
+                item.title_page_company_filter.toLowerCase().includes(query.searchValue.toLowerCase())
             )
             filters.push({'filter':company,'type':query.blockType})    
           
@@ -1587,18 +1587,18 @@ const processQueries = queries => {
         
           if (values[i] == "Any") {
             let company = item => (
-                item.company_attribution != ""
+                item.title_page_company_filter != ""
             )
             ORquery.push(company)
           }    
           if (values[i] == "None") {
             let company = item => (
-               item.company_attribution == "n/a"
+               item.title_page_company_filter == "n/a"
             )
             ORquery.push(company)    
           } else {
             let company = item => (
-              item.company_attribution.toLowerCase().includes(values[i].toLowerCase())
+              item.title_page_company_filter.toLowerCase().includes(values[i].toLowerCase())
             )
             ORquery.push(company)    
         
