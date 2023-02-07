@@ -25,11 +25,11 @@ def item_to_dict(item:Item):
     
     item_dict = item.__dict__ 
     item_dict['title_page_company_filter'] = title_page_company_filter
-    item_dict['stationer_printer'] = stationer_printer
+    item_dict['stationer_printer_filter'] = stationer_printer
     #item_dict['stationer_printer_filter'] = stationer_printer_filter
-    item_dict['stationer_publisher'] = stationer_publisher
+    item_dict['stationer_publisher_filter'] = stationer_publisher
     #item_dict['stationer_publisher_filter'] = stationer_publisher_filter
-    item_dict['stationer_bookseller'] = stationer_bookseller
+    item_dict['stationer_bookseller_filter'] = stationer_bookseller
     #item_dict['stationer_bookseller_filter'] = stationer_bookseller_filter
 
     if not item_dict.get('title_page_author_filter',None): # Replace none with 'None' (else search crashes)
