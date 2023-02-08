@@ -918,7 +918,7 @@ const processQueries = queries => {
       }
       if (query.searchField == 'stationer') { 
         let stationer = item => (
-            item.stationer_printer.toLowerCase().includes(query.searchValue.toLowerCase()) || 
+            item.stationer_printer_filter.toLowerCase().includes(query.searchValue.toLowerCase()) || 
             item.stationer_publisher_filter.toLowerCase().includes(query.searchValue.toLowerCase()) || 
             item.stationer_bookseller_filter.toLowerCase().includes(query.searchValue.toLowerCase())
             )
@@ -1220,7 +1220,7 @@ const processQueries = queries => {
       }
       if (query.searchField == 'printer') {
         let printer = item => (
-          item.stationer_printer.toLowerCase().includes(query.searchValue.toLowerCase())
+          item.stationer_printer_filter.toLowerCase().includes(query.searchValue.toLowerCase())
           )
         filters.push({'filter':printer,'type':query.blockType})
       }

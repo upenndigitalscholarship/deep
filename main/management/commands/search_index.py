@@ -24,11 +24,8 @@ def item_to_dict(item:Item):
     item_dict = item.__dict__ 
     item_dict['title_page_company_filter'] = title_page_company_filter
     item_dict['stationer_printer_filter'] = stationer_printer
-    #item_dict['stationer_printer_filter'] = stationer_printer_filter
     item_dict['stationer_publisher_filter'] = stationer_publisher
-    #item_dict['stationer_publisher_filter'] = stationer_publisher_filter
     item_dict['stationer_bookseller_filter'] = stationer_bookseller
-    #item_dict['stationer_bookseller_filter'] = stationer_bookseller_filter
 
     if not item_dict.get('title_page_author_filter',None): # Replace none with 'None' (else search crashes)
         item_dict["title_page_author_filter"] = 'None'
@@ -41,14 +38,14 @@ def item_to_dict(item:Item):
         
     if not item_dict.get('title_page_has_latin',None): 
         item_dict["title_page_has_latin"] = 'No'
-    if not item_dict.get('stationer_publisher_filter',None): 
-        item_dict["stationer_publisher_filter"] = 'None'
-    if not item_dict.get('stationer_printer_filter',None): 
-        item_dict["stationer_printer_filter"] = 'None'
-    if not item_dict.get('stationer_imprint_location',None): 
+    # if not item_dict.get('stationer_publisher_filter',None): 
+    #     item_dict["stationer_publisher_filter"] = 'None'
+    # if not item_dict.get('stationer_printer_filter',None): 
+    #     item_dict["stationer_printer_filter"] = 'None'
+    # if not item_dict.get('stationer_imprint_location',None): 
         item_dict["stationer_imprint_location"] = 'None'
-    if not item_dict.get('stationer_bookseller_filter',None): 
-        item_dict["stationer_bookseller_filter"] = 'None'
+    # if not item_dict.get('stationer_bookseller_filter',None): 
+    #     item_dict["stationer_bookseller_filter"] = 'None'
     item_dict['variant_link'] = ''
     for link in item.variant_links.all():
         item_dict['variant_link'] += f'<a target="_blank" href="../{link.deep_id}">{link.greg_full}</a> '
