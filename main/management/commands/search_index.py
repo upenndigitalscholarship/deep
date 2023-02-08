@@ -14,11 +14,9 @@ def item_to_dict(item:Item):
     title = item.edition.title
     
     stationer_printer = '; '.join(list(item.stationer_printer.all().values_list('name', flat=True)))
-    #stationer_printer_filter = ';'.join(list(item.stationer_printer.all().values_list('name', flat=True)))
     stationer_publisher = '; '.join(list(item.stationer_publisher.all().values_list('name', flat=True)))
-    #stationer_publisher_filter = ';'.join(list(item.stationer_publisher.all().values_list('name', flat=True)))
     stationer_bookseller = '; '.join(list(item.stationer_bookseller.all().values_list('name', flat=True)))
-    #stationer_bookseller_filter = ';'.join(list(item.stationer_bookseller.all().values_list('name', flat=True)))
+
     title_page_company_filter = ';'.join(list(item.title_page_company_filter.all().values_list('name', flat=True)))
     company_first_performance_brit_filter = '; '.join(list(item.edition.title.company_first_performance_brit_filter.all().values_list('name', flat=True)))
     company_first_performance_annals_filter = '; '.join(list(item.edition.title.company_first_performance_annals_filter.all().values_list('name', flat=True)))

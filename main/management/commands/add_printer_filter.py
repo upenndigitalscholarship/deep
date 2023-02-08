@@ -2,34 +2,19 @@ from django.core.management.base import BaseCommand
 from pathlib import Path
 from tqdm import tqdm
 from main.models import *
-import numpy as np
+from rich import print
 
 class Command(BaseCommand):
-    help = 'Load stationer_printer_filter data from old database'
+    help = 'Load stationer_printer data from old database'
     
     def handle(self, *args, **options):
-         #f"{deep_id}\t{genre_annals_filter}\t{genre_annals_display}\n"
+        print("[blue] 🐸 Adding Printer Data from Old DB 🐸 [/blue]")
         tsv_file = Path('backup/printer.tsv').read_text()
-        data = {}
-        for row in tsv_file.split('\n'):
+        for row in tqdm(tsv_file.split('\n')):
             deep_id, printer = row.split('\t')
-            if data.get(deep_id,None):
-                data[deep_id].append(printer)
-            else:
-                data[deep_id] = []
-                data[deep_id].append(printer)
-
-        for key in data.keys():
-            try:
-                item = Item.objects.get(deep_id=key)
-                #print('; '.join(data[key]), item)
-                if len(data[key]) == 1:
-                    item.stationer_printer_filter = data[key][0]
-                    item.save() 
-                else:
-                    item.stationer_printer_filter = ';'.join(data[key])
-                    item.save() 
-            except Exception as e:
-                print(key, e)
+            stationer_printer, created = Person.objects.get_or_create(name=printer.strip())
+            item = Item.objects.get(deep_id=deep_id)
+            item.stationer_printer.add(stationer_printer)
+            item.save()
+        print("[green] 🦩 Finished 🦩 [/green]")
             
-        
