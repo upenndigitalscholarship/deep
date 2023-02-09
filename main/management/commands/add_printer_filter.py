@@ -8,7 +8,7 @@ class Command(BaseCommand):
     help = 'Load stationer_printer data from old database'
     
     def handle(self, *args, **options):
-        print("[blue] 🐸 Adding Printer Data from Old DB 🐸 [/blue]")
+        print("[chartreuse2] 🐸 Adding Printer Data from Old DB 🐸 [/chartreuse2]")
         tsv_file = Path('backup/printer.tsv').read_text()
         for row in tqdm(tsv_file.split('\n')):
             deep_id, printer = row.split('\t')
