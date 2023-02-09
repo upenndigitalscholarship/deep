@@ -42,7 +42,7 @@ def item_to_dict(item:Item):
     #     item_dict["stationer_publisher_filter"] = 'None'
     # if not item_dict.get('stationer_printer_filter',None): 
     #     item_dict["stationer_printer_filter"] = 'None'
-    # if not item_dict.get('stationer_imprint_location',None): 
+    if not item_dict.get('stationer_imprint_location',None): 
         item_dict["stationer_imprint_location"] = 'None'
     # if not item_dict.get('stationer_bookseller_filter',None): 
     #     item_dict["stationer_bookseller_filter"] = 'None'
