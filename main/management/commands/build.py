@@ -9,6 +9,7 @@ from django.db.models import Max, Min
 from django.template.loader import render_to_string
 from django.contrib.flatpages.models import FlatPage
 from tqdm import tqdm
+from django.core.management import call_command
 
 from main.management.commands.search_index import item_to_dict
 from main.models import Edition, Item, Person, Title
@@ -278,6 +279,7 @@ class Command(BaseCommand):
             else:
                 printers.append(p)
         printers = list(set(printers))
+        printers = [p.replace('(?)','') for p in printers]
         printers.sort()
         printers_json = []
         for i, form in enumerate(printers):
@@ -298,6 +300,7 @@ class Command(BaseCommand):
             else:
                 publishers.append(p)
         publishers = list(set(publishers))
+        publishers = [p.replace('(?)','') for p in publishers]
         publishers.sort()
         publishers_json = []
         for i, form in enumerate(publishers):
@@ -319,6 +322,7 @@ class Command(BaseCommand):
             else:
                 booksellers.append(p)
         booksellers = list(set(booksellers))
+        booksellers = [p.replace('(?)','') for p in booksellers]
         booksellers.sort()
         booksellers_json = []
         for i, form in enumerate(booksellers):
@@ -332,13 +336,15 @@ class Command(BaseCommand):
         #Stationer
         stationers = printers + publishers + booksellers 
         stationers = list(set(stationers))
+        stationers = [s.replace('(?)','') for s in stationers]
         stationers.sort()
         stationer_json = []
         for i, form in enumerate(stationers):
-            stationer_json.append({
-                'value': i,
-                'label': form.strip()
-            })
+            if form:
+                stationer_json.append({
+                    'value': i,
+                    'label': form.strip()
+                })
         srsly.write_json(static_dir / 'data/stationer.json', stationer_json)
         
         #Imprint Location
@@ -360,7 +366,7 @@ class Command(BaseCommand):
         editions.sort()
         editions_json = []
         for i, form in enumerate(editions):
-            if form != 1:
+            if form != 1 and form != 0:
                 editions_json.append({
                     'value': i,
                     'label': str(form)
@@ -377,7 +383,7 @@ class Command(BaseCommand):
         editions.sort()
         editions_json = []
         for i, form in enumerate(editions):
-            if form != 1:
+            if form != 1 and form != 0:
                 editions_json.append({
                     'value': i,
                     'label': str(form)
@@ -429,5 +435,5 @@ class Command(BaseCommand):
         end = time.time()
         self.stdout.write(self.style.SUCCESS(f'Build Complete in {end-start:.2f} seconds'))
         data = srsly.read_json('main/assets/data/item_data.json')
-        data = list(data)
+        call_command('collectstatic','--noinput')
         self.stdout.write(self.style.SUCCESS(f'{len(data)}'))

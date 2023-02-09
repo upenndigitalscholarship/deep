@@ -432,6 +432,10 @@
     "label":"Calvert, George"
   },
   {
+    "value":722,
+    "label":"Cambridge University printers"
+  },
+  {
     "value":109,
     "label":"Campion, Thomas"
   },
@@ -1260,6 +1264,10 @@
     "label":"Johnson, Arthur"
   },
   {
+    "value":721,
+    "label":"Johnson, Thomas"
+  },
+  {
     "value":281,
     "label":"Johnstoun, James"
   },
@@ -1362,6 +1370,10 @@
   {
     "value":305,
     "label":"Law, Matthew"
+  },
+  {
+    "value":719,
+    "label":"Le Noir, Phillipe"
   },
   {
     "value":697,
@@ -1522,6 +1534,10 @@
   {
     "value":653,
     "label":"Marsh, Henry (2)"
+  },
+  {
+    "value":718,
+    "label":"Marsh, Henry (STC)"
   },
   {
     "value":564,
@@ -1686,6 +1702,10 @@
   {
     "value":38,
     "label":"Niclaes, Hendrik"
+  },
+  {
+    "value":720,
+    "label":"Nicolaus, Bamburgensis (pseud)"
   },
   {
     "value":68,
@@ -2006,6 +2026,10 @@
   {
     "value":115,
     "label":"Rowley, William"
+  },
+  {
+    "value":717,
+    "label":"Roybould, William"
   },
   {
     "value":576,

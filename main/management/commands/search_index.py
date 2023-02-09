@@ -82,6 +82,11 @@ def item_to_dict(item:Item):
     else:
         edition["blackletter"] = "Yes" 
         
+    if edition['book_edition'] == '0':
+        edition['book_edition'] = 'n/a'
+    if edition['play_edition'] == '0':
+        edition['play_edition'] = 'n/a'
+
     del edition['id']
     if '_state' in edition.keys():
         del edition['_state']    
