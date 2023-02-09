@@ -2,6 +2,15 @@
 
 DEEP: Database of Early English Playbooks allows scholars and students to investigate the publishing, printing, and marketing of English Renaissance drama in ways not possible using any other print or electronic resource. An easy-to-use and highly customizable search engine of every playbook produced in England, Scotland, and Ireland from the beginning of printing through 1660, DEEP provides a wealth of information about the original playbooks, their title-pages, paratextual matter, advertising features, bibliographic details, and theatrical backgrounds.
 
+# Introduction
+
+The current project was build in 2022-23.  It is a Django application that is used to manage the data and to generate a static website. Here are the main components and how they work: 
+- Django project in the `main` folder. Includes a build command that can be called in admin or manage.py. The site is built and saved to the `site` directory.  
+- `item_data.json`: the Django database is flattened by search_index.py and build.py into a json file.  
+- `deep.js`: is the main application file. It controls the filtering logic of the data. Basically, it reads the current search fields and creates an array of filters given the current fields and input in those fields.  It then reduces the item_data using those filters and return the result.  
+- There are three main kinds of input fields: text input (simple text entry), choice fields (with a searchable dropdown of choices using [Choices.js](https://github.com/Choices-js/Choices)) and date fields (text input for dates). 
+- The results table uses [List.js](https://listjs.com/) for sorting. 
+
 
 # Migration Process
 
