@@ -195,14 +195,14 @@
                 {% if not data.stationer_printer and not data.stationer_publisher and not data.stationer_bookseller and data.stationer_entries_in_register is None and not data.stationer_additional_notes %}
                 None
                 {% endif %}
-                {% if data.stationer_printer %}
-                <span class="expand">Printer: </span><span id="stationer_printer">{{ data.stationer_printer }}</span><br>
+                {% if data.stationer_printer_filter %}
+                <span class="expand">Printer: </span><span id="stationer_printer">{{ data.stationer_printer_display }}</span><br>
                 {% endif %}
-                {% if data.stationer_publisher %}
-                <span class="expand">Publisher: </span><span id="stationer_publisher">{{ data.stationer_publisher }}</span><br>
+                {% if data.stationer_publisher_filter %}
+                <span class="expand">Publisher: </span><span id="stationer_publisher">{{ data.stationer_publisher_display }}</span><br>
                 {% endif %}
-                {% if data.stationer_bookseller %}
-                <span class="expand">Bookseller: </span><span id="stationer_bookseller">{{ data.stationer_bookseller }}</span><br>
+                {% if data.stationer_bookseller_filter %}
+                <span class="expand">Bookseller: </span><span id="stationer_bookseller">{{ data.stationer_bookseller_display }}</span><br>
                 {% endif %}
                 {% if data.stationer_entries_in_register == "None" %}
                 <span class='expand'>Entries in Stationers' Register: </span><span id='stationer_entries_in_register'>{{ data.stationer_entries_in_register }}</span><br>

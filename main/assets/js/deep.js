@@ -1339,9 +1339,9 @@ const processQueries = queries => {
         }
         if (fields[i] == 'stationer' && values[i]) { 
           let stationer = item => (
-              item.stationer_printer.toLowerCase().includes(values[i].toLowerCase()) || 
-              item.stationer_publisher.toLowerCase().includes(values[i].toLowerCase()) || 
-              item.stationer_bookseller.toLowerCase().includes(values[i].toLowerCase())
+              item.stationer_printer_filter.toLowerCase().includes(values[i].toLowerCase()) || 
+              item.stationer_publisher_filter.toLowerCase().includes(values[i].toLowerCase()) || 
+              item.stationer_bookseller_filter.toLowerCase().includes(values[i].toLowerCase())
               )
               ORquery.push(stationer)
         }
@@ -1960,10 +1960,10 @@ function expand(e, deep_id) {
             <div class="col-12">
               <strong>Stationer Information</strong>
               <p>
-                ${!data.stationer_printer && !data.stationer_publisher && !data.stationer_bookseller && data.stationer_entries_in_register === "None" && !data.stationer_additional_notes ? 'None' : '' }
-                ${!data.stationer_printer ? '' : '<span class="expand">Printer: </span><span id="stationer_printer">' + data.stationer_printer + '</span><br>'}
-                ${!data.stationer_publisher ? '' : '<span class="expand">Publisher: </span><span id="stationer_publisher">' + data.stationer_publisher + '</span><br>'}
-                ${!data.stationer_bookseller ? '' : '<span class="expand">Bookseller: </span><span id="stationer_bookseller">' + data.stationer_bookseller + '</span><br>'}
+                ${!data.stationer_printer_filter && !data.stationer_publisher_filter && !data.stationer_bookseller_filter && data.stationer_entries_in_register === "None" && !data.stationer_additional_notes ? 'None' : '' }
+                ${!data.stationer_printer_filter ? '' : '<span class="expand">Printer: </span><span id="stationer_printer">' + data.stationer_printer_display + '</span><br>'}
+                ${!data.stationer_publisher_filter ? '' : '<span class="expand">Publisher: </span><span id="stationer_publisher">' + data.stationer_publisher_display + '</span><br>'}
+                ${!data.stationer_bookseller_filter ? '' : '<span class="expand">Bookseller: </span><span id="stationer_bookseller">' + data.stationer_bookseller_display + '</span><br>'}
                 ${!data.stationer_imprint_location ? '' : '<span class="expand">Imprint Location: </span><span id="stationer_imprint_location">' + data.stationer_imprint_location + '</span><br>'}
                 ${!data.stationer_license ? '' : '<span class="expand">License: </span><span id="stationer_license">' + data.stationer_license + '</span><br>'}
                 ${data.stationer_entries_in_register === "None" ? "" : "<span class='expand'>Entries in Stationers' Register: </span><span id='stationer_entries_in_register'>" + data.stationer_entries_in_register + '</span><br>'}
