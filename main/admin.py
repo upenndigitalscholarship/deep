@@ -21,7 +21,7 @@ class TitleAdmin(admin.ModelAdmin):
 admin.site.register(Title, TitleAdmin)
 
 class PeopleAdmin(admin.ModelAdmin):
-    pass 
+    list_filter = ['name']
 
 admin.site.register(Person, PeopleAdmin)
 
