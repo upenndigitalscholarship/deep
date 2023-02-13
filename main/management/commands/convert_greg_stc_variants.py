@@ -10,6 +10,8 @@ class Command(BaseCommand):
     
     def handle(self, *args, **options):
         for item in tqdm(Item.objects.all()): 
-            if item.variants[-4:] == 'Greg':
-                item.variants = item.variants[:-4] + "DEEP #"
-                item.save() 
+            if item.variants != None:
+                if 'Greg' in item.variants:
+                    item.variants = item.variants[:-5] + "DEEP"
+                    item.save()
+

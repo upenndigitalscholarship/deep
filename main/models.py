@@ -95,6 +95,8 @@ class Item(models.Model): #Previously known as "DEEP"
     ]
     record_type = models.CharField("Record Type", max_length=1000, choices=RECORD_TYPE_CHOICES, blank=True, null=True)
     collection = models.CharField("Collection", max_length=1000, blank=True, null=True)
+    item_title = models.CharField("Item Specific Title", max_length=1000, blank=True, null=True)
+    item_alternative_keywords = models.CharField("Item Specific Alternative Keywords",max_length=1000, null=True, blank=True, default='')
     year = models.CharField("Year (of publication)", blank=True, null=True, max_length=1000)
     year_int = models.IntegerField("Year INT", blank=True, null=True)
     deep_id = models.CharField("DEEP #", max_length=1000, blank=True, null=True)
