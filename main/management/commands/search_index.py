@@ -47,8 +47,12 @@ def item_to_dict(item:Item):
     # if not item_dict.get('stationer_bookseller_filter',None): 
     #     item_dict["stationer_bookseller_filter"] = 'None'
     item_dict['variant_link'] = ''
-    for link in item.variant_links.all():
-        item_dict['variant_link'] += f'<a target="_blank" href="../{link.deep_id}">{link.deep_id}</a> '
+    for i, link in enumerate(item.variant_links.all(),order_by('deep_id')):
+        if i == len(item.variant_links.all())-1:
+            item_dict['variant_link'] += f'<a target="_blank" href="../{link.deep_id}">{link.deep_id}</a> '
+        else:
+            item_dict['variant_link'] += f'<a target="_blank" href="../{link.deep_id}">{link.deep_id}</a>; '
+
     if item.in_collection:
         item_dict["in_collection"] = f'<a target="_blank" href="../{item.in_collection.deep_id}">{item.in_collection.title}</a>'
     else: 
