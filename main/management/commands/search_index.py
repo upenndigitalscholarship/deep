@@ -105,7 +105,7 @@ def item_to_dict(item:Item):
     title["company_first_performance_annals_filter"] = company_first_performance_annals_filter
     
     if not title.get('company_first_performance_annals_display',None): # Replace none with 'None' (else search crashes)
-        title["company_first_performance_annals_display"] = 'None'
+        title["company_first_performance_annals_display"] = 'n/a'
     if not title.get('company_first_performance_annals_filter',None): # Replace none with 'None' (else search crashes)
         title["company_first_performance_annals_filter"] = 'None'
     if not title.get('brit_drama_number',None): # Replace none with 'None' (else search crashes)
@@ -115,7 +115,7 @@ def item_to_dict(item:Item):
     if not title.get('company_first_performance_brit_filter',None): # Replace none with 'None' (else search crashes)
         title["company_first_performance_brit_filter"] = 'None'
     if not title.get('company_first_performance_brit_display',None): # Replace none with 'None' (else search crashes)
-        title["company_first_performance_brit_display"] = 'None'
+        title["company_first_performance_brit_display"] = 'n/a'
     if not title.get('genre_brit_filter',None): # Replace none with 'None' (else search crashes)
         title["genre_brit_filter"] = 'not in BritDrama'
     if not title.get('genre_brit_display',None): # Replace none with 'None' (else search crashes)
