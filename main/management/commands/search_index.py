@@ -35,7 +35,13 @@ def item_to_dict(item:Item):
         item_dict["theater"] = 'None'
     if not item_dict.get('title_page_genre',None): 
         item_dict["title_page_genre"] = 'None'
-        
+    if not item_dict.get('title_page_modern_spelling',None): 
+        item_dict["title_page_modern_spelling"] = ''
+    if not item_dict.get('title_page_latin_motto',None): 
+        item_dict["title_page_latin_motto"] = ''
+    if not item_dict.get('title_page_author',None): 
+        item_dict["title_page_author"] = 'None'
+    
     if not item_dict.get('title_page_has_latin',None): 
         item_dict["title_page_has_latin"] = 'No'
     # if not item_dict.get('stationer_publisher_filter',None): 
