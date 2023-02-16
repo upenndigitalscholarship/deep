@@ -120,7 +120,8 @@ def item_to_dict(item:Item):
         title["genre_brit_filter"] = 'not in BritDrama'
     if not title.get('genre_brit_display',None): # Replace none with 'None' (else search crashes)
         title["genre_brit_display"] = 'not in BritDrama'
-   
+    if not title.get('title_alternative_keywords', None):
+        title['title_alternative_keywords'] = ""
     title['title_id'] = edition['title_id']
     if '_state' in title.keys():
         del title['_state']    
