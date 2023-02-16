@@ -208,7 +208,7 @@
                 <span class='expand'>Entries in Stationers' Register: </span><span id='stationer_entries_in_register'>{{ data.stationer_entries_in_register }}</span><br>
                 {% endif %}
                 {% if data.stationer_additional_notes %}
-                <span class="expand">Notes: </span><span id="stationer_additional_notes">{{ data.stationer_additional_notes }}</span><br>
+                <span class="expand">Notes: </span><span id="stationer_additional_notes">{{ data.stationer_additional_notes|safe }}</span><br>
                 {% endif %}
             </p>
             </div>
