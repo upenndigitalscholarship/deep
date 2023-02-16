@@ -41,7 +41,8 @@ def item_to_dict(item:Item):
         item_dict["title_page_latin_motto"] = ''
     if not item_dict.get('title_page_author',None): 
         item_dict["title_page_author"] = 'None'
-    
+    if not item_dict.get("title_page_performance",None):
+        item_dict["title_page_performance"] = ""
     if not item_dict.get('title_page_has_latin',None): 
         item_dict["title_page_has_latin"] = 'No'
     # if not item_dict.get('stationer_publisher_filter',None): 
