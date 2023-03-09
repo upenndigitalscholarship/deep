@@ -1,7 +1,7 @@
 import time
 from distutils.dir_util import copy_tree
 from pathlib import Path
-
+import itertools
 import srsly
 from django.core.management import call_command
 from django.core.management.base import BaseCommand, CommandError
@@ -10,7 +10,7 @@ from django.template.loader import render_to_string
 from django.contrib.flatpages.models import FlatPage
 from tqdm import tqdm
 from django.core.management import call_command
-
+import re
 from main.management.commands.search_index import item_to_dict
 from main.models import Edition, Item, Person, Title
 
@@ -348,16 +348,26 @@ class Command(BaseCommand):
         srsly.write_json(static_dir / 'data/stationer.json', stationer_json)
         
         #Imprint Location
-        # locations = [i.stationer_imprint_location for i in Item.objects.all() if i.stationer_imprint_location]
-        # locations = list(set(locations))
-        # locations.sort()
-        # locations_json = []
-        # for i, form in enumerate(locations):
-        #     locations_json.append({
-        #         'value': i,
-        #         'label': form.strip()
-        #     })
-        # srsly.write_json(static_dir / 'data/locations.json', locations_json)
+        locations = [i.stationer_imprint_location for i in Item.objects.all() if i.stationer_imprint_location]
+        # Split those with ; in them
+        locations = [x for x in (b.split(';') for b in locations)]
+        locations = list(itertools.chain(*locations))     
+        locations = list(set(locations))
+        # https://stackoverflow.com/questions/5967500/how-to-correctly-sort-a-string-with-a-number-inside
+        def atoi(text):
+            return int(text) if text.isdigit() else text
+
+        def natural_keys(text):
+            return [ atoi(c) for c in re.split(r'(\d+)', text) ]
+
+        locations.sort(key=natural_keys)
+        locations_json = []
+        for i, form in enumerate(locations):
+                locations_json.append({
+                    'value': i,
+                    'label': form.strip()
+                })
+        srsly.write_json(static_dir / 'data/locations.json', locations_json)
 
         #Book Edition 
         editions = [int(i.book_edition) for i in Edition.objects.all() if i.book_edition != 'n/a']
