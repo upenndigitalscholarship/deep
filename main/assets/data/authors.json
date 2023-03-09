@@ -200,10 +200,6 @@
     "label":"Bedell, Gabriel"
   },
   {
-    "value":394,
-    "label":"Bedell, George"
-  },
-  {
     "value":373,
     "label":"Beeston, Hugh"
   },
@@ -300,6 +296,10 @@
     "label":"Bourke, Thomas"
   },
   {
+    "value":39,
+    "label":"Bower, Richard"
+  },
+  {
     "value":476,
     "label":"Bowman, Francis"
   },
@@ -322,6 +322,14 @@
   {
     "value":245,
     "label":"Brewer, Anthony"
+  },
+  {
+    "value":216,
+    "label":"Brewer, Thomas"
+  },
+  {
+    "value":242,
+    "label":"Brome, Alexander"
   },
   {
     "value":484,
@@ -457,7 +465,7 @@
   },
   {
     "value":129,
-    "label":"Cary, Elizabeth"
+    "label":"Cary, Elizabeth Tanfield"
   },
   {
     "value":707,
@@ -552,6 +560,10 @@
     "label":"Constable, Francis"
   },
   {
+    "value":133,
+    "label":"Cooke, Joshua"
+  },
+  {
     "value":470,
     "label":"Cooke, William"
   },
@@ -626,6 +638,10 @@
   {
     "value":608,
     "label":"Crouch, John"
+  },
+  {
+    "value":140,
+    "label":"Cumber, John"
   },
   {
     "value":258,
@@ -732,12 +748,20 @@
     "label":"Drue, Thomas"
   },
   {
+    "value":166,
+    "label":"Drummond, William"
+  },
+  {
     "value":289,
     "label":"Dublin Society of Stationers"
   },
   {
     "value":704,
     "label":"Dugard, William"
+  },
+  {
+    "value":97,
+    "label":"Dymock, John"
   },
   {
     "value":716,
@@ -1113,7 +1137,7 @@
   },
   {
     "value":71,
-    "label":"Herbert, Mary"
+    "label":"Herbert, Mary Sidney"
   },
   {
     "value":442,
@@ -1304,6 +1328,10 @@
     "label":"Jugge, Richard"
   },
   {
+    "value":252,
+    "label":"Kempe, William"
+  },
+  {
     "value":179,
     "label":"Killigrew, Henry"
   },
@@ -1364,6 +1392,10 @@
     "label":"Kyffin, Maurice"
   },
   {
+    "value":171,
+    "label":"Kynaston, Francis"
+  },
+  {
     "value":569,
     "label":"Langley, Thomas"
   },
@@ -1386,6 +1418,10 @@
   {
     "value":330,
     "label":"Leake, William (2)"
+  },
+  {
+    "value":59,
+    "label":"Lee, Henry"
   },
   {
     "value":523,
@@ -1534,10 +1570,6 @@
   {
     "value":653,
     "label":"Marsh, Henry (2)"
-  },
-  {
-    "value":718,
-    "label":"Marsh, Henry (STC)"
   },
   {
     "value":564,
@@ -1794,6 +1826,10 @@
   {
     "value":684,
     "label":"Payne, Richard"
+  },
+  {
+    "value":227,
+    "label":"Peaps, William"
   },
   {
     "value":55,
@@ -2064,6 +2100,10 @@
     "label":"S., W."
   },
   {
+    "value":172,
+    "label":"Sackville, Edward"
+  },
+  {
     "value":16,
     "label":"Sackville, Thomas"
   },
@@ -2140,6 +2180,10 @@
     "label":"Sidnam, Jonathan"
   },
   {
+    "value":724,
+    "label":"Sidney Herbert, Mary"
+  },
+  {
     "value":86,
     "label":"Sidney, Philip"
   },
@@ -2170,6 +2214,14 @@
   {
     "value":546,
     "label":"Smith, Richard"
+  },
+  {
+    "value":135,
+    "label":"Smith, Wentworth"
+  },
+  {
+    "value":136,
+    "label":"Smith, William"
   },
   {
     "value":275,
@@ -2228,6 +2280,10 @@
     "label":"Stepneth, John"
   },
   {
+    "value":42,
+    "label":"Stevenson, William"
+  },
+  {
     "value":375,
     "label":"Straten, Derick van der"
   },
@@ -2274,6 +2330,10 @@
   {
     "value":132,
     "label":"Tailor, Robert"
+  },
+  {
+    "value":723,
+    "label":"Tanfield Cary, Elizabeth"
   },
   {
     "value":65,
@@ -2348,7 +2408,7 @@
     "label":"Udall, Nicholas"
   },
   {
-    "value":680,
+    "value":292,
     "label":"Unknown"
   },
   {
@@ -2602,21 +2662,5 @@
   {
     "value":183,
     "label":"Zouche, Richard"
-  },
-  {
-    "value":292,
-    "label":"[unknown]"
-  },
-  {
-    "value":398,
-    "label":"and one other"
-  },
-  {
-    "value":637,
-    "label":"and others"
-  },
-  {
-    "value":611,
-    "label":"plates engraved by William Kip"
   }
 ]
