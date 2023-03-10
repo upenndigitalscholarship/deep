@@ -352,7 +352,9 @@ class Command(BaseCommand):
         # Split those with ; in them
         locations = [x for x in (b.split(';') for b in locations)]
         locations = list(itertools.chain(*locations))     
+        locations = [x.strip() for x in locations]
         locations = list(set(locations))
+        locations.sort()
         # https://stackoverflow.com/questions/5967500/how-to-correctly-sort-a-string-with-a-number-inside
         def atoi(text):
             return int(text) if text.isdigit() else text
@@ -367,6 +369,7 @@ class Command(BaseCommand):
                     'value': i,
                     'label': form.strip()
                 })
+        print(locations_json)
         srsly.write_json(static_dir / 'data/locations.json', locations_json)
 
         #Book Edition 

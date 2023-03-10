@@ -1,522 +1,438 @@
 [
   {
     "value":0,
-    "label":"A.2 (Paul's Churchyard - Great North Door)"
-  },
-  {
-    "value":1,
-    "label":"A.3 (Paul's Churchyard - Northeast)"
-  },
-  {
-    "value":2,
-    "label":"A.8 (Paul's Churchyard - Great South Door)"
-  },
-  {
-    "value":3,
-    "label":"B (Paul's Churchyard - Unlocated)"
-  },
-  {
-    "value":4,
-    "label":"C.3 (Newgate Within - Ivy Lane)"
-  },
-  {
-    "value":5,
-    "label":"Edinburgh"
-  },
-  {
-    "value":6,
-    "label":"I.1 (Cripplegate Without - Barbican)"
-  },
-  {
-    "value":7,
-    "label":"O.8 (Royal Exchange - South Entrance)"
-  },
-  {
-    "value":8,
-    "label":"O.11 (Royal Exchange - Pope's Head Alley)"
-  },
-  {
-    "value":9,
-    "label":"Oxford"
-  },
-  {
-    "value":10,
-    "label":"P.4 (Leadenhall - Gracechurch St.)"
-  },
-  {
-    "value":11,
-    "label":"V.8 (Holborn - Furnival's Inn)"
-  },
-  {
-    "value":12,
-    "label":"W.9 (Fleet St. - St. Dunstan's Church / Clifford's Inn)"
-  },
-  {
-    "value":13,
-    "label":"W.10a (Fleet St. - Chancery Lane - Unlocated)"
-  },
-  {
-    "value":14,
-    "label":"W.10c (Fleet St. - Chancery Lane near Serjeants' Inn)"
-  },
-  {
-    "value":15,
-    "label":"W.10e (Fleet St. - Chancery Lane near Rolls)"
-  },
-  {
-    "value":16,
-    "label":"W.13 (Fleet St. - Middle Temple)"
-  },
-  {
-    "value":17,
-    "label":"W.14 (Fleet St. - Temple Bar)"
-  },
-  {
-    "value":18,
-    "label":"X.2 (Strand / Drury Lane - St. Clement Danes Church)"
-  },
-  {
-    "value":19,
-    "label":"X.10 (Westminster - Britain's Burse)"
-  },
-  {
-    "value":20,
-    "label":"X.16 (Westminster - King St.)"
-  },
-  {
-    "value":21,
-    "label":"X.17 (Westminster - Westminster Hall)"
-  },
-  {
-    "value":22,
     "label":"A.1 (Paul's Churchyard - Little North Door)"
   },
   {
-    "value":23,
+    "value":1,
     "label":"A.2 (Paul's Churchyard - Great North Door)"
   },
   {
-    "value":24,
+    "value":2,
     "label":"A.3 (Paul's Churchyard - Northeast)"
   },
   {
-    "value":25,
+    "value":3,
     "label":"A.4 (St. Faith's parish: North and East)"
   },
   {
-    "value":26,
+    "value":4,
     "label":"A.5 (Paul's Churchyard - Cheap Gate Area)"
   },
   {
-    "value":27,
+    "value":5,
     "label":"A.6 (Paul's Churchyard - East)"
   },
   {
-    "value":28,
+    "value":6,
     "label":"A.7 (Paul's Churchyard - Southeast)"
   },
   {
-    "value":29,
+    "value":7,
     "label":"A.8 (Paul's Churchyard - Great South Door)"
   },
   {
-    "value":30,
+    "value":8,
     "label":"A.9 (Paul's Churchyard - Little South Door / Paul's Chain)"
   },
   {
-    "value":31,
+    "value":9,
     "label":"A.10 (Paul's Churchyard - West)"
   },
   {
-    "value":32,
+    "value":10,
     "label":"B (Paul's Churchyard - Unlocated)"
   },
   {
-    "value":33,
+    "value":11,
     "label":"C.1 (Newgate Within - Christ Church)"
   },
   {
-    "value":34,
+    "value":12,
     "label":"C.3 (Newgate Within - Ivy Lane)"
   },
   {
-    "value":35,
+    "value":13,
     "label":"C.4 (Newgate Within - Newgate Market)"
   },
   {
-    "value":36,
+    "value":14,
     "label":"C.7 (Newgate Within - Paternoster Row)"
   },
   {
-    "value":37,
+    "value":15,
     "label":"C.8 (Newgate Within - Swan Yard)"
   },
   {
-    "value":38,
+    "value":16,
     "label":"Cambridge"
   },
   {
-    "value":39,
+    "value":17,
     "label":"D.2 (Newgate Without - Fleet Lane)"
   },
   {
-    "value":40,
+    "value":18,
     "label":"D.3 (Newgate Without - Giltspur St.)"
   },
   {
-    "value":41,
+    "value":19,
     "label":"D.4 (Newgate Without - Green Arbour)"
   },
   {
-    "value":42,
+    "value":20,
     "label":"D.5 (Newgate Without - Holborn Conduit)"
   },
   {
-    "value":43,
+    "value":21,
     "label":"D.7 (Newgate Without - Old Bailey)"
   },
   {
-    "value":44,
+    "value":22,
     "label":"D.8 (Newgate Without - St. Sepulchre's Church)"
   },
   {
-    "value":45,
+    "value":23,
     "label":"D.9 (Newgate Without - Snow Hill)"
   },
   {
-    "value":46,
+    "value":24,
     "label":"Dublin"
   },
   {
-    "value":47,
+    "value":25,
     "label":"E.4 (Smithfield - Cow Lane)"
   },
   {
-    "value":48,
+    "value":26,
     "label":"E.5 (Smithfield - Duck Lane)"
   },
   {
-    "value":49,
+    "value":27,
     "label":"E.8 (Smithfield - Little St. Bartholomew's Church)"
   },
   {
-    "value":50,
+    "value":28,
     "label":"E.9 (Smithfield - Long Lane)"
   },
   {
-    "value":51,
+    "value":29,
     "label":"Edinburgh"
   },
   {
-    "value":52,
+    "value":30,
     "label":"F.2 (Aldersgate Without - Aldersgate St.)"
   },
   {
-    "value":53,
+    "value":31,
     "label":"F.3 (Aldersgate Without - St. Botolph's Church)"
   },
   {
-    "value":54,
+    "value":32,
     "label":"F.4 (Aldersgate Without - Little Britain)"
   },
   {
-    "value":55,
+    "value":33,
     "label":"G.1 (Aldersgate Within - Aldersgate)"
   },
   {
-    "value":56,
+    "value":34,
     "label":"G.2 (Aldersgate Within - St. Anne's Church)"
   },
   {
-    "value":57,
+    "value":35,
     "label":"G.3 (Aldersgate Within - Foster Lane)"
   },
   {
-    "value":58,
+    "value":36,
     "label":"H.2 (Cripplegate and Moorgate Within - Aldermanbury)"
   },
   {
-    "value":59,
+    "value":37,
     "label":"H.5 (Cripplegate and Moorgate Within - Guildhall)"
   },
   {
-    "value":60,
+    "value":38,
     "label":"H.9 (Cripplegate and Moorgate Within - Lothbury)"
   },
   {
-    "value":61,
+    "value":39,
     "label":"H.17 (Cripplegate and Moorgate Within - Wood St.)"
   },
   {
-    "value":62,
+    "value":40,
     "label":"Hague"
   },
   {
-    "value":63,
+    "value":41,
     "label":"I.1 (Cripplegate Without - Barbican)"
   },
   {
-    "value":64,
+    "value":42,
     "label":"I.3 (Cripplegate Without - Fore St.)"
   },
   {
-    "value":65,
+    "value":43,
     "label":"I.4 (Cripplegate Without - St. Giles's Church)"
   },
   {
-    "value":66,
+    "value":44,
     "label":"Kilkenny"
   },
   {
-    "value":67,
+    "value":45,
     "label":"Leiden"
   },
   {
-    "value":68,
+    "value":46,
     "label":"N.1 (Cheapside - Unlocated)"
   },
   {
-    "value":69,
+    "value":47,
     "label":"N.7 (Watling St. - St. Austin's Gate)"
   },
   {
-    "value":70,
+    "value":48,
     "label":"O.1 (Royal Exchange - St. Mildred's Church)"
   },
   {
-    "value":71,
+    "value":49,
     "label":"O.2 (Royal Exchange - North Side)"
   },
   {
-    "value":72,
+    "value":50,
     "label":"O.6 (Royal Exchange - Cornhill)"
   },
   {
-    "value":73,
+    "value":51,
     "label":"O.7 (Royal Exchange - Castle Tavern)"
   },
   {
-    "value":74,
+    "value":52,
     "label":"O.8 (Royal Exchange - South Entrance)"
   },
   {
-    "value":75,
+    "value":53,
     "label":"O.9 (Royal Exchange - South Side)"
   },
   {
-    "value":76,
+    "value":54,
     "label":"O.11 (Royal Exchange - Pope's Head Alley)"
   },
   {
-    "value":77,
+    "value":55,
     "label":"Oxford"
   },
   {
-    "value":78,
+    "value":56,
     "label":"P.1 (Leadenhall - All Hallows' Church, Lombard St.)"
   },
   {
-    "value":79,
+    "value":57,
     "label":"P.2 (Leadenhall - Cornhill)"
   },
   {
-    "value":80,
+    "value":58,
     "label":"P.4 (Leadenhall - Gracechurch St.)"
   },
   {
-    "value":81,
+    "value":59,
     "label":"P.6 (Leadenhall - Lime St.)"
   },
   {
-    "value":82,
+    "value":60,
     "label":"P.7 (Leadenhall - Rood Lane)"
   },
   {
-    "value":83,
+    "value":61,
     "label":"Q.3 (Ludgate - Within)"
   },
   {
-    "value":84,
+    "value":62,
     "label":"Q.4 (Ludgate - Without and Ludgate Hill)"
   },
   {
-    "value":85,
+    "value":63,
     "label":"Q.6 (Blackfriars)"
   },
   {
-    "value":86,
+    "value":64,
     "label":"R.1 (Thames St. 1 - Carter Lane)"
   },
   {
-    "value":87,
+    "value":65,
     "label":"R.2 (Thames St. 1 - Knightrider St.)"
   },
   {
-    "value":88,
+    "value":66,
     "label":"R.3 (Thames St. 1 - Paul's Chain)"
   },
   {
-    "value":89,
+    "value":67,
     "label":"R.6 (Thames St. 1 - Baynard's Castle)"
   },
   {
-    "value":90,
+    "value":68,
     "label":"Rochester"
   },
   {
-    "value":91,
+    "value":69,
     "label":"S.1 (Thames St. 2 - St. Mary Magdalen's Church)"
   },
   {
-    "value":92,
+    "value":70,
     "label":"S.7 (Thames St. 2 - Lambeth Hill)"
   },
   {
-    "value":93,
+    "value":71,
     "label":"S.8 (Thames St. 2 - Bread St. Hill)"
   },
   {
-    "value":94,
+    "value":72,
     "label":"S.9 (Thames St. 2 - Three-Crane Wharf)"
   },
   {
-    "value":95,
+    "value":73,
     "label":"Southwark"
   },
   {
-    "value":96,
+    "value":74,
     "label":"T.1 (Thames St. 3 - Cannon St.)"
   },
   {
-    "value":97,
+    "value":75,
     "label":"T.5 (Thames St. 3 - Catherine Wheel Alley)"
   },
   {
-    "value":98,
+    "value":76,
     "label":"T.7 (Thames St. 3 - London Bridge)"
   },
   {
-    "value":99,
+    "value":77,
     "label":"V.2 (Holborn - Holborn Bridge)"
   },
   {
-    "value":100,
+    "value":78,
     "label":"V.4 (Holborn - St. Andrew's Church)"
   },
   {
-    "value":101,
+    "value":79,
     "label":"V.8 (Holborn - Furnival's Inn)"
   },
   {
-    "value":102,
+    "value":80,
     "label":"V.9 (Holborn - Middle Row / Staple Inn)"
   },
   {
-    "value":103,
+    "value":81,
     "label":"V.10 (Holborn - Gray's Inn)"
   },
   {
-    "value":104,
+    "value":82,
     "label":"V.12 (Holborn - Chancery Lane End)"
   },
   {
-    "value":105,
+    "value":83,
     "label":"V.13 (Holborn - Turnstile)"
   },
   {
-    "value":106,
+    "value":84,
     "label":"W.3 (Fleet St. - Fleet Bridge)"
   },
   {
-    "value":107,
+    "value":85,
     "label":"W.4 (Fleet St. - St. Bride's Church)"
   },
   {
-    "value":108,
+    "value":86,
     "label":"W.5 (Fleet St. - Conduit / Salisbury Court)"
   },
   {
-    "value":109,
+    "value":87,
     "label":"W.6 (Fleet St. - Shoe Lane)"
   },
   {
-    "value":110,
+    "value":88,
     "label":"W.7 (Fleet St. - Serjeant's Inn / Whitefriars)"
   },
   {
-    "value":111,
+    "value":89,
     "label":"W.9 (Fleet St. - St. Dunstan's Church / Clifford's Inn)"
   },
   {
-    "value":112,
+    "value":90,
+    "label":"W.10a (Fleet St. - Chancery Lane - Unlocated)"
+  },
+  {
+    "value":91,
     "label":"W.10b (Fleet St. - Chancery Lane End)"
   },
   {
-    "value":113,
+    "value":92,
     "label":"W.10c (Fleet St. - Chancery Lane near Serjeants' Inn)"
   },
   {
-    "value":114,
+    "value":93,
     "label":"W.10d (Fleet St. - Chancery Lane near Six Clerks' Office)"
   },
   {
-    "value":115,
+    "value":94,
     "label":"W.10e (Fleet St. - Chancery Lane near Rolls)"
   },
   {
-    "value":116,
+    "value":95,
     "label":"W.11 (Fleet St. - Inner Temple / Temple Church)"
   },
   {
-    "value":117,
+    "value":96,
     "label":"W.12 (Fleet St. - between the Temples)"
   },
   {
-    "value":118,
+    "value":97,
     "label":"W.13 (Fleet St. - Middle Temple)"
   },
   {
-    "value":119,
+    "value":98,
     "label":"W.14 (Fleet St. - Temple Bar)"
   },
   {
-    "value":120,
+    "value":99,
     "label":"X.1 (Strand / Drury Lane - Temple Bar Without)"
   },
   {
-    "value":121,
+    "value":100,
     "label":"X.2 (Strand / Drury Lane - St. Clement Danes Church)"
   },
   {
-    "value":122,
+    "value":101,
     "label":"X.6 (Strand / Drury Lane - Somerset House)"
   },
   {
-    "value":123,
+    "value":102,
     "label":"X.8 (Strand / Drury Lane - Ivy Bridge)"
   },
   {
-    "value":124,
+    "value":103,
     "label":"X.10 (Westminster - Britain's Burse)"
   },
   {
-    "value":125,
+    "value":104,
     "label":"X.11 (Westminster - Bedford St. near Britain's Burse)"
   },
   {
-    "value":126,
+    "value":105,
     "label":"X.12 (Westminster - York House)"
   },
   {
-    "value":127,
+    "value":106,
     "label":"X.15 (Westminster - Whitehall)"
   },
   {
-    "value":128,
+    "value":107,
     "label":"X.16 (Westminster - King St.)"
   },
   {
-    "value":129,
+    "value":108,
     "label":"X.17 (Westminster - Westminster Hall)"
   }
 ]
