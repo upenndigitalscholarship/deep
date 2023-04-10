@@ -1817,7 +1817,7 @@ const search = () => {
   });
 
   for (i in grouped_results){ 
-    grouped_results[i].result_number = parseInt(i)+1
+    grouped_results[i].result_number = parseInt(i)+1+'.'
   }
   console.log(grouped_results)
   resultCount = document.getElementById("resultCount")
