@@ -1047,13 +1047,13 @@ const processQueries = queries => {
       if (query.searchField == 'illustration') {
         if (query.searchValue == "Yes") {
           let illustration = item => (
-              item.title_page_illustration != ""
+              item.title_page_illustration !== null || item.title_page_illustration !== ""
           )
           filters.push({'filter':illustration,'type':query.blockType})
         }    
         else if (query.searchValue == "No") {
             let illustration = item => (
-                item.title_page_illustration == ""
+              item.title_page_illustration === null || item.title_page_illustration === ""
             )
             filters.push({'filter':illustration,'type':query.blockType})    
         }
