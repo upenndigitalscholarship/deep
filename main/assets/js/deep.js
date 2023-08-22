@@ -1482,10 +1482,15 @@ const processQueries = queries => {
           }
         }
         if (fields[i] == 'brit-drama-number' && values[i]) {
-          let britDrama = item => (
-              item.brit_drama_number.toLowerCase().includes(values[i].toLowerCase())
-              )
-              ORquery.push(britDrama)
+          
+          let britDrama = (item) => {
+            let pattern = `^${values[i]}$`;
+            let re = new RegExp(pattern, 'i');
+            let match = item.brit_drama_number.match(re);
+            
+            return match !== null && match.length > 0;
+          };
+          ORquery.push(britDrama)
         }
         if (fields[i] == 'illustration' && values[i]) {
           let illustration = item => (
@@ -1500,15 +1505,23 @@ const processQueries = queries => {
           ORquery.push(latinontitle)
         }
         if (fields[i] == 'deep-id' && values[i]) {
-          let deepID = item => (
-            item.deep_id.toLowerCase().includes(values[i].toLowerCase())
-          )
+          let deepID = (item) => {
+            let pattern = `^${values[i]}$`;
+            let re = new RegExp(pattern, 'i');
+            let match = item.deep_id.match(re);
+            
+            return match !== null && match.length > 0;
+          };
           ORquery.push(deepID)
         }
         if (fields[i] == 'greg_number' && values[i]) {
-          let gregNumber = item => (
-            item.greg_full.toLowerCase().includes(values[i].toLowerCase())
-          )
+          let gregNumber = (item) => {
+            let pattern = `^${values[i]}$`;
+            let re = new RegExp(pattern, 'i');
+            let match = item.greg_full.match(re);
+            
+            return match !== null && match.length > 0;
+          };
           ORquery.push(gregNumber)
         }
         if (fields[i] == 'book_edition' && values[i]) {
@@ -1549,9 +1562,13 @@ const processQueries = queries => {
           
         }
         if (fields[i] == 'stc_or_wing' && values[i]) {
-          let stcWing = item => (
-            item.stc.toLowerCase().includes(values[i].toLowerCase())
-          )
+          let stcWing = (item) => {
+            let pattern = `^${values[i]}$`;
+            let re = new RegExp(pattern, 'i');
+            let match = item.stc.match(re);
+            
+            return match !== null && match.length > 0;
+          };
           ORquery.push(stcWing)
         }
         if (fields[i] == 'author' && values[i]) {
