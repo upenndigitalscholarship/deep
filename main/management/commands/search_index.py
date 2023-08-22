@@ -90,9 +90,14 @@ def item_to_dict(item:Item):
     edition = edition.__dict__
     edition['author_id'] = edition_authors
     edition['author'] = authors_display
+    #{'', None, 'Yes', 'Yes, Partly'}    
     if edition["blackletter"] == "":
         edition["blackletter"] = "No"
-    else:
+    if edition["blackletter"] == None:
+        edition["blackletter"] = "No"
+    if edition["blackletter"] == "Yes":
+        edition["blackletter"] = "Yes" 
+    if edition["blackletter"] == "Yes, Partly":
         edition["blackletter"] = "Yes" 
         
     if edition['book_edition'] == '0':

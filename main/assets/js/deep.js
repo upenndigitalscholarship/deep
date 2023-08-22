@@ -1159,7 +1159,7 @@ const processQueries = queries => {
           )
           filters.push({'filter':blackletter,'type':query.blockType})
         }    
-        else if (query.searchValue == "No") {
+        if (query.searchValue == "No") {
             let blackletter = item => (
               item.blackletter.toLowerCase().includes(query.searchValue.toLowerCase())
             )
