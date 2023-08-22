@@ -1952,7 +1952,7 @@ function expand(e, deep_id) {
                 ${!data.paratext_actor_list ? '' : '<span class="expand">Actor List: </span><span id="paratext_actor_list">' + data.paratext_actor_list + '</span><br>'}
                 ${!data.paratext_explicit ? '' : '<span class="expand">Explicit: </span><span id="paratext_explicit">' + data.paratext_explicit + '</span><br>'}
                 ${!data.paratext_errata ? '' : '<span class="expand">Errata: </span><span id="paratext_errata">' + data.paratext_errata + '</span><br>'}
-                ${!data.paratext_other_paratexts ? '' : '<span class="expand">Other: </span><span id="paratext_other_paratexts">' + data.paratext_other_paratexts + '</span><br>'}
+                ${!data.paratext_other_paratexts ? '' : '<span class="expand">Other Paratexts: </span><span id="paratext_other_paratexts">' + data.paratext_other_paratexts + '</span><br>'}
               </p>
             </div>
           </div>

@@ -30,11 +30,12 @@
                 <span class="expand">Greg #: </span><span id="greg_full">{{ data.greg_full }}</span><br>
                 {% endif%}
                 {% if data.stc %}
-                <span class="expand">STC/WING: </span><span id="stc">{{ data.stc }}</span><br>
+                <span class="expand">STC/WING #: </span><span id="stc">{{ data.stc }}</span><br>
                 {% endif %}
                 {% if data.brit_drama_number %}
                 <span class="expand">BritDrama #: </span><span id="stc">{{ data.brit_drama_number }}</span><br>
                 {% endif %}
+                <span class="expand"></span><br>
               </p>
               <p>
                 {% if data.date_first_publication %}
@@ -52,7 +53,10 @@
                 {% if data.leaves %}
                 <span class="expand">Leaves: </span><span id="leaves">{{ data.leaves }}</span><br>
                 {% endif %}
-                
+                {% if data.blackletter %}
+                <span class="expand">Black Letter: </span><span id="leaves">{{ data.blackletter }}</span><br>
+                {% endif %}
+                <span class="expand"></span><br>
                 </p>
               </div>
     
@@ -92,21 +96,25 @@
             <div class="col-12">
               {% if data.total_editions %}
               <br><span class="expand">Total Editions:</span><span id="total_editions">{{ data.total_editions }}</span><br>
+              <span class="expand"></span><br>
               {% endif %}
+              
               {% if data.variants %}
               <br><span class="expand">Variants:</span><span id="variants">{{ data.variants|safe }} {{ data.variant_link|safe }}<br>
-              {% endif %}
-              {% if data.in_collection %}    
-              <br><span class="expand">In Collection:</span><span id="in_collection"> {{ data.in_collection|safe }}</span><br>
+              <span class="expand"></span><br>
               {% endif %}
               {% if data.collection_contains %}
               <br><span class="expand">Collection Contains:</span><span id="collection_contains"> {{ data.collection_contains|safe }}</span><br>
               {% endif %}
+              {% if data.in_collection %}    
+              <br><span class="expand">In Collection:</span><span id="in_collection"> {{ data.in_collection|safe }}</span><br>
+              {% endif %}
+              
               {% if data.independent_playbook %}
-              <br><span class="expand">Also appears as a bibliographically independent playbook in </span><span id="independent_playbook"><a href="../{{ data.independent_playbook_link_id }}">{{ data.independent_playbook }}</a></span><br>
+              <br><span class="expand">Also appears as a Bibliographically Independent Playbook In </span><span id="independent_playbook"><a href="../{{ data.independent_playbook_link_id }}">{{ data.independent_playbook }}</a></span><br>
               {% endif %}
               {% if data.also_in_collection %}
-              <br><span class="expand">Also appears in collection: </span><span id="also_in_collection">{{ data.also_in_collection_link|safe }}</span><br>
+              <br><span class="expand">Also Appears in Collection: </span><span id="also_in_collection">{{ data.also_in_collection_link|safe }}</span><br>
               {% endif %}
               
             </div>
@@ -138,9 +146,7 @@
                 {% if data.title_page_imprint %}
                 <span class="expand">Imprint: </span><span id="title_page_imprint">{{ data.title_page_imprint|safe }}</span><br>
                 {% endif %}
-                {% if data.title_page_colophon %}
-                <span class="expand">Colophon: </span><span id="title_page_colophon">{{ data.title_page_colophon|safe }}</span><br>
-                {% endif %}
+                
             </p>
             </div>
           </div>
@@ -171,6 +177,9 @@
                 {% if data.paratext_charachter_list %}
                 <span class="expand">Character List: </span><span id="paratext_charachter_list">{{ data.paratext_charachter_list|safe }}</span><br>
                 {% endif %}
+                {% if data.paratext_explicit %}
+                <span class="expand">Explicit: </span><span id="paratext_explicit">{{ data.paratext_explicit|safe }}</span><br>
+                {% endif %}
                 {% if data.paratext_errata %}
                 <span class="expand">Errata: </span><span id="paratext_errata">{{ data.paratext_errata|safe }}</span><br>
                 {% endif %}
@@ -178,7 +187,7 @@
                 <span class="expand">Actor List: </span><span id="paratext_actor_list">{{ data.paratext_actor_list|safe }}</span><br>
                 {% endif %}
                 {% if data.paratext_other_paratexts %}
-                <span class="expand">Other: </span><span id="paratext_other_paratexts">{{ data.paratext_other_paratexts|safe }}</span><br>
+                <span class="expand">Other Paratexts: </span><span id="paratext_other_paratexts">{{ data.paratext_other_paratexts|safe }}</span><br>
                 {% endif %}
             </p>
             </div>
@@ -195,6 +204,9 @@
                 {% if not data.stationer_printer and not data.stationer_publisher and not data.stationer_bookseller and data.stationer_entries_in_register is None and not data.stationer_additional_notes %}
                 None
                 {% endif %}
+                {% if data.title_page_colophon %}
+                <span class="expand">Colophon: </span><span id="title_page_colophon">{{ data.title_page_colophon|safe }}</span><br>
+                {% endif %}
                 {% if data.stationer_printer_filter %}
                 <span class="expand">Printer: </span><span id="stationer_printer">{{ data.stationer_printer_display }}</span><br>
                 {% endif %}
@@ -204,11 +216,15 @@
                 {% if data.stationer_bookseller_filter %}
                 <span class="expand">Bookseller: </span><span id="stationer_bookseller">{{ data.stationer_bookseller_display }}</span><br>
                 {% endif %}
-                {% if data.stationer_entries_in_register == "None" %}
+                {% if data.stationer_imprint_location %}
+                <span class="expand">Imprint Location: </span><span id="stationer_imprint_location">{{ data.stationer_imprint_location }}</span><br>
+                {% endif %}
+                {% if data.stationer_entries_in_register != "None" %}
                 <span class='expand'>Entries in Stationers' Register: </span><span id='stationer_entries_in_register'>{{ data.stationer_entries_in_register }}</span><br>
+                <span class="expand"></span><br>
                 {% endif %}
                 {% if data.stationer_additional_notes %}
-                <span class="expand">Notes: </span><span id="stationer_additional_notes">{{ data.stationer_additional_notes|safe }}</span><br>
+                <span class="expand">Additional Notes: </span><span id="stationer_additional_notes">{{ data.stationer_additional_notes|safe }}</span><br>
                 {% endif %}
             </p>
             </div>
