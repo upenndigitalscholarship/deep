@@ -1870,8 +1870,9 @@ function expand(e, deep_id) {
               <p>
                 ${!data.deep_id ? '' : '<span class="expand">DEEP #: </span><span id="deep_id"><a target="_blank" href="'+ data.deep_id +'">' + data.deep_id + '</a></span><br>'}
                 ${!data.greg_full ? '' : '<span class="expand">Greg #: </span><span id="greg_full">' + data.greg_full + '</span><br>'}
-                ${!data.stc ? '' : '<span class="expand">STC/WING: </span><span id="stc"> ' + data.stc + '</span><br>'}
+                ${!data.stc ? '' : '<span class="expand">STC/WING #: </span><span id="stc"> ' + data.stc + '</span><br>'}
                 ${!data.brit_drama_number ? '' : '<span class="expand">BritDrama #: </span><span id="deep_id">' + data.brit_drama_number + '</span><br>'}
+                <span class="expand"></span><br>
               </p>
               <p>
                 ${!data.date_first_publication ? '' : '<br><span class="expand">Date of First Publication: </span><span id="date_first_publication">' + data.date_first_publication_display + '</span><br>'}
@@ -1879,7 +1880,8 @@ function expand(e, deep_id) {
                 ${!data.play_edition ? '' : '<span class="expand">Play Edition: </span><span id="play_edition"> ' + data.play_edition + '</span><br>'}
                 ${!data.format ? '' : '<span class="expand">Format: </span><span id="format"> ' + data.format + '</span><br>'}
                 ${!data.leaves ? '' : '<span class="expand">Leaves: </span><span id="leaves"> ' + data.leaves + '</span><br>'}
-                
+                ${ data.blackletter == "No" ? '' : '<span class="expand">Black Letter: </span><span id="blackletter"> ' + data.blackletter + '</span><br>'}
+                <span class="expand"></span><br>
               </p>
             </div>    
             
@@ -1902,11 +1904,13 @@ function expand(e, deep_id) {
             <div class="col-12">
               <p>
                 ${typeof data.total_editions === 'undefined' ? '' : '<br><span class="expand">Total Editions:</span><span id="total_editions"> ' + data.total_editions + '</span><br>'}
+                <span class="expand"></span><br>
                 ${data.variants === '' ? '' : '<br><span class="expand">Variants:</span><span id="variants"> ' + data.variants + ' ' + data.variant_link + '<br>'}
-                ${data.in_collection === '' ? '' : '<br><span class="expand">In Collection:</span><span id="in_collection"> ' + data.in_collection + '</span><br>'}
+                <span class="expand"></span><br>
                 ${data.collection_contains === '' ? '' : '<br><span class="expand">Collection Contains:</span><span id="collection_contains"> ' + data.collection_contains + '</span><br>'}
-                ${!data.independent_playbook ? '' : '<br><span class="expand">Also appears as a bibliographically independent playbook in </span><span id="independent_playbook"><a target="_blank" href="' + data.independent_playbook_link_id + '">' + data.independent_playbook + '</a></span><br>'}
-                ${!data.also_in_collection ? '' : '<br><span class="expand">Also appears in collection: </span><span id="also_in_collection">' + data.also_in_collection_link + '</span><br>'}
+                ${data.in_collection === '' ? '' : '<br><span class="expand">In Collection:</span><span id="in_collection"> ' + data.in_collection + '</span><br>'}
+                ${!data.independent_playbook ? '' : '<br><span class="expand">Also Appears as a Bibliographically Independent Playbook In </span><span id="independent_playbook"><a target="_blank" href="' + data.independent_playbook_link_id + '">' + data.independent_playbook + '</a></span><br>'}
+                ${!data.also_in_collection ? '' : '<br><span class="expand">Also Appears in Collection: </span><span id="also_in_collection">' + data.also_in_collection_link + '</span><br>'}
               </p>
             </div>    
 
@@ -1945,8 +1949,9 @@ function expand(e, deep_id) {
                 ${!data.paratext_to_the_reader ? '' : '<span class="expand">To the Reader: </span><span id="paratext_to_the_reader">' + data.paratext_to_the_reader + '</span><br>'}
                 ${!data.paratext_argument ? '' : '<span class="expand">Argument: </span><span id="paratext_argument">' + data.paratext_argument + '</span><br>'}
                 ${!data.paratext_charachter_list ? '' : '<span class="expand">Character List: </span><span id="paratext_charachter_list">' + data.paratext_charachter_list + '</span><br>'}
-                ${!data.paratext_errata ? '' : '<span class="expand">Errata: </span><span id="paratext_errata">' + data.paratext_errata + '</span><br>'}
                 ${!data.paratext_actor_list ? '' : '<span class="expand">Actor List: </span><span id="paratext_actor_list">' + data.paratext_actor_list + '</span><br>'}
+                ${!data.paratext_explicit ? '' : '<span class="expand">Explicit: </span><span id="paratext_explicit">' + data.paratext_explicit + '</span><br>'}
+                ${!data.paratext_errata ? '' : '<span class="expand">Errata: </span><span id="paratext_errata">' + data.paratext_errata + '</span><br>'}
                 ${!data.paratext_other_paratexts ? '' : '<span class="expand">Other: </span><span id="paratext_other_paratexts">' + data.paratext_other_paratexts + '</span><br>'}
               </p>
             </div>
@@ -1961,12 +1966,13 @@ function expand(e, deep_id) {
               <strong>Stationer Information</strong>
               <p>
                 ${!data.stationer_printer_filter && !data.stationer_publisher_filter && !data.stationer_bookseller_filter && data.stationer_entries_in_register === "None" && !data.stationer_additional_notes ? 'None' : '' }
+                ${!data.stationer_colophon ? '' : '<span class="expand">Colophon: </span><span id="stationer_colophon">' + data.stationer_colophon + '</span><br>'}
                 ${!data.stationer_printer_filter ? '' : '<span class="expand">Printer: </span><span id="stationer_printer">' + data.stationer_printer_display + '</span><br>'}
                 ${!data.stationer_publisher_filter ? '' : '<span class="expand">Publisher: </span><span id="stationer_publisher">' + data.stationer_publisher_display + '</span><br>'}
                 ${!data.stationer_bookseller_filter ? '' : '<span class="expand">Bookseller: </span><span id="stationer_bookseller">' + data.stationer_bookseller_display + '</span><br>'}
                 ${!data.stationer_imprint_location ? '' : '<span class="expand">Imprint Location: </span><span id="stationer_imprint_location">' + data.stationer_imprint_location + '</span><br>'}
-                ${!data.stationer_license ? '' : '<span class="expand">License: </span><span id="stationer_license">' + data.stationer_license + '</span><br>'}
-                ${data.stationer_entries_in_register === "None" ? "" : "<span class='expand'>Entries in Stationers' Register: </span><span id='stationer_entries_in_register'>" + data.stationer_entries_in_register + '</span><br>'}
+                ${data.stationer_entries_in_register === "None" ? "" : "<span class='expand'>Entries in Stationers' Registers: </span><span id='stationer_entries_in_register'>" + data.stationer_entries_in_register + '</span><br>'}
+                <span class="expand"></span><br>
                 ${!data.stationer_additional_notes ? '' : '<span class="expand">Additional Notes: </span><span id="stationer_additional_notes">' + data.stationer_additional_notes + '</span><br>'}
               </p>
             </div>
