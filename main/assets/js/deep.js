@@ -1066,11 +1066,13 @@ const processQueries = queries => {
         
       }
       if (query.searchField == 'deep-id') {
-        let pattern = `^${query.searchValue}$`
-        let re = new RegExp(pattern, 'i');
-        let deepID = (item, re) => (
-          item.deep_id.match(re).length > 0
-          )
+        let deepID = (item) => {
+          let pattern = `^${query.searchValue}$`;
+          let re = new RegExp(pattern, 'i');
+          let match = item.deep_id.match(re);
+          
+          return match !== null && match.length > 0;
+        };
         filters.push({'filter':deepID,'type':query.blockType})
       }
       if (query.searchField == 'greg_number') {
