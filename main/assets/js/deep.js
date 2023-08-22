@@ -1076,9 +1076,13 @@ const processQueries = queries => {
         filters.push({'filter':deepID,'type':query.blockType})
       }
       if (query.searchField == 'greg_number') {
-        let gregNumber = item => (
-          item.greg_full.toLowerCase().includes(query.searchValue.toLowerCase())
-          )
+        let gregNumber = (item) => {
+          let pattern = `^${query.searchValue}$`;
+          let re = new RegExp(pattern, 'i');
+          let match = item.greg_full.match(re);
+          
+          return match !== null && match.length > 0;
+        };
         filters.push({'filter':gregNumber,'type':query.blockType})
       }
       if (query.searchField == 'book_edition') {
@@ -1119,9 +1123,13 @@ const processQueries = queries => {
         }
       }
       if (query.searchField == 'stc_or_wing') {
-        let stcWing = item => (
-          item.stc.toLowerCase().includes(query.searchValue.toLowerCase())
-          )
+        let stcWing = (item) => {
+          let pattern = `^${query.searchValue}$`;
+          let re = new RegExp(pattern, 'i');
+          let match = item.stc.match(re);
+          
+          return match !== null && match.length > 0;
+        };
         filters.push({'filter':stcWing,'type':query.blockType})
       }
       if (query.searchField == 'author') {
@@ -1241,9 +1249,13 @@ const processQueries = queries => {
         filters.push({'filter':bookseller,'type':query.blockType})
       }
       if (query.searchField == 'brit-drama-number') {
-        let britDrama = item => (
-          item.brit_drama_number.toLowerCase().includes(query.searchValue.toLowerCase())
-          )
+          let britDrama = (item) => {
+            let pattern = `^${query.searchValue}$`;
+            let re = new RegExp(pattern, 'i');
+            let match = item.brit_drama_number.match(re);
+            
+            return match !== null && match.length > 0;
+          };
         filters.push({'filter':britDrama,'type':query.blockType})
       }
       
