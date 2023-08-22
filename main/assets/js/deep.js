@@ -1067,7 +1067,9 @@ const processQueries = queries => {
       }
       if (query.searchField == 'deep-id') {
         let deepID = item => (
-          item.deep_id.toLowerCase().includes(query.searchValue.toLowerCase())
+          let pattern = `^${query.searchValue}$`
+          let re = new RegExp(pattern, 'i');
+          item.deep_id.match(re).length > 0;
           )
         filters.push({'filter':deepID,'type':query.blockType})
       }
