@@ -95,10 +95,7 @@ def item_to_dict(item:Item):
         edition["blackletter"] = "No"
     if edition["blackletter"] == None:
         edition["blackletter"] = "No"
-    if edition["blackletter"] == "Yes":
-        edition["blackletter"] = "Yes" 
-    if edition["blackletter"] == "Yes, Partly":
-        edition["blackletter"] = "Yes" 
+    
         
     if edition['book_edition'] == '0':
         edition['book_edition'] = 'n/a'

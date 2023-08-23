@@ -1153,9 +1153,9 @@ const processQueries = queries => {
         }
       }
       if (query.searchField == 'blackletter') {
-        if (query.searchValue == "Yes") {
+        if (query.searchValue == "Yes" || query.searchValue == "Yes, partly") {
           let blackletter = item => (
-            item.blackletter.toLowerCase().includes(query.searchValue.toLowerCase())
+            item.blackletter.toLowerCase().includes("Yes")
           )
           filters.push({'filter':blackletter,'type':query.blockType})
         }    
