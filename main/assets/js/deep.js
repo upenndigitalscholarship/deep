@@ -1153,7 +1153,13 @@ const processQueries = queries => {
         }
       }
       if (query.searchField == 'blackletter') {
-        if (query.searchValue == "Yes" || query.searchValue == "Yes, partly") {
+        if (query.searchValue == "Yes") {
+          let blackletter = item => (
+            item.blackletter.toLowerCase().includes("Yes")
+          )
+          filters.push({'filter':blackletter,'type':query.blockType})
+        }    
+        if (query.searchValue == "Yes, partly") {
           let blackletter = item => (
             item.blackletter.toLowerCase().includes("Yes")
           )
