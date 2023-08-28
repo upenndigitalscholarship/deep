@@ -27,6 +27,26 @@ def item_to_dict(item:Item):
     item_dict['stationer_publisher_filter'] = stationer_publisher
     item_dict['stationer_bookseller_filter'] = stationer_bookseller
 
+    #172, issue with paratext None
+    if not item_dict.get('paratext_dedication',None):
+        item_dict["paratext_dedication"] = ''
+    if not item_dict.get('paratext_commendatory_verses',None):
+        item_dict["paratext_commendatory_verses"] = ''
+    if not item_dict.get('paratext_to_the_reader',None):
+        item_dict["paratext_to_the_reader"] = ''
+    if not item_dict.get('paratext_argument',None):
+        item_dict["paratext_argument"] = ''
+    if not item_dict.get('paratext_actor_list',None):
+        item_dict["paratext_actor_list"] = ''
+    if not item_dict.get('paratext_character_list',None):
+        item_dict["paratext_character_list"] = ''
+    if not item_dict.get('paratext_explicit',None):
+        item_dict["paratext_explicit"] = ''
+    if not item_dict.get('paratext_errata',None):
+        item_dict["paratext_errata"] = ''
+    if not item_dict.get('paratext_other_paratexts',None):
+        item_dict["paratext_other_paratexts"] = ''
+        
     if not item_dict.get('title_page_author_filter',None): # Replace none with 'None' (else search crashes)
         item_dict["title_page_author_filter"] = 'None'
     if not item_dict.get('author_status',None): # Replace none with 'None' (else search crashes)
