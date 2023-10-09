@@ -57,9 +57,8 @@ class Command(BaseCommand):
                             'label': author.name.__str__().strip()
                         })
                         author_set.append(author.name)
-        anonymous_index = next((index for (index, d) in enumerate(authors) if d["label"] == "Anonymous"), None)
-        # sort authors alphabetically by label
         authors.sort(key=lambda x: x['label'])
+        anonymous_index = next((index for (index, d) in enumerate(authors) if d["label"] == "Anonymous"), None)
         authors.insert(0, authors.pop(anonymous_index))
         authors.insert(1, {"value":0,"label":"---" })
         srsly.write_json(static_dir / 'data/authors.json', authors)
