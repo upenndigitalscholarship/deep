@@ -53,6 +53,8 @@ def item_to_dict(item:Item):
         item_dict["author_status"] = 'None'
     if not item_dict.get('theater',None): 
         item_dict["theater"] = 'None'
+    if not item_dict.get('theater_type',None): 
+        item_dict["theater_type"] = 'None'
     if not item_dict.get('title_page_genre',None): 
         item_dict["title_page_genre"] = 'None'
     if not item_dict.get('title_page_modern_spelling',None): 
