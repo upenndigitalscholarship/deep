@@ -1153,20 +1153,12 @@ const processQueries = queries => {
         }
       }
       if (query.searchField == 'blackletter') {
-        if (query.searchValue == "Yes") {
+        if (query.searchValue == "Yes" || query.searchValue == "Yes, Partly") {
           let blackletter = item => (
-            item.blackletter == "Yes" ||
-            item.blackletter == "Yes, Partly"
+            item.blackletter.toLowerCase().includes("yes")
           )
           filters.push({'filter':blackletter,'type':query.blockType})
-        }    
-        if (query.searchValue == "Yes, Partly") {
-          let blackletter = item => (
-            item.blackletter == "Yes, Partly" ||
-            item.blackletter == "Yes"
-          )
-          filters.push({'filter':blackletter,'type':query.blockType})
-        }    
+        }        
         if (query.searchValue == "No") {
             let blackletter = item => (
               item.blackletter.toLowerCase().includes(query.searchValue.toLowerCase())
@@ -1793,6 +1785,7 @@ const search = () => {
   const results = filters.reduce(
       (d, f) => {
         if (f.type == "AND") { 
+          // TODO fix for Uncaught TypeError: d is undefined
           return d.filter(f.filter) 
         } 
         if (f.type == "OR") { 
