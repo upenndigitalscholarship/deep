@@ -440,7 +440,7 @@ const update_searchSelect = (searchSelect, or=false) => {
   }
 
 const noPunct = string => {
-  return string.replace(',',' ').replace('.',' ').replace(':',' ').replace(';',' ').replace('?',' ').replace('-',' ').replace('_',' ')
+  return string.replace(',','').replace('.','').replace(':','').replace(';','').replace('?','').replace('-','').replace('_','')
 }
 
 const getQueries = () => {
