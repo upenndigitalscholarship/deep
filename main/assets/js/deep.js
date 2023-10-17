@@ -1785,8 +1785,12 @@ const search = () => {
   const results = filters.reduce(
       (d, f) => {
         if (f.type == "AND") { 
-          // TODO fix for Uncaught TypeError: d is undefined
-          return d.filter(f.filter) 
+          // catch TypeError: d is undefined
+          if (d == undefined) {
+            console.log(d,f)
+          } else {
+            return d.filter(f.filter)
+          }
         } 
         if (f.type == "OR") { 
           if (f.filter.length == 1) { 
