@@ -1927,7 +1927,7 @@ function expand(e, deep_id) {
                 ${!data.play_edition ? '' : '<span class="expand">Play Edition: </span><span id="play_edition"> ' + data.play_edition + '</span><br>'}
                 ${!data.format ? '' : '<span class="expand">Format: </span><span id="format"> ' + data.format + '</span><br>'}
                 ${!data.leaves ? '' : '<span class="expand">Leaves: </span><span id="leaves"> ' + data.leaves + '</span><br>'}
-                ${ data.blackletter == "No" ? '' : '<span class="expand">Black Letter: </span><span id="blackletter"> ' + data.blackletter + '</span><br>'}
+                ${!data.blackletter ? '' : '<span class="expand">Black Letter: </span><span id="blackletter"> ' + data.blackletter + '</span><br>'}
                 <span class="expand"></span><br>
               </p>
             </div>    

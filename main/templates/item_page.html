@@ -54,7 +54,7 @@
                 <span class="expand">Leaves: </span><span id="leaves">{{ data.leaves }}</span><br>
                 {% endif %}
                 {% if data.blackletter %}
-                <span class="expand">Black Letter: </span><span id="leaves">{{ data.blackletter }}</span><br>
+                <span class="expand">Black Letter: </span><span id="blackletter">{{ data.blackletter }}</span><br>
                 {% endif %}
                 <span class="expand"></span><br>
                 </p>
@@ -146,6 +146,9 @@
                 {% if data.title_page_imprint %}
                 <span class="expand">Imprint: </span><span id="title_page_imprint">{{ data.title_page_imprint|safe }}</span><br>
                 {% endif %}
+                {% if data.title_page_colophon %}
+                <span class="expand">Colophon: </span><span id="title_page_colophon">{{ data.title_page_colophon|safe }}</span><br>
+                {% endif %}
                 
             </p>
             </div>
@@ -204,8 +207,8 @@
                 {% if not data.stationer_printer and not data.stationer_publisher and not data.stationer_bookseller and data.stationer_entries_in_register is None and not data.stationer_additional_notes %}
                 None
                 {% endif %}
-                {% if data.title_page_colophon %}
-                <span class="expand">Colophon: </span><span id="title_page_colophon">{{ data.title_page_colophon|safe }}</span><br>
+                {% if data.stationer_colophon %}
+                <span class="expand">Colophon: </span><span id="stationer_colophon">{{ data.stationer_colophon|safe }}</span><br>
                 {% endif %}
                 {% if data.stationer_printer_filter %}
                 <span class="expand">Printer: </span><span id="stationer_printer">{{ data.stationer_printer_display }}</span><br>
