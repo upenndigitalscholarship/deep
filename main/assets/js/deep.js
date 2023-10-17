@@ -1155,13 +1155,15 @@ const processQueries = queries => {
       if (query.searchField == 'blackletter') {
         if (query.searchValue == "Yes") {
           let blackletter = item => (
-            item.blackletter == "Yes"
+            item.blackletter == "Yes" ||
+            item.blackletter == "Yes, Partly"
           )
           filters.push({'filter':blackletter,'type':query.blockType})
         }    
         if (query.searchValue == "Yes, Partly") {
           let blackletter = item => (
-            item.blackletter == "Yes, Partly"
+            item.blackletter == "Yes, Partly" ||
+            item.blackletter == "Yes"
           )
           filters.push({'filter':blackletter,'type':query.blockType})
         }    
