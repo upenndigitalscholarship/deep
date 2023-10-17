@@ -211,19 +211,19 @@
                 <span class="expand">Colophon: </span><span id="stationer_colophon">{{ data.stationer_colophon|safe }}</span><br>
                 {% endif %}
                 {% if data.stationer_printer_filter %}
-                <span class="expand">Printer: </span><span id="stationer_printer">{{ data.stationer_printer_display }}</span><br>
+                <span class="expand">Printer: </span><span id="stationer_printer">{{ data.stationer_printer_display|safe }}</span><br>
                 {% endif %}
                 {% if data.stationer_publisher_filter %}
-                <span class="expand">Publisher: </span><span id="stationer_publisher">{{ data.stationer_publisher_display }}</span><br>
+                <span class="expand">Publisher: </span><span id="stationer_publisher">{{ data.stationer_publisher_display|safe }}</span><br>
                 {% endif %}
                 {% if data.stationer_bookseller_filter %}
-                <span class="expand">Bookseller: </span><span id="stationer_bookseller">{{ data.stationer_bookseller_display }}</span><br>
+                <span class="expand">Bookseller: </span><span id="stationer_bookseller">{{ data.stationer_bookseller_display|safe }}</span><br>
                 {% endif %}
                 {% if data.stationer_imprint_location %}
-                <span class="expand">Imprint Location: </span><span id="stationer_imprint_location">{{ data.stationer_imprint_location }}</span><br>
+                <span class="expand">Imprint Location: </span><span id="stationer_imprint_location">{{ data.stationer_imprint_location|safe }}</span><br>
                 {% endif %}
                 {% if data.stationer_entries_in_register != "None" %}
-                <span class='expand'>Entries in Stationers' Register: </span><span id='stationer_entries_in_register'>{{ data.stationer_entries_in_register }}</span><br>
+                <span class='expand'>Entries in Stationers' Register: </span><span id='stationer_entries_in_register'>{{ data.stationer_entries_in_register|safe }}</span><br>
                 <span class="expand"></span><br>
                 {% endif %}
                 {% if data.stationer_additional_notes %}

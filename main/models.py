@@ -49,7 +49,8 @@ class Title(models.Model): #Work
     #date_first_performance_wiggins = models.CharField("Date of First Performance (Wiggins)", max_length=5000)
     #company_first_performance_wiggins = models.ForeignKey('Company', on_delete=models.CASCADE, related_name="company_first_performance_wiggins")
     #stationer = models.CharField("Stationer", max_length=5000, blank=True, null=True)
-    
+    stationer_entries_in_register = models.CharField("Stationer: Entries in Register", max_length=5000, blank=True, null=True)
+
     def save(self, *args, **kwargs):
         # remove if  not used
         super(Title, self).save(*args, **kwargs)
@@ -70,6 +71,8 @@ class Edition(models.Model):
     play_type_display = models.CharField("Play Type: Display", max_length=5000, blank=True, null=True)
     blackletter = models.CharField(max_length=255,blank=True, null=True)
     collection = models.CharField("Collection", max_length=5000, blank=True, null=True)
+    variants = models.CharField("Variants", max_length=5000, blank=True, null=True)
+    
     
     def __str__(self):
         return f"{self.title.title} - {self.greg_middle} - {self.book_edition}"
