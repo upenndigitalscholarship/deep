@@ -911,8 +911,8 @@ const processQueries = queries => {
       }
       if (query.searchField == 'title') {
         let title = item => (
-            noPunct(item.title).toLowerCase().includes(query.searchValue.toLowerCase()) || 
-            noPunct(item.title_alternative_keywords).toLowerCase().includes(query.searchValue.toLowerCase())
+            noPunct(item.title).toLowerCase().includes(noPunct(query.searchValue.toLowerCase())) || 
+            noPunct(item.title_alternative_keywords).toLowerCase().includes(noPunct(query.searchValue.toLowerCase()))
             )
         filters.push({'filter':title,'type':query.blockType})
       }
