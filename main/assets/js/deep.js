@@ -1174,7 +1174,7 @@ const processQueries = queries => {
       }
       if (query.searchField == 'genre') {
         let genre = item => (
-          item.genre_annals_filter.toLowerCase() == query.searchValue.toLowerCase()
+          item.genre_annals_filter.split(';').indexOf(query.searchValue) > -1
           )
         filters.push({'filter':genre,'type':query.blockType})
       }
@@ -1613,7 +1613,7 @@ const processQueries = queries => {
         }
         if (fields[i] == 'genre' && values[i]) {
           let genre = item => (
-            item.genre_annals_filter.toLowerCase() == values[i].toLowerCase()
+            item.genre_annals_filter.split(';').indexOf(values[i]) > -1
           )
           ORquery.push(genre)
         }

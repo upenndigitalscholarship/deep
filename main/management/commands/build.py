@@ -224,13 +224,15 @@ class Command(BaseCommand):
         
         ## Genre (Annals)
         # Temp disable to match old site's terms
-        # genres = []
-        # genre_query = list(set([t.genre_annals_filter for t in Title.objects.all().order_by('title')]))
-        # genre_query.sort()
+        genres = []
+        genre_data = []
+        [genre_data.extend(t.genre_annals_filter.split(';')) for t in Title.objects.all() if t.genre_annals_filter]
+        genre_query = list(set(genre_data))
+        genre_query.sort()
 
-        # for i, g in enumerate(genre_query):
-        #     genres.append({"value":i, "label":g})
-        # srsly.write_json(static_dir / 'data/genre.json', genres)
+        for i, g in enumerate(genre_query):
+            genres.append({"value":i, "label":g})
+        srsly.write_json(static_dir / 'data/genre.json', genres)
 
         ## Theaters 
         # Changed to manual given client requirements
