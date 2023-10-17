@@ -64,15 +64,12 @@ class Command(BaseCommand):
         srsly.write_json(static_dir / 'data/authors.json', authors)
         
         # Author Title-Page Attribution
-        title_page_author_filter = [a[0] for a in Item.objects.values_list('title_page_author_filter').distinct() if a[0]]
         title_page_author = []
-        for t in title_page_author_filter:
-             if ';' in t:
-                 for s in t.split(';'):
-                     if s not in title_page_author:
-                         title_page_author.append(s.strip())
-        
-        title_page_author = list(set(title_page_author))
+        for edition in Edition.objects.all():
+            for a in edition.authors.all():
+                if a.name not in title_page_author:
+                    title_page_author.append(a.name)
+
         title_page_author.sort()
         title_page_author_choices = []
         for i, author in enumerate(title_page_author):
