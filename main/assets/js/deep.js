@@ -1174,7 +1174,7 @@ const processQueries = queries => {
       }
       if (query.searchField == 'genre') {
         let genre = item => (
-          item.genre_annals_filter.toLowerCase().includes(query.searchValue.toLowerCase())
+          item.genre_annals_filter.toLowerCase() == query.searchValue.toLowerCase()
           )
         filters.push({'filter':genre,'type':query.blockType})
       }
@@ -1186,7 +1186,7 @@ const processQueries = queries => {
       }
       if (query.searchField == 'playtype') {
         let playtype = item => (
-          item.play_type_filter.toLowerCase().includes(query.searchValue.toLowerCase())
+          item.play_type_filter.toLowerCase() == query.searchValue.toLowerCase()
           )
         filters.push({'filter':playtype,'type':query.blockType})
       }
@@ -1606,7 +1606,7 @@ const processQueries = queries => {
         }
         if (fields[i] == 'genre' && values[i]) {
           let genre = item => (
-            item.genre_annals_filter.toLowerCase().includes(values[i].toLowerCase())
+            item.genre_annals_filter.toLowerCase() == values[i].toLowerCase()
           )
           ORquery.push(genre)
         }
@@ -1618,7 +1618,7 @@ const processQueries = queries => {
         }
         if (fields[i] == 'playtype' && values[i]) {
           let playtype = item => (
-            item.play_type_filter.toLowerCase().includes(values[i].toLowerCase())
+            item.play_type_filter.toLowerCase() == values[i].toLowerCase()
           )
           ORquery.push(playtype)
         }
