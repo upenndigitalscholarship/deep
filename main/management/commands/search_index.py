@@ -44,8 +44,8 @@ def item_to_dict(item:Item):
         item_dict["paratext_argument"] = ''
     if not item_dict.get('paratext_actor_list',None):
         item_dict["paratext_actor_list"] = ''  
-    if not item_dict.get('paratext_character_list',None):
-        item_dict["paratext_character_list"] = ''
+    if not item_dict.get('paratext_charachter_list',None):
+        item_dict["paratext_charachter_list"] = ''
     if not item_dict.get('paratext_other_paratexts',None):
         item_dict["paratext_other_paratexts"] = ''
      
