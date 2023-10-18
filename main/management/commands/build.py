@@ -24,7 +24,7 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         start = time.time()
-        subprocess.run(['chown','-R','www-data:www-data','/srv/deep/site'])
+        subprocess.run(['chown','-R','www-data:www-data','/srv/deep/main/assets/data/*'])
 
         # build Lunr search index files
         call_command('search_index')
@@ -376,7 +376,6 @@ class Command(BaseCommand):
                     'value': i,
                     'label': form.strip()
                 })
-        print(locations_json)
         srsly.write_json(static_dir / 'data/locations.json', locations_json)
 
         #Book Edition 
