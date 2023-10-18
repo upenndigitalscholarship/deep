@@ -3,7 +3,6 @@ from django.db.models import Max, Min
 from django.shortcuts import render,redirect
 from django.core.management import call_command
 from django.http import JsonResponse
-from django.http.response import StreamingHttpResponse
 from main.management.commands.search_index import item_to_dict
 from main.models import Edition, Item, Person, Theater, Title
 
@@ -21,8 +20,10 @@ def item_page(request, deep_id):
     return render(request, 'item_page.html', context)
 
 def build(request):
-    return StreamingHttpResponse(call_command('build'))
-    
+    call_command('build')
+    #return render(request, 'build.html', {})
+    data = {"message":"Build complete"}
+    return JsonResponse(data, safe=False)
 
 def browse(request):
     return render(request, 'browse.html')
