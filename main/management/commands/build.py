@@ -24,8 +24,8 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         start = time.time()
-        self.stdout.write(self.style.SUCCESS(f'Welcome to Build [*]'))
-        print('Building site')
+        subprocess.run(['chown','-R','www-data:www-data','/srv/deep/site'])
+
         # build Lunr search index files
         call_command('search_index')
 
