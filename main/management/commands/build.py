@@ -3,6 +3,7 @@ from distutils.dir_util import copy_tree
 from pathlib import Path
 import itertools
 import srsly
+import subprocess
 from django.core.management import call_command
 from django.core.management.base import BaseCommand, CommandError
 from django.db.models import Max, Min
@@ -23,6 +24,8 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         start = time.time()
+        self.stdout.write(self.style.SUCCESS(f'Welcome to Build [*]'))
+        print('Building site')
         # build Lunr search index files
         call_command('search_index')
 
@@ -453,4 +456,8 @@ class Command(BaseCommand):
         self.stdout.write(self.style.SUCCESS(f'Build Complete in {end-start:.2f} seconds'))
         data = srsly.read_json('main/assets/data/item_data.json')
         call_command('collectstatic','--noinput')
+
+        #change permissions on /srv/deep/site to www-data:www-data using subrocess
+        subprocess.run(['chown','-R','www-data:www-data','/srv/deep/site'])
+        
         self.stdout.write(self.style.SUCCESS(f'{len(data)}'))
