@@ -143,12 +143,10 @@ class Item(models.Model): #Previously known as "DEEP"
     stationer_imprint_location = models.CharField("Stationer: Imprint Location", max_length=5000, blank=True, null=True)
     stationer_bookseller = models.ManyToManyField('Person', related_name="stationer_bookseller",blank=True)
     stationer_bookseller_display = models.CharField("Stationer: Bookseller Display", max_length=5000, blank=True, null=True)
-    stationer_entries_in_register = models.CharField("Stationer: Entries in Register", max_length=5000, blank=True, null=True)
     stationer_additional_notes = models.CharField("Additional Notes", max_length=5000, blank=True, null=True)
     theater_type = models.CharField("Theater Type", max_length=5000, blank=True, null=True)
     theater = models.CharField("Theater", max_length=5000, blank=True, null=True)
     
-    variants = models.CharField("Variants", max_length=5000, blank=True, null=True)
     variant_links = models.ManyToManyField(Link, blank=True)
     
     in_collection = models.ForeignKey(Link, on_delete=models.CASCADE, blank=True, null=True, related_name='in_collection_link_fk')

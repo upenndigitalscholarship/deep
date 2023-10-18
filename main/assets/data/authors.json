@@ -8,991 +8,1063 @@
     "label":"---"
   },
   {
-    "value":1,
-    "label":"Medwall, Henry"
-  },
-  {
-    "value":3,
-    "label":"Rastell, John"
-  },
-  {
-    "value":5,
-    "label":"Skelton, John"
-  },
-  {
-    "value":6,
-    "label":"Terence"
-  },
-  {
-    "value":8,
-    "label":"Heywood, John"
-  },
-  {
-    "value":9,
-    "label":"Bale, John"
-  },
-  {
-    "value":10,
-    "label":"Heywood, Jasper"
-  },
-  {
-    "value":11,
-    "label":"Seneca"
-  },
-  {
-    "value":12,
-    "label":"Neville, Alexander"
-  },
-  {
-    "value":14,
-    "label":"Textor, Ravisius"
-  },
-  {
-    "value":15,
-    "label":"Norton, Thomas"
-  },
-  {
-    "value":16,
-    "label":"Sackville, Thomas"
-  },
-  {
-    "value":17,
-    "label":"Wever, R."
-  },
-  {
-    "value":18,
-    "label":"Studley, John"
-  },
-  {
-    "value":20,
-    "label":"Nuce, Thomas"
-  },
-  {
-    "value":21,
-    "label":"Udall, Nicholas"
-  },
-  {
-    "value":22,
-    "label":"Wager, Lewis"
-  },
-  {
-    "value":23,
-    "label":"Pickering, John"
-  },
-  {
-    "value":24,
-    "label":"Fulwel, Ulpian"
-  },
-  {
-    "value":25,
-    "label":"Phillip, John"
-  },
-  {
-    "value":26,
-    "label":"Wager, W."
-  },
-  {
-    "value":27,
-    "label":"Ingelend, Thomas"
-  },
-  {
-    "value":28,
-    "label":"Preston, Thomas"
-  },
-  {
-    "value":29,
-    "label":"Edwards, Richard"
-  },
-  {
-    "value":30,
-    "label":"Gascoigne, George"
-  },
-  {
-    "value":31,
-    "label":"Ariosto, Ludovico"
-  },
-  {
-    "value":32,
-    "label":"Kinwelmershe, Francis"
-  },
-  {
-    "value":33,
-    "label":"Yelverton, Christopher"
-  },
-  {
-    "value":34,
-    "label":"Euripides"
-  },
-  {
-    "value":35,
-    "label":"Dolce, Lodovico"
-  },
-  {
-    "value":36,
-    "label":"Cheeke, Henry"
-  },
-  {
-    "value":37,
-    "label":"Bassano, Francesco Negri da"
-  },
-  {
-    "value":38,
-    "label":"Niclaes, Hendrik"
-  },
-  {
-    "value":40,
-    "label":"Churchyard, Thomas"
-  },
-  {
-    "value":41,
-    "label":"Roberts, John"
-  },
-  {
-    "value":43,
-    "label":"Wapull, George"
-  },
-  {
-    "value":44,
-    "label":"Golding, Arthur"
-  },
-  {
-    "value":45,
-    "label":"Beza, Theodore"
-  },
-  {
-    "value":46,
-    "label":"Lupton, Thomas"
-  },
-  {
-    "value":47,
-    "label":"Whetstone, George"
-  },
-  {
-    "value":48,
-    "label":"Garter, Bernard"
-  },
-  {
-    "value":49,
-    "label":"Goldingham, Henry"
-  },
-  {
-    "value":50,
-    "label":"Garter, Thomas"
-  },
-  {
-    "value":51,
-    "label":"Goldwell, Henry"
-  },
-  {
-    "value":52,
-    "label":"Woodes, Nathaniel"
-  },
-  {
-    "value":53,
-    "label":"Newton, Thomas"
-  },
-  {
-    "value":54,
-    "label":"Lyly, John"
-  },
-  {
-    "value":55,
-    "label":"Peele, George"
-  },
-  {
-    "value":56,
-    "label":"Wilson, Robert"
-  },
-  {
-    "value":57,
-    "label":"Pasqualigo, Luigi"
-  },
-  {
-    "value":60,
-    "label":"Hughes, Thomas"
-  },
-  {
-    "value":61,
-    "label":"Kyffin, Maurice"
-  },
-  {
-    "value":62,
-    "label":"Marlowe, Christopher"
-  },
-  {
-    "value":63,
-    "label":"Nelson, Thomas"
-  },
-  {
-    "value":64,
-    "label":"Fraunce, Abraham"
-  },
-  {
-    "value":65,
-    "label":"Tasso, Torquato"
-  },
-  {
-    "value":66,
-    "label":"Wilmot, Robert"
-  },
-  {
-    "value":67,
-    "label":"Hatton, Christopher"
-  },
-  {
-    "value":68,
-    "label":"Noel, Henry"
+    "value":134,
+    "label":"A., R."
   },
   {
     "value":69,
     "label":"Al., G."
   },
   {
-    "value":70,
-    "label":"Stafford, Roderick"
-  },
-  {
-    "value":71,
-    "label":"Herbert, Mary"
-  },
-  {
-    "value":72,
-    "label":"Garnier, Robert"
-  },
-  {
-    "value":73,
-    "label":"Kyd, Thomas"
-  },
-  {
-    "value":74,
-    "label":"Shakespeare, William"
-  },
-  {
-    "value":75,
-    "label":"Lodge, Thomas"
-  },
-  {
-    "value":76,
-    "label":"Greene, Robert"
-  },
-  {
-    "value":78,
-    "label":"Nashe, Thomas"
-  },
-  {
-    "value":80,
-    "label":"Daniel, Samuel"
-  },
-  {
-    "value":81,
-    "label":"Warner, William"
-  },
-  {
-    "value":82,
-    "label":"Plautus"
-  },
-  {
-    "value":83,
-    "label":"S., W."
-  },
-  {
-    "value":84,
-    "label":"Chapman, George"
-  },
-  {
-    "value":85,
-    "label":"Brandon, Samuel"
-  },
-  {
-    "value":86,
-    "label":"Sidney, Philip"
-  },
-  {
-    "value":87,
-    "label":"Heywood, Thomas"
-  },
-  {
-    "value":88,
-    "label":"Porter, Henry"
-  },
-  {
-    "value":89,
-    "label":"Dekker, Thomas"
-  },
-  {
-    "value":90,
-    "label":"Jonson, Ben"
-  },
-  {
-    "value":91,
-    "label":"Drayton, Michael"
-  },
-  {
-    "value":92,
-    "label":"Munday, Anthony"
-  },
-  {
-    "value":93,
-    "label":"Hathaway, Richard"
-  },
-  {
-    "value":94,
-    "label":"Marston, John"
-  },
-  {
-    "value":95,
-    "label":"Chettle, Henry"
-  },
-  {
-    "value":96,
-    "label":"Yarington, Robert"
-  },
-  {
-    "value":98,
-    "label":"Guarini, Giovanni Battista"
-  },
-  {
-    "value":100,
-    "label":"Lindsay, David"
-  },
-  {
-    "value":101,
-    "label":"Alexander, William"
-  },
-  {
-    "value":102,
-    "label":"Haughton, William"
-  },
-  {
-    "value":103,
-    "label":"Middleton, Thomas"
-  },
-  {
-    "value":104,
-    "label":"Webster, John"
-  },
-  {
-    "value":105,
-    "label":"Harrison, Stephen"
-  },
-  {
-    "value":106,
-    "label":"Rowley, Samuel"
-  },
-  {
-    "value":107,
-    "label":"Roberts, Henry"
-  },
-  {
-    "value":108,
-    "label":"Day, John"
-  },
-  {
-    "value":109,
-    "label":"Campion, Thomas"
-  },
-  {
-    "value":110,
-    "label":"Tomkis, Thomas"
-  },
-  {
-    "value":111,
-    "label":"Beaumont, Francis"
-  },
-  {
-    "value":112,
-    "label":"Fletcher, John"
-  },
-  {
-    "value":113,
-    "label":"Sharpham, Edward"
-  },
-  {
-    "value":114,
-    "label":"Wilkins, George"
-  },
-  {
-    "value":115,
-    "label":"Rowley, William"
-  },
-  {
-    "value":117,
-    "label":"Barnes, Barnabe"
-  },
-  {
-    "value":118,
-    "label":"Markham, Gervase"
-  },
-  {
-    "value":119,
-    "label":"Machin, Lewis"
-  },
-  {
-    "value":120,
-    "label":"Greville, Fulke"
-  },
-  {
-    "value":121,
-    "label":"Armin, Robert"
-  },
-  {
-    "value":122,
-    "label":"Mason, John"
-  },
-  {
-    "value":123,
-    "label":"Amerie, Robert"
-  },
-  {
-    "value":124,
-    "label":"Davies, Richard"
-  },
-  {
-    "value":125,
-    "label":"Barry, Lording"
-  },
-  {
-    "value":126,
-    "label":"Tourneur, Cyril"
-  },
-  {
-    "value":127,
-    "label":"Field, Nathan"
-  },
-  {
-    "value":128,
-    "label":"Daborne, Robert"
-  },
-  {
-    "value":129,
-    "label":"Cary, Elizabeth"
-  },
-  {
-    "value":130,
-    "label":"Stephens, John"
-  },
-  {
-    "value":131,
-    "label":"Barkstead, William"
-  },
-  {
-    "value":132,
-    "label":"Tailor, Robert"
-  },
-  {
-    "value":134,
-    "label":"A., R."
-  },
-  {
-    "value":137,
-    "label":"S., S."
-  },
-  {
-    "value":138,
-    "label":"Holiday, Barten"
-  },
-  {
-    "value":139,
-    "label":"Belchier, Dabridgcourt"
-  },
-  {
-    "value":141,
-    "label":"Squire, John"
-  },
-  {
-    "value":142,
-    "label":"Massinger, Philip"
-  },
-  {
-    "value":143,
-    "label":"Sampson, William"
-  },
-  {
-    "value":144,
-    "label":"May, Thomas"
-  },
-  {
-    "value":145,
-    "label":"Hawkins, William"
-  },
-  {
-    "value":146,
-    "label":"Newman, Thomas"
-  },
-  {
-    "value":147,
-    "label":"Reynolds, Henry"
-  },
-  {
-    "value":148,
-    "label":"Gomersall, Robert"
-  },
-  {
-    "value":149,
-    "label":"Ford, John"
-  },
-  {
-    "value":150,
-    "label":"Davenant, William"
-  },
-  {
-    "value":151,
-    "label":"Carlell, Lodowick"
-  },
-  {
-    "value":152,
-    "label":"Shirley, James"
-  },
-  {
-    "value":153,
-    "label":"Randolph, Thomas"
-  },
-  {
-    "value":154,
-    "label":"Mabbe, James"
-  },
-  {
-    "value":155,
-    "label":"Rojas, Fernando de"
-  },
-  {
-    "value":156,
-    "label":"Fletcher, Phineas"
-  },
-  {
-    "value":157,
-    "label":"Goffe, Thomas"
-  },
-  {
-    "value":158,
-    "label":"Knevet, Ralph"
-  },
-  {
-    "value":159,
-    "label":"Drue, Thomas"
-  },
-  {
-    "value":160,
-    "label":"Townshend, Aurelian"
-  },
-  {
-    "value":161,
-    "label":"Marmion, Shackerley"
-  },
-  {
-    "value":162,
-    "label":"Brome, Richard"
-  },
-  {
-    "value":163,
-    "label":"Hausted, Peter"
-  },
-  {
-    "value":164,
-    "label":"R., W."
-  },
-  {
-    "value":165,
-    "label":"Fisher, Jasper"
-  },
-  {
-    "value":167,
-    "label":"Taylor, John"
-  },
-  {
-    "value":168,
-    "label":"Carew, Thomas"
-  },
-  {
-    "value":169,
-    "label":"Rutter, Joseph"
-  },
-  {
-    "value":170,
-    "label":"Jones, John"
-  },
-  {
-    "value":173,
-    "label":"Nabbes, Thomas"
-  },
-  {
-    "value":174,
-    "label":"W., J."
-  },
-  {
-    "value":175,
-    "label":"Milton, John"
-  },
-  {
-    "value":176,
-    "label":"Corneille, Pierre"
-  },
-  {
-    "value":177,
-    "label":"Shirley, Henry"
-  },
-  {
-    "value":178,
-    "label":"Berkeley, William"
-  },
-  {
-    "value":179,
-    "label":"Killigrew, Henry"
-  },
-  {
-    "value":180,
-    "label":"Cowley, Abraham"
-  },
-  {
-    "value":181,
-    "label":"Suckling, John"
-  },
-  {
-    "value":182,
-    "label":"Kirke, John"
-  },
-  {
-    "value":183,
-    "label":"Zouche, Richard"
-  },
-  {
-    "value":184,
-    "label":"Glapthorne, Henry"
-  },
-  {
-    "value":185,
-    "label":"Freeman, Ralph"
-  },
-  {
-    "value":186,
-    "label":"Davenport, Robert"
-  },
-  {
-    "value":191,
-    "label":"Mayne, Jasper"
-  },
-  {
-    "value":192,
-    "label":"Lower, William"
-  },
-  {
-    "value":193,
-    "label":"Cartwright, William"
-  },
-  {
-    "value":194,
-    "label":"Richards, Nathaniel"
-  },
-  {
-    "value":195,
-    "label":"Sandys, George"
-  },
-  {
-    "value":196,
-    "label":"Grotius, Hugo"
-  },
-  {
-    "value":197,
-    "label":"D., J."
-  },
-  {
-    "value":198,
-    "label":"Rawlins, Thomas"
-  },
-  {
-    "value":199,
-    "label":"Gough, John"
-  },
-  {
-    "value":200,
-    "label":"Habington, William"
-  },
-  {
-    "value":201,
-    "label":"Chamberlain, Robert"
-  },
-  {
-    "value":202,
-    "label":"Sadler, John"
-  },
-  {
-    "value":203,
-    "label":"Desfontaines, Nicolas-Marc"
-  },
-  {
-    "value":204,
-    "label":"Sharpe, Lewis"
-  },
-  {
-    "value":205,
-    "label":"Harding, Samuel"
-  },
-  {
-    "value":206,
-    "label":"Tatham, John"
-  },
-  {
-    "value":207,
-    "label":"Burnell, Henry"
-  },
-  {
-    "value":208,
-    "label":"Braithwait, Richard"
-  },
-  {
-    "value":209,
-    "label":"Killigrew, Thomas"
-  },
-  {
-    "value":210,
-    "label":"Denham, John"
-  },
-  {
-    "value":211,
-    "label":"Buchanan, George"
-  },
-  {
-    "value":212,
-    "label":"Burkhead, Henry"
-  },
-  {
-    "value":213,
-    "label":"Fanshawe, Richard"
-  },
-  {
-    "value":214,
-    "label":"Sheppard, Samuel"
-  },
-  {
-    "value":217,
-    "label":"Baron, Robert"
-  },
-  {
-    "value":218,
-    "label":"Nedham, Marchamont"
-  },
-  {
-    "value":223,
-    "label":"Sherburne, Edward"
-  },
-  {
-    "value":224,
-    "label":"Cavendish, William"
-  },
-  {
-    "value":225,
-    "label":"Wase, Christopher"
-  },
-  {
-    "value":226,
-    "label":"Sophocles"
-  },
-  {
-    "value":228,
-    "label":"B., T."
-  },
-  {
-    "value":229,
-    "label":"Quarles, Francis"
-  },
-  {
-    "value":230,
-    "label":"Willan, Leonard"
-  },
-  {
-    "value":231,
-    "label":"Prestwich, Edmund"
-  },
-  {
-    "value":232,
-    "label":"J., F."
-  },
-  {
-    "value":233,
-    "label":"Aristophanes"
-  },
-  {
-    "value":234,
-    "label":"S., J."
-  },
-  {
-    "value":235,
-    "label":"Manuche, Cosmo"
-  },
-  {
-    "value":236,
-    "label":"Goldsmith, Francis"
-  },
-  {
-    "value":237,
-    "label":"Hemings, William"
-  },
-  {
-    "value":239,
-    "label":"Howell, James"
-  },
-  {
-    "value":240,
-    "label":"Flecknoe, Richard"
-  },
-  {
-    "value":241,
-    "label":"Mead, Robert"
-  },
-  {
-    "value":243,
-    "label":"R., T."
-  },
-  {
-    "value":244,
-    "label":"Corneille, Thomas"
-  },
-  {
-    "value":245,
-    "label":"Brewer, Anthony"
-  },
-  {
-    "value":246,
-    "label":"Rider, William"
-  },
-  {
-    "value":247,
-    "label":"Stanley, Thomas"
-  },
-  {
-    "value":248,
-    "label":"Sidnam, Jonathan"
-  },
-  {
-    "value":249,
-    "label":"Bonarelli, Guidobaldo de'"
-  },
-  {
-    "value":250,
-    "label":"Strode, William"
-  },
-  {
-    "value":251,
-    "label":"Cox, Robert"
-  },
-  {
-    "value":254,
-    "label":"Bulteel, John (younger)"
-  },
-  {
-    "value":255,
-    "label":"Holland, Samuel"
-  },
-  {
-    "value":256,
-    "label":"Cokayne, Aston"
-  },
-  {
-    "value":257,
-    "label":"Jordan, Thomas"
-  },
-  {
-    "value":258,
-    "label":"D'Ouvilly, George Gerbier"
-  },
-  {
-    "value":259,
-    "label":"Meriton, Thomas"
-  },
-  {
-    "value":260,
-    "label":"Chamberlain, William"
-  },
-  {
-    "value":261,
-    "label":"Swinhoe, Gilbert"
-  },
-  {
-    "value":262,
-    "label":"Montague, Walter"
-  },
-  {
-    "value":263,
-    "label":"Quinault, Philipe"
-  },
-  {
-    "value":264,
-    "label":"B., H. H."
-  },
-  {
-    "value":265,
-    "label":"Watson, Thomas"
-  },
-  {
-    "value":266,
-    "label":"Gager, William"
-  },
-  {
-    "value":267,
-    "label":"Gwinne, Matthew"
-  },
-  {
-    "value":268,
-    "label":"Brooke, Samuel"
-  },
-  {
-    "value":269,
-    "label":"Ruggle, George"
-  },
-  {
-    "value":270,
-    "label":"Forsett, Edward"
-  },
-  {
-    "value":271,
-    "label":"Stubbe, Edmund"
-  },
-  {
     "value":272,
     "label":"Alabaster, William"
-  },
-  {
-    "value":273,
-    "label":"Hutton, Leonard"
-  },
-  {
-    "value":274,
-    "label":"Hawkesworth, Walter"
-  },
-  {
-    "value":275,
-    "label":"Snelling, Thomas"
-  },
-  {
-    "value":276,
-    "label":"Hacket, John"
-  },
-  {
-    "value":277,
-    "label":"Vincent, Thomas"
-  },
-  {
-    "value":278,
-    "label":"Lydgate, John"
-  },
-  {
-    "value":279,
-    "label":"Mornay, Philippe de"
-  },
-  {
-    "value":280,
-    "label":"Beling, Richard"
-  },
-  {
-    "value":281,
-    "label":"Johnstoun, James"
   },
   {
     "value":282,
     "label":"Aleman, Mateo"
   },
   {
+    "value":101,
+    "label":"Alexander, William"
+  },
+  {
+    "value":123,
+    "label":"Amerie, Robert"
+  },
+  {
+    "value":31,
+    "label":"Ariosto, Ludovico"
+  },
+  {
+    "value":233,
+    "label":"Aristophanes"
+  },
+  {
+    "value":121,
+    "label":"Armin, Robert"
+  },
+  {
+    "value":264,
+    "label":"B., H. H."
+  },
+  {
+    "value":228,
+    "label":"B., T."
+  },
+  {
+    "value":9,
+    "label":"Bale, John"
+  },
+  {
+    "value":131,
+    "label":"Barkstead, William"
+  },
+  {
+    "value":117,
+    "label":"Barnes, Barnabe"
+  },
+  {
+    "value":217,
+    "label":"Baron, Robert"
+  },
+  {
+    "value":125,
+    "label":"Barry, Lording"
+  },
+  {
+    "value":37,
+    "label":"Bassano, Francesco Negri da"
+  },
+  {
+    "value":111,
+    "label":"Beaumont, Francis"
+  },
+  {
+    "value":139,
+    "label":"Belchier, Dabridgcourt"
+  },
+  {
+    "value":280,
+    "label":"Beling, Richard"
+  },
+  {
+    "value":178,
+    "label":"Berkeley, William"
+  },
+  {
+    "value":45,
+    "label":"Beza, Theodore"
+  },
+  {
+    "value":726,
+    "label":"Bird, William"
+  },
+  {
+    "value":249,
+    "label":"Bonarelli, Guidobaldo de'"
+  },
+  {
+    "value":39,
+    "label":"Bower, Richard"
+  },
+  {
+    "value":208,
+    "label":"Braithwait, Richard"
+  },
+  {
+    "value":85,
+    "label":"Brandon, Samuel"
+  },
+  {
+    "value":245,
+    "label":"Brewer, Anthony"
+  },
+  {
+    "value":216,
+    "label":"Brewer, Thomas"
+  },
+  {
+    "value":242,
+    "label":"Brome, Alexander"
+  },
+  {
+    "value":162,
+    "label":"Brome, Richard"
+  },
+  {
+    "value":268,
+    "label":"Brooke, Samuel"
+  },
+  {
+    "value":211,
+    "label":"Buchanan, George"
+  },
+  {
+    "value":254,
+    "label":"Bulteel, John (younger)"
+  },
+  {
+    "value":212,
+    "label":"Burkhead, Henry"
+  },
+  {
+    "value":207,
+    "label":"Burnell, Henry"
+  },
+  {
+    "value":725,
+    "label":"Buti, Francesco"
+  },
+  {
+    "value":109,
+    "label":"Campion, Thomas"
+  },
+  {
+    "value":168,
+    "label":"Carew, Thomas"
+  },
+  {
+    "value":151,
+    "label":"Carlell, Lodowick"
+  },
+  {
+    "value":193,
+    "label":"Cartwright, William"
+  },
+  {
+    "value":129,
+    "label":"Cary, Elizabeth Tanfield"
+  },
+  {
+    "value":224,
+    "label":"Cavendish, William"
+  },
+  {
+    "value":201,
+    "label":"Chamberlain, Robert"
+  },
+  {
+    "value":260,
+    "label":"Chamberlain, William"
+  },
+  {
+    "value":84,
+    "label":"Chapman, George"
+  },
+  {
+    "value":36,
+    "label":"Cheeke, Henry"
+  },
+  {
+    "value":95,
+    "label":"Chettle, Henry"
+  },
+  {
+    "value":40,
+    "label":"Churchyard, Thomas"
+  },
+  {
+    "value":256,
+    "label":"Cokayne, Aston"
+  },
+  {
+    "value":133,
+    "label":"Cooke, Joshua"
+  },
+  {
+    "value":176,
+    "label":"Corneille, Pierre"
+  },
+  {
+    "value":244,
+    "label":"Corneille, Thomas"
+  },
+  {
+    "value":180,
+    "label":"Cowley, Abraham"
+  },
+  {
+    "value":251,
+    "label":"Cox, Robert"
+  },
+  {
+    "value":140,
+    "label":"Cumber, John"
+  },
+  {
+    "value":258,
+    "label":"D'Ouvilly, George Gerbier"
+  },
+  {
+    "value":197,
+    "label":"D., J."
+  },
+  {
+    "value":128,
+    "label":"Daborne, Robert"
+  },
+  {
+    "value":80,
+    "label":"Daniel, Samuel"
+  },
+  {
+    "value":150,
+    "label":"Davenant, William"
+  },
+  {
+    "value":186,
+    "label":"Davenport, Robert"
+  },
+  {
+    "value":124,
+    "label":"Davies, Richard"
+  },
+  {
+    "value":108,
+    "label":"Day, John"
+  },
+  {
+    "value":89,
+    "label":"Dekker, Thomas"
+  },
+  {
+    "value":210,
+    "label":"Denham, John"
+  },
+  {
+    "value":203,
+    "label":"Desfontaines, Nicolas-Marc"
+  },
+  {
+    "value":35,
+    "label":"Dolce, Lodovico"
+  },
+  {
+    "value":91,
+    "label":"Drayton, Michael"
+  },
+  {
+    "value":159,
+    "label":"Drue, Thomas"
+  },
+  {
+    "value":166,
+    "label":"Drummond, William"
+  },
+  {
+    "value":97,
+    "label":"Dymock, John"
+  },
+  {
+    "value":29,
+    "label":"Edwards, Richard"
+  },
+  {
+    "value":34,
+    "label":"Euripides"
+  },
+  {
+    "value":213,
+    "label":"Fanshawe, Richard"
+  },
+  {
+    "value":127,
+    "label":"Field, Nathan"
+  },
+  {
+    "value":165,
+    "label":"Fisher, Jasper"
+  },
+  {
+    "value":240,
+    "label":"Flecknoe, Richard"
+  },
+  {
+    "value":112,
+    "label":"Fletcher, John"
+  },
+  {
+    "value":156,
+    "label":"Fletcher, Phineas"
+  },
+  {
+    "value":149,
+    "label":"Ford, John"
+  },
+  {
+    "value":270,
+    "label":"Forsett, Edward"
+  },
+  {
+    "value":64,
+    "label":"Fraunce, Abraham"
+  },
+  {
+    "value":185,
+    "label":"Freeman, Ralph"
+  },
+  {
+    "value":24,
+    "label":"Fulwel, Ulpian"
+  },
+  {
+    "value":266,
+    "label":"Gager, William"
+  },
+  {
+    "value":72,
+    "label":"Garnier, Robert"
+  },
+  {
+    "value":48,
+    "label":"Garter, Bernard"
+  },
+  {
+    "value":50,
+    "label":"Garter, Thomas"
+  },
+  {
+    "value":30,
+    "label":"Gascoigne, George"
+  },
+  {
+    "value":184,
+    "label":"Glapthorne, Henry"
+  },
+  {
+    "value":157,
+    "label":"Goffe, Thomas"
+  },
+  {
+    "value":44,
+    "label":"Golding, Arthur"
+  },
+  {
+    "value":49,
+    "label":"Goldingham, Henry"
+  },
+  {
+    "value":236,
+    "label":"Goldsmith, Francis"
+  },
+  {
+    "value":51,
+    "label":"Goldwell, Henry"
+  },
+  {
+    "value":148,
+    "label":"Gomersall, Robert"
+  },
+  {
+    "value":199,
+    "label":"Gough, John"
+  },
+  {
+    "value":76,
+    "label":"Greene, Robert"
+  },
+  {
+    "value":120,
+    "label":"Greville, Fulke"
+  },
+  {
+    "value":196,
+    "label":"Grotius, Hugo"
+  },
+  {
+    "value":98,
+    "label":"Guarini, Giovanni Battista"
+  },
+  {
+    "value":267,
+    "label":"Gwinne, Matthew"
+  },
+  {
+    "value":200,
+    "label":"Habington, William"
+  },
+  {
+    "value":276,
+    "label":"Hacket, John"
+  },
+  {
+    "value":205,
+    "label":"Harding, Samuel"
+  },
+  {
+    "value":105,
+    "label":"Harrison, Stephen"
+  },
+  {
+    "value":93,
+    "label":"Hathaway, Richard"
+  },
+  {
+    "value":67,
+    "label":"Hatton, Christopher"
+  },
+  {
+    "value":102,
+    "label":"Haughton, William"
+  },
+  {
+    "value":163,
+    "label":"Hausted, Peter"
+  },
+  {
+    "value":274,
+    "label":"Hawkesworth, Walter"
+  },
+  {
+    "value":145,
+    "label":"Hawkins, William"
+  },
+  {
+    "value":237,
+    "label":"Hemings, William"
+  },
+  {
+    "value":71,
+    "label":"Herbert, Mary Sidney"
+  },
+  {
+    "value":10,
+    "label":"Heywood, Jasper"
+  },
+  {
+    "value":8,
+    "label":"Heywood, John"
+  },
+  {
+    "value":87,
+    "label":"Heywood, Thomas"
+  },
+  {
+    "value":138,
+    "label":"Holiday, Barten"
+  },
+  {
+    "value":255,
+    "label":"Holland, Samuel"
+  },
+  {
     "value":283,
     "label":"Horace"
+  },
+  {
+    "value":239,
+    "label":"Howell, James"
+  },
+  {
+    "value":60,
+    "label":"Hughes, Thomas"
+  },
+  {
+    "value":273,
+    "label":"Hutton, Leonard"
+  },
+  {
+    "value":27,
+    "label":"Ingelend, Thomas"
+  },
+  {
+    "value":232,
+    "label":"J., F."
+  },
+  {
+    "value":281,
+    "label":"Johnstoun, James"
+  },
+  {
+    "value":170,
+    "label":"Jones, John"
+  },
+  {
+    "value":90,
+    "label":"Jonson, Ben"
+  },
+  {
+    "value":257,
+    "label":"Jordan, Thomas"
+  },
+  {
+    "value":252,
+    "label":"Kempe, William"
+  },
+  {
+    "value":179,
+    "label":"Killigrew, Henry"
+  },
+  {
+    "value":209,
+    "label":"Killigrew, Thomas"
+  },
+  {
+    "value":32,
+    "label":"Kinwelmershe, Francis"
+  },
+  {
+    "value":182,
+    "label":"Kirke, John"
+  },
+  {
+    "value":158,
+    "label":"Knevet, Ralph"
+  },
+  {
+    "value":73,
+    "label":"Kyd, Thomas"
+  },
+  {
+    "value":61,
+    "label":"Kyffin, Maurice"
+  },
+  {
+    "value":171,
+    "label":"Kynaston, Francis"
+  },
+  {
+    "value":59,
+    "label":"Lee, Henry"
+  },
+  {
+    "value":100,
+    "label":"Lindsay, David"
+  },
+  {
+    "value":75,
+    "label":"Lodge, Thomas"
+  },
+  {
+    "value":192,
+    "label":"Lower, William"
+  },
+  {
+    "value":46,
+    "label":"Lupton, Thomas"
+  },
+  {
+    "value":278,
+    "label":"Lydgate, John"
+  },
+  {
+    "value":54,
+    "label":"Lyly, John"
+  },
+  {
+    "value":154,
+    "label":"Mabbe, James"
+  },
+  {
+    "value":119,
+    "label":"Machin, Lewis"
+  },
+  {
+    "value":235,
+    "label":"Manuche, Cosmo"
+  },
+  {
+    "value":118,
+    "label":"Markham, Gervase"
+  },
+  {
+    "value":62,
+    "label":"Marlowe, Christopher"
+  },
+  {
+    "value":161,
+    "label":"Marmion, Shackerley"
+  },
+  {
+    "value":94,
+    "label":"Marston, John"
+  },
+  {
+    "value":122,
+    "label":"Mason, John"
+  },
+  {
+    "value":142,
+    "label":"Massinger, Philip"
+  },
+  {
+    "value":144,
+    "label":"May, Thomas"
+  },
+  {
+    "value":191,
+    "label":"Mayne, Jasper"
+  },
+  {
+    "value":241,
+    "label":"Mead, Robert"
+  },
+  {
+    "value":1,
+    "label":"Medwall, Henry"
+  },
+  {
+    "value":259,
+    "label":"Meriton, Thomas"
+  },
+  {
+    "value":103,
+    "label":"Middleton, Thomas"
+  },
+  {
+    "value":175,
+    "label":"Milton, John"
+  },
+  {
+    "value":262,
+    "label":"Montague, Walter"
+  },
+  {
+    "value":92,
+    "label":"Munday, Anthony"
+  },
+  {
+    "value":173,
+    "label":"Nabbes, Thomas"
+  },
+  {
+    "value":78,
+    "label":"Nashe, Thomas"
+  },
+  {
+    "value":218,
+    "label":"Nedham, Marchamont"
+  },
+  {
+    "value":63,
+    "label":"Nelson, Thomas"
+  },
+  {
+    "value":12,
+    "label":"Neville, Alexander"
+  },
+  {
+    "value":146,
+    "label":"Newman, Thomas"
+  },
+  {
+    "value":53,
+    "label":"Newton, Thomas"
+  },
+  {
+    "value":38,
+    "label":"Niclaes, Hendrik"
+  },
+  {
+    "value":68,
+    "label":"Noel, Henry"
+  },
+  {
+    "value":15,
+    "label":"Norton, Thomas"
+  },
+  {
+    "value":20,
+    "label":"Nuce, Thomas"
+  },
+  {
+    "value":57,
+    "label":"Pasqualigo, Luigi"
+  },
+  {
+    "value":227,
+    "label":"Peaps, William"
+  },
+  {
+    "value":55,
+    "label":"Peele, George"
+  },
+  {
+    "value":25,
+    "label":"Phillip, John"
+  },
+  {
+    "value":23,
+    "label":"Pickering, John"
+  },
+  {
+    "value":82,
+    "label":"Plautus"
+  },
+  {
+    "value":88,
+    "label":"Porter, Henry"
+  },
+  {
+    "value":28,
+    "label":"Preston, Thomas"
+  },
+  {
+    "value":231,
+    "label":"Prestwich, Edmund"
+  },
+  {
+    "value":229,
+    "label":"Quarles, Francis"
+  },
+  {
+    "value":263,
+    "label":"Quinault, Philipe"
+  },
+  {
+    "value":243,
+    "label":"R., T."
+  },
+  {
+    "value":164,
+    "label":"R., W."
+  },
+  {
+    "value":153,
+    "label":"Randolph, Thomas"
+  },
+  {
+    "value":3,
+    "label":"Rastell, John"
+  },
+  {
+    "value":198,
+    "label":"Rawlins, Thomas"
+  },
+  {
+    "value":147,
+    "label":"Reynolds, Henry"
+  },
+  {
+    "value":194,
+    "label":"Richards, Nathaniel"
+  },
+  {
+    "value":246,
+    "label":"Rider, William"
+  },
+  {
+    "value":107,
+    "label":"Roberts, Henry"
+  },
+  {
+    "value":41,
+    "label":"Roberts, John"
+  },
+  {
+    "value":155,
+    "label":"Rojas, Fernando de"
+  },
+  {
+    "value":106,
+    "label":"Rowley, Samuel"
+  },
+  {
+    "value":115,
+    "label":"Rowley, William"
+  },
+  {
+    "value":269,
+    "label":"Ruggle, George"
+  },
+  {
+    "value":169,
+    "label":"Rutter, Joseph"
+  },
+  {
+    "value":234,
+    "label":"S., J."
+  },
+  {
+    "value":137,
+    "label":"S., S."
+  },
+  {
+    "value":83,
+    "label":"S., W."
+  },
+  {
+    "value":172,
+    "label":"Sackville, Edward"
+  },
+  {
+    "value":16,
+    "label":"Sackville, Thomas"
+  },
+  {
+    "value":202,
+    "label":"Sadler, John"
+  },
+  {
+    "value":143,
+    "label":"Sampson, William"
+  },
+  {
+    "value":195,
+    "label":"Sandys, George"
+  },
+  {
+    "value":11,
+    "label":"Seneca"
+  },
+  {
+    "value":74,
+    "label":"Shakespeare, William"
+  },
+  {
+    "value":204,
+    "label":"Sharpe, Lewis"
+  },
+  {
+    "value":113,
+    "label":"Sharpham, Edward"
+  },
+  {
+    "value":214,
+    "label":"Sheppard, Samuel"
+  },
+  {
+    "value":223,
+    "label":"Sherburne, Edward"
+  },
+  {
+    "value":177,
+    "label":"Shirley, Henry"
+  },
+  {
+    "value":152,
+    "label":"Shirley, James"
+  },
+  {
+    "value":248,
+    "label":"Sidnam, Jonathan"
+  },
+  {
+    "value":724,
+    "label":"Sidney Herbert, Mary"
+  },
+  {
+    "value":86,
+    "label":"Sidney, Philip"
+  },
+  {
+    "value":5,
+    "label":"Skelton, John"
+  },
+  {
+    "value":135,
+    "label":"Smith, Wentworth"
+  },
+  {
+    "value":136,
+    "label":"Smith, William"
+  },
+  {
+    "value":275,
+    "label":"Snelling, Thomas"
+  },
+  {
+    "value":226,
+    "label":"Sophocles"
+  },
+  {
+    "value":141,
+    "label":"Squire, John"
+  },
+  {
+    "value":70,
+    "label":"Stafford, Roderick"
+  },
+  {
+    "value":247,
+    "label":"Stanley, Thomas"
+  },
+  {
+    "value":130,
+    "label":"Stephens, John"
+  },
+  {
+    "value":42,
+    "label":"Stevenson, William"
+  },
+  {
+    "value":250,
+    "label":"Strode, William"
+  },
+  {
+    "value":271,
+    "label":"Stubbe, Edmund"
+  },
+  {
+    "value":18,
+    "label":"Studley, John"
+  },
+  {
+    "value":181,
+    "label":"Suckling, John"
+  },
+  {
+    "value":261,
+    "label":"Swinhoe, Gilbert"
+  },
+  {
+    "value":132,
+    "label":"Tailor, Robert"
+  },
+  {
+    "value":723,
+    "label":"Tanfield Cary, Elizabeth"
+  },
+  {
+    "value":65,
+    "label":"Tasso, Torquato"
+  },
+  {
+    "value":206,
+    "label":"Tatham, John"
+  },
+  {
+    "value":167,
+    "label":"Taylor, John"
+  },
+  {
+    "value":6,
+    "label":"Terence"
+  },
+  {
+    "value":14,
+    "label":"Textor, Ravisius"
+  },
+  {
+    "value":110,
+    "label":"Tomkis, Thomas"
+  },
+  {
+    "value":126,
+    "label":"Tourneur, Cyril"
+  },
+  {
+    "value":160,
+    "label":"Townshend, Aurelian"
+  },
+  {
+    "value":21,
+    "label":"Udall, Nicholas"
+  },
+  {
+    "value":277,
+    "label":"Vincent, Thomas"
+  },
+  {
+    "value":174,
+    "label":"W., J."
+  },
+  {
+    "value":22,
+    "label":"Wager, Lewis"
+  },
+  {
+    "value":26,
+    "label":"Wager, W."
+  },
+  {
+    "value":43,
+    "label":"Wapull, George"
+  },
+  {
+    "value":81,
+    "label":"Warner, William"
+  },
+  {
+    "value":225,
+    "label":"Wase, Christopher"
+  },
+  {
+    "value":265,
+    "label":"Watson, Thomas"
+  },
+  {
+    "value":104,
+    "label":"Webster, John"
+  },
+  {
+    "value":17,
+    "label":"Wever, R."
+  },
+  {
+    "value":47,
+    "label":"Whetstone, George"
+  },
+  {
+    "value":114,
+    "label":"Wilkins, George"
+  },
+  {
+    "value":230,
+    "label":"Willan, Leonard"
+  },
+  {
+    "value":66,
+    "label":"Wilmot, Robert"
+  },
+  {
+    "value":56,
+    "label":"Wilson, Robert"
+  },
+  {
+    "value":52,
+    "label":"Woodes, Nathaniel"
+  },
+  {
+    "value":96,
+    "label":"Yarington, Robert"
+  },
+  {
+    "value":33,
+    "label":"Yelverton, Christopher"
+  },
+  {
+    "value":183,
+    "label":"Zouche, Richard"
   }
 ]

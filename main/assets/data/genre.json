@@ -21,90 +21,86 @@
   },
   {
     "value":5,
-    "label":"Classical Legend"
-  },
-  {
-    "value":6,
     "label":"Dialogue"
   },
   {
-    "value":7,
+    "value":6,
     "label":"Disputation"
   },
   {
-    "value":8,
+    "value":7,
     "label":"Domestic Drama"
   },
   {
-    "value":9,
+    "value":8,
     "label":"Droll"
   },
   {
-    "value":10,
+    "value":9,
     "label":"Entertainment"
   },
   {
-    "value":11,
+    "value":10,
     "label":"History"
   },
   {
-    "value":12,
+    "value":11,
     "label":"Interlude"
   },
   {
-    "value":13,
+    "value":12,
     "label":"Jig"
   },
   {
-    "value":14,
+    "value":13,
     "label":"Masque"
   },
   {
-    "value":15,
+    "value":14,
     "label":"Monologue"
   },
   {
-    "value":16,
+    "value":15,
     "label":"Morality"
   },
   {
-    "value":17,
+    "value":16,
     "label":"Mystery"
   },
   {
-    "value":18,
+    "value":17,
     "label":"Neo-miracle"
   },
   {
-    "value":19,
+    "value":18,
     "label":"Opera"
   },
   {
-    "value":20,
+    "value":19,
     "label":"Pastoral"
   },
   {
-    "value":21,
+    "value":20,
     "label":"Piscatory"
   },
   {
-    "value":22,
+    "value":21,
     "label":"Romance"
   },
   {
-    "value":23,
+    "value":22,
     "label":"Satire"
   },
   {
-    "value":24,
+    "value":23,
     "label":"Topical Play"
   },
   {
-    "value":25,
+    "value":24,
     "label":"Tragedy"
   },
   {
-    "value":26,
+    "value":25,
     "label":"Tragicomedy"
   }
 ]

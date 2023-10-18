@@ -1,6 +1,6 @@
 /deep/secrets.py
 site/
-
+/main/assets/data/authors.json
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
