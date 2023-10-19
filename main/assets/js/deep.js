@@ -1947,20 +1947,20 @@ function expand(e, deep_id) {
                 ${!data.genre_brit_display ? '' : '<span class="expand">Genre (BritDrama): </span><span id="genre">' + data.genre_brit_display + '</span><br>'}
               </p>
               <p>
-                ${!data.date_first_performance ? '' : '<span class="expand">Date of First Production (Annals): </span><span id="date_first_performance">' + data.date_first_performance + '</span><br>'}
-                ${!data.date_first_performance_brit_display ? '' : '<span class="expand">Date of First Production (BritDrama): </span><span id="date_first_performance">' + data.date_first_performance_brit_display + '</span><br>'}
-                ${!data.company_first_performance_annals_display ? '' : '<span class="expand">Company of First Production (Annals): </span><span id="company_first_performance_annals_display">' + data.company_first_performance_annals_display + '</span><br>'}
-                ${!data.company_first_performance_brit_display ? '' : '<span class="expand">Company of First Production (BritDrama): </span><span id="company_first_performance">' + data.company_first_performance_brit_display + '</span><br>'}
-                ${!data.title_page_company_display ? '' : '<span class="expand">Company Attribution (Title-Page): </span><span id="title_page_company_display">' + data.title_page_company_display + '</span><br>'}
+                ${'<span class="expand">Date of First Production (Annals): </span><span id="date_first_performance">' + data.date_first_performance + '</span><br>'}
+                ${'<span class="expand">Date of First Production (BritDrama): </span><span id="date_first_performance">' + data.date_first_performance_brit_display + '</span><br>'}
+                ${'<span class="expand">Company of First Production (Annals): </span><span id="company_first_performance_annals_display">' + data.company_first_performance_annals_display + '</span><br>'}
+                ${'<span class="expand">Company of First Production (BritDrama): </span><span id="company_first_performance">' + data.company_first_performance_brit_display + '</span><br>'}
+                ${'<span class="expand">Company Attribution (Title-Page): </span><span id="title_page_company_display">' + data.title_page_company_display + '</span><br>'}
               </p>
             </div>
 
             <div class="col-12">
               <p>
                 ${typeof data.total_editions === 'undefined' ? '' : '<br><span class="expand">Total Editions:</span><span id="total_editions"> ' + data.total_editions + '</span><br>'}
-                ${data.variants === '' || data.variants === null ? '' : '<span class="expand"></span><br></br>'} 
+                ${data.variants === '' || data.variants === null ? '' : '<span class="expand"></span>'} 
                 ${data.variants === '' || data.variants === null ? '' : '<br><span class="expand">Variants:</span><span id="variants"> ' + data.variants + ' ' + data.variant_link + '<br>'}
-                ${data.collection_contains === '' || data.collection_contains === null ? '' : '<span class="expand"></span><br></br>'}
+                ${data.collection_contains === '' || data.collection_contains === null ? '' : '<span class="expand"></span>'}
                 ${data.collection_contains === '' ? '' : '<br><span class="expand">Collection Contains:</span><span id="collection_contains"> ' + data.collection_contains + '</span><br>'}
                 ${data.in_collection === '' ? '' : '<br><span class="expand">In Collection:</span><span id="in_collection"> ' + data.in_collection + '</span><br>'}
                 ${!data.independent_playbook ? '' : '<br><span class="expand">Also Appears as a Bibliographically Independent Playbook In </span><span id="independent_playbook"><a target="_blank" href="' + data.independent_playbook_link_id + '">' + data.independent_playbook + '</a></span><br>'}
@@ -2026,7 +2026,7 @@ function expand(e, deep_id) {
                 ${!data.stationer_bookseller_filter ? '' : '<span class="expand">Bookseller: </span><span id="stationer_bookseller">' + data.stationer_bookseller_display + '</span><br>'}
                 ${!data.stationer_imprint_location === "None" ? '' : '<span class="expand">Imprint Location: </span><span id="stationer_imprint_location">' + data.stationer_imprint_location + '</span><br>'}
                 ${data.stationer_entries_in_register === "None" ? "None" : "<span class='expand'>Entries in Stationers' Registers: </span><span id='stationer_entries_in_register'>" + data.stationer_entries_in_register + '</span><br>'}
-                ${data.stationer_additional_notes === '' || data.stationer_additional_notes === null ? '' : '<span class="expand"></span><br></br>'} 
+                ${data.stationer_additional_notes === '' || data.stationer_additional_notes === null ? '' : '<span class="expand"></span>'} 
                 ${!data.stationer_additional_notes ? '' : '<span class="expand">Additional Notes: </span><span id="stationer_additional_notes">' + data.stationer_additional_notes + '</span><br>'}
               </p>
             </div>
