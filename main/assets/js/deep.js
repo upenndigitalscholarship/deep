@@ -1936,8 +1936,7 @@ function expand(e, deep_id) {
                 ${!data.play_edition ? '' : '<span class="expand">Play Edition: </span><span id="play_edition"> ' + data.play_edition + '</span><br>'}
                 ${!data.format ? '' : '<span class="expand">Format: </span><span id="format"> ' + data.format + '</span><br>'}
                 ${!data.leaves ? '' : '<span class="expand">Leaves: </span><span id="leaves"> ' + data.leaves + '</span><br>'}
-                ${!data.blackletter ? '' : '<span class="expand">Black Letter: </span><span id="blackletter"> ' + data.blackletter + '</span><br>'}
-                <span class="expand"></span><br>
+                ${!data.blackletter ? '' : '<span class="expand">Black Letter: </span><span id="blackletter"> ' + data.blackletter + '</span>'}
               </p>
             </div>    
             
@@ -1960,9 +1959,9 @@ function expand(e, deep_id) {
             <div class="col-12">
               <p>
                 ${typeof data.total_editions === 'undefined' ? '' : '<br><span class="expand">Total Editions:</span><span id="total_editions"> ' + data.total_editions + '</span><br>'}
-                <span class="expand"></span><br>
+                ${data.variants === '' || data.variants === null ? '' : '<span class="expand"></span><br></br>'} 
                 ${data.variants === '' || data.variants === null ? '' : '<br><span class="expand">Variants:</span><span id="variants"> ' + data.variants + ' ' + data.variant_link + '<br>'}
-                <span class="expand"></span><br>
+                ${data.collection_contains === '' || data.collection_contains === null ? '' : '<span class="expand"></span><br></br>'}
                 ${data.collection_contains === '' ? '' : '<br><span class="expand">Collection Contains:</span><span id="collection_contains"> ' + data.collection_contains + '</span><br>'}
                 ${data.in_collection === '' ? '' : '<br><span class="expand">In Collection:</span><span id="in_collection"> ' + data.in_collection + '</span><br>'}
                 ${!data.independent_playbook ? '' : '<br><span class="expand">Also Appears as a Bibliographically Independent Playbook In </span><span id="independent_playbook"><a target="_blank" href="' + data.independent_playbook_link_id + '">' + data.independent_playbook + '</a></span><br>'}
