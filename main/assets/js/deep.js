@@ -1945,7 +1945,7 @@ function expand(e, deep_id) {
               <p>
                 ${!data.record_type ? '' : '<span class="expand">Record Type: </span><span id="record_type">' + data.record_type + '</span><br>'}
                 ${!data.play_type_display ? '' : '<span class="expand">Play Type: </span><span id="play_type">' + data.play_type_display + '</span><br>'}
-                ${!data.genre ? '' : '<span class="expand">Genre (Annals): </span><span id="genre">' + data.genre + '</span><br>'}
+                ${!data.genre_annals_filter ? '' : '<span class="expand">Genre (Annals): </span><span id="genre">' + data.genre_annals_display + '</span><br>'}
                 ${!data.genre_brit_display ? '' : '<span class="expand">Genre (BritDrama): </span><span id="genre">' + data.genre_brit_display + '</span><br>'}
               </p>
               <p>
@@ -1999,7 +1999,7 @@ function expand(e, deep_id) {
             <div class="col-12">
               <strong>Paratextual Material</strong>
               <p>
-                ${!data.paratext_dedication && !data.paratext_commendatory_verses && !data.paratext_to_the_reader && !data.paratext_errata && !data.paratext_argument && !data.paratext_charachter_list && !data.paratext_actor_list && !data.paratext_other_paratexts ? 'None' : ""}
+                ${!data.paratext_dedication && !data.paratext_commendatory_verses && !data.paratext_explicit && !data.paratext_to_the_reader && !data.paratext_errata && !data.paratext_argument && !data.paratext_charachter_list && !data.paratext_actor_list && !data.paratext_other_paratexts ? 'None' : ""}
                 ${!data.paratext_dedication ? '' : '<span class="expand">Dedication: </span><span id="paratext_dedication">' + data.paratext_dedication + '</span><br>'}
                 ${!data.paratext_commendatory_verses ? '' : '<span class="expand">Commendatory Verses: </span><span id="paratext_commendatory_verses">' + data.paratext_commendatory_verses + '</span><br>'}
                 ${!data.paratext_to_the_reader ? '' : '<span class="expand">To the Reader: </span><span id="paratext_to_the_reader">' + data.paratext_to_the_reader + '</span><br>'}
@@ -2026,8 +2026,8 @@ function expand(e, deep_id) {
                 ${!data.stationer_printer_filter ? '' : '<span class="expand">Printer: </span><span id="stationer_printer">' + data.stationer_printer_display + '</span><br>'}
                 ${!data.stationer_publisher_filter ? '' : '<span class="expand">Publisher: </span><span id="stationer_publisher">' + data.stationer_publisher_display + '</span><br>'}
                 ${!data.stationer_bookseller_filter ? '' : '<span class="expand">Bookseller: </span><span id="stationer_bookseller">' + data.stationer_bookseller_display + '</span><br>'}
-                ${!data.stationer_imprint_location ? '' : '<span class="expand">Imprint Location: </span><span id="stationer_imprint_location">' + data.stationer_imprint_location + '</span><br>'}
-                ${data.stationer_entries_in_register === "None" ? "" : "<span class='expand'>Entries in Stationers' Registers: </span><span id='stationer_entries_in_register'>" + data.stationer_entries_in_register + '</span><br>'}
+                ${!data.stationer_imprint_location === "None" ? '' : '<span class="expand">Imprint Location: </span><span id="stationer_imprint_location">' + data.stationer_imprint_location + '</span><br>'}
+                ${data.stationer_entries_in_register === "None" ? "None" : "<span class='expand'>Entries in Stationers' Registers: </span><span id='stationer_entries_in_register'>" + data.stationer_entries_in_register + '</span><br>'}
                 <span class="expand"></span><br>
                 ${!data.stationer_additional_notes ? '' : '<span class="expand">Additional Notes: </span><span id="stationer_additional_notes">' + data.stationer_additional_notes + '</span><br>'}
               </p>
