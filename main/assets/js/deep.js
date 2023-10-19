@@ -1036,6 +1036,11 @@ const processQueries = queries => {
             item.title_page_author_filter !== "None"
           )
           filters.push({'filter':titlePageAuthor,'type':query.blockType})
+        } else if (query.searchValue == "None") {
+          let titlePageAuthor = item => (
+            item.title_page_author_filter == "None"
+          )
+          filters.push({'filter':titlePageAuthor,'type':query.blockType})
         } else {
           let titlePageAuthor = item => (
             item.title_page_author_filter.toLowerCase().includes(query.searchValue.toLowerCase())
@@ -1480,6 +1485,11 @@ const processQueries = queries => {
           if (values[i] == "Any") {
             let titlePageAuthor = item => (
               item.title_page_author_filter != "None"
+            )
+            ORquery.push(titlePageAuthor)
+          } else if (values[i] == "None") {
+            let titlePageAuthor = item => (
+              item.title_page_author_filter == "None"
             )
             ORquery.push(titlePageAuthor)
           } else {
