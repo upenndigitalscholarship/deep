@@ -74,6 +74,16 @@ def item_to_dict(item:Item):
         item_dict["title_page_performance"] = ""
     if not item_dict.get('title_page_has_latin',None): 
         item_dict["title_page_has_latin"] = 'No'
+    if not item_dict.get('title_page_company_display', None):
+        item_dict['title_page_company_display'] = "n/a"
+    if not item_dict.get('date_first_performance_brit_display', None):
+        item_dict['date_first_performance_brit_display'] = "n/a"
+    # genre_annals_display
+    if not item_dict.get('genre_annals_display', None):
+        item_dict['genre_annals_display'] = "not in Annals"
+    # brit_drama_number
+    if not item_dict.get('brit_drama_number', None):
+        item_dict['brit_drama_number'] = "not in BritDrama"
     # if not item_dict.get('stationer_publisher_filter',None): 
     #     item_dict["stationer_publisher_filter"] = 'None'
     # if not item_dict.get('stationer_printer_filter',None): 
