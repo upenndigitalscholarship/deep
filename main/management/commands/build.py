@@ -25,7 +25,7 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         start = time.time()
-        subprocess.run(['chown','-R','www-data:www-data','/srv/deep/main/assets/data/*'])
+        subprocess.run(['chown','-R','www-data:www-data','/srv/deep/main/assets/data'])
 
         # build Lunr search index files
         call_command('search_index')

@@ -2,7 +2,6 @@ from pathlib import Path
 import csv
 import srsly
 from django.core.management.base import BaseCommand
-from django.contrib import messages
 from lunr import lunr
 from tqdm import tqdm
 
@@ -206,6 +205,3 @@ class Command(BaseCommand):
         
         data_file.close()
         self.stdout.write(self.style.SUCCESS('Wrote data to CSV'))
-        from django.http import HttpRequest
-        request = HttpRequest()
-        messages.add_message(request, messages.INFO, 'Wrote data to CSV')
