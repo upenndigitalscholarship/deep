@@ -2,6 +2,7 @@ from pathlib import Path
 import csv
 import srsly
 from django.core.management.base import BaseCommand
+from django.contrib import messages
 from lunr import lunr
 from tqdm import tqdm
 
@@ -84,6 +85,7 @@ def item_to_dict(item:Item):
     # brit_drama_number
     if not item_dict.get('brit_drama_number', None):
         item_dict['brit_drama_number'] = "not in BritDrama"
+    
     # if not item_dict.get('stationer_publisher_filter',None): 
     #     item_dict["stationer_publisher_filter"] = 'None'
     # if not item_dict.get('stationer_printer_filter',None): 
@@ -204,3 +206,6 @@ class Command(BaseCommand):
         
         data_file.close()
         self.stdout.write(self.style.SUCCESS('Wrote data to CSV'))
+        from django.http import HttpRequest
+        request = HttpRequest()
+        messages.add_message(request, messages.INFO, 'Wrote data to CSV')
