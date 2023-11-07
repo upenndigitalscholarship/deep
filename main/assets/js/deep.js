@@ -1043,7 +1043,7 @@ const processQueries = queries => {
           filters.push({'filter':titlePageAuthor,'type':query.blockType})
         } else {
           let titlePageAuthor = item => (
-            item.title_page_author_filter.split(';').indexOf(query.searchValue) > -1
+            item.title_page_author_filter.split(';').map(s => s.trim()).indexOf(query.searchValue) > -1
           )
           filters.push({'filter':titlePageAuthor,'type':query.blockType})  
         }
@@ -1504,7 +1504,7 @@ const processQueries = queries => {
             ORquery.push(titlePageAuthor)
           } else {
             let titlePageAuthor = item => (
-              item.title_page_author_filter.split(';').indexOf(query.searchValue) > -1
+              item.title_page_author_filter.split(';').map(s => s.trim()).indexOf(query.searchValue) > -1
               )
               ORquery.push(titlePageAuthor)
           }
