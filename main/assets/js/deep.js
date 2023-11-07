@@ -1086,7 +1086,7 @@ const processQueries = queries => {
            let pattern = `^${query.searchValue}$`;
            let re = new RegExp(pattern, 'i');
            let full_match = item.greg_full.match(re);
-           let medium_match = item.greg_medium.match(re);
+           let medium_match = item.greg_middle.match(re);
            let short_match = item.greg.match(re);
            if (full_match !== null && full_match.length > 0){
              return true
@@ -1548,7 +1548,7 @@ const processQueries = queries => {
               let pattern = `^${values[i]}$`;
               let re = new RegExp(pattern, 'i');
               let full_match = item.greg_full.match(re);
-              let medium_match = item.greg_medium.match(re);
+              let medium_match = item.greg_middle.match(re);
               let short_match = item.greg.match(re);
               if (full_match !== null && full_match.length > 0){
                 return true
