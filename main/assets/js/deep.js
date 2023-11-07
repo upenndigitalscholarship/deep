@@ -1316,7 +1316,7 @@ const processQueries = queries => {
         } else {
           console.log('I am theater searchValue',query.searchValue);
           let theater_filter = item => (
-            item.theater.toLowerCase().includes(query.searchValue.toLowerCase()) ||
+            item.theater.split(';').indexOf(query.searchValue) > -1 ||
             item.theater_type.toLowerCase().includes(query.searchValue.toLowerCase())
           )
           filters.push({'filter':theater_filter,'type':query.blockType})    
