@@ -1533,11 +1533,21 @@ const processQueries = queries => {
         }
         if (fields[i] == 'greg_number' && values[i]) {
             let gregNumber = (item) => {
+              // search item.greg_full for values[i]
               let pattern = `^${values[i]}$`;
               let re = new RegExp(pattern, 'i');
-              let match = item.greg_full.match(re);
-              
-              return match !== null && match.length > 0;
+              let full_match = item.greg_full.match(re);
+              let medium_match = item.greg_medium.match(re);
+              let short_match = item.greg.match(re);
+              if (full_match !== null && full_match.length > 0){
+                return true
+              }
+              else if (medium_match !== null && medium_match.length > 0){
+                return true
+              }
+              else if (short_match !== null && short_match.length > 0){
+                return true
+              }
             };
             ORquery.push(gregNumber)
         }
