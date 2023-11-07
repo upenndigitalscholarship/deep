@@ -74,11 +74,11 @@ class Command(BaseCommand):
         
         # Author Title-Page Attribution
         title_page_author = []
-        for edition in Edition.objects.all():
-            for a in edition.authors.all():
-                if a.name not in title_page_author:
-                    title_page_author.append(a.name)
-
+        for item in Item.objects.all():
+            if item.title_page_author_filter:
+                for author in item.title_page_author_filter.split(';'):
+                    if author not in title_page_author:
+                        title_page_author.append(author)
         title_page_author.sort()
         title_page_author_choices = []
         for i, author in enumerate(title_page_author):
