@@ -1082,11 +1082,22 @@ const processQueries = queries => {
       }
       if (query.searchField == 'greg_number') {
           let gregNumber = (item) => {
-            let pattern = `^${query.searchValue}$`;
-            let re = new RegExp(pattern, 'i');
-            let match = item.greg_full.match(re);
-            
-            return match !== null && match.length > 0;
+           // search item.greg_full for values[i]
+           let pattern = `^${values[i]}$`;
+           let re = new RegExp(pattern, 'i');
+           let full_match = item.greg_full.match(re);
+           let medium_match = item.greg_medium.match(re);
+           let short_match = item.greg.match(re);
+           if (full_match !== null && full_match.length > 0){
+             return true
+           }
+           else if (medium_match !== null && medium_match.length > 0){
+             return true
+           }
+           else if (short_match !== null && short_match.length > 0){
+             return true
+           }
+        
           };
           filters.push({'filter':gregNumber,'type':query.blockType})
           }
