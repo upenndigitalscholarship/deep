@@ -85,10 +85,6 @@ def item_to_dict(item:Item):
     if not item_dict.get('brit_drama_number', None):
         item_dict['brit_drama_number'] = "not in BritDrama"
     
-    if not item_dict.get('greg',None):
-        item_dict["greg"] = 'None'
-    if not item_dict.get('greg_middle',None):
-        item_dict["greg_middle"] = 'None'
     if not item_dict.get('greg_full',None):
         item_dict["greg_full"] = 'None'
     # if not item_dict.get('stationer_publisher_filter',None): 
@@ -139,7 +135,8 @@ def item_to_dict(item:Item):
         edition["blackletter"] = "No"
     if edition["blackletter"] == None:
         edition["blackletter"] = "No"
-    
+    if edition['greg_middle'] == None:
+        edition['greg_middle'] = 'None'
         
     if edition['book_edition'] == '0':
         edition['book_edition'] = 'n/a'
@@ -158,7 +155,8 @@ def item_to_dict(item:Item):
     title = title.__dict__
     title["company_first_performance_brit_filter"] = company_first_performance_brit_filter
     title["company_first_performance_annals_filter"] = company_first_performance_annals_filter
-    
+    if not title.get('greg',None): # Replace none with 'None' (else search crashes)
+        title["greg"] = 'None'
     if not title.get('company_first_performance_annals_display',None): # Replace none with 'None' (else search crashes)
         title["company_first_performance_annals_display"] = 'n/a'
     if not title.get('company_first_performance_annals_filter',None): # Replace none with 'None' (else search crashes)
