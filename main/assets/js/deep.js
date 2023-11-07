@@ -1948,7 +1948,7 @@ PlaysinCollections.addEventListener('change', (event) => {
       
 function expand(e, deep_id) {
   changeButtonCollapse();
-  let data = item_data[deep_id];
+  let data = item_data[e.id];
   e.outerHTML = `
   <tr id="${data.deep_id}" onclick="collapse(this, ${data.deep_id});"><td class="result_number"></td><td class="deep_id">${data.deep_id}</td><td class="year">${data.year}</td><td class="authors_display">${data.authors_display}</td><td class="title">${data.title}</td><td>Collapse</td>
     <tr id="${data.deep_id}-exp">
