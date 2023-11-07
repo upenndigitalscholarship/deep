@@ -1081,14 +1081,35 @@ const processQueries = queries => {
         filters.push({'filter':deepID,'type':query.blockType})
       }
       if (query.searchField == 'greg_number') {
-        let gregNumber = (item) => {
-          let pattern = `^${query.searchValue}$`;
-          let re = new RegExp(pattern, 'i');
-          let match = item.greg_full.match(re);
-          
-          return match !== null && match.length > 0;
-        };
-        filters.push({'filter':gregNumber,'type':query.blockType})
+        let level = radioHelper();
+        if (level == 'edition') { 
+          let gregNumber = (item) => {
+            let pattern = `^${query.searchValue}$`;
+            let re = new RegExp(pattern, 'i');
+            let match = item.greg.match(re);
+            
+            return match !== null && match.length > 0;
+          };
+          filters.push({'filter':gregNumber,'type':query.blockType})
+        } if (level == 'title') {
+          let gregNumber = (item) => {
+            let pattern = `^${query.searchValue}$`;
+            let re = new RegExp(pattern, 'i');
+            let match = item.greg_middle.match(re);
+            
+            return match !== null && match.length > 0;
+          };
+          filters.push({'filter':gregNumber,'type':query.blockType})
+        } if (level == 'record') {
+          let gregNumber = (item) => {
+            let pattern = `^${query.searchValue}$`;
+            let re = new RegExp(pattern, 'i');
+            let match = item.greg_full.match(re);
+            
+            return match !== null && match.length > 0;
+          };
+          filters.push({'filter':gregNumber,'type':query.blockType})
+        }
       }
       if (query.searchField == 'book_edition') {
         if (query.searchValue == "First") {
@@ -1533,14 +1554,35 @@ const processQueries = queries => {
           ORquery.push(deepID)
         }
         if (fields[i] == 'greg_number' && values[i]) {
-          let gregNumber = (item) => {
-            let pattern = `^${values[i]}$`;
-            let re = new RegExp(pattern, 'i');
-            let match = item.greg_full.match(re);
-            
-            return match !== null && match.length > 0;
-          };
-          ORquery.push(gregNumber)
+          let level = radioHelper();
+          if (level == 'edition') { 
+            let gregNumber = (item) => {
+              let pattern = `^${values[i]}$`;
+              let re = new RegExp(pattern, 'i');
+              let match = item.greg.match(re);
+              
+              return match !== null && match.length > 0;
+            };
+            ORquery.push(gregNumber)
+          } if (level == 'title') {
+            let gregNumber = (item) => {
+              let pattern = `^${values[i]}$`;
+              let re = new RegExp(pattern, 'i');
+              let match = item.greg_middle.match(re);
+              
+              return match !== null && match.length > 0;
+            };
+            ORquery.push(gregNumber)
+          } if (level == 'record') {
+            let gregNumber = (item) => {
+              let pattern = `^${values[i]}$`;
+              let re = new RegExp(pattern, 'i');
+              let match = item.greg_full.match(re);
+              
+              return match !== null && match.length > 0;
+            };
+            ORquery.push(gregNumber)
+          }
         }
         if (fields[i] == 'book_edition' && values[i]) {
           if (values[i] == "First") {
