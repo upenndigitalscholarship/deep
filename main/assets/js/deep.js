@@ -1316,7 +1316,7 @@ const processQueries = queries => {
         } else {
           console.log('I am theater searchValue',query.searchValue);
           let theater_filter = item => (
-            item.theater.split(';').indexOf(query.searchValue) > -1 ||
+            item.theater.split(';').indexOf(query.searchValue) > -1 
           )
           filters.push({'filter':theater_filter,'type':query.blockType})    
         }
