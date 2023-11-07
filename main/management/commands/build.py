@@ -19,7 +19,13 @@ from main.models import Edition, Item, Person, Title
 class Command(BaseCommand):
     help = 'Builds a static version of the site'
 
-    #def add_arguments(self, parser):
+    def add_arguments(self, parser):
+    # add --quick argument
+        parser.add_argument(
+            '--quick',
+            action='store_true',
+            help='Builds a static version of the site without rebuilding the search index',
+        )
     #    parser.add_argument('poll_ids', nargs='+', type=int)
 
     def handle(self, *args, **options):
@@ -429,14 +435,15 @@ class Command(BaseCommand):
         (out_path / 'index.html').write_text(index)     
 
         # Item pages
-        self.stdout.write(self.style.SUCCESS('Creating item pages'))
-        for item in tqdm(Item.objects.all()):
-            page = render_to_string('item_page.html', {"data":item_to_dict(item)})
-            page_path = (out_path / f'{item.deep_id}')
-            if not page_path.exists():
-                page_path.mkdir(parents=True, exist_ok=True)
+        if not options["quick"]:
+            self.stdout.write(self.style.SUCCESS('Creating item pages'))
+            for item in tqdm(Item.objects.all()):
+                page = render_to_string('item_page.html', {"data":item_to_dict(item)})
+                page_path = (out_path / f'{item.deep_id}')
+                if not page_path.exists():
+                    page_path.mkdir(parents=True, exist_ok=True)
 
-            (page_path / 'index.html').write_text(page)     
+                (page_path / 'index.html').write_text(page)     
 
         download_path = (out_path / "download")
         if not download_path.exists():
