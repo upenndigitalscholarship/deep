@@ -1086,7 +1086,7 @@ const processQueries = queries => {
           let gregNumber = (item) => {
             let pattern = `^${query.searchValue}$`;
             let re = new RegExp(pattern, 'i');
-            let match = item.greg.match(re);
+            let match = item.greg_middle.match(re);
             
             return match !== null && match.length > 0;
           };
@@ -1095,7 +1095,7 @@ const processQueries = queries => {
           let gregNumber = (item) => {
             let pattern = `^${query.searchValue}$`;
             let re = new RegExp(pattern, 'i');
-            let match = item.greg_middle.match(re);
+            let match = item.greg.match(re);
             
             return match !== null && match.length > 0;
           };
@@ -1559,7 +1559,7 @@ const processQueries = queries => {
             let gregNumber = (item) => {
               let pattern = `^${values[i]}$`;
               let re = new RegExp(pattern, 'i');
-              let match = item.greg.match(re);
+              let match = item.greg_middle.match(re);
               
               return match !== null && match.length > 0;
             };
@@ -1568,7 +1568,7 @@ const processQueries = queries => {
             let gregNumber = (item) => {
               let pattern = `^${values[i]}$`;
               let re = new RegExp(pattern, 'i');
-              let match = item.greg_middle.match(re);
+              let match = item.greg.match(re);
               
               return match !== null && match.length > 0;
             };
