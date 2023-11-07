@@ -85,6 +85,12 @@ def item_to_dict(item:Item):
     if not item_dict.get('brit_drama_number', None):
         item_dict['brit_drama_number'] = "not in BritDrama"
     
+    if not item_dict.get('greg',None):
+        item_dict["greg"] = 'None'
+    if not item_dict.get('greg_middle',None):
+        item_dict["greg_middle"] = 'None'
+    if not item_dict.get('greg_full',None):
+        item_dict["greg_full"] = 'None'
     # if not item_dict.get('stationer_publisher_filter',None): 
     #     item_dict["stationer_publisher_filter"] = 'None'
     # if not item_dict.get('stationer_printer_filter',None): 
