@@ -16,14 +16,13 @@ def item_to_dict(item:Item):
     stationer_printer = '; '.join(list(item.stationer_printer.all().values_list('name', flat=True)))
     stationer_publisher = '; '.join(list(item.stationer_publisher.all().values_list('name', flat=True)))
     stationer_bookseller = '; '.join(list(item.stationer_bookseller.all().values_list('name', flat=True)))
-    title_page_author_filter = ';'.join(list(item.edition.authors.all().values_list('name', flat=True)))
-
+    
     title_page_company_filter = ';'.join(list(item.title_page_company_filter.all().values_list('name', flat=True)))
     company_first_performance_brit_filter = '; '.join(list(item.edition.title.company_first_performance_brit_filter.all().values_list('name', flat=True)))
     company_first_performance_annals_filter = '; '.join(list(item.edition.title.company_first_performance_annals_filter.all().values_list('name', flat=True)))
 
     item_dict = item.__dict__ 
-    item_dict['title_page_author_filter'] = title_page_author_filter
+    
     item_dict['title_page_company_filter'] = title_page_company_filter
     item_dict['stationer_printer_filter'] = stationer_printer
     item_dict['stationer_publisher_filter'] = stationer_publisher
