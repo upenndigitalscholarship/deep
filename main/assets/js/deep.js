@@ -1083,7 +1083,7 @@ const processQueries = queries => {
       if (query.searchField == 'greg_number') {
           let gregNumber = (item) => {
            // search item.greg_full for values[i]
-           let pattern = `^${values[i]}$`;
+           let pattern = `^${query.searchValue}$`;
            let re = new RegExp(pattern, 'i');
            let full_match = item.greg_full.match(re);
            let medium_match = item.greg_medium.match(re);
@@ -1097,7 +1097,7 @@ const processQueries = queries => {
            else if (short_match !== null && short_match.length > 0){
              return true
            }
-        
+           
           };
           filters.push({'filter':gregNumber,'type':query.blockType})
           }
