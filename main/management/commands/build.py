@@ -77,8 +77,8 @@ class Command(BaseCommand):
         for item in Item.objects.all():
             if item.title_page_author_filter:
                 for author in item.title_page_author_filter.split(';'):
-                    if author not in title_page_author:
-                        title_page_author.append(author)
+                    if author.strip() not in title_page_author:
+                        title_page_author.append(author.strip())
         title_page_author.sort()
         title_page_author_choices = []
         for i, author in enumerate(title_page_author):
