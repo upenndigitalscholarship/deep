@@ -100,10 +100,11 @@
               {% endif %}
               
               {% if data.variants %}
+              <span class="expand"></span>
               <br><span class="expand">Variants:</span><span id="variants">{{ data.variants|safe }} {{ data.variant_link|safe }}<br>
-              <span class="expand"></span><br>
               {% endif %}
               {% if data.collection_contains %}
+              <span class="expand"></span>
               <br><span class="expand">Collection Contains:</span><span id="collection_contains"> {{ data.collection_contains|safe }}</span><br>
               {% endif %}
               {% if data.in_collection %}    
@@ -224,9 +225,9 @@
                 {% endif %}
                 {% if data.stationer_entries_in_register != "None" %}
                 <span class='expand'>Entries in Stationers' Register: </span><span id='stationer_entries_in_register'>{{ data.stationer_entries_in_register|safe }}</span><br>
-                <span class="expand"></span><br>
                 {% endif %}
                 {% if data.stationer_additional_notes %}
+                <span class="expand"></span>
                 <span class="expand">Additional Notes: </span><span id="stationer_additional_notes">{{ data.stationer_additional_notes|safe }}</span><br>
                 {% endif %}
             </p>
