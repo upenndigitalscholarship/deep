@@ -898,7 +898,7 @@ const processQueries = queries => {
           filters.push({'filter':genreplaybook,'type':query.blockType})
         } else {
           let genreplaybook = item => (
-            item.title_page_genre.toLowerCase() == query.searchValue.toLowerCase()
+            item.title_page_genre.split(';').map(s => s.trim()).indexOf(query.searchValue) > -1
             )
           filters.push({'filter':genreplaybook,'type':query.blockType})
         }
@@ -1358,21 +1358,21 @@ const processQueries = queries => {
               ORquery.push(title)
         }
         if (fields[i] == 'genreplaybook' && values[i]) {
-          if (query.searchValue == 'Any') {
+          if (values[i] == 'Any') {
             let genreplaybook = item => (
               item.title_page_genre != "None"
               )
             ORquery.push(genreplaybook)
           } else {
           let genreplaybook = item => (
-              item.title_page_genre.toLowerCase() == query.searchValue.toLowerCase()
+              item.title_page_genre.split(';').map(s => s.trim()).indexOf(values[i]) > -1
               )
             ORquery.push(genreplaybook)
           }
         }
         if (fields[i] == 'genre-brit-filter' && values[i]) {
           let genreBrit = item => (
-              item.genre_brit_filter.toLowerCase().includes(query.searchValue.toLowerCase())
+              item.genre_brit_filter.toLowerCase().includes(values[i].toLowerCase())
               )
               ORquery.push(genreBrit)
         }
@@ -1504,7 +1504,7 @@ const processQueries = queries => {
             ORquery.push(titlePageAuthor)
           } else {
             let titlePageAuthor = item => (
-              item.title_page_author_filter.split(';').map(s => s.trim()).indexOf(query.searchValue) > -1
+              item.title_page_author_filter.split(';').map(s => s.trim()).indexOf(values[i]) > -1
               )
               ORquery.push(titlePageAuthor)
           }
@@ -1575,7 +1575,7 @@ const processQueries = queries => {
               ORquery.push(bookEdition)
           } else {
             let bookEdition = item => (
-              item.book_edition == query.searchValue
+              item.book_edition == values[i]
               )
               ORquery.push(bookEdition)
           }
@@ -1593,7 +1593,7 @@ const processQueries = queries => {
               ORquery.push(playEdition)
           } else {
             let playEdition = item => (
-              item.play_edition == query.searchValue
+              item.play_edition == values[i]
               )
               ORquery.push(playEdition)
           }
