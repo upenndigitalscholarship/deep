@@ -2000,7 +2000,7 @@ function expand(e, deep_id) {
               <strong>Title-Page Features</strong>
               <p>
                 ${!data.title_page_title ? '<span class="expand">Title: </span><span id="title_page_title"></span><br>' : '<span class="expand">Title: </span><span id="title_page_title">' + data.title_page_title + '</span><br>'}
-                ${!data.title_page_author ? '<span class="expand">Author: </span><span id="title_page_author"></span><br>' : '<span class="expand">Author: </span><span id="title_page_author">' + data.title_page_author + '</span><br>'}
+                ${data.title_page_author == "None" ? '<span class="expand">Author: </span><span id="title_page_author"></span><br>' : '<span class="expand">Author: </span><span id="title_page_author">' + data.title_page_author + '</span><br>'}
                 ${!data.title_page_performance ? '<span class="expand">Performance: </span><span id="title_page_performance"></span><br>' : '<span class="expand">Performance: </span><span id="title_page_performance">' + data.title_page_performance + '</span><br>'}
                 ${!data.title_page_latin_motto ? '' : '<span class="expand">Latin Motto: </span><span id="title_page_latin_motto">' + data.title_page_latin_motto + '</span><br>'}
                 ${!data.title_page_illustration ? '' : '<span class="expand">Illustration: </span><span id="title_page_illustration">' + data.title_page_illustration + '</span><br>'}
