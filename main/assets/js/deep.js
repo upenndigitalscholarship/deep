@@ -2040,7 +2040,6 @@ function expand(e, deep_id) {
             <div class="col-12">
               <strong>Stationer Information</strong>
               <p>
-                ${!data.stationer_printer_filter && !data.stationer_publisher_filter && !data.stationer_bookseller_filter && data.stationer_entries_in_register === "None" && !data.stationer_additional_notes ? 'None' : '' }
                 ${!data.stationer_colophon ? '' : '<span class="expand">Colophon: </span><span id="stationer_colophon">' + data.stationer_colophon + '</span><br>'}
                 ${!data.stationer_printer_filter ? '' : '<span class="expand">Printer: </span><span id="stationer_printer">' + data.stationer_printer_display + '</span><br>'}
                 ${!data.stationer_publisher_filter ? '' : '<span class="expand">Publisher: </span><span id="stationer_publisher">' + data.stationer_publisher_display + '</span><br>'}
