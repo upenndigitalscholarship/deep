@@ -1299,8 +1299,7 @@ const processQueries = queries => {
         }    
         else if (query.searchValue == "None") {
           let theater_filter = item => (
-            item.theater == "None" ||
-            item.theater_type == "None"
+            item.theater == "None"
           )
           filters.push({'filter':theater_filter,'type':query.blockType})    
         } else {
