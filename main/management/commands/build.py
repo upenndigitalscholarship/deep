@@ -271,14 +271,27 @@ class Command(BaseCommand):
         # srsly.write_json(static_dir / 'data/theater.json', theater_json)
 
         ## Formats
+        ## TODO This balances requirement of specific items and order, and is dynamic, seems like it could be improved
         formats = list(set([i.format for i in Item.objects.all() if i.format]))
         formats.sort()
+        formats.remove('Broadsheet')
+        formats.remove('Folio')
+        formats.remove('Quarto')
+        formats.remove('Octavo')
+        formats.remove('Duodecimo')
+        formats.remove('Sixteenmo')
         formats_json = []
         for i, form in enumerate(formats):
             formats_json.append({
                 'value': i,
                 'label': form.strip()
             })
+        formats_json.insert(0, {"value":0,"label":"Broadsheet" })
+        formats_json.insert(0, {"value":1,"label":"Folio" })
+        formats_json.insert(0, {"value":2,"label":"Quarto" })
+        formats_json.insert(0, {"value":3,"label":"Octavo" })
+        formats_json.insert(0, {"value":4,"label":"Duodecimo" })
+        formats_json.insert(0, {"value":5,"label":"Sixteenmo" })
         srsly.write_json(static_dir / 'data/formats.json', formats_json)
 
         #Printer
