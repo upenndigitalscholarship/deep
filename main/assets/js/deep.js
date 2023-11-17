@@ -2000,8 +2000,8 @@ function expand(e, deep_id) {
               <p>
                 ${!data.title_page_title ? '<span class="expand">Title: </span><span id="title_page_title"></span><br>' : '<span class="expand">Title: </span><span id="title_page_title">' + data.title_page_title + '</span><br>'}
                 ${data.title_page_author == "None" ? '<span class="expand">Author: </span><span id="title_page_author"></span><br>' : '<span class="expand">Author: </span><span id="title_page_author">' + data.title_page_author + '</span><br>'}
-                ${!data.title_page_performance ? '<span class="expand">Performance: </span><span id="title_page_performance"></span><br>' : '<span class="expand">Performance: </span><span id="title_page_performance">' + data.title_page_performance + '</span><br>'}
-                ${!data.title_page_latin_motto ? '' : '<span class="expand">Latin Motto: </span><span id="title_page_latin_motto">' + data.title_page_latin_motto + '</span><br>'}
+                ${!data.title_page_performance ? '<div class="hanging"><span class="expand">Performance: </span><span id="title_page_performance"></span><br>' : '<span class="expand">Performance: </span><span id="title_page_performance">' + data.title_page_performance + '</span></div><br>'}
+                ${!data.title_page_latin_motto ? '' : '<div class="hanging"><span class="expand">Latin Motto: </span><span id="title_page_latin_motto">' + data.title_page_latin_motto + '</span></div><br>'}
                 ${!data.title_page_illustration ? '' : '<span class="expand">Illustration: </span><span id="title_page_illustration">' + data.title_page_illustration + '</span><br>'}
                 ${!data.title_page_imprint ? '<span class="expand">Imprint: </span><span id="title_page_imprint"></span><br>' : '<span class="expand">Imprint: </span><span id="title_page_imprint">' + data.title_page_imprint + '</span><br>'}
                 ${!data.title_page_colophon ? '' : '<span class="expand">Colophon: </span><span id="title_page_colophon">' + data.title_page_colophon + '</span><br>'}

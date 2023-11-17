@@ -136,10 +136,10 @@
                 <span class="expand">Author: </span><span id="title_page_author">{{ data.title_page_author|safe }}</span><br>
                 {% endif %}
                 {% if data.title_page_performance %}
-                <span class="expand">Performance: </span><span id="title_page_performance">{{ data.title_page_performance|safe }}</span><br>
+                <div class='hanging'><span class="expand">Performance: </span><span id="title_page_performance">{{ data.title_page_performance|safe }}</span></div><br>
                 {% endif %}
                 {% if data.title_page_latin_motto %}
-                <span class="expand">Latin Motto: </span><span id="title_page_latin_motto">{{ data.title_page_latin_motto|safe }}</span><br>
+                <div class='hanging'><span class="expand">Latin Motto: </span><span id="title_page_latin_motto">{{ data.title_page_latin_motto|safe }}</span></div><br>
                 {% endif %}
                 {% if data.title_page_illustration %}
                 <span class="expand">Illustration: </span><span id="title_page_illustration">{{ data.title_page_illustration|safe }}</span><br>
