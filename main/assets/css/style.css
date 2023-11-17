@@ -1336,9 +1336,8 @@ section {
   color: #663300;
 } 
 
-.margin {
-  margin-left: 0px;
-}
-.margin:not(:first-line) {
+
+.hanging {
   margin-left: 20px;
+  text-indent: -20px;
 }
