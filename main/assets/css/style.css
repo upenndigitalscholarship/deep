@@ -1337,7 +1337,8 @@ section {
 } 
 
 .margin {
-  text-indent: -20px;
-}.margin:not(:first-line) {
+  margin-left: 0px;
+}
+.margin:not(:first-line) {
   margin-left: 20px;
 }
