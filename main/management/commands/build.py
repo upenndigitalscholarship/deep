@@ -159,7 +159,12 @@ class Command(BaseCommand):
             else:
                 author_status_filter.append(g)
         author_status_filter = list(set(author_status_filter))
-        author_status_filter.sort()
+        # Define a custom key function that ignores the "of " prefix
+        def sort_key(s):
+            return s[3:] if s.startswith('of ') else s
+
+        # Sort the list using the custom key function
+        author_status_filter.sort(key=sort_key)
 
         author_statuses = []
         for i, auth_stat in enumerate(author_status_filter):
