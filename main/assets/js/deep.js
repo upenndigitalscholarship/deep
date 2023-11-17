@@ -1998,13 +1998,13 @@ function expand(e, deep_id) {
             <div class="col-12">
               <strong>Title-Page Features</strong>
               <p>
-                ${!data.title_page_title ? '<span class="expand">Title: </span><span id="title_page_title"></span><br>' : '<span class="expand">Title: </span><span id="title_page_title">' + data.title_page_title + '</span><br>'}
+                ${!data.title_page_title ? '<span class="expand">Title: </span><span id="title_page_title"></span><br>' : '<div class="hanging"><span class="expand">Title: </span><span id="title_page_title">' + data.title_page_title + '</span></div><br>'}
                 ${data.title_page_author == "None" ? '<span class="expand">Author: </span><span id="title_page_author"></span><br>' : '<span class="expand">Author: </span><span id="title_page_author">' + data.title_page_author + '</span><br>'}
-                ${!data.title_page_performance ? '<div class="hanging"><span class="expand">Performance: </span><span id="title_page_performance"></span><br>' : '<span class="expand">Performance: </span><span id="title_page_performance">' + data.title_page_performance + '</span></div><br>'}
+                ${!data.title_page_performance ? '<span class="expand">Performance: </span><span id="title_page_performance"></span><br>' : '<div class="hanging"><span class="expand">Performance: </span><span id="title_page_performance">' + data.title_page_performance + '</span></div><br>'}
                 ${!data.title_page_latin_motto ? '' : '<div class="hanging"><span class="expand">Latin Motto: </span><span id="title_page_latin_motto">' + data.title_page_latin_motto + '</span></div><br>'}
                 ${!data.title_page_illustration ? '' : '<span class="expand">Illustration: </span><span id="title_page_illustration">' + data.title_page_illustration + '</span><br>'}
-                ${!data.title_page_imprint ? '<span class="expand">Imprint: </span><span id="title_page_imprint"></span><br>' : '<span class="expand">Imprint: </span><span id="title_page_imprint">' + data.title_page_imprint + '</span><br>'}
-                ${!data.title_page_colophon ? '' : '<span class="expand">Colophon: </span><span id="title_page_colophon">' + data.title_page_colophon + '</span><br>'}
+                ${!data.title_page_imprint ? '<span class="expand">Imprint: </span><span id="title_page_imprint"></span><br>' : '<div class="hanging"><span class="expand">Imprint: </span><span id="title_page_imprint">' + data.title_page_imprint + '</span></div><br>'}
+                ${!data.title_page_colophon ? '' : '<div class="hanging"><span class="expand">Colophon: </span><span id="title_page_colophon">' + data.title_page_colophon + '</span></div><br>'}
               </p>
             </div>
           </div>
@@ -2039,7 +2039,7 @@ function expand(e, deep_id) {
             <div class="col-12">
               <strong>Stationer Information</strong>
               <p>
-                ${!data.stationer_colophon ? '' : '<span class="expand">Colophon: </span><span id="stationer_colophon">' + data.stationer_colophon + '</span><br>'}
+                ${!data.stationer_colophon ? '' : '<div class="hanging"><span class="expand">Colophon: </span><span id="stationer_colophon">' + data.stationer_colophon + '</span></div><br>'}
                 ${!data.stationer_printer_filter ? '' : '<span class="expand">Printer: </span><span id="stationer_printer">' + data.stationer_printer_display + '</span><br>'}
                 ${!data.stationer_publisher_filter ? '' : '<span class="expand">Publisher: </span><span id="stationer_publisher">' + data.stationer_publisher_display + '</span><br>'}
                 ${!data.stationer_bookseller_filter ? '' : '<span class="expand">Bookseller: </span><span id="stationer_bookseller">' + data.stationer_bookseller_display + '</span><br>'}
