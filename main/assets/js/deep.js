@@ -2044,7 +2044,7 @@ function expand(e, deep_id) {
                 ${!data.stationer_publisher_filter ? '' : '<span class="expand">Publisher: </span><span id="stationer_publisher">' + data.stationer_publisher_display + '</span><br>'}
                 ${!data.stationer_bookseller_filter ? '' : '<span class="expand">Bookseller: </span><span id="stationer_bookseller">' + data.stationer_bookseller_display + '</span><br>'}
                 ${data.stationer_imprint_location === "None" ? '' : '<span class="expand">Imprint Location: </span><span id="stationer_imprint_location">' + data.stationer_imprint_location + '</span><br>'}
-                ${"<span class='expand'>Entries in Stationers' Registers: </span><span id='stationer_entries_in_register'>" + data.stationer_entries_in_register + '</span><br>'}
+                ${"<span class='expand'>Entries in Stationers' Registers: </span><span id='stationer_entries_in_register' class='margin'>" + data.stationer_entries_in_register + '</span><br>'}
                 ${!data.stationer_additional_notes ? '' : '<span class="expand"></span>'} 
                 ${!data.stationer_additional_notes ? '' : '<span class="expand">Additional Notes: </span><span id="stationer_additional_notes">' + data.stationer_additional_notes + '</span><br>'}
               </p>
