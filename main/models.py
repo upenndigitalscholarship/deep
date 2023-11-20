@@ -108,7 +108,6 @@ class Item(models.Model): #Previously known as "DEEP"
     stc = models.CharField("STC/Wing #", max_length=5000, blank=True, null=True)
     format = models.CharField("Format", max_length=5000, blank=True, null=True)
     leaves = models.CharField("Leaves", max_length=5000, blank=True, null=True)
-    composition_date = models.CharField("Composition Date", max_length=5000, blank=True, null=True)
     title_page_company_display = models.CharField("Company (Title Page Attribution) Display", max_length=5000, blank=True, null=True)
     title_page_company_filter = models.ManyToManyField(Company,blank=True)
     date_first_publication = models.CharField("Date of First Publication", max_length=5000, blank=True, null=True)
