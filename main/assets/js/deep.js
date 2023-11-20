@@ -1998,7 +1998,7 @@ function expand(e, deep_id) {
             <div class="col-12">
               <strong>Title-Page Features</strong>
               <p>
-                ${!data.title_page_title ? '<span class="expand">Title: </span><span id="title_page_title"></span><br>' : '<div class="hanging"><span class="expand">Title: </span><span id="title_page_title">' + data.title_page_title + '</span></div><br>'}
+                ${!data.title_page_title ? '<span class="expand">Title: </span><span id="title_page_title"></span><br>' : '<div class="hanging"><span class="expand">Title: </span><span id="title_page_title">' + data.title_page_title + '</span></div>'}
                 ${data.title_page_author == "None" ? '<span class="expand">Author: </span><span id="title_page_author"></span><br>' : '<span class="expand">Author: </span><span id="title_page_author">' + data.title_page_author + '</span><br>'}
                 ${!data.title_page_performance ? '<span class="expand">Performance: </span><span id="title_page_performance"></span><br>' : '<div class="hanging"><span class="expand">Performance: </span><span id="title_page_performance">' + data.title_page_performance + '</span></div><br>'}
                 ${!data.title_page_latin_motto ? '' : '<div class="hanging"><span class="expand">Latin Motto: </span><span id="title_page_latin_motto">' + data.title_page_latin_motto + '</span></div><br>'}
