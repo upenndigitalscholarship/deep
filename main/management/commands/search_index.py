@@ -86,6 +86,9 @@ def item_to_dict(item:Item):
     
     if not item_dict.get('greg_full',None):
         item_dict["greg_full"] = 'None'
+
+    if item_dict['composition_date']:
+        item_dict.pop('composition_date', None)
     # if not item_dict.get('stationer_publisher_filter',None): 
     #     item_dict["stationer_publisher_filter"] = 'None'
     # if not item_dict.get('stationer_printer_filter',None): 
