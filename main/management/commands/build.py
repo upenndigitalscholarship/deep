@@ -60,12 +60,11 @@ class Command(BaseCommand):
         for edition in Edition.objects.all():
             for author in edition.authors.all():
                 if author.name not in author_set:
-                    if not '(?)' in author.__str__().strip():
-                        authors.append({
-                            'value': author.id,
-                            'label': author.name.__str__().strip()
-                        })
-                        author_set.append(author.name)
+                    authors.append({
+                        'value': author.id,
+                        'label': author.name.__str__().strip()
+                    })
+                    author_set.append(author.name)
         authors.sort(key=lambda x: x['label'])
         anonymous_index = next((index for (index, d) in enumerate(authors) if d["label"] == "Anonymous"), None)
         authors.insert(0, authors.pop(anonymous_index))
@@ -315,7 +314,6 @@ class Command(BaseCommand):
             else:
                 printers.append(p)
         printers = list(set(printers))
-        printers = [p.replace('(?)','') for p in printers]
         printers.sort()
         printers_json = []
         for i, form in enumerate(printers):
@@ -336,7 +334,6 @@ class Command(BaseCommand):
             else:
                 publishers.append(p)
         publishers = list(set(publishers))
-        publishers = [p.replace('(?)','') for p in publishers]
         publishers.sort()
         publishers_json = []
         for i, form in enumerate(publishers):
@@ -358,7 +355,6 @@ class Command(BaseCommand):
             else:
                 booksellers.append(p)
         booksellers = list(set(booksellers))
-        booksellers = [p.replace('(?)','') for p in booksellers]
         booksellers.sort()
         booksellers_json = []
         for i, form in enumerate(booksellers):
@@ -372,7 +368,6 @@ class Command(BaseCommand):
         #Stationer
         stationers = printers + publishers + booksellers 
         stationers = list(set(stationers))
-        stationers = [s.replace('(?)','') for s in stationers]
         stationers.sort()
         stationer_json = []
         for i, form in enumerate(stationers):
