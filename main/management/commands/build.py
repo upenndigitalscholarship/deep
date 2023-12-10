@@ -327,7 +327,7 @@ class Command(BaseCommand):
                     'label': form.strip()
                 })
         printers_json.insert(0, {"value":0,"label":"Unknown" })
-        printers_json.insert(2, {"value":2,"label":"---" })
+        printers_json.insert(1, {"value":1,"label":"---" })
         srsly.write_json(static_dir / 'data/printer.json', printers_json)
 
         #Publisher
@@ -350,7 +350,7 @@ class Command(BaseCommand):
                     'label': form.strip()
                 })
         publishers_json.insert(0, {"value":0,"label":"Unknown" })
-        publishers_json.insert(2, {"value":2,"label":"---" })
+        publishers_json.insert(1, {"value":1,"label":"---" })
         srsly.write_json(static_dir / 'data/publisher.json', publishers_json)
 
         #Bookseller
@@ -388,7 +388,7 @@ class Command(BaseCommand):
                     'label': form.strip()
                 })
         stationer_json.insert(0, {"value":0,"label":"Unknown" })
-        stationer_json.insert(2, {"value":2,"label":"---" })
+        stationer_json.insert(1, {"value":1,"label":"---" })
         srsly.write_json(static_dir / 'data/stationer.json', stationer_json)
         
         #Imprint Location
