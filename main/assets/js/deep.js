@@ -1209,6 +1209,7 @@ const processQueries = queries => {
         }    
         else if (query.searchValue == "None") {
             let company = item => (
+                item.title_page_company_filter == "" ||
                 item.title_page_company_filter == "n/a"
             )
             filters.push({'filter':company,'type':query.blockType})    
@@ -1663,6 +1664,7 @@ const processQueries = queries => {
           }    
           if (values[i] == "None") {
             let company = item => (
+               item.title_page_company_filter == "" ||
                item.title_page_company_filter == "n/a"
             )
             ORquery.push(company)    
