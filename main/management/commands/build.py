@@ -160,8 +160,13 @@ class Command(BaseCommand):
         author_status_filter = list(set(author_status_filter))
         # Define a custom key function that ignores the "of " prefix
         def sort_key(s):
-            return s[3:] if s.startswith('of ') else s
-
+            if s.startswith('of '):
+                return s[3:]
+            elif s.startswith('of the '):
+                return s[7:]
+            else:
+                return s
+            
         # Sort the list using the custom key function
         author_status_filter.sort(key=sort_key)
 
