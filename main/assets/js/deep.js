@@ -929,7 +929,7 @@ const processQueries = queries => {
             )
           filters.push({'filter':authorParatext,'type':query.blockType})
         } 
-        if (query.searchValue == "None") {
+        else if (query.searchValue == "None") {
           let authorParatext = item => (
             item.paratext_author == "None" ||
             item.paratext_author == ""
@@ -1405,7 +1405,7 @@ const processQueries = queries => {
               )
             ORquery.push(authorParatext)
           } 
-          if (values[i] == 'None') {
+          else if (values[i] == 'None') {
             let authorParatext = item => (
               item.paratext_author == "None" ||
               item.paratext_author == ""
