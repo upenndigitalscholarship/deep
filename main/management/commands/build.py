@@ -377,7 +377,8 @@ class Command(BaseCommand):
         #Stationer
         stationers = printers + publishers + booksellers 
         stationers = list(set(stationers))
-        stationers.remove('Unknown')
+        if 'Unknown' in stationers:
+            stationers.remove('Unknown')
         stationers.sort()
         stationer_json = []
         for i, form in enumerate(stationers):
