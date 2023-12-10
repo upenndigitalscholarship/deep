@@ -928,7 +928,15 @@ const processQueries = queries => {
             item.paratext_author != ""
             )
           filters.push({'filter':authorParatext,'type':query.blockType})
-        } else {
+        } 
+        if (query.searchValue == "None") {
+          let authorParatext = item => (
+            item.paratext_author == "None" ||
+            item.paratext_author == ""
+            )
+          filters.push({'filter':authorParatext,'type':query.blockType})
+        }
+        else {
           let authorParatext = item => (
             item.paratext_author.toLowerCase().includes(query.searchValue.toLowerCase())
             )
@@ -1394,6 +1402,13 @@ const processQueries = queries => {
             let authorParatext = item => (
               item.paratext_author != "None" ||
               item.paratext_author != ""
+              )
+            ORquery.push(authorParatext)
+          } 
+          if (values[i] == 'None') {
+            let authorParatext = item => (
+              item.paratext_author == "None" ||
+              item.paratext_author == ""
               )
             ORquery.push(authorParatext)
           } else {
