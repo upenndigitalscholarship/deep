@@ -87,6 +87,22 @@ class Command(BaseCommand):
         title_page_author_choices.insert(2, {"value":0,"label":"---" })
         srsly.write_json(static_dir / 'data/title_page_author_filter.json', title_page_author_choices)
         
+        # Author Paratext 
+        author_paratexts = []
+        for item in Item.objects.all():
+            if item.paratext_author:
+                for author in item.paratext_author.split(';'):
+                    if author.strip() not in author_paratexts:
+                        author_paratexts.append(author.strip())
+        author_paratexts.sort()
+        author_paratexts_choices = []
+        for i, author in enumerate(author_paratexts):
+            author_paratexts_choices.append({"value":i, "label":author})
+        author_paratexts_choices.insert(0, {"value":0,"label":"Any" })
+        author_paratexts_choices.insert(1, {"value":0,"label":"None" })
+        author_paratexts_choices.insert(2, {"value":0,"label":"---" })
+        srsly.write_json(static_dir / 'data/author_paratext.json', author_paratexts_choices)
+
         ## Company (Title-Page Attribution) 
         db_companies = [] 
         for item in Item.objects.all():

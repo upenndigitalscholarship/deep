@@ -41,7 +41,7 @@ let search_fields = ['deep-id','title','title-page-modern','errata','title-page-
 
 let date_fields = ['first-production','first-edition','year-published','date-first-performance-brit-filter']
 
-let choice_fields = ['book_edition','play_edition','imprintlocation','stationer','printer','publisher','bookseller','latinontitle','paratextual','company_first-performance-brit-filter','title-page-author','illustration','author','authorial-status','company-first-performance','company','theater','playtype','genre','genreplaybook','blackletter','format','genre-brit-filter']
+let choice_fields = ['book_edition','play_edition','imprintlocation','stationer','printer','publisher','bookseller','latinontitle','paratextual','company_first-performance-brit-filter','title-page-author','illustration','author','authorial-status','company-first-performance','company','theater','playtype','genre','genreplaybook','blackletter','format','genre-brit-filter','author_paratext']
 
               
 
@@ -123,6 +123,21 @@ const update_searchSelect = (searchSelect, or=false) => {
         'value',
         'label',
         true);
+    }
+    if (filter === 'author_paratext') {
+      this_choices.setChoices(async () => {
+        try {
+          const items = await fetch('/assets/data/author_paratext.json');
+          return items.json();
+          
+      } catch (err) {
+        console.error(err);
+      }
+      },
+        'value',
+        'label',
+        true);
+
     }
     if (filter === 'paratextual') {
       this_choices.setChoices(async () => {
@@ -552,6 +567,7 @@ function addANDBlock() {
         <option value="title-page-old">All Title-Page Text (old spelling)</option>  
         <option value="author">Author (Modern)</option>
         <option value="title-page-author">Author (Title Page)</option>
+        <option value="author_paratext">Author (Paratext)</option>
         <option value="authorial-status">Authorial Status (Title Page)</option>
         <option value="company-first-performance">Company of First Performance (Annals)</option>
         <option value="company_first-performance-brit-filter">Company of First Performance (BritDrama)</option>
@@ -678,6 +694,7 @@ function addORBlock() {
         <option value="title-page-old">All Title-Page Text (old spelling)</option>  
         <option value="author">Author (Modern)</option>
         <option value="title-page-author">Author (Title Page)</option>
+        <option value="author_paratext">Author (Paratext)</option>
         <option value="authorial-status">Authorial Status (Title Page)</option>
         <option value="company-first-performance">Company of First Performance (Annals)</option>
         <option value="company_first-performance-brit-filter">Company of First Performance (BritDrama)</option>
@@ -733,6 +750,7 @@ function addORBlock() {
         <option value="title-page-old">All Title-Page Text (old spelling)</option>  
         <option value="author">Author (Modern)</option>
         <option value="title-page-author">Author (Title Page)</option>
+        <option value="author_paratext">Author (Paratext)</option>
         <option value="authorial-status">Authorial Status (Title Page)</option>
         <option value="company-first-performance">Company of First Performance (Annals)</option>
         <option value="company_first-performance-brit-filter">Company of First Performance (BritDrama)</option>
@@ -902,6 +920,20 @@ const processQueries = queries => {
             )
           filters.push({'filter':genreplaybook,'type':query.blockType})
         }
+      }
+      if (query.searchField == 'author_paratext') {
+        if (query.searchValue == "Any") {
+          let authorParatext = item => (
+            item.paratext_author != "None" ||
+            item.paratext_author != ""
+            )
+          filters.push({'filter':authorParatext,'type':query.blockType})
+        } else {
+          let authorParatext = item => (
+            item.paratext_author.toLowerCase().includes(query.searchValue.toLowerCase())
+            )
+          filters.push({'filter':authorParatext,'type':query.blockType})
+        } 
       }
       if (query.searchField == 'genre-brit-filter') {
         let genreBrit = item => (
@@ -1356,6 +1388,20 @@ const processQueries = queries => {
               item.title_alternative_keywords.toLowerCase().includes(values[i].toLowerCase())
               )
               ORquery.push(title)
+        }
+        if (fields[i] == 'author_paratext' && !values[i] =='') {
+          if (values[i] == 'Any') {
+            let authorParatext = item => (
+              item.paratext_author != "None" ||
+              item.paratext_author != ""
+              )
+            ORquery.push(authorParatext)
+          } else {
+          let authorParatext = item => (
+              item.paratext_author.split(';').map(s => s.trim()).indexOf(values[i]) > -1
+              )
+            ORquery.push(authorParatext)
+          }
         }
         if (fields[i] == 'genreplaybook' && values[i]) {
           if (values[i] == 'Any') {
