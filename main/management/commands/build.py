@@ -100,6 +100,9 @@ class Command(BaseCommand):
                 'value': i,
                 'label': company.strip()
             })
+        companies.insert(0, {"value":0,"label":"Any" })
+        companies.insert(1, {"value":0,"label":"None" })
+        companies.insert(2, {"value":0,"label":"---" })
         srsly.write_json(static_dir / 'data/title-page-companies.json', companies)
 
         # Genre BritDrama 
