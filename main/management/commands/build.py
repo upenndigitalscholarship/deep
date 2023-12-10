@@ -317,6 +317,7 @@ class Command(BaseCommand):
             else:
                 printers.append(p)
         printers = list(set(printers))
+        printers.remove('Unknown')
         printers.sort()
         printers_json = []
         for i, form in enumerate(printers):
@@ -325,6 +326,8 @@ class Command(BaseCommand):
                     'value': i,
                     'label': form.strip()
                 })
+        printers_json.insert(0, {"value":0,"label":"Unknown" })
+        printers_json.insert(2, {"value":2,"label":"---" })
         srsly.write_json(static_dir / 'data/printer.json', printers_json)
 
         #Publisher
@@ -337,6 +340,7 @@ class Command(BaseCommand):
             else:
                 publishers.append(p)
         publishers = list(set(publishers))
+        publishers.remove('Unknown')
         publishers.sort()
         publishers_json = []
         for i, form in enumerate(publishers):
@@ -345,6 +349,8 @@ class Command(BaseCommand):
                     'value': i,
                     'label': form.strip()
                 })
+        publishers_json.insert(0, {"value":0,"label":"Unknown" })
+        publishers_json.insert(2, {"value":2,"label":"---" })
         srsly.write_json(static_dir / 'data/publisher.json', publishers_json)
 
         #Bookseller
@@ -371,6 +377,7 @@ class Command(BaseCommand):
         #Stationer
         stationers = printers + publishers + booksellers 
         stationers = list(set(stationers))
+        stationers.remove('Unknown')
         stationers.sort()
         stationer_json = []
         for i, form in enumerate(stationers):
@@ -379,6 +386,8 @@ class Command(BaseCommand):
                     'value': i,
                     'label': form.strip()
                 })
+        stationer_json.insert(0, {"value":0,"label":"Unknown" })
+        stationer_json.insert(2, {"value":2,"label":"---" })
         srsly.write_json(static_dir / 'data/stationer.json', stationer_json)
         
         #Imprint Location
