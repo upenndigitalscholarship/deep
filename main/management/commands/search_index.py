@@ -24,6 +24,8 @@ def item_to_dict(item:Item):
     item_dict = item.__dict__ 
     
     item_dict['title_page_company_filter'] = title_page_company_filter
+    if not item_dict.get('title_page_company_filter',None):
+        item_dict["title_page_company_filter"] = 'n/a'
     item_dict['stationer_printer_filter'] = stationer_printer
     item_dict['stationer_publisher_filter'] = stationer_publisher
     item_dict['stationer_bookseller_filter'] = stationer_bookseller
