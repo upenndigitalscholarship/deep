@@ -130,6 +130,11 @@
   <script src="assets/js/choices.min.js"></script>   
   <script src="assets/js/deep.js"></script>   
   
-  
+  // add event on change for singlePlay, Collections, PlaysinCollections
+  <script>
+    document.getElementById("singlePlay").addEventListener("change", search);
+    document.getElementById("Collections").addEventListener("change", search);
+    document.getElementById("PlaysinCollections").addEventListener("change", search);
+  </script>
  
   {% endblock %}
