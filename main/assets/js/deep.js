@@ -951,7 +951,7 @@ const processQueries = queries => {
       }
       if (query.searchField == 'title') {
         let title = item => (
-            noPunct(item.title).toLowerCase().includes(noPunct(query.searchValue.toLowerCase())) || 
+            noPunct(item.item_title).toLowerCase().includes(noPunct(query.searchValue.toLowerCase())) || 
             noPunct(item.title_alternative_keywords).toLowerCase().includes(noPunct(query.searchValue.toLowerCase()))
             )
         filters.push({'filter':title,'type':query.blockType})
@@ -1392,7 +1392,7 @@ const processQueries = queries => {
       for (let i = 0; i < fields.length; i++) {
         if (fields[i] == 'title' && !values[i] =='') {
           let title = item => (
-              item.title.toLowerCase().includes(values[i].toLowerCase()) || 
+              item.item_title.toLowerCase().includes(values[i].toLowerCase()) || 
               item.title_alternative_keywords.toLowerCase().includes(values[i].toLowerCase())
               )
               ORquery.push(title)
