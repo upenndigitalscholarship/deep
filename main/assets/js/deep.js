@@ -13,11 +13,11 @@ fetch("../assets/data/item_data.json").then(
 
 //listen for search_bar
 let options = {
-      valueNames: ['result_number','deep_id','title', 'authors_display', 'year', 'greg_full' ],
+      valueNames: ['result_number','deep_id','item_title', 'authors_display', 'year', 'greg_full' ],
       
       // Since there are no elements in the list, this will be used as template.
       item: function(values) { 
-        return `<tr id="${values.deep_id}" onclick="expand(this, ${values.deep_id});"><td class="result_number"><td class="deep_id"></td><td class="year"></td><td class="authors_display"></td><td class="title"></td><td>Expand</td></tr>`
+        return `<tr id="${values.deep_id}" onclick="expand(this, ${values.deep_id});"><td class="result_number"><td class="deep_id"></td><td class="year"></td><td class="authors_display"></td><td class="item_title"></td><td>Expand</td></tr>`
       }
     };
 let table = new List('users', options, []);
