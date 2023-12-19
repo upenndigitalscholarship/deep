@@ -2009,7 +2009,7 @@ function expand(e, deep_id) {
           
             <div class="col-5">
               <p>
-                ${!data.deep_id ? '' : '<span class="expand">DEEP #: </span><span id="deep_id"><a target="_blank" href="'+ data.deep_id +'">' + data.deep_id + '</a></span><br>'}
+                ${!data.deep_id ? '' : '<span class="expand">DEEP #: </span><span id="deep_id"><a target="_blank" href="/'+ data.deep_id +'">' + data.deep_id + '</a></span><br>'}
                 ${!data.greg_full ? '' : '<span class="expand">Greg #: </span><span id="greg_full">' + data.greg_full + '</span><br>'}
                 ${!data.stc ? '' : '<span class="expand">STC/WING #: </span><span id="stc"> ' + data.stc + '</span><br>'}
                 ${'<span class="expand">BritDrama #: </span><span id="deep_id">' + data.brit_drama_number + '</span><br>'}
