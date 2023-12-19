@@ -5,9 +5,9 @@
     <div id="item" style="min-height: 600px; margin-top:50px" class="container" ></div>
 </section>
 
-<script src="assets/js/deep.js"></script>   
-<script>
-  // fetch data for all records, item_data is an object that serves as a lookup ex. item_data[330]
+<script type="module">
+import {expand} from './assets/js/deep.js';
+// fetch data for all records, item_data is an object that serves as a lookup ex. item_data[330]
 let item_data;
 let item_array;
 fetch("../assets/data/item_data.json").then(
