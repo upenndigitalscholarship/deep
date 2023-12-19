@@ -1987,7 +1987,21 @@ PlaysinCollections.addEventListener('change', (event) => {
   search();
 });
 
+const Works = document.getElementById('titleRadio')
+Works.addEventListener('change', (event) => {
+  search();
+});
 
+const Editions = document.getElementById('editionRadio')
+Editions.addEventListener('change', (event) => {
+  search();
+});
+
+// recordRadio
+const Records = document.getElementById('recordRadio')
+Records.addEventListener('change', (event) => {
+  search();
+});
       
 function expand(e, deep_id) {
   changeButtonCollapse();
