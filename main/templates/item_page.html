@@ -2,243 +2,27 @@
 
 {% block content %}
 <section id="search" class="services section-bg">
-    <div style="min-height: 600px; margin-top:50px" class="container" >
-  
-<td colspan="5">
-    
-    <div class="card" style="width: 100%; ">
-        <div class="card-body">
-            <div class="row">
-                <div class="col-5"><h4 id="title">{{data.item_title}}</h4></div><div class="col-5"><h4 id="authors">{{data.authors_display}}</h4></div><div class="col-1"><h4 id="year">{{ data.year}}</h4></div>
-            </div>
-            </div></div>
-    <div class="card" style="width: 100%; ">
-        <div class="card-body">
-        <div class="row">
-          <div class="row">
-            <div class="col-5">
-              <strong>Reference Information</strong>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-5">
-              <p>
-                {% if data.deep_id %}
-                <span class="expand">DEEP #: </span><span id="deep_id">{{ data.deep_id }}</span><br>
-                {% endif %}
-                {% if data.greg_full %}
-                <span class="expand">Greg #: </span><span id="greg_full">{{ data.greg_full }}</span><br>
-                {% endif%}
-                {% if data.stc %}
-                <span class="expand">STC/WING #: </span><span id="stc">{{ data.stc }}</span><br>
-                {% endif %}
-                {% if data.brit_drama_number %}
-                <span class="expand">BritDrama #: </span><span id="stc">{{ data.brit_drama_number }}</span><br>
-                {% endif %}
-                <span class="expand"></span><br>
-              </p>
-              <p>
-                {% if data.date_first_publication %}
-                <span class="expand">Date of First Publication: </span><span id="date_first_publication">{{ data.date_first_publication_display }}</span><br>
-                {% endif %}
-                {% if data.book_edition %}
-                <span class="expand">Book Edition: </span><span id="book_edition">{{ data.book_edition }}</span><br>
-                {% endif %}
-                {% if data.play_edition %}
-                <span class="expand">Play Edition: </span><span id="play_edition">{{ data.play_edition }}</span><br>
-                {% endif %}
-                {% if data.format %}
-                <span class="expand">Format: </span><span id="format">{{ data.format }}</span><br>
-                {% endif %}
-                {% if data.leaves %}
-                <span class="expand">Leaves: </span><span id="leaves">{{ data.leaves }}</span><br>
-                {% endif %}
-                {% if data.blackletter %}
-                <span class="expand">Black Letter: </span><span id="blackletter">{{ data.blackletter }}</span><br>
-                {% endif %}
-                <span class="expand"></span><br>
-                </p>
-              </div>
-    
-            <div class="col-7">
-              <p>
-                {% if data.record_type %}
-                <span class="expand">Record Type: </span><span id="record_type">{{ data.record_type }}</span><br>
-                {% endif %}
-                {% if data.play_type_display %}
-                <span class="expand">Play Type: </span><span id="play_type_display">{{ data.play_type_display }}</span><br>
-                {% endif %}
-                {% if data.genre %}
-                <span class="expand">Genre (Annals): </span><span id="genre">{{ data.genre }}</span><br>
-                {% endif %}
-                {% if data.genre_brit_display %} 
-                <span class="expand">Genre (BritDrama): </span><span id="genre_brit_display">{{ data.genre_brit_display }}</span><br>
-                {% endif %}
-              </p>
-              <p>
-                {% if data.date_first_performance %}
-                <span class="expand">Date of First Production (Annals):</span><span id="date_first_performance">{{ data.date_first_performance }}</span><br>
-                {% endif %}
-                {% if data.date_first_performance_brit_display %}
-                <span class="expand">Date of First Production (BritDrama): </span><span id="date_first_performance_brit_display">{{ data.date_first_performance_brit_display }}</span><br>
-                {% endif %}
-                {% if data.company_first_performance %}
-                <span class="expand">Company of First Production (Annals): </span><span id="company_first_performance">{{ data.company_first_performance }}</span><br>
-                {% endif %}
-                {% if data.company_first_performance_brit_display %}
-                <span class="expand">Company of First Production (BritDrama): </span><span id="company_first_performance_brit_display">{{ data.company_first_performance_brit_display }}</span><br>
-                {% endif %}
-                {% if data.company_attribution %}
-                <span class="expand">Company Attribution (Title-Page): </span><span id="company_attribution">{{ data.company_attribution|safe }}</span><br>
-                {% endif %}
-            </p>
-            </div>
-            <div class="col-12">
-              {% if data.total_editions %}
-              <br><span class="expand">Total Editions:</span><span id="total_editions">{{ data.total_editions }}</span><br>
-              <span class="expand"></span><br>
-              {% endif %}
-              
-              {% if data.variants %}
-              <span class="expand"></span>
-              <br><span class="expand">Variants:</span><span id="variants">{{ data.variants|safe }} {{ data.variant_link|safe }}<br>
-              {% endif %}
-              {% if data.collection_contains %}
-              <span class="expand"></span>
-              <br><span class="expand">Collection Contains:</span><span id="collection_contains"> {{ data.collection_contains|safe }}</span><br>
-              {% endif %}
-              {% if data.in_collection %}    
-              <br><span class="expand">In Collection:</span><span id="in_collection"> {{ data.in_collection|safe }}</span><br>
-              {% endif %}
-              
-              {% if data.independent_playbook %}
-              <br><span class="expand">Also appears as a Bibliographically Independent Playbook In </span><span id="independent_playbook"><a href="../{{ data.independent_playbook_link_id }}">{{ data.independent_playbook }}</a></span><br>
-              {% endif %}
-              {% if data.also_in_collection %}
-              <br><span class="expand">Also Appears in Collection: </span><span id="also_in_collection">{{ data.also_in_collection_link|safe }}</span><br>
-              {% endif %}
-              
-            </div>
-          </div>  
-         </div>
-      </div>
-
-      <div class="card" style="width: 100%; margin-top:2px;">
-        <div class="card-body">
-          <div class="row">
-            <div class="col-12">
-              <strong>Title-Page Features</strong>
-              <p>
-                {% if data.title_page_title %}
-                <span class="expand">Title: </span><span id="title_page_title">{{ data.title_page_title|safe }}</span><br>
-                {% endif %}
-                {% if data.title_page_author %}
-                <span class="expand">Author: </span><span id="title_page_author">{{ data.title_page_author|safe }}</span><br>
-                {% endif %}
-                {% if data.title_page_performance %}
-                <div class='hanging'><span class="expand">Performance: </span><span id="title_page_performance">{{ data.title_page_performance|safe }}</span></div><br>
-                {% endif %}
-                {% if data.title_page_latin_motto %}
-                <div class='hanging'><span class="expand">Latin Motto: </span><span id="title_page_latin_motto">{{ data.title_page_latin_motto|safe }}</span></div><br>
-                {% endif %}
-                {% if data.title_page_illustration %}
-                <span class="expand">Illustration: </span><span id="title_page_illustration">{{ data.title_page_illustration|safe }}</span><br>
-                {% endif %}
-                {% if data.title_page_imprint %}
-                <span class="expand">Imprint: </span><span id="title_page_imprint">{{ data.title_page_imprint|safe }}</span><br>
-                {% endif %}
-                {% if data.title_page_colophon %}
-                <span class="expand">Colophon: </span><span id="title_page_colophon">{{ data.title_page_colophon|safe }}</span><br>
-                {% endif %}
-                
-            </p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="card" style="width: 100%; margin-top:2px;">
-        <div class="card-body">
-          <div class="row">
-            <div class="col-12">
-              <strong>Paratextual Material</strong>
-              <p>
-                {% if not data.paratext_dedication and not data.paratext_cemmendatory_verses and not data.paratext_to_the_reader and not data.paratext_errata and not data.paratext_argument and not data.paratext_charachter_list and not data.paratext_actor_list and not data.paratext_other_paratexts %}
-                None
-                {% endif %}
-                {% if data.paratext_dedication %}
-                <span class="expand">Dedication: </span><span id="paratext_dedication">{{ data.paratext_dedication|safe }}</span><br>
-                {% endif %}
-                {% if data.paratext_cemmendatory_verses %}
-                <span class="expand">Commendatory Verses: </span><span id="paratext_cemmendatory_verses">{{ data.paratext_cemmendatory_verses|safe }}</span><br>
-                {% endif %}
-                {% if data.paratext_to_the_reader %}
-                <span class="expand">To the Reader: </span><span id="paratext_to_the_reader">{{ data.paratext_to_the_reader|safe }}</span><br>
-                {% endif %}
-                {% if data.paratext_argument %}
-                <span class="expand">Argument: </span><span id="paratext_argument">{{ data.paratext_argument|safe }}</span><br>
-                {% endif %}
-                {% if data.paratext_charachter_list %}
-                <span class="expand">Character List: </span><span id="paratext_charachter_list">{{ data.paratext_charachter_list|safe }}</span><br>
-                {% endif %}
-                {% if data.paratext_explicit %}
-                <span class="expand">Explicit: </span><span id="paratext_explicit">{{ data.paratext_explicit|safe }}</span><br>
-                {% endif %}
-                {% if data.paratext_errata %}
-                <span class="expand">Errata: </span><span id="paratext_errata">{{ data.paratext_errata|safe }}</span><br>
-                {% endif %}
-                {% if data.paratext_actor_list %}
-                <span class="expand">Actor List: </span><span id="paratext_actor_list">{{ data.paratext_actor_list|safe }}</span><br>
-                {% endif %}
-                {% if data.paratext_other_paratexts %}
-                <span class="expand">Other Paratexts: </span><span id="paratext_other_paratexts">{{ data.paratext_other_paratexts|safe }}</span><br>
-                {% endif %}
-            </p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="card" style="width: 100%; margin-top:2px;">
-        <div class="card-body">
-          <div class="row">
-            <div class="col-12">
-              <strong>Stationer Information</strong>
-              <p>
-                {% if not data.stationer_printer and not data.stationer_publisher and not data.stationer_bookseller and data.stationer_entries_in_register is None and not data.stationer_additional_notes %}
-                None
-                {% endif %}
-                {% if data.stationer_colophon %}
-                <span class="expand">Colophon: </span><span id="stationer_colophon">{{ data.stationer_colophon|safe }}</span><br>
-                {% endif %}
-                {% if data.stationer_printer_filter %}
-                <span class="expand">Printer: </span><span id="stationer_printer">{{ data.stationer_printer_display|safe }}</span><br>
-                {% endif %}
-                {% if data.stationer_publisher_filter %}
-                <span class="expand">Publisher: </span><span id="stationer_publisher">{{ data.stationer_publisher_display|safe }}</span><br>
-                {% endif %}
-                {% if data.stationer_bookseller_filter %}
-                <span class="expand">Bookseller: </span><span id="stationer_bookseller">{{ data.stationer_bookseller_display|safe }}</span><br>
-                {% endif %}
-                {% if data.stationer_imprint_location %}
-                <span class="expand">Imprint Location: </span><span id="stationer_imprint_location">{{ data.stationer_imprint_location|safe }}</span><br>
-                {% endif %}
-                {% if data.stationer_entries_in_register != "None" %}
-                <div class='hanging'><span class='expand'>Entries in Stationers' Register: </span><span id='stationer_entries_in_register'>{{ data.stationer_entries_in_register|safe }}</span></div><br>
-                {% endif %}
-                {% if data.stationer_additional_notes %}
-                <span class="expand"></span>
-                <span class="expand">Additional Notes: </span><span id="stationer_additional_notes">{{ data.stationer_additional_notes|safe }}</span><br>
-                {% endif %}
-            </p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </td>
-    
-  </tr>
-</div>
+    <div id="item" style="min-height: 600px; margin-top:50px" class="container" ></div>
 </section>
+
+<script src="assets/js/deep.js"></script>   
+<script>
+  // fetch data for all records, item_data is an object that serves as a lookup ex. item_data[330]
+let item_data;
+let item_array;
+fetch("../assets/data/item_data.json").then(
+        function(u){ return u.json();}
+      ).then(
+        function(json){
+          item_data = json;
+          // we also need an array of items for filtering
+          item_array = Object.values(item_data);
+        });
+// deep_id from url
+let deep_id = window.location.href.split('/')[3];
+itemDiv = document.getElementById("item");
+itemDiv.id = deep_id;
+expand(itemDiv, deep_id)
+</script>   
 
 {% endblock %}
