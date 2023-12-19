@@ -899,11 +899,7 @@ const init_firstBlock = () => {
     update_searchSelect(searchSelect);
     
   })
-  let get_deep_id = window.location.href.split('/')[3];
-  if (get_deep_id) {
-    document.getElementById('advancedSearchField-1').value = get_deep_id
-    search();
-  }
+  
 }
 init_firstBlock();
  
