@@ -485,7 +485,7 @@ class Command(BaseCommand):
         if not options["quick"]:
             self.stdout.write(self.style.SUCCESS('Creating item pages'))
             for item in tqdm(Item.objects.all()):
-                page = render_to_string('item_page.html', {"data":item_to_dict(item)})
+                page = render_to_string('index.html', {})
                 page_path = (out_path / f'{item.deep_id}')
                 if not page_path.exists():
                     page_path.mkdir(parents=True, exist_ok=True)
