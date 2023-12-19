@@ -1987,7 +1987,7 @@ PlaysinCollections.addEventListener('change', (event) => {
 
 
       
-function expand(e, deep_id) {
+export function expand(e, deep_id) {
   changeButtonCollapse();
   let data = item_data[e.id];
   console.log(data)
