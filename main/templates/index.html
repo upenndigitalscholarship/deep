@@ -138,7 +138,12 @@
   <script>
       let get_deep_id = window.location.href.split('/')[3];
       if (get_deep_id) {
-        document.getElementById('advancedSearchField-1').value = get_deep_id
+        // select deep-id
+        let filterBlock = document.getElementById("filterBlock-1");
+        searchSelect = filterBlock.children[1].children[0]
+        searchSelect.value = 'deep-id' 
+        let searchField = document.getElementById(searchSelect.id.replace('searchSelect','advancedSearchField'));
+        searchField.value = get_deep_id;
         search();
       }
   </script>  
