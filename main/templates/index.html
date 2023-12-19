@@ -148,7 +148,7 @@
         let searchField = document.getElementById(searchSelect.id.replace('searchSelect','advancedSearchField'));
         searchField.value = get_deep_id;
         // press enter 
-        searchField.dispatchEvent(new KeyboardEvent('keydown',{'key':'Enter'}));
+        searchField.dispatchEvent(new KeyboardEvent('keyup',{'key':'Enter'}));
       }
       
   </script>  
