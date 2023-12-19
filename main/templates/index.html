@@ -136,10 +136,23 @@
     document.getElementById("PlaysinCollections").addEventListener("change", search);
   </script>
   <script>
-      let get_deep_id = window.location.href.split('/')[3];
+
+    let init_item_data;
+    let init_item_array;
+
+    fetch("../assets/data/item_data.json").then(
+            function(u){ return u.json();}
+          ).then(
+            function(json){
+              init_item_data = json;
+              // we also need an array of items for filtering
+              init_item_array = Object.values(init_item_data);
+            }).then(
+              function(){
+                let get_deep_id = window.location.href.split('/')[3];
       console.log(typeof(get_deep_id));
       console.log(get_deep_id);
-      
+
       if (get_deep_id) {
         // select deep-id
         let filterBlock = document.getElementById("filterBlock-1");
@@ -153,6 +166,9 @@
         // press enter 
         searchField.dispatchEvent(new KeyboardEvent('keyup',{'key':'Enter'}));
       }
+              }
+            )
+      
       
   </script>  
 
