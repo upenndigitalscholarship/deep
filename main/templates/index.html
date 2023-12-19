@@ -136,17 +136,9 @@
     document.getElementById("PlaysinCollections").addEventListener("change", search);
   </script>
   <script>
-    //on page load 
-    document.addEventListener("DOMContentLoaded", function(event) {
-      let deep_id = window.location.href.split('/')[3];
-      // if deep_id is not empty and is a number
-      if (deep_id && !isNaN(deep_id)) {
-        // search for deep_id
-        search(deep_id);
-      } else {
-        // search for all
-        search();
-      }
-    });
+      let get_deep_id = window.location.href.split('/')[3];
+      console.log(get_deep_id);
+  </script>  
+    
  
   {% endblock %}
