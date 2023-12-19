@@ -2,6 +2,7 @@
 // fetch data for all records, item_data is an object that serves as a lookup ex. item_data[330]
 let item_data;
 let item_array;
+let selectID;
 fetch("../assets/data/item_data.json").then(
         function(u){ return u.json();}
       ).then(
