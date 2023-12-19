@@ -149,10 +149,12 @@
         searchField.value = get_deep_id;
            
       }
-      // click on editionRadio
-      document.getElementById('editionRadio').click();
       
   </script>  
-    
+<script>
+  // once page is fully loaded, run this function
+  document.addEventListener("DOMContentLoaded", function(event) {
+    search();
+  });
  
   {% endblock %}
