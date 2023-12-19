@@ -142,6 +142,8 @@
         let filterBlock = document.getElementById("filterBlock-1");
         searchSelect = filterBlock.children[1].children[0]
         searchSelect.value = 'deep-id' 
+        update_searchSelect(searchSelect);
+
         let searchField = document.getElementById(searchSelect.id.replace('searchSelect','advancedSearchField'));
         searchField.value = get_deep_id;
         search();
