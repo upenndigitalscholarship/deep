@@ -1965,7 +1965,7 @@ const search = () => {
   table.add(grouped_results);
   table.update();
 }
-
+search();
 
 // Section for record type filtering
 const singlePlay = document.getElementById('singlePlay') 
