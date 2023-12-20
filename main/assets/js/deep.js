@@ -1976,7 +1976,7 @@ singlePlay.addEventListener('change', (event) => {
   if (searchField.value != '') {
     search();
   } else {
-  searchField.dispatchEvent(new KeyboardEvent('keyup',{'key':'Enter'}));
+  searchField.dispatchEvent(new KeyboardEvent('keyup',{'key':'Space'}));
   }
 });
 
@@ -1989,7 +1989,7 @@ Collections.addEventListener('change', (event) => {
   if (searchField.value != '') {
     search();
   } else {
-  searchField.dispatchEvent(new KeyboardEvent('keyup',{'key':'Enter'}));
+  searchField.dispatchEvent(new KeyboardEvent('keyup',{'key':'Space'}));
   }
 });
 
@@ -2002,7 +2002,8 @@ PlaysinCollections.addEventListener('change', (event) => {
   if (searchField.value != '') {
     search();
   } else {
-  searchField.dispatchEvent(new KeyboardEvent('keyup',{'key':'Enter'}));
+  // press space
+  searchField.dispatchEvent(new KeyboardEvent('keyup',{'key':'Space'}));
   }
 });
 
