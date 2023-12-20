@@ -162,7 +162,15 @@
         searchField.dispatchEvent(new KeyboardEvent('keyup',{'key':'Enter'}));
         // select expandAllButton
         document.getElementById('expandAllButton').click();
-      } else { search(); }
+      } else { 
+        let filterBlock = document.getElementById("filterBlock-1");
+        searchSelect = filterBlock.children[1].children[0]
+        
+        let searchField = document.getElementById(searchSelect.id.replace('searchSelect','advancedSearchField'));
+        // press enter 
+        searchField.dispatchEvent(new KeyboardEvent('keyup',{'key':'Enter'}));
+ 
+       }
               }
             )
     
