@@ -1838,26 +1838,17 @@ const processQueries = queries => {
     if (!singlePlay.checked) {
       let singlePlayFilter = item => item.record_type != 'Single-Play Playbook'
       filters.push({'filter':singlePlayFilter,'type':'AND'})
-    } else {
-      let singlePlayFilter = item => item.record_type == 'Single-Play Playbook'
-      filters.push({'filter':singlePlayFilter,'type':'AND'})
-    }
+    } 
     let Collections = document.getElementById('Collections')
     if (!Collections.checked) {
       let collectionsFilter = item => item.record_type != 'Collection'
       filters.push({'filter':collectionsFilter,'type':'AND'})
-    } else {
-      let collectionsFilter = item => item.record_type == 'Collection'
-      filters.push({'filter':collectionsFilter,'type':'AND'})
-    }
+    } 
     let PlaysinCollections = document.getElementById('PlaysinCollections')
     if (!PlaysinCollections.checked) {
       let playsinCollections = item => item.record_type != 'Play in Collection'
       filters.push({'filter':playsinCollections,'type':'AND'})
-    } else {
-      let playsinCollections = item => item.record_type == 'Play in Collection'
-      filters.push({'filter':playsinCollections,'type':'AND'})
-    }    
+    } 
   }
   return filters
 }
