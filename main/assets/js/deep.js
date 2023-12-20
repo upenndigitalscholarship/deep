@@ -1890,7 +1890,7 @@ const search = () => {
         if (f.type == "AND") { 
           // catch TypeError: d is undefined
           if (d == undefined) {
-            console.log(d,f)
+            console.log('[*] line 1893 filter undefined',d,f)
           } else {
             return d.filter(f.filter)
           }
