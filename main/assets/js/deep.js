@@ -1897,7 +1897,7 @@ const search = () => {
       }, 
       item_array
   )
-  console.log('results',results)
+  console.log('[*] results - filter reduce',results)
   // for (i in queries){
   //   let { filter, type } = processQuery(queries[i], results)
   //   if (type === 'AND') {
@@ -1914,7 +1914,7 @@ const search = () => {
   // logic for title-edition-record filtering 
   let filter = radioHelper();
   let grouped_results = []
-  console.log(results,'results')
+
   if (filter == 'title') {
     let groups = groupBy(results, 'title_id');
     
@@ -1955,11 +1955,10 @@ const search = () => {
   grouped_results.sort(function (a, b) {
     return a.year_int - b.year_int || a.deep_id - b.deep_id;
   });
-
   for (i in grouped_results){ 
     grouped_results[i].result_number = parseInt(i)+1+'.'
   }
-  console.log(grouped_results)
+  console.log('[*] results - grouped results ',grouped_results)
   resultCount = document.getElementById("resultCount")
   resultCount.innerText = grouped_results.length
   table.add(grouped_results);
