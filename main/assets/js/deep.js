@@ -1885,7 +1885,7 @@ const search = () => {
   //   (previousValue, currentValue) => previousValue + currentValue,
   //   initialValue
   // );
-  const results = filters.reduce(
+  let results = filters.reduce(
       (d, f) => {
         if (f.type == "AND") { 
           // catch TypeError: d is undefined
