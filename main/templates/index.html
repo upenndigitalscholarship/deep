@@ -162,7 +162,7 @@
         searchField.dispatchEvent(new KeyboardEvent('keyup',{'key':'Enter'}));
         // select expandAllButton
         document.getElementById('expandAllButton').click();
-      }
+      } else { search(); }
               }
             )
     
@@ -171,10 +171,5 @@
       
   </script>  
 
- <script>
-  // on page load trigger search
-  document.addEventListener("DOMContentLoaded", function(event) {
-    //console.log("DOM fully loaded and parsed");
-    search();
-  });
+ 
   {% endblock %}
