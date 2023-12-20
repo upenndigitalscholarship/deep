@@ -1906,8 +1906,11 @@ const search = () => {
       }, 
       item_array
   )
-  console.log('[*] results - filter reduce',results)
-  // for (i in queries){
+  if (results == undefined) {
+    console.log('[*] line 1907 results undefined',results)
+    results = []
+  }
+   // for (i in queries){
   //   let { filter, type } = processQuery(queries[i], results)
   //   if (type === 'AND') {
   //     // intersection (a ∩ b) of results and query result, elements common to both results and query result
