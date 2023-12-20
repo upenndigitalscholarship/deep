@@ -171,5 +171,10 @@
       
   </script>  
 
- 
+ <script>
+  // on page load trigger search
+  document.addEventListener("DOMContentLoaded", function(event) {
+    //console.log("DOM fully loaded and parsed");
+    search();
+  });
   {% endblock %}
