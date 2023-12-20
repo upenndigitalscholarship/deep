@@ -1969,17 +1969,41 @@ const search = () => {
 // Section for record type filtering
 const singlePlay = document.getElementById('singlePlay') 
 singlePlay.addEventListener('change', (event) => {
-  search();
+  let filterBlock = document.getElementById("filterBlock-1");
+  searchSelect = filterBlock.children[1].children[0]      
+  let searchField = document.getElementById(searchSelect.id.replace('searchSelect','advancedSearchField'));
+  // press enter
+  if (searchField.value != '') {
+    search();
+  } else {
+  searchField.dispatchEvent(new KeyboardEvent('keyup',{'key':'Enter'}));
+  }
 });
 
 const Collections = document.getElementById('Collections')
 Collections.addEventListener('change', (event) => {
-  search();
+  let filterBlock = document.getElementById("filterBlock-1");
+  searchSelect = filterBlock.children[1].children[0]      
+  let searchField = document.getElementById(searchSelect.id.replace('searchSelect','advancedSearchField'));
+  // press enter
+  if (searchField.value != '') {
+    search();
+  } else {
+  searchField.dispatchEvent(new KeyboardEvent('keyup',{'key':'Enter'}));
+  }
 });
 
 const PlaysinCollections = document.getElementById('PlaysinCollections')
 PlaysinCollections.addEventListener('change', (event) => {
-  search();
+  let filterBlock = document.getElementById("filterBlock-1");
+  searchSelect = filterBlock.children[1].children[0]      
+  let searchField = document.getElementById(searchSelect.id.replace('searchSelect','advancedSearchField'));
+  // press enter
+  if (searchField.value != '') {
+    search();
+  } else {
+  searchField.dispatchEvent(new KeyboardEvent('keyup',{'key':'Enter'}));
+  }
 });
 
 const Works = document.getElementById('titleRadio')
