@@ -58,7 +58,7 @@ const update_searchSelect = (searchSelect, or=false) => {
     //reset result count, clear table
     rC = document.getElementById("resultCount")
     rC.innerText = ''
-    // table.clear(); 
+    table.clear(); 
 
     // Choice.js changes the <select> to a <div class="choices"> when initialized
     // when a div, it does not contain the id, so a sibling relation is used
@@ -1965,7 +1965,6 @@ const search = () => {
   table.add(grouped_results);
   table.update();
 }
-search();
 
 // Section for record type filtering
 const singlePlay = document.getElementById('singlePlay') 
