@@ -162,10 +162,7 @@
         searchField.dispatchEvent(new KeyboardEvent('keyup',{'key':'Enter'}));
         // select expandAllButton
         document.getElementById('expandAllButton').click();
-        // if using Firefox, reload page to fix bug where results are hidden on load
-        if (navigator.userAgent.indexOf("Firefox") != -1) {
-          window.location.reload()
-        }
+        
       } else { 
         let filterBlock = document.getElementById("filterBlock-1");
         searchSelect = filterBlock.children[1].children[0]
