@@ -478,6 +478,8 @@ const getQueries = () => {
         
         if (searchValue) {
           query.push({"searchField":searchField, "searchValue":searchValue, "blockType":blockType})
+        } else {
+          query.push({"searchField":searchField, "searchValue":"[isblank]", "blockType":blockType})
         }
       }
       if (date_fields.indexOf(searchField) > -1) {
@@ -952,11 +954,19 @@ const processQueries = queries => {
         filters.push({'filter':genreBrit,'type':query.blockType})
       }
       if (query.searchField == 'title') {
-        let title = item => (
+        if (query.searchValue == "[isblank]") {
+          let title = item => (
+            item.item_title != ""
+          )
+          filters.push({'filter':title,'type':query.blockType})
+        } else {
+          let title = item => (
             noPunct(item.item_title).toLowerCase().includes(noPunct(query.searchValue.toLowerCase())) || 
             noPunct(item.title_alternative_keywords).toLowerCase().includes(noPunct(query.searchValue.toLowerCase()))
-            )
-        filters.push({'filter':title,'type':query.blockType})
+          )
+          filters.push({'filter':title,'type':query.blockType})
+        }
+        
       }
       if (query.searchField == 'stationer') { 
         let stationer = item => (
