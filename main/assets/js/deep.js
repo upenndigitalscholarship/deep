@@ -2039,7 +2039,10 @@ function expand(e, deep_id) {
   changeButtonCollapse();
   // handle TypeError: item_data is undefined
   if (typeof item_data === 'undefined') {
-    console.log('[*] line 2027 item_data undefined',item_data)
+    console.log('[*] line 2027 item_data undefined')
+    // wait half a second then run search 
+    setTimeout(function(){ expand(e, deep_id); }, 500);
+    search();
     return
   }
   let data = item_data[e.id];
