@@ -2037,6 +2037,11 @@ Records.addEventListener('change', (event) => {
       
 function expand(e, deep_id) {
   changeButtonCollapse();
+  // handle TypeError: item_data is undefined
+  if (typeof item_data === 'undefined') {
+    console.log('[*] line 2027 item_data undefined',item_data)
+    return
+  }
   let data = item_data[e.id];
   console.log(data)
   e.outerHTML = `
