@@ -10,6 +10,15 @@ fetch("../assets/data/item_data.json").then(
           item_data = json;
           // we also need an array of items for filtering
           item_array = Object.values(item_data);
+          // convert all null values to empty strings
+          item_array.forEach(item => {
+            Object.keys(item).forEach(key => {
+              if (item[key] === null) {
+                item[key] = ''
+              }
+            })
+          })
+
         });
 
 //listen for search_bar
