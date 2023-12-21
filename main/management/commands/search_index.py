@@ -25,7 +25,7 @@ def item_to_dict(item:Item):
     
     item_dict['title_page_company_filter'] = title_page_company_filter
     if not item_dict.get('title_page_company_filter',None):
-        item_dict["title_page_company_filter"] = 'n/a'
+        item_dict["title_page_company_filter"] = ''
     item_dict['stationer_printer_filter'] = stationer_printer
     item_dict['stationer_publisher_filter'] = stationer_publisher
     item_dict['stationer_bookseller_filter'] = stationer_bookseller
@@ -141,9 +141,9 @@ def item_to_dict(item:Item):
         edition['greg_middle'] = 'None'
         
     if edition['book_edition'] == '0':
-        edition['book_edition'] = 'n/a'
+        edition['book_edition'] = ''
     if edition['play_edition'] == '0':
-        edition['play_edition'] = 'n/a'
+        edition['play_edition'] = ''
 
     del edition['id']
     if '_state' in edition.keys():
@@ -160,7 +160,7 @@ def item_to_dict(item:Item):
     if not title.get('greg',None): # Replace none with 'None' (else search crashes)
         title["greg"] = 'None'
     if not title.get('company_first_performance_annals_display',None): # Replace none with 'None' (else search crashes)
-        title["company_first_performance_annals_display"] = 'n/a'
+        title["company_first_performance_annals_display"] = ''
     if not title.get('company_first_performance_annals_filter',None): # Replace none with 'None' (else search crashes)
         title["company_first_performance_annals_filter"] = 'None'
     if not title.get('brit_drama_number',None): # Replace none with 'None' (else search crashes)
@@ -170,7 +170,7 @@ def item_to_dict(item:Item):
     if not title.get('company_first_performance_brit_filter',None): # Replace none with 'None' (else search crashes)
         title["company_first_performance_brit_filter"] = 'None'
     if not title.get('company_first_performance_brit_display',None): # Replace none with 'None' (else search crashes)
-        title["company_first_performance_brit_display"] = 'n/a'
+        title["company_first_performance_brit_display"] = ''
     if not title.get('genre_brit_filter',None): # Replace none with 'None' (else search crashes)
         title["genre_brit_filter"] = 'not in BritDrama'
     if not title.get('genre_brit_display',None): # Replace none with 'None' (else search crashes)
