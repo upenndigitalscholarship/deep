@@ -2084,7 +2084,7 @@ function expand(e, deep_id) {
                 ${data.collection_contains === '' || data.collection_contains === null ? '' : '<span class="expand"></span>'}
                 ${data.collection_contains === '' ? '' : '<br><span class="expand">Collection Contains:</span><span id="collection_contains"> ' + data.collection_contains + '</span><br>'}
                 ${data.in_collection === '' ? '' : '<br><span class="expand">In Collection:</span><span id="in_collection"> ' + data.in_collection + '</span><br>'}
-                ${!data.independent_playbook ? '' : '<br><span class="expand">Also Appears as a Bibliographically Independent Playbook In </span><span id="independent_playbook"><a target="_blank" href="' + data.independent_playbook_link_id + '">' + data.independent_playbook + '</a></span><br>'}
+                ${!data.independent_playbook ? '' : '<br><span class="expand">Also Appears as a Bibliographically Independent Playbook In </span><span id="independent_playbook"><a target="_blank" href="/' + data.independent_playbook_link_id + '">' + data.independent_playbook + '</a></span><br>'}
                 ${!data.also_in_collection ? '' : '<br><span class="expand">Also Appears in Collection: </span><span id="also_in_collection">' + data.also_in_collection_link + '</span><br>'}
               </p>
             </div>    
