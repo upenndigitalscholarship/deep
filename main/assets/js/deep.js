@@ -937,14 +937,12 @@ const processQueries = queries => {
       if (query.searchField == 'author_paratext') {
         if (query.searchValue == "Any") {
           let authorParatext = item => (
-            item.paratext_author != "None" ||
             item.paratext_author != ""
             )
           filters.push({'filter':authorParatext,'type':query.blockType})
         } 
         else if (query.searchValue == "None") {
           let authorParatext = item => (
-            item.paratext_author == "None" ||
             item.paratext_author == ""
             )
           filters.push({'filter':authorParatext,'type':query.blockType})
@@ -1421,14 +1419,12 @@ const processQueries = queries => {
         if (fields[i] == 'author_paratext' && !values[i] =='') {
           if (values[i] == 'Any') {
             let authorParatext = item => (
-              item.paratext_author != "None" ||
               item.paratext_author != ""
               )
             ORquery.push(authorParatext)
           } 
           else if (values[i] == 'None') {
             let authorParatext = item => (
-              item.paratext_author == "None" ||
               item.paratext_author == ""
               )
             ORquery.push(authorParatext)
