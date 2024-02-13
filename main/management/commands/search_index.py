@@ -83,8 +83,8 @@ def item_to_dict(item:Item):
     if not item_dict.get('genre_annals_display', None):
         item_dict['genre_annals_display'] = "not in Annals"
     # brit_drama_number
-    if not item_dict.get('brit_drama_number', None):
-        item_dict['brit_drama_number'] = "not in BritDrama"
+    #if not item_dict.get('brit_drama_number', None):
+    #    item_dict['brit_drama_number'] = "not in BritDrama"
     
     if not item_dict.get('greg_full',None):
         item_dict["greg_full"] = 'None'
