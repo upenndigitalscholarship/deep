@@ -508,7 +508,7 @@ class Command(BaseCommand):
         end = time.time()
         self.stdout.write(self.style.SUCCESS(f'Build Complete in {end-start:.2f} seconds'))
         data = srsly.read_json('main/assets/data/item_data.json')
-        call_command('collectstatic','--noinput')
+        call_command('collectstatic','--noinput','--clear')
 
         #change permissions on /srv/deep/site to www-data:www-data using subrocess
         subprocess.run(['chown','-R','www-data:www-data','/srv/deep/site'])

@@ -52,6 +52,10 @@
     "label":"B., T."
   },
   {
+    "value":730,
+    "label":"Badger, John"
+  },
+  {
     "value":9,
     "label":"Bale, John"
   },
@@ -308,6 +312,10 @@
     "label":"Fanshawe, Richard"
   },
   {
+    "value":729,
+    "label":"Ferrers, George"
+  },
+  {
     "value":127,
     "label":"Field, Nathan"
   },
@@ -500,6 +508,10 @@
     "label":"Hughes, Thomas"
   },
   {
+    "value":728,
+    "label":"Hunnis, William"
+  },
+  {
     "value":273,
     "label":"Hutton, Leonard"
   },
@@ -660,6 +672,10 @@
     "label":"Montague, Walter"
   },
   {
+    "value":731,
+    "label":"Mulcaster, Richard"
+  },
+  {
     "value":92,
     "label":"Munday, Anthony"
   },
@@ -710,6 +726,10 @@
   {
     "value":57,
     "label":"Pasqualigo, Luigi"
+  },
+  {
+    "value":732,
+    "label":"Patten, William"
   },
   {
     "value":227,
@@ -994,6 +1014,10 @@
   {
     "value":277,
     "label":"Vincent, Thomas"
+  },
+  {
+    "value":727,
+    "label":"Vittels, Christopher"
   },
   {
     "value":174,

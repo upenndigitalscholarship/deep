@@ -1,106 +1,114 @@
 [
   {
     "value":0,
-    "label":"Allegory"
+    "label":" Tilt"
   },
   {
     "value":1,
-    "label":"Burlesque"
+    "label":"Allegory"
   },
   {
     "value":2,
-    "label":"Civic Pageant"
+    "label":"Burlesque"
   },
   {
     "value":3,
-    "label":"Classical Legend"
+    "label":"Civic Pageant"
   },
   {
     "value":4,
-    "label":"Comedy"
+    "label":"Classical Legend"
   },
   {
     "value":5,
-    "label":"Dialogue"
+    "label":"Comedy"
   },
   {
     "value":6,
-    "label":"Disputation"
+    "label":"Dialogue"
   },
   {
     "value":7,
-    "label":"Domestic Drama"
+    "label":"Disputation"
   },
   {
     "value":8,
-    "label":"Droll"
+    "label":"Domestic Drama"
   },
   {
     "value":9,
-    "label":"Entertainment"
+    "label":"Droll"
   },
   {
     "value":10,
-    "label":"History"
+    "label":"Entertainment"
   },
   {
     "value":11,
-    "label":"Interlude"
+    "label":"History"
   },
   {
     "value":12,
-    "label":"Jig"
+    "label":"Interlude"
   },
   {
     "value":13,
-    "label":"Masque"
+    "label":"Interlude (not in Annals)"
   },
   {
     "value":14,
-    "label":"Monologue"
+    "label":"Jig"
   },
   {
     "value":15,
-    "label":"Morality"
+    "label":"Masque"
   },
   {
     "value":16,
-    "label":"Mystery"
+    "label":"Monologue"
   },
   {
     "value":17,
-    "label":"Neo-miracle"
+    "label":"Morality"
   },
   {
     "value":18,
-    "label":"Opera"
+    "label":"Mystery"
   },
   {
     "value":19,
-    "label":"Pastoral"
+    "label":"Neo-miracle"
   },
   {
     "value":20,
-    "label":"Piscatory"
+    "label":"Opera"
   },
   {
     "value":21,
-    "label":"Romance"
+    "label":"Pastoral"
   },
   {
     "value":22,
-    "label":"Satire"
+    "label":"Piscatory"
   },
   {
     "value":23,
-    "label":"Topical Play"
+    "label":"Romance"
   },
   {
     "value":24,
-    "label":"Tragedy"
+    "label":"Satire"
   },
   {
     "value":25,
+    "label":"Topical Play"
+  },
+  {
+    "value":26,
+    "label":"Tragedy"
+  },
+  {
+    "value":27,
     "label":"Tragicomedy"
   }
 ]
