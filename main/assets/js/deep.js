@@ -1131,7 +1131,8 @@ const processQueries = queries => {
       }
       if (query.searchField == 'deep-id') {
         let deepID = (item) => {
-          let pattern = `^${query.searchValue}$`;
+          let tokens = query.searchValue.split(" ");
+          let pattern = tokens.map(token => `(?=.*${token})`).join("");
           let re = new RegExp(pattern, 'i');
           let match = item.deep_id.match(re);
           
@@ -1327,7 +1328,8 @@ const processQueries = queries => {
       }
       if (query.searchField == 'brit-drama-number') {
           let britDrama = (item) => {
-            let pattern = `^${query.searchValue}$`;
+            let tokens = query.searchValue.split(" ");
+            let pattern = tokens.map(token => `(?=.*${token})`).join("");
             let re = new RegExp(pattern, 'i');
             let match = item.brit_drama_number.match(re);
             
