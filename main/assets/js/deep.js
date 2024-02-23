@@ -967,10 +967,15 @@ const processQueries = queries => {
           )
           filters.push({'filter':title,'type':query.blockType})
         } else {
-          let title = item => (
-            noPunct(item.item_title).toLowerCase().includes(noPunct(query.searchValue.toLowerCase())) || 
-            noPunct(item.title_alternative_keywords).toLowerCase().includes(noPunct(query.searchValue.toLowerCase()))
-          )
+          let title = (item) => {
+            let tokens = noPunct(query.searchValue).toLowerCase().split(" ");
+            let pattern = tokens.map(token => `(?=.*${token})`).join("");
+            let re = new RegExp(pattern, 'i');
+            let match = noPunct(item.item_title).match(re) || noPunct(item.title_alternative_keywords).match(re);  
+            
+            return match !== null && match.length > 0;
+            
+          }
           filters.push({'filter':title,'type':query.blockType})
         }
         
@@ -1143,7 +1148,8 @@ const processQueries = queries => {
       if (query.searchField == 'greg_number') {
           let gregNumber = (item) => {
            // search item.greg_full for values[i]
-           let pattern = `^${query.searchValue}$`;
+           let tokens = query.searchValue.split(" ");
+           let pattern = tokens.map(token => `(?=.*${token})`).join("");
            let re = new RegExp(pattern, 'i');
            let full_match = item.greg_full.match(re);
            let medium_match = item.greg_middle.match(re);
@@ -1200,7 +1206,8 @@ const processQueries = queries => {
       }
       if (query.searchField == 'stc_or_wing') {
         let stcWing = (item) => {
-          let pattern = `^${query.searchValue}$`;
+          let tokens = query.searchValue.split(" ");
+          let pattern = tokens.map(token => `(?=.*${token})`).join("");
           let re = new RegExp(pattern, 'i');
           let match = item.stc.match(re);
           
@@ -1593,7 +1600,8 @@ const processQueries = queries => {
         if (fields[i] == 'brit-drama-number' && values[i]) {
           
           let britDrama = (item) => {
-            let pattern = `^${values[i]}$`;
+            let tokens = values[i].split(" ");
+            let pattern = tokens.map(token => `(?=.*${token})`).join("");
             let re = new RegExp(pattern, 'i');
             let match = item.brit_drama_number.match(re);
             
@@ -1615,7 +1623,8 @@ const processQueries = queries => {
         }
         if (fields[i] == 'deep-id' && values[i]) {
           let deepID = (item) => {
-            let pattern = `^${values[i]}$`;
+            let tokens = values[i].split(" ");
+            let pattern = tokens.map(token => `(?=.*${token})`).join("");
             let re = new RegExp(pattern, 'i');
             let match = item.deep_id.match(re);
             
@@ -1626,7 +1635,8 @@ const processQueries = queries => {
         if (fields[i] == 'greg_number' && values[i]) {
             let gregNumber = (item) => {
               // search item.greg_full for values[i]
-              let pattern = `^${values[i]}$`;
+              let tokens = values[i].split(" ");
+              let pattern = tokens.map(token => `(?=.*${token})`).join("");
               let re = new RegExp(pattern, 'i');
               let full_match = item.greg_full.match(re);
               let medium_match = item.greg_middle.match(re);
@@ -1682,7 +1692,8 @@ const processQueries = queries => {
         }
         if (fields[i] == 'stc_or_wing' && values[i]) {
           let stcWing = (item) => {
-            let pattern = `^${values[i]}$`;
+            let tokens = values[i].split(" ");
+            let pattern = tokens.map(token => `(?=.*${token})`).join("");
             let re = new RegExp(pattern, 'i');
             let match = item.stc.match(re);
             
