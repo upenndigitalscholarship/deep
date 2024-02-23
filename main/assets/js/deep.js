@@ -581,8 +581,8 @@ function addANDBlock() {
         <option value="title-page-author">Author (Title Page)</option>
         <option value="author_paratext">Author (Paratext)</option>
         <option value="authorial-status">Authorial Status (Title Page)</option>
-        <option value="company-first-performance">Company of First Performance (Annals)</option>
-        <option value="company_first-performance-brit-filter">Company of First Performance (BritDrama)</option>
+        <option value="company-first-performance">Company of First Production (Annals)</option>
+        <option value="company_first-performance-brit-filter">Company of First Production (BritDrama)</option>
         <option value="company">Company (Title Page)</option>
         <option value="theater">Theater (Title Page)</option>
         <option value="playtype">Play Type</option>
@@ -598,8 +598,8 @@ function addANDBlock() {
         <option value="publisher" >&nbsp;&nbsp;&nbsp;&nbsp;Publisher</option>
         <option value="bookseller" >&nbsp;&nbsp;&nbsp;&nbsp;Bookseller</option>
         <option value="imprintlocation">Imprint Location</option>
-        <option value="first-production">Date of First Performance (Annals)</option>
-        <option value="date-first-performance-brit-filter">Date of First Performance (BritDrama)</option>
+        <option value="first-production">Date of First Production (Annals)</option>
+        <option value="date-first-performance-brit-filter">Date of First Production (BritDrama)</option>
         <option value="first-edition">Date of First Edition</option>
         <option value="format">Format</option>
         <option value="book_edition">Book edition number</option>
@@ -708,8 +708,8 @@ function addORBlock() {
         <option value="title-page-author">Author (Title Page)</option>
         <option value="author_paratext">Author (Paratext)</option>
         <option value="authorial-status">Authorial Status (Title Page)</option>
-        <option value="company-first-performance">Company of First Performance (Annals)</option>
-        <option value="company_first-performance-brit-filter">Company of First Performance (BritDrama)</option>
+        <option value="company-first-performance">Company of First Production (Annals)</option>
+        <option value="company_first-performance-brit-filter">Company of First Production (BritDrama)</option>
         <option value="company">Company (Title Page)</option>
         <option value="theater">Theater (Title Page)</option>
         <option value="playtype">Play Type</option>
@@ -725,8 +725,8 @@ function addORBlock() {
         <option value="publisher" >&nbsp;&nbsp;&nbsp;&nbsp;Publisher</option>
         <option value="bookseller" >&nbsp;&nbsp;&nbsp;&nbsp;Bookseller</option>
         <option value="imprintlocation">Imprint Location</option>
-        <option value="first-production">Date of First Performance (Annals)</option>
-        <option value="date-first-performance-brit-filter">Date of First Performance (BritDrama)</option>
+        <option value="first-production">Date of First Production (Annals)</option>
+        <option value="date-first-performance-brit-filter">Date of First Production (BritDrama)</option>
         <option value="first-edition">Date of First Edition</option>
         <option value="format">Format</option>
         <option value="book_edition">Book edition number</option>
@@ -764,8 +764,8 @@ function addORBlock() {
         <option value="title-page-author">Author (Title Page)</option>
         <option value="author_paratext">Author (Paratext)</option>
         <option value="authorial-status">Authorial Status (Title Page)</option>
-        <option value="company-first-performance">Company of First Performance (Annals)</option>
-        <option value="company_first-performance-brit-filter">Company of First Performance (BritDrama)</option>
+        <option value="company-first-performance">Company of First Production (Annals)</option>
+        <option value="company_first-performance-brit-filter">Company of First Production (BritDrama)</option>
         <option value="company">Company (Title Page)</option>
         <option value="theater">Theater (Title Page)</option>
         <option value="playtype">Play Type</option>
@@ -781,8 +781,8 @@ function addORBlock() {
         <option value="publisher" >&nbsp;&nbsp;&nbsp;&nbsp;Publisher</option>
         <option value="bookseller" >&nbsp;&nbsp;&nbsp;&nbsp;Bookseller</option>
         <option value="imprintlocation">Imprint Location</option>
-        <option value="first-production">Date of First Performance (Annals)</option>
-        <option value="date-first-performance-brit-filter">Date of First Performance (BritDrama)</option>
+        <option value="first-production">Date of First Production (Annals)</option>
+        <option value="date-first-performance-brit-filter">Date of First Production (BritDrama)</option>
         <option value="first-edition">Date of First Edition</option>
         <option value="format">Format</option>
         <option value="book_edition">Book edition number</option>
