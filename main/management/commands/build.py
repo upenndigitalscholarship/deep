@@ -130,6 +130,8 @@ class Command(BaseCommand):
                     genres.append(l.strip())
             else:
                 genres.append(g)
+        # remove 'Not in Britdrama
+        genres.remove("Not In Britdrama")
         genres = list(set(genres))
         genres.sort()
         genre_out = []
