@@ -105,7 +105,10 @@ def item_to_dict(item:Item):
             item_dict['variant_link'] += f'<a target="_blank" href="../{link.deep_id}">{link.deep_id}</a>; '
 
     if item.in_collection:
-        item_dict["in_collection"] = f'<a target="_blank" href="../{item.in_collection.deep_id}">{item.in_collection.title}</a>'
+        collection_item = Item.objects.get(deep_id=item.in_collection.deep_id)
+        collection_year = collection_item.year
+        collection_title = collection_item.item_title
+        item_dict["in_collection"] = f'<a target="_blank" href="../{item.in_collection.deep_id}">{collection_title} ({collection_year})</a>'
     else: 
         item_dict["in_collection"] = ""
     
