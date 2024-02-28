@@ -116,10 +116,12 @@ def item_to_dict(item:Item):
     item_dict['collection_contains'] = ''
     if item.collection_contains and item.record_type == "Collection": #m2m
         for i, link in enumerate(item.collection_contains.all().order_by('deep_id')):
+            collection_item = Item.objects.get(deep_id=link.deep_id)
+            collection_title = collection_item.item_title
             if i == len(item.collection_contains.all())-1:
-                item_dict['collection_contains'] += f'<a target="_blank" href="../{link.deep_id}">{link.item_title}</a> '
+                item_dict['collection_contains'] += f'<a target="_blank" href="../{link.deep_id}">{collection_title}</a> '
             else:
-                item_dict['collection_contains'] += f'<a target="_blank" href="../{link.deep_id}">{link.item_title}</a>; '
+                item_dict['collection_contains'] += f'<a target="_blank" href="../{link.deep_id}">{collection_title}</a>; '
     if item.independent_playbook_link:
         item_dict["independent_playbook_link_id"] = item.independent_playbook_link.deep_id
     
