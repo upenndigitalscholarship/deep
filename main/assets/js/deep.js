@@ -955,9 +955,13 @@ const processQueries = queries => {
         } 
       }
       if (query.searchField == 'genre-brit-filter') {
-        let genreBrit = item => (
-            item.genre_brit_filter.toLowerCase().includes(query.searchValue.toLowerCase())
-            )
+        let genreBrit = item => {
+          let pattern = `^${query.searchValue}$`;
+          let re = new RegExp(pattern, 'i');
+          let match = item.genre_brit_filter.match(re);
+
+          return match !== null && match.length > 0;
+        }
         filters.push({'filter':genreBrit,'type':query.blockType})
       }
       if (query.searchField == 'title') {
@@ -1455,9 +1459,13 @@ const processQueries = queries => {
           }
         }
         if (fields[i] == 'genre-brit-filter' && values[i]) {
-          let genreBrit = item => (
-              item.genre_brit_filter.toLowerCase().includes(values[i].toLowerCase())
-              )
+          let genreBrit = item => {
+              let pattern = `^${values[i]}$`;
+              let re = new RegExp(pattern, 'i');
+              let match = item.genre_brit_filter.match(re);
+              
+              return match !== null && match.length > 0;
+          }
               ORquery.push(genreBrit)
         }
         if (fields[i] == 'stationer' && values[i]) { 
