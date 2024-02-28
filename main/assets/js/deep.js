@@ -969,12 +969,11 @@ const processQueries = queries => {
         } else {
           let title = (item) => {
             let tokens = noPunct(query.searchValue).toLowerCase().split(" ");
-            let pattern = tokens.map(token => `(?=.*${token})`).join("");
+            let pattern = tokens.map(token => `(?=.*\\b${token}\\b)`).join("");
             let re = new RegExp(pattern, 'i');
             let match = noPunct(item.item_title + ' ' + item.item_alternative_keywords).match(re);  
             
             return match !== null && match.length > 0;
-            
           }
           filters.push({'filter':title,'type':query.blockType})
         }
