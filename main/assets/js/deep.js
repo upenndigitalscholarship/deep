@@ -1136,8 +1136,7 @@ const processQueries = queries => {
       }
       if (query.searchField == 'deep-id') {
         let deepID = (item) => {
-          let tokens = query.searchValue.split(" ");
-          let pattern = tokens.map(token => `(?=.*${token})`).join("");
+          let pattern = `^${query.searchValue}$`;
           let re = new RegExp(pattern, 'i');
           let match = item.deep_id.match(re);
           
@@ -1148,8 +1147,7 @@ const processQueries = queries => {
       if (query.searchField == 'greg_number') {
           let gregNumber = (item) => {
            // search item.greg_full for values[i]
-           let tokens = query.searchValue.split(" ");
-           let pattern = tokens.map(token => `(?=.*${token})`).join("");
+           let pattern = `^${query.searchValue}$`;
            let re = new RegExp(pattern, 'i');
            let full_match = item.greg_full.match(re);
            let medium_match = item.greg_middle.match(re);
@@ -1207,7 +1205,7 @@ const processQueries = queries => {
       if (query.searchField == 'stc_or_wing') {
         let stcWing = (item) => {
           let tokens = query.searchValue.split(" ");
-          let pattern = tokens.map(token => `(?=.*${token})`).join("");
+          let pattern = `^${query.searchValue}$`;
           let re = new RegExp(pattern, 'i');
           let match = item.stc.match(re);
           
@@ -1335,8 +1333,7 @@ const processQueries = queries => {
       }
       if (query.searchField == 'brit-drama-number') {
           let britDrama = (item) => {
-            let tokens = query.searchValue.split(" ");
-            let pattern = tokens.map(token => `(?=.*${token})`).join("");
+            let pattern = `^${query.searchValue}$`;
             let re = new RegExp(pattern, 'i');
             let match = item.brit_drama_number.match(re);
             
@@ -1600,8 +1597,7 @@ const processQueries = queries => {
         if (fields[i] == 'brit-drama-number' && values[i]) {
           
           let britDrama = (item) => {
-            let tokens = values[i].split(" ");
-            let pattern = tokens.map(token => `(?=.*${token})`).join("");
+            let pattern = `^${values[i]}$`;
             let re = new RegExp(pattern, 'i');
             let match = item.brit_drama_number.match(re);
             
@@ -1623,8 +1619,7 @@ const processQueries = queries => {
         }
         if (fields[i] == 'deep-id' && values[i]) {
           let deepID = (item) => {
-            let tokens = values[i].split(" ");
-            let pattern = tokens.map(token => `(?=.*${token})`).join("");
+            let pattern = `^${values[i]}$`;
             let re = new RegExp(pattern, 'i');
             let match = item.deep_id.match(re);
             
@@ -1635,8 +1630,7 @@ const processQueries = queries => {
         if (fields[i] == 'greg_number' && values[i]) {
             let gregNumber = (item) => {
               // search item.greg_full for values[i]
-              let tokens = values[i].split(" ");
-              let pattern = tokens.map(token => `(?=.*${token})`).join("");
+              let pattern = `^${values[i]}$`;
               let re = new RegExp(pattern, 'i');
               let full_match = item.greg_full.match(re);
               let medium_match = item.greg_middle.match(re);
@@ -1692,8 +1686,7 @@ const processQueries = queries => {
         }
         if (fields[i] == 'stc_or_wing' && values[i]) {
           let stcWing = (item) => {
-            let tokens = values[i].split(" ");
-            let pattern = tokens.map(token => `(?=.*${token})`).join("");
+            let pattern = `^${values[i]}$`;
             let re = new RegExp(pattern, 'i');
             let match = item.stc.match(re);
             
