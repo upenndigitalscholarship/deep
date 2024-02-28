@@ -130,17 +130,18 @@ class Command(BaseCommand):
                     genres.append(l.strip())
             else:
                 genres.append(g)
-        # remove 'Not in Britdrama
-        if "Not In Britdrama" in genres:
-            genres.remove("Not In Britdrama")
+        
         genres = list(set(genres))
         genres.sort()
         genre_out = []
         for i, genre in enumerate(genres):
-            genre_out.append({
-                'value': i,
-                'label': genre.title().strip()
-            })
+            if genre.title().strip() == "Not In Britdrama":
+                continue
+            else:
+                genre_out.append({
+                    'value': i,
+                    'label': genre.title().strip()
+                })
         srsly.write_json(static_dir / 'data/genres_bd.json', genre_out)
         
         #Genre Playbook  --- Genre (Title-Page Attribution)
