@@ -1270,11 +1270,11 @@ const processQueries = queries => {
       }
       if (query.searchField == 'company') {  
         if (query.searchValue == "Any") {
-            let company = item => (
-                item.title_page_company_filter != "n/a" ||
-                item.title_page_company_filter != ""
-            )
-            filters.push({'filter':company,'type':query.blockType})
+          let company = item => (
+            item.title_page_company_filter !== "n/a" &&
+            item.title_page_company_filter !== ""
+          )
+          filters.push({'filter':company,'type':query.blockType})
         }    
         else if (query.searchValue == "None") {
             let company = item => (
