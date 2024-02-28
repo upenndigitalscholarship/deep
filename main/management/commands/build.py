@@ -254,7 +254,8 @@ class Command(BaseCommand):
         playtypes.sort()
         playtypes_json = []
         for i, pt in enumerate(playtypes):
-            playtypes_json.append({"value":i, "label":pt})
+            if pt:
+                playtypes_json.append({"value":i, "label":pt})
         playtypes_json.insert(0, {"value":0,"label":"Professional" })
         playtypes_json.insert(1, {"value":1,"label":"Nonprofessional" })
         playtypes_json.insert(2, {"value":2,"label":"---" })
