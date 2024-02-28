@@ -971,7 +971,7 @@ const processQueries = queries => {
             let tokens = noPunct(query.searchValue).toLowerCase().split(" ");
             let pattern = tokens.map(token => `(?=.*${token})`).join("");
             let re = new RegExp(pattern, 'i');
-            let match = noPunct(item.item_title + ' ' + item.title_alternative_keywords).match(re);  
+            let match = noPunct(item.item_title + ' ' + item.item_alternative_keywords).match(re);  
             
             return match !== null && match.length > 0;
             
