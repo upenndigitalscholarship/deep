@@ -2270,3 +2270,14 @@ document.querySelectorAll('input[type=radio]').forEach(item => {
       window.open(`${deep_id}`);
     }
    
+// keep the result numbers ascending even when columns are sorted
+table.on('sortComplete', function (e, column, dir) {
+  let items = document.querySelectorAll('tr');
+  let i = 1;
+  items.forEach(function(item) {
+    if (!item.children[0].classList.contains('sort')) {
+      item.children[0].innerText = i+'.';
+      i++;
+    }
+  });
+});
