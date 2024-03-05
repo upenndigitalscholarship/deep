@@ -2189,7 +2189,7 @@ function expand(e, deep_id) {
     </td>
     
   </tr>`;
-
+  reset_result_numbers();
 } else {
   console.log('[*] item_data undefined')
     // wait half a second then run search 
@@ -2211,6 +2211,7 @@ function collapse(e, deep_id) {
         expandCard.remove();
       }
     }
+    reset_result_numbers();
   }
 
 function changeButtonCollapse() {
@@ -2281,3 +2282,15 @@ table.on('sortComplete', function (e, column, dir) {
     }
   });
 });
+
+// keep the result numbers ascending even when expanding/collapsing
+let reset_result_numbers = function() {
+  let items = document.querySelectorAll('tr');
+  let i = 1;
+  items.forEach(function(item) {
+    if (!item.children[0].classList.contains('sort')) {
+      item.children[0].innerText = i+'.';
+      i++;
+    }
+  });
+}
