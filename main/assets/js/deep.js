@@ -2062,7 +2062,7 @@ function expand(e, deep_id) {
   let data = item_data[e.id];
   console.log(data)
   e.outerHTML = `
-  <tr id="${data.deep_id}" onclick="collapse(this, ${data.deep_id});"><td class="result_number">${data.result_number}</td><td class="deep_id">${data.deep_id}</td><td class="year">${data.year}</td><td class="authors_display">${data.authors_display}</td><td class="title">${data.item_title}</td><td>Collapse</td>
+  <tr id="${data.deep_id}" onclick="collapse(this, ${data.deep_id});"><td class="result_number">${e.children[0].innerText}</td><td class="deep_id">${data.deep_id}</td><td class="year">${data.year}</td><td class="authors_display">${data.authors_display}</td><td class="title">${data.item_title}</td><td>Collapse</td>
     <tr id="${data.deep_id}-exp">
     <td colspan="5">
       <div class="card" style="width: 100%;">
@@ -2189,7 +2189,6 @@ function expand(e, deep_id) {
     </td>
     
   </tr>`;
-  reset_result_numbers();
 } else {
   console.log('[*] item_data undefined')
     // wait half a second then run search 
@@ -2205,13 +2204,12 @@ function collapse(e, deep_id) {
     console.log(data)
     if (data) {
       e.outerHTML = `
-      <tr id="${data.deep_id}" onclick="expand(this, ${data.deep_id});"><td class="result_number">${data.result_number}</td><td class="deep_id">${data.deep_id}</td><td class="year">${data.year}</td><td class="authors_display">${data.authors_display}</td><td class="title">${data.item_title}</td><td>Expand</td>`
+      <tr id="${data.deep_id}" onclick="expand(this, ${data.deep_id});"><td class="result_number">${e.children[0].innerText}</td><td class="deep_id">${data.deep_id}</td><td class="year">${data.year}</td><td class="authors_display">${data.authors_display}</td><td class="title">${data.item_title}</td><td>Expand</td>`
       let expandCard = document.getElementById(e.id+'-exp');
       if (expandCard) {
         expandCard.remove();
       }
     }
-    reset_result_numbers();
   }
 
 function changeButtonCollapse() {
