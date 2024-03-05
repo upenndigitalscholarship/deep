@@ -2189,7 +2189,7 @@ function expand(e, deep_id) {
     </td>
     
   </tr>`;
-  //reset_result_numbers();
+  reset_result_numbers();
 } else {
   console.log('[*] item_data undefined')
     // wait half a second then run search 
@@ -2211,7 +2211,7 @@ function collapse(e, deep_id) {
         expandCard.remove();
       }
     }
-    //reset_result_numbers();
+    reset_result_numbers();
   }
 
 function changeButtonCollapse() {
@@ -2288,7 +2288,8 @@ let reset_result_numbers = function() {
   let items = document.querySelectorAll('tr');
   let i = 1;
   items.forEach(function(item) {
-    if (!item.children[0].classList.contains('sort')) {
+    // do not update the header row or expanded rows
+    if (!item.children[0].classList.contains('sort') || !item.id.includes('-exp')) {
       item.children[0].innerText = i+'.';
       i++;
     }
