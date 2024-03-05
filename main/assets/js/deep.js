@@ -2189,7 +2189,7 @@ function expand(e, deep_id) {
     </td>
     
   </tr>`;
-  reset_result_numbers();
+  //reset_result_numbers();
 } else {
   console.log('[*] item_data undefined')
     // wait half a second then run search 
@@ -2211,7 +2211,7 @@ function collapse(e, deep_id) {
         expandCard.remove();
       }
     }
-    reset_result_numbers();
+    //reset_result_numbers();
   }
 
 function changeButtonCollapse() {
