@@ -2193,8 +2193,8 @@ function expand(e, deep_id) {
 } else if (filter == 'title') {
   let data = item_data[e.id];
   // get all items with the same greg as data.greg
-  let editions = item_data.filter(item => item.greg == data.greg);
-  edition_links = editions.map(item => `<a target="_blank" href="/${item.deep_id}">${item.deep_id}</a><br>`);
+  let editions = item_array.filter(item => item.greg == data.greg);
+  edition_links = editions.map(item => `<a target="_blank" href="/${item.deep_id}">${item.deep_id} ${item.item_title}</a><br>`);
   
   console.log(data)
   e.outerHTML = `<tr id="${data.deep_id}" onclick="collapse(this, ${data.deep_id});"><td class="result_number">${e.children[0].innerText}</td><td class="deep_id">${data.deep_id}</td><td class="year">${data.year}</td><td class="authors_display">${data.authors_display}</td><td class="title">${data.item_title}</td><td>Collapse</td>
