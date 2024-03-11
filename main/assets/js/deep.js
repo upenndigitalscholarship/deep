@@ -2195,7 +2195,7 @@ function expand(e, deep_id) {
 } else if (filter == 'title') {
   let data = item_data[e.id];
   // get all items with the same greg as data.greg
-  let editions = item_array.filter(item => item.greg == data.greg && item.greg != "None");
+  let editions = item_array.filter(item => item.work_id == data.work_id && item.work_id != "None");
   // order editions by item.year 
   editions.sort((a, b) => a.year_int - b.year_int);
   edition_links = editions.map(item => `<a target="_blank" href="/${item.deep_id}">${item.year} ${item.record_type}</a>`).join('<br>');
