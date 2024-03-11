@@ -1336,7 +1336,8 @@ const processQueries = queries => {
       }
       if (query.searchField == 'brit-drama-number') {
           let britDrama = (item) => {
-            let pattern = `^${query.searchValue}$`;
+            let tokens = noPunct(query.searchValue).toLowerCase().split(" ");
+            let pattern = tokens.map(token => `(?=.*\\b${token}\\b)`).join("");
             let re = new RegExp(pattern, 'i');
             let match = item.brit_drama_number.match(re);
             
@@ -1693,7 +1694,8 @@ const processQueries = queries => {
         }
         if (fields[i] == 'stc_or_wing' && values[i]) {
           let stcWing = (item) => {
-            let pattern = `^${values[i]}$`;
+            let tokens = noPunct(query.searchValue).toLowerCase().split(" ");
+            let pattern = tokens.map(token => `(?=.*\\b${token}\\b)`).join("");
             let re = new RegExp(pattern, 'i');
             let match = item.stc.match(re);
             
