@@ -35,6 +35,10 @@ let options = {
     };
 let table = new List('users', options, []);
 
+})
+.catch(function(error) {
+  console.error("Error fetching item data:", error);
+});
 
 // temporary until groupBy is added to JS
 let groupBy = function(xs, key) {
@@ -2325,7 +2329,3 @@ let reset_result_numbers = function() {
   });
 }
 
-})
-.catch(function(error) {
-  console.error("Error fetching item data:", error);
-});
