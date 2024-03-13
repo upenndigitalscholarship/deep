@@ -1958,7 +1958,13 @@ const search = () => {
 
   if (filter == 'title') {
     let groups = groupBy(results, 'title_id');
+    // hide DEEP # and Year columns when work is selected
+    deepID = document.querySelector('[data-sort="deep_id"]')
+    deepID.style.display = 'none'
     
+    yearColumn = document.querySelector('[data-sort="year"]')
+    yearColumn.style.display = 'none'
+
     for (i in groups) {
       if (groups[i].length == 1) {
         grouped_results.push(groups[i][0])
