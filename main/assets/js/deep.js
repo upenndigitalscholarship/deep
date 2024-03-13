@@ -3,23 +3,26 @@
 let item_data;
 let item_array;
 
-fetch("../assets/data/item_data.json").then(
-        function(u){ return u.json();}
-      ).then(
-        function(json){
-          item_data = json;
-          // we also need an array of items for filtering
-          item_array = Object.values(item_data);
-          // convert all null values to empty strings
-          item_array.forEach(item => {
-            Object.keys(item).forEach(key => {
-              if (item[key] === null) {
-                item[key] = ''
-              }
-            })
-          })
+fetch("../assets/data/item_data.json")
+  .then(function(u) {
+    return u.json();
+  })
+  .then(function(json) {
+    item_data = json;
+    // we also need an array of items for filtering
+    item_array = Object.values(item_data);
+    // convert all null values to empty strings
+    item_array.forEach(item => {
+      Object.keys(item).forEach(key => {
+        if (item[key] === null) {
+          item[key] = '';
+        }
+      });
+    });
 
-        }).then(
+    // Place your code here that depends on the resolved fetch
+    // ...
+
 
 //listen for search_bar
 let options = {
@@ -2321,5 +2324,8 @@ let reset_result_numbers = function() {
     }
   });
 }
-//end of then from very top        
-);
+
+})
+.catch(function(error) {
+  console.error("Error fetching item data:", error);
+});
