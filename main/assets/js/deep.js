@@ -35,10 +35,6 @@ let options = {
     };
 let table = new List('users', options, []);
 
-})
-.catch(function(error) {
-  console.error("Error fetching item data:", error);
-});
 
 // temporary until groupBy is added to JS
 let groupBy = function(xs, key) {
@@ -2005,6 +2001,12 @@ const search = () => {
   table.add(grouped_results);
   table.update();
 }
+
+})
+.catch(function(error) {
+  console.error("Error fetching item data:", error);
+});
+
 
 // Section for record type filtering
 const singlePlay = document.getElementById('singlePlay') 
