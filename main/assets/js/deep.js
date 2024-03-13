@@ -22,7 +22,11 @@ fetch("../assets/data/item_data.json")
 
     // Place your code here that depends on the resolved fetch
     // ...
-
+  })
+  .catch(function(error) {
+    console.error("Error fetching item data:", error);
+  });
+  
 
 //listen for search_bar
 let options = {
@@ -2001,11 +2005,6 @@ const search = () => {
   table.add(grouped_results);
   table.update();
 }
-
-})
-.catch(function(error) {
-  console.error("Error fetching item data:", error);
-});
 
 
 // Section for record type filtering
