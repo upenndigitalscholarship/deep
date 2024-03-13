@@ -19,7 +19,7 @@ fetch("../assets/data/item_data.json").then(
             })
           })
 
-        });
+        }).then(
 
 //listen for search_bar
 let options = {
@@ -2195,6 +2195,8 @@ function expand(e, deep_id) {
 } else if (filter == 'title') {
   let data = item_data[e.id];
   // get all items with the same greg as data.greg
+  // TODO need to sort by edition !!! 
+  //let play_editions = groupBy(groups[i], 'edition_id');
   let editions = item_array.filter(item => item.work_id == data.work_id && item.work_id != "None");
   // order editions by item.year 
   editions.sort((a, b) => a.year_int - b.year_int);
@@ -2319,3 +2321,5 @@ let reset_result_numbers = function() {
     }
   });
 }
+//end of then from very top        
+);
