@@ -1961,9 +1961,17 @@ const search = () => {
     // hide DEEP # and Year columns when work is selected
     deepID = document.querySelector('[data-sort="deep_id"]')
     deepID.style.display = 'none'
-    
+    deepRows = document.querySelectorAll('.deep_id')
+    deepRows.forEach(row => {
+      row.style.display = 'none'
+    })
+
     yearColumn = document.querySelector('[data-sort="year"]')
     yearColumn.style.display = 'none'
+    yearRows = document.querySelectorAll('.year')
+    yearRows.forEach(row => {
+      row.style.display = 'none'
+    })
 
     for (i in groups) {
       if (groups[i].length == 1) {
