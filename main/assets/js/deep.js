@@ -2007,17 +2007,31 @@ const search = () => {
   if (filter == 'title') {
     // hide DEEP # and Year columns when work is selected
     deepID = document.querySelector('[data-sort="deep_id"]')
-    deepID.innerHTML = ''
+    deepID.style.display = 'none'
     deepRows = document.querySelectorAll('.deep_id')
     deepRows.forEach(row => {
-      row.innerHTML = ''
+      row.style.display = 'none'
     })
 
     yearColumn = document.querySelector('[data-sort="year"]')
-    yearColumn.innerHTML = ''
+    yearColumn.style.display = 'none'
     yearRows = document.querySelectorAll('.year')
     yearRows.forEach(row => {
-      row.innerHTML = ''
+      row.style.display = 'none'
+    })
+  } else {
+    deepID = document.querySelector('[data-sort="deep_id"]')
+    deepID.style.display = 'table-cell'
+    deepRows = document.querySelectorAll('.deep_id')
+    deepRows.forEach(row => {
+      row.style.display = 'table-cell'
+    })
+
+    yearColumn = document.querySelector('[data-sort="year"]')
+    yearColumn.style.display = 'table-cell'
+    yearRows = document.querySelectorAll('.year')
+    yearRows.forEach(row => {
+      row.style.display = 'table-cell'
     })
   }
 }
