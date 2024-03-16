@@ -1960,17 +1960,17 @@ const search = () => {
     let groups = groupBy(results, 'title_id');
     // hide DEEP # and Year columns when work is selected
     deepID = document.querySelector('[data-sort="deep_id"]')
-    deepID.style.display = 'none'
+    deepID.innerHTML = ''
     deepRows = document.querySelectorAll('.deep_id')
     deepRows.forEach(row => {
-      row.style.display = 'none'
+      row.innerHTML = ''
     })
 
     yearColumn = document.querySelector('[data-sort="year"]')
-    yearColumn.style.display = 'none'
+    yearColumn.innerHTML = ''
     yearRows = document.querySelectorAll('.year')
     yearRows.forEach(row => {
-      row.style.display = 'none'
+      row.innerHTML = ''
     })
 
     for (i in groups) {
