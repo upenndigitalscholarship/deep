@@ -1958,21 +1958,7 @@ const search = () => {
 
   if (filter == 'title') {
     let groups = groupBy(results, 'title_id');
-    // hide DEEP # and Year columns when work is selected
-    deepID = document.querySelector('[data-sort="deep_id"]')
-    deepID.innerHTML = ''
-    deepRows = document.querySelectorAll('.deep_id')
-    deepRows.forEach(row => {
-      row.innerHTML = ''
-    })
-
-    yearColumn = document.querySelector('[data-sort="year"]')
-    yearColumn.innerHTML = ''
-    yearRows = document.querySelectorAll('.year')
-    yearRows.forEach(row => {
-      row.innerHTML = ''
-    })
-
+  
     for (i in groups) {
       if (groups[i].length == 1) {
         grouped_results.push(groups[i][0])
@@ -2018,6 +2004,22 @@ const search = () => {
   resultCount.innerText = grouped_results.length
   table.add(grouped_results);
   table.update();
+  if (filter == 'title') {
+    // hide DEEP # and Year columns when work is selected
+    deepID = document.querySelector('[data-sort="deep_id"]')
+    deepID.innerHTML = ''
+    deepRows = document.querySelectorAll('.deep_id')
+    deepRows.forEach(row => {
+      row.innerHTML = ''
+    })
+
+    yearColumn = document.querySelector('[data-sort="year"]')
+    yearColumn.innerHTML = ''
+    yearRows = document.querySelectorAll('.year')
+    yearRows.forEach(row => {
+      row.innerHTML = ''
+    })
+  }
 }
 
 
