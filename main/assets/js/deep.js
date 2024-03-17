@@ -21,7 +21,7 @@ fetch("../assets/data/item_data.json")
     });
 
     // Place your code here that depends on the resolved fetch
-    search();
+    //search();
   })
   .catch(function (error) {
     console.error("Error fetching item data:", error);
@@ -930,9 +930,8 @@ const init_firstBlock = () => {
 
     let searchField = document.getElementById(searchSelect.id.replace('searchSelect','advancedSearchField'));
     searchField.value = get_deep_id;
-    search()
     // press enter 
-    //searchField.dispatchEvent(new KeyboardEvent('keyup',{'key':'Enter'}));
+    searchField.dispatchEvent(new KeyboardEvent('keyup',{'key':'Enter'}));
     // select expandAllButton
     document.getElementById('expandAllButton').click();
      
