@@ -917,7 +917,7 @@ const init_firstBlock = () => {
     update_searchSelect(searchSelect);
 
   })
-  const get_deep_id = window.location.replace(/\//, '');
+  const get_deep_id = window.location.pathname.replace(/\//g, '');
   
   console.log('DEEP IN get params:', get_deep_id)
   if (get_deep_id) {
