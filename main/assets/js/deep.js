@@ -919,12 +919,22 @@ const init_firstBlock = () => {
   })
   const queryString = window.location.search;
   const urlParams = new URLSearchParams(queryString);
-  const deep_id = urlParams.get('deep_id') // returns null if not in url
-  if (deep_id) {
+  const get_deep_id = urlParams.get('deep_id') // returns null if not in url
+  if (get_deep_id) {
     // NOTE requires user to allow pop-up
     //window.open(`${deep_id}`);
-    console.log('I am the deep_id, you will search with me', deep_id)
-    // change search from title to deep is 
+    
+    // set searchSelect to deep id
+    searchSelect.value = 'deep-id';
+    update_searchSelect(searchSelect);
+
+    let searchField = document.getElementById(searchSelect.id.replace('searchSelect','advancedSearchField'));
+    searchField.value = get_deep_id;
+    // press enter 
+    searchField.dispatchEvent(new KeyboardEvent('keyup',{'key':'Enter'}));
+    // select expandAllButton
+    document.getElementById('expandAllButton').click();
+     
     
   }
 }
