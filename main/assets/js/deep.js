@@ -917,9 +917,8 @@ const init_firstBlock = () => {
     update_searchSelect(searchSelect);
 
   })
-  const queryString = window.location.search;
-  const urlParams = new URLSearchParams(queryString);
-  const get_deep_id = urlParams.get('deep_id') // returns null if not in url
+  const get_deep_id = window.location.pathname.replace('/','');
+  
   console.log('DEEP IN get params:', get_deep_id)
   if (get_deep_id) {
     // NOTE requires user to allow pop-up
