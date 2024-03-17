@@ -919,7 +919,6 @@ const init_firstBlock = () => {
   })
   const get_deep_id = window.location.pathname.replace(/\//g, '');
   
-  console.log('DEEP IN get params:', get_deep_id)
   if (get_deep_id) {
     // NOTE requires user to allow pop-up
     //window.open(`${deep_id}`);
@@ -933,8 +932,8 @@ const init_firstBlock = () => {
     // press enter 
     searchField.dispatchEvent(new KeyboardEvent('keyup',{'key':'Enter'}));
     // select expandAllButton
-    document.getElementById('expandAllButton').click();
-     
+    setTimeout(function () { document.getElementById('expandAllButton').click(); }, 500);
+    
     
   }
 }
