@@ -21,7 +21,7 @@ fetch("../assets/data/item_data.json")
     });
 
     // Place your code here that depends on the resolved fetch
-    // ...
+    search();
   })
   .catch(function (error) {
     console.error("Error fetching item data:", error);
