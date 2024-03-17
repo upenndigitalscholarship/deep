@@ -18,12 +18,21 @@ fetch("../assets/data/item_data.json").then(
           item_data = json;
           // we also need an array of items for filtering
           item_array = Object.values(item_data);
+          // convert all null values to empty strings
+          item_array.forEach(item => {
+            Object.keys(item).forEach(key => {
+              if (item[key] === null) {
+                item[key] = '';
+              }
+            });
+          });
+        // deep_id from url
+        let deep_id = window.location.href.split('/')[3];
+        itemDiv = document.getElementById("item");
+        itemDiv.id = deep_id;
+        expand(itemDiv, deep_id)
         });
-// deep_id from url
-let deep_id = window.location.href.split('/')[3];
-itemDiv = document.getElementById("item");
-itemDiv.id = deep_id;
-expand(itemDiv, deep_id)
+
 </script>   
 
 {% endblock %}
