@@ -131,54 +131,7 @@
   <script src="/assets/js/deep.js"></script>   
   
 
-  <script>
-
-    let init_item_data;
-    let init_item_array;
-
-    fetch("../assets/data/item_data.json").then(
-            function(u){ return u.json();}
-          ).then(
-            function(json){
-              init_item_data = json;
-              // we also need an array of items for filtering
-              init_item_array = Object.values(init_item_data);
-            }).then(
-              function(){
-                let get_deep_id = window.location.href.split('/')[3];
-      
-
-      if (get_deep_id) {
-        // select deep-id
-        let filterBlock = document.getElementById("filterBlock-1");
-        searchSelect = filterBlock.children[1].children[0]
-        // set searchSelect to deep id
-        searchSelect.value = 'deep-id';
-        update_searchSelect(searchSelect);
-
-        let searchField = document.getElementById(searchSelect.id.replace('searchSelect','advancedSearchField'));
-        searchField.value = get_deep_id;
-        // press enter 
-        searchField.dispatchEvent(new KeyboardEvent('keyup',{'key':'Enter'}));
-        // select expandAllButton
-        document.getElementById('expandAllButton').click();
-        
-      } else { 
-        let filterBlock = document.getElementById("filterBlock-1");
-        searchSelect = filterBlock.children[1].children[0]
-        
-        let searchField = document.getElementById(searchSelect.id.replace('searchSelect','advancedSearchField'));
-        // press enter 
-        searchField.dispatchEvent(new KeyboardEvent('keyup',{'key':'Enter'}));
- 
-       }
-              }
-            )
-    
-    // click editionRadio to load results (because I forget how I hid results on load)
-    document.getElementById('editionRadio').click() 
-    
-  </script>  
+  
 
  
   {% endblock %}
