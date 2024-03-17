@@ -917,7 +917,16 @@ const init_firstBlock = () => {
     update_searchSelect(searchSelect);
 
   })
-
+  const queryString = window.location.search;
+  const urlParams = new URLSearchParams(queryString);
+  const deep_id = urlParams.get('deep_id') // returns null if not in url
+  if (deep_id) {
+    // NOTE requires user to allow pop-up
+    //window.open(`${deep_id}`);
+    console.log('I am the deep_id, you will search with me', deep_id)
+    // change search from title to deep is 
+    
+  }
 }
 init_firstBlock();
 
@@ -2335,14 +2344,6 @@ document.querySelectorAll('input[type=radio]').forEach(item => {
   })
 })
 
-
-const queryString = window.location.search;
-const urlParams = new URLSearchParams(queryString);
-const deep_id = urlParams.get('deep_id') // returns null if not in url
-if (deep_id) {
-  // NOTE requires user to allow pop-up
-  window.open(`${deep_id}`);
-}
 
 // keep the result numbers ascending even when columns are sorted
 table.on('sortComplete', function (e, column, dir) {
