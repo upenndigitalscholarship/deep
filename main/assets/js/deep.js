@@ -1987,7 +1987,7 @@ const search = () => {
       }
     }
   } else if (filter == 'edition') {
-    let groups = groupBy(results, 'title_id');
+    let groups = groupBy(results, 'title_id'); //TODO is this right? should either be title_id or edition_id
     for (i in groups) {
       if (groups[i].length == 1) {
         grouped_results.push(groups[i][0])
@@ -2253,7 +2253,7 @@ function expand(e, deep_id) {
     // get all items with the same greg as data.greg
     // TODO need to sort by edition !!! 
     //let play_editions = groupBy(groups[i], 'edition_id');
-    let editions = item_array.filter(item => item.work_id == data.work_id && item.work_id != "None");
+    let editions = item_array.filter(item => item.edition_id == data.edition_id && item.edition_id != "None");
     // order editions by item.year 
     editions.sort((a, b) => a.year_int - b.year_int);
     edition_links = editions.map(item => `<a target="_blank" href="/${item.deep_id}">${item.year} ${item.record_type}</a>`).join('<br>');
