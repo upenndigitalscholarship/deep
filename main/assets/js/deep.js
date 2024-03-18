@@ -2253,7 +2253,9 @@ function expand(e, deep_id) {
     // get all items with the same greg as data.greg
     // TODO need to sort by edition !!! 
     //let play_editions = groupBy(groups[i], 'edition_id');
-    let editions = item_array.filter(item => item.edition_id == data.edition_id && item.edition_id != "None");
+    let results = item_array.filter(item => item.title_id == data.title_id);
+    let groups = groupBy(results, 'title_id');
+    let editions = groupBy(groups[i], 'edition_id');
     // order editions by item.year 
     editions.sort((a, b) => a.year_int - b.year_int);
     edition_links = editions.map(item => `<a target="_blank" href="/${item.deep_id}">${item.year} ${item.record_type}</a>`).join('<br>');
