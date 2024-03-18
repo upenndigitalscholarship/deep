@@ -2250,12 +2250,25 @@ function expand(e, deep_id) {
   </tr>`;
   } else if (filter == 'title') {
     let data = item_data[e.id];
+    let results = item_array.filter(item => item.title_id == data.title_id);
+    let editions = []
     // get all items with the same greg as data.greg
     // TODO need to sort by edition !!! 
-    //let play_editions = groupBy(groups[i], 'edition_id');
-    let results = item_array.filter(item => item.title_id == data.title_id);
-    let groups = groupBy(results, 'title_id');
-    let editions = groupBy(groups[i], 'edition_id');
+    if (results.length == 1) {
+      editions.push(results[0])
+    } else {
+      let play_editions = groupBy(results, 'edition_id');
+      for (p in play_editions) {
+        if (play_editions[p].length == 1) {
+          editions.push(play_editions[p][0])
+        } else {
+          // sort edition group by deep_id, return lowest deep id
+          let pe = play_editions[p].sort((a, b) => a.deep_id - b.deep_id);
+          editions.push(pe[0])
+        }
+      }
+    }
+    
     // order editions by item.year 
     editions.sort((a, b) => a.year_int - b.year_int);
     edition_links = editions.map(item => `<a target="_blank" href="/${item.deep_id}">${item.year} ${item.record_type}</a>`).join('<br>');
