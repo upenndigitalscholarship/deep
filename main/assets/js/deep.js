@@ -2099,6 +2099,7 @@ PlaysinCollections.addEventListener('change', (event) => {
 const Works = document.getElementById('titleRadio')
 Works.addEventListener('change', (event) => {
   search();
+  table.sort('author', { order: "asc" });
 });
 
 const Editions = document.getElementById('editionRadio')
