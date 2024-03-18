@@ -2099,7 +2099,7 @@ PlaysinCollections.addEventListener('change', (event) => {
 const Works = document.getElementById('titleRadio')
 Works.addEventListener('change', (event) => {
   search();
-  table.sort('author', { order: "asc" });
+  setTimeout(function () { table.sort('author', { order: "asc" }); }, 500);
 });
 
 const Editions = document.getElementById('editionRadio')
