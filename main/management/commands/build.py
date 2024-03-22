@@ -259,6 +259,8 @@ class Command(BaseCommand):
         playtypes_json.insert(0, {"value":0,"label":"Professional" })
         playtypes_json.insert(1, {"value":1,"label":"Nonprofessional" })
         playtypes_json.insert(2, {"value":2,"label":"---" })
+        # remove any value of ""
+        playtypes_json = [x for x in playtypes_json if x['label'] != ""]
         srsly.write_json(static_dir / 'data/playtype.json', playtypes_json)
         
         ## Genre (Annals)
