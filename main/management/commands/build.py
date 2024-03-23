@@ -251,6 +251,7 @@ class Command(BaseCommand):
                     playtypes.append(p[0])
         playtypes.remove('Professional')
         playtypes.remove('Nonprofessional')
+        playtypes.remove('')
         playtypes.sort()
         playtypes_json = []
         for i, pt in enumerate(playtypes):
