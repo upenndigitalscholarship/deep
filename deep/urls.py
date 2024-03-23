@@ -25,7 +25,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('admin', admin.site.urls),
     path('', views.index, name='index'),
-    path('download.html', views.download, name='download'),
+    path('download.html', flat_views.flatpage, {'url': '/download/'}, name='download'),
     path('sources.html', views.sources, name='sources'),
     path('run-build/', views.build, name='build'),
     path('about.html', views.about, name='about'),
