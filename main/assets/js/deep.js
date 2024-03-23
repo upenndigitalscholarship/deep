@@ -2114,7 +2114,6 @@ Records.addEventListener('change', (event) => {
 });
 
 function expand(e, deep_id) {
-  changeButtonCollapse();
   let filter = radioHelper();
   // handle TypeError: item_data is undefined
   if (typeof item_data != 'undefined' && filter != 'title') {
