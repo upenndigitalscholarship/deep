@@ -172,15 +172,15 @@ class Item(models.Model): #Previously known as "DEEP"
     def __str__(self):
         return f"{self.edition.title} - {self.greg_full}"
 
-    def save(self, *args, **kwargs):
-        link, created = Link.objects.update_or_create(
-            deep_id= self.deep_id,
-        )
-        link.title = self.edition.title.title,
-        link.greg_full = self.greg_full
-        link.save()
+    #def save(self, *args, **kwargs):
+    #    link, created = Link.objects.update_or_create(
+    #        deep_id= self.deep_id,
+    #    )
+    #    link.title = self.edition.title.title,
+    #    link.greg_full = self.greg_full
+    #    link.save()
 
-        super().save(*args, **kwargs)
+    #    super().save(*args, **kwargs)
 
 
 class Person(models.Model):
