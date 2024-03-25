@@ -30,10 +30,11 @@ class CompanyAdmin(admin.ModelAdmin):
 
 admin.site.register(Company, CompanyAdmin)
 
-class LinkAdmin(admin.ModelAdmin):
-    list_filter = ['deep_id']
+#class LinkAdmin(admin.ModelAdmin):
+#    list_filter = ['deep_id']
 
-admin.site.register(Link, LinkAdmin)
+#admin.site.register(Link, LinkAdmin)
+
 # models = apps.get_models()
 # for model in models:
 #     try:
