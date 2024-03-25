@@ -1232,12 +1232,22 @@ const processQueries = queries => {
       }
       if (query.searchField == 'stc_or_wing') {
         let stcWing = (item) => {
-          let tokens = query.searchValue.split(" ");
-          let pattern = `^${query.searchValue}$`;
-          let re = new RegExp(pattern, 'i');
-          let match = item.stc.match(re);
-
-          return match !== null && match.length > 0;
+          if (query.searchValue.includes(';')) {
+            let tokens = query.searchValue.split(";");
+            let pattern = tokens.map(token => `(?=.*\\b${token}\\b)`).join("");
+            let re = new RegExp(pattern, 'i');
+            let match = item.stc.match(re);
+  
+            return match !== null && match.length > 0;
+          } else {
+            let tokens = query.searchValue.split(" ");
+            let pattern = tokens.map(token => `(?=.*\\b${token}\\b)`).join("");
+            let re = new RegExp(pattern, 'i');
+            let match = item.stc.match(re);
+  
+            return match !== null && match.length > 0;
+          }
+          
         };
         filters.push({ 'filter': stcWing, 'type': query.blockType })
       }
@@ -1361,12 +1371,22 @@ const processQueries = queries => {
       }
       if (query.searchField == 'brit-drama-number') {
         let britDrama = (item) => {
-          let tokens = noPunct(query.searchValue).toLowerCase().split(" ");
-          let pattern = tokens.map(token => `(?=.*\\b${token}\\b)`).join("");
-          let re = new RegExp(pattern, 'i');
-          let match = item.brit_drama_number.match(re);
-
-          return match !== null && match.length > 0;
+          if (query.searchValue.includes(';')) {
+            let tokens = query.searchValue.split(";");
+            let pattern = tokens.map(token => `(?=.*\\b${token}\\b)`).join("");
+            let re = new RegExp(pattern, 'i');
+            let match = item.brit_drama_number.match(re);
+  
+            return match !== null && match.length > 0;
+          } else {
+            let tokens = query.searchValue.split(" ");
+            let pattern = tokens.map(token => `(?=.*\\b${token}\\b)`).join("");
+            let re = new RegExp(pattern, 'i');
+            let match = item.brit_drama_number.match(re);
+  
+            return match !== null && match.length > 0;
+          }
+          
         };
         filters.push({ 'filter': britDrama, 'type': query.blockType })
       }
@@ -1630,11 +1650,21 @@ const processQueries = queries => {
         if (fields[i] == 'brit-drama-number' && values[i]) {
 
           let britDrama = (item) => {
-            let pattern = `^${values[i]}$`;
-            let re = new RegExp(pattern, 'i');
-            let match = item.brit_drama_number.match(re);
-
-            return match !== null && match.length > 0;
+            if (values[i].includes(';')) {
+              let tokens = values[i].split(";");
+              let pattern = tokens.map(token => `(?=.*\\b${token}\\b)`).join("");
+              let re = new RegExp(pattern, 'i');
+              let match = item.brit_drama_number.match(re);
+    
+              return match !== null && match.length > 0;
+            } else {
+              let tokens = values[i].split(" ");
+              let pattern = tokens.map(token => `(?=.*\\b${token}\\b)`).join("");
+              let re = new RegExp(pattern, 'i');
+              let match = item.brit_drama_number.match(re);
+    
+              return match !== null && match.length > 0;
+            }
           };
           ORquery.push(britDrama)
         }
@@ -1719,12 +1749,22 @@ const processQueries = queries => {
         }
         if (fields[i] == 'stc_or_wing' && values[i]) {
           let stcWing = (item) => {
-            let tokens = noPunct(query.searchValue).toLowerCase().split(" ");
-            let pattern = tokens.map(token => `(?=.*\\b${token}\\b)`).join("");
-            let re = new RegExp(pattern, 'i');
-            let match = item.stc.match(re);
+            if (values[i].includes(';')) {
+              let tokens = values[i].split(";");
+              let pattern = tokens.map(token => `(?=.*\\b${token}\\b)`).join("");
+              let re = new RegExp(pattern, 'i');
+              let match = item.stc.match(re);
 
-            return match !== null && match.length > 0;
+              return match !== null && match.length > 0;
+            } else {
+              let tokens = values[i].split(" ");
+              let pattern = tokens.map(token => `(?=.*\\b${token}\\b)`).join("");
+              let re = new RegExp(pattern, 'i');
+              let match = item.stc.match(re);
+
+              return match !== null && match.length > 0;
+            }
+            
           };
           ORquery.push(stcWing)
         }
