@@ -175,9 +175,11 @@ class Item(models.Model): #Previously known as "DEEP"
     def save(self, *args, **kwargs):
         link, created = Link.objects.update_or_create(
             deep_id= self.deep_id,
-            title = self.edition.title.title,
-            greg_full = self.greg_full
         )
+        link.title = self.edition.title.title,
+        link.greg_full = self.greg_full
+        link.save()
+
         super().save(*args, **kwargs)
 
 
