@@ -1,11 +1,11 @@
 [
   {
     "value":0,
-    "label":" Tilt"
+    "label":"Allegory"
   },
   {
     "value":1,
-    "label":"Allegory"
+    "label":"Biblical Play"
   },
   {
     "value":2,
@@ -45,15 +45,15 @@
   },
   {
     "value":11,
-    "label":"History"
+    "label":"Foreign History"
   },
   {
     "value":12,
-    "label":"Interlude"
+    "label":"History"
   },
   {
     "value":13,
-    "label":"Interlude (not in Annals)"
+    "label":"Interlude"
   },
   {
     "value":14,
@@ -93,22 +93,34 @@
   },
   {
     "value":23,
-    "label":"Romance"
+    "label":"Pseudo-History"
   },
   {
     "value":24,
-    "label":"Satire"
+    "label":"Romance"
   },
   {
     "value":25,
-    "label":"Topical Play"
+    "label":"Satire"
   },
   {
     "value":26,
-    "label":"Tragedy"
+    "label":"Tilt"
   },
   {
     "value":27,
+    "label":"Topical Play"
+  },
+  {
+    "value":28,
+    "label":"Tragedy"
+  },
+  {
+    "value":29,
     "label":"Tragicomedy"
+  },
+  {
+    "value":30,
+    "label":"Wedding Masque"
   }
 ]
