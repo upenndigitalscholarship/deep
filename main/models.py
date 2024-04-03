@@ -148,7 +148,7 @@ class Item(models.Model): #Previously known as "DEEP"
     
     variant_links = models.ManyToManyField(Link, blank=True)
     
-    in_collection = models.ForeignKey(Link, on_delete=models.CASCADE, blank=True, null=True, related_name='in_collection_link_fk')
+    in_collection = models.ForeignKey('Item', on_delete=models.CASCADE, blank=True, null=True, related_name='in_collection_link_fk')
     
     collection_contains = models.ManyToManyField(Link,blank=True, related_name="collection_contains")
 
