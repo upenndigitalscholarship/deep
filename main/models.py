@@ -77,13 +77,6 @@ class Edition(models.Model):
     def __str__(self):
         return f"{self.title.title} - {self.greg_middle} - {self.book_edition}"
 
-class Link(models.Model):
-    deep_id = models.CharField("DEEP #", max_length=5000, blank=True, null=True)
-    title = models.CharField("Title",max_length=5000, blank=True, null=True)
-    greg_full = models.CharField("Greg Ful",max_length=5000, blank=True, null=True)
-
-    def __str__(self):
-        return f"{self.deep_id} - {self.title}"
 
 class Item(models.Model): #Previously known as "DEEP"
     edition = models.ForeignKey(Edition, on_delete=models.CASCADE, related_name="variant_edition")
@@ -146,17 +139,17 @@ class Item(models.Model): #Previously known as "DEEP"
     theater_type = models.CharField("Theater Type", max_length=5000, blank=True, null=True)
     theater = models.CharField("Theater", max_length=5000, blank=True, null=True)
     
-    variant_links = models.ManyToManyField(Link, blank=True)
+    variant_links = models.ManyToManyField('Item', blank=True)
     
     in_collection = models.ForeignKey('Item', on_delete=models.CASCADE, blank=True, null=True, related_name='in_collection_link_fk')
     
-    collection_contains = models.ManyToManyField(Link,blank=True, related_name="collection_contains")
+    collection_contains = models.ManyToManyField('Item',blank=True, related_name="collection_contains_fk")
 
     independent_playbook = models.CharField("Independent Playbook", max_length=5000, blank=True, null=True)
-    independent_playbook_link = models.ForeignKey(Link, on_delete=models.CASCADE, blank=True, null=True, related_name='independent_playbook_link_fk')
+    independent_playbook_link = models.ForeignKey('Item', on_delete=models.CASCADE, blank=True, null=True, related_name='independent_playbook_link_fk')
     
     also_in_collection = models.CharField("Also In Collection", max_length=5000, blank=True, null=True)
-    also_in_collection_link = models.ForeignKey(Link, on_delete=models.CASCADE, blank=True, null=True, related_name='also_in_collection_link_fk')
+    also_in_collection_link = models.ForeignKey('Item', on_delete=models.CASCADE, blank=True, null=True, related_name='also_in_collection_link_fk')
     
     collection_full = models.CharField("Collection Full",max_length=5000, blank=True, null=True)
     collection_middle = models.CharField("Collection Middle",max_length=5000, blank=True, null=True)

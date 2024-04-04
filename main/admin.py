@@ -2,7 +2,7 @@
 from django.apps import apps
 from django.contrib import admin
 
-from main.models import Edition, Item, Person, Title, Company, Link
+from main.models import Edition, Item, Person, Title, Company
 
 from django import forms
 
@@ -30,10 +30,6 @@ class CompanyAdmin(admin.ModelAdmin):
 
 admin.site.register(Company, CompanyAdmin)
 
-#class LinkAdmin(admin.ModelAdmin):
-#    list_filter = ['deep_id']
-
-#admin.site.register(Link, LinkAdmin)
 
 # models = apps.get_models()
 # for model in models:
