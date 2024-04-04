@@ -163,7 +163,7 @@ class Item(models.Model): #Previously known as "DEEP"
             
                     
     def __str__(self):
-        return f"{self.edition.title} - {self.greg_full}"
+        return f"{self.deep_id} - {self.edition.title}"
 
     #def save(self, *args, **kwargs):
     #    link, created = Link.objects.update_or_create(

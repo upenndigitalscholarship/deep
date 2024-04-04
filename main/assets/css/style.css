@@ -20,6 +20,7 @@ body {
 a {
   text-decoration: none;
   color: rgba(62,29,130,1);
+  font-weight: 800;
 }
 
 a:hover {
