@@ -472,7 +472,7 @@ const update_searchSelect = (searchSelect, or = false) => {
 }
 
 const noPunct = string => {
-  return string.replace(',', '').replace('.', '').replace(':', '').replace(';', '').replace('?', '').replace('-', '').replace('_', '')
+  return string.replace(/\,/g,"").replace(/\./g,"").replace(/\:/g,"").replace(/\;/g,"").replace(/\?/g,"").replace(/\-/g,"").replace(/\_/g,"")
 }
 
 const getQueries = () => {
