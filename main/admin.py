@@ -9,6 +9,7 @@ from django import forms
 
 class ItemAdmin(admin.ModelAdmin):
     list_filter = ['deep_id','greg_full','edition__title__title']
+    raw_id_fields = ('title_page_company_filter','stationer_printer','stationer_publisher','stationer_bookseller','variant_links','in_collection','also_in_collection_link')
 admin.site.register(Item, ItemAdmin)
 
 class EditionAdmin(admin.ModelAdmin):
