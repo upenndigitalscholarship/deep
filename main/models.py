@@ -71,7 +71,7 @@ class Edition(models.Model):
     play_type_display = models.CharField("Play Type: Display", max_length=5000, blank=True, null=True)
     blackletter = models.CharField(max_length=255,blank=True, null=True)
     collection = models.CharField("Collection", max_length=5000, blank=True, null=True)
-    variants = models.CharField("Variants", max_length=5000, blank=True, null=True)
+    variants = models.TextField("Variants", max_length=5000, blank=True, null=True)
     
     
     def __str__(self):
@@ -135,7 +135,7 @@ class Item(models.Model): #Previously known as "DEEP"
     stationer_imprint_location = models.CharField("Stationer: Imprint Location", max_length=5000, blank=True, null=True)
     stationer_bookseller = models.ManyToManyField('Person', related_name="stationer_bookseller",blank=True)
     stationer_bookseller_display = models.CharField("Stationer: Bookseller Display", max_length=5000, blank=True, null=True)
-    stationer_additional_notes = models.CharField("Additional Notes", max_length=5000, blank=True, null=True)
+    stationer_additional_notes = models.TextField("Additional Notes", max_length=5000, blank=True, null=True)
     theater_type = models.CharField("Theater Type", max_length=5000, blank=True, null=True)
     theater = models.CharField("Theater", max_length=5000, blank=True, null=True)
     
