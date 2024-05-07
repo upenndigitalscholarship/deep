@@ -11,7 +11,7 @@ class Company(models.Model):
         verbose_name_plural = "companies"
 
     def __str__(self):
-        return self.name or ''
+        return f"{self.pk} - {self.name}" or ''
 
 
 class Title(models.Model): #Work
@@ -183,9 +183,9 @@ class Person(models.Model):
         verbose_name_plural = "people"
 
     def __str__(self):
-        return self.name
+        return f"{self.pk} - {self.name}"
 
 class Theater(models.Model):
     name = models.CharField(max_length=5000)
     def __str__(self):
-        return self.name
+        return f"{self.pk} - {self.name}"
