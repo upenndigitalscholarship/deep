@@ -49,7 +49,7 @@ class Title(models.Model): #Work
     #date_first_performance_wiggins = models.CharField("Date of First Performance (Wiggins)", max_length=5000)
     #company_first_performance_wiggins = models.ForeignKey('Company', on_delete=models.CASCADE, related_name="company_first_performance_wiggins")
     #stationer = models.CharField("Stationer", max_length=5000, blank=True, null=True)
-    stationer_entries_in_register = models.CharField("Stationer: Entries in Register", max_length=5000, blank=True, null=True)
+    stationer_entries_in_register = models.TextField("Stationer: Entries in Register", max_length=5000, blank=True, null=True)
 
     def save(self, *args, **kwargs):
         # remove if  not used
