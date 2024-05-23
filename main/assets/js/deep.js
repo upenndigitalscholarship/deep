@@ -981,9 +981,9 @@ const processQueries = queries => {
       }
       if (query.searchField == 'genre-brit-filter') {
         let genreBrit = item => {
-          let pattern = `^${query.searchValue}$`;
+          let pattern = `^${query.searchValue.toLowerCase() }$`;
           let re = new RegExp(pattern, 'i');
-          let match = item.genre_brit_filter.match(re);
+          let match = item.genre_brit_filter.toLowerCase().match(re);
 
           return match !== null && match.length > 0;
         }
@@ -1506,9 +1506,9 @@ const processQueries = queries => {
         }
         if (fields[i] == 'genre-brit-filter' && values[i]) {
           let genreBrit = item => {
-            let pattern = `^${values[i]}$`;
+            let pattern = `^${values[i].toLowerCase()}$`;
             let re = new RegExp(pattern, 'i');
-            let match = item.genre_brit_filter.match(re);
+            let match = item.genre_brit_filter.toLowerCase().match(re);
 
             return match !== null && match.length > 0;
           }
