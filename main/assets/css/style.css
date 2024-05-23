@@ -72,14 +72,15 @@ h1, h2, h3, h4, h5, h6 {
   transition: all 0.5s;
   z-index: 997;
   box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.05);
+    padding-top: 20px;
+    padding-bottom: 10px;
 }
 
 #header .logo {
   font-family: birch-std,serif;
-  font-weight: 400;
   font-style: normal;
 
-  font-size: 35px;
+  font-size: 44px;
   margin: 0;
   padding: 0;
   line-height: 1;
@@ -92,7 +93,8 @@ h1, h2, h3, h4, h5, h6 {
   color: #0f394c;
 }
 #header .logo img {
-  max-height: 40px;
+  max-height: 90px;
+    padding-right: 5px;
 }
 
 /*--------------------------------------------------------------
@@ -120,7 +122,7 @@ h1, h2, h3, h4, h5, h6 {
   justify-content: space-between;
   padding: 10px 0 10px 30px;
   font-family: "Dosis", sans-serif;
-  font-size: 15px;
+  font-size: 18px;
   font-weight: 600;
   color: #0f394c;
   white-space: nowrap;
@@ -138,7 +140,7 @@ h1, h2, h3, h4, h5, h6 {
 .navbar .dropdown ul {
   display: block;
   position: absolute;
-  left: 14px;
+  left: -120px;
   top: calc(100% + 30px);
   margin: 0;
   padding: 10px 0;
@@ -154,7 +156,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 .navbar .dropdown ul a {
   padding: 10px 20px;
-  font-size: 15px;
+  font-size: 18px;
   text-transform: none;
   font-weight: 500;
 }
@@ -344,7 +346,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 
-# Sections General
+/* Sections General
 --------------------------------------------------------------*/
 section {
   padding: 60px 0;
@@ -1334,10 +1336,40 @@ section {
 .expand {
   text-transform: uppercase;
   color: #663300;
-} 
+}
 
 
-/* .hanging {
+.hanging {
   margin-left: 20px;
   text-indent: -20px;
-} */
+}
+
+.record_aws {
+    display: flex;
+    flex-direction: column;
+    grid-gap: 0;
+}
+
+.col-num {
+    width: 5%;
+}
+
+.col-deep {
+    width: 7.5%;
+}
+
+.col-year {
+    width: 7.5%;
+}
+
+.col-author {
+    width: 23%;
+}
+
+.col-title {
+    width: 52%;
+}
+
+.col-expand {
+    width: 5%;
+}

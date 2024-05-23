@@ -2167,49 +2167,47 @@ function expand(e, deep_id) {
           <div class="row">
           
             <div class="col-5">
-              <p>
-                ${!data.deep_id ? '' : '<span class="expand">DEEP #: </span><span id="deep_id"><a target="_blank" href="/' + data.deep_id + '">' + data.deep_id + '</a></span><br>'}
-                ${!data.greg_full ? '' : '<span class="expand">Greg #: </span><span id="greg_full">' + data.greg_full + '</span><br>'}
-                ${!data.stc ? '' : '<span class="expand">STC/WING #: </span><span id="stc"> ' + data.stc + '</span><br>'}
-                ${'<span class="expand">BritDrama #: </span><span id="deep_id">' + data.brit_drama_number + '</span><br>'}
-              </p>
-              <p>
-                ${!data.date_first_publication ? '' : '<span class="expand">Date of First Publication: </span><span id="date_first_publication">' + data.date_first_publication_display + '</span><br>'}
-                ${!data.book_edition ? '' : '<span class="expand">Book Edition: </span><span id="book_edition"> ' + data.book_edition + '</span><br>'}
-                ${!data.play_edition ? '' : '<span class="expand">Play Edition: </span><span id="play_edition"> ' + data.play_edition + '</span><br>'}
-                ${!data.format ? '' : '<span class="expand">Format: </span><span id="format"> ' + data.format + '</span><br>'}
-                ${!data.leaves ? '' : '<span class="expand">Leaves: </span><span id="leaves"> ' + data.leaves + '</span><br>'}
-                ${!data.blackletter ? '' : '<span class="expand">Black Letter: </span><span id="blackletter"> ' + data.blackletter + '</span>'}
-              </p>
+              <div class="record_aws">
+                ${!data.deep_id ? '' : '<div class="hanging"><span class="expand">DEEP #: </span><span id="deep_id"><a target="_blank" href="/' + data.deep_id + '">' + data.deep_id + '</a></span></div>'}
+                ${!data.greg_full ? '' : '<div class="hanging"><span class="expand">Greg #: </span><span id="greg_full">' + data.greg_full + '</span></div>'}
+                ${!data.stc ? '' : '<div class="hanging"><span class="expand">STC/WING #: </span><span id="stc"> ' + data.stc + '</span></div>'}
+                ${'<div class="hanging"><span class="expand">BritDrama #: </span><span id="deep_id">' + data.brit_drama_number + '</span></div>'}
+                <br>
+                ${!data.date_first_publication ? '' : '<div class="hanging"><span class="expand">Date of First Publication: </span><span id="date_first_publication">' + data.date_first_publication_display + '</span></div>'}
+                ${!data.book_edition ? '' : '<div class="hanging"><span class="expand">Book Edition: </span><span id="book_edition"> ' + data.book_edition + '</span></div>'}
+                ${!data.play_edition ? '' : '<div class="hanging"><span class="expand">Play Edition: </span><span id="play_edition"> ' + data.play_edition + '</span></div>'}
+                ${!data.format ? '' : '<div class="hanging"><span class="expand">Format: </span><span id="format"> ' + data.format + '</span></div>'}
+                ${!data.leaves ? '' : '<div class="hanging"><span class="expand">Leaves: </span><span id="leaves"> ' + data.leaves + '</span></div>'}
+                ${!data.blackletter ? '' : '<div class="hanging"><span class="expand">Black Letter: </span><span id="blackletter"> ' + data.blackletter + '</span></div>'}
+              </div>
             </div>    
             
             <div class="col-7">
-              <p>
-                ${!data.record_type ? '' : '<span class="expand">Record Type: </span><span id="record_type">' + data.record_type + '</span><br>'}
-                ${!data.play_type_display ? '' : '<span class="expand">Play Type: </span><span id="play_type">' + data.play_type_display + '</span><br>'}
-                ${!data.genre_annals_filter ? '' : '<span class="expand">Genre (Annals): </span><span id="genre">' + data.genre_annals_display + '</span><br>'}
-                ${!data.genre_brit_display ? '' : '<span class="expand">Genre (BritDrama): </span><span id="genre">' + data.genre_brit_display + '</span><br>'}
-              </p>
-              <p>
-                ${'<span class="expand">Date of First Production (Annals): </span><span id="date_first_performance">' + data.date_first_performance + '</span><br>'}
-                ${'<span class="expand">Date of First Production (BritDrama): </span><span id="date_first_performance">' + data.date_first_performance_brit_display + '</span><br>'}
-                ${'<span class="expand">Company of First Production (Annals): </span><span id="company_first_performance_annals_display">' + data.company_first_performance_annals_display + '</span><br>'}
-                ${'<span class="expand">Company of First Production (BritDrama): </span><span id="company_first_performance">' + data.company_first_performance_brit_display + '</span><br>'}
-                ${'<span class="expand">Company Attribution (Title-Page): </span><span id="title_page_company_display">' + data.title_page_company_display + '</span><br>'}
-              </p>
+              <div class="record_aws">
+                ${!data.record_type ? '' : '<div class="hanging"><span class="expand">Record Type: </span><span id="record_type">' + data.record_type + '</span></div>'}
+                ${!data.play_type_display ? '' : '<div class="hanging"><span class="expand">Play Type: </span><span id="play_type">' + data.play_type_display + '</span></div>'}
+                ${!data.genre_annals_filter ? '' : '<div class="hanging"><span class="expand">Genre (Annals): </span><span id="genre">' + data.genre_annals_display + '</span></div>'}
+                ${!data.genre_brit_display ? '' : '<div class="hanging"><span class="expand">Genre (BritDrama): </span><span id="genre">' + data.genre_brit_display + '</span></div>'}
+                <br>
+                ${'<div class="hanging"><span class="expand">Date of First Production (Annals): </span><span id="date_first_performance">' + data.date_first_performance + '</span></div>'}
+                ${'<div class="hanging"><span class="expand">Date of First Production (BritDrama): </span><span id="date_first_performance">' + data.date_first_performance_brit_display + '</span></div>'}
+                ${'<div class="hanging"><span class="expand">Company of First Production (Annals): </span><span id="company_first_performance_annals_display">' + data.company_first_performance_annals_display + '</span></div>'}
+                ${'<div class="hanging"><span class="expand">Company of First Production (BritDrama): </span><span id="company_first_performance">' + data.company_first_performance_brit_display + '</span></div>'}
+                ${'<div class="hanging"><span class="expand">Company Attribution (Title-Page): </span><span id="title_page_company_display">' + data.title_page_company_display + '</span></div>'}
+              </div>
             </div>
 
-            <div class="col-12">
-              <p>
-                ${typeof data.total_editions === 'undefined' ? '' : '<br><span class="expand">Total Editions:</span><span id="total_editions"> ' + data.total_editions + '</span><br>'}
-                ${data.variants === '' || data.variants === null ? '' : '<span class="expand"></span>'} 
-                ${data.variants === '' || data.variants === null ? '' : '<br><span class="expand">Variants:</span><span id="variants"> ' + data.variants + ' ' + data.variant_link + '<br>'}
-                ${data.collection_contains === '' || data.collection_contains === null ? '' : '<span class="expand"></span>'}
-                ${data.collection_contains === '' ? '' : '<br><span class="expand">Collection Contains:</span><span id="collection_contains"> ' + data.collection_contains + '</span><br>'}
-                ${data.in_collection === '' ? '' : '<br><span class="expand">In Collection:</span><span id="in_collection"> ' + data.in_collection + '</span><br>'}
-                ${!data.independent_playbook ? '' : '<br><span class="expand">Also Appears as a Bibliographically Independent Playbook In </span><span id="independent_playbook"><a target="_blank" href="/' + data.independent_playbook_link_id + '">' + data.independent_playbook + '</a></span><br>'}
-                ${!data.also_in_collection ? '' : '<br><span class="expand">Also Appears in Collection: </span><span id="also_in_collection">' + data.also_in_collection_link + '</span><br>'}
-              </p>
+            <div class="col-12" style="padding-top:24px;">
+              <div class="record_aws">
+                ${typeof data.total_editions === 'undefined' ? '' : '<div class="hanging"><span class="expand">Total Editions:</span><span id="total_editions"> ' + data.total_editions + '</span></div>'}
+                ${(data.variants === '' || data.variants === null) ? '' : '<br>'}
+                ${data.variants === '' || data.variants === null ? '' : '<div class="hanging"><span class="expand">Variants:</span><span id="variants"> ' + data.variants + ' ' + data.variant_link + '</span></div>'}
+                ${(data.variants === '' || data.variants === null) && (data.collection_contains || data.in_collection || data.independent_playbook || data.also_in_collection) ? '<br>' : ''}
+                ${data.collection_contains === '' ? '' : '<div class="hanging"><span class="expand">Collection Contains:</span><span id="collection_contains"> ' + data.collection_contains + '</span></div>'}
+                ${data.in_collection === '' ? '' : '<div class="hanging"><span class="expand">In Collection:</span><span id="in_collection"> ' + data.in_collection + '</span></div>'}
+                ${!data.independent_playbook ? '' : '<div class="hanging"><span class="expand">Also Appears as a Bibliographically Independent Playbook In </span><span id="independent_playbook"><a target="_blank" href="/' + data.independent_playbook_link_id + '">' + data.independent_playbook + '</a></span></div>'}
+                ${!data.also_in_collection ? '' : '<div class="hanging"><span class="expand">Also Appears in Collection: </span><span id="also_in_collection">' + data.also_in_collection_link + '</span></div>'}
+              </div>
             </div>    
 
           </div>  
@@ -2221,15 +2219,15 @@ function expand(e, deep_id) {
           <div class="row">
             <div class="col-12">
               <strong>Title-Page Features</strong>
-              <p>
-                ${!data.title_page_title ? '<span class="expand">Title: </span><span id="title_page_title"></span><br>' : '<div class="hanging"><span class="expand">Title: </span><span id="title_page_title">' + data.title_page_title + '</span></div>'}
-                ${data.title_page_author == "None" ? '<span class="expand">Author: </span><span id="title_page_author"></span><br>' : '<span class="expand">Author: </span><span id="title_page_author">' + data.title_page_author + '</span><br>'}
-                ${!data.title_page_performance ? '<span class="expand">Performance: </span><span id="title_page_performance"></span><br>' : '<div class="hanging"><span class="expand">Performance: </span><span id="title_page_performance">' + data.title_page_performance + '</span></div><br>'}
-                ${!data.title_page_latin_motto ? '' : '<div class="hanging"><span class="expand">Latin Motto: </span><span id="title_page_latin_motto">' + data.title_page_latin_motto + '</span></div><br>'}
-                ${!data.title_page_illustration ? '' : '<span class="expand">Illustration: </span><span id="title_page_illustration">' + data.title_page_illustration + '</span><br>'}
-                ${!data.title_page_imprint ? '<span class="expand">Imprint: </span><span id="title_page_imprint"></span><br>' : '<div class="hanging"><span class="expand">Imprint: </span><span id="title_page_imprint">' + data.title_page_imprint + '</span></div><br>'}
-                ${!data.title_page_colophon ? '' : '<div class="hanging"><span class="expand">Colophon: </span><span id="title_page_colophon">' + data.title_page_colophon + '</span></div><br>'}
-              </p>
+              <div class="record_aws">
+                ${!data.title_page_title ? '<div><span class="expand">Title: </span><span id="title_page_title"></span></div>' : '<div class="hanging"><span class="expand">Title: </span><span id="title_page_title">' + data.title_page_title + '</span></div>'}
+                ${data.title_page_author == "None" ? '<div><span class="expand">Author: </span><span id="title_page_author"></span></div>' : '<div class="hanging"><span class="expand">Author: </span><span id="title_page_author">' + data.title_page_author + '</span></div>'}
+                ${!data.title_page_performance ? '<div><span class="expand">Performance: </span><span id="title_page_performance"></span></div>' : '<div class="hanging"><span class="expand">Performance: </span><span id="title_page_performance">' + data.title_page_performance + '</span></div>'}
+                ${!data.title_page_latin_motto ? '' : '<div class="hanging"><span class="expand">Latin Motto: </span><span id="title_page_latin_motto">' + data.title_page_latin_motto + '</span></div>'}
+                ${!data.title_page_illustration ? '' : '<div class="hanging"><span class="expand">Illustration: </span><span id="title_page_illustration">' + data.title_page_illustration + '</span></div>'}
+                ${!data.title_page_imprint ? '<div class="hanging"><span class="expand">Imprint: </span><span id="title_page_imprint"></span></div>' : '<div class="hanging"><span class="expand">Imprint: </span><span id="title_page_imprint">' + data.title_page_imprint + '</span></div>'}
+                ${!data.title_page_colophon ? '' : '<div class="hanging"><span class="expand">Colophon: </span><span id="title_page_colophon">' + data.title_page_colophon + '</span></div>'}
+              </div>
             </div>
           </div>
         </div>
@@ -2240,18 +2238,18 @@ function expand(e, deep_id) {
           <div class="row">
             <div class="col-12">
               <strong>Paratextual Material</strong>
-              <p>
+              <div class="record_aws">
                 ${!data.paratext_dedication && !data.paratext_commendatory_verses && !data.paratext_explicit && !data.paratext_to_the_reader && !data.paratext_errata && !data.paratext_argument && !data.paratext_charachter_list && !data.paratext_actor_list && !data.paratext_other_paratexts ? 'None' : ""}
-                ${!data.paratext_dedication ? '' : '<span class="expand">Dedication: </span><span id="paratext_dedication">' + data.paratext_dedication + '</span><br>'}
-                ${!data.paratext_commendatory_verses ? '' : '<span class="expand">Commendatory Verses: </span><span id="paratext_commendatory_verses">' + data.paratext_commendatory_verses + '</span><br>'}
-                ${!data.paratext_to_the_reader ? '' : '<span class="expand">To the Reader: </span><span id="paratext_to_the_reader">' + data.paratext_to_the_reader + '</span><br>'}
-                ${!data.paratext_argument ? '' : '<span class="expand">Argument: </span><span id="paratext_argument">' + data.paratext_argument + '</span><br>'}
-                ${!data.paratext_charachter_list ? '' : '<span class="expand">Character List: </span><span id="paratext_charachter_list">' + data.paratext_charachter_list + '</span><br>'}
-                ${!data.paratext_actor_list ? '' : '<span class="expand">Actor List: </span><span id="paratext_actor_list">' + data.paratext_actor_list + '</span><br>'}
-                ${!data.paratext_explicit ? '' : '<span class="expand">Explicit: </span><span id="paratext_explicit">' + data.paratext_explicit + '</span><br>'}
-                ${!data.paratext_errata ? '' : '<span class="expand">Errata: </span><span id="paratext_errata">' + data.paratext_errata + '</span><br>'}
-                ${!data.paratext_other_paratexts ? '' : '<span class="expand">Other Paratexts: </span><span id="paratext_other_paratexts">' + data.paratext_other_paratexts + '</span><br>'}
-              </p>
+                ${!data.paratext_dedication ? '' : '<div class="hanging"><span class="expand">Dedication: </span><span id="paratext_dedication">' + data.paratext_dedication + '</span></div>'}
+                ${!data.paratext_commendatory_verses ? '' : '<div class="hanging"><span class="expand">Commendatory Verses: </span><span id="paratext_commendatory_verses">' + data.paratext_commendatory_verses + '</span></div>'}
+                ${!data.paratext_to_the_reader ? '' : '<div class="hanging"><span class="expand">To the Reader: </span><span id="paratext_to_the_reader">' + data.paratext_to_the_reader + '</span></div>'}
+                ${!data.paratext_argument ? '' : '<div class="hanging"><span class="expand">Argument: </span><span id="paratext_argument">' + data.paratext_argument + '</span></div>'}
+                ${!data.paratext_charachter_list ? '' : '<div class="hanging"><span class="expand">Character List: </span><span id="paratext_charachter_list">' + data.paratext_charachter_list + '</span></div>'}
+                ${!data.paratext_actor_list ? '' : '<div class="hanging"><span class="expand">Actor List: </span><span id="paratext_actor_list">' + data.paratext_actor_list + '</span></div>'}
+                ${!data.paratext_explicit ? '' : '<div class="hanging"><span class="expand hanging">Explicit: </span><span id="paratext_explicit">' + data.paratext_explicit + '</span></div>'}
+                ${!data.paratext_errata ? '' : '<div class="hanging"><span class="expand">Errata: </span><span id="paratext_errata">' + data.paratext_errata + '</span></div>'}
+                ${!data.paratext_other_paratexts ? '' : '<div class="hanging"><span class="expand">Other Paratexts: </span><span id="paratext_other_paratexts">' + data.paratext_other_paratexts + '</span></div>'}
+              </div>
             </div>
           </div>
         </div>
@@ -2262,17 +2260,16 @@ function expand(e, deep_id) {
           <div class="row">
             <div class="col-12">
               <strong>Stationer Information</strong>
-              <p>
-                ${!data.stationer_colophon ? '' : '<div class="hanging"><span class="expand">Colophon: </span><span id="stationer_colophon">' + data.stationer_colophon + '</span></div><br>'}
-                ${!data.stationer_printer_filter ? '' : '<span class="expand">Printer: </span><span id="stationer_printer">' + data.stationer_printer_display + '</span><br>'}
-                ${!data.stationer_publisher_filter ? '' : '<span class="expand">Publisher: </span><span id="stationer_publisher">' + data.stationer_publisher_display + '</span><br>'}
-                ${!data.stationer_bookseller_filter ? '' : '<span class="expand">Bookseller: </span><span id="stationer_bookseller">' + data.stationer_bookseller_display + '</span><br>'}
-                ${data.stationer_imprint_location === "None" ? '' : '<span class="expand">Imprint Location: </span><span id="stationer_imprint_location">' + data.stationer_imprint_location + '</span><br>'}
-                ${!data.stationer_license ? '' : '<span class="expand">License: </span><span id="stationer_license">' + data.stationer_license + '</span><br>'}
-                ${"<div class='hanging'><span class='expand'>Entries in Stationers' Registers: </span><span id='stationer_entries_in_register'>" + data.stationer_entries_in_register + '</span></div><br>'}
-                ${!data.stationer_additional_notes ? '' : '<span class="expand"></span>'} 
-                ${!data.stationer_additional_notes ? '' : '<span class="expand">Additional Notes: </span><span id="stationer_additional_notes">' + data.stationer_additional_notes + '</span><br>'}
-              </p>
+              <div class="record_aws">
+                ${!data.stationer_colophon ? '' : '<div class="hanging"><span class="expand">Colophon: </span><span id="stationer_colophon">' + data.stationer_colophon + '</span></div>'}
+                ${!data.stationer_printer_filter ? '' : '<div class="hanging"><span class="expand">Printer: </span><span id="stationer_printer">' + data.stationer_printer_display + '</span></div>'}
+                ${!data.stationer_publisher_filter ? '' : '<div class="hanging"><span class="expand">Publisher: </span><span id="stationer_publisher">' + data.stationer_publisher_display + '</span></div>'}
+                ${!data.stationer_bookseller_filter ? '' : '<div class="hanging"><span class="expand">Bookseller: </span><span id="stationer_bookseller">' + data.stationer_bookseller_display + '</span></div>'}
+                ${data.stationer_imprint_location === "None" ? '' : '<div class="hanging"><span class="expand">Imprint Location: </span><span id="stationer_imprint_location">' + data.stationer_imprint_location + '</span></div>'}
+                ${!data.stationer_license ? '' : '<div class="hanging"><span class="expand">License: </span><span id="stationer_license">' + data.stationer_license + '</span></div>'}
+                ${"<div class='hanging'><span class='expand'>Entries in Stationers' Registers: </span><span id='stationer_entries_in_register'>" + data.stationer_entries_in_register + '</span></div>'}
+                ${!data.stationer_additional_notes ? '' : '<br><div class="hanging"><span class="expand">Additional Notes: </span><span id="stationer_additional_notes">' + data.stationer_additional_notes + '</span></div>'}
+              </div>
             </div>
           </div>
         </div>
