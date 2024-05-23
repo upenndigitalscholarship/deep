@@ -980,13 +980,9 @@ const processQueries = queries => {
         }
       }
       if (query.searchField == 'genre-brit-filter') {
-        let genreBrit = item => {
-          let pattern = `^${query.searchValue.toLowerCase() }$`;
-          let re = new RegExp(pattern, 'i');
-          let match = item.genre_brit_filter.toLowerCase().match(re);
-
-          return match !== null && match.length > 0;
-        }
+        let genreBrit = item => (
+          item.genre_brit_filter.toLowerCase().split(';').map(s => s.trim()).indexOf(query.searchValue.toLowerCase()) > -1 
+        )
         filters.push({ 'filter': genreBrit, 'type': query.blockType })
       }
       if (query.searchField == 'title') {
@@ -1505,13 +1501,9 @@ const processQueries = queries => {
           }
         }
         if (fields[i] == 'genre-brit-filter' && values[i]) {
-          let genreBrit = item => {
-            let pattern = `^${values[i].toLowerCase()}$`;
-            let re = new RegExp(pattern, 'i');
-            let match = item.genre_brit_filter.toLowerCase().match(re);
-
-            return match !== null && match.length > 0;
-          }
+          let genreBrit = item => (
+            item.genre_brit_filter.toLowerCase().split(';').map(s => s.trim()).indexOf(values[i].toLowerCase()) > -1 
+          )
           ORquery.push(genreBrit)
         }
         if (fields[i] == 'stationer' && values[i]) {
