@@ -2303,7 +2303,7 @@ function expand(e, deep_id) {
     edition_links = editions.map(item => `<a target="_blank" href="/${item.deep_id}">${item.year} ${item.record_type}</a>`).join('<br>');
 
     console.log(data)
-    e.outerHTML = `<tr id="${data.deep_id}" onclick="collapse(this, ${data.deep_id});"><td class="result_number">${e.children[0].innerText}</td><td class="authors_display">${data.authors_display}</td><td class="title">${data.item_title}</td><td>Collapse</td>
+    e.outerHTML = `<tr id="${data.deep_id}" onclick="collapse(this, ${data.deep_id});"><td class="result_number">${e.children[0].innerText}</td><td class="authors_display">${data.authors_display}</td><td class="title">${data.item_title}</td>
     <tr id="${data.deep_id}-exp">
     <td colspan="5">
       <div class="card" style="width: 100%;">
