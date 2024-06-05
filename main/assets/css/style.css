@@ -1363,13 +1363,43 @@ section {
 }
 
 .col-author {
-    width: 23%;
+    width: 25%;
 }
 
 .col-title {
-    width: 52%;
+    width: 47%;
 }
 
-.col-expand {
-    width: 5%;
+.col-recordType {
+    width: 8%;
+}
+
+.spacing {
+    margin-bottom: 24px;
+}
+
+.spacingTop {
+    margin-top: 24px;
+}
+
+.homeCallOut {
+    margin-bottom: 20px;
+}
+
+.homeCallOut span {
+    background-color: #F8F9FA;
+    font-weight: bold;
+    padding: 6px 12px;
+    text-indent: 20px;
+    font-size: 18px;
+    border-radius: 6px;
+}
+
+.iconRow {
+    height: 24px;
+}
+
+.iconColumn {
+    text-align: center;
+    vertical-align: middle;
 }

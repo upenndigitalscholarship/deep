@@ -34,7 +34,7 @@ let options = {
 
   // Since there are no elements in the list, this will be used as template.
   item: function (values) {
-    return `<tr id="${values.deep_id}" onclick="expand(this, ${values.deep_id});"><td class="result_number"><td class="deep_id"></td><td class="year"></td><td class="authors_display"></td><td class="item_title services title">${values.item_title}</td></tr>`
+    return `<tr id="${values.deep_id}" onclick="expand(this, ${values.deep_id});"><td class="result_number"><td class="deep_id"></td><td class="year"></td><td class="authors_display"></td><td class="item_title services title">${values.item_title}</td><td class="iconColumn"><img class="iconRow" src="/assets/img/${values.record_type.replace(/\s+/g, '')}.png" alt="${values.record_type} Icon"></tr>`
   }
 };
 let table = new List('users', options, []);
@@ -2153,9 +2153,9 @@ function expand(e, deep_id) {
     let data = item_data[e.id];
     console.log(data)
     e.outerHTML = `
-  <tr id="${data.deep_id}" onclick="collapse(this, ${data.deep_id});"><td class="result_number">${e.children[0].innerText}</td><td class="deep_id">${data.deep_id}</td><td class="year">${data.year}</td><td class="authors_display">${data.authors_display}</td><td class="title">${data.item_title}</td>
+  <tr id="${data.deep_id}" onclick="collapse(this, ${data.deep_id});"><td class="result_number">${e.children[0].innerText}</td><td class="deep_id">${data.deep_id}</td><td class="year">${data.year}</td><td class="authors_display">${data.authors_display}</td><td class="title">${data.item_title}</td><td class="iconColumn"><img class="iconRow" src="/assets/img/${values.record_type.replace(/\s+/g, '')}.png" alt="${data.record_type} Icon">
     <tr id="${data.deep_id}-exp">
-    <td colspan="5">
+    <td colspan="6">
       <div class="card" style="width: 100%;">
         
         <div class="card-body">
@@ -2171,8 +2171,7 @@ function expand(e, deep_id) {
                 ${!data.deep_id ? '' : '<div class="hanging"><span class="expand">DEEP #: </span><span id="deep_id"><a target="_blank" href="/' + data.deep_id + '">' + data.deep_id + '</a></span></div>'}
                 ${!data.greg_full ? '' : '<div class="hanging"><span class="expand">Greg #: </span><span id="greg_full">' + data.greg_full + '</span></div>'}
                 ${!data.stc ? '' : '<div class="hanging"><span class="expand">STC/WING #: </span><span id="stc"> ' + data.stc + '</span></div>'}
-                ${'<div class="hanging"><span class="expand">BritDrama #: </span><span id="deep_id">' + data.brit_drama_number + '</span></div>'}
-                <br>
+                ${'<div class="hanging spacing"><span class="expand">BritDrama #: </span><span id="deep_id">' + data.brit_drama_number + '</span></div>'}
                 ${!data.date_first_publication ? '' : '<div class="hanging"><span class="expand">Date of First Publication: </span><span id="date_first_publication">' + data.date_first_publication_display + '</span></div>'}
                 ${!data.book_edition ? '' : '<div class="hanging"><span class="expand">Book Edition: </span><span id="book_edition"> ' + data.book_edition + '</span></div>'}
                 ${!data.play_edition ? '' : '<div class="hanging"><span class="expand">Play Edition: </span><span id="play_edition"> ' + data.play_edition + '</span></div>'}
@@ -2182,13 +2181,12 @@ function expand(e, deep_id) {
               </div>
             </div>    
             
-            <div class="col-7">
+            <div class="col-7 spacing">
               <div class="record_aws">
                 ${!data.record_type ? '' : '<div class="hanging"><span class="expand">Record Type: </span><span id="record_type">' + data.record_type + '</span></div>'}
                 ${!data.play_type_display ? '' : '<div class="hanging"><span class="expand">Play Type: </span><span id="play_type">' + data.play_type_display + '</span></div>'}
                 ${!data.genre_annals_filter ? '' : '<div class="hanging"><span class="expand">Genre (Annals): </span><span id="genre">' + data.genre_annals_display + '</span></div>'}
-                ${!data.genre_brit_display ? '' : '<div class="hanging"><span class="expand">Genre (BritDrama): </span><span id="genre">' + data.genre_brit_display + '</span></div>'}
-                <br>
+                ${!data.genre_brit_display ? '' : '<div class="hanging spacing"><span class="expand">Genre (BritDrama): </span><span id="genre">' + data.genre_brit_display + '</span></div>'}
                 ${'<div class="hanging"><span class="expand">Date of First Production (Annals): </span><span id="date_first_performance">' + data.date_first_performance + '</span></div>'}
                 ${'<div class="hanging"><span class="expand">Date of First Production (BritDrama): </span><span id="date_first_performance">' + data.date_first_performance_brit_display + '</span></div>'}
                 ${'<div class="hanging"><span class="expand">Company of First Production (Annals): </span><span id="company_first_performance_annals_display">' + data.company_first_performance_annals_display + '</span></div>'}
@@ -2200,9 +2198,8 @@ function expand(e, deep_id) {
             <div class="col-12" style="padding-top:24px;">
               <div class="record_aws">
                 ${typeof data.total_editions === 'undefined' ? '' : '<div class="hanging"><span class="expand">Total Editions:</span><span id="total_editions"> ' + data.total_editions + '</span></div>'}
-                ${(data.variants === '' || data.variants === null) ? '' : '<br>'}
-                ${data.variants === '' || data.variants === null ? '' : '<div class="hanging"><span class="expand">Variants:</span><span id="variants"> ' + data.variants + ' ' + data.variant_link + '</span></div>'}
-                ${(data.variants === '' || data.variants === null) && (data.collection_contains || data.in_collection || data.independent_playbook || data.also_in_collection) ? '<br>' : ''}
+                ${data.variants === '' || data.variants === null ? '' : '<div class="hanging spacingTop"><span class="expand">Variants:</span><span id="variants"> ' + data.variants + ' ' + data.variant_link + '</span></div>'}
+                ${(data.variants === '' || data.variants === null) && (data.collection_contains || data.in_collection || data.independent_playbook || data.also_in_collection) ? '<p style="height: 24px; margin:0;"></p>' : ''}
                 ${data.collection_contains === '' ? '' : '<div class="hanging"><span class="expand">Collection Contains:</span><span id="collection_contains"> ' + data.collection_contains + '</span></div>'}
                 ${data.in_collection === '' ? '' : '<div class="hanging"><span class="expand">In Collection:</span><span id="in_collection"> ' + data.in_collection + '</span></div>'}
                 ${!data.independent_playbook ? '' : '<div class="hanging"><span class="expand">Also Appears as a Bibliographically Independent Playbook In </span><span id="independent_playbook"><a target="_blank" href="/' + data.independent_playbook_link_id + '">' + data.independent_playbook + '</a></span></div>'}
@@ -2246,7 +2243,7 @@ function expand(e, deep_id) {
                 ${!data.paratext_argument ? '' : '<div class="hanging"><span class="expand">Argument: </span><span id="paratext_argument">' + data.paratext_argument + '</span></div>'}
                 ${!data.paratext_charachter_list ? '' : '<div class="hanging"><span class="expand">Character List: </span><span id="paratext_charachter_list">' + data.paratext_charachter_list + '</span></div>'}
                 ${!data.paratext_actor_list ? '' : '<div class="hanging"><span class="expand">Actor List: </span><span id="paratext_actor_list">' + data.paratext_actor_list + '</span></div>'}
-                ${!data.paratext_explicit ? '' : '<div class="hanging"><span class="expand hanging">Explicit: </span><span id="paratext_explicit">' + data.paratext_explicit + '</span></div>'}
+                ${!data.paratext_explicit ? '' : '<div class="hanging"><span class="expand">Explicit: </span><span id="paratext_explicit">' + data.paratext_explicit + '</span></div>'}
                 ${!data.paratext_errata ? '' : '<div class="hanging"><span class="expand">Errata: </span><span id="paratext_errata">' + data.paratext_errata + '</span></div>'}
                 ${!data.paratext_other_paratexts ? '' : '<div class="hanging"><span class="expand">Other Paratexts: </span><span id="paratext_other_paratexts">' + data.paratext_other_paratexts + '</span></div>'}
               </div>
@@ -2268,7 +2265,7 @@ function expand(e, deep_id) {
                 ${data.stationer_imprint_location === "None" ? '' : '<div class="hanging"><span class="expand">Imprint Location: </span><span id="stationer_imprint_location">' + data.stationer_imprint_location + '</span></div>'}
                 ${!data.stationer_license ? '' : '<div class="hanging"><span class="expand">License: </span><span id="stationer_license">' + data.stationer_license + '</span></div>'}
                 ${"<div class='hanging'><span class='expand'>Entries in Stationers' Registers: </span><span id='stationer_entries_in_register'>" + data.stationer_entries_in_register + '</span></div>'}
-                ${!data.stationer_additional_notes ? '' : '<br><div class="hanging"><span class="expand">Additional Notes: </span><span id="stationer_additional_notes">' + data.stationer_additional_notes + '</span></div>'}
+                ${!data.stationer_additional_notes ? '' : '<div class="hanging spacingTop"><span class="expand">Additional Notes: </span><span id="stationer_additional_notes">' + data.stationer_additional_notes + '</span></div>'}
               </div>
             </div>
           </div>
@@ -2303,9 +2300,9 @@ function expand(e, deep_id) {
     edition_links = editions.map(item => `<a target="_blank" href="/${item.deep_id}">${item.year} ${item.record_type}</a>`).join('<br>');
 
     console.log(data)
-    e.outerHTML = `<tr id="${data.deep_id}" onclick="collapse(this, ${data.deep_id});"><td class="result_number">${e.children[0].innerText}</td><td class="authors_display">${data.authors_display}</td><td class="title">${data.item_title}</td>
+    e.outerHTML = `<tr id="${data.deep_id}" onclick="collapse(this, ${data.deep_id});"><td class="result_number">${e.children[0].innerText}</td><td class="authors_display">${data.authors_display}</td><td class="title">${data.item_title}</td><td class="iconColumn"><img class="iconRow" src="/assets/img/${values.record_type.replace(/\s+/g, '')}.png" alt="${data.record_type} Icon">
     <tr id="${data.deep_id}-exp">
-    <td colspan="5">
+    <td colspan="6">
       <div class="card" style="width: 100%;">
       
         <div class="card-body">
@@ -2333,14 +2330,14 @@ function collapse(e, deep_id) {
   if (data) {
     if (filter == 'title') {
       e.outerHTML = `
-        <tr id="${data.deep_id}" onclick="expand(this, ${data.deep_id});"><td class="result_number">${e.children[0].innerText}</td><td class="authors_display">${data.authors_display}</td><td class="title">${data.item_title}</td>`
+        <tr id="${data.deep_id}" onclick="expand(this, ${data.deep_id});"><td class="result_number">${e.children[0].innerText}</td><td class="authors_display">${data.authors_display}</td><td class="title">${data.item_title}</td><td class="iconColumn"><img class="iconRow" src="/assets/img/${values.record_type.replace(/\s+/g, '')}.png" alt="${data.record_type} Icon">`
       let expandCard = document.getElementById(e.id + '-exp');
       if (expandCard) {
         expandCard.remove();
       }
     } else {
       e.outerHTML = `
-      <tr id="${data.deep_id}" onclick="expand(this, ${data.deep_id});"><td class="result_number">${e.children[0].innerText}</td><td class="deep_id">${data.deep_id}</td><td class="year">${data.year}</td><td class="authors_display">${data.authors_display}</td><td class="title">${data.item_title}</td>`
+      <tr id="${data.deep_id}" onclick="expand(this, ${data.deep_id});"><td class="result_number">${e.children[0].innerText}</td><td class="deep_id">${data.deep_id}</td><td class="year">${data.year}</td><td class="authors_display">${data.authors_display}</td><td class="title">${data.item_title}</td><td class="iconColumn"><img class="iconRow" src="/assets/img/${values.record_type.replace(/\s+/g, '')}.png" alt="${data.record_type} Icon">`
       let expandCard = document.getElementById(e.id + '-exp');
       if (expandCard) {
         expandCard.remove();
