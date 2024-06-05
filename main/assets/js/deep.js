@@ -2153,7 +2153,7 @@ function expand(e, deep_id) {
     let data = item_data[e.id];
     console.log(data)
     e.outerHTML = `
-  <tr id="${data.deep_id}" onclick="collapse(this, ${data.deep_id});"><td class="result_number">${e.children[0].innerText}</td><td class="deep_id">${data.deep_id}</td><td class="year">${data.year}</td><td class="authors_display">${data.authors_display}</td><td class="title">${data.item_title}</td><td class="iconColumn"><img class="iconRow" src="/assets/img/${values.record_type.replace(/\s+/g, '')}.png" alt="${data.record_type} Icon">
+  <tr id="${data.deep_id}" onclick="collapse(this, ${data.deep_id});"><td class="result_number">${e.children[0].innerText}</td><td class="deep_id">${data.deep_id}</td><td class="year">${data.year}</td><td class="authors_display">${data.authors_display}</td><td class="title">${data.item_title}</td><td class="iconColumn"><img class="iconRow" src="/assets/img/${data.record_type.replace(/\s+/g, '')}.png" alt="${data.record_type} Icon">
     <tr id="${data.deep_id}-exp">
     <td colspan="6">
       <div class="card" style="width: 100%;">
@@ -2300,7 +2300,7 @@ function expand(e, deep_id) {
     edition_links = editions.map(item => `<a target="_blank" href="/${item.deep_id}">${item.year} ${item.record_type}</a>`).join('<br>');
 
     console.log(data)
-    e.outerHTML = `<tr id="${data.deep_id}" onclick="collapse(this, ${data.deep_id});"><td class="result_number">${e.children[0].innerText}</td><td class="authors_display">${data.authors_display}</td><td class="title">${data.item_title}</td><td class="iconColumn"><img class="iconRow" src="/assets/img/${values.record_type.replace(/\s+/g, '')}.png" alt="${data.record_type} Icon">
+    e.outerHTML = `<tr id="${data.deep_id}" onclick="collapse(this, ${data.deep_id});"><td class="result_number">${e.children[0].innerText}</td><td class="authors_display">${data.authors_display}</td><td class="title">${data.item_title}</td><td class="iconColumn"><img class="iconRow" src="/assets/img/${data.record_type.replace(/\s+/g, '')}.png" alt="${data.record_type} Icon">
     <tr id="${data.deep_id}-exp">
     <td colspan="6">
       <div class="card" style="width: 100%;">
@@ -2330,14 +2330,14 @@ function collapse(e, deep_id) {
   if (data) {
     if (filter == 'title') {
       e.outerHTML = `
-        <tr id="${data.deep_id}" onclick="expand(this, ${data.deep_id});"><td class="result_number">${e.children[0].innerText}</td><td class="authors_display">${data.authors_display}</td><td class="title">${data.item_title}</td><td class="iconColumn"><img class="iconRow" src="/assets/img/${values.record_type.replace(/\s+/g, '')}.png" alt="${data.record_type} Icon">`
+        <tr id="${data.deep_id}" onclick="expand(this, ${data.deep_id});"><td class="result_number">${e.children[0].innerText}</td><td class="authors_display">${data.authors_display}</td><td class="title">${data.item_title}</td><td class="iconColumn"><img class="iconRow" src="/assets/img/${data.record_type.replace(/\s+/g, '')}.png" alt="${data.record_type} Icon">`
       let expandCard = document.getElementById(e.id + '-exp');
       if (expandCard) {
         expandCard.remove();
       }
     } else {
       e.outerHTML = `
-      <tr id="${data.deep_id}" onclick="expand(this, ${data.deep_id});"><td class="result_number">${e.children[0].innerText}</td><td class="deep_id">${data.deep_id}</td><td class="year">${data.year}</td><td class="authors_display">${data.authors_display}</td><td class="title">${data.item_title}</td><td class="iconColumn"><img class="iconRow" src="/assets/img/${values.record_type.replace(/\s+/g, '')}.png" alt="${data.record_type} Icon">`
+      <tr id="${data.deep_id}" onclick="expand(this, ${data.deep_id});"><td class="result_number">${e.children[0].innerText}</td><td class="deep_id">${data.deep_id}</td><td class="year">${data.year}</td><td class="authors_display">${data.authors_display}</td><td class="title">${data.item_title}</td><td class="iconColumn"><img class="iconRow" src="/assets/img/${data.record_type.replace(/\s+/g, '')}.png" alt="${data.record_type} Icon">`
       let expandCard = document.getElementById(e.id + '-exp');
       if (expandCard) {
         expandCard.remove();
