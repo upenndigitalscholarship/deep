@@ -1359,7 +1359,7 @@ section {
 }
 
 .col-year {
-    width: 7.5%;
+    width: 6%;
 }
 
 .col-author {
@@ -1367,11 +1367,15 @@ section {
 }
 
 .col-title {
-    width: 47%;
+    width: 46.5%;
 }
 
 .col-recordType {
-    width: 8%;
+    width: 6%;
+}
+
+.col-expand {
+    width: 4%;
 }
 
 .spacing {
@@ -1396,10 +1400,18 @@ section {
 }
 
 .iconRow {
-    height: 24px;
+    height: 34px;
+}
+
+.caretRow {
+    height: 12px;
 }
 
 .iconColumn {
     text-align: center;
     vertical-align: middle;
+}
+
+.menuIcon {
+    height: 20px;
 }
