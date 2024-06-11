@@ -12,6 +12,10 @@
     "label":"A., R."
   },
   {
+    "value":742,
+    "label":"Adamson, John"
+  },
+  {
     "value":69,
     "label":"Al., G."
   },
@@ -29,7 +33,7 @@
   },
   {
     "value":123,
-    "label":"Amerie, Robert"
+    "label":"Amory, Robert"
   },
   {
     "value":31,
@@ -46,6 +50,10 @@
   {
     "value":264,
     "label":"B., H. H."
+  },
+  {
+    "value":39,
+    "label":"B., R."
   },
   {
     "value":228,
@@ -105,11 +113,7 @@
   },
   {
     "value":249,
-    "label":"Bonarelli, Guidobaldo de'"
-  },
-  {
-    "value":39,
-    "label":"Bower, Richard"
+    "label":"Bonarelli, Guidobaldo della Rovere"
   },
   {
     "value":208,
@@ -122,14 +126,6 @@
   {
     "value":245,
     "label":"Brewer, Anthony"
-  },
-  {
-    "value":216,
-    "label":"Brewer, Thomas"
-  },
-  {
-    "value":242,
-    "label":"Brome, Alexander"
   },
   {
     "value":162,
@@ -154,6 +150,10 @@
   {
     "value":207,
     "label":"Burnell, Henry"
+  },
+  {
+    "value":745,
+    "label":"Bushell, Thomas (mining entrepreneur)"
   },
   {
     "value":725,
@@ -213,7 +213,11 @@
   },
   {
     "value":133,
-    "label":"Cooke, Joshua"
+    "label":"Cooke, John"
+  },
+  {
+    "value":740,
+    "label":"Cool, Jacob"
   },
   {
     "value":176,
@@ -230,6 +234,10 @@
   {
     "value":251,
     "label":"Cox, Robert"
+  },
+  {
+    "value":743,
+    "label":"Crawford, Thomas"
   },
   {
     "value":140,
@@ -301,7 +309,7 @@
   },
   {
     "value":97,
-    "label":"Dymock, John"
+    "label":"Dymoke, Tailboys"
   },
   {
     "value":29,
@@ -356,8 +364,12 @@
     "label":"Freeman, Ralph"
   },
   {
+    "value":738,
+    "label":"Fulbecke, William"
+  },
+  {
     "value":24,
-    "label":"Fulwel, Ulpian"
+    "label":"Fulwell, Ulpian"
   },
   {
     "value":266,
@@ -396,6 +408,10 @@
     "label":"Goldingham, Henry"
   },
   {
+    "value":735,
+    "label":"Goldingham, William"
+  },
+  {
     "value":236,
     "label":"Goldsmith, Francis"
   },
@@ -409,7 +425,7 @@
   },
   {
     "value":199,
-    "label":"Gough, John"
+    "label":"Gough, J."
   },
   {
     "value":76,
@@ -473,7 +489,7 @@
   },
   {
     "value":237,
-    "label":"Hemings, William"
+    "label":"Heminges, William"
   },
   {
     "value":71,
@@ -492,12 +508,12 @@
     "label":"Heywood, Thomas"
   },
   {
-    "value":138,
-    "label":"Holiday, Barten"
-  },
-  {
     "value":255,
     "label":"Holland, Samuel"
+  },
+  {
+    "value":138,
+    "label":"Holyday, Barten"
   },
   {
     "value":283,
@@ -517,7 +533,7 @@
   },
   {
     "value":273,
-    "label":"Hutton, Leonard"
+    "label":"Hutten, Leonard"
   },
   {
     "value":27,
@@ -574,14 +590,6 @@
   {
     "value":61,
     "label":"Kyffin, Maurice"
-  },
-  {
-    "value":171,
-    "label":"Kynaston, Francis"
-  },
-  {
-    "value":59,
-    "label":"Lee, Henry"
   },
   {
     "value":100,
@@ -768,6 +776,10 @@
     "label":"Prestwich, Edmund"
   },
   {
+    "value":736,
+    "label":"Pseudo-Seneca"
+  },
+  {
     "value":229,
     "label":"Quarles, Francis"
   },
@@ -808,10 +820,6 @@
     "label":"Rider, William"
   },
   {
-    "value":107,
-    "label":"Roberts, Henry"
-  },
-  {
     "value":41,
     "label":"Roberts, John"
   },
@@ -836,6 +844,14 @@
     "label":"Rutter, Joseph"
   },
   {
+    "value":739,
+    "label":"Ruytinck, Simon"
+  },
+  {
+    "value":744,
+    "label":"Ryley, Thomas"
+  },
+  {
     "value":234,
     "label":"S., J."
   },
@@ -846,10 +862,6 @@
   {
     "value":83,
     "label":"S., W."
-  },
-  {
-    "value":172,
-    "label":"Sackville, Edward"
   },
   {
     "value":16,
@@ -914,10 +926,6 @@
   {
     "value":5,
     "label":"Skelton, John"
-  },
-  {
-    "value":135,
-    "label":"Smith, Wentworth"
   },
   {
     "value":136,
@@ -996,8 +1004,8 @@
     "label":"Terence (Publius Terentius Afer)"
   },
   {
-    "value":14,
-    "label":"Textor, Ravisius"
+    "value":741,
+    "label":"Thorius, Raphael"
   },
   {
     "value":110,
@@ -1033,7 +1041,7 @@
   },
   {
     "value":26,
-    "label":"Wager, W."
+    "label":"Wager, William"
   },
   {
     "value":43,
