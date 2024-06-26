@@ -2301,7 +2301,7 @@ function expand(e, deep_id) {
 
     console.log(data)
       e.outerHTML = `
-      <tr id="${data.deep_id}" onclick="collapse(this, ${data.deep_id});"><td class="result_number">${e.children[0].innerText}</td><td class="authors_display">${data.authors_display}</td><td class="title">${data.item_title}</td><td><img class="caretRow" src="/assets/img/UpArrow.png" alt="Collapse Icon"></td></tr>
+      <tr id="${data.deep_id}" onclick="collapse(this, ${data.deep_id});"><td class="result_number">${e.children[0].innerText}</td><td class="iconColumn"><img class="iconRow" src="/assets/img/${data.record_type.replace(/\s+/g, '')}.png" alt="${data.record_type} Icon"><span class="iconTT">${data.record_type}</span></td><td class="authors_display">${data.authors_display}</td><td class="item_title services title">${data.item_title}</td><td><img class="caretRow" src="/assets/img/UpArrow.png" alt="Expand Icon"></td></tr>
     <tr id="${data.deep_id}-exp">
     <td colspan="7">
       <div class="card" style="width: 100%;">
@@ -2331,14 +2331,14 @@ function collapse(e, deep_id) {
   if (data) {
     if (filter == 'title') {
       e.outerHTML = `
-        <tr id="${data.deep_id}" onclick="expand(this, ${data.deep_id});"><td class="result_number">${e.children[0].innerText}</td><td class="authors_display">${data.authors_display}</td><td class="title">${data.item_title}</td><td><img class="caretRow" src="/assets/img/DownArrow.png" alt="Expand Icon"></td></tr>`
+        <tr id="${data.deep_id}" onclick="expand(this, ${data.deep_id});"><td class="result_number">${e.children[0].innerText}</td><td class="iconColumn"><img class="iconRow" src="/assets/img/${data.record_type.replace(/\s+/g, '')}.png" alt="${data.record_type} Icon"><span class="iconTT">${data.record_type}</span></td><td class="authors_display">${data.authors_display}</td><td class="item_title services title">${data.item_title}</td><td><img class="caretRow" src="/assets/img/DownArrow.png" alt="Expand Icon"></td></tr>`
       let expandCard = document.getElementById(e.id + '-exp');
       if (expandCard) {
         expandCard.remove();
       }
     } else {
       e.outerHTML = `
-      <tr id="${data.deep_id}" onclick="expand(this, ${data.deep_id});"><td class="result_number">${e.children[0].innerText}</td><td class="deep_id">${data.deep_id}</td><td class="year">${data.year}</td><td class="iconColumn"><img class="iconRow" src="/assets/img/${data.record_type.replace(/\s+/g, '')}.png" alt="${data.record_type} Icon"></td><span class="iconTT">${data.record_type}</span><td class="authors_display">${data.authors_display}</td><td class="title">${data.item_title}</td><td><img class="caretRow" src="/assets/img/DownArrow.png" alt="Expand Icon"></td></tr>`
+      <tr id="${data.deep_id}" onclick="expand(this, ${data.deep_id});"><td class="result_number">${e.children[0].innerText}</td><td class="deep_id">${data.deep_id}</td><td class="year">${data.year}</td><td class="iconColumn"><img class="iconRow" src="/assets/img/${data.record_type.replace(/\s+/g, '')}.png" alt="${data.record_type} Icon"><span class="iconTT">${data.record_type}</span></td><td class="authors_display">${data.authors_display}</td><td class="title">${data.item_title}</td><td><img class="caretRow" src="/assets/img/DownArrow.png" alt="Expand Icon"></td></tr>`
       let expandCard = document.getElementById(e.id + '-exp');
       if (expandCard) {
         expandCard.remove();
