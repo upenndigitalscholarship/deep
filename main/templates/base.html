@@ -40,38 +40,57 @@
 <body>
 
   <!-- ======= Header ======= -->
-  <header id="header" class="fixed-top">
-    <div class="container d-flex align-items-center justify-content-between">
+<!--  <header id="header" class="fixed-top">-->
+<!--    <div class="container d-flex align-items-center justify-content-between">-->
 
-      <a style="color: #330e40;"href="{% url 'index' %}" class="logo"><img style="margin-bottom: 6px;" src="{% static '/img/logo.png' %}" alt="" class="img-fluid">&nbsp Database of Early English Playbooks</a>
-      <!-- Uncomment below if you prefer to use text as a logo -->
-      <!-- <h1 class="logo"><a href="index.html">Butterfly</a></h1> -->
+<!--      <a style="color: #330e40;"href="{% url 'index' %}" class="logo"><img style="margin-bottom: 6px;" src="{% static '/img/logo.png' %}" alt="" class="img-fluid">&nbsp Database of Early English Playbooks</a>-->
+<!--      &lt;!&ndash; Uncomment below if you prefer to use text as a logo &ndash;&gt;-->
+<!--      &lt;!&ndash; <h1 class="logo"><a href="index.html">Butterfly</a></h1> &ndash;&gt;-->
 
-      <nav id="navbar" class="navbar">
-        <ul>
-          <!-- <li><a class="nav-link scrollto" href="browse.html">Browse</a></li> -->
-			<li class="nav-link scrollto dropdown text-dark"><a href="#"><span><img class="menuIcon" src="{% static '/img/menu.png' %}" alt="Menu Icon"></span>
-				<!--							<i class="bi bi-chevron-down"></i>-->
-			</a>
-				<ul>
-              <li><a href="../about/">The History behind DEEP</a></li>
-              <li><a href="../using_deep/">How to Use DEEP</a></li>
-              <li><a href="../whats_new/">DEEP Update History</a></li>
-              <li><a href="../sources/">Bibliographic Sources</a></li>
-              <li><a href="../abbrev/">Abbreviations and References</a></li>
-              <li><a href="../download">Download Data</a></li>
-              <li><a href="../cite/">How to Cite DEEP</a></li> 
-              <li><a href="../contact/">Contact Us</a></li>
-            </ul>
-          </li>
-          
-        </ul>
-        <i class="bi bi-list mobile-nav-toggle"></i>
-      </nav><!-- .navbar -->
+<!--      <nav id="navbar" class="navbar">-->
+<!--        <ul>-->
+<!--          &lt;!&ndash; <li><a class="nav-link scrollto" href="browse.html">Browse</a></li> &ndash;&gt;-->
+<!--			<li class="nav-link scrollto dropdown text-dark"><a href="#"><span><img class="menuIcon" src="{% static '/img/menu.png' %}" alt="Menu Icon"></span>-->
+<!--				&lt;!&ndash;							<i class="bi bi-chevron-down"></i>&ndash;&gt;-->
+<!--			</a>-->
+<!--				<ul>-->
+<!--              <li><a href="../about/">The History behind DEEP</a></li>-->
+<!--              <li><a href="../using_deep/">How to Use DEEP</a></li>-->
+<!--              <li><a href="../whats_new/">DEEP Update History</a></li>-->
+<!--              <li><a href="../sources/">Bibliographic Sources</a></li>-->
+<!--              <li><a href="../abbrev/">Abbreviations and References</a></li>-->
+<!--              <li><a href="../download">Download Data</a></li>-->
+<!--              <li><a href="../cite/">How to Cite DEEP</a></li> -->
+<!--              <li><a href="../contact/">Contact Us</a></li>-->
+<!--            </ul>-->
+<!--          </li>-->
+<!--          -->
+<!--        </ul>-->
+<!--        <i class="bi bi-list mobile-nav-toggle"></i>-->
+<!--      </nav>&lt;!&ndash; .navbar &ndash;&gt;-->
 
-    </div>
-  </header><!-- End Header -->
+<!--    </div>-->
+<!--  </header>&lt;!&ndash; End Header &ndash;&gt;-->
 
+<div class="awwsHeader">
+	<div class="awwsHeaderContent">
+		<img src="/assets/img/logo.png" alt="" class="headerLogo">
+		<h1 class="awwsTitle">Database of Early English Playbooks</h1>
+		<div class="awwsNavContainer">
+			<img class="menuIcon" src="assets/img/menu.png" alt="Menu Icon" onclick="navToggle()">
+			<div id="awwsNavDisplay" class="awwsNavLinks">
+				<a href="../about/">The History behind DEEP</a>
+				<a href="../using_deep/">How to Use DEEP</a>
+				<a href="../whats_new/">DEEP Update History</a>
+				<a href="../sources/">Bibliographic Sources</a>
+				<a href="../abbrev/">Abbreviations and References</a>
+				<a href="../download">Download Data</a>
+				<a href="../cite/">How to Cite DEEP</a>
+				<a href="../contact/">Contact Us</a>
+			</div>
+		</div>
+	</div>
+</div>
   
   <main id="main">
 
