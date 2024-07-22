@@ -1522,13 +1522,15 @@ section {
     margin-top: -40px;
     margin-left: -90px;
 
-    width: 180px;
-    background-color: #fffde5;
+    font-size: 14px;
+    max-width: 150px;
+    min-width: 100px;
+    background-color: rgba(255, 253, 229, 1);
     color: black;
     text-align: center;
-    border-radius: 6px;
-    padding: 5px 0;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.05);
+    border-radius: 3px;
+    padding: 2px 6px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.12);
 }
 
 .iconColumn:hover .iconTT {

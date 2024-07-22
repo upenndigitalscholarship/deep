@@ -2069,6 +2069,14 @@ const search = () => {
     yearRows.forEach(row => {
       row.style.display = 'none'
     })
+
+      iconColumn = document.querySelector('[data-sort="icon"]')
+      iconColumn.style.display = 'none'
+      iconRows = document.querySelectorAll('.iconColumn')
+      iconRows.forEach(row => {
+          row.style.display = 'none'
+      })
+
   } else {
     deepID = document.querySelector('[data-sort="deep_id"]')
     deepID.style.display = 'table-cell'
@@ -2083,6 +2091,13 @@ const search = () => {
     yearRows.forEach(row => {
       row.style.display = 'table-cell'
     })
+
+      iconColumn = document.querySelector('[data-sort="icon"]')
+      iconColumn.style.display = 'table-cell'
+      iconRows = document.querySelectorAll('.iconColumn')
+      iconRows.forEach(row => {
+          row.style.display = 'table-cell'
+      })
   }
 }
 
