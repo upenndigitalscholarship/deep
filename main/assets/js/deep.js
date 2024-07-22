@@ -2330,6 +2330,13 @@ function expand(e, deep_id) {
         </div>
       </div>
   </td>`
+      // hide icon image
+      iconColumn = document.querySelector('[data-sort="icon"]')
+      iconColumn.style.display = 'none'
+      iconRows = document.querySelectorAll('.iconColumn')
+      iconRows.forEach(row => {
+          row.style.display = 'none'
+      })
   } else {
     console.log('[*] item_data undefined')
     // wait half a second then run search 
@@ -2351,6 +2358,13 @@ function collapse(e, deep_id) {
       if (expandCard) {
         expandCard.remove();
       }
+      //hide icon image 
+      iconColumn = document.querySelector('[data-sort="icon"]')
+      iconColumn.style.display = 'none'
+      iconRows = document.querySelectorAll('.iconColumn')
+      iconRows.forEach(row => {
+          row.style.display = 'none'
+      })
     } else {
       e.outerHTML = `
       <tr id="${data.deep_id}" onclick="expand(this, ${data.deep_id});"><td class="result_number">${e.children[0].innerText}</td><td class="deep_id">${data.deep_id}</td><td class="year">${data.year}</td><td class="iconColumn"><img class="iconRow" src="/assets/img/${data.record_type.replace(/\s+/g, '')}.png" alt="${data.record_type} Icon"><span class="iconTT">${data.record_type}</span></td><td class="authors_display">${data.authors_display}</td><td class="title">${data.item_title}</td><td><img class="caretRow" src="/assets/img/DownArrow.png" alt="Expand Icon"></td></tr>`
