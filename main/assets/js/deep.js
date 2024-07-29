@@ -1829,9 +1829,16 @@ const processQueries = queries => {
         }
         if (fields[i] == 'company-first-performance' && values[i]) {
           let companyFirstPerformance = item => (
-            item.company_first_performance.toLowerCase().includes(values[i].toLowerCase())
+            item.company_first_performance_annals_filter.toLowerCase().includes(values[i].toLowerCase())
           )
           ORquery.push(companyFirstPerformance)
+        }
+
+        if (fields[i] == 'company_first-performance-brit-filter' && values[i]) {
+          let companyFirstPerformanceBrit = item => (
+            item.company_first_performance_brit_filter.toLowerCase().includes(values[i].toLowerCase())
+          )
+          ORquery.push(companyFirstPerformanceBrit)
         }
 
         if (fields[i] == 'printer' && values[i]) {
