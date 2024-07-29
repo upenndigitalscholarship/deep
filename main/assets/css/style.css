@@ -1420,10 +1420,10 @@ section {
     background-color: #fff;
     z-index: 997;
     box-shadow: 0 2px 15px rgba(0, 0, 0, 0.15);
-    position: fixed;
-    top: 0;
-    right: 0;
-    left: 0;
+    /*position: fixed;*/
+    /*top: 0;*/
+    /*right: 0;*/
+    /*left: 0;*/
     max-width: 100vw;
 }
 
@@ -1494,7 +1494,7 @@ section {
 @media only screen and (max-width: 800px) {
 
     .awwsTitle {
-        font-size: 38px;
+        font-size: 32px;
     }
     .awwsNavLinks {
         width: 100vw;
@@ -1510,7 +1510,7 @@ section {
         text-align: center;
     }
     .headerLogo {
-        max-height: 65px;
+        max-height: 55px;
     }
 }
 
