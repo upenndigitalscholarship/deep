@@ -1537,3 +1537,6 @@ section {
     visibility: visible;
 }
 
+.table {
+  min-width: 1100px;
+}
