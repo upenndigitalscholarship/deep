@@ -1374,6 +1374,19 @@ section {
     width: 6%;
 }
 
+@media only screen and (max-width: 800px) {
+  .col-deep {
+    width: 8.5%;
+  }
+
+  .col-year {
+    width: 10%;
+  }
+  .col-recordType {
+    width: 4%;
+  }
+}
+
 .col-expand {
     width: 3%;
 }
