@@ -1546,10 +1546,27 @@ section {
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.12);
 }
 
+.table {
+    min-width: 1025px;
+}
+
 .iconColumn:hover .iconTT {
     visibility: visible;
 }
 
-.table {
-  min-width: 1100px;
+@media only screen and (max-width: 800px) {
+    .col-5 {
+        width: 35%;
+    }
+    .col-7 {
+        width: 65%;
+    }
+    .col-author {
+        width: 22%;
+    }
+
+    .col-title {
+        width: 47.5%;
+    }
+
 }
