@@ -185,15 +185,6 @@
   width: 41.66666667%;
 }
 
-@media only screen and (max-width: 800px) {
-  .col-5 {
-    width: 30%;
-  }
-  .col-7 {
-    width: 70%;
-  }
-}
-
 .col-6 {
   flex: 0 0 auto;
   width: 50%;
