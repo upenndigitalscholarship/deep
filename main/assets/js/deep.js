@@ -2064,7 +2064,7 @@ const search = () => {
   if (filter == 'title') {
 
       authorColumn = document.querySelector('[data-sort="author"]')
-      deepID.style.width = '18%'
+      authorColumn.style.width = '18%'
 
     // hide DEEP # and Year columns when work is selected
     deepID = document.querySelector('[data-sort="deep_id"]')
@@ -2090,7 +2090,7 @@ const search = () => {
 
   } else {
       authorColumn = document.querySelector('[data-sort="author"]')
-      deepID.style.width = '22%'
+      authorColumn.style.width = '22%'
 
 
     deepID = document.querySelector('[data-sort="deep_id"]')
