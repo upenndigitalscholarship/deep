@@ -58,7 +58,7 @@ let search_fields = ['deep-id', 'title', 'title-page-modern', 'errata', 'title-p
 
 let date_fields = ['first-production', 'first-edition', 'year-published', 'date-first-performance-brit-filter']
 
-let choice_fields = ['book_edition', 'play_edition', 'imprintlocation', 'stationer', 'printer', 'publisher', 'bookseller', 'latinontitle', 'paratextual', 'company_first-performance-brit-filter', 'title-page-author', 'illustration', 'author', 'authorial-status', 'company-first-performance', 'company', 'theater', 'playtype', 'genre', 'genreplaybook', 'blackletter', 'format', 'genre-brit-filter', 'author_paratext']
+let choice_fields = ['book_edition', 'play_edition', 'imprintlocation', 'stationer', 'printer', 'publisher', 'bookseller', 'latinontitle', 'paratextual', 'company_first-performance-brit-filter', 'title-page-author', 'illustration', 'author', 'authorial-status', 'company-first-performance', 'company', 'theater', 'playtype', 'genre', 'genreplaybook', 'blackletter', 'format', 'genre-brit-filter', 'author_paratext', 'entered-in-sr']
 
 
 
@@ -469,6 +469,20 @@ const update_searchSelect = (searchSelect, or = false) => {
       'label',
       true);
   }
+  if (filter === 'entered-in-sr') {
+    this_choices.setChoices(async () => {
+      try {
+        const items = await fetch('/assets/data/yes-no.json');
+        return items.json();
+
+      } catch (err) {
+        console.error(err);
+      }
+    },
+      'value',
+      'label',
+      true);
+  }
 }
 
 const noPunct = string => {
@@ -609,6 +623,7 @@ function addANDBlock() {
         <option value="date-first-performance-brit-filter">Date of First Production (BritDrama)</option>
         <option value="first-edition">Date of First Edition</option>
         <option value="format">Format</option>
+        <option value="entered-in-sr">Entered in SR</option>
         <option value="book_edition">Book edition number</option>
         <option value="play_edition">Play edition number</option>
         <option value="greg_number">Greg Number</option>
@@ -736,6 +751,7 @@ function addORBlock() {
         <option value="date-first-performance-brit-filter">Date of First Production (BritDrama)</option>
         <option value="first-edition">Date of First Edition</option>
         <option value="format">Format</option>
+        <option value="entered-in-sr">Entered in SR</option>
         <option value="book_edition">Book edition number</option>
         <option value="play_edition">Play edition number</option>
         <option value="greg_number">Greg Number</option>
@@ -792,6 +808,7 @@ function addORBlock() {
         <option value="date-first-performance-brit-filter">Date of First Production (BritDrama)</option>
         <option value="first-edition">Date of First Edition</option>
         <option value="format">Format</option>
+        <option value="entered-in-sr">Entered in SR</option>
         <option value="book_edition">Book edition number</option>
         <option value="play_edition">Play edition number</option>
         <option value="greg_number">Greg Number</option>
@@ -1364,6 +1381,23 @@ const processQueries = queries => {
           item.stationer_bookseller_filter.toLowerCase().includes(query.searchValue.toLowerCase())
         )
         filters.push({ 'filter': bookseller, 'type': query.blockType })
+      }
+      if (query.searchField == 'entered-in-sr') {
+        if (query.searchValue == "Yes") {
+          let enteredInSR = item => (
+            item.stationer_entries_in_register !== "" && 
+            item.stationer_entries_in_register !== "None" &&
+            item.stationer_entries_in_register !== null
+          )
+          filters.push({ 'filter': enteredInSR, 'type': query.blockType })
+        } else if (query.searchValue == "No") {
+          let enteredInSR = item => (
+            item.stationer_entries_in_register === "" || 
+            item.stationer_entries_in_register === "None" ||
+            item.stationer_entries_in_register === null
+          )
+          filters.push({ 'filter': enteredInSR, 'type': query.blockType })
+        }
       }
       if (query.searchField == 'brit-drama-number') {
         let britDrama = (item) => {
@@ -2049,10 +2083,26 @@ const search = () => {
   } else if (filter == 'record') {
     grouped_results = results
   }
-  // sort results by year, by deep if same year 
-  grouped_results.sort(function (a, b) {
-    return a.year_int - b.year_int || a.deep_id - b.deep_id;
-  });
+  // sort results by year, by deep if same year (for edition/record views)
+  // for Work View (title), sort by author then title
+  if (filter == 'title') {
+    grouped_results.sort(function (a, b) {
+      // Primary sort: author (case-insensitive)
+      let authorA = (a.authors_display || '').toLowerCase();
+      let authorB = (b.authors_display || '').toLowerCase();
+      if (authorA !== authorB) {
+        return authorA.localeCompare(authorB);
+      }
+      // Secondary sort: title (case-insensitive)
+      let titleA = (a.item_title || '').toLowerCase();
+      let titleB = (b.item_title || '').toLowerCase();
+      return titleA.localeCompare(titleB);
+    });
+  } else {
+    grouped_results.sort(function (a, b) {
+      return a.year_int - b.year_int || a.deep_id - b.deep_id;
+    });
+  }
   for (i in grouped_results) {
     grouped_results[i].result_number = parseInt(i) + 1 + '.'
   }
@@ -2335,11 +2385,59 @@ function expand(e, deep_id) {
     <tr id="${data.deep_id}-exp">
     <td colspan="7">
       <div class="card" style="width: 100%;">
-      
         <div class="card-body">
           <div class="row">
             <div class="col-5">
               ${edition_links}
+            </div>
+          </div>
+          <div class="row" style="padding-top:24px;">
+            <div class="col-5">
+              <strong>Reference Information</strong>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-5">
+              <div class="record_aws">
+                ${!data.greg_full ? '' : '<div class="hanging"><span class="expand">Greg #: </span><span id="greg_full">' + data.greg_full + '</span></div>'}
+                ${'<div class="hanging spacing"><span class="expand">BritDrama #: </span><span id="brit_drama_number">' + data.brit_drama_number + '</span></div>'}
+              </div>
+            </div>
+            <div class="col-7 spacing">
+              <div class="record_aws">
+                ${!data.play_type_display ? '' : '<div class="hanging"><span class="expand">Play Type: </span><span id="play_type">' + data.play_type_display + '</span></div>'}
+                ${!data.genre_annals_filter ? '' : '<div class="hanging"><span class="expand">Genre (Annals): </span><span id="genre">' + data.genre_annals_display + '</span></div>'}
+                ${!data.genre_brit_display ? '' : '<div class="hanging spacing"><span class="expand">Genre (BritDrama): </span><span id="genre">' + data.genre_brit_display + '</span></div>'}
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-5">
+              <div class="record_aws">
+                ${!data.date_first_publication ? '' : '<div class="hanging"><span class="expand">Date of First Publication: </span><span id="date_first_publication">' + data.date_first_publication_display + '</span></div>'}
+              </div>
+            </div>
+            <div class="col-7 spacing">
+              <div class="record_aws">
+                ${'<div class="hanging"><span class="expand">Date of First Production (Annals): </span><span id="date_first_performance">' + data.date_first_performance + '</span></div>'}
+                ${'<div class="hanging"><span class="expand">Date of First Production (BritDrama): </span><span id="date_first_performance">' + data.date_first_performance_brit_display + '</span></div>'}
+                ${'<div class="hanging"><span class="expand">Company of First Production (Annals): </span><span id="company_first_performance_annals_display">' + data.company_first_performance_annals_display + '</span></div>'}
+                ${'<div class="hanging"><span class="expand">Company of First Production (BritDrama): </span><span id="company_first_performance">' + data.company_first_performance_brit_display + '</span></div>'}
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12" style="padding-top:24px;">
+              <div class="record_aws">
+                ${typeof data.total_editions === 'undefined' ? '' : '<div class="hanging"><span class="expand">Total Editions:</span><span id="total_editions"> ' + data.total_editions + '</span></div>'}
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12" style="padding-top:24px;">
+              <div class="record_aws">
+                ${"<div class='hanging'><span class='expand'>Entries in Stationers' Registers: </span><span id='stationer_entries_in_register'>" + data.stationer_entries_in_register + '</span></div>'}
+              </div>
             </div>
           </div>
         </div>
@@ -2442,6 +2540,46 @@ document.querySelectorAll('input[type=radio]').forEach(item => {
 
 // keep the result numbers ascending even when columns are sorted
 table.on('sortComplete', function (e, column, dir) {
+  // In Work View, if sorting by author, apply secondary sort by title
+  let filter = radioHelper();
+  if (filter == 'title' && (column === 'author' || column === 'authors_display')) {
+    // Get the tbody element
+    let tbody = document.querySelector('tbody.list');
+    if (!tbody) return;
+    
+    // Get all list items (excluding header and expanded rows)
+    let listItems = Array.from(tbody.querySelectorAll('tr'));
+    let dataRows = [];
+    
+    // Collect data rows (exclude header and expanded rows)
+    listItems.forEach(function (row) {
+      if (row.children.length > 0 && !row.children[0].classList.contains('sort') && !row.id.includes('-exp')) {
+        let deepId = row.id;
+        if (deepId && item_data && item_data[deepId]) {
+          dataRows.push({
+            row: row,
+            author: (item_data[deepId].authors_display || '').toLowerCase(),
+            title: (item_data[deepId].item_title || '').toLowerCase()
+          });
+        }
+      }
+    });
+    
+    // Sort by author (already sorted by List.js), then by title
+    dataRows.sort(function (a, b) {
+      if (a.author !== b.author) {
+        return a.author.localeCompare(b.author) * (dir === 'asc' ? 1 : -1);
+      }
+      return a.title.localeCompare(b.title) * (dir === 'asc' ? 1 : -1);
+    });
+    
+    // Reorder rows in DOM
+    dataRows.forEach(function (item) {
+      tbody.appendChild(item.row);
+    });
+  }
+  
+  // Update result numbers
   let items = document.querySelectorAll('tr');
   let i = 1;
   items.forEach(function (item) {

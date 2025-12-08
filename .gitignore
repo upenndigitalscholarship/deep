@@ -133,3 +133,7 @@ dmypy.json
 .pyre/
 .idea/workspace.xml
 main/assets/img/PlayinCollection.png
+
+#AWS
+deep2.code-workspace
+DEPLOYMENT_GUIDE.md
