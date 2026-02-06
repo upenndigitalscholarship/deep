@@ -623,7 +623,7 @@ function addANDBlock() {
         <option value="date-first-performance-brit-filter">Date of First Production (BritDrama)</option>
         <option value="first-edition">Date of First Edition</option>
         <option value="format">Format</option>
-        <option value="entered-in-sr">Entered in SR</option>
+        <option value="entered-in-sr">Entered in Stationers' Registers</option>
         <option value="book_edition">Book edition number</option>
         <option value="play_edition">Play edition number</option>
         <option value="greg_number">Greg Number</option>
@@ -751,7 +751,7 @@ function addORBlock() {
         <option value="date-first-performance-brit-filter">Date of First Production (BritDrama)</option>
         <option value="first-edition">Date of First Edition</option>
         <option value="format">Format</option>
-        <option value="entered-in-sr">Entered in SR</option>
+        <option value="entered-in-sr">Entered in Stationers' Registers</option>
         <option value="book_edition">Book edition number</option>
         <option value="play_edition">Play edition number</option>
         <option value="greg_number">Greg Number</option>
@@ -808,7 +808,7 @@ function addORBlock() {
         <option value="date-first-performance-brit-filter">Date of First Production (BritDrama)</option>
         <option value="first-edition">Date of First Edition</option>
         <option value="format">Format</option>
-        <option value="entered-in-sr">Entered in SR</option>
+        <option value="entered-in-sr">Entered in Stationers' Registers</option>
         <option value="book_edition">Book edition number</option>
         <option value="play_edition">Play edition number</option>
         <option value="greg_number">Greg Number</option>
@@ -2388,11 +2388,6 @@ function expand(e, deep_id) {
         <div class="card-body">
           <div class="row">
             <div class="col-5">
-              ${edition_links}
-            </div>
-          </div>
-          <div class="row" style="padding-top:24px;">
-            <div class="col-5">
               <strong>Reference Information</strong>
             </div>
           </div>
@@ -2403,7 +2398,7 @@ function expand(e, deep_id) {
                 ${'<div class="hanging spacing"><span class="expand">BritDrama #: </span><span id="brit_drama_number">' + data.brit_drama_number + '</span></div>'}
               </div>
             </div>
-            <div class="col-7 spacing">
+            <div class="col-7">
               <div class="record_aws">
                 ${!data.play_type_display ? '' : '<div class="hanging"><span class="expand">Play Type: </span><span id="play_type">' + data.play_type_display + '</span></div>'}
                 ${!data.genre_annals_filter ? '' : '<div class="hanging"><span class="expand">Genre (Annals): </span><span id="genre">' + data.genre_annals_display + '</span></div>'}
@@ -2427,14 +2422,33 @@ function expand(e, deep_id) {
             </div>
           </div>
           <div class="row">
-            <div class="col-12" style="padding-top:24px;">
+            <div class="col-12">
               <div class="record_aws">
                 ${typeof data.total_editions === 'undefined' ? '' : '<div class="hanging"><span class="expand">Total Editions:</span><span id="total_editions"> ' + data.total_editions + '</span></div>'}
               </div>
             </div>
           </div>
+        </div>
+      </div>
+
+      <div class="card" style="width: 100%; margin-top:2px;">
+        <div class="card-body">
           <div class="row">
-            <div class="col-12" style="padding-top:24px;">
+            <div class="col-12">
+              <strong>Editions</strong>
+              <div class="record_aws">
+                <div>${edition_links}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card" style="width: 100%; margin-top:2px;">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-12">
+              <strong>Stationer Information</strong>
               <div class="record_aws">
                 ${"<div class='hanging'><span class='expand'>Entries in Stationers' Registers: </span><span id='stationer_entries_in_register'>" + data.stationer_entries_in_register + '</span></div>'}
               </div>
