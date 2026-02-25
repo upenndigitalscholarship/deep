@@ -653,7 +653,6 @@ section {
   transform: none;
 }
 #search .search-section-container {
-  margin-top: 120px; /* clear fixed header */
   padding-top: 24px;
   padding-bottom: 24px;
 }
@@ -1642,10 +1641,6 @@ section {
 /* Updated Header */
 
 .awwsHeader {
-    position: fixed;
-    top: 0;
-    right: 0;
-    left: 0;
     padding: 20px;
     background-color: #fff;
     z-index: 997;
