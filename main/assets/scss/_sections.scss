@@ -277,10 +277,9 @@ section {
 .services {
 
   .icon-box {
-    padding: 30px;
+    padding: 20px 24px 24px;
     position: relative;
-    overflow: hidden;
-    border-radius: 10px;
+    border-radius: 8px;
     margin: 0 10px 40px 10px;
     background: $white;
     box-shadow: 0 10px 29px 0 rgba(68,88,144,.1);
@@ -322,6 +321,233 @@ section {
     margin-left: 40px;
     line-height: 24px;
     margin-bottom: 0;
+  }
+}
+
+/* Search section: less vertical padding than default section */
+#search .icon-box:hover {
+  transform: none;
+}
+#search.section-bg {
+  padding-top: 24px;
+  padding-bottom: 24px;
+}
+#search .search-section-container {
+  padding-top: 24px;
+  padding-bottom: 24px;
+}
+#search .icon-box {
+  margin-bottom: 28px;
+}
+
+// Brand palette for search panel
+$filter-dark:   #320e40;
+$filter-medium: #beafc4;
+$filter-light:  #e7e1e8;
+
+/*--------------------------------------------------------------
+# Search / Filter Panel
+--------------------------------------------------------------*/
+/* Search section: purple form-check (overrides Bootstrap) for Record Type and Work/Edition/Record — medium purple fill */
+#search .form-check-input {
+  &:focus {
+    border-color: $filter-medium;
+    box-shadow: 0 0 0 0.25rem rgba($filter-medium, 0.35);
+  }
+  &:checked {
+    background-color: $filter-medium;
+    border-color: $filter-medium;
+  }
+  &:checked[type="checkbox"] {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3e%3cpath fill='none' stroke='%23320e40' stroke-linecap='round' stroke-linejoin='round' stroke-width='3' d='M6 10l3 3l6-6'/%3e%3c/svg%3e");
+  }
+  &:checked[type="radio"] {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='2' fill='%23320e40'/%3e%3c/svg%3e");
+  }
+  &[type="checkbox"]:indeterminate {
+    background-color: $filter-medium;
+    border-color: $filter-medium;
+  }
+}
+
+#advancedSearch {
+  font-family: $font-primary;
+  font-size: 1.05rem;
+
+  /* Align Record Type row with filter block content (same left indent as .input-group-md padding) */
+  > .input-group.mb-3 {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.75rem 1.25rem;
+    padding-left: 14px;
+    padding-bottom: 14px;
+    margin-bottom: 16px !important;
+    border-bottom: 1px solid $filter-medium;
+
+    > span {
+      font-weight: 600;
+      color: $filter-dark;
+      font-size: 1.1rem;
+      white-space: nowrap;
+      margin-right: 0.25rem;
+    }
+
+    > .record-type-chip {
+      margin-right: 0;
+      padding: 6px 12px;
+      padding-left: 12px;
+      background: transparent;
+      border-radius: 6px;
+      border: none;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      min-height: auto;
+      &:hover {
+        background: $filter-light;
+      }
+      .form-check-input {
+        float: none;
+        margin-left: 0;
+        margin-top: 0;
+        margin-right: 0;
+        accent-color: $filter-medium;
+        cursor: pointer;
+        flex-shrink: 0;
+        border: none;
+      }
+      .record-type-chip-content {
+        display: flex;
+        align-items: center;
+        gap: 0.25rem;
+      }
+    }
+  }
+  .record-type-icon {
+    height: 24px;
+    width: auto;
+    vertical-align: middle;
+  }
+
+  /* Align Add Filter row with filter block content */
+  .add-filter-row {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding-left: 14px;
+    margin-top: 20px;
+  }
+
+  .add-filter-row > span {
+    display: inline-block;
+    font-size: 1.1rem;
+    color: $filter-dark;
+    font-weight: 500;
+    margin-top: 0;
+  }
+
+  .add-filter-row > .btn-group.mb-2 {
+    margin-bottom: 0 !important;
+  }
+  .add-filter-row > .btn-group.mb-2 .btn {
+    font-size: 1rem;
+    padding: 5px 14px;
+    border-color: $filter-medium;
+    color: $filter-dark;
+    &:hover {
+      background: $filter-dark;
+      border-color: $filter-dark;
+      color: $white;
+    }
+  }
+}
+
+#filterBlocks {
+  margin-bottom: 12px;
+
+  /* Filter block: very subtle #e6e4d5 tint, soft border + shadow (lifted card) */
+  .input-group-md {
+    background: rgba(230, 228, 213, 0.45);
+    border: 1px solid #cfc9d4;
+    border-radius: 6px;
+    box-shadow: 0 2px 6px rgba($filter-dark, 0.12);
+    padding: 10px 14px;
+    margin-bottom: 8px;
+
+    // Hidden inputs must not take layout space
+    .d-none,
+    .invisible {
+      display: none !important;
+    }
+    [id^="spacer"] {
+      height: 0;
+      margin: 0;
+      overflow: hidden;
+      padding: 0;
+    }
+    // Only visible controls get block layout
+    > div:not(.btn-group) {
+      > select:not(.d-none):not(.invisible),
+      > input[type="text"],
+      > .input-group:not(.d-none) {
+        display: block;
+        width: 100%;
+        margin-bottom: 6px;
+        &:last-child { margin-bottom: 0; }
+      }
+
+      /* Date and number range: label + inputs on one line (Year Published, Number of Leaves) */
+      > [id^="date-input-"]:not(.d-none),
+      > [id^="range-input-"]:not(.d-none) {
+        display: flex !important;
+        flex-wrap: nowrap;
+        align-items: center;
+        gap: 0;
+        width: auto;
+        max-width: 100%;
+        .input-group-text {
+          display: inline-block;
+          flex-shrink: 0;
+          width: auto;
+        }
+        .form-control {
+          max-width: 6rem;
+          display: inline-block;
+        }
+      }
+
+      // "or" label between the two halves of an OR block
+      > label.btn {
+        display: block;
+        width: auto;
+        margin: 8px 0;
+        padding: 2px 10px;
+        font-size: 0.8rem;
+        font-weight: 600;
+        color: $filter-dark;
+        border: 1px solid $filter-medium;
+        border-radius: 4px;
+        background: $white;
+      }
+    }
+
+    // and/remove button row on subsequent filter blocks
+    > .btn-group {
+      margin-bottom: 8px;
+    }
+
+    .btn {
+      border-color: $filter-medium;
+      color: $filter-dark;
+      font-size: 0.8rem;
+      &:hover {
+        background: $filter-dark;
+        border-color: $filter-dark;
+        color: $white;
+      }
+    }
   }
 }
 

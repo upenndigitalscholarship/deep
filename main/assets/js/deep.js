@@ -54,11 +54,39 @@ let groupBy = function (xs, key) {
 // In the search interface, there are three types of input field. Some are text entry search field. These allow filtering 
 // based on string matching.  Date fields allow the entry of a four-digit start and end year number. Choice fields
 // allow search and selection from a dropdown of valid choices.
-let search_fields = ['deep-id', 'title', 'title-page-modern', 'errata', 'title-page-old', 'argument', 'toreader', 'charachter-list', 'commendatory-verses', 'explicit', 'dedication', 'other-paratexts', 'actor-list', 'authororial-status', 'greg_number', 'stc_or_wing', 'brit-drama-number']
+let search_fields = ['all-text', 'deep-id', 'title', 'title-page-modern', 'errata', 'title-page-old', 'argument', 'toreader', 'charachter-list', 'commendatory-verses', 'explicit', 'dedication', 'other-paratexts', 'actor-list', 'authororial-status', 'greg_number', 'stc_or_wing', 'brit-drama-number']
 
 let date_fields = ['first-production', 'first-edition', 'year-published', 'date-first-performance-brit-filter']
 
+let number_range_fields = ['leaves']
+
 let choice_fields = ['book_edition', 'play_edition', 'imprintlocation', 'stationer', 'printer', 'publisher', 'bookseller', 'latinontitle', 'paratextual', 'company_first-performance-brit-filter', 'title-page-author', 'illustration', 'author', 'authorial-status', 'company-first-performance', 'company', 'theater', 'playtype', 'genre', 'genreplaybook', 'blackletter', 'format', 'genre-brit-filter', 'author_paratext', 'entered-in-sr']
+
+const allTextFields = [
+  'item_title', 'authors_display', 'year', 'item_alternative_keywords',
+  'deep_id', 'greg', 'stc', 'brit_drama_number',
+  'date_first_publication_display', 'book_edition', 'play_edition',
+  'format', 'leaves', 'blackletter', 'record_type',
+  'play_type_display', 'genre_annals_display', 'genre_brit_display',
+  'date_first_performance', 'date_first_performance_brit_display',
+  'company_first_performance_annals_display', 'company_first_performance_brit_display',
+  'title_page_company_display',
+  'title_page_title', 'title_page_modern_spelling', 'title_page_author',
+  'title_page_performance', 'title_page_latin_motto',
+  'title_page_illustration', 'title_page_imprint', 'title_page_colophon',
+  'paratext_dedication', 'paratext_commendatory_verses',
+  'paratext_to_the_reader', 'paratext_argument',
+  'paratext_charachter_list', 'paratext_actor_list',
+  'paratext_explicit', 'paratext_errata', 'paratext_other_paratexts',
+  'stationer_colophon', 'stationer_printer_display',
+  'stationer_publisher_display', 'stationer_bookseller_display',
+  'stationer_imprint_location', 'stationer_license',
+  'stationer_entries_in_register', 'stationer_additional_notes'
+]
+
+const allTextSentinels = ['none', 'not in annals', 'not in britdrama']
+
+const stripHtml = str => str.replace(/<[^>]*>/g, '')
 
 
 
@@ -70,6 +98,8 @@ const update_searchSelect = (searchSelect, or = false) => {
   searchField.value = '';
   this_years = document.getElementById(searchSelect.id.replace('searchSelect', 'date-input'))
   this_years.classList.add('invisible')
+  this_range = document.getElementById(searchSelect.id.replace('searchSelect', 'range-input'))
+  this_range.classList.add('d-none')
 
   //reset result count, clear table
   rC = document.getElementById("resultCount")
@@ -110,6 +140,13 @@ const update_searchSelect = (searchSelect, or = false) => {
   if (date_fields.indexOf(filter) > -1) {
     searchField.style.display = "none";
     this_years.classList.remove('invisible')
+    choicesSelect.classList.add('d-none')
+  }
+
+  // number range fields
+  if (number_range_fields.indexOf(filter) > -1) {
+    searchField.style.display = "none";
+    this_range.classList.remove('d-none')
     choicesSelect.classList.add('d-none')
   }
 
@@ -518,6 +555,11 @@ const getQueries = () => {
         let end = block.children[1].children[5].children[3].value
         query.push({ "searchField": searchField, "searchValue": start + '-' + end, "blockType": blockType })
       }
+      if (number_range_fields.indexOf(searchField) > -1) {
+        let from = block.children[1].children[6].children[1].value
+        let to = block.children[1].children[6].children[3].value
+        query.push({ "searchField": searchField, "searchValue": from + '-' + to, "blockType": blockType })
+      }
       if (choice_fields.indexOf(searchField) > -1) {
         // choice field
         let searchValue = block.children[1].children[2].outerText.split('\n')[0] //TODO better way to access selected value
@@ -539,22 +581,32 @@ const getQueries = () => {
         let end = block.children[1].children[5].children[3].value
         searchValue1 = start + '-' + end
       }
+      if (number_range_fields.indexOf(searchField1) > -1) {
+        let from = block.children[1].children[6].children[1].value
+        let to = block.children[1].children[6].children[3].value
+        searchValue1 = from + '-' + to
+      }
       if (choice_fields.indexOf(searchField1) > -1) {
         searchValue1 = block.children[1].children[2].outerText.split('\n')[0] //TODO better way to access selected value
 
       }
       // second block
-      let searchField2 = block.children[1].children[7].value
+      let searchField2 = block.children[1].children[8].value
       if (search_fields.indexOf(searchField2) > -1) {
-        searchValue2 = block.children[1].children[8].value
+        searchValue2 = block.children[1].children[9].value
       }
       if (date_fields.indexOf(searchField2) > -1) {
-        let start = block.children[1].children[12].children[1].value
-        let end = block.children[1].children[12].children[3].value
+        let start = block.children[1].children[13].children[1].value
+        let end = block.children[1].children[13].children[3].value
         searchValue2 = start + '-' + end
       }
+      if (number_range_fields.indexOf(searchField2) > -1) {
+        let from = block.children[1].children[14].children[1].value
+        let to = block.children[1].children[14].children[3].value
+        searchValue2 = from + '-' + to
+      }
       if (choice_fields.indexOf(searchField2) > -1) {
-        searchValue2 = block.children[1].children[9].outerText.split('\n')[0] //TODO better way to access selected value
+        searchValue2 = block.children[1].children[10].outerText.split('\n')[0] //TODO better way to access selected value
       }
       query.push({ "searchField": searchField1 + '||' + searchField2, "searchValue": searchValue1 + '||' + searchValue2, "blockType": blockType })
 
@@ -595,6 +647,7 @@ function addANDBlock() {
         <option value="">Please select...</option>
         <option value="deep-id">DEEP #</option>
         <option value="brit-drama-number">BritDrama #</option>
+        <option value="all-text">All Text in Record</option>
         <option value="title" selected>Title</option>
         <option value="title-page-modern">All Title-Page Text (modern spelling)</option>
         <option value="title-page-old">All Title-Page Text (old spelling)</option>  
@@ -623,6 +676,7 @@ function addANDBlock() {
         <option value="date-first-performance-brit-filter">Date of First Production (BritDrama)</option>
         <option value="first-edition">Date of First Edition</option>
         <option value="format">Format</option>
+        <option value="leaves">Number of Leaves</option>
         <option value="entered-in-sr">Entered in Stationers' Registers</option>
         <option value="book_edition">Book edition number</option>
         <option value="play_edition">Play edition number</option>
@@ -632,7 +686,7 @@ function addANDBlock() {
 
       </select>
       <input id="advancedSearchField-${selectID}" type="text" class="form-control" aria-label="advancedSearchField" aria-describedby="advancedSearchField">
-      <select id="choicesSelect-${selectID}" style="display: hide;" class="form-control"></select>
+      <select id="choicesSelect-${selectID}" style="display: none;" class="form-control"></select>
         
       <style>.noUi-connect {
         background: #0e0076;
@@ -643,6 +697,12 @@ function addANDBlock() {
         <input type="number" aria-label="start-date" placeholder="${min_year}" pattern="\d{4}"  maxlength="4" class="form-control"></input>
         <span class="input-group-text">End:</span>
         <input type="number" aria-label="end-date" placeholder="${max_year}" pattern="\d{4}"  maxlength="4" class="form-control"></input>
+      </div>
+      <div id="range-input-${selectID}" class="input-group d-none">
+        <span class="input-group-text">From:</span>
+        <input type="number" aria-label="range-from" placeholder="" min="0" class="form-control">
+        <span class="input-group-text">To:</span>
+        <input type="number" aria-label="range-to" placeholder="" min="0" class="form-control">
       </div></div>`
 
 
@@ -690,6 +750,16 @@ function addANDBlock() {
     search();
   });
 
+  let rangeFromSelect = newBlock.children[1].children[6].children[1]
+  rangeFromSelect.addEventListener('keyup', (event) => {
+    search();
+  });
+
+  let rangeToSelect = newBlock.children[1].children[6].children[3]
+  rangeToSelect.addEventListener('keyup', (event) => {
+    search();
+  });
+
   let typeName = newBlock.children[0].children[1];
 
   newBlock.dataset.type = "AND"
@@ -723,6 +793,7 @@ function addORBlock() {
         <option value="">Please select...</option>
         <option value="deep-id">DEEP #</option>
         <option value="brit-drama-number">BritDrama #</option>
+        <option value="all-text">All Text in Record</option>
         <option value="title" selected>Title</option>
         <option value="title-page-modern">All Title-Page Text (modern spelling)</option>
         <option value="title-page-old">All Title-Page Text (old spelling)</option>  
@@ -751,6 +822,7 @@ function addORBlock() {
         <option value="date-first-performance-brit-filter">Date of First Production (BritDrama)</option>
         <option value="first-edition">Date of First Edition</option>
         <option value="format">Format</option>
+        <option value="leaves">Number of Leaves</option>
         <option value="entered-in-sr">Entered in Stationers' Registers</option>
         <option value="book_edition">Book edition number</option>
         <option value="play_edition">Play edition number</option>
@@ -760,7 +832,7 @@ function addORBlock() {
         
       </select>
       <input id="advancedSearchField-${selectID1}" type="text" class="form-control" aria-label="advancedSearchField" aria-describedby="advancedSearchField">
-      <select id="choicesSelect-${selectID1}" style="display: hide;" class="form-control"></select>
+      <select id="choicesSelect-${selectID1}" style="display: none;" class="form-control"></select>
         
       <style>.noUi-connect {
         background: #0e0076;
@@ -772,6 +844,12 @@ function addORBlock() {
         <span class="input-group-text">End:</span>
         <input type="number" aria-label="end-date" value="${max_year}" pattern="\d{4}"  maxlength="4" class="form-control"></input>
       </div>
+      <div id="range-input-${selectID1}" class="input-group d-none">
+        <span class="input-group-text">From:</span>
+        <input type="number" aria-label="range-from" placeholder="" min="0" class="form-control">
+        <span class="input-group-text">To:</span>
+        <input type="number" aria-label="range-to" placeholder="" min="0" class="form-control">
+      </div>
       
       <label class="btn btn-sm  " for="addAND">or</label> 
                  
@@ -780,6 +858,7 @@ function addORBlock() {
         <option value="">Please select...</option>
         <option value="deep-id">DEEP #</option>
         <option value="brit-drama-number">BritDrama #</option>
+        <option value="all-text">All Text in Record</option>
         <option value="title" selected>Title</option>
         <option value="title-page-modern">All Title-Page Text (modern spelling)</option>
         <option value="title-page-old">All Title-Page Text (old spelling)</option>  
@@ -808,6 +887,7 @@ function addORBlock() {
         <option value="date-first-performance-brit-filter">Date of First Production (BritDrama)</option>
         <option value="first-edition">Date of First Edition</option>
         <option value="format">Format</option>
+        <option value="leaves">Number of Leaves</option>
         <option value="entered-in-sr">Entered in Stationers' Registers</option>
         <option value="book_edition">Book edition number</option>
         <option value="play_edition">Play edition number</option>
@@ -817,7 +897,7 @@ function addORBlock() {
        
       </select>
       <input id="advancedSearchField-${selectID2}" type="text" class="form-control" aria-label="advancedSearchField" aria-describedby="advancedSearchField">
-      <select id="choicesSelect-${selectID2}" style="display: hide;" class="form-control"></select>
+      <select id="choicesSelect-${selectID2}" style="display: none;" class="form-control"></select>
         
       <style>.noUi-connect {
         background: #0e0076;
@@ -828,6 +908,12 @@ function addORBlock() {
         <input type="number" aria-label="start-date" value="${min_year}" pattern="\d{4}"  maxlength="4" class="form-control"></input>
         <span class="input-group-text">End:</span>
         <input type="number" aria-label="end-date" value="${max_year}" pattern="\d{4}"  maxlength="4" class="form-control"></input>
+      </div>
+      <div id="range-input-${selectID2}" class="input-group d-none">
+        <span class="input-group-text">From:</span>
+        <input type="number" aria-label="range-from" placeholder="" min="0" class="form-control">
+        <span class="input-group-text">To:</span>
+        <input type="number" aria-label="range-to" placeholder="" min="0" class="form-control">
       </div></div>`
 
 
@@ -881,30 +967,50 @@ function addORBlock() {
     search();
   });
 
+  let rangeFromSelect1 = newBlock.children[1].children[6].children[1]
+  rangeFromSelect1.addEventListener('keyup', (event) => {
+    search();
+  });
+
+  let rangeToSelect1 = newBlock.children[1].children[6].children[3]
+  rangeToSelect1.addEventListener('keyup', (event) => {
+    search();
+  });
+
   // Second input
-  let searchSelect2 = newBlock.children[1].children[7]
+  let searchSelect2 = newBlock.children[1].children[8]
   update_searchSelect(searchSelect2, or = true);
   searchSelect2.addEventListener('change', (event) => {
     update_searchSelect(searchSelect2, or = true);
   })
 
-  let thisSearchField2 = newBlock.children[1].children[8]
+  let thisSearchField2 = newBlock.children[1].children[9]
   thisSearchField2.addEventListener('keyup', (event) => {
     search();
   });
 
-  let thisChoicesSelect2 = newBlock.children[1].children[9]
+  let thisChoicesSelect2 = newBlock.children[1].children[10]
   thisChoicesSelect2.addEventListener('change', (event) => {
     search();
   });
 
-  let beginDateSelect2 = newBlock.children[1].children[12].children[1]
+  let beginDateSelect2 = newBlock.children[1].children[13].children[1]
   beginDateSelect2.addEventListener('keyup', (event) => {
     search();
   });
 
-  let endDateSelect2 = newBlock.children[1].children[12].children[3]
+  let endDateSelect2 = newBlock.children[1].children[13].children[3]
   endDateSelect2.addEventListener('keyup', (event) => {
+    search();
+  });
+
+  let rangeFromSelect2 = newBlock.children[1].children[14].children[1]
+  rangeFromSelect2.addEventListener('keyup', (event) => {
+    search();
+  });
+
+  let rangeToSelect2 = newBlock.children[1].children[14].children[3]
+  rangeToSelect2.addEventListener('keyup', (event) => {
     search();
   });
 
@@ -963,6 +1069,20 @@ const processQueries = queries => {
   for (i in queries) {
     let query = queries[i]
     if (query.blockType == 'AND') {
+      if (query.searchField == 'all-text') {
+        let searchVal = query.searchValue.toLowerCase()
+        let allText = item => {
+          for (let f of allTextFields) {
+            let val = String(item[f] || '')
+            if (!val) continue
+            val = stripHtml(val).toLowerCase()
+            if (allTextSentinels.includes(val)) continue
+            if (val.includes(searchVal)) return true
+          }
+          return false
+        }
+        filters.push({ 'filter': allText, 'type': query.blockType })
+      }
       if (query.searchField == 'genreplaybook') {
         if (query.searchValue == "Any") {
           let genreplaybook = item => (
@@ -1022,10 +1142,11 @@ const processQueries = queries => {
 
       }
       if (query.searchField == 'stationer') {
+        let searchVal = query.searchValue.toLowerCase();
         let stationer = item => (
-          item.stationer_printer_filter.toLowerCase().includes(query.searchValue.toLowerCase()) ||
-          item.stationer_publisher_filter.toLowerCase().includes(query.searchValue.toLowerCase()) ||
-          item.stationer_bookseller_filter.toLowerCase().includes(query.searchValue.toLowerCase())
+          item.stationer_printer_filter.split(';').some(n => n.trim().toLowerCase() === searchVal) ||
+          item.stationer_publisher_filter.split(';').some(n => n.trim().toLowerCase() === searchVal) ||
+          item.stationer_bookseller_filter.split(';').some(n => n.trim().toLowerCase() === searchVal)
         )
         filters.push({ 'filter': stationer, 'type': query.blockType })
       }
@@ -1365,20 +1486,23 @@ const processQueries = queries => {
         }
       }
       if (query.searchField == 'printer') {
+        let searchVal = query.searchValue.toLowerCase();
         let printer = item => (
-          item.stationer_printer_filter.toLowerCase().includes(query.searchValue.toLowerCase())
+          item.stationer_printer_filter.split(';').some(n => n.trim().toLowerCase() === searchVal)
         )
         filters.push({ 'filter': printer, 'type': query.blockType })
       }
       if (query.searchField == 'publisher') {
+        let searchVal = query.searchValue.toLowerCase();
         let publisher = item => (
-          item.stationer_publisher_filter.toLowerCase().includes(query.searchValue.toLowerCase())
+          item.stationer_publisher_filter.split(';').some(n => n.trim().toLowerCase() === searchVal)
         )
         filters.push({ 'filter': publisher, 'type': query.blockType })
       }
       if (query.searchField == 'bookseller') {
+        let searchVal = query.searchValue.toLowerCase();
         let bookseller = item => (
-          item.stationer_bookseller_filter.toLowerCase().includes(query.searchValue.toLowerCase())
+          item.stationer_bookseller_filter.split(';').some(n => n.trim().toLowerCase() === searchVal)
         )
         filters.push({ 'filter': bookseller, 'type': query.blockType })
       }
@@ -1465,6 +1589,18 @@ const processQueries = queries => {
         )
         filters.push({ 'filter': yearPublished, 'type': query.blockType })
       }
+      if (query.searchField == 'leaves') {
+        let [from, to] = query.searchValue.split('-')
+        let leavesFilter = item => {
+          let val = parseInt(item.leaves)
+          if (isNaN(val)) return false
+          if (from && to) return val >= parseInt(from) && val <= parseInt(to)
+          if (from) return val >= parseInt(from)
+          if (to) return val <= parseInt(to)
+          return true
+        }
+        filters.push({ 'filter': leavesFilter, 'type': query.blockType })
+      }
       if (query.searchField == 'first-production') {
         let [start, end] = query.searchValue.split('-')
         let firstProduction = item => (
@@ -1495,6 +1631,20 @@ const processQueries = queries => {
       let values = query.searchValue.split('||')
       let ORquery = []
       for (let i = 0; i < fields.length; i++) {
+        if (fields[i] == 'all-text' && !values[i] == '') {
+          let searchVal = values[i].toLowerCase()
+          let allText = item => {
+            for (let f of allTextFields) {
+              let val = String(item[f] || '')
+              if (!val) continue
+              val = stripHtml(val).toLowerCase()
+              if (allTextSentinels.includes(val)) continue
+              if (val.includes(searchVal)) return true
+            }
+            return false
+          }
+          ORquery.push(allText)
+        }
         if (fields[i] == 'title' && !values[i] == '') {
           let title = item => (
             item.item_title.toLowerCase().includes(values[i].toLowerCase()) ||
@@ -1939,6 +2089,18 @@ const processQueries = queries => {
           )
           ORquery.push(yearPublished)
         }
+        if (fields[i] == 'leaves' && values[i]) {
+          let [from, to] = values[i].split('-')
+          let leavesFilter = item => {
+            let val = parseInt(item.leaves)
+            if (isNaN(val)) return false
+            if (from && to) return val >= parseInt(from) && val <= parseInt(to)
+            if (from) return val >= parseInt(from)
+            if (to) return val <= parseInt(to)
+            return true
+          }
+          ORquery.push(leavesFilter)
+        }
         if (fields[i] == 'first-production' && values[i]) {
           let [start, end] = values[i].split('-')
           let firstProduction = item => (
@@ -2249,7 +2411,7 @@ function expand(e, deep_id) {
             <div class="col-5">
               <div class="record_aws">
                 ${!data.deep_id ? '' : '<div class="hanging"><span class="expand">DEEP #: </span><span id="deep_id"><a target="_blank" href="/' + data.deep_id + '">' + data.deep_id + '</a></span></div>'}
-                ${!data.greg_full ? '' : '<div class="hanging"><span class="expand">Greg #: </span><span id="greg_full">' + data.greg_full + '</span></div>'}
+                ${(!data.greg || data.greg === 'None') ? '' : '<div class="hanging"><span class="expand">Greg #: </span><span id="greg">' + data.greg + '</span></div>'}
                 ${!data.stc ? '' : '<div class="hanging"><span class="expand">STC/WING #: </span><span id="stc"> ' + data.stc + '</span></div>'}
                 ${'<div class="hanging spacing"><span class="expand">BritDrama #: </span><span id="deep_id">' + data.brit_drama_number + '</span></div>'}
                 ${!data.date_first_publication ? '' : '<div class="hanging"><span class="expand">Date of First Publication: </span><span id="date_first_publication">' + data.date_first_publication_display + '</span></div>'}
@@ -2394,7 +2556,7 @@ function expand(e, deep_id) {
           <div class="row">
             <div class="col-5">
               <div class="record_aws">
-                ${!data.greg_full ? '' : '<div class="hanging"><span class="expand">Greg #: </span><span id="greg_full">' + data.greg_full + '</span></div>'}
+                ${(!data.greg || data.greg === 'None') ? '' : '<div class="hanging"><span class="expand">Greg #: </span><span id="greg">' + data.greg + '</span></div>'}
                 ${'<div class="hanging spacing"><span class="expand">BritDrama #: </span><span id="brit_drama_number">' + data.brit_drama_number + '</span></div>'}
               </div>
             </div>
