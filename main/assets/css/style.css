@@ -608,9 +608,9 @@ section {
 # Services
 --------------------------------------------------------------*/
 .services .icon-box {
+  padding: 20px 24px 24px;
   position: relative;
-  /* overflow: hidden; */
-  border-radius: 5px;
+  border-radius: 8px;
   margin: 0 10px 40px 10px;
   background: #fff;
   box-shadow: 0 10px 29px 0 rgba(68, 88, 144, 0.1);
@@ -646,6 +646,219 @@ section {
   margin-left: 40px;
   line-height: 24px;
   margin-bottom: 0;
+}
+
+/* Search section: reduce vertical space (no forced min-height) */
+#search .icon-box:hover {
+  transform: none;
+}
+#search .search-section-container {
+  margin-top: 120px; /* clear fixed header */
+  padding-top: 24px;
+  padding-bottom: 24px;
+}
+#search.section-bg {
+  padding-top: 24px;
+  padding-bottom: 24px;
+}
+#search .icon-box {
+  margin-bottom: 28px;
+}
+
+/*--------------------------------------------------------------
+# Search / Filter Panel
+--------------------------------------------------------------*/
+#advancedSearch {
+  font-family: "Dosis", sans-serif;
+  font-size: 1.05rem;
+}
+/* Align Record Type row with filter block content (same left indent as .input-group-md padding) */
+#advancedSearch > .input-group.mb-3 {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem 1.25rem;
+  padding-left: 14px;
+  padding-bottom: 14px;
+  margin-bottom: 16px !important;
+  border-bottom: 1px solid #beafc4;
+}
+#advancedSearch > .input-group.mb-3 > span {
+  font-weight: 600;
+  color: #320e40;
+  font-size: 1.1rem;
+  white-space: nowrap;
+  margin-right: 0.25rem;
+}
+/* Search section: purple form-check (overrides Bootstrap blue) for Record Type and Work/Edition/Record */
+#search .form-check-input:focus {
+  border-color: #beafc4;
+  box-shadow: 0 0 0 0.25rem rgba(190, 175, 196, 0.35);
+}
+#search .form-check-input:checked {
+  background-color: #beafc4;
+  border-color: #beafc4;
+}
+#search .form-check-input:checked[type=checkbox] {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3e%3cpath fill='none' stroke='%23320e40' stroke-linecap='round' stroke-linejoin='round' stroke-width='3' d='M6 10l3 3l6-6'/%3e%3c/svg%3e");
+}
+#search .form-check-input:checked[type=radio] {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='2' fill='%23320e40'/%3e%3c/svg%3e");
+}
+#search .form-check-input[type=checkbox]:indeterminate {
+  background-color: #beafc4;
+  border-color: #beafc4;
+}
+/* Record type chips: keep checkbox inside chip (override Bootstrap float + margin) */
+#advancedSearch > .input-group.mb-3 > .record-type-chip {
+  margin-right: 0;
+  padding: 6px 12px;
+  padding-left: 12px;
+  background: transparent;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  min-height: auto;
+}
+#advancedSearch > .input-group.mb-3 > .record-type-chip .form-check-input {
+  float: none;
+  margin-left: 0;
+  margin-top: 0;
+  margin-right: 0;
+  accent-color: #beafc4;
+  cursor: pointer;
+  flex-shrink: 0;
+  border: none;
+}
+#advancedSearch > .input-group.mb-3 > .record-type-chip:hover {
+  background: #e7e1e8;
+}
+#advancedSearch > .input-group.mb-3 > .record-type-chip .record-type-chip-content {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+#advancedSearch .record-type-icon {
+  height: 24px;
+  width: auto;
+  vertical-align: middle;
+}
+#filterBlocks {
+  margin-bottom: 12px;
+}
+/* Filter block: very subtle #e6e4d5 tint, soft border + shadow (lifted card) */
+#filterBlocks .input-group-md {
+  background: rgba(230, 228, 213, 0.45);
+  border: 1px solid #cfc9d4;
+  border-radius: 6px;
+  box-shadow: 0 2px 6px rgba(50, 14, 64, 0.12);
+  padding: 10px 14px;
+  margin-bottom: 8px;
+}
+/* Hidden filter inputs must not take layout space (override .invisible and ensure .d-none wins) */
+#filterBlocks .input-group-md .d-none,
+#filterBlocks .input-group-md .invisible {
+  display: none !important;
+}
+/* Spacer div in filter block: no height so hidden inputs don't leave gap */
+#filterBlocks .input-group-md [id^="spacer"] {
+  height: 0;
+  margin: 0;
+  overflow: hidden;
+  padding: 0;
+}
+/* Let filter controls stack naturally — only visible inputs get layout */
+#filterBlocks .input-group-md > div:not(.btn-group) > select:not(.d-none):not(.invisible),
+#filterBlocks .input-group-md > div:not(.btn-group) > input[type="text"],
+#filterBlocks .input-group-md > div:not(.btn-group) > .input-group:not(.d-none) {
+  display: block;
+  width: 100%;
+  margin-bottom: 6px;
+}
+#filterBlocks .input-group-md > div:not(.btn-group) > select:not(.d-none):not(.invisible):last-child,
+#filterBlocks .input-group-md > div:not(.btn-group) > input[type="text"]:last-child,
+#filterBlocks .input-group-md > div:not(.btn-group) > .input-group:not(.d-none):last-child {
+  margin-bottom: 0;
+}
+/* Date and number range: label + inputs on one line (Year Published, Number of Leaves) */
+#filterBlocks .input-group-md > div:not(.btn-group) > [id^="date-input-"]:not(.d-none),
+#filterBlocks .input-group-md > div:not(.btn-group) > [id^="range-input-"]:not(.d-none) {
+  display: flex !important;
+  flex-wrap: nowrap;
+  align-items: center;
+  gap: 0;
+  width: auto;
+  max-width: 100%;
+}
+#filterBlocks .input-group-md [id^="date-input-"] .input-group-text,
+#filterBlocks .input-group-md [id^="range-input-"] .input-group-text {
+  display: inline-block;
+  flex-shrink: 0;
+  width: auto;
+}
+#filterBlocks .input-group-md [id^="date-input-"] .form-control,
+#filterBlocks .input-group-md [id^="range-input-"] .form-control {
+  max-width: 6rem;
+  display: inline-block;
+}
+/* "or" label between the two halves of an OR block */
+#filterBlocks .input-group-md > div > label.btn {
+  display: block;
+  width: auto;
+  margin: 8px 0;
+  padding: 2px 10px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #320e40;
+  border: 1px solid #beafc4;
+  border-radius: 4px;
+  background: #fff;
+}
+/* and/remove buttons row on subsequent filter blocks */
+#filterBlocks .input-group-md > .btn-group {
+  margin-bottom: 8px;
+}
+#filterBlocks .input-group-md .btn {
+  border-color: #beafc4;
+  color: #320e40;
+  font-size: 0.8rem;
+}
+#filterBlocks .input-group-md .btn:hover {
+  background: #320e40;
+  border-color: #320e40;
+  color: #fff;
+}
+/* Align Add Filter row with filter block content */
+#advancedSearch .add-filter-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding-left: 14px;
+  margin-top: 20px;
+}
+#advancedSearch .add-filter-row > span {
+  display: inline-block;
+  font-size: 1.1rem;
+  color: #320e40;
+  font-weight: 500;
+  margin-top: 0;
+}
+#advancedSearch .add-filter-row > .btn-group.mb-2 {
+  margin-bottom: 0 !important;
+}
+#advancedSearch .add-filter-row > .btn-group.mb-2 .btn {
+  font-size: 1rem;
+  padding: 5px 14px;
+  border-color: #beafc4;
+  color: #320e40;
+}
+#advancedSearch .add-filter-row > .btn-group.mb-2 .btn:hover {
+  background: #320e40;
+  border-color: #320e40;
+  color: #fff;
 }
 
 /*--------------------------------------------------------------
@@ -1429,14 +1642,14 @@ section {
 /* Updated Header */
 
 .awwsHeader {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
     padding: 20px;
     background-color: #fff;
     z-index: 997;
     box-shadow: 0 2px 15px rgba(0, 0, 0, 0.15);
-    /*position: fixed;*/
-    /*top: 0;*/
-    /*right: 0;*/
-    /*left: 0;*/
     max-width: 100vw;
 }
 
