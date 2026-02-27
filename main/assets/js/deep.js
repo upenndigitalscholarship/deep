@@ -1,4 +1,3 @@
-
 // fetch data for all records, item_data is an object that serves as a lookup ex. item_data[330]
 let item_data;
 let item_array;
@@ -59,6 +58,14 @@ let search_fields = ['all-text', 'deep-id', 'title', 'title-page-modern', 'errat
 let date_fields = ['first-production', 'first-edition', 'year-published', 'date-first-performance-brit-filter']
 
 let number_range_fields = ['leaves']
+
+// Parse leaves value: integers stay as-is; "N 1/2" (or similar fraction) rounds up to next integer.
+function parseLeavesRoundUp(str) {
+  if (str == null || str === '') return NaN
+  const s = String(str).trim().replace(/\s+1\/2\s*$/i, '.5')
+  const n = parseFloat(s)
+  return isNaN(n) ? NaN : Math.ceil(n)
+}
 
 let choice_fields = ['book_edition', 'play_edition', 'imprintlocation', 'stationer', 'printer', 'publisher', 'bookseller', 'latinontitle', 'paratextual', 'company_first-performance-brit-filter', 'title-page-author', 'illustration', 'author', 'authorial-status', 'company-first-performance', 'company', 'theater', 'playtype', 'genre', 'genreplaybook', 'blackletter', 'format', 'genre-brit-filter', 'author_paratext', 'entered-in-sr']
 
@@ -1592,7 +1599,7 @@ const processQueries = queries => {
       if (query.searchField == 'leaves') {
         let [from, to] = query.searchValue.split('-')
         let leavesFilter = item => {
-          let val = parseInt(item.leaves)
+          let val = parseLeavesRoundUp(item.leaves)
           if (isNaN(val)) return false
           if (from && to) return val >= parseInt(from) && val <= parseInt(to)
           if (from) return val >= parseInt(from)
@@ -2092,7 +2099,7 @@ const processQueries = queries => {
         if (fields[i] == 'leaves' && values[i]) {
           let [from, to] = values[i].split('-')
           let leavesFilter = item => {
-            let val = parseInt(item.leaves)
+            let val = parseLeavesRoundUp(item.leaves)
             if (isNaN(val)) return false
             if (from && to) return val >= parseInt(from) && val <= parseInt(to)
             if (from) return val >= parseInt(from)

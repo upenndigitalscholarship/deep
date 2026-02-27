@@ -9,7 +9,7 @@
 
 <!-- ======= Search Section ======= -->
 <section id="search" class="services section-bg">
-  <div style="min-height: 600px;" class="container" >
+  <div class="container search-section-container">
     <div id="users">
 
     <div class="row">
@@ -19,23 +19,32 @@
   
           
           
-          <div class="collapse show" style="margin-left:12px" id="advancedSearch">
+          <div class="collapse show" id="advancedSearch">
             
-            <div class="input-group mb-3"> 
-              <span >Record Type:&nbsp;&nbsp;</span> 
-        
-              <div class="form-check form-check-inline">
+            <div class="input-group mb-3">
+              <span>Record Type:&nbsp;&nbsp;</span>
+              
+              <label class="form-check form-check-inline record-type-chip" for="singlePlay">
                 <input class="form-check-input" type="checkbox" id="singlePlay" value="singlePlay" checked>
-                <label class="form-check-label" for="singlePlay">Single-Play Playbooks</label>
-              </div>
-              <div class="form-check form-check-inline">
+                <span class="record-type-chip-content">
+                  <img class="record-type-icon" src="{% static 'img/Single-PlayPlaybook.png' %}" alt="" aria-hidden="true">
+                  <span>Single-Play Playbooks</span>
+                </span>
+              </label>
+              <label class="form-check form-check-inline record-type-chip" for="Collections">
                 <input class="form-check-input" type="checkbox" id="Collections" value="Collections" checked>
-                <label class="form-check-label" for="Collections">Collections</label>
-              </div>
-              <div class="form-check form-check-inline">
+                <span class="record-type-chip-content">
+                  <img class="record-type-icon" src="{% static 'img/Collection.png' %}" alt="" aria-hidden="true">
+                  <span>Collections</span>
+                </span>
+              </label>
+              <label class="form-check form-check-inline record-type-chip" for="PlaysinCollections">
                 <input class="form-check-input" type="checkbox" id="PlaysinCollections" value="PlaysinCollections" checked>
-                <label class="form-check-label" for="PlaysinCollections">Plays in Collection</label>
-              </div>
+                <span class="record-type-chip-content">
+                  <img class="record-type-icon" src="{% static 'img/PlayinCollection.png' %}" alt="" aria-hidden="true">
+                  <span>Plays in Collection</span>
+                </span>
+              </label>
               
             </div>
             
@@ -45,19 +54,17 @@
             
             <!-- filterBlock -->
           </div>
-          <span >Add filter:&nbsp;&nbsp;</span>
-              <div class="btn-group mb-2" role="group" aria-label="Basic radio toggle button group">
-                <!-- Add new filter box 
-                The top box has option to add AND OR
-                Each child has a disabled button with the operator selected, and a remove button
-                 -->
-                <button class="btn btn-outline-dark btn-sm" onclick="addANDBlock()">and</button>
-                <button class="btn btn-outline-dark btn-sm" onclick="addORBlock()">or</button>
-                
-                
-                
-                
-              </div>
+          <div class="add-filter-row" style="padding-left: 14px; margin-top: 20px;">
+            <span>Add Filter:&nbsp;&nbsp;</span>
+            <div class="btn-group mb-2" role="group" aria-label="Basic radio toggle button group">
+              <!-- Add new filter box
+              The top box has option to add AND OR
+              Each child has a disabled button with the operator selected, and a remove button
+               -->
+              <button class="btn btn-outline-dark btn-sm" onclick="addANDBlock()">and</button>
+              <button class="btn btn-outline-dark btn-sm" onclick="addORBlock()">or</button>
+            </div>
+          </div>
           </div>
         </div>
       </div>
