@@ -469,6 +469,9 @@ $filter-light:  #e7e1e8;
 
   /* Filter block: very subtle #e6e4d5 tint, soft border + shadow (lifted card) */
   .input-group-md {
+    [id^="searchSelect-"] {
+      margin-top: 6px;
+    }
     background: rgba(230, 228, 213, 0.45);
     border: 1px solid #cfc9d4;
     border-radius: 6px;
@@ -481,11 +484,18 @@ $filter-light:  #e7e1e8;
     .invisible {
       display: none !important;
     }
-    [id^="spacer"] {
+    // Ensure date/range inputs with .d-none stay collapsed (override display:flex rules)
+    [id^="date-input-"].d-none,
+    [id^="range-input-"].d-none {
+      display: none !important;
+    }
+    [id^="spacer"],
+    .filter-spacer {
       height: 0;
       margin: 0;
       overflow: hidden;
       padding: 0;
+      min-height: 0;
     }
     // Only visible controls get block layout
     > div:not(.btn-group) {
@@ -518,19 +528,47 @@ $filter-light:  #e7e1e8;
         }
       }
 
-      // "or" label between the two halves of an OR block
+      // "or" divider between the two halves of an OR block — clear spacing and visual match to AND
+      > .or-divider {
+        display: block;
+        text-align: center;
+        margin: 14px 0 16px;
+        padding: 6px 14px;
+        font-size: 0.8rem;
+        font-weight: 600;
+        letter-spacing: 0.02em;
+        color: $filter-dark;
+        border: 1px solid $filter-medium;
+        border-radius: 6px;
+        background: $white;
+        width: fit-content;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      // Legacy: label.btn used as "or" in older markup (keep for any existing DOM)
       > label.btn {
         display: block;
         width: auto;
-        margin: 8px 0;
-        padding: 2px 10px;
+        margin: 14px auto 16px;
+        padding: 6px 14px;
         font-size: 0.8rem;
         font-weight: 600;
         color: $filter-dark;
         border: 1px solid $filter-medium;
-        border-radius: 4px;
+        border-radius: 6px;
         background: $white;
+        width: fit-content;
+        text-align: center;
       }
+    }
+
+    /* OR block inner container: same design language as AND (card look), clearer grouping */
+    .or-block-content {
+      background: rgba(230, 228, 213, 0.35);
+      border: 2px solid darken($filter-medium, 18%);
+      border-radius: 6px;
+      padding: 12px 14px;
+      box-shadow: 0 1px 4px rgba($filter-dark, 0.08);
     }
 
     // and/remove button row on subsequent filter blocks
@@ -548,6 +586,12 @@ $filter-light:  #e7e1e8;
         color: $white;
       }
     }
+  }
+
+  /* OR block: outer border matches AND blocks — must follow .input-group-md */
+  .input-group-md[data-type="OR"] {
+    border: 1px solid #cfc9d4;
+    box-shadow: 0 2px 6px rgba($filter-dark, 0.12);
   }
 }
 
