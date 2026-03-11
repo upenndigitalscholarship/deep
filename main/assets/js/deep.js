@@ -2787,10 +2787,12 @@ let reset_result_numbers = function () {
 }
 
 function navToggle() {
-    const x = document.getElementById('awwsNavDisplay');
-    if (x.style.display === "flex") {
-        x.style.display = "none";
-    } else {
-        x.style.display = "flex";
+    const nav = document.getElementById('awwsNavDisplay');
+    const trigger = document.querySelector('[aria-controls="awwsNavDisplay"]');
+    if (nav) {
+        nav.classList.toggle('awwsNavOpen');
+        if (trigger) {
+            trigger.setAttribute('aria-expanded', nav.classList.contains('awwsNavOpen'));
+        }
     }
 }

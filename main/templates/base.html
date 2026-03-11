@@ -74,20 +74,37 @@
 
 <div class="awwsHeader">
 	<div class="awwsHeaderContent">
-		<a href="{% url 'index' %}"><img src="/assets/img/logo.png" alt="DEEP Logo" class="headerLogo"></a>
-		<a href="{% url 'index' %}"><h1 class="awwsTitle">Database of Early English Playbooks</h1></a>
-		<div class="awwsNavContainer">
-			<img class="menuIcon" src="{% static 'img/menu.png' %}" alt="Menu Icon" onclick="navToggle()">
-			<div id="awwsNavDisplay" class="awwsNavLinks">
-				<a href="../about/">The History behind DEEP</a>
-				<a href="../using_deep/">How to Use DEEP</a>
-				<a href="../whats_new/">DEEP Update History</a>
-				<a href="../sources/">Bibliographic Sources</a>
-				<a href="../abbrev/">Abbreviations and References</a>
-				<a href="../download">Download Data</a>
-				<a href="../cite/">How to Cite DEEP</a>
-				<a href="../contact/">Contact Us</a>
-			</div>
+		<div class="awwsLogoColumn">
+			<a href="{% url 'index' %}"><img src="/assets/img/logo.png" alt="DEEP Logo" class="headerLogo"></a>
+		</div>
+		<div class="awwsTitleNavColumn">
+			<a href="{% url 'index' %}"><h1 class="awwsTitle">Database of Early English Playbooks</h1></a>
+			<nav class="awwsNavHorizontal" id="awwsNavDisplay" aria-label="Main navigation">
+		<ul class="awwsNavList">
+			<li class="awwsNavGroup">
+				<button class="awwsNavLink" type="button" aria-expanded="false" aria-haspopup="true">About <i class="bi bi-chevron-down"></i></button>
+				<ul class="awwsNavDropdown">
+					<li><a href="../about/">The History behind DEEP</a></li>
+					<li><a href="../using_deep/">How to Use DEEP</a></li>
+					<li><a href="../whats_new/">DEEP Update History</a></li>
+				</ul>
+			</li>
+			<li class="awwsNavGroup">
+				<button class="awwsNavLink" type="button" aria-expanded="false" aria-haspopup="true">Reference <i class="bi bi-chevron-down"></i></button>
+				<ul class="awwsNavDropdown">
+					<li><a href="../sources/">Bibliographic Sources</a></li>
+					<li><a href="../abbrev/">Abbreviations and References</a></li>
+					<li><a href="../cite/">How to Cite DEEP</a></li>
+				</ul>
+			</li>
+			<li class="awwsNavItem"><a class="awwsNavLink" href="../download">Download Data</a></li>
+			<li class="awwsNavItem"><a class="awwsNavLink" href="../contact/">Contact Us</a></li>
+		</ul>
+			</nav>
+		</div>
+		<div class="awwsHeaderRight">
+			<span class="awwsEstBadge">Est. 1999</span>
+			<i class="bi bi-list menuIcon" role="button" aria-label="Toggle menu" aria-expanded="false" aria-controls="awwsNavDisplay" onclick="navToggle()"></i>
 		</div>
 	</div>
 </div>
@@ -110,6 +127,7 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
 <!-- Template Main JS File -->
 <script src="{% static '/js/main.js' %}"></script>
+<script src="{% static '/js/deep.js' %}"></script>
 {% block extra_js %}{% endblock %}
 
 </body>
