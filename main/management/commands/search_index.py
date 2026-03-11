@@ -93,8 +93,18 @@ def item_to_dict(item:Item):
     #     item_dict["stationer_publisher_filter"] = 'None'
     # if not item_dict.get('stationer_printer_filter',None): 
     #     item_dict["stationer_printer_filter"] = 'None'
-    if not item_dict.get('stationer_imprint_location',None): 
-        item_dict["stationer_imprint_location"] = 'None'
+    # Stationer imprint location: from M2M (names, supra, moeml_link) or legacy display
+    linked_locs = list(item.stationer_imprint_location.all())
+    if linked_locs:
+        item_dict['stationer_imprint_location'] = '; '.join(loc.name for loc in linked_locs if loc.name)
+        supras = list({loc.supra_category for loc in linked_locs if loc.supra_category})
+        item_dict['stationer_imprint_location_supra'] = '; '.join(supras) if supras else ''
+        first_moeml = next((loc.moeml_link for loc in linked_locs if loc.moeml_link), '')
+        item_dict['stationer_imprint_location_moeml_link'] = first_moeml or ''
+    else:
+        item_dict['stationer_imprint_location'] = item_dict.get('stationer_imprint_location_display') or 'None'
+        item_dict['stationer_imprint_location_supra'] = ''
+        item_dict['stationer_imprint_location_moeml_link'] = ''
     # if not item_dict.get('stationer_bookseller_filter',None): 
     #     item_dict["stationer_bookseller_filter"] = 'None'
     item_dict['variant_link'] = ''

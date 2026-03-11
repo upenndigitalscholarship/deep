@@ -14,6 +14,50 @@ class Company(models.Model):
         return f"{self.pk} - {self.name}" or ''
 
 
+SUPRA_CATEGORY_CHOICES = [
+    ("A-B (Paul's Churchyard)", "A-B (Paul's Churchyard)"),
+    ("C (Newgate Within)", "C (Newgate Within)"),
+    ("D (Newgate Without)", "D (Newgate Without)"),
+    ("E (Smithfield)", "E (Smithfield)"),
+    ("F (Aldersgate Without)", "F (Aldersgate Without)"),
+    ("G (Aldersgate Within)", "G (Aldersgate Within)"),
+    ("H (Cripplegate and Moorgate Within)", "H (Cripplegate and Moorgate Within)"),
+    ("I (Cripplegate Without)", "I (Cripplegate Without)"),
+    ("N (Cheapside)", "N (Cheapside)"),
+    ("O (Royal Exchange)", "O (Royal Exchange)"),
+    ("P (Leadenhall)", "P (Leadenhall)"),
+    ("Q (Ludgate)", "Q (Ludgate)"),
+    ("R-T (Thames St)", "R-T (Thames St)"),
+    ("V (Holborn)", "V (Holborn)"),
+    ("W (Fleet St)", "W (Fleet St)"),
+    ("X (Westminster)", "X (Westminster)"),
+    ("Cambridge", "Cambridge"),
+    ("Dublin", "Dublin"),
+    ("Edinburgh", "Edinburgh"),
+    ("Hague", "Hague"),
+    ("Kilkenny", "Kilkenny"),
+    ("Leiden", "Leiden"),
+    ("Oxford", "Oxford"),
+    ("Rochester", "Rochester"),
+    ("Southwark", "Southwark"),
+]
+
+
+class StationerImprintLocation(models.Model):
+    name = models.CharField("Name", max_length=5000)
+    supra_category = models.CharField(
+        "Supra-category", max_length=500, choices=SUPRA_CATEGORY_CHOICES, blank=True, null=True
+    )
+    moeml_link = models.CharField("MoEML link", max_length=5000, blank=True, null=True)
+
+    class Meta:
+        verbose_name = "Stationer: Imprint Location"
+        verbose_name_plural = "Stationer: Imprint Locations"
+
+    def __str__(self):
+        return self.name or ''
+
+
 class Title(models.Model): #Work
     
     work_id = models.FloatField("Work ID",blank=True, null=True)
@@ -132,7 +176,12 @@ class Item(models.Model): #Previously known as "DEEP"
     stationer_publisher_display = models.CharField("Stationer: Publisher Display", max_length=5000, blank=True, null=True)
 
     stationer_license = models.CharField("Stationer: License", max_length=5000, blank=True, null=True)
-    stationer_imprint_location = models.CharField("Stationer: Imprint Location", max_length=5000, blank=True, null=True)
+    stationer_imprint_location_display = models.CharField(
+        "Stationer: Imprint Location Display", max_length=5000, blank=True, null=True
+    )
+    stationer_imprint_location = models.ManyToManyField(
+        StationerImprintLocation, blank=True, related_name="items"
+    )
     stationer_bookseller = models.ManyToManyField('Person', related_name="stationer_bookseller",blank=True)
     stationer_bookseller_display = models.CharField("Stationer: Bookseller Display", max_length=5000, blank=True, null=True)
     stationer_additional_notes = models.TextField("Additional Notes", max_length=5000, blank=True, null=True)
