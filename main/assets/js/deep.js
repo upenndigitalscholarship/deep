@@ -104,7 +104,7 @@ const update_searchSelect = (searchSelect, or = false) => {
   // clear existing input in search field
   searchField.value = '';
   this_years = document.getElementById(searchSelect.id.replace('searchSelect', 'date-input'))
-  this_years.classList.add('invisible')
+  this_years.classList.add('d-none')
   this_range = document.getElementById(searchSelect.id.replace('searchSelect', 'range-input'))
   this_range.classList.add('d-none')
 
@@ -139,14 +139,12 @@ const update_searchSelect = (searchSelect, or = false) => {
   // search fields
   if (search_fields.indexOf(filter) > -1) {
     searchField.style.display = "block";
-    this_years.classList.remove("d-none");
-
   }
 
   // date fields
   if (date_fields.indexOf(filter) > -1) {
     searchField.style.display = "none";
-    this_years.classList.remove('invisible')
+    this_years.classList.remove('d-none')
     choicesSelect.classList.add('d-none')
   }
 
@@ -698,7 +696,7 @@ function addANDBlock() {
       <style>.noUi-connect {
         background: #0e0076;
       }</style>
-      <div id="spacer" style="height:10px;"></div>
+      <div id="spacer" class="filter-spacer"></div>
       <div id="date-input-${selectID}" class="input-group d-none">
         <span class="input-group-text">Begin:</span>
         <input type="number" aria-label="start-date" placeholder="${min_year}" pattern="\d{4}"  maxlength="4" class="form-control"></input>
@@ -794,7 +792,7 @@ function addORBlock() {
             <input type="radio" class="btn-check btn-outline-dark" name="removeBlock" id="removeBlock" autocomplete="off">
             <label class="btn btn-sm" for="removeBlock"><i id="removeFilterBlock" class="bi bi-dash-circle" ></i></label>
     </div>
-    <div class="border border-dark rounded border-2">
+    <div class="or-block-content">
       <select id="searchSelect-${selectID1}" class="input-group form-select form-select-sm">
         
         <option value="">Please select...</option>
@@ -844,7 +842,7 @@ function addORBlock() {
       <style>.noUi-connect {
         background: #0e0076;
       }</style>
-      <div id="spacer" style="height:10px;"></div>
+      <div id="spacer" class="filter-spacer"></div>
       <div id="date-input-${selectID1}" class="input-group d-none">
         <span class="input-group-text">Begin:</span>
         <input type="number" aria-label="start-date" value="${min_year}" pattern="\d{4}"  maxlength="4" class="form-control"></input>
@@ -858,7 +856,7 @@ function addORBlock() {
         <input type="number" aria-label="range-to" placeholder="" min="0" class="form-control">
       </div>
       
-      <label class="btn btn-sm  " for="addAND">or</label> 
+      <span class="or-divider" aria-label="or">or</span> 
                  
       <select id="searchSelect-${selectID2}" class="input-group form-select form-select-sm">
         
@@ -909,7 +907,7 @@ function addORBlock() {
       <style>.noUi-connect {
         background: #0e0076;
       }</style>
-      <div id="spacer" style="height:10px;"></div>
+      <div id="spacer" class="filter-spacer"></div>
       <div id="date-input-${selectID2}" class="input-group d-none">
         <span class="input-group-text">Begin:</span>
         <input type="number" aria-label="start-date" value="${min_year}" pattern="\d{4}"  maxlength="4" class="form-control"></input>
@@ -943,7 +941,7 @@ function addORBlock() {
   // Add a unique id to the new block and update as AND OR filter
   //let newBlock = document.getElementById('filterBlocks').lastElementChild
   newBlock.id = 'filterBlock-' + document.getElementById('filterBlocks').childElementCount
-  // <div id="filterBlock" class="input-group-md">
+  newBlock.classList.add("input-group-md");
   newBlock.dataset.type = "OR"
 
 

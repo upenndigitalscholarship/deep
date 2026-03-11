@@ -749,6 +749,9 @@ section {
   margin-bottom: 12px;
 }
 /* Filter block: very subtle #e6e4d5 tint, soft border + shadow (lifted card) */
+#filterBlocks .input-group-md [id^="searchSelect-"] {
+  margin-top: 6px;
+}
 #filterBlocks .input-group-md {
   background: rgba(230, 228, 213, 0.45);
   border: 1px solid #cfc9d4;
@@ -757,17 +760,29 @@ section {
   padding: 10px 14px;
   margin-bottom: 8px;
 }
+/* OR block: outer border matches AND blocks — must follow .input-group-md */
+#filterBlocks .input-group-md[data-type="OR"] {
+  border: 1px solid #cfc9d4;
+  box-shadow: 0 2px 6px rgba(50, 14, 64, 0.12);
+}
 /* Hidden filter inputs must not take layout space (override .invisible and ensure .d-none wins) */
 #filterBlocks .input-group-md .d-none,
 #filterBlocks .input-group-md .invisible {
   display: none !important;
 }
-/* Spacer div in filter block: no height so hidden inputs don't leave gap */
-#filterBlocks .input-group-md [id^="spacer"] {
+/* Ensure date/range inputs with .d-none stay collapsed (override display:flex rules) */
+#filterBlocks .input-group-md [id^="date-input-"].d-none,
+#filterBlocks .input-group-md [id^="range-input-"].d-none {
+  display: none !important;
+}
+/* Spacer div in filter block: fully collapsed when date/range inputs hidden */
+#filterBlocks .input-group-md [id^="spacer"],
+#filterBlocks .input-group-md .filter-spacer {
   height: 0;
   margin: 0;
   overflow: hidden;
   padding: 0;
+  min-height: 0;
 }
 /* Let filter controls stack naturally — only visible inputs get layout */
 #filterBlocks .input-group-md > div:not(.btn-group) > select:not(.d-none):not(.invisible),
@@ -803,18 +818,43 @@ section {
   max-width: 6rem;
   display: inline-block;
 }
-/* "or" label between the two halves of an OR block */
+/* OR block inner container: same design language as AND (card look), clearer grouping */
+#filterBlocks .input-group-md .or-block-content {
+  background: rgba(230, 228, 213, 0.35);
+  border: 2px solid #9f8ea8;
+  border-radius: 6px;
+  padding: 12px 14px;
+  box-shadow: 0 1px 4px rgba(50, 14, 64, 0.08);
+}
+/* "or" divider between the two halves — centered, clear spacing */
+#filterBlocks .input-group-md > div > .or-divider {
+  display: block;
+  text-align: center;
+  margin: 14px auto 16px;
+  padding: 6px 14px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: #320e40;
+  border: 1px solid #beafc4;
+  border-radius: 6px;
+  background: #fff;
+  width: fit-content;
+}
+/* Legacy: label.btn used as "or" in older markup */
 #filterBlocks .input-group-md > div > label.btn {
   display: block;
   width: auto;
-  margin: 8px 0;
-  padding: 2px 10px;
+  margin: 14px auto 16px;
+  padding: 6px 14px;
   font-size: 0.8rem;
   font-weight: 600;
   color: #320e40;
   border: 1px solid #beafc4;
-  border-radius: 4px;
+  border-radius: 6px;
   background: #fff;
+  width: fit-content;
+  text-align: center;
 }
 /* and/remove buttons row on subsequent filter blocks */
 #filterBlocks .input-group-md > .btn-group {
