@@ -1644,26 +1644,70 @@ section {
     padding: 20px;
     background-color: #fff;
     z-index: 997;
-    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 1px 4px rgba(50, 14, 64, 0.08);
+    border-bottom: 1px solid rgba(50, 14, 64, 0.12);
     max-width: 100vw;
 }
 
 .awwsHeaderContent {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
     align-items: center;
     max-width: 1140px;
     margin: 0 auto;
-    grid-gap: 20px;
+    padding: 0 20px;
+    column-gap: 24px;
+}
+
+.awwsLogoColumn {
+    grid-column: 1;
+    justify-self: start;
+    display: flex;
+    align-items: center;
+}
+
+.awwsLogoColumn a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.awwsTitleNavColumn {
+    grid-column: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    text-align: center;
+}
+
+.awwsHeaderRight {
+    grid-column: 3;
+    justify-self: end;
+    text-align: right;
+    display: flex;
+    align-items: center;
+}
+
+.awwsEstBadge {
+    font-family: birch-std, serif;
+    font-size: 1.7rem;
+    font-weight: 500;
+    color: #330e40;
+    letter-spacing: 0.5px;
 }
 
 .menuIcon {
-    height: 20px;
+    display: none;
+    font-size: 2rem;
+    color: #330e40;
+    cursor: pointer;
+    transition: color 0.2s;
 }
 
 .headerLogo {
     max-height: 90px;
+    transition: opacity 0.2s;
 }
 
 .awwsTitle {
@@ -1676,59 +1720,221 @@ section {
     text-transform: uppercase;
     color: #330e40;
     text-align: center;
-}
-
-.awwsNavContainer {
     position: relative;
     display: inline-block;
 }
 
-.awwsNavLinks {
+.awwsTitle::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: #330e40;
+    transition: width 0.3s ease;
+}
+
+.awwsTitleNavColumn a:hover .awwsTitle::after {
+    width: 100%;
+}
+
+.awwsLogoColumn a:hover .headerLogo {
+    opacity: 0.85;
+}
+
+/* Horizontal nav beneath logo & title */
+.awwsNavHorizontal {
+    margin: 0;
+    padding: 0;
+}
+
+.awwsNavList {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.awwsNavGroup {
+    position: relative;
+}
+
+.awwsNavLink {
+    font-family: 'Dosis', sans-serif;
+    font-size: 1.3rem;
+    font-weight: 500;
+    color: #330e40;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 2px 12px;
+    text-decoration: none;
+    transition: background-color 0.2s, color 0.2s;
+    display: inline-block;
+}
+
+.awwsNavList > li:first-child .awwsNavLink {
+    padding-left: 12px;
+}
+
+.awwsNavLink:hover,
+.awwsNavGroup:hover .awwsNavLink {
+    background-color: #e6e5d6;
+    color: #330e40;
+}
+
+button.awwsNavLink {
+    text-align: left;
+}
+
+button.awwsNavLink .bi-chevron-down {
+    font-size: 0.75em;
+    margin-left: 0.25em;
+    transition: transform 0.2s;
+}
+
+.awwsNavGroup:hover button.awwsNavLink .bi-chevron-down {
+    transform: rotate(180deg);
+}
+
+.awwsNavDropdown {
     display: none;
     position: absolute;
-    flex-direction: column;
-    z-index: 1;
-    left: -200px;
-    min-width: 200px;
-    background-color: #fff;
-    margin: 0 auto;
-    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.15);
+    top: 100%;
+    left: 0;
+    min-width: 280px;
+    background: #fff;
+    border: 1px solid #cfc9d4;
+    border-radius: 6px;
+    box-shadow: 0 2px 6px rgba(50, 14, 64, 0.12);
+    list-style: none;
+    margin: 4px 0 0;
+    padding: 8px 0;
+    z-index: 100;
 }
 
-.awwsNavContainer:hover .awwsNavLinks {
-    display: flex;
+.awwsNavGroup:hover .awwsNavDropdown {
+    display: block;
 }
 
-.awwsNavLinks a {
-    color: black;
-    font-size: 18px;
-    font-family: trade-gothic-next, sans-serif;
-    font-weight: 400;
-    font-style: normal;
-    padding: 12px 16px;
+.awwsNavDropdown a {
+    display: block;
+    color: #330e40;
+    font-size: 0.95rem;
+    font-family: 'Dosis', sans-serif;
+    padding: 10px 20px;
+    text-decoration: none;
+    transition: background-color 0.2s;
 }
 
-.awwsNavLinks a:hover {
-    background-color: #d8d8d8;
+.awwsNavDropdown a:hover {
+    background-color: #e6e5d6;
+}
+
+
+@media only screen and (max-width: 900px) {
+    .menuIcon {
+        display: block;
+    }
+
+    .awwsHeaderContent {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .awwsLogoColumn {
+        grid-column: auto;
+        justify-self: auto;
+    }
+
+    .awwsTitleNavColumn {
+        grid-column: auto;
+        order: 3;
+        flex-basis: 100%;
+        align-items: stretch;
+        text-align: left;
+    }
+
+    .awwsHeaderRight {
+        grid-column: auto;
+        justify-self: auto;
+        margin-left: auto;
+    }
+
+    .awwsEstBadge {
+        display: none;
+    }
+
+    .awwsNavHorizontal {
+        display: none;
+        padding: 16px 20px;
+        background: #fff;
+        border-top: 1px solid rgba(50, 14, 64, 0.12);
+        margin: 16px -20px 0 -20px;
+    }
+
+    .awwsNavHorizontal.awwsNavOpen {
+        display: block;
+    }
+
+    .awwsNavList {
+        flex-direction: column;
+        align-items: stretch;
+        justify-content: flex-start;
+        gap: 0;
+    }
+
+    .awwsNavGroup {
+        border-bottom: 1px solid #e6e5d6;
+    }
+
+    .awwsNavGroup:last-of-type {
+        border-bottom: none;
+    }
+
+    .awwsNavLink {
+        width: 100%;
+        text-align: left;
+        padding: 14px 20px;
+    }
+
+    .awwsNavList > li:first-child .awwsNavLink {
+        padding-left: 20px;
+    }
+
+    .awwsNavDropdown {
+        position: static;
+        display: none;
+        min-width: none;
+        border: none;
+        box-shadow: none;
+        margin: 0;
+        padding: 0 0 8px 20px;
+        background: rgba(230, 229, 214, 0.4);
+    }
+
+    .awwsNavGroup:hover .awwsNavDropdown,
+    .awwsNavGroup.awwsNavGroupOpen .awwsNavDropdown {
+        display: block;
+    }
+
+    .awwsNavDropdown a {
+        padding: 10px 0 10px 16px;
+    }
+
+    .awwsNavItem {
+        border-bottom: 1px solid #e6e5d6;
+    }
 }
 
 @media only screen and (max-width: 800px) {
-
     .awwsTitle {
         font-size: 32px;
-    }
-    .awwsNavLinks {
-        width: 100vw;
-        height: 100vh;
-        box-shadow: none;
-        right: -20px;
-        top: 80px;
-        left: auto;
-
-        padding-top: 20px;
-    }
-    .awwsNavLinks a {
-        text-align: center;
     }
     .headerLogo {
         max-height: 55px;
