@@ -179,8 +179,8 @@ class Item(models.Model): #Previously known as "DEEP"
     stationer_imprint_location_display = models.CharField(
         "Stationer: Imprint Location Display", max_length=5000, blank=True, null=True
     )
-    stationer_imprint_location = models.ManyToManyField(
-        StationerImprintLocation, blank=True, related_name="items"
+    stationer_imprint_location_filter = models.ManyToManyField(
+        StationerImprintLocation, verbose_name="Stationer: Imprint Location Filter", blank=True, related_name="items"
     )
     stationer_bookseller = models.ManyToManyField('Person', related_name="stationer_bookseller",blank=True)
     stationer_bookseller_display = models.CharField("Stationer: Bookseller Display", max_length=5000, blank=True, null=True)

@@ -95,6 +95,48 @@ const allTextSentinels = ['none', 'not in annals', 'not in britdrama']
 
 const stripHtml = str => str.replace(/<[^>]*>/g, '')
 
+const escapeHtml = value => String(value == null ? '' : value)
+  .replace(/&/g, '&amp;')
+  .replace(/</g, '&lt;')
+  .replace(/>/g, '&gt;')
+  .replace(/"/g, '&quot;')
+  .replace(/'/g, '&#39;')
+
+const renderMoemlIcon = link => {
+  if (link) {
+    return '<a href="' + escapeHtml(link) + '" target="_blank" rel="noopener" title="MoEML" style="display:inline-flex;align-items:center;margin-left:6px;"><img src="assets/img/rose_4.svg" alt="MoEML" class="moeml-icon" style="max-height:20px;" /></a>'
+  }
+  return '<img src="assets/img/rose_4.svg" alt="MoEML" class="moeml-icon moeml-icon-disabled" title="No link" style="max-height:20px;margin-left:6px;opacity:0.4;filter:grayscale(100%);cursor:default;" />'
+}
+
+const renderImprintLocation = data => {
+  if (!data || data.stationer_imprint_location === 'None') return ''
+
+  let locations = Array.isArray(data.stationer_imprint_location_locations)
+    ? data.stationer_imprint_location_locations
+    : []
+
+  if (!locations.length && data.stationer_imprint_location) {
+    locations = [{
+      name: data.stationer_imprint_location,
+      moeml_link: data.stationer_imprint_location_moeml_link || ''
+    }]
+  }
+
+  locations = locations.filter(location => location && location.name)
+  if (!locations.length) return ''
+
+  const locationHtml = locations.map(location => (
+    '<span style="display:inline-flex;align-items:center;margin-right:8px;"><span>' +
+    escapeHtml(location.name) +
+    '</span>' +
+    renderMoemlIcon(location.moeml_link) +
+    '</span>'
+  )).join('<span>; </span>')
+
+  return '<div class="hanging" style="display:flex;align-items:center;flex-wrap:wrap;"><span class="expand">Imprint Location: </span><span id="stationer_imprint_location">' + locationHtml + '</span></div>'
+}
+
 
 
 const update_searchSelect = (searchSelect, or = false) => {
@@ -2560,7 +2602,7 @@ function expand(e, deep_id) {
                 ${!data.stationer_printer_filter ? '' : '<div class="hanging"><span class="expand">Printer: </span><span id="stationer_printer">' + data.stationer_printer_display + '</span></div>'}
                 ${!data.stationer_publisher_filter ? '' : '<div class="hanging"><span class="expand">Publisher: </span><span id="stationer_publisher">' + data.stationer_publisher_display + '</span></div>'}
                 ${!data.stationer_bookseller_filter ? '' : '<div class="hanging"><span class="expand">Bookseller: </span><span id="stationer_bookseller">' + data.stationer_bookseller_display + '</span></div>'}
-                ${data.stationer_imprint_location === "None" ? '' : '<div class="hanging" style="display:flex;align-items:center;"><span class="expand">Imprint Location: </span><span id="stationer_imprint_location">' + data.stationer_imprint_location + '</span> ' + (data.stationer_imprint_location_moeml_link ? '<a href="' + data.stationer_imprint_location_moeml_link + '" target="_blank" rel="noopener" title="MoEML" style="display:inline-flex;align-items:center;margin-left:6px;"><img src="assets/img/rose_4.svg" alt="MoEML" class="moeml-icon" style="max-height:20px;" /></a>' : '<img src="assets/img/rose_4.svg" alt="MoEML" class="moeml-icon moeml-icon-disabled" title="No link" style="max-height:20px;margin-left:6px;opacity:0.4;filter:grayscale(100%);cursor:default;" />') + '</div>'}
+                ${renderImprintLocation(data)}
                 ${!data.stationer_license ? '' : '<div class="hanging"><span class="expand">License: </span><span id="stationer_license">' + data.stationer_license + '</span></div>'}
                 ${"<div class='hanging'><span class='expand'>Entries in Stationers' Registers: </span><span id='stationer_entries_in_register'>" + data.stationer_entries_in_register + '</span></div>'}
                 ${!data.stationer_additional_notes ? '' : '<div class="hanging spacingTop"><span class="expand">Additional Notes: </span><span id="stationer_additional_notes">' + data.stationer_additional_notes + '</span></div>'}
