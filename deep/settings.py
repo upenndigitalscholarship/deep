@@ -123,7 +123,7 @@ STATICFILES_DIRS = [
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 JAZZMIN_SETTINGS = {
-    "order_with_respect_to": ["main", "main.Item","main.Edition", "main.Title"],
+    "order_with_respect_to": ["main", "main.Item", "main.Edition", "main.Title", "main.Company", "main.Person", "main.StationerImprintLocation"],
     "hide_models": ['sessions.Session', 'contenttypes.ContentType', 'auth.Permission', 'auth.Group','admin.LogEntry'],
     "site_logo": "/img/logo.png",
     "custom_js": '/js/admin.js',

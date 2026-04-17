@@ -23,11 +23,11 @@ class Command(BaseCommand):
             try:
                 item = Item.objects.get(deep_id=key)
                 
-                #print('; '.join(data[key]), item)
+                # Preserve legacy free-text values; structured links are created later.
                 if len(set(data[key])) == 1:
-                    item.stationer_imprint_location = data[key][0]
-                    item.save() 
+                    item.stationer_imprint_location_display = data[key][0]
                 else:
-                    item.stationer_imprint_location = '; '.join(data[key])
+                    item.stationer_imprint_location_display = '; '.join(data[key])
+                item.save()
             except Exception as e:
                 print(key, e)

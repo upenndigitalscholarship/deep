@@ -93,8 +93,39 @@ def item_to_dict(item:Item):
     #     item_dict["stationer_publisher_filter"] = 'None'
     # if not item_dict.get('stationer_printer_filter',None): 
     #     item_dict["stationer_printer_filter"] = 'None'
-    if not item_dict.get('stationer_imprint_location',None): 
-        item_dict["stationer_imprint_location"] = 'None'
+    # Stationer imprint location: from M2M (names, supra, moeml_link) or legacy display
+    linked_locs = list(item.stationer_imprint_location_filter.all())
+    display_names = [
+        name.strip()
+        for name in (item.stationer_imprint_location_display or '').split(';')
+        if name.strip()
+    ]
+    if display_names:
+        display_order = {name: index for index, name in enumerate(display_names)}
+        linked_locs.sort(key=lambda loc: display_order.get(loc.name, len(display_order)))
+    if linked_locs:
+        location_entries = [
+            {'name': loc.name, 'moeml_link': loc.moeml_link or ''}
+            for loc in linked_locs
+            if loc.name
+        ]
+        item_dict['stationer_imprint_location_locations'] = location_entries
+        item_dict['stationer_imprint_location'] = '; '.join(entry['name'] for entry in location_entries)
+        supras = []
+        for loc in linked_locs:
+            if loc.supra_category and loc.supra_category not in supras:
+                supras.append(loc.supra_category)
+        item_dict['stationer_imprint_location_supra'] = '; '.join(supras) if supras else ''
+        first_moeml = next((loc.moeml_link for loc in linked_locs if loc.moeml_link), '')
+        item_dict['stationer_imprint_location_moeml_link'] = first_moeml or ''
+    else:
+        legacy_display = item_dict.get('stationer_imprint_location_display') or 'None'
+        item_dict['stationer_imprint_location'] = legacy_display
+        item_dict['stationer_imprint_location_locations'] = (
+            [{'name': legacy_display, 'moeml_link': ''}] if legacy_display != 'None' else []
+        )
+        item_dict['stationer_imprint_location_supra'] = ''
+        item_dict['stationer_imprint_location_moeml_link'] = ''
     # if not item_dict.get('stationer_bookseller_filter',None): 
     #     item_dict["stationer_bookseller_filter"] = 'None'
     item_dict['variant_link'] = ''

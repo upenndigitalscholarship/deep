@@ -95,6 +95,48 @@ const allTextSentinels = ['none', 'not in annals', 'not in britdrama']
 
 const stripHtml = str => str.replace(/<[^>]*>/g, '')
 
+const escapeHtml = value => String(value == null ? '' : value)
+  .replace(/&/g, '&amp;')
+  .replace(/</g, '&lt;')
+  .replace(/>/g, '&gt;')
+  .replace(/"/g, '&quot;')
+  .replace(/'/g, '&#39;')
+
+const renderMoemlIcon = link => {
+  if (link) {
+    return '<a href="' + escapeHtml(link) + '" target="_blank" rel="noopener" title="MoEML" style="display:inline-flex;align-items:center;margin-left:6px;"><img src="assets/img/rose_4.svg" alt="MoEML" class="moeml-icon" style="max-height:20px;" /></a>'
+  }
+  return '<img src="assets/img/rose_4.svg" alt="MoEML" class="moeml-icon moeml-icon-disabled" title="No link" style="max-height:20px;margin-left:6px;opacity:0.4;filter:grayscale(100%);cursor:default;" />'
+}
+
+const renderImprintLocation = data => {
+  if (!data || data.stationer_imprint_location === 'None') return ''
+
+  let locations = Array.isArray(data.stationer_imprint_location_locations)
+    ? data.stationer_imprint_location_locations
+    : []
+
+  if (!locations.length && data.stationer_imprint_location) {
+    locations = [{
+      name: data.stationer_imprint_location,
+      moeml_link: data.stationer_imprint_location_moeml_link || ''
+    }]
+  }
+
+  locations = locations.filter(location => location && location.name)
+  if (!locations.length) return ''
+
+  const locationHtml = locations.map(location => (
+    '<span style="display:inline-flex;align-items:center;margin-right:8px;"><span>' +
+    escapeHtml(location.name) +
+    '</span>' +
+    renderMoemlIcon(location.moeml_link) +
+    '</span>'
+  )).join('<span>; </span>')
+
+  return '<div class="hanging" style="display:flex;align-items:center;flex-wrap:wrap;"><span class="expand">Imprint Location: </span><span id="stationer_imprint_location">' + locationHtml + '</span></div>'
+}
+
 
 
 const update_searchSelect = (searchSelect, or = false) => {
@@ -213,18 +255,37 @@ const update_searchSelect = (searchSelect, or = false) => {
       true);
   }
   if (filter === 'imprintlocation') {
-    this_choices.setChoices(async () => {
-      try {
-        const items = await fetch('/assets/data/locations.json');
-        return items.json();
-
-      } catch (err) {
-        console.error(err);
-      }
-    },
-      'value',
-      'label',
-      true);
+    const imprintLocationChoices = [
+      { value: 'Any', label: 'Any' },
+      { value: 'None', label: 'None' },
+      { value: '---', label: '---' },
+      { value: "A-B (Paul's Churchyard)", label: "A-B (Paul's Churchyard)" },
+      { value: 'C (Newgate Within)', label: 'C (Newgate Within)' },
+      { value: 'D (Newgate Without)', label: 'D (Newgate Without)' },
+      { value: 'E (Smithfield)', label: 'E (Smithfield)' },
+      { value: 'F (Aldersgate Without)', label: 'F (Aldersgate Without)' },
+      { value: 'G (Aldersgate Within)', label: 'G (Aldersgate Within)' },
+      { value: 'H (Cripplegate and Moorgate Within)', label: 'H (Cripplegate and Moorgate Within)' },
+      { value: 'I (Cripplegate Without)', label: 'I (Cripplegate Without)' },
+      { value: 'N (Cheapside)', label: 'N (Cheapside)' },
+      { value: 'O (Royal Exchange)', label: 'O (Royal Exchange)' },
+      { value: 'P (Leadenhall)', label: 'P (Leadenhall)' },
+      { value: 'Q (Ludgate)', label: 'Q (Ludgate)' },
+      { value: 'R-T (Thames St)', label: 'R-T (Thames St)' },
+      { value: 'V (Holborn)', label: 'V (Holborn)' },
+      { value: 'W (Fleet St)', label: 'W (Fleet St)' },
+      { value: 'X (Westminster)', label: 'X (Westminster)' },
+      { value: 'Cambridge', label: 'Cambridge' },
+      { value: 'Dublin', label: 'Dublin' },
+      { value: 'Edinburgh', label: 'Edinburgh' },
+      { value: 'Hague', label: 'Hague' },
+      { value: 'Kilkenny', label: 'Kilkenny' },
+      { value: 'Leiden', label: 'Leiden' },
+      { value: 'Oxford', label: 'Oxford' },
+      { value: 'Rochester', label: 'Rochester' },
+      { value: 'Southwark', label: 'Southwark' }
+    ];
+    this_choices.setChoices(async () => imprintLocationChoices, 'value', 'label', true);
   }
   if (filter === 'book_edition') {
     this_choices.setChoices(async () => {
@@ -1246,9 +1307,24 @@ const processQueries = queries => {
         filters.push({ 'filter': titlePageModern, 'type': query.blockType })
       }
       if (query.searchField == 'imprintlocation') {
-        let imprintLocation = item => (
-          item.stationer_imprint_location.toLowerCase().includes(query.searchValue.toLowerCase())
-        )
+        let imprintLocation
+        if (query.searchValue === 'Any') {
+          imprintLocation = item => (
+            (item.stationer_imprint_location && item.stationer_imprint_location !== 'None') ||
+            (item.stationer_imprint_location_supra && item.stationer_imprint_location_supra.trim() !== '')
+          )
+        } else if (query.searchValue === 'None') {
+          imprintLocation = item => (
+            (!item.stationer_imprint_location || item.stationer_imprint_location === 'None') &&
+            (!item.stationer_imprint_location_supra || item.stationer_imprint_location_supra.trim() === '')
+          )
+        } else if (query.searchValue === '---') {
+          imprintLocation = () => true
+        } else {
+          imprintLocation = item => (
+            (item.stationer_imprint_location_supra || '').toLowerCase().includes(query.searchValue.toLowerCase())
+          )
+        }
         filters.push({ 'filter': imprintLocation, 'type': query.blockType })
       }
       if (query.searchField == 'title-page-old') {
@@ -1795,9 +1871,24 @@ const processQueries = queries => {
           ORquery.push(titlePageModern)
         }
         if (fields[i] == 'imprintlocation' && values[i]) {
-          let imprintLocation = item => (
-            item.stationer_imprint_location.toLowerCase().includes(values[i].toLowerCase())
-          )
+          let imprintLocation
+          if (values[i] === 'Any') {
+            imprintLocation = item => (
+              (item.stationer_imprint_location && item.stationer_imprint_location !== 'None') ||
+              (item.stationer_imprint_location_supra && item.stationer_imprint_location_supra.trim() !== '')
+            )
+          } else if (values[i] === 'None') {
+            imprintLocation = item => (
+              (!item.stationer_imprint_location || item.stationer_imprint_location === 'None') &&
+              (!item.stationer_imprint_location_supra || item.stationer_imprint_location_supra.trim() === '')
+            )
+          } else if (values[i] === '---') {
+            imprintLocation = () => true
+          } else {
+            imprintLocation = item => (
+              (item.stationer_imprint_location_supra || '').toLowerCase().includes(values[i].toLowerCase())
+            )
+          }
           ORquery.push(imprintLocation)
         }
         if (fields[i] == 'title-page-old' && values[i]) {
@@ -2509,7 +2600,7 @@ function expand(e, deep_id) {
                 ${!data.stationer_printer_filter ? '' : '<div class="hanging"><span class="expand">Printer: </span><span id="stationer_printer">' + data.stationer_printer_display + '</span></div>'}
                 ${!data.stationer_publisher_filter ? '' : '<div class="hanging"><span class="expand">Publisher: </span><span id="stationer_publisher">' + data.stationer_publisher_display + '</span></div>'}
                 ${!data.stationer_bookseller_filter ? '' : '<div class="hanging"><span class="expand">Bookseller: </span><span id="stationer_bookseller">' + data.stationer_bookseller_display + '</span></div>'}
-                ${data.stationer_imprint_location === "None" ? '' : '<div class="hanging"><span class="expand">Imprint Location: </span><span id="stationer_imprint_location">' + data.stationer_imprint_location + '</span></div>'}
+                ${renderImprintLocation(data)}
                 ${!data.stationer_license ? '' : '<div class="hanging"><span class="expand">License: </span><span id="stationer_license">' + data.stationer_license + '</span></div>'}
                 ${"<div class='hanging'><span class='expand'>Entries in Stationers' Registers: </span><span id='stationer_entries_in_register'>" + data.stationer_entries_in_register + '</span></div>'}
                 ${!data.stationer_additional_notes ? '' : '<div class="hanging spacingTop"><span class="expand">Additional Notes: </span><span id="stationer_additional_notes">' + data.stationer_additional_notes + '</span></div>'}

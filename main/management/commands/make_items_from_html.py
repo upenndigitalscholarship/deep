@@ -269,10 +269,10 @@ class Command(BaseCommand):
                 log += "[*]"+"stationer_printer" + html_doc.stem
                 item["stationer_printer"] = ""
             try:
-                item["stationer_imprint_location"] = soup.find('span', text = 'Imprint Location:').parent.get_text().replace('Imprint Location:','').strip().encode('ISO-8859-1').decode('utf-8')
+                item["stationer_imprint_location_display"] = soup.find('span', text = 'Imprint Location:').parent.get_text().replace('Imprint Location:','').strip().encode('ISO-8859-1').decode('utf-8')
             except Exception as e:
-                log += "[*]"+"stationer_imprint_location" + html_doc.stem
-                item["stationer_imprint_location"] = ""
+                log += "[*]"+"stationer_imprint_location_display" + html_doc.stem
+                item["stationer_imprint_location_display"] = ""
             try:
                 item["stationer_entries_in_register"] = soup.find('span', text = "Entries in Stationers' Register:").parent.get_text().replace("Entries in Stationers' Register:",'').strip().encode('ISO-8859-1').decode('utf-8')
             except Exception as e:
