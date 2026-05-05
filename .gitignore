@@ -139,3 +139,4 @@ deep2.code-workspace
 DEPLOYMENT_GUIDE.md
 ADMINPANEL_DEPLOYMENT_HANDOFF.md
 deferred_backfill/
+deep_migrations/
