@@ -54,7 +54,7 @@
             
             <!-- filterBlock -->
           </div>
-          <div class="add-filter-row" style="padding-left: 14px; margin-top: 20px;">
+          <div class="add-filter-row">
             <span>Add Filter:&nbsp;&nbsp;</span>
             <div class="btn-group mb-2" role="group" aria-label="Basic radio toggle button group">
               <!-- Add new filter box
@@ -76,27 +76,30 @@
   <div  class="row">
     <div class="col-12">
     
-      <!-- View Selector  -->
-      <div class="form-check form-check-inline">
-        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="titleRadio" value="title">
-        <label class="form-check-label" for="titleRadio">Work</label>
-      </div>
-      <div class="form-check form-check-inline">
-        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="editionRadio" value="edition" checked>
-        <label class="form-check-label" for="editionRadio">Edition</label>
-      </div>
-      <div class="form-check form-check-inline">
-        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="recordRadio" value="record">
-        <label class="form-check-label " for="recordRadio">Record</label>
-      </div>
-      <div class="form-check form-check-inline">
-        <h6 class="">Results: <span id="resultCount">0</span></h4>
-      </div>
-      
-      <button id="expandAllButton" class="btn btn-light float-end" onclick="expandAll(this);">Expand all</button>
+      <div class="results-table-shell">
+        <div class="table-control-row">
+          <!-- View Selector  -->
+          <div class="table-view-switcher" aria-label="Result view selector">
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="inlineRadioOptions" id="titleRadio" value="title">
+              <label class="form-check-label" for="titleRadio">Work</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="inlineRadioOptions" id="editionRadio" value="edition" checked>
+              <label class="form-check-label" for="editionRadio">Edition</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="inlineRadioOptions" id="recordRadio" value="record">
+              <label class="form-check-label " for="recordRadio">Record</label>
+            </div>
+          </div>
+          <h6 class="table-results-count">Results: <span id="resultCount">0</span></h6>
+          <div class="table-action-row">
+            <button id="expandAllButton" class="btn btn-light" onclick="expandAll(this);">Expand All</button>
+          </div>
+        </div>
+  <div class="table-responsive">
   <table class="table bg-light text-dark rounded-0">
-    <!-- IMPORTANT, class="list" have to be at tbody -->
-    <tbody class="list">
       <thead>
         <tr>
 			<th class="col-num sort col-1" data-sort="result_number" data-default-order='desc' scope="col"></th>
@@ -108,11 +111,15 @@
 			<th class="col-expand col-1"></th>
         </tr>
       </thead>
+    <!-- IMPORTANT, class="list" have to be at tbody -->
+    <tbody class="list">
       
 
     </tbody>
 
   </table>
+  </div>
+      </div>
   
 
 </div>
@@ -135,7 +142,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/list.js/2.3.1/list.min.js"></script>  
   <script src="https://cdnjs.cloudflare.com/ajax/libs/wnumb/1.2.0/wNumb.min.js"></script>  
   <script src="/assets/js/choices.min.js"></script>   
-  <script src="/assets/js/deep.js"></script>   
+  <script src="/assets/js/deep.js?v=expand-toggle-visible-row"></script>   
   
 
   
