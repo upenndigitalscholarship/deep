@@ -225,3 +225,18 @@
   });
 
 })()
+
+/**
+ * Header mobile nav toggle (kept global for inline onclick handlers).
+ * Lives here so base pages do not need to load deep.js.
+ */
+function navToggle() {
+  const nav = document.getElementById('awwsNavDisplay');
+  const trigger = document.querySelector('[aria-controls="awwsNavDisplay"]');
+  if (nav) {
+    nav.classList.toggle('awwsNavOpen');
+    if (trigger) {
+      trigger.setAttribute('aria-expanded', nav.classList.contains('awwsNavOpen'));
+    }
+  }
+}
