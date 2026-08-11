@@ -683,6 +683,10 @@ const getQueries = () => {
 }
 
 function removeFilterBlock(id) {
+  let filterBlocks = document.getElementById('filterBlocks');
+  if (filterBlocks.childElementCount <= 1) {
+    return;
+  }
   let myParent = document.getElementById(id);
   myParent.remove();
   search();
@@ -696,18 +700,14 @@ function addANDBlock() {
   const max_year = '1661'
   selectID = Date.now()
   let template = `
-    <div id="andORButtons" class="btn-group" style="visibility:collapse;" role="group">
+    <div id="andORButtons" class="filter-block-operator" aria-hidden="true">
         <!-- Add new filter box 
           The top box has option to add AND OR
           Each child has a disabled button with the operator selected, and a remove button
         -->
-                  
-        <input type="radio" class="btn-check" name="addAND" id="addAND" autocomplete="off" disabled >
-          <label class="btn btn-sm" for="addAND">and</label>              
-            <input type="radio" class="btn-check btn-outline-dark" name="removeBlock" id="removeBlock" autocomplete="off">
-            <label class="btn btn-sm" for="removeBlock"><i id="removeFilterBlock" class="bi bi-dash-circle" ></i></label>
+        <span class="filter-operator-label">AND</span>
     </div>
-    <div>
+    <div class="filter-block-fields">
       <select id="searchSelect-${selectID}" class="input-group form-select form-select-sm">
         
         <option value="">Please select...</option>
@@ -769,7 +769,10 @@ function addANDBlock() {
         <input type="number" aria-label="range-from" placeholder="" min="0" class="form-control">
         <span class="input-group-text">To:</span>
         <input type="number" aria-label="range-to" placeholder="" min="0" class="form-control">
-      </div></div>`
+      </div></div>
+      <div class="filter-block-actions">
+        <button type="button" class="filter-remove-button" aria-label="Remove filter" title="Remove filter"><span class="filter-remove-icon" aria-hidden="true"></span></button>
+      </div>`
 
 
   let newBlock = document.createElement("div");
@@ -778,6 +781,7 @@ function addANDBlock() {
   //  Don't add 'and' or buttons to first block
   if (document.getElementById('filterBlocks').childElementCount === 0) {
     newBlock.children[0].style.display = "none";
+    newBlock.querySelector('.filter-block-actions').style.display = "none";
   }
 
   document.getElementById('filterBlocks').append(newBlock);
@@ -826,18 +830,18 @@ function addANDBlock() {
     search();
   });
 
-  let typeName = newBlock.children[0].children[1];
+  let typeName = newBlock.querySelector('.filter-operator-label');
 
   newBlock.dataset.type = "AND"
-  typeName.innerHTML = 'and'
+  typeName.innerHTML = 'AND'
 
   typeName.style.visibility = 'visible';
 
 
-  let removeButton = newBlock.children[0].children[3];
+  let removeButton = newBlock.querySelector('.filter-remove-button');
   removeButton.style.visibility = 'visible';
   removeButton.addEventListener('click', function handleClick(event) {
-    removeFilterBlock('filterBlock-' + document.getElementById('filterBlocks').childElementCount);
+    removeFilterBlock(newBlock.id);
   });
 }
 
@@ -847,11 +851,8 @@ function addORBlock() {
   selectID1 = Date.now()
   selectID2 = Math.floor(Date.now() / 2)
   let template = `
-    <div id="andORButtons" class="btn-group" role="group" aria-label="Basic radio toggle button group">          
-        <input type="radio" class="btn-check" name="addAND" id="addAND" autocomplete="off" disabled >
-          <label class="btn btn-sm  " for="addAND">and</label>              
-            <input type="radio" class="btn-check btn-outline-dark" name="removeBlock" id="removeBlock" autocomplete="off">
-            <label class="btn btn-sm" for="removeBlock"><i id="removeFilterBlock" class="bi bi-dash-circle" ></i></label>
+    <div id="andORButtons" class="filter-block-operator" aria-hidden="true">          
+        <span class="filter-operator-label">AND</span>
     </div>
     <div class="or-block-content">
       <select id="searchSelect-${selectID1}" class="input-group form-select form-select-sm">
@@ -917,7 +918,7 @@ function addORBlock() {
         <input type="number" aria-label="range-to" placeholder="" min="0" class="form-control">
       </div>
       
-      <span class="or-divider" aria-label="or">or</span> 
+      <span class="or-divider" aria-label="or">OR</span> 
                  
       <select id="searchSelect-${selectID2}" class="input-group form-select form-select-sm">
         
@@ -980,7 +981,10 @@ function addORBlock() {
         <input type="number" aria-label="range-from" placeholder="" min="0" class="form-control">
         <span class="input-group-text">To:</span>
         <input type="number" aria-label="range-to" placeholder="" min="0" class="form-control">
-      </div></div>`
+      </div></div>
+      <div class="filter-block-actions">
+        <button type="button" class="filter-remove-button" aria-label="Remove filter" title="Remove filter"><span class="filter-remove-icon" aria-hidden="true"></span></button>
+      </div>`
 
 
   let newBlock = document.createElement("div");
@@ -992,6 +996,7 @@ function addORBlock() {
     document.getElementById('filterBlocks').children[0].remove()
     document.getElementById('filterBlocks').append(newBlock);
     newBlock.children[0].style.display = "none";
+    newBlock.querySelector('.filter-block-actions').style.display = "none";
 
   } else {
     document.getElementById('filterBlocks').append(newBlock);
@@ -1080,7 +1085,7 @@ function addORBlock() {
     search();
   });
 
-  let removeButton = newBlock.children[0].children[3]
+  let removeButton = newBlock.querySelector('.filter-remove-button')
   removeButton.style.visibility = 'visible';
   removeButton.addEventListener('click', function handleClick(event) {
     removeFilterBlock(newBlock.id);
@@ -2728,6 +2733,7 @@ function expand(e, deep_id) {
     setTimeout(function () { expand(e, deep_id); }, 500);
     search();
   }
+  updateExpandAllButton();
 }
 
 // condition ? exprIfTrue : exprIfFalse
@@ -2759,34 +2765,58 @@ function collapse(e, deep_id) {
       }
     }
   }
+  updateExpandAllButton();
 }
 
 function changeButtonCollapse() {
-  let changeButton = document.getElementById('expandAllButton')
-  changeButton.textContent = 'Collapse All';
-  changeButton.setAttribute("onClick", "collapseAll(this)");
+  updateExpandAllButton(true);
 }
 
+function getExpandableRows() {
+  if (typeof item_data === 'undefined') {
+    return [];
+  }
+
+  return Array.from(document.querySelectorAll('tbody.list > tr')).filter(function (row) {
+    return row.id
+      && !row.id.includes('-exp')
+      && item_data[row.id]
+      && window.getComputedStyle(row).display !== 'none';
+  });
+}
+
+function rowIsExpanded(row) {
+  return document.getElementById(row.id + '-exp') || row.getAttribute('onclick')?.includes('collapse(');
+}
+
+function updateExpandAllButton(forceCollapsed = null) {
+  let changeButton = document.getElementById('expandAllButton');
+  if (!changeButton) return;
+
+  let hasExpandedRows = forceCollapsed !== null
+    ? forceCollapsed
+    : getExpandableRows().some(rowIsExpanded);
+
+  changeButton.textContent = hasExpandedRows ? 'Collapse All' : 'Expand All';
+  changeButton.setAttribute("onClick", hasExpandedRows ? "collapseAll(this)" : "expandAll(this)");
+}
 
 function expandAll(e) {
-  e.textContent = 'Collapse All';
-  e.setAttribute("onClick", "collapseAll(this)");
-  let items = document.querySelectorAll('tr');
-  items.forEach(function (item) {
-    expand(item, item.id);
+  getExpandableRows().forEach(function (item) {
+    if (!rowIsExpanded(item)) {
+      expand(item, item.id);
+    }
   });
+  updateExpandAllButton(true);
 }
 
 function collapseAll(e) {
-  e.textContent = 'Expand All';
-  e.setAttribute("onClick", "expandAll(this)");
-  let items = document.querySelectorAll('tr');
-  items.forEach(function (item) {
-
-    collapse(item, item.id);
-
+  getExpandableRows().forEach(function (item) {
+    if (rowIsExpanded(item)) {
+      collapse(item, item.id);
+    }
   });
-
+  updateExpandAllButton(false);
 };
 
 function radioHelper() {
@@ -2885,3 +2915,5 @@ function navToggle() {
         }
     }
 }
+
+window.navToggle = navToggle;
