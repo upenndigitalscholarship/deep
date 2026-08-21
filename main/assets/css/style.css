@@ -1759,6 +1759,18 @@ section {
   text-indent: -20px;
 }
 
+.moeml-link {
+  display: inline-flex;
+  line-height: 1;
+  margin-left: 6px;
+  vertical-align: middle;
+}
+
+.moeml-icon {
+  height: 20px;
+  width: auto;
+}
+
 .record_aws {
     display: flex;
     flex-direction: column;
@@ -1928,6 +1940,16 @@ section {
 
 .results-table-shell .table-responsive {
     margin: 0;
+}
+
+@media only screen and (max-width: 1024px) {
+    .results-table-shell {
+        overflow: visible;
+    }
+
+    .results-table-shell .table-responsive {
+        overflow-x: visible;
+    }
 }
 
 .results-table-shell .table {
@@ -2146,7 +2168,8 @@ section {
 }
 
 .awwsNavLink:hover,
-.awwsNavGroup:hover .awwsNavLink {
+.awwsNavGroup:hover .awwsNavLink,
+.awwsNavGroup:focus-within .awwsNavLink {
     background-color: #e6e5d6;
     color: #330e40;
 }
@@ -2161,12 +2184,13 @@ button.awwsNavLink .bi-chevron-down {
     transition: transform 0.2s;
 }
 
-.awwsNavGroup:hover button.awwsNavLink .bi-chevron-down {
+.awwsNavGroup:hover button.awwsNavLink .bi-chevron-down,
+.awwsNavGroup:focus-within button.awwsNavLink .bi-chevron-down {
     transform: rotate(180deg);
 }
 
 .awwsNavDropdown {
-    display: none;
+    display: block;
     position: absolute;
     top: 100%;
     left: 0;
@@ -2179,10 +2203,16 @@ button.awwsNavLink .bi-chevron-down {
     margin: 0;
     padding: 8px 0;
     z-index: 1120;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.12s ease 0.35s, visibility 0s linear 0.47s;
 }
 
-.awwsNavGroup:hover .awwsNavDropdown {
-    display: block;
+.awwsNavGroup:hover .awwsNavDropdown,
+.awwsNavGroup:focus-within .awwsNavDropdown {
+    opacity: 1;
+    visibility: visible;
+    transition-delay: 0s;
 }
 
 .awwsNavDropdown a {
@@ -2282,6 +2312,9 @@ button.awwsNavLink .bi-chevron-down {
     .awwsNavDropdown {
         position: static;
         display: none;
+        opacity: 1;
+        visibility: visible;
+        transition: none;
         min-width: none;
         border: none;
         box-shadow: none;
