@@ -87,7 +87,7 @@ const allTextFields = [
   'paratext_explicit', 'paratext_errata', 'paratext_other_paratexts',
   'stationer_colophon', 'stationer_printer_display',
   'stationer_publisher_display', 'stationer_bookseller_display',
-  'stationer_imprint_location', 'stationer_license',
+  'stationer_imprint_location', 'stationer_imprint_location_display', 'stationer_license',
   'stationer_entries_in_register', 'stationer_additional_notes'
 ]
 
@@ -102,39 +102,131 @@ const escapeHtml = value => String(value == null ? '' : value)
   .replace(/"/g, '&quot;')
   .replace(/'/g, '&#39;')
 
+const imprintLocationCodeCategories = {
+  A: "A-B (Paul's Churchyard)",
+  B: "A-B (Paul's Churchyard)",
+  C: 'C (Newgate Within)',
+  D: 'D (Newgate Without)',
+  E: 'E (Smithfield)',
+  F: 'F (Aldersgate Without)',
+  G: 'G (Aldersgate Within)',
+  H: 'H (Cripplegate and Moorgate Within)',
+  I: 'I (Cripplegate Without)',
+  N: 'N (Cheapside)',
+  O: 'O (Royal Exchange)',
+  P: 'P (Leadenhall)',
+  Q: 'Q (Ludgate)',
+  R: 'R-T (Thames St)',
+  S: 'R-T (Thames St)',
+  T: 'R-T (Thames St)',
+  V: 'V (Holborn)',
+  W: 'W (Fleet St)',
+  X: 'X (Westminster)'
+}
+
+const imprintLocationCityCategories = [
+  'Cambridge', 'Dublin', 'Edinburgh', 'Hague', 'Kilkenny',
+  'Leiden', 'Oxford', 'Rochester', 'Southwark'
+]
+
+const splitImprintLocationNames = value => String(value || '')
+  .split(';')
+  .map(name => name.trim())
+  .filter(name => name && name.toLowerCase() !== 'none')
+
+const getStructuredImprintLocations = data => {
+  if (!data || !Array.isArray(data.stationer_imprint_location_locations)) return []
+
+  return data.stationer_imprint_location_locations.reduce((locations, location) => {
+    if (!location || !location.name) return locations
+    splitImprintLocationNames(location.name).forEach(name => {
+      locations.push({ name, moeml_link: location.moeml_link || '' })
+    })
+    return locations
+  }, [])
+}
+
+const getLegacyImprintLocationNames = data => {
+  if (!data) return []
+  const legacyDisplay = data.stationer_imprint_location_display || data.stationer_imprint_location || ''
+  return splitImprintLocationNames(legacyDisplay)
+}
+
+const getImprintLocationDisplayEntries = data => {
+  const structuredLocations = getStructuredImprintLocations(data)
+  const legacyNames = getLegacyImprintLocationNames(data)
+  const structuredByName = new Map()
+
+  structuredLocations.forEach(location => {
+    const key = location.name.toLowerCase()
+    const existing = structuredByName.get(key)
+    if (!existing || (!existing.moeml_link && location.moeml_link)) {
+      structuredByName.set(key, location)
+    }
+  })
+
+  const displayEntries = legacyNames.map(name => {
+    const key = name.toLowerCase()
+    const structuredLocation = structuredByName.get(key)
+    structuredByName.delete(key)
+    return structuredLocation || { name, moeml_link: '' }
+  })
+
+  structuredByName.forEach(location => displayEntries.push(location))
+  return displayEntries
+}
+
+const imprintLocationCategoryForName = name => {
+  const normalizedName = String(name || '').trim().toLowerCase()
+  const cityCategory = imprintLocationCityCategories.find(city => city.toLowerCase() === normalizedName)
+  if (cityCategory) return cityCategory
+
+  const codeMatch = String(name || '').trim().match(/^([A-Z])(?=\.|\s*\()/i)
+  return codeMatch ? imprintLocationCodeCategories[codeMatch[1].toUpperCase()] || '' : ''
+}
+
+const matchesImprintLocation = (item, selectedValue) => {
+  const selected = String(selectedValue || '').trim()
+  const selectedNormalized = selected.toLowerCase()
+  const supraCategories = splitImprintLocationNames(item && item.stationer_imprint_location_supra)
+  const structuredLocations = getStructuredImprintLocations(item)
+  const legacyNames = getLegacyImprintLocationNames(item)
+  const displayEntries = getImprintLocationDisplayEntries(item)
+
+  if (selected === 'Any') return displayEntries.length > 0 || supraCategories.length > 0
+  if (selected === 'None') return displayEntries.length === 0 && supraCategories.length === 0
+  if (selected === '---') return true
+
+  if (supraCategories.some(category => category.toLowerCase() === selectedNormalized)) return true
+
+  // When supra-categories exist, trust them for structured/curated names. Only
+  // derive categories for legacy names that have not been linked yet.
+  const curatedNames = supraCategories.length
+    ? new Set(structuredLocations.map(location => location.name.toLowerCase()))
+    : new Set()
+
+  return legacyNames
+    .filter(name => !curatedNames.has(name.toLowerCase()))
+    .some(name => imprintLocationCategoryForName(name).toLowerCase() === selectedNormalized)
+}
+
 const renderMoemlIcon = link => {
-  if (link) {
-    return '<a href="' + escapeHtml(link) + '" target="_blank" rel="noopener" title="MoEML" style="display:inline-flex;align-items:center;margin-left:6px;"><img src="assets/img/rose_4.svg" alt="MoEML" class="moeml-icon" style="max-height:20px;" /></a>'
-  }
-  return '<img src="assets/img/rose_4.svg" alt="MoEML" class="moeml-icon moeml-icon-disabled" title="No link" style="max-height:20px;margin-left:6px;opacity:0.4;filter:grayscale(100%);cursor:default;" />'
+  if (!link) return ''
+  return '<a href="' + escapeHtml(link) + '" target="_blank" rel="noopener" title="MoEML" class="moeml-link"><img src="assets/img/rose_4.svg" alt="MoEML" class="moeml-icon" /></a>'
 }
 
 const renderImprintLocation = data => {
-  if (!data || data.stationer_imprint_location === 'None') return ''
-
-  let locations = Array.isArray(data.stationer_imprint_location_locations)
-    ? data.stationer_imprint_location_locations
-    : []
-
-  if (!locations.length && data.stationer_imprint_location) {
-    locations = [{
-      name: data.stationer_imprint_location,
-      moeml_link: data.stationer_imprint_location_moeml_link || ''
-    }]
-  }
-
-  locations = locations.filter(location => location && location.name)
+  const locations = getImprintLocationDisplayEntries(data)
   if (!locations.length) return ''
 
   const locationHtml = locations.map(location => (
-    '<span style="display:inline-flex;align-items:center;margin-right:8px;"><span>' +
+    '<span class="imprint-location-entry">' +
     escapeHtml(location.name) +
-    '</span>' +
     renderMoemlIcon(location.moeml_link) +
     '</span>'
-  )).join('<span>; </span>')
+  )).join('; ')
 
-  return '<div class="hanging" style="display:flex;align-items:center;flex-wrap:wrap;"><span class="expand">Imprint Location: </span><span id="stationer_imprint_location">' + locationHtml + '</span></div>'
+  return '<div class="hanging"><span class="expand">Imprint Location: </span><span id="stationer_imprint_location">' + locationHtml + '</span></div>'
 }
 
 
@@ -1312,24 +1404,7 @@ const processQueries = queries => {
         filters.push({ 'filter': titlePageModern, 'type': query.blockType })
       }
       if (query.searchField == 'imprintlocation') {
-        let imprintLocation
-        if (query.searchValue === 'Any') {
-          imprintLocation = item => (
-            (item.stationer_imprint_location && item.stationer_imprint_location !== 'None') ||
-            (item.stationer_imprint_location_supra && item.stationer_imprint_location_supra.trim() !== '')
-          )
-        } else if (query.searchValue === 'None') {
-          imprintLocation = item => (
-            (!item.stationer_imprint_location || item.stationer_imprint_location === 'None') &&
-            (!item.stationer_imprint_location_supra || item.stationer_imprint_location_supra.trim() === '')
-          )
-        } else if (query.searchValue === '---') {
-          imprintLocation = () => true
-        } else {
-          imprintLocation = item => (
-            (item.stationer_imprint_location_supra || '').toLowerCase().includes(query.searchValue.toLowerCase())
-          )
-        }
+        const imprintLocation = item => matchesImprintLocation(item, query.searchValue)
         filters.push({ 'filter': imprintLocation, 'type': query.blockType })
       }
       if (query.searchField == 'title-page-old') {
@@ -1876,24 +1951,7 @@ const processQueries = queries => {
           ORquery.push(titlePageModern)
         }
         if (fields[i] == 'imprintlocation' && values[i]) {
-          let imprintLocation
-          if (values[i] === 'Any') {
-            imprintLocation = item => (
-              (item.stationer_imprint_location && item.stationer_imprint_location !== 'None') ||
-              (item.stationer_imprint_location_supra && item.stationer_imprint_location_supra.trim() !== '')
-            )
-          } else if (values[i] === 'None') {
-            imprintLocation = item => (
-              (!item.stationer_imprint_location || item.stationer_imprint_location === 'None') &&
-              (!item.stationer_imprint_location_supra || item.stationer_imprint_location_supra.trim() === '')
-            )
-          } else if (values[i] === '---') {
-            imprintLocation = () => true
-          } else {
-            imprintLocation = item => (
-              (item.stationer_imprint_location_supra || '').toLowerCase().includes(values[i].toLowerCase())
-            )
-          }
+          const imprintLocation = item => matchesImprintLocation(item, values[i])
           ORquery.push(imprintLocation)
         }
         if (fields[i] == 'title-page-old' && values[i]) {
