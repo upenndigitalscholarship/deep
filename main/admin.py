@@ -11,6 +11,15 @@ class ItemAdmin(admin.ModelAdmin):
     list_filter = ['deep_id','greg_full','edition__title__title']
     filter_horizontal = ['stationer_imprint_location_filter']
     #raw_id_fields = ('title_page_company_filter','stationer_printer','stationer_publisher','stationer_bookseller','variant_links','in_collection','also_in_collection_link','collection_contains','independent_playbook_link')
+
+    def formfield_for_dbfield(self, db_field, request, **kwargs):
+        field = super().formfield_for_dbfield(db_field, request, **kwargs)
+        # Fetch the related rows used by Item and Edition dropdown labels.
+        if field and db_field.is_relation and db_field.related_model in (Item, Edition):
+            path = 'edition__title' if db_field.related_model is Item else 'title'
+            field.queryset = field.queryset.select_related(path)
+        return field
+
 admin.site.register(Item, ItemAdmin)
 
 class EditionAdmin(admin.ModelAdmin):
